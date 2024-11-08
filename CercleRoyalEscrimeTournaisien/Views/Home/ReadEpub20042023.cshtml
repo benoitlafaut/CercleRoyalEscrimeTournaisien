@@ -1,0 +1,48 @@
+﻿@model CercleRoyalEscrimeTournaisien.Models.ModelEpub20042023
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/ReadEpub20042023.css">
+
+    <script>
+        //$(document).ready(function () {
+        //    document.getElementById('inputFile').addEventListener('change', function (e) {
+        //        if (e.target.files[0]) {
+        //            if (e.target.files[0].name.split('.').pop().toLowerCase() == "epub") {
+        //                CreateFileEpubNew20042023();
+        //            }
+        //            else {
+        //                ChargerEpubNew20042023();
+        //            }
+        //        }
+        //    });
+
+        //    $("#bodyReadEpub20042023").find("tr").dblclick(function (){
+        //        alert($(this).text());
+        //    });
+         
+        //})
+    </script>
+</head>
+
+<body id="bodyReadEpub20042023">
+    <label>
+        <input id="inputFile" type="file" style="display: none;" name="file1">
+        <i class="fa fa-folder-open-o"></i>
+    </label>
+
+    <table style="margin:10px 10px 10px 10px">
+        @{
+            for (int iloop = 0; iloop < Model.RowsToRead.Count; iloop++)
+            {
+                <tr style="height: 29px;"><td> <span>@Model.RowsToRead[iloop]</span></td></tr>
+            }
+        }
+    </table>
+</body>
+</html>
+
+<script src="~/Scripts/ReadEpub20042023.js" type="text/javascript"></script>

@@ -1,0 +1,70 @@
+﻿@using CercleRoyalEscrimeTournaisien.Models;
+@model ModelViewEpubFile
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/jquery.roundslider/1.0/roundslider.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/jquery.roundslider/1.0/roundslider.min.css" rel="stylesheet" />
+</head>
+
+<div id="expandIcon" style="height:30px;float:right;font-size:25px;background-color:khaki;width:25px;">
+    <i id="myBtn" class="fa fa-expand"></i>
+</div>
+
+@*<div id="launchPDF" style="height:30px;float:right;font-size:25px;background-color:white;width:25px;" onclick="location.href ='@Url.Action("ScreenPDFPage", "Home")'">
+    <i id="myBtn" class="fa fa-file-pdf-o " ></i>
+</div>*@
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+
+        <div style="border: 1px solid black; margin: 24px 5px 5px 5px; border-radius: 5px;" class="form-group">
+            <div class="ClassDivLangues">
+                @Html.CheckBoxFor(m => Model.Allemand, new { @onclick = "changeCurrentLigne_New_112022('false','false', '-1')" })
+                DE
+            </div>
+            <div class="ClassDivLangues">
+                @Html.CheckBoxFor(m => Model.Anglais, new { @onclick = "changeCurrentLigne_New_112022('false','false', '-1')" })
+                EN
+            </div>
+            <div class="ClassDivLangues">
+                @Html.CheckBoxFor(m => Model.Espagnol, new { @onclick = "changeCurrentLigne_New_112022('false','false', '-1')" })
+                ES
+            </div>
+            <div class="ClassDivLangues">
+                @Html.CheckBoxFor(m => Model.Francais, new { @onclick = "changeCurrentLigne_New_112022('false','false', '-1')" })
+                FR
+            </div>
+            <div class="ClassDivLangues">
+                @Html.CheckBoxFor(m => Model.Neerlandais, new { @onclick = "changeCurrentLigne_New_112022('false','false', '-1')" })
+                NE
+            </div>
+        </div>
+
+        <div class="content form-group" style="border: 1px solid black; margin: 5px 5px 5px 5px; position: initial; border-radius: 5px;">
+            <div style="margin-bottom: 5px;"><input type="file" id="GetFile" style="font-size: 19px; width: 499px; " /></div>
+        </div>
+
+        <div id="divForIcones" class="content form-group" style="border: 1px solid black; margin: 5px 5px 5px 5px; height: 13%; position: initial; border-radius: 5px;">
+            <i style="font-size: 36px;" class="fa fa-book" onclick="CreateFileEpub();"></i>
+            <i style="font-size: 36px;" class="fa fa-folder-open-o" onclick="ChargerEpub('/Home/ChargerEpub','0',0);"></i>
+            <i style="font-size: 36px;" class="fa fa-volume-up" onclick="ClickListenSentence();"></i>
+        </div>
+
+        <div class="form-group" style="border: 1px solid black; margin: 5px 5px 5px 5px; position: initial; border-radius: 5px;">
+            @Html.DropDownListFor(model => model.ThemeSelected, new SelectList(Model.ListThemes, "Key", "Value", Model.ThemeSelected), new { @class = "form-control", @onchange = "chargerListeThemes()" })
+        </div>
+
+        <div class="form-group" style="border: 1px solid black; margin: 5px 5px 5px 5px; border-radius: 5px;">
+            <span id="counterRowsEpub" style="float: right;">@Model.CurrentLigne / @Model.RowsEpub.Count</span>
+            <div id="SliderLine" class="rslider" onchange="changeSliderLine();"></div>
+        </div>
+
+        <div class="form-group" style="border: 1px solid black; margin: 5px 5px 5px 5px; position: initial; border-radius: 5px;">
+            @Html.DropDownListFor(model => model.BouquinSelected, new SelectList(Model.ListBouquins, "Key", "Value", Model.BouquinSelected), new { @class = "form-control", @onchange = "ChargerEpubChoisi()" })
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/ExpandView.js" type="text/javascript"></script>

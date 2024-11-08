@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+
+@{
+
+    var urlPath = Url.Content("~/Home/Photos/Entree/");
+
+    var urlPhoto1 = Url.Content("~/Home/Photos/Entree/1.jpg");
+    var urlPhoto2 = Url.Content("~/Home/Photos/Entree/2.jpg");
+    var urlPhoto3 = Url.Content("~/Home/Photos/Entree/3.jpg");
+    var urlPhoto4 = Url.Content("~/Home/Photos/Entree/4.jpg");
+    var urlPhoto5 = Url.Content("~/Home/Photos/Entree/5.jpg");
+    var urlPhoto6 = Url.Content("~/Home/Photos/Entree/6.jpg");
+    var urlPhoto7 = Url.Content("~/Home/Photos/Entree/7.jpg");
+    var urlPhoto8 = Url.Content("~/Home/Photos/Entree/8.jpg");
+    var urlPhoto9 = Url.Content("~/Home/Photos/Entree/9.jpg");
+    var urlPhoto10 = Url.Content("~/Home/Photos/Entree/10.jpg");
+    var urlPhoto11 = Url.Content("~/Home/Photos/Entree/11.jpg");
+    var urlPhoto12 = Url.Content("~/Home/Photos/Entree/12.jpg");
+    var urlPhoto13 = Url.Content("~/Home/Photos/Entree/13.jpg");
+    var urlPhoto14 = Url.Content("~/Home/Photos/Entree/14.jpg");
+    var urlPhoto15 = Url.Content("~/Home/Photos/Entree/15.jpg");
+    var urlPhoto16 = Url.Content("~/Home/Photos/Entree/16.jpg");
+    var urlPhoto17 = Url.Content("~/Home/Photos/Entree/17.jpg");
+    var urlPhoto18 = Url.Content("~/Home/Photos/Entree/18.jpg");
+    var position = "";
+}
+@section css {
+    <link href="@Url.Content("~/Content/MainPage.css")" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link id="themecss" rel="stylesheet" type="text/css" href="//www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="@Url.Content("~/Content/MainPage.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/ShowMenuPrincipal.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/AgendaStyle.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/HistoriqueStyle.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("/Content/CategoriesStyle.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/QuelquesSitesStyle.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/ReadEpub20042023.css")" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Content/ReadEpub20042023.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src='~/Scripts/MainPage.js'></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+
+    <link id="themecss" rel="stylesheet" type="text/css" href="//www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.responsivevoice.org/1.8.3/responsivevoice.js?source=wp-plugin&key=kvfbSITh&ver=5.8.6"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+}
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+@Html.Hidden("PhotoDepart")
+
+<div tabindex="-1" role="dialog" style="display: block; z-index: 101;" class="entree ui-dialog ui-corner-all ui-widget ui-widget-content ui-front ui-draggable" aria-describedby="popUp" aria-labelledby="ui-id-1">
+    <div class="ui-dialog-titlebar ui-corner-all ui-widget-header ui-helper-clearfix ui-draggable-handle">
+        <span id="ui-id-1" class="ui-dialog-title">&nbsp;</span>
+        <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close">
+            <span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>Close
+        </button>
+    </div>
+
+    <table style=" width: 100%; height: 93%;">
+        <tr>
+            <td style="width: 1%;" onclick="passToPreviousPhoto();"><span style="font-size: 32px; color: blue;cursor:pointer;">&#8656;</span></td>
+            <td style="width: 98%;text-align:center;">
+                <img id="imgPhoto" src="@urlPhoto1" style="" />
+            </td>
+            <td style="width: 1%" onclick="passToNextPhoto();"><span style="font-size: 32px; color: blue; cursor: pointer;">&#8658;</span></td>
+        </tr>
+    </table>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        $(".ui-icon-closethick").on("click", function () {
+            $("#ShowPartialViewEntreeClubId").css('display', 'none');
+        });
+        $("#PhotoDepart").val("1");
+    });
+
+    function passToPreviousPhoto() {
+        position = +$("#PhotoDepart").val() - 1;
+        if (position == 0) { position = 18; }
+        $("#imgPhoto").attr("src", '@urlPath' + position + ".jpg");
+        $("#PhotoDepart").val(position);
+    }
+
+    function passToNextPhoto() {
+        position = +$("#PhotoDepart").val() + 1 ;
+        if (position == 19) { position = 1; }
+        $("#imgPhoto").attr("src", '@urlPath' + position + ".jpg");
+        $("#PhotoDepart").val(position);
+    }
+</script>
+

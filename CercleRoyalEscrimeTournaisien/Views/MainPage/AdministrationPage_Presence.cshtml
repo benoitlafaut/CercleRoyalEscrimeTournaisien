@@ -1,0 +1,66 @@
+﻿@model WebApplication1.Models.EscrimeursListe
+
+@{
+    var nowDate = DateTime.Now;
+    DateTime dateNowFormatted = new DateTime(nowDate.Year, nowDate.Month, nowDate.Day);
+    int compteur = 0;
+}
+
+<hr style="margin-top:15px;margin-bottom:15px;">
+<button class="btn btn-primary" type="button" id="btnSearch" onclick="ShowOrHideTable();">Show or Hide Table Présence</button>
+<div id="tablePresence">
+    @{
+        for (var day = dateNowFormatted; day.Date >= Model.JoursDePrésence.JourMinimumDesJoursDePrésence; day = day.AddDays(-1))
+        {
+
+            if (day.DayOfWeek == DayOfWeek.Monday
+            || day.DayOfWeek == DayOfWeek.Wednesday
+            || day.DayOfWeek == DayOfWeek.Friday
+            || day.DayOfWeek == DayOfWeek.Sunday)
+            {
+                if (Model.JoursDePrésence.JourDePrésence.Where(x => x.DatePrésence == day).Count() > 0)
+                {
+                    WebApplication1.Models.JourDePrésence jourDePrésence = Model.JoursDePrésence.JourDePrésence.Where(x => x.DatePrésence == day).First();
+
+                    <table style="display:block">
+                            <tr>
+                                <td style="min-width:130px;">@day.DayOfWeek.ToString().Replace("Monday", "Lundi").Replace("Sunday", "Dimanche").Replace("Friday", "Vendredi").Replace("Wednesday", "Mercredi")</td>
+                                <td style="min-width:130px;">@day.ToString("dd/MM")</td>
+
+                                @{
+                                    compteur = 0;
+                                    foreach (Guid escrimeurId in jourDePrésence.EscrimeurId)
+                                    {
+                                        if (Model.Membres.Any(x => x.GuidId == escrimeurId))
+                                        {
+                                            WebApplication1.Models.MembreData escrimeurData = Model.Membres.Where(x => x.GuidId == escrimeurId).First();
+                                            <td>@escrimeurData.Prénom,</td>
+                                            compteur++;
+
+                                        }
+                                    }
+                                }
+
+                                <td style="min-width:130px;">( @compteur tireurs présents )</td>
+                            </tr>
+                    </table>
+
+                }
+            }
+        }
+    }
+
+
+</div>
+
+<script>
+
+    function ShowOrHideTable() {
+        if ($("#tablePresence").css('display') == 'block') {
+            $("#tablePresence").css('display', 'none');
+        }
+        else {
+            $("#tablePresence").css('display', 'block');
+        }
+    }
+</script>

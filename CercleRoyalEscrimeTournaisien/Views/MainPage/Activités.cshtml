@@ -1,0 +1,51 @@
+﻿@using CercleRoyalEscrimeTournaisien.Resources
+@model CercleRoyalEscrimeTournaisien.Activites
+
+@section css {
+    <link href="@Url.Content("~/Content/MainPage.css")" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link id="themecss" rel="stylesheet" type="text/css" href="//www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="@Url.Content("~/Content/MainPage.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/ShowMenuPrincipal.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/AgendaStyle.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/ActivitesStyle.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/HistoriqueStyle.css")" rel="stylesheet" type="text/css" />
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src='~/Scripts/MainPage.js'></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="//cdn.embed.ly/player-0.0.11.min.js"></script>
+}
+
+<div style="text-align:right;">
+    <i class="fa fa-bars fa-beat" onclick="ShowStartPage();" style="color: red; font-size: 30px;"></i>
+</div>
+
+<div>
+    <div class="sujetHistorique"><span>@ResourceGlobal.Activite_Sujet</span></div>
+</div>
+
+<div style=" overflow-y: overlay; position: fixed; height: 81%; width: 99%; overflow-x: hidden; -webkit-box-shadow: 10px 9px 63px 8px grey;">
+    @foreach (ClassActivite activite in Model.ActivitesList)
+    {
+        if (activite.IsTitre)
+        {
+            <span style="" class="cssFormatDatePostage">@activite.Content</span>
+        }
+        else
+        {
+            <span style="" class="cssCadrePostage">@activite.Content</span>
+        }
+    }
+</div>

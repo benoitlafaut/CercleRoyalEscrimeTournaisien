@@ -1,0 +1,425 @@
+﻿@model WebApplication1.Models.EscrimeursListe
+
+<!DOCTYPE html>
+@{
+    string firstColumnStyle = "min-width:450px";
+    string urlDownloadExcel = Url.Action("DownloadExcel", "MainPage");
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/MainPage.js")"></script>
+    <link href="@Url.Content("~/Content/MainPage.css")" rel="stylesheet" />
+</head>
+<body id="bodyLogon" style="overflow-y:auto;">
+    <script>
+        function ExpandName(tireurId) {
+            if ($("#iconPlusId" + tireurId).attr('class') == 'fa fa-minus') {
+                $("#tableExtendFiche" + tireurId).css('display', 'none');
+                $("#tableExtendPaiement_1" + tireurId).css('display', 'none');
+                $("#tableExtendPaiement_2" + tireurId).css('display', 'none');
+                $("#tableExtendPaiement_3" + tireurId).css('display', 'none');
+                $("#tableExtendPaiement_4" + tireurId).css('display', 'none');
+                $("#tableExtendPaiement_5" + tireurId).css('display', 'none');
+                $("#tableExtendPaiement_6" + tireurId).css('display', 'none');
+                $("#iconPlusId" + tireurId).removeClass().addClass('fa fa-plus');
+            }
+            else {
+                $("#tableExtendFiche" + tireurId).css('display', 'block');
+                $("#tableExtendPaiement_1" + tireurId).css('display', 'block');
+                $("#tableExtendPaiement_2" + tireurId).css('display', 'block');
+                $("#tableExtendPaiement_3" + tireurId).css('display', 'block');
+                $("#tableExtendPaiement_4" + tireurId).css('display', 'block');
+                $("#tableExtendPaiement_5" + tireurId).css('display', 'block');
+                $("#tableExtendPaiement_6" + tireurId).css('display', 'block');
+                $("#iconPlusId" + tireurId).removeClass().addClass('fa fa-minus');
+            }
+        }
+
+        function DropDownPeriodeChange() {
+            var period = $("#Periode").find('option:selected').val()
+
+            $.ajax({
+                type: "POST",
+                url: "/MainPage/ChangePeriode",
+                data: { period: period },
+                success: function (result) {
+                    $("body").html(result);
+                }
+            });
+        }
+
+    </script>
+
+    <div style="margin-left:15px;">
+        @{
+                <div style="margin-bottom:15px;">
+                    <span title="télécharger le fichier excel qui reprend les mouvements des comptes jusqu'au jour indiqué" style="display: inline-flex; width: 359px;">Compte (format Excel mis à jour le 03/11/2024): <a target="_blank" href="~/FileToUpload/ExcelCompte/ExportCreateExcel.xls" )'"><i class="fa fa-info-circle" style="cursor:pointer;" aria-hidden="true"></i></a></span>
+                    <span title="site ophardt pour assurer un nouveau membre ou pour l'ajouter à une compétition" style="display: inline-flex; width: 149px;">Site d'Ophardt : <a target="_blank" href="https://fencing.ophardt.online/fr/login"><i class="fa fa-info-circle" style="cursor:pointer;" aria-hidden="true"></i></a></span>
+                    Liste des catégories: <a target="_blank" href="/MainPage/Catégories/" )'"><i class="fa fa-info-circle" style="cursor:pointer;" aria-hidden="true"></i></a>
+                    <button style="margin-left:15px;" class="btn btn-primary" type="button" id="btnDownload" onclick="window.location.href = '@urlDownloadExcel'">Rapport téléchargeable (excel)</button>
+
+                    <div style="text-align:right;margin-top: -18px;">
+                        <i class="fa fa-bars fa-beat" onclick="ShowStartPage();" style="color: red; font-size: 30px;"></i>
+                    </div>
+                </div>
+
+            <hr>
+
+            <div style="margin-bottom:15px;">
+                Période :
+                @Html.DropDownList("Periode", new List<SelectListItem>
+                {
+                new SelectListItem{ Text=WebApplication1.Models.Periode.Period_2022_2023, Value = WebApplication1.Models.Periode.Period_2022_2023.ToString() },
+                new SelectListItem{ Text=WebApplication1.Models.Periode.Period_2023_2024, Value = WebApplication1.Models.Periode.Period_2023_2024.ToString() },
+                new SelectListItem{ Text=WebApplication1.Models.Periode.Period_2024_2025, Value = WebApplication1.Models.Periode.Period_2024_2025.ToString() },
+                }, new { style = "Width:150px;", onchange = "DropDownPeriodeChange()" })
+
+                <span style="margin-left:15px;">Ne pas tenir compte des tireurs qui sont en ordre :</span>
+                @Html.CheckBoxFor(m => Model.IsNotTakeAccountTireursOK, new { @onclick = "TakeAccountTireursOK();" })
+
+                <span style="margin-left:15px;">Recherche par lettres:</span>
+                @Html.TextBoxFor(x => x.TireurSpecificToSelected, new { htmlAttributes = new { }, @class = "form-control", @onkeyup = "ChangeNomTireurASelectionner()" })
+            </div>
+
+            <span style="margin-bottom: 16px; display: flex;"></span>
+
+            foreach (WebApplication1.Models.MembreData escrimeur in Model.Membres)
+            {
+                //if (!Model.IsNotTakeAccountTireursOK)
+                //{
+                bool isTireurEnOrdre = escrimeur.Paiement?.IsCotisationEnOrdre == true && escrimeur.Paiement?.IsLicenceEnOrdre == true && escrimeur.Paiement?.IsFicheSignaletiqueEnOrdre == true && escrimeur.Paiement?.IsLocationMatérielEnOrdre == true;
+                bool isNotTakeAccountTireursOK = Model.IsNotTakeAccountTireursOK && isTireurEnOrdre;
+                //string styleIsNotTakeAccountTireursOK = isNotTakeAccountTireursOK ? "display:none" : "";
+                int nombreDeJoursDePresence = 0;
+
+                if (!isNotTakeAccountTireursOK)
+                {
+                    string idTable = "table" + "_" + escrimeur.Nom + "_" + escrimeur.Prénom;
+                    <table id="@idTable">
+                        <tr style="font-size:14px;">
+                            @{
+                                string iconPlusId = "iconPlusId" + escrimeur.GuidId;
+                            }
+
+                            <td style="min-width:20px;"><i id="@iconPlusId" class="fa fa-plus" aria-hidden="true" onclick="ExpandName('@escrimeur.GuidId')"></i> </td>
+                            <td style="min-width:150px;">@escrimeur.Nom @escrimeur.Prénom</td>
+                            <td style="min-width:200px;">
+                                Cotisation en ordre
+
+                                @if (escrimeur.Paiement?.IsCotisationEnOrdre == true)
+                                {
+                                    <i class="fa fa-check" style="color:green;" aria-hidden="true"></i>
+                                }
+                                else
+                                {
+                                    <i class="fa fa-times" style="color:red;" aria-hidden="true"></i>
+                                }
+                            </td>
+                            <td style="min-width:200px;">
+                                Licence en ordre
+
+                                @if (escrimeur.Paiement?.IsLicenceEnOrdre == true)
+                                {
+                                    <i class="fa fa-check" style="color:green;" aria-hidden="true"></i>
+                                }
+                                else
+                                {
+                                    <i class="fa fa-times" style="color:red;" aria-hidden="true"></i>
+                                }
+                            </td>
+
+                            <td style="min-width:250px;">
+                                Fiche signalétique en ordre
+
+                                @if (escrimeur.Paiement?.IsFicheSignaletiqueEnOrdre == true)
+                                {
+                                    <i class="fa fa-check" style="color:green;" aria-hidden="true"></i>
+                                }
+                                else
+                                {
+                                    <i class="fa fa-times" style="color:red;" aria-hidden="true"></i>
+                                }
+                            </td>
+
+                            <td style="min-width:250px;">
+                                Location matériel en ordre
+
+                                @if (escrimeur.Paiement?.IsLocationMatérielEnOrdre == true)
+                                {
+                                    <i class="fa fa-check" style="color:green;" aria-hidden="true"></i>
+                                }
+                                else
+                                {
+                                    <i class="fa fa-times" style="color:red;" aria-hidden="true"></i>
+                                }
+                            </td>
+
+                            @*<td style="min-width:200px;">
+                                Groupe :&nbsp;
+                                @if (escrimeur.Signaletique != null)
+                                {
+                                    foreach (string groupe in escrimeur.Signaletique.Groupe)
+                                    {
+                                        <span>@groupe </span>
+                                    }
+                                }
+
+                            </td>*@
+
+                            <td style="min-width:200px;">
+                                Tout est en ordre ?
+                                @if (escrimeur.Paiement?.IsCotisationEnOrdre == true && escrimeur.Paiement?.IsLicenceEnOrdre == true && escrimeur.Paiement?.IsFicheSignaletiqueEnOrdre == true && escrimeur.Paiement?.IsLocationMatérielEnOrdre == true)
+                                {
+                                    <i class="fa fa-check" style="color:green;" aria-hidden="true"></i>
+                                }
+                                else
+                                {
+                                    <i class="fa fa-times" style="color:red;" aria-hidden="true"></i>
+                                }
+                            </td>
+                        </tr>
+                    </table>
+
+
+                    if (escrimeur.Signaletique != null)
+                    {
+                        string tableId = "tableExtendFiche" + escrimeur.GuidId;
+
+                        <table id="@tableId" style="display:none;margin-left:50px;">
+
+                            <tr>
+                                <td style="@firstColumnStyle">
+                                    Date de naissance: @escrimeur.Signaletique.DateDeNaissance.ToString("dd/MM/yyyy")
+                                </td>
+                                <td style="min-width:150px;">
+                                    Catégorie: @escrimeur.Signaletique.Categorie
+                                </td>
+                            </tr>
+                            <tr class="classEmail">
+                                @{
+                                    int index = 1;
+                                    if (escrimeur.Signaletique != null)
+                                    {
+                                        foreach (string tel in escrimeur.Signaletique.Telephone)
+                                        {
+                                            <td style="@firstColumnStyle">Téléphone @index: <a href="tel:@tel">@tel</a><em title="Copy téléphone" onclick="CopyEmail('@tel')" class="fa fa-copy"></em></td>
+                                            index++;
+                                        }
+                                    }
+                                }
+                            </tr>
+                            <tr class="classEmail">
+                                @{
+                                    int indexEmail = 1;
+                                    if (escrimeur.Signaletique != null)
+                                    {
+                                        foreach (string email in escrimeur.Signaletique.Email)
+                                        {
+                                            <td style="@firstColumnStyle">Email @indexEmail: <a href="mailto:@email">@email</a><em title="Copy email" onclick="CopyEmail('@email')" class="fa fa-copy"></em> </td>
+                                            indexEmail++;
+                                        }
+                                    }
+                                }
+                            </tr>
+                            <tr>
+                                <td style="@firstColumnStyle">Maman: @escrimeur.Signaletique.NomMaman</td>
+                                <td style="@firstColumnStyle">Papa: @escrimeur.Signaletique.NomPapa</td>
+                            </tr>
+                            <tr style="margin-bottom:25px;display:flex;">
+                                <td style="@firstColumnStyle">
+                                    Fiche signalétique:
+                                    <i class="fa fa-info-circle" style="cursor:pointer;" aria-hidden="true" onclick=" window.open('@escrimeur.Signaletique.FicheSignaletiqueUrl', '_blank');"></i>
+                                </td>
+                            </tr>
+                        </table>
+                    }
+
+                    string tableExtendPaiement_1 = "tableExtendPaiement_1" + escrimeur.GuidId;
+
+                    <table id="@tableExtendPaiement_1" style="display:none;margin-left:50px;">
+                        <tr>
+
+                            @{
+                                if (escrimeur.Paiement?.SeancesGratuites != null)
+                                {
+                                    <td style="min-width:150px;">Séances gratuites:</td>
+                                    int indexSeancesGratuites = 1;
+
+                                    foreach (DateTime seance in escrimeur.Paiement?.SeancesGratuites)
+                                    {
+                                        <td style="min-width:140px;">@indexSeancesGratuites: @seance.ToString("dd/MM/yyyy")</td>
+                                        indexSeancesGratuites++;
+                                    }
+                                }
+
+                            }
+                        </tr>
+                    </table>
+
+                    string tableExtendPaiement_2 = "tableExtendPaiement_2" + escrimeur.GuidId;
+
+                    <table id="@tableExtendPaiement_2" style="display:none;margin-left:50px;">
+                        <tr>
+                            @{
+
+                                <td style="min-width:150px;">Jours de présence:</td>
+                                for (var day = Model.JoursDePrésence.JourMinimumDesJoursDePrésence; day.Date <= DateTime.Now; day = day.AddDays(1))
+                                {
+                                    if (day.DayOfWeek == DayOfWeek.Monday
+                                        || day.DayOfWeek == DayOfWeek.Wednesday
+                                        || day.DayOfWeek == DayOfWeek.Friday
+                                        || day.DayOfWeek == DayOfWeek.Sunday)
+                                    {
+                                        if (Model.JoursDePrésence.JourDePrésence.Where(x => x.DatePrésence == day).Count() > 0)
+                                        {
+                                            WebApplication1.Models.JourDePrésence jourDePrésence = Model.JoursDePrésence.JourDePrésence.Where(x => x.DatePrésence == day).First();
+                                            if (jourDePrésence.EscrimeurId.Where(x => x.Equals(escrimeur.GuidId)).Any())
+                                            {
+                                                nombreDeJoursDePresence++;
+                                                <td>@day.ToString("dd/MM"),</td>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            ///var i = 10;
+                                        }
+
+
+                                    }
+                                }
+                            }
+                        </tr>
+                    </table>
+
+
+                    //* nombre de jours *//
+                    string tableExtendPaiement_3 = "tableExtendPaiement_3" + escrimeur.GuidId;
+
+                    <table id="@tableExtendPaiement_3" style="display:none;margin-left:50px;">
+                        <tr>
+
+                            @if (escrimeur.Paiement == null)
+                            {
+                                <td>Nombre de jours de présences: 0</td>
+                            }
+                            else
+                            {
+                                <td>Nombre de jours de présences: @nombreDeJoursDePresence</td>
+                            }
+
+
+                        </tr>
+                    </table>
+
+                    //* liste des paiements *//
+
+                    string tableExtendPaiement_4 = "tableExtendPaiement_4" + escrimeur.GuidId;
+
+                    <table id="@tableExtendPaiement_4" style="display:none;margin-left:50px;">
+                        <tr>
+                            @{
+                                if (escrimeur.Paiement?.PaiementsEffectues != null)
+                                {
+                                    <td style="min-width:150px;">Paiements effectués:</td>
+
+                                    foreach (string paiement in escrimeur.Paiement?.PaiementsEffectues)
+                                    {
+                                        <td>@paiement,</td>
+                                    }
+                                }
+                            }
+                        </tr>
+                    </table>
+
+                    //* Cotisation annuelle ou à carte *//
+
+                    string tableExtendPaiement_5 = "tableExtendPaiement_5" + escrimeur.GuidId;
+
+                    <table id="@tableExtendPaiement_5" style="display:none;margin-left:50px;">
+                        <tr>
+
+                            @if (escrimeur.Paiement == null)
+                            {
+                                <td style="min-width:120px;">Cotisation annuelle:</td>
+                                <td style="min-width:100px;pointer-events:none;opacity:0.9">@Html.CheckBox("checkboxCotisationAnnuelle", false)</td>
+                                <td style="min-width:80px;">Cartes:</td>
+                                <td style="pointer-events:none;opacity:0.9">@Html.CheckBox("checkboxCotisationCarte1", false)</td>
+                                <td style="pointer-events:none;opacity:0.9">@Html.CheckBox("checkboxCotisationCarte2", false)</td>
+                                <td style="pointer-events:none;opacity:0.9">@Html.CheckBox("checkboxCotisationCarte3", false)</td>
+                                <td style="pointer-events:none;opacity:0.9">@Html.CheckBox("checkboxCotisationCarte4", false)</td>
+                                <td style="pointer-events:none;opacity:0.9">@Html.CheckBox("checkboxCotisationCarte5", false)</td>
+                                <td style="pointer-events:none;opacity:0.9">@Html.CheckBox("checkboxCotisationCarte6", false)</td>
+                            }
+                            else
+                            {
+                                <td style="min-width:120px;">Cotisation annuelle:</td>
+                                <td style="min-width:100px;pointer-events:none;opacity:0.9">@Html.CheckBox("checkboxCotisationAnnuelle", escrimeur.Paiement.IsCotisationAnnuelle)</td>
+                                <td style="min-width:80px;">Cartes:</td>
+                                <td style="pointer-events:none;opacity:0.9">@Html.CheckBox("checkboxCotisationCarte1", escrimeur.Paiement.IsCotisationCarte1)</td>
+                                <td style="pointer-events:none;opacity:0.9">@Html.CheckBox("checkboxCotisationCarte2", escrimeur.Paiement.IsCotisationCarte2)</td>
+                                <td style="pointer-events:none;opacity:0.9">@Html.CheckBox("checkboxCotisationCarte3", escrimeur.Paiement.IsCotisationCarte3)</td>
+                                <td style="pointer-events:none;opacity:0.9">@Html.CheckBox("checkboxCotisationCarte4", escrimeur.Paiement.IsCotisationCarte4)</td>
+                                <td style="pointer-events:none;opacity:0.9">@Html.CheckBox("checkboxCotisationCarte5", escrimeur.Paiement.IsCotisationCarte5)</td>
+                                <td style="pointer-events:none;opacity:0.9">@Html.CheckBox("checkboxCotisationCarte6", escrimeur.Paiement.IsCotisationCarte6)</td>
+                            }
+
+                        </tr>
+                    </table>
+
+                    //* Le matériel est-il loué *//
+
+                    string tableExtendPaiement_6 = "tableExtendPaiement_6" + escrimeur.GuidId;
+
+                    <table id="@tableExtendPaiement_6" style="display:none;margin-left:50px;">
+                        <tr>
+                            @if (@escrimeur.Paiement?.IsMatérielLoue == true)
+                            {
+                                <td>Le matériel est-il loué? Oui</td>
+                            }
+                            else
+                            {
+                                <td>Le matériel est-il loué? Non</td>
+                            }
+                        </tr>
+                    </table>
+
+                    <hr class="solid" style="opacity:1;margin:0">
+
+                }
+
+                //}
+
+
+            }
+        }
+    </div>
+
+    @Html.Partial(PartialViewNames.AdministrationPage_Presence, Model)
+</body>
+</html>
+
+<script>
+    function CopyEmail(email) {
+        navigator.clipboard.writeText(email);
+    }
+
+    function ChangeNomTireurASelectionner() {
+        var tireurSpecificToSelected = $("#TireurSpecificToSelected").val().toLowerCase();
+
+        $('*[id^="table_"]').each(function (index, element) {
+            var idElement = $(element).attr("id").toLowerCase();
+            if (idElement.indexOf(tireurSpecificToSelected) != -1) {
+                $(element).css('display', 'block');
+            }
+            else {
+                $(element).css('display', 'none');
+            };
+        });
+
+
+    }
+</script>

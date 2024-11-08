@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+@{
+    var urlPath = Url.Content("~/Home/Photos/Entree/");
+}
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="@Url.Content("~/Content/StartPageNew.css")" rel="stylesheet" type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body style=" margin: 0px;">
+    @Html.Hidden("PhotoDepart", "1")
+
+
+    <div class="navbar" style=" align-items: center; display: flex; ">
+        <h1 id="h1BannerTop">Cercle Royale Escrime Tournai</h1>
+
+        <div id="dropDownList" class="dropdown">
+            <button class="dropbtn">
+                Menu principal
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a onclick="window.location.href = '/MainPage/Agenda/'">Agenda</a>
+                <hr style="margin:0" />
+                <a onclick="window.location.href = '/MainPage/Catégories/'">Catégories</a>
+                <hr style="margin:0" />
+                <a onclick="window.location.href = '/MainPage/Albums/'">Photos</a>
+                <hr style="margin:0" />
+                <a onclick="window.location.href = '/MainPage/Historique/'">Historique</a>
+                <hr style="margin:0" />
+                <a onclick="window.location.href = '/MainPage/Activités/'">Activités</a>
+                <hr style="margin:0" />
+                <a onclick="window.location.href = '/MainPage/QuelquesSitesInteressants/'">Quelques sites intéressants</a>
+                <hr style="margin:0" />
+                <a onclick="window.location.href = '/MainPage/NosCours/'">Nos cours</a>
+                <hr style="margin:0" />
+                <a onclick="window.location.href = '/MainPage/Video/'">Vidéos Youtube</a>
+                <hr style="margin:0" />
+                <a onclick="window.location.href = '/MainPage/Logon/'">Administration</a>
+            </div>
+        </div>
+    </div>
+    <div id="spanTitre"><span>Le Cercle Royal d'Escrime de Tournai vous accueille à l'école de Don Bosco, 37 Rue des Augustins.</span></div>
+
+    <div id="divGeneralForPhotosAndMaps" style="width:100%;">
+        <div id="planAndPhotos" style="float:left">
+            <h1 style="text-align: center; ">Voici le plan</h1>
+            <iframe id="iframeMaps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d621.4518894714855!2d3.379912655012422!3d50.60922253256725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c2dfe7620637e1%3A0xba117a921f7647c0!2sSalle%20des%20Sports%20Don%20Bosco!5e1!3m2!1sfr!2sbe!4v1713274280931!5m2!1sfr!2sbe" height="450" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+        <div id="planAndPhotos" class="slider-img" style="float:right">
+            <h1 style="text-align: center; ">Et l'accès à notre salle</h1>
+            <div style="display:flex;">
+                <div id="colonne" style=" width: 3%; float: left; text-align: right;"></div>
+                <div id="divPreviousButton"><button id="prev_button" onclick="passToPreviousPhoto();">❮</button></div>
+                <div id="difForImage" style="background-image: url('/Home/Photos/Entree/1.jpg');float:left;"></div>
+                <div id="divNextButton" style=" float: left; width: 5%; "><button id="next_button" onclick="passToNextPhoto();">❯</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="spanTitre" style="margin-bottom:15px;font-size:15px;"><span>Les entraînements se font</span></div>
+    <div id="">
+        <div style="text-align:center;">
+            <label style=" min-width: 162px; display: inline-grid;">Les mercredis</label>
+            <label style="">De 18h à 19h30</label>
+        </div>
+        <div style="text-align:center;">
+            <label style="min-width: 162px; display: inline-grid;">Les vendredis</label>
+            <label>De 18h à 20h00</label>
+        </div>
+        <div style="text-align:center;">
+            <label style="min-width: 162px; display: inline-grid;">Les dimanches</label>
+            <label>De 10h à 12h00</label>
+        </div>
+    </div>
+
+    <footer class="classFooter">
+        <div class="contact">
+            <div>
+                <span>Pour tout renseignement, vous pouvez nous contacter:</span>
+            </div>
+
+            <div style="margin-top: 0px;">
+                <p style="text-align:center">
+                    Via notre maître d'Armes <br>
+                    Benoît Lafaut: 0478/34.78.95
+                </p>
+                <p style="text-align:center">
+                    Via notre secrétaire <br>
+                    Régis Trannoy: 0472/28.97.41
+                </p>
+                <p style="text-align:center">
+                    Via mail <br>
+                    escrime.tournai@gmail.com
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+<script>
+function passToPreviousPhoto() {
+    $("#difForImage").animate({
+        opacity: 0.1,
+    }, 1500, function () {
+        position = +$("#PhotoDepart").val() - 1;
+        if (position == 0) { position = 18; }
+
+        var url = '@urlPath' + position + '.jpg';
+        $("#difForImage").css("background-image", "url(" + url + ")");
+        $("#difForImage").css("opacity", "1");
+        $("#PhotoDepart").val(position);
+    });
+}
+
+function passToNextPhoto() {
+    $("#difForImage").animate({
+        opacity: 0.1,
+    }, 1500, function () {
+        position = +$("#PhotoDepart").val() + 1 ;
+        if (position == 19) { position = 1; }
+        var url = '@urlPath' + position + '.jpg';
+        $("#difForImage").css("background-image", "url(" + url + ")"  );
+        $("#difForImage").css("opacity", "1");
+        $("#PhotoDepart").val(position);
+    });
+}
+</script>

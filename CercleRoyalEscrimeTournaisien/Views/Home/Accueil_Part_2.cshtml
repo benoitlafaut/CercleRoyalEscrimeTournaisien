@@ -1,0 +1,19 @@
+﻿<head>
+    <script>
+        $(document).ready(function () {
+                setInterval(flashText, 3000);
+        })
+
+        function flashText() {
+            var min = 1;
+            var max = 17;
+            var minmax = Math.floor(Math.random() * (max - min + 1)) + min;
+            var urlContent = "/Home/photos/photosdemarrage/" + minmax + ".jpg";
+            $("#ImageDemarrage").attr("src", urlContent);
+        }
+    </script>
+</head>
+
+<div class="divImageCentral">
+    <img class="imgImageCentral" src="@Url.Content("~/Home/photos/photosdemarrage/8.jpg")" id="ImageDemarrage" />
+</div>

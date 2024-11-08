@@ -1,0 +1,54 @@
+﻿@model CercleRoyalEscrimeTournaisien.Models.Mp3
+<!DOCTYPE html>
+
+@section css {
+    <link href="@Url.Content("~/Content/MainPage.css")" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link id="themecss" rel="stylesheet" type="text/css" href="//www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="@Url.Content("~/Content/MainPage.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/ShowMenuPrincipal.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/AgendaStyle.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/HistoriqueStyle.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("/Content/CategoriesStyle.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/QuelquesSitesStyle.css")" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Content/ReadEpub20042023.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src='~/Scripts/MainPage.js'></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+
+    <link id="themecss" rel="stylesheet" type="text/css" href="//www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+}
+
+<html>
+
+<body id="mp3" style=" overflow-y: overlay; height: 80%; width: 99%; overflow-x: hidden;">
+    <audio id="elementAudio" controls src="" style="width:100%;">
+    </audio>  
+    <div style="margin-bottom:5px;">
+        @Html.DropDownList("SelectedLanguage", new SelectList(Enum.GetValues(typeof(CercleRoyalEscrimeTournaisien.Models.Mp3.LanguageMP3))), new { @class = "form-control", @onchange = "chargerson();" })
+        @Html.DropDownList("SelectedNameDossier", new SelectList(Enum.GetValues(typeof(CercleRoyalEscrimeTournaisien.Models.Mp3.NameDossier))), new { @class = "form-control", @onchange = "chargerson();" })
+        @Html.DropDownListFor(model => model.SelectedIndexDossier, Model.IndexDossierList, new { @class = "form-control", @onchange = "chargerson();" })
+        @Html.DropDownListFor(model => model.SelectedIndexFile, Model.IndexFileList, new { @class = "form-control", @onchange = "chargerson();" })
+    </div>
+    <div>
+        <span>File selected: </span>
+        @Html.TextBoxFor(Model => Model.SelectedFile, new { @class = "form-control", @style = "border:none;width:350px" })
+    </div>
+</body>
+</html>
+
+<script src="~/Scripts/mp3.js" type="text/javascript"></script>

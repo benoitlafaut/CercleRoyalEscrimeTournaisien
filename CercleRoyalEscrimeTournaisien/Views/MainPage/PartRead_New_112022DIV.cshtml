@@ -1,0 +1,73 @@
+﻿@using CercleRoyalEscrimeTournaisien.Models;
+@model ModelViewEpubFile
+
+<html>
+<body style="height: 100%; position: absolute; width: 100%;">
+    <div>
+        <div id="yellowBox">
+            <ul style="list-style-type: none; padding: 0px;margin: 0px; margin-left:7px; ">
+                @for (int iloop = 0; iloop < Model.PhrasesFrancaises.Count(); iloop++)
+                {
+                    if (Model.Francais)
+                    {
+                        <li><i class='fa fa-play fa-play-Benoit' style='font-size: 15px; margin-right: 3px;' onclick="ListenOnlySentence('@Model.PhrasesFrancaises[iloop].Replace("\'", "&#39")', 'PhrasesFrancaises_' + @iloop + '_')"></i> @Html.LabelForModel(Model.PhrasesFrancaises[iloop], new { @class = "classLabelSentence", id = "PhrasesFrancaises_" + iloop + "_" }) </li>
+                    }
+                    else
+                    {
+                        <li style="display:none;"><i class='fa fa-play fa-play-Benoit' style='font-size: 15px; margin-right: 3px;' onclick="ListenOnlySentence('@Model.PhrasesFrancaises[iloop].Replace("\'", "&#39")', 'PhrasesFrancaises_' + @iloop + '_')"></i> @Html.LabelForModel(Model.PhrasesFrancaises[iloop], new { @class = "classLabelSentence", id = "PhrasesFrancaises_" + iloop + "_" }) </li>
+                    }
+
+                    if (Model.Allemand)
+                    {
+                        string idPlay = "PlayPhrasesAllemandes_" + iloop + "_";
+                        <li style="margin-left: 15px;"><i class='fa fa-play fa-play-Benoit' id="@idPlay" style='font-size: 15px; margin-right: 3px;' onclick="ListenOnlySentence('@Model.PhrasesAllemandes[iloop].Replace("\'", "&#39")', 'PhrasesAllemandes_' + @iloop + '_')"></i> @Html.LabelForModel(Model.PhrasesAllemandes[iloop], new { @class = "classLabelSentence classFontSize17", id = "PhrasesAllemandes_" + iloop + "_" }) </li>
+                    }
+
+                    if (Model.Anglais)
+                    {
+                        string idPlay = "PlayPhrasesAnglaises_" + iloop + "_";
+                        <li style="margin-left: 15px;"><i class='fa fa-play fa-play-Benoit' id="@idPlay" style='font-size: 15px; margin-right: 3px;' onclick="ListenOnlySentence('@Model.PhrasesAnglaises[iloop].Replace("\'", "&#39")', 'PhrasesAnglaises_' + @iloop + '_')"></i>@Html.LabelForModel(Model.PhrasesAnglaises[iloop], new { @class = "classLabelSentence classFontSize17", id = "PhrasesAnglaises_" + iloop + "_" })</li>
+                    }
+
+                    if (Model.Espagnol)
+                    {
+                        string idPlay = "PlayPhrasesEspagnoles_" + iloop + "_";
+                        <li style="margin-left: 15px;"><i class='fa fa-play fa-play-Benoit' id="@idPlay" style='font-size: 15px; margin-right: 3px;' onclick="ListenOnlySentence('@Model.PhrasesEspagnoles[iloop].Replace("\'", "&#39")', 'PhrasesEspagnoles_' + @iloop + '_')"></i> @Html.LabelForModel(Model.PhrasesEspagnoles[iloop], new { @class = "classLabelSentence classFontSize17", id = "PhrasesEspagnoles_" + iloop + "_" }) </li>
+                    }
+
+                    if (Model.Neerlandais)
+                    {
+                        string idPlay = "PlayPhrasesNeerlandaises_" + iloop + "_";
+                        <li style="margin-left: 15px;"><i class='fa fa-play fa-play-Benoit' id="@idPlay" style='font-size: 15px; margin-right: 3px;' onclick="ListenOnlySentence('@Model.PhrasesNeerlandaises[iloop].Replace("\'", "&#39")', 'PhrasesNeerlandaises_' + @iloop + '_')"></i>@Html.LabelForModel(Model.PhrasesNeerlandaises[iloop], new { @class = "classLabelSentence classFontSize17", id = "PhrasesNeerlandaises_" + iloop + "_" })</li>
+                    }
+                    <li style="height:15px;"></li>
+                }
+            </ul>
+        </div>
+    </div>
+
+    @*@if (Model.RowsEpub != null)
+    {
+        for (int i = 0; i < Model.RowsEpub.Count; i++)
+        {
+            @Html.HiddenFor(model => model.RowsEpub[i])
+        }
+    }*@
+
+    @if (Model.NewBooksList != null)
+    {
+        for (int i = 0; i < Model.NewBooksList.Count; i++)
+        {
+            @Html.HiddenFor(model => model.NewBooksList[i].NomBD)
+            @Html.HiddenFor(model => model.NewBooksList[i].Url)
+            @Html.HiddenFor(model => model.NewBooksList[i].Title)
+        }
+    }
+
+    @Html.HiddenFor(model => model.CurrentLigne)
+    @Html.HiddenFor(model => model.RowsEpub.Count, new { @id = "RowsEpubCount" })
+    @Html.HiddenFor(model => model.CurrentSentenceToListen)
+</body>
+</html>
+
+@Styles.Render("~/content/epub.css")

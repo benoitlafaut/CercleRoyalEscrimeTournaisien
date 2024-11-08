@@ -1,0 +1,286 @@
+﻿@using CercleRoyalEscrimeTournaisien.Resources
+@model CercleRoyalEscrimeTournaisien.NosCours
+
+@section css {
+
+   
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    @Styles.Render("~/styles/NosCoursCss")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='~/Scripts/MainPage.js'></script>
+}
+<head>
+    <meta charset="utf-8" />
+
+    <script>
+        $(window).load(function () {
+                $("body").css('overflow-y', 'scroll');
+
+                $('#buttonPrevious').on("click", function () {
+                    $("#SelectedIndexTheme").val(parseInt($("#SelectedIndexTheme").val()) - 1);
+                    var newSelectedIndexTheme = parseInt(@Model.NewSelectedIndexTheme) - 1;
+                    window.location = '@Url.Content("/MainPage/NosCours")' + '/?newSelectedIndexTheme=' + newSelectedIndexTheme;
+                });
+
+                $('#buttonNext').on("click", function () {
+                    var newSelectedIndexTheme = parseInt(@Model.NewSelectedIndexTheme) + 1;
+                    window.location = '@Url.Content("/MainPage/NosCours")' + '/?newSelectedIndexTheme=' + newSelectedIndexTheme;
+                });
+
+                if (window.matchMedia("(max-width: 767px)").matches) {
+                    $("#themesSelected2").css('float', 'none');
+                    $("#themesSelected3").css('float', 'none');
+                    $("#ThemeSelectionne").css('width', '100%');
+                    $("#fichierATelechargerPartie1").css('width', '100%');
+                    $("#fichierATelechargerPartie2").css('width', '100%');
+                    $("#fichierATelechargerPartie1").css('margin-top', '0px');
+                    $("#fichierATelechargerPartie2").css('margin-top', '0px');
+                }
+            })
+
+            function addUrlToVideo(url) {
+                $("#videoIframe").attr('src', url);
+                if (url != '') {
+                    
+                }
+            }
+
+            function hover(element) {
+                element.setAttribute('style', 'color:blue');
+            }
+
+            function unhover(element) {
+                element.setAttribute('style', 'color:black');
+            }
+
+        function showPopup(element) {
+                if (element == undefined) { return; }
+                var src = '@Url.Content("~/Home/Photos/ImagesPourCours/")' + element;
+                $("#imgModal").attr('src', src);
+                $("#imgModal").css("display", "block");
+
+
+                $("#popUp").dialog({
+                    modal: true,
+                    resizable: false,
+                    width: $(window).width() * 0.95,
+                    height: $(window).height() * 0.8,
+                });
+            }
+    </script>
+
+</head>
+
+<div>
+    <div style="text-align:right;">
+        <i class="fa fa-bars fa-beat" onclick="ShowStartPage();" style="color: red; font-size: 30px;"></i>
+    </div>
+</div>
+
+<div style="width: 100%; text-align: center; margin-top: 10px; margin-bottom: 10px;">
+    <button style="display: inline-block;  height: 41px; width: 195px; background-color: #04AA6D;  border: none; color: white; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; box-shadow: 0 8px 9px 0 rgba(0,0,0,0.2), 0 6px 5px 0 rgba(0,0,0,0.19); border-radius: 6px; " class="btn btn-primary" type="button">Nos cours</button>
+    <button  onclick="location.href='@Url.Action("NosCoursParTireurLogin", "MainPage")'" style="float:right;display: inline-block;  height: 41px; width: 195px; background-color: #04AA6D;  border: none; color: white; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; box-shadow: 0 8px 9px 0 rgba(0,0,0,0.2), 0 6px 5px 0 rgba(0,0,0,0.19); border-radius: 6px; " class="btn btn-primary" type="button">Vidéos des cours</button>
+</div>
+
+<div>
+    <ul class="main__menu">
+        <li class="list-item">
+            <a href="#" class="widget item--js">
+                <span>Introduction à l'escrime</span>
+                <i class="ion ion-ios-partly-sunny-outline"></i>
+            </a>
+            <ul class="drop-menu menu-6">
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block'); $('#videoIframe').attr('src','https://www.youtube.com/embed/K_xWIU3gDa4?autoplay=1'); showImage('/Home/Photos/ImagesPourCours/lesvaleursdelescrime.jpg');" class="drop-item"><a class="item--1">Les valeurs de l'escrime </a></li>
+                <li onclick="HideAndShowContent(); showImage('/Home/Photos/ImagesPourCours/reglesdesecurité.jpg');" class="drop-item"><a href="#" class="item--2">Les règles de sécurité</a></li>
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block'); $('#videoIframe').attr('src', 'https://www.youtube.com/embed/rMjLZEYEbcs?start=0&end=127&autoplay=1');" class="drop-item"><a href="#" class="item--3">L'explication de l'escrime</a></li>
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block');  $('#videoIframe').attr('src', 'https://www.youtube.com/embed/rMjLZEYEbcs?start=513&end=537&autoplay=1');" class="drop-item"><a href="#" class="item--4">Les qualités de l'escrimeur</a></li>
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block');  $('#videoIframe').attr('src', 'https://www.youtube.com/embed/rMjLZEYEbcs?start=168&end=200&autoplay=1');" class="drop-item"><a href="#" class="item--5">L'équipement</a></li>
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block');  $('#videoIframe').attr('src', 'https://www.youtube.com/embed/rMjLZEYEbcs?start=136&end=158&autoplay=1');" class="drop-item"><a href="#" class="item--6">La piste</a></li>
+            </ul>
+        </li>
+
+        <li class="list-item">
+            <a href="#" class="widget item--js">
+                <span>Les déplacements</span>
+                <i class="ion ion-ios-partly-sunny-outline"></i>
+            </a>
+            <ul class="drop-menu menu-8">
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block');  $('#videoIframe').attr('src', 'https://www.youtube.com/embed/rMjLZEYEbcs?start=232&end=264&autoplay=1');" class="drop-item"><a href="#" class="item--1">Introduction aux déplacements</a></li>
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block');  $('#videoIframe').attr('src', 'https://www.youtube.com/embed/rMjLZEYEbcs?start=291&end=297&autoplay=1');" class="drop-item"><a href="#" class="item--2">Une erreur fréquente des déplacements</a></li>
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block');  $('#videoIframe').attr('src', 'https://www.youtube.com/embed/rMjLZEYEbcs?start=263&end=274&autoplay=1');" class="drop-item"><a href="#" class="item--3">Le marché et le rompé - Partie 1</a></li>
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block');  $('#videoIframe').attr('src', 'https://www.youtube.com/embed/PPHrpJfwD64?start=53&end=61&autoplay=1');" class="drop-item"><a href="#" class="item--4">Le marché et le rompé - Partie 2</a></li>
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block');  $('#videoIframe').attr('src', 'https://www.youtube.com/embed/rMjLZEYEbcs?start=275&end=282&autoplay=1');" class="drop-item"><a href="#" class="item--5">La passe avant et la passe arrière</a></li>
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block');  $('#videoIframe').attr('src', 'https://www.youtube.com/embed/rMjLZEYEbcs?start=283&end=291&autoplay=1');" class="drop-item"><a href="#" class="item--6">Le bond avant et le bond arrière</a></li>
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block');  $('#videoIframe').attr('src', 'https://www.youtube.com/embed/PPHrpJfwD64?start=220&end=230&autoplay=1');" class="drop-item"><a href="#" class="item--7">La flèche</a></li>
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block');  $('#videoIframe').attr('src', 'https://www.youtube.com/embed/lRVTkVc8AJY?start=1&end=142&autoplay=1');" class="drop-item"><a href="#" class="item--8">La distance</a></li>
+            </ul>
+        </li>
+
+        <li class="list-item">
+            <a href="#" class="widget item--js">
+                <span>Le fleuret</span>
+                <i class="ion ion-ios-partly-sunny-outline"></i>
+            </a>
+            <ul class="drop-menu menu-3">
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block');  $('#videoIframe').attr('src', 'https://www.youtube.com/embed/mFYFQ8clY80?start=7&end=151&autoplay=1');" class="drop-item"><a href="#" class="item--1">Les 4 positions de main - sixte, quarte, septime et octave</a></li>
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block');  $('#videoIframe').attr('src', 'https://www.youtube.com/embed/CbeKK_atvQY?autoplay=1');" class="drop-item"><a href="#" class="item--2">Les attaques simples</a></li>
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block');  $('#videoIframe').attr('src', 'https://www.youtube.com/embed/Q7Xbg05RzOM?autoplay=1');" class="drop-item"><a href="#" class="item--3">Les attaques composées</a></li>
+            </ul>
+        </li>
+
+        <li class="list-item">
+            <a href="#" class="widget item--js">
+                <span>L'épée</span>
+                <i class="ion ion-ios-partly-sunny-outline"></i>
+            </a>
+            <ul class="drop-menu menu-2">
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block');  $('#videoIframe').attr('src', 'https://www.youtube.com/embed/JZF5Qwi4Ofo?start=4&end=9&autoplay=1');"  class="drop-item"><a href="#" class="item--1">Les actions offensives - Le coup droit en fente</a></li>
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block');  $('#videoIframe').attr('src', 'https://www.youtube.com/embed/JZF5Qwi4Ofo?start=12&end=14&autoplay=1');" class="drop-item"><a href="#" class="item--2">Les actions offensives - Le coup droit en flèche</a></li>
+            </ul>
+        </li>
+
+        <li class="list-item">
+            <a href="#" class="widget item--js">
+                <span>Le sabre</span>
+                <i class="ion ion-ios-partly-sunny-outline"></i>
+            </a>
+            <ul class="drop-menu menu-1">
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block');  $('#videoIframe').attr('src', 'https://www.youtube.com/embed/mFYFQ8clY80?start=176&end=216&autoplay=1');" class="drop-item"><a href="#" class="item--1">Les 3 positions de main - la tierce, la quarte et la quinte</a></li>
+            </ul>
+        </li>
+
+        <li class="list-item">
+            <a href="#" class="widget item--js">
+                <span>Les armes</span>
+                <i class="ion ion-ios-partly-sunny-outline"></i>
+            </a>
+            <ul class="drop-menu menu-8">
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block');  $('#videoIframe').attr('src', 'https://www.youtube.com/embed/rMjLZEYEbcs?start=300&end=309&autoplay=1');" class="drop-item"><a href="#" class="item--1">Introduction aux armes</a></li>
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block');  $('#videoIframe').attr('src', 'https://www.youtube.com/embed/ozPcWw-MOQM?start=15&end=52&autoplay=1');" class="drop-item"><a href="#" class="item--3">La garde à l'épée</a></li>
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block');  $('#videoIframe').attr('src', 'https://www.youtube.com/embed/rMjLZEYEbcs?start=310&end=351&autoplay=1');showImage('/Home/Photos/ImagesPourCours/lefleuret.jpg')" class="drop-item"><a href="#" class="item--4">Le fleuret </a></li>
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block');  $('#videoIframe').attr('src', 'https://www.youtube.com/embed/rMjLZEYEbcs?start=353&end=378&autoplay=1');showImage('/Home/Photos/ImagesPourCours/epée.jpg')" class="drop-item"><a href="#" class="item--5">L'épée </a></li>
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block');  $('#videoIframe').attr('src', 'https://www.youtube.com/embed/rMjLZEYEbcs?start=379&end=410&autoplay=1');showImage('/Home/Photos/ImagesPourCours/lesabre.jpg')" class="drop-item"><a href="#" class="item--6">Le sabre </a></li>
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block');  $('#videoIframe').attr('src', 'https://www.youtube.com/embed/rMjLZEYEbcs?start=486&end=507&autoplay=1');" class="drop-item"><a href="#" class="item--7">Qui a le point?</a></li>
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block');  $('#videoIframe').attr('src', 'https://www.youtube.com/embed/rMjLZEYEbcs?start=596&end=694&autoplay=1');" class="drop-item"><a href="#" class="item--8">Un peu d'arbitrage</a></li>
+            </ul>
+        </li>
+
+        <li class="list-item">
+            <a href="#" class="widget item--js">
+                <span>Les différentes positions</span>
+                <i class="ion ion-ios-partly-sunny-outline"></i>
+            </a>
+            <ul class="drop-menu menu-3">
+                <li onclick="HideAndShowContent(); $('.styleIframeVideo').css('display', 'block');  $('#videoIframe').attr('src', 'https://www.youtube.com/embed/rMjLZEYEbcs?start=546&end=552&autoplay=1');"  class="drop-item"><a href="#" class="item--1">Le salut</a></li>
+                <li onclick="HideAndShowContent(); showImage('/Home/Photos/ImagesPourCours/lapositiondattente.jpg');" class="drop-item"><a href="#" class="item--2">La position d'attente</a></li>
+                <li onclick="HideAndShowContent(); showImage('/Home/Photos/ImagesPourCours/lapositionpreparatoire.jpg');" class="drop-item"><a href="#" class="item--3">La position préparatoire</a></li>
+            </ul>
+        </li>
+
+        <li class="list-item">
+            <a href="#" class="widget item--js">
+                <span>Théories à télécharger</span>
+                <i class="ion ion-ios-partly-sunny-outline"></i>
+            </a>
+            <ul class="drop-menu menu-3">
+                <li class="drop-item"><a href="/FileToUpload/NosCours/La position en garde au fleuret et épée.docx" class="item--1">La position en garde au fleuret et épée</a></li>
+                <li class="drop-item"><a href="/FileToUpload/NosCours/Les 4 positions de main de base au  fleuret.docx" class="item--2">Les 4 positions de main de base au  fleuret</a></li>
+                <li class="drop-item"><a href="/FileToUpload/NosCours/Les gestes d'arbitre.docx" class="item--3">Les gestes de l'arbitre</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div id="DIVimage" onclick="ShowMaximumImage();" style="cursor: zoom-in; opacity: 1; display: none; height: 300px; width: 300px; border: 1px solid darkolivegreen; margin-top: 10px; background-size: contain; background-position: center; object-fit: cover; background-repeat: no-repeat;">
+</div>
+
+<div id="DivImageFull" onclick="HideImage();" style="position: absolute; background: white; top: 0px; left: 0px; display: none; width: 100%; height: 99%; ">
+    <div id="DivImageFullBackground" style=" z-index: 10; position: absolute; cursor: zoom-out; width: 95%; height: 95%; background-size: contain; background-position: center center; object-fit: cover; background-repeat: no-repeat; ">
+    </div>
+</div>
+
+<div class="styleIframeVideo">
+    <iframe id="videoIframe" width="600px" height="500px" class="" src="" title="YouTube video player" frameborder="0" allow="autoplay;accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+<script>
+    function HideAndShowContent() {
+        $('#videoIframe').attr('src', '');
+        $(".styleIframeVideo").css('display', 'none');
+        showImage('');
+        $("#DIVimage").css('display', 'none');
+
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            $(".list-item").find('.drop-menu').css('display', 'none');
+
+            $('.list-item').find('li').each(function (i, ele) {
+                $(ele).css('display', 'none');
+            });
+        }
+        else {
+            $('.drop-menu').css('display', 'none');
+            setTimeout(function () { $('.drop-menu').css('display', 'block'); }, 1000);
+        }
+
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            $("#videoIframe").prop('width', '300px');
+            $("#videoIframe").prop('height', '250px');
+        }
+    }
+
+    function HideImage() {
+        $("#DivImageFull").css('display', 'none');
+        $(".styleIframeVideo").css('display', 'block');
+    }
+
+    function ShowMaximumImage(){
+        $('#DivImageFullBackground').css("background-image", $("#DIVimage").css("background-image"));
+        $("#DivImageFull").css('display', 'block');
+        $(".styleIframeVideo").css('display', 'none');
+    }
+
+    function showImage(url) {
+        $('#DIVimage').animate({
+            opacity: 0
+        }, 100, function () {
+            $('#DIVimage').css("background-image", "url(" + url + ")").promise().done(function () {
+                if (url != '') {
+                    $('#DIVimage').css('display', 'block');
+                }
+                $('#DIVimage').animate({
+                    opacity: 1
+                }, 600)
+            });
+        });
+    }
+
+    
+
+    $(document).ready(function () {
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            $('.list-item').on('click', function (e) {
+                $(this).find('.drop-menu').css('display', 'block');
+
+                $(".list-item").find('li').css('display', 'none');
+
+                $(this).find('li').each(function (i, ele) {
+                    $(ele).css('display', 'block');
+                });
+            }).on('click', 'li', function (e) {
+                e.stopPropagation();
+            });
+        }
+    });
+</script>

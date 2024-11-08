@@ -1,0 +1,93 @@
+﻿@using CercleRoyalEscrimeTournaisien.Resources
+@model CercleRoyalEscrimeTournaisien.Agenda
+
+@{
+    ViewBag.Title = "Agenda";
+    List<DateArmes> getAllDays = Model.GetAllDaysOfTheCurrentDate();
+    IEnumerable<CercleRoyalEscrimeTournaisien.LaSemaine> model1 = Model.AllDatePerWeek(getAllDays).AsEnumerable();
+    WebGrid grid = new WebGrid(model1, rowsPerPage: 7);
+}
+
+@section css {
+    <link href="@Url.Content("~/Content/MainPage.css")" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link id="themecss" rel="stylesheet" type="text/css" href="//www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="@Url.Content("~/Content/MainPage.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/ShowMenuPrincipal.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/AgendaStyle.css")" rel="stylesheet" type="text/css" />
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src='~/Scripts/MainPage.js'></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="//cdn.embed.ly/player-0.0.11.min.js"></script>
+}
+
+
+<div class="jumbotronAgenda">
+    <div style="text-align:right;">
+        <i class="fa fa-bars fa-beat" onclick="ShowStartPage();" style="color: red; font-size: 30px;"></i>
+    </div>
+
+    <div style="text-align:center;font-size: 27px;margin-bottom:27px;">
+        <label>@ResourceGlobal.TitleAgenda</label>
+    </div>
+
+
+    <div style="text-align: center; font-size: 27px; margin-bottom: 27px;">
+        <input class="classButtonChangeMonth" type="button" value="<<" onclick="location.href='@Url.Action("ChangeMoisMoins1", "MainPage" ,new { DateCurrent = Model.DateCurrent })'" />
+        <label>@Model.GetNomOfMois(Model.DateCurrent.Month)    @Model.DateCurrent.Year</label>
+        <input class="classButtonChangeMonth" type="button" value=">>" onclick="location.href='@Url.Action("ChangeMoisPlus1", "MainPage",new { DateCurrent = Model.DateCurrent })'" />
+    </div>
+
+
+    <div style="margin-bottom: 27px;">
+
+        @grid.GetHtml(
+          tableStyle: "webgrid",
+          htmlAttributes: new { id = "gridAgenda" },
+          fillEmptyRows: true,
+          headerStyle: "header",
+          mode: WebGridPagerModes.All,
+
+          columns: new[]  // colums in grid
+          {
+                grid.Column(format: @<text><p class="@item.PremierJour.ClassOfCell">@item.PremierJour.NummerOfDay</p></text>),
+                grid.Column(format: @<text><p class="@item.SecondJour.ClassOfCell">@item.SecondJour.NummerOfDay</p></text>),
+                grid.Column(format: @<text><p class="@item.TroisièmeJour.ClassOfCell">@item.TroisièmeJour.NummerOfDay</p></text>),
+                grid.Column(format: @<text><p class="@item.QuatrièmeJour.ClassOfCell">@item.QuatrièmeJour.NummerOfDay</p></text>),
+                grid.Column(format: @<text><p class="@item.CinquièmeJour.ClassOfCell">@item.CinquièmeJour.NummerOfDay</p></text>),
+                grid.Column(format: @<text><p class="@item.SixièmeJour.ClassOfCell">@item.SixièmeJour.NummerOfDay</p></text>),
+                grid.Column(format: @<text><p class="@item.SeptièmeJour.ClassOfCell">@item.SeptièmeJour.NummerOfDay</p></text>),
+          })
+
+    </div>
+
+
+
+    <div id="idTexteEnDessousDuCalendar" style="text-align:center;">
+        <label>@Html.Raw(@Model.TexteEnDessousDuCalendar)</label>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#gridAgenda td").on("click", function ()
+        {
+            if (this.innerText == "17" && @Model.DateCurrent.Month == "12") {
+                window.location.href = '/MainPage/PagePersoManager/';
+            }
+            
+        });
+    });
+</script>
+<script src="~/Scripts/agenda.js" type="text/javascript"></script>

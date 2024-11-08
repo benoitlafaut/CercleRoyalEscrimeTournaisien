@@ -1,0 +1,62 @@
+﻿@model CercleRoyalEscrimeTournaisien.Agenda
+
+@{
+    ViewBag.Title = "Agenda";
+
+    CercleRoyalEscrimeTournaisien.DateListAgenda dateListAgenda = new DateListAgenda();
+    List<DateArmes> getAllDays = dateListAgenda.GetAllDaysOfTheCurrentDate();
+
+    IEnumerable<CercleRoyalEscrimeTournaisien.LaSemaine> model1 = dateListAgenda.AllDatePerWeek(getAllDays).AsEnumerable();
+
+    WebGrid grid = new WebGrid(model1, rowsPerPage: 7);
+}
+
+<link href="@Url.Content("~/Content/AgendaStyle.css")" rel="stylesheet" type="text/css" />
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
+<div class="jumbotronAgenda">
+
+
+    <div style="text-align:center;font-size: 27px;">
+        <label>Agenda des cours d'escrime pour la saison 2021 - 2022</label>
+    </div>
+
+    
+    <div style="text-align:center;font-size: 27px;">
+        <input style="width:100px;height:40px;" type="button" value="<<" onclick="location.href='@Url.Action("ChangeMoisMoins1", "Home")'" />
+        <label>@Model.GetNomOfMois(CercleRoyalEscrimeTournaisien.Models.MainModel.DateCurrent.Month)    @CercleRoyalEscrimeTournaisien.Models.MainModel.DateCurrent.Year</label>
+        <input style="width:100px;height:40px;" type="button" value=">>" onclick="location.href='@Url.Action("ChangeMoisPlus1", "Home")'" />
+    </div>
+    
+
+    <div>
+
+        @grid.GetHtml(
+          tableStyle: "webgrid",
+          fillEmptyRows: true,
+          headerStyle: "header",
+          mode: WebGridPagerModes.All,
+
+          columns: new[]  // colums in grid
+          {
+              grid.Column(format: @<text><p class="@item.PremierJour.ClassOfCell">@item.PremierJour.NummerOfDay</p></text>),
+              grid.Column(format: @<text><p class="@item.SecondJour.ClassOfCell">@item.SecondJour.NummerOfDay</p></text>),
+              grid.Column(format: @<text><p class="@item.TroisièmeJour.ClassOfCell">@item.TroisièmeJour.NummerOfDay</p></text>),
+              grid.Column(format: @<text><p class="@item.QuatrièmeJour.ClassOfCell">@item.QuatrièmeJour.NummerOfDay</p></text>),
+              grid.Column(format: @<text><p class="@item.CinquièmeJour.ClassOfCell">@item.CinquièmeJour.NummerOfDay</p></text>),
+              grid.Column(format: @<text><p class="@item.SixièmeJour.ClassOfCell">@item.SixièmeJour.NummerOfDay</p></text>),
+              grid.Column(format: @<text><p class="@item.SeptièmeJour.ClassOfCell">@item.SeptièmeJour.NummerOfDay</p></text>),
+          })
+
+    </div>
+
+    
+
+    <div id="idTexteEnDessousDuCalendar">
+        <label>@Html.Raw(@Model.TexteEnDessousDuCalendar)</label>
+    </div>
+</div>
+
+<script src="~/Scripts/agenda.js" type="text/javascript"></script>

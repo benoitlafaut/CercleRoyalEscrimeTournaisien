@@ -1,0 +1,32 @@
+﻿.ImgAccueil {
+    position: fixed;
+    top: 1px;
+    height: 96%;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+.divAccueil {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+@media screen and (max-width: 991px) {
+    .divAccueil {
+        margin-bottom: 0px;        
+    }
+}
+
+.divUnderline {
+    text-decoration: underline;
+}
+
+.divMarginText{
+    margin-left:25px;
+}
+
+.divAccueilTop {
+    margin-top: 27px;
+    margin-bottom: 15px;
+    font-size: 18px;
+}

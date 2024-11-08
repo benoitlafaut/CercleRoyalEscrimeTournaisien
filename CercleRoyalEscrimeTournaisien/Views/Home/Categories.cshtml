@@ -1,0 +1,24 @@
+﻿@model CercleRoyalEscrimeTournaisien.Categories
+
+@{
+    ViewBag.Title = "Catégories";
+}
+
+
+<link href="@Url.Content("/Content/CategoriesStyle.css")" rel="stylesheet" type="text/css" />
+
+<div class="jumbotronCatégories">
+    <p class="cssForTitreCategories">@Html.Raw(@CercleRoyalEscrimeTournaisien.Categories.Title)</p>
+    <table class="cssForCategories" style="display: inline-grid;">
+
+        @for (int iloop = 0; iloop < Model.RowsOfCol_1.Count(); iloop++)
+        {
+            <tr>
+                <td style="width:240px;">@Model.RowsOfCol_1[iloop]</td>
+                <td style="width:240px;">@Model.RowsOfCol_2[iloop]</td>
+                <td style="width:240px;">@Model.RowsOfCol_3[iloop]</td>
+                <td style="width:240px;">@Model.RowsOfCol_4[iloop]</td>
+            </tr>
+        }
+    </table>
+</div>

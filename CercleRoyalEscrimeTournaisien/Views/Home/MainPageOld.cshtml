@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+
+@section css {
+    <link href="@Url.Content("~/Content/PhotosStyle.css")" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
+ 
+}
+<html>
+<body>
+
+    @if (CercleRoyalEscrimeTournaisien.Models.MainModel.ScreenToShow != CercleRoyalEscrimeTournaisien.Models.TypeScreenToShow.ReadEpub20042023 && CercleRoyalEscrimeTournaisien.Models.MainModel.ScreenToShow != CercleRoyalEscrimeTournaisien.Models.TypeScreenToShow.ScreenEpub_20221112 && CercleRoyalEscrimeTournaisien.Models.MainModel.ScreenToShow != CercleRoyalEscrimeTournaisien.Models.TypeScreenToShow.ScreenEpub && CercleRoyalEscrimeTournaisien.Models.MainModel.ScreenToShow != CercleRoyalEscrimeTournaisien.Models.TypeScreenToShow.ScreenDico && CercleRoyalEscrimeTournaisien.Models.MainModel.ScreenToShow != CercleRoyalEscrimeTournaisien.Models.TypeScreenToShow.ScreenPDFPage && CercleRoyalEscrimeTournaisien.Models.MainModel.ScreenToShow != CercleRoyalEscrimeTournaisien.Models.TypeScreenToShow.PagePersoManager)
+    {
+        <div class="infos1 clearfix">
+            @Html.Partial(PartialViewNames.Banniere, new CercleRoyalEscrimeTournaisien.ModelBanniere())
+        </div>
+    }
+
+    @if (CercleRoyalEscrimeTournaisien.Models.MainModel.ScreenToShow == CercleRoyalEscrimeTournaisien.Models.TypeScreenToShow.ScreenBannier)
+    {
+        <div class="infos1 clearfix">
+            @Html.Partial(PartialViewNames.Accueil, new CercleRoyalEscrimeTournaisien.Accueil())
+        </div>
+    }
+
+    @if (CercleRoyalEscrimeTournaisien.Models.MainModel.ScreenToShow == CercleRoyalEscrimeTournaisien.Models.TypeScreenToShow.ScreenAgenda)
+    {
+        <div class="infos1 clearfix">
+            @Html.Partial(PartialViewNames.Agenda, new CercleRoyalEscrimeTournaisien.Agenda())
+        </div>
+    }
+
+    @if (CercleRoyalEscrimeTournaisien.Models.MainModel.ScreenToShow == CercleRoyalEscrimeTournaisien.Models.TypeScreenToShow.ScreenCategories)
+    {
+        <div class="infos1 clearfix">
+            @Html.Partial(PartialViewNames.Categories, new CercleRoyalEscrimeTournaisien.Categories())
+        </div>
+    }
+
+    @if (CercleRoyalEscrimeTournaisien.Models.MainModel.ScreenToShow == CercleRoyalEscrimeTournaisien.Models.TypeScreenToShow.ScreenAlbums)
+    {
+        <div class="infos1 clearfix">
+            @Html.Partial(PartialViewNames.Albums, new CercleRoyalEscrimeTournaisien.Albums())
+        </div>
+    }
+
+    @if (CercleRoyalEscrimeTournaisien.Models.MainModel.ScreenToShow == CercleRoyalEscrimeTournaisien.Models.TypeScreenToShow.ScreenEpub)
+    {
+        <div class="infos1 clearfix">
+            @Html.Partial(PartialViewNames.Epub, new CercleRoyalEscrimeTournaisien.Models.ModelViewEpubFile())
+        </div>
+    }
+
+    @if (CercleRoyalEscrimeTournaisien.Models.MainModel.ScreenToShow == CercleRoyalEscrimeTournaisien.Models.TypeScreenToShow.ScreenEpub_20221112)
+    {
+        <div class="infos1 clearfix">
+            @Html.Partial(PartialViewNames.Epub_20221112, new CercleRoyalEscrimeTournaisien.Models.ModelViewEpubFile())
+        </div>
+    }
+
+    @if (CercleRoyalEscrimeTournaisien.Models.MainModel.ScreenToShow == CercleRoyalEscrimeTournaisien.Models.TypeScreenToShow.ReadEpub20042023)
+    {
+        <div class="infos1 clearfix">
+            @Html.Partial(PartialViewNames.ReadEpub20042023, new CercleRoyalEscrimeTournaisien.Models.ModelEpub20042023())
+        </div>
+    }
+
+    @if (CercleRoyalEscrimeTournaisien.Models.MainModel.ScreenToShow == CercleRoyalEscrimeTournaisien.Models.TypeScreenToShow.ScreenPDFPage)
+    {
+        <div class="infos1 clearfix">
+            @Html.Partial(PartialViewNames.ScreenPDFPage, new CercleRoyalEscrimeTournaisien.Models.ModelViewEpubFile())
+        </div>
+    }
+
+    @if (CercleRoyalEscrimeTournaisien.Models.MainModel.ScreenToShow == CercleRoyalEscrimeTournaisien.Models.TypeScreenToShow.ScreenHistorique)
+    {
+        <div class="infos1 clearfix">
+            @Html.Partial(PartialViewNames.Historique, new CercleRoyalEscrimeTournaisien.Historique())
+        </div>
+    }
+
+    @if (CercleRoyalEscrimeTournaisien.Models.MainModel.ScreenToShow == CercleRoyalEscrimeTournaisien.Models.TypeScreenToShow.ScreenActivites)
+    {
+        <div class="infos1 clearfix">
+            @Html.Partial(PartialViewNames.Activites, new CercleRoyalEscrimeTournaisien.Activites())
+        </div>
+    }
+
+    @if (CercleRoyalEscrimeTournaisien.Models.MainModel.ScreenToShow == CercleRoyalEscrimeTournaisien.Models.TypeScreenToShow.ScreenQuelquesSitesInteressants)
+    {
+        <div class="infos1 clearfix">
+            @Html.Partial(PartialViewNames.QuelquesSitesInteressants, new CercleRoyalEscrimeTournaisien.QuelquesSites())
+        </div>
+    }
+
+    @if (CercleRoyalEscrimeTournaisien.Models.MainModel.ScreenToShow == CercleRoyalEscrimeTournaisien.Models.TypeScreenToShow.ScreenNosCours)
+    {
+        <div class="infos1 clearfix">
+            @Html.Partial(PartialViewNames.NosCours, new CercleRoyalEscrimeTournaisien.NosCours())
+        </div>
+    }
+
+    @if (CercleRoyalEscrimeTournaisien.Models.MainModel.ScreenToShow == CercleRoyalEscrimeTournaisien.Models.TypeScreenToShow.ScreenDico)
+    {
+        <div id="partialViewDico" style="overflow: scroll;height: 100%;width: 100%;position: fixed;" class="infos1 clearfix">
+            @Html.Partial(PartialViewNames.Dico, new CercleRoyalEscrimeTournaisien.Models.ModelViewDico())
+        </div>
+    }
+
+    @if (CercleRoyalEscrimeTournaisien.Models.MainModel.ScreenToShow == CercleRoyalEscrimeTournaisien.Models.TypeScreenToShow.PagePersoManager)
+    {
+        <div class="infos1 clearfix">
+            @Html.Partial(PartialViewNames.PagePersoManager, new CercleRoyalEscrimeTournaisien.Models.ModelViewEpubFile())
+        </div>
+    }
+
+</body>
+</html>
+
+
+<script src="~/Scripts/mainPage.js" type="text/javascript"></script>

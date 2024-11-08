@@ -1,0 +1,638 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.main__menu {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+}
+
+@media (max-width: 900px) {
+    .main__menu {
+        max-width: 100%;
+    }
+
+    .main__menu .list-item a span {
+        font: 10px 'Roboto', sans-serif !important;
+    }
+}
+
+
+.main__menu .list-item a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 60px;
+    color: #fff;
+    cursor: pointer;
+    border-right: 1px solid white;
+}
+
+
+
+    .main__menu .list-item a span {
+        font: 18px 'Roboto', sans-serif;
+        order: 2;
+        text-align: center;
+    }
+
+.main__menu .list-item a img {
+    width: 100px;
+}
+
+.main__menu .list-item a.home {
+    background: #f33;
+}
+
+.main__menu .list-item a.about {
+    background: #fc3;
+}
+
+.main__menu .list-item a.widget {
+    background: mediumvioletred;
+    cursor: not-allowed;
+}
+
+.main__menu .list-item a.kabobs {
+    background: #96c;
+}
+
+.main__menu .list-item a.contact {
+    background: #33658a;
+}
+
+.main__menu .list-item a i {
+    color: #fff;
+    font-size: 100px;
+}
+
+.drop-menu {
+    z-index: 10;
+    position: absolute;
+}
+
+.main__menu .list-item .drop-menu .drop-item {
+    display: none;
+}
+
+    .main__menu .list-item .drop-menu .drop-item a {
+        height: 60px;
+        font: 300 17px 'Roboto', sans-serif;
+        text-align: center;
+
+    }
+
+@media (max-width: 900px) {
+    .btn-primary{
+        width :150px!important;
+    }
+
+    .main__menu .list-item .drop-menu .drop-item a {
+        height: 35px;
+        font-size : 10px;
+        font: initial; 
+        text-align: center;
+    }
+    .main__menu .list-item:last-child .drop-menu .drop-item a {
+        margin-left: -200px !important;
+    }
+}
+
+    .main__menu .list-item .drop-menu .drop-item a.item--1 {
+        background: #CD5C5C;
+    }
+
+    .main__menu .list-item .drop-menu .drop-item a {
+        margin:5px;
+    }
+
+    .main__menu .list-item .drop-menu .drop-item a.item--2 {
+        background: #DEB887;
+    }
+
+    .main__menu .list-item .drop-menu .drop-item a.item--3 {
+        background: #FF7F50;
+    }
+    .main__menu .list-item .drop-menu .drop-item a.item--4 {
+        background: #B8860B;
+    }
+    .main__menu .list-item .drop-menu .drop-item a.item--5 {
+        background: #556B2F;
+    }
+    .main__menu .list-item .drop-menu .drop-item a.item--6 {
+        background: #FF8C00;
+    }
+    .main__menu .list-item .drop-menu .drop-item a.item--7 {
+        background: #9400D3;
+    }
+    .main__menu .list-item .drop-menu .drop-item a.item--8 {
+        background: #00BFFF;
+    }
+@keyframes leftToRight {
+    0% {
+        opacity: 0;
+        transform: rotateY(-90deg) translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: rotateY(0deg) translateY(0px);
+    }
+}
+
+@keyframes topToBottom {
+    0% {
+        opacity: 0;
+        transform: rotateX(-90deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: rotateX(0deg);
+    }
+}
+
+@keyframes itemBounce {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translateY(-60px);
+    }
+
+    80% {
+        transform: scale(1.2) translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0px);
+    }
+}
+
+@keyframes bottomToTop {
+    0% {
+        opacity: 0;
+        transform: rotate(-30deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+}
+
+.styleIframeVideo {
+    position: fixed;
+    left: 33%;
+    top: 25%;
+}
+
+@media (max-width: 900px) {
+    .styleIframeVideo {
+        position: absolute;
+        left: initial;
+        top: initial;
+        margin-top: 15px;
+    }
+}
+
+
+@media (min-width: 992px) {
+    .main__menu .list-item:hover .drop-menu li {
+        display: block;
+    }
+
+    .main__menu .list-item:hover .menu-1 {
+        perspective: 1000px;
+    }
+
+        .main__menu .list-item:hover .menu-1 .drop-item {
+            opacity: 0;
+        }
+
+            .main__menu .list-item:hover .menu-1 .drop-item:nth-child(1) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: -150ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-1 .drop-item:nth-child(2) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 0ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-1 .drop-item:nth-child(3) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 150ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-1 .drop-item:nth-child(4) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 300ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+    .main__menu .list-item:hover .menu-2 {
+        perspective: 1000px;
+    }
+
+        .main__menu .list-item:hover .menu-2 .drop-item {
+            opacity: 0;
+            transform-origin: top center;
+        }
+
+            .main__menu .list-item:hover .menu-2 .drop-item:nth-child(1) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: -150ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-2 .drop-item:nth-child(2) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 0ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-2 .drop-item:nth-child(3) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 150ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-2 .drop-item:nth-child(4) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 300ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+    .main__menu .list-item:hover .menu-3 {
+        perspective: 1000px;
+    }
+
+        .main__menu .list-item:hover .menu-3 .drop-item {
+            opacity: 0;
+        }
+
+            .main__menu .list-item:hover .menu-3 .drop-item:nth-child(1) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: -150ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-3 .drop-item:nth-child(2) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 0ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-3 .drop-item:nth-child(3) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 150ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-3 .drop-item:nth-child(4) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 300ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+    .main__menu .list-item:hover .menu-4 {
+        perspective: 1000px;
+    }
+
+        .main__menu .list-item:hover .menu-4 .drop-item {
+            opacity: 0;
+        }
+
+            .main__menu .list-item:hover .menu-4 .drop-item:nth-child(1) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: -150ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-4 .drop-item:nth-child(2) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 0ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-4 .drop-item:nth-child(3) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 150ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-4 .drop-item:nth-child(4) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 300ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+
+    .main__menu .list-item:hover .menu-5 {
+        perspective: 1000px;
+    }
+
+        .main__menu .list-item:hover .menu-5 .drop-item {
+            opacity: 0;
+        }
+
+            .main__menu .list-item:hover .menu-5 .drop-item:nth-child(1) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: -150ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-5 .drop-item:nth-child(2) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 0ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-5 .drop-item:nth-child(3) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 150ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-5 .drop-item:nth-child(4) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 300ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-5 .drop-item:nth-child(5) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 300ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+    .main__menu .list-item:hover .menu-6 {
+        perspective: 1000px;
+    }
+
+        .main__menu .list-item:hover .menu-6 .drop-item {
+            opacity: 0;
+        }
+
+            .main__menu .list-item:hover .menu-6 .drop-item:nth-child(1) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: -150ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-6 .drop-item:nth-child(2) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 0ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-6 .drop-item:nth-child(3) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 150ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-6 .drop-item:nth-child(4) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 300ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-6 .drop-item:nth-child(5) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 450ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-6 .drop-item:nth-child(6) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 600ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+    .main__menu .list-item:hover .menu-7 {
+        perspective: 1000px;
+    }
+
+        .main__menu .list-item:hover .menu-7 .drop-item {
+            opacity: 0;
+        }
+
+            .main__menu .list-item:hover .menu-7 .drop-item:nth-child(1) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: -150ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-7 .drop-item:nth-child(2) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 0ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-7 .drop-item:nth-child(3) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 150ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-7 .drop-item:nth-child(4) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 300ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-7 .drop-item:nth-child(5) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 300ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-7 .drop-item:nth-child(6) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 300ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-7 .drop-item:nth-child(7) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 300ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+    .main__menu .list-item:hover .menu-8 {
+        perspective: 1000px;
+    }
+
+        .main__menu .list-item:hover .menu-8 .drop-item {
+            opacity: 0;
+        }
+
+            .main__menu .list-item:hover .menu-8 .drop-item:nth-child(1) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: -150ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-8 .drop-item:nth-child(2) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 0ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-8 .drop-item:nth-child(3) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 150ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-8 .drop-item:nth-child(4) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 300ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-8 .drop-item:nth-child(5) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 450ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-8 .drop-item:nth-child(6) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 600ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-8 .drop-item:nth-child(7) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 750ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .main__menu .list-item:hover .menu-8 .drop-item:nth-child(8) {
+                animation-name: itemBounce;
+                animation-duration: 400ms;
+                animation-delay: 900ms;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+    .main__menu .list-item:hover .home {
+        border-top: 6px solid #33658a;
+    }
+
+    .main__menu .list-item:hover .about {
+        border-top: 6px solid #96c;
+    }
+
+    .main__menu .list-item:hover .widget {
+        border-top: 6px solid #f33;
+    }
+
+    .main__menu .list-item:hover .kabobs {
+        border-top: 6px solid #fc3;
+    }
+
+    .main__menu .list-item:hover .contact {
+        border-top: 6px solid #55dde0;
+    }
+
+}

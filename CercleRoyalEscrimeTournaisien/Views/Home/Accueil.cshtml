@@ -1,0 +1,17 @@
+﻿@model CercleRoyalEscrimeTournaisien.Accueil
+@{
+    ViewBag.Title = "Accueil";
+}
+
+@section css {
+    <link href="@Url.Content("~/Content/bootstrapMoi.css")" rel="stylesheet" />
+}
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+<body onload="">
+    <div class="jumbotronAccueil">
+        <div class="jumbotronAccueil_1">@{Html.RenderPartial("Accueil_Part_1", new CercleRoyalEscrimeTournaisien.Accueil());}</div>
+        <div>@{Html.RenderPartial("Accueil_Part_2", "Home");}</div>
+        <div>@{Html.RenderPartial("Accueil_Part_3", new CercleRoyalEscrimeTournaisien.Accueil());}</div>
+    </div>
+</body>

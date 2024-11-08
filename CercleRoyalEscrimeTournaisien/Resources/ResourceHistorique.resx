@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+	<data name="Historique_Le_01_septembre_1884" xml:space="preserve">
+    <value>Le 01 septembre 1884</value>
+  </data>
+	<data name="Historique_Le_01_septembre_1884_Content_1" xml:space="preserve">
+    <value>Fondation à l'hôtel des Neuf Provinces du cercle de Tournai sous le nom de 'Tournai KINIF Club' par le Maître Henri Kinif, ex premier Maître au 3ème Chasseur à Pieds et Maître Van Rodesa, ex premier Maître au 4ème Lanciers.</value>
+  </data>
+	<data name="Historique_Le_01_septembre_1884_Content_2" xml:space="preserve">
+    <value>Leur premier élève s'appelle Mr. Connart. Il est employé au chemin de fer.</value>
+  </data>
+	<data name="Historique_Le_01_septembre_1884_Content_3" xml:space="preserve">
+    <value>Note : on trouve trace à cette époque de l'existence d'autres cercles, par exemple: le cercle des avocats et la section escrime du club vélosport.</value>
+  </data>
+	<data name="Historique_Le_01_septembre_1888" xml:space="preserve">
+    <value>Le 01 septembre 1888</value>
+  </data>
+	<data name="Historique_Le_01_septembre_1888_Content_1" xml:space="preserve">
+    <value>Sous la présidence de Mr. Depotter, le cercle change de nom et devient Cercle d'Escrime Tournaisien</value>
+  </data>
+	<data name="Historique_Le_29_septembre_1896" xml:space="preserve">
+    <value>Le 29 septembre 1896</value>
+  </data>
+	<data name="Historique_Le_29_septembre_1896_Content_1" xml:space="preserve">
+    <value>1ère organisation d'un concours international d'escrime. 140 salles de Belgique et de France sont invitées.</value>
+  </data>
+	<data name="Historique_Le_29_septembre_1896_Content_2" xml:space="preserve">
+    <value>Sont inscrits des tireurs de Lille, Roubaix, Tourcoing, Wattrelos, Bruxelles, Anvers, Leuze, Anvaing et Frasnes.</value>
+  </data>
+	<data name="Historique_Le_12_avril_1903" xml:space="preserve">
+    <value>Le 12 avril 1903</value>
+  </data>
+	<data name="Historique_Le_12_avril_1903_Content_1" xml:space="preserve">
+    <value>Gala d'Armes</value>
+  </data>
+	<data name="Historique_Le_30_septembre_1904" xml:space="preserve">
+    <value>Le 30 septembre 1904</value>
+  </data>
+	<data name="Historique_Le_30_septembre_1904_Content_1" xml:space="preserve">
+    <value>Gala d'Armes</value>
+  </data>
+	<data name="Historique_Le_27_avril_1923" xml:space="preserve">
+    <value>Le 27 avril 1923</value>
+  </data>
+	<data name="Historique_Le_27_avril_1923_Content_1" xml:space="preserve">
+    <value>Gala d'Armes à l'occasion du 50ème anniversaire de l'entrée de Maître Kinif dans la carrière des armes.</value>
+  </data>
+	<data name="Historique_Le_08_mai_1927" xml:space="preserve">
+    <value>Le 08 mai 1927</value>
+  </data>
+	<data name="Historique_Le_08_mai_1927_Content_1" xml:space="preserve">
+    <value>Gala d'Armes</value>
+  </data>
+	<data name="Historique_Le_21_novembre_1927" xml:space="preserve">
+    <value>Le 21 novembre 1927</value>
+  </data>
+	<data name="Historique_Le_21_novembre_1927_Content_1" xml:space="preserve">
+    <value>Le cercle reçoit le titre de Société Royale et devient Cercle Royal d'Escrime Tournaisien</value>
+  </data>
+	<data name="Historique_Le_01_avril_1928" xml:space="preserve">
+    <value>Le 01 avril 1928</value>
+  </data>
+	<data name="Historique_Le_01_avril_1928_Content_1" xml:space="preserve">
+    <value>Création de la coupe HENRI KINIF</value>
+  </data>
+	<data name="Historique_Le_26_janvier_1930" xml:space="preserve">
+    <value>Le 26 janvier 1930</value>
+  </data>
+	<data name="Historique_Le_26_janvier_1930_Content_1" xml:space="preserve">
+    <value>Le cercle 'Le Trèfle' se crée. Il est situé à la salle G. Reper à la place Crombez. Il vivra 3 à 4 ans.</value>
+  </data>
+	<data name="Historique_Le_26_janvier_1930_Content_2" xml:space="preserve">
+    <value>Note: dans les années 30-31, il existait au moins 4 cercles à Tournai :</value>
+  </data>
+	<data name="Historique_Le_26_janvier_1930_Content_3" xml:space="preserve">
+    <value>- 2 militaires : le cercle du 3ème Chasseurs à Pieds et le cercle du 11ème d'Artillerie</value>
+  </data>
+	<data name="Historique_Le_26_janvier_1930_Content_4" xml:space="preserve">
+    <value>- 2 civils : le C.R.E.T. et le cercle 'Le Trèfle'</value>
+  </data>
+	<data name="Historique_En_1935" xml:space="preserve">
+    <value>En 1935</value>
+  </data>
+	<data name="Historique_En_1935_Content_1" xml:space="preserve">
+    <value>Gala d'Armes du 50ème anniversaire</value>
+  </data>
+	<data name="Historique_En_1936" xml:space="preserve">
+    <value>En 1936</value>
+  </data>
+	<data name="Historique_En_1936_Content_1" xml:space="preserve">
+    <value>Le Maître Paenhuysen ayant quitté le CRET, ouvre sa propre salle, rue Duquesnoy. Il faudra attendre 1947 pour que les deux salles soient à nouveau réunies en un seul cercle.</value>
+  </data>
+	<data name="Historique_Pendant_la_guerre_40_45" xml:space="preserve">
+    <value>Pendant la guerre 40-45</value>
+  </data>
+	<data name="Historique_Pendant_la_guerre_40_45_Content_1" xml:space="preserve">
+    <value>Le cercle est fermé en mai 1940 mais reprendra rapidement ses activités, après une demande d'ouverture faite en janvier 1941.</value>
+  </data>
+	<data name="Historique_Pendant_la_guerre_40_45_Content_2" xml:space="preserve">
+    <value>Suite à l'ordonnance du 27 décembre 1941 relative à la remise des armes, les autorités allemandes font une inspection le 14 février 1942 dans les locaux du cercle</value>
+  </data>
+	<data name="Historique_Pendant_la_guerre_40_45_Content_3" xml:space="preserve">
+    <value>et saisissent deux fusils de collection et 4 baïonnettes.</value>
+  </data>
+	<data name="Historique_Le_24_novembre_1964" xml:space="preserve">
+    <value>Le 24 novembre 1964</value>
+  </data>
+	<data name="Historique_Le_24_novembre_1964_Content_1" xml:space="preserve">
+    <value>Gala d'Armes du 80ème anniversaire</value>
+  </data>
+	<data name="Historique_Le_20_octobre_1984" xml:space="preserve">
+    <value>Le 20 octobre 1984</value>
+  </data>
+	<data name="Historique_Le_20_octobre_1984_Content_1" xml:space="preserve">
+    <value>Gala d'Armes du 100ème anniversaire</value>
+  </data>
+	<data name="Historique_Du_3_au_8_avril_1996" xml:space="preserve">
+    <value>Du 3 au 8 avril 1996</value>
+  </data>
+	<data name="Historique_Du_3_au_8_avril_1996_Content_1" xml:space="preserve">
+    <value>Sous la présidence d'Alexandre Walnier, organisation du Championnat du Monde Cadets-Juniors dans le hall 'Tournai - Expo'</value>
+  </data>
+	<data name="Historique_En_mai_1998_et_mai_2000" xml:space="preserve">
+    <value>En mai 1998 et mai 2000</value>
+  </data>
+	<data name="Historique_En_mai_1998_et_mai_2000_Content_1" xml:space="preserve">
+    <value>Organisation des Championnats de Belgique Seniors dans la salle ADEPS du 'grand large' à Péronnes</value>
+  </data>
+	<data name="Historique_Les_MAITRES_D_ARMES" xml:space="preserve">
+    <value>Les MAITRES D'ARMES</value>
+  </data>
+	<data name="Historique_Les_MAITRES_D_ARMES_Content_1_1" xml:space="preserve">
+    <value>- de 1884 à 1927</value>
+  </data>
+	<data name="Historique_Les_MAITRES_D_ARMES_Content_2_1" xml:space="preserve">
+    <value>- de 1927 à 1935</value>
+  </data>
+	<data name="Historique_Les_MAITRES_D_ARMES_Content_3_1" xml:space="preserve">
+    <value>- de 1936 à 1962</value>
+  </data>
+	<data name="Historique_Les_MAITRES_D_ARMES_Content_4_1" xml:space="preserve">
+    <value>- de 1962 à 1968</value>
+  </data>
+	<data name="Historique_Les_MAITRES_D_ARMES_Content_5_1" xml:space="preserve">
+    <value>- de 1969 à 1975</value>
+  </data>
+	<data name="Historique_Les_MAITRES_D_ARMES_Content_6_1" xml:space="preserve">
+    <value>- de 1977 à 1994</value>
+  </data>
+	<data name="Historique_Les_MAITRES_D_ARMES_Content_7_1" xml:space="preserve">
+    <value>- de 1994 à 2000</value>
+  </data>
+	<data name="Historique_Les_MAITRES_D_ARMES_Content_8_1" xml:space="preserve">
+    <value>- de 2000 à 2013</value>
+  </data>
+	<data name="Historique_Les_MAITRES_D_ARMES_Content_9_1" xml:space="preserve">
+    <value>- de 2014 à nos jours</value>
+  </data>
+	<data name="Historique_Les_MAITRES_D_ARMES_Content_1_2" xml:space="preserve">
+    <value>Henri Kinif</value>
+  </data>
+	<data name="Historique_Les_MAITRES_D_ARMES_Content_2_2" xml:space="preserve">
+    <value>René Paenhuysen</value>
+  </data>
+	<data name="Historique_Les_MAITRES_D_ARMES_Content_3_2" xml:space="preserve">
+    <value>Léon Bertrand</value>
+  </data>
+	<data name="Historique_Les_MAITRES_D_ARMES_Content_4_2" xml:space="preserve">
+    <value>Henri Valembois</value>
+  </data>
+	<data name="Historique_Les_MAITRES_D_ARMES_Content_5_2" xml:space="preserve">
+    <value>Léon Bertrand</value>
+  </data>
+	<data name="Historique_Les_MAITRES_D_ARMES_Content_6_2" xml:space="preserve">
+    <value>Michel Demulder</value>
+  </data>
+	<data name="Historique_Les_MAITRES_D_ARMES_Content_7_2" xml:space="preserve">
+    <value>Olivier Debondt</value>
+  </data>
+	<data name="Historique_Les_MAITRES_D_ARMES_Content_8_2" xml:space="preserve">
+    <value>Gérald Williot</value>
+  </data>
+	<data name="Historique_Les_MAITRES_D_ARMES_Content_9_2" xml:space="preserve">
+    <value>Benoît Lafaut</value>
+  </data>
+	<data name="Historique_Les_MAITRES_D_ARMES_Content_10" xml:space="preserve">
+    <value>Note: entre 1975 et 1977, l'intérim a été assuré par le Maître de Lessines Jean-Marie Degauque</value>
+  </data>
+	<data name="Historique_Les_salles_D_armes_de_Tournai" xml:space="preserve">
+    <value>Les salles D'armes de Tournai</value>
+  </data>
+	<data name="Historique_Les_salles_D_armes_de_Tournai_Content_1_1" xml:space="preserve">
+    <value>A partir de 1884</value>
+  </data>
+	<data name="Historique_Les_salles_D_armes_de_Tournai_Content_2_1" xml:space="preserve">
+    <value>A partir de 1924</value>
+  </data>
+	<data name="Historique_Les_salles_D_armes_de_Tournai_Content_3_1" xml:space="preserve">
+    <value>A partir du 01 avril 1961</value>
+  </data>
+	<data name="Historique_Les_salles_D_armes_de_Tournai_Content_4_1" xml:space="preserve">
+    <value>A partir du 27 avril 1987</value>
+  </data>
+	<data name="Historique_Les_salles_D_armes_de_Tournai_Content_5_1" xml:space="preserve">
+    <value>A partir du 01 septembre 1997</value>
+  </data>
+	<data name="Historique_Les_salles_D_armes_de_Tournai_Content_1_2" xml:space="preserve">
+    <value>A l'hôtel de la Gare, Place Crombez</value>
+  </data>
+	<data name="Historique_Les_salles_D_armes_de_Tournai_Content_2_2" xml:space="preserve">
+    <value>Au café des 7 étoiles, 3, Rue de la Tête d'Or</value>
+  </data>
+	<data name="Historique_Les_salles_D_armes_de_Tournai_Content_3_2" xml:space="preserve">
+    <value>Dans une salle appartenant à la famille Hivre 34 Quai vifquin</value>
+  </data>
+	<data name="Historique_Les_salles_D_armes_de_Tournai_Content_4_2" xml:space="preserve">
+    <value>Dans l'immeuble dit 'Hôtel Crombez', 3, Rue Saint-Piat</value>
+  </data>
+	<data name="Historique_Les_salles_D_armes_de_Tournai_Content_5_2" xml:space="preserve">
+    <value>Dans le hall sportif de la C.E.T., dans l'école de Saint-André et maintenant à l'école de Don Bosco</value>
+  </data>
+	<data name="Historique_Sujet" xml:space="preserve">
+    <value>Historique</value>
+  </data>
+</root>

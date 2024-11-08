@@ -1,0 +1,85 @@
+﻿@model CercleRoyalEscrimeTournaisien.Albums
+@{
+    ViewBag.Title = "Photos";
+}
+
+<head>
+    <meta charset="utf-8" />
+
+    <link id="themecss" rel="stylesheet" type="text/css" href="//www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+</head>
+
+<div>
+    <div style="width: 23%;height: 84%;position:fixed;">
+        @foreach (var item in Model.ListeDesAlbums)
+        {
+            <li >
+                @Html.ActionLink(item.NomAlbum, "ChangePhotos", "Home", new { @id = item.NumeroAlbum.ToString() }, null)
+            </li>
+        }
+    </div>
+
+    <div style="left: 21%;    position: fixed;    width: 75%;    height: 60%;    border: 1px black solid;    text-align: center;">
+        <img id="ImageFromAlbum" style="object-fit: contain;-webkit-box-shadow: 10px 9px 63px 27px #ea675b;width: 100%;height: 100%;"/>
+        <div>
+            <asp:label id="titreDiapo" runat="server" style="font-style:italic;text-align: center;font-size: 22px;font-family: 'kellyanngothic';">@Model.TitreDiapo</asp:label>
+        </div>
+        <input id="slider" />
+    </div>
+</div>
+
+<style>
+    .slider {
+        left: 25%;
+        width: 50%;
+        top: 30px;
+    }
+</style>
+<script type="text/javascript">
+
+
+        changeImage();
+
+        jQuery(function ($) {
+            $("#slider").shieldSlider({
+                        cls: "slider",
+                        min: 1,
+                        max: @Model.NombreMaxPhotosOfAlbumCurrent,
+                        buttons: true,
+                        ticks: {
+                            enabled: true
+                        },
+                        values: {
+                            template: "{0}"
+                        },
+                        tooltip: {
+                            enabled: true,
+                            template: "Photo: <b>{0}</b>"
+                        },
+                        events: {
+                            change: function (event) {
+                                ChangeNumero();
+                            }
+                        }
+                    });
+            });
+
+            function ChangeNumero() {
+                var numeroAlbumCurrent = @CercleRoyalEscrimeTournaisien.Models.MainModel.NumeroAlbumCurrent;
+                var number = document.getElementById("slider").value;
+                var src = '@Url.Content("~/Home/Photos/Albums/")' + numeroAlbumCurrent + "/" + number + ".jpg";
+                $("#ImageFromAlbum").attr('src', src);
+            }
+
+            function changeImage() {
+                var numeroAlbumCurrent = @CercleRoyalEscrimeTournaisien.Models.MainModel.NumeroAlbumCurrent;
+                var numeroPhotoOfAlbumCurrent = @CercleRoyalEscrimeTournaisien.Models.MainModel.NumeroPhotoOfAlbumCurrent;
+
+                @*document.getElementById("ImageFromAlbum").src = '@Url.Content("Home/Photos/Albums/")' + numeroAlbumCurrent + "/" + numeroPhotoOfAlbumCurrent + ".jpg";*@
+                var src = '@Url.Content("~/Home/Photos/Albums/")' + numeroAlbumCurrent + "/" + numeroPhotoOfAlbumCurrent + ".jpg";
+                $("#ImageFromAlbum").attr('src', src);
+            }
+
+</script>

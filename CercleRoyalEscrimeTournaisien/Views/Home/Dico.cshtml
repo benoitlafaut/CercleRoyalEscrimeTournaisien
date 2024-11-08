@@ -1,0 +1,31 @@
+﻿@using CercleRoyalEscrimeTournaisien.Models;
+
+@model ModelViewDico
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.3.1/css/flag-icon.min.css" rel="stylesheet" />
+
+</head>
+
+<div style="margin-bottom: 20px;">
+    @Html.TextBoxFor(x => x.WordInputOne, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.WordInputTwo, new { @class = "form-control" })
+    <button class="btn btn-primary" type="button" id="btnSearch" onclick="searchWords();">Search définitions</button>
+</div>
+
+@foreach (var item in Model.WordsOutputList)
+{
+    <span style="white-space:pre">@item</span>
+    <hr>
+}
+
+@Styles.Render("~/styles/myStylessheet.css")
+@Styles.Render("~/styles/StyleTranslateOtherLangue.css")
+@Styles.Render("~/styles/newbootstrap.css")
+
+
+<script src="~/Scripts/dico.js" type="text/javascript"></script>

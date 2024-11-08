@@ -1,0 +1,119 @@
+﻿@model CercleRoyalEscrimeTournaisien.Albums
+@{
+    ViewBag.Title = "Photos";
+}
+
+@section css {
+    <link href="@Url.Content("~/Content/MainPage.css")" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link href="@Url.Content("~/Content/MainPage.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/ShowMenuPrincipal.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/AgendaStyle.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/AgendaStyle.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("/Content/CategoriesStyle.css")" rel="stylesheet" type="text/css" />
+
+
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="@Url.Content("~/Scripts/MainPage.js")"></script>
+}
+
+
+<div id="albums">
+    <div style="text-align:right;">
+        <i class="fa fa-bars fa-beat" onclick="ShowStartPage();" style="color: red; font-size: 30px;"></i>
+    </div>
+    <div style="width: 23%;">
+        @Html.DropDownListFor(model => model.NumeroAlbumCurrent, new SelectList(Model.ListeDesAlbums, "Key", "Value", Model.NumeroAlbumCurrent), new { @class = "form-control", @onchange = "changeAlbums()" })
+    </div>
+
+    <div class="classImagePhotos">
+        <img id="ImageFromAlbum" style="object-fit: contain;-webkit-box-shadow: 10px 9px 63px 8px #ea675b;width: 100%;height: 100%;" />
+        <div>
+            <asp:label id="titreDiapo" runat="server" style="font-style:italic;text-align: center;font-size: 22px;font-family: 'kellyanngothic';">@Model.TitreDiapo</asp:label>
+        </div>
+        <div id="slider" style="margin-top:10px;"><div id="custom-handle" class="ui-slider-handle"></div></div>
+    </div>
+
+
+</div>
+
+<style>
+    .slider {
+        left: 2%;
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    #custom-handle {
+        width: 3em;
+        height: 1.6em;
+        top: 50%;
+        margin-top: -.8em;
+        text-align: center;
+        line-height: 1.6em;
+    }
+</style>
+<script type="text/javascript">
+    jQuery(function ($) {
+        var handle = $("#custom-handle");
+        changeImage();
+
+        $("#slider").slider({
+            value: @Model.NumeroPhotoOfAlbumCurrent,
+            min: 1,
+            max: @Model.NombreMaxPhotosOfAlbumCurrent,
+            step: 1,
+            change: function (event, ui) {
+                ChangeNumero();
+            },
+            create: function () {
+                handle.text($(this).slider("value"));
+            },
+            slide: function (event, ui) {
+                handle.text(ui.value);
+            }
+        });
+
+    });
+         function ChangeNumero() {
+             var numeroAlbumCurrent = @Model.NumeroAlbumCurrent;
+             var number = $("#slider").slider("value");
+             $("#slider").prop('title',$("#slider").slider("value"));
+             var src = '@Url.Content("~/Home/Photos/Albums/")' + numeroAlbumCurrent + "/" + number + ".jpg";
+             $("#ImageFromAlbum").attr('src', src);
+         }
+
+         function changeImage() {
+             var numeroAlbumCurrent = @Model.NumeroAlbumCurrent;
+             var numeroPhotoOfAlbumCurrent = @Model.NumeroPhotoOfAlbumCurrent;
+
+             var src = '@Url.Content("~/Home/Photos/Albums/")' + numeroAlbumCurrent + "/" + numeroPhotoOfAlbumCurrent + ".jpg";
+             $("#ImageFromAlbum").attr('src', src);
+        }
+
+        function changeAlbums() {
+            var albumSelected = $("#NumeroAlbumCurrent").find("option:selected").val()
+
+            $.ajax({
+                url: "/MainPage/ChangePhotos/" + albumSelected,
+                type: 'GET',
+                cache: false,
+                dataType: 'json',
+                success: function (result) {
+                    $('#albums').html(result.modelAlbums);
+
+                },
+                error: function (response) {
+                    alert("Error. " + response.responseText);
+                }
+            });
+        }
+</script>

@@ -1,0 +1,59 @@
+﻿@model NosCoursParTireurLoginModel
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+@using (Html.BeginForm("NosCoursParTireurLogin", "MainPage", new { returnUrl = ViewBag.ReturnUrl, isBackOffice = ViewBag.IsBackOffice }))
+{
+    @Html.AntiForgeryToken()
+
+    <div style="width:100%;text-align:center;margin:300px 20px 20px 20px;font-size:20px;">
+        @Html.ValidationSummary(true)
+
+        <div style="min-height:40px;">
+            <span style="width: 406px; margin-right:15px; display: inline-block; text-align: right;">Sélectionnez la tireuse ou le tireur dans la liste :  </span>
+            @Html.DropDownListFor(m => m.UserNameSelectionne, new SelectList(Model.Tireurs.Select(x => new { Value = x.UserNameIndex, Text = x.UserName }),
+                "Value",
+                "Text"), "", new { style = "width: 150px;" })
+        </div>
+
+        <div>
+            <span style="width: 406px; margin-right: 15px; display: inline-block; text-align: right;">Introduisez votre mot de passe :  </span>
+            @Html.TextBoxFor(x => x.PasswordSelectionne, new { @class = "form-control", style = "width: 300px;" })
+        </div>
+
+        <div>
+            <input style="display: inline-block; text-align: center; margin-top: 16px; height: 41px; width: 111px; background-color: #04AA6D;  border: none; color: white; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; box-shadow: 0 8px 9px 0 rgba(0,0,0,0.2), 0 6px 5px 0 rgba(0,0,0,0.19); border-radius: 6px; " type="button" value="Suivant" onclick="ButtonSuivant('@Url.Action("NosCoursTireurSelectionne", "MainPage")');" />
+        </div>
+    </div>
+}
+
+
+<script>
+
+    function ButtonSuivant(url) {
+        if ($("#UserNameSelectionne").val() == '') {
+            alert("Un(e) tireuse/tireur n'est pas sélectionné(e).\nVeuillez la/le sélectionner svp.");
+            return false;
+        }
+
+        var userNameSelectionne = $("#UserNameSelectionne").val();
+        var passwordSelectionne = $("#PasswordSelectionne").val();
+
+        $.ajax({
+            type: "POST",
+            url: "/MainPage/NosCoursParTireurLoginButtonSuivant",
+            data: { userNameSelectionne: userNameSelectionne, passwordSelectionne: passwordSelectionne },
+            success: function (result) {
+                if (result.isSuccessful) {
+                    location.href = url;
+                }
+                else {
+                    alert("Le mot de passe n'est pas correct.\nVeuillez introduire le bon mot de passe svp.");
+                }
+            }
+        });
+    }
+
+</script>

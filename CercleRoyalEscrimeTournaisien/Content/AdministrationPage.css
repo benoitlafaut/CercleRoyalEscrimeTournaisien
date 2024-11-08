@@ -1,0 +1,42 @@
+﻿.classEmail > td .fa {
+    margin-right: .5rem;
+    opacity: 0;
+    transition: opacity .1s ease-out;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+    .classEmail > td .fa:empty {
+        content: none;
+    }
+
+.classEmail > td:hover .fa {
+    opacity: 1;
+    transition-delay: 0s;
+}
+
+
+
+@media (min-width: 0px) and (max-width : 991px) {
+    .entree {
+        height: 100% !important;
+    }
+
+    #imgPhoto {
+        width: 82%;
+    }
+}
+
+
+@media (min-width: 991px) and (max-width: 1992px) {
+    .entree {
+        height: 77% !important;       
+        width: 48% !important;
+        top: 10% !important;
+        left: 21% !important;
+    }
+
+    #imgPhoto {
+        width: 57%;
+    }
+}

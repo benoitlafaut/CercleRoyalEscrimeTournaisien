@@ -1,0 +1,34 @@
+.fa-folder-open-o:hover {
+    color: olive;
+    font-size:50px;
+}
+
+.fa-play-all:hover {
+    color: olive;
+    font-size: 50px;
+}
+
+.checkSquare {
+    color: lightgrey;
+      font-size: 30px;
+}
+
+input[type=file] {
+    color: transparent !important;
+    width: 230px;
+}
+
+    input[type=file]::before {
+        content: "Attach Your File: ";
+        color: black;
+        margin-right: 10px;
+    }
+
+
+
+.StyleFieldset {
+    border-width: 0.1px;
+    float: left;
+    margin-bottom: 15px;
+    margin-top: -2px;
+}

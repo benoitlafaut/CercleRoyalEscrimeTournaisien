@@ -1,0 +1,62 @@
+﻿@using CercleRoyalEscrimeTournaisien.Models;
+@model ModelShowMenuPrincipal
+
+<!DOCTYPE html>
+
+@section css {
+    <link href="@Url.Content("~/Content/ShowMenuPrincipal.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/MainPage.css")" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="//cdn.embed.ly/player-0.0.11.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link id="themecss" rel="stylesheet" type="text/css" href="//www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+}
+
+
+<html>
+<body id="bodyShowMenuPrincipal" style="background-color: darkred;">
+    <div style="text-align:right;">
+        <i class="fa fa-bars fa-beat" onclick="ShowStartPage();" style="color: white; font-size: 30px;"></i>
+    </div>
+
+    <div class="encadrementDiv">
+        <div class="classRedWhite styleRedWhite" onclick="window.location.href = '/MainPage/Accueil/'">
+            Accueil
+        </div>
+        <div class="classRedWhite styleRedWhite" onclick="window.location.href = '/MainPage/Agenda/'">
+            Agenda
+        </div>
+        <div class="classRedWhite styleRedWhite" onclick="window.location.href = '/MainPage/Catégories/'">
+            Catégories
+        </div>
+        <div class="classRedWhite styleRedWhite" onclick="window.location.href = '/MainPage/Albums/'">
+            Photos
+        </div>
+        <div class="classRedWhite styleRedWhite" onclick="window.location.href = '/MainPage/Historique/'">
+            Historique
+        </div>
+        <div class="classRedWhite styleRedWhite" onclick="window.location.href = '/MainPage/Activités/'">
+            Activités
+        </div>
+        <div class="classRedWhite styleRedWhite" onclick="window.location.href = '/MainPage/QuelquesSitesInteressants/'">
+            Quelques sites intéressants
+        </div>
+        <div class="classRedWhite styleRedWhite" onclick="window.location.href = '/MainPage/NosCours/'">
+            Nos cours
+        </div>
+        <hr class="rounded">
+        <div class="classRedWhite styleRedWhite" onclick="window.location.href = '/MainPage/Logon/'">
+            Logon administration
+        </div>
+    </div>
+</body>
+</html>
+
+<script src='~/Scripts/MainPage.js'></script>

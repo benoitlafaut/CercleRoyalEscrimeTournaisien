@@ -1,0 +1,122 @@
+﻿@using CercleRoyalEscrimeTournaisien.Resources
+@model CercleRoyalEscrimeTournaisien.Categories
+
+
+
+@section css {
+    <link href="@Url.Content("~/Content/MainPage.css")" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link id="themecss" rel="stylesheet" type="text/css" href="//www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="@Url.Content("~/Content/MainPage.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/ShowMenuPrincipal.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/AgendaStyle.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/HistoriqueStyle.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("/Content/CategoriesStyle.css")" rel="stylesheet" type="text/css" />
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src='~/Scripts/MainPage.js'></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="//cdn.embed.ly/player-0.0.11.min.js"></script>
+}
+
+<div>
+    <div style="text-align:right;">
+        <i class="fa fa-bars fa-beat" onclick="ShowStartPage();" style="color: red; font-size: 30px;"></i>
+    </div>
+</div>
+
+<div>
+    <div class="sujetHistorique"><span>@ResourceHistorique.Historique_Sujet</span></div>
+</div>
+
+<div style="overflow-y: overlay; margin-top:15px;position: fixed; height: 80%; width: 97%; overflow-x: hidden;">
+    <div class="titleHistorique"><span>@ResourceHistorique.Historique_Le_01_septembre_1884</span></div>
+    <div class="ContentHistorique"><span>@ResourceHistorique.Historique_Le_01_septembre_1884_Content_1</span></div>
+    <div class="ContentHistorique"><span>@ResourceHistorique.Historique_Le_01_septembre_1884_Content_2</span></div>
+    <div class="ContentHistorique"><span>@ResourceHistorique.Historique_Le_01_septembre_1884_Content_3</span></div>
+
+    <div class="titleHistorique"><span>@ResourceHistorique.Historique_Le_01_septembre_1888</span></div>
+    <div class="ContentHistorique"><span>@ResourceHistorique.Historique_Le_01_septembre_1888_Content_1</span></div>
+
+    <div class="titleHistorique"><span>@ResourceHistorique.Historique_Le_29_septembre_1896</span></div>
+    <div class="ContentHistorique"><span>@ResourceHistorique.Historique_Le_29_septembre_1896_Content_1</span></div>
+    <div class="ContentHistorique"><span>@ResourceHistorique.Historique_Le_29_septembre_1896_Content_2</span></div>
+
+    <div class="titleHistorique"><span>@ResourceHistorique.Historique_Le_12_avril_1903</span></div>
+    <div class="ContentHistorique"><span>@ResourceHistorique.Historique_Le_12_avril_1903_Content_1</span></div>
+
+    <div class="titleHistorique"><span>@ResourceHistorique.Historique_Le_30_septembre_1904</span></div>
+    <div class="ContentHistorique"><span>@ResourceHistorique.Historique_Le_30_septembre_1904_Content_1</span></div>
+
+    <div class="titleHistorique"><span>@ResourceHistorique.Historique_Le_27_avril_1923</span></div>
+    <div class="ContentHistorique"><span>@ResourceHistorique.Historique_Le_27_avril_1923_Content_1</span></div>
+
+    <div class="titleHistorique"><span>@ResourceHistorique.Historique_Le_08_mai_1927</span></div>
+    <div class="ContentHistorique"><span>@ResourceHistorique.Historique_Le_08_mai_1927_Content_1</span></div>
+
+    <div class="titleHistorique"><span>@ResourceHistorique.Historique_Le_21_novembre_1927</span></div>
+    <div class="ContentHistorique"><span>@ResourceHistorique.Historique_Le_21_novembre_1927_Content_1</span></div>
+
+    <div class="titleHistorique"><span>@ResourceHistorique.Historique_Le_01_avril_1928</span></div>
+    <div class="ContentHistorique"><span>@ResourceHistorique.Historique_Le_01_avril_1928_Content_1</span></div>
+
+    <div class="titleHistorique"><span>@ResourceHistorique.Historique_Le_26_janvier_1930</span></div>
+    <div class="ContentHistorique"><span>@ResourceHistorique.Historique_Le_26_janvier_1930_Content_1</span></div>
+    <div class="ContentHistorique"><span>@ResourceHistorique.Historique_Le_26_janvier_1930_Content_2</span></div>
+    <div class="ContentHistorique"><span>@ResourceHistorique.Historique_Le_26_janvier_1930_Content_3</span></div>
+    <div class="ContentHistorique"><span>@ResourceHistorique.Historique_Le_26_janvier_1930_Content_4</span></div>
+
+    <div class="titleHistorique"><span>@ResourceHistorique.Historique_En_1935</span></div>
+    <div class="ContentHistorique"><span>@ResourceHistorique.Historique_En_1935_Content_1</span></div>
+
+    <div class="titleHistorique"><span>@ResourceHistorique.Historique_En_1936</span></div>
+    <div class="ContentHistorique"><span>@ResourceHistorique.Historique_En_1936_Content_1</span></div>
+
+    <div class="titleHistorique"><span>@ResourceHistorique.Historique_Pendant_la_guerre_40_45</span></div>
+    <div class="ContentHistorique"><span>@ResourceHistorique.Historique_Pendant_la_guerre_40_45_Content_1</span></div>
+    <div class="ContentHistorique"><span>@ResourceHistorique.Historique_Pendant_la_guerre_40_45_Content_2</span></div>
+    <div class="ContentHistorique"><span>@ResourceHistorique.Historique_Pendant_la_guerre_40_45_Content_3</span></div>
+
+    <div class="titleHistorique"><span>@ResourceHistorique.Historique_Le_24_novembre_1964</span></div>
+    <div class="ContentHistorique"><span>@ResourceHistorique.Historique_Le_24_novembre_1964_Content_1</span></div>
+
+    <div class="titleHistorique"><span>@ResourceHistorique.Historique_Le_20_octobre_1984</span></div>
+    <div class="ContentHistorique"><span>@ResourceHistorique.Historique_Le_20_octobre_1984_Content_1</span></div>
+
+    <div class="titleHistorique"><span>@ResourceHistorique.Historique_Du_3_au_8_avril_1996</span></div>
+    <div class="ContentHistorique"><span>@ResourceHistorique.Historique_Du_3_au_8_avril_1996_Content_1</span></div>
+
+    <div class="titleHistorique"><span>@ResourceHistorique.Historique_En_mai_1998_et_mai_2000</span></div>
+    <div class="ContentHistorique"><span>@ResourceHistorique.Historique_En_mai_1998_et_mai_2000_Content_1</span></div>
+
+    <div class="titleHistorique"><span>@ResourceHistorique.Historique_Les_MAITRES_D_ARMES</span></div>
+    <div class="ContentHistorique"><span class="classMaitreArmes">@ResourceHistorique.Historique_Les_MAITRES_D_ARMES_Content_1_1</span><span>@ResourceHistorique.Historique_Les_MAITRES_D_ARMES_Content_1_2</span></div>
+    <div class="ContentHistorique"><span class="classMaitreArmes">@ResourceHistorique.Historique_Les_MAITRES_D_ARMES_Content_2_1</span><span>@ResourceHistorique.Historique_Les_MAITRES_D_ARMES_Content_2_2</span></div>
+    <div class="ContentHistorique"><span class="classMaitreArmes">@ResourceHistorique.Historique_Les_MAITRES_D_ARMES_Content_3_1</span><span>@ResourceHistorique.Historique_Les_MAITRES_D_ARMES_Content_3_2</span></div>
+    <div class="ContentHistorique"><span class="classMaitreArmes">@ResourceHistorique.Historique_Les_MAITRES_D_ARMES_Content_4_1</span><span>@ResourceHistorique.Historique_Les_MAITRES_D_ARMES_Content_4_2</span></div>
+    <div class="ContentHistorique"><span class="classMaitreArmes">@ResourceHistorique.Historique_Les_MAITRES_D_ARMES_Content_5_1</span><span>@ResourceHistorique.Historique_Les_MAITRES_D_ARMES_Content_5_2</span></div>
+    <div class="ContentHistorique"><span class="classMaitreArmes">@ResourceHistorique.Historique_Les_MAITRES_D_ARMES_Content_6_1</span><span>@ResourceHistorique.Historique_Les_MAITRES_D_ARMES_Content_6_2</span></div>
+    <div class="ContentHistorique"><span class="classMaitreArmes">@ResourceHistorique.Historique_Les_MAITRES_D_ARMES_Content_7_1</span><span>@ResourceHistorique.Historique_Les_MAITRES_D_ARMES_Content_7_2</span></div>
+    <div class="ContentHistorique"><span class="classMaitreArmes">@ResourceHistorique.Historique_Les_MAITRES_D_ARMES_Content_8_1</span><span>@ResourceHistorique.Historique_Les_MAITRES_D_ARMES_Content_8_2</span></div>
+    <div class="ContentHistorique"><span class="classMaitreArmes">@ResourceHistorique.Historique_Les_MAITRES_D_ARMES_Content_9_1</span><span>@ResourceHistorique.Historique_Les_MAITRES_D_ARMES_Content_9_2</span></div>
+    <div class="ContentHistorique" style="margin-top:15px"><span>@ResourceHistorique.Historique_Les_MAITRES_D_ARMES_Content_10</span></div>
+
+    <div class="titleHistorique"><span>@ResourceHistorique.Historique_Les_salles_D_armes_de_Tournai</span></div>
+    <div class="ContentHistorique"><span class="classSallesArmes">@ResourceHistorique.Historique_Les_salles_D_armes_de_Tournai_Content_1_1</span><span>@ResourceHistorique.Historique_Les_salles_D_armes_de_Tournai_Content_1_2</span></div>
+    <div class="ContentHistorique"><span class="classSallesArmes">@ResourceHistorique.Historique_Les_salles_D_armes_de_Tournai_Content_2_1</span><span>@ResourceHistorique.Historique_Les_salles_D_armes_de_Tournai_Content_2_2</span></div>
+    <div class="ContentHistorique"><span class="classSallesArmes">@ResourceHistorique.Historique_Les_salles_D_armes_de_Tournai_Content_3_1</span><span>@ResourceHistorique.Historique_Les_salles_D_armes_de_Tournai_Content_3_2</span></div>
+    <div class="ContentHistorique"><span class="classSallesArmes">@ResourceHistorique.Historique_Les_salles_D_armes_de_Tournai_Content_4_1</span><span>@ResourceHistorique.Historique_Les_salles_D_armes_de_Tournai_Content_4_2</span></div>
+    <div class="ContentHistorique"><span class="classSallesArmes">@ResourceHistorique.Historique_Les_salles_D_armes_de_Tournai_Content_5_1</span><span>@ResourceHistorique.Historique_Les_salles_D_armes_de_Tournai_Content_5_2</span></div>
+    <div class="ContentHistorique" style="margin-bottom:20px;"></div>
+</div>

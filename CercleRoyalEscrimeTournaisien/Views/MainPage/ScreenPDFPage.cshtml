@@ -1,0 +1,20 @@
+﻿@using CercleRoyalEscrimeTournaisien.Models;
+
+@model ModelBDFile
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.3.1/css/flag-icon.min.css" rel="stylesheet" />
+
+    <link href="~/Content/ExpandView.css" rel="stylesheet" />
+</head>
+
+<div id="ScreenPDFPageDiv">
+    @Html.DropDownListFor(m => m.NomDeLaCollectionSelected, new SelectList(Model.ListCollection), new { style = "width: 200px;", @onchange = "GetAllUrls() " })
+    @Html.DropDownListFor(m => m.BookSelected, new SelectList(Model.ListBDParCollection), new { style = "width: 400px;", @onchange = "LoadBD() ;return false;" })
+</div>
+
+<script src="~/Scripts/ScreenPDFPage.js" type="text/javascript"></script>

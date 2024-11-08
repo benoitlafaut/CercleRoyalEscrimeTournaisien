@@ -1,0 +1,101 @@
+﻿@using CercleRoyalEscrimeTournaisien.Models;
+@model ModelMainPage
+
+<!DOCTYPE html>
+
+@section css {
+    <link href="@Url.Content("~/Content/MainPage.css")" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link id="themecss" rel="stylesheet" type="text/css" href="//www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="@Url.Content("~/Content/MainPage.css")" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src='~/Scripts/MainPage.js'></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="//cdn.embed.ly/player-0.0.11.min.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+}
+
+@{
+    var urlCurrent = Model.VideoUrls[Model.CurrentVideo].Url;
+    var urlTitle = Model.VideoUrls[Model.CurrentVideo].Title;
+}
+
+<html>
+<body id="bodyMainPage">
+
+    @Html.HiddenFor(model => model.CurrentVideo)
+
+    @*<div style="display:none;">
+            <img src="https://scontent.fbru4-1.fna.fbcdn.net/v/t39.30808-6/373050525_3444870195828949_607076592105404018_n.jpg?stp=c0.27.206.206a_dst-jpg_p206x206&_nc_cat=110&ccb=1-7&_nc_sid=0df3a7&_nc_ohc=IhIFGynyyLUAX92TkWR&_nc_ht=scontent.fbru4-1.fna&oh=00_AfDyBxHDcCczsKUmemaI5QQ62w_WDig9hwWxSnMXDGnDcQ&oe=64FAB046"/>
+        </div>*@
+
+    <div style="float:right;">
+        <i class="fa fa-bars fa-beat" style="font-size: 30px;" onclick="ShowMenuPrincipal();"></i>
+    </div>
+
+    <div>
+        <table style=" margin-left: 12%;">
+            <tr>
+                <td>
+                    <div style="border-left: 3px solid #78C0A8; font-size: xx-large; margin-left: 5px;">
+                        <span style=" margin-left: 25px;">@urlTitle</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+      
+        <table id="tableYoutube" style="text-align:center;width:100%">
+            <tr>
+                <td style="text-align:right"><i onclick="ChangeVideo(-1)" class='classDarkGray fa fa-angle-double-left fa-beat'></i></td>
+                <td width="1300" height="600"><iframe style="width: 100%;height: 100%;" id="existing-iframe-example" title="L'escrime" class="iframeVideo" src="@urlCurrent" frameborder="0" allow="autoplay;accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
+                <td style="text-align:left"><i onclick="ChangeVideo(1)" class='classDarkGray fa fa-angle-double-right fa-beat'></i></td>
+
+            </tr>
+        </table>
+
+        <table style="margin-left: 12%; width: 75%;">
+            <tr>
+                <td>
+                    <div style="font-size: 20px;text-align: center; border: 1px solid #78C0A8; height: 100px; align-items: center; display: grid; width: 100%;">
+                        <span id="textVideo">Vidéo en cours de chargement</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <script src="https://www.youtube.com/iframe_api"></script>
+
+        <div id="popUp" style=" display: none; position: absolute; width: 100%; top: 0px; left: 0px; height: 100%; background-color: moccasin;" onclick="$('#popUp').fadeOut('slow');">
+            <img id="imgModal" src='/Home/photos/Divers/pub.jpg' height="100" width="100" style="width: 100%;height: 100%;object-fit: contain;" />
+        </div>
+</body>
+</html>
+
+<script src='~/Scripts/MainPage.js'></script>
+
+
+<script>
+    $(document).ready(function () {
+        if ('@Model.HasPubAlreadyShowed' == 'True') {
+            $("#popUp").css('display', 'block');
+            setInterval(closeImage, 7000);
+        }
+    });
+
+    function closeImage() {
+        $("#popUp").fadeOut("slow");
+    }
+</script>

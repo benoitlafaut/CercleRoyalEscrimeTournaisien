@@ -1,0 +1,1233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{461DB497-0F9B-4F1D-B5A8-C0C005B3F31F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CercleRoyalEscrimeTournaisien</RootNamespace>
+    <AssemblyName>CercleRoyalEscrimeTournaisien</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44356</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="dotless.AspNet, Version=1.6.4.0, Culture=neutral, PublicKeyToken=96b446c9e63eae34, processorArchitecture=MSIL">
+      <HintPath>..\packages\dotless.AspNetHandler.1.6.4\lib\net461\dotless.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="dotless.Core, Version=1.6.4.0, Culture=neutral, PublicKeyToken=96b446c9e63eae34, processorArchitecture=MSIL">
+      <HintPath>..\packages\dotless.Core.1.6.4\lib\net461\dotless.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetXmlHttpRequest, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetXmlHttpRequest.2.0.0.0\lib\DotNetXmlHttpRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=7.3.1.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.7.3.1\lib\net462\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.Interfaces, Version=6.1.1.0, Culture=neutral, PublicKeyToken=a694d7f3b0907a61, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.Interfaces.6.1.1\lib\net462\EPPlus.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.System.Drawing, Version=6.1.1.0, Culture=neutral, PublicKeyToken=2308d35469c9bac0, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.System.Drawing.6.1.1\lib\net462\EPPlus.System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation, Version=11.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.11.6.0\lib\netstandard2.0\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.11.42.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.11.42\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.2.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.3.0.0\lib\netstandard2.0\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="RestSharp, Version=108.0.3.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.108.0.3\lib\netstandard2.0\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="RouteMagic, Version=1.3.0.0, Culture=neutral, PublicKeyToken=84b59be021aa4cee, processorArchitecture=MSIL">
+      <HintPath>..\packages\RouteMagic.1.3\lib\net40\RouteMagic.dll</HintPath>
+    </Reference>
+    <Reference Include="RouteMagic.Mvc, Version=1.2.0.0, Culture=neutral, PublicKeyToken=84b59be021aa4cee, processorArchitecture=MSIL">
+      <HintPath>..\packages\RouteMagic.Mvc.1.2\lib\net40\RouteMagic.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Compression.Base, Version=26.2450.13.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.XlsIO.AspNet.Mvc5.26.2.13\lib\net45\Syncfusion.Compression.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=26.2450.13.0, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.XlsIO.AspNet.Mvc5.26.2.13\lib\net45\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.XlsIO.Base, Version=26.2450.13.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.XlsIO.AspNet.Mvc5.26.2.13\lib\net45\Syncfusion.XlsIO.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Text.Encodings.Web, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.5.0.0\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.5.0.1\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.1.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\ApplicationNames.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\PartialViewNames.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="ClassPublic\IndexTireurConstantes.cs" />
+    <Compile Include="ClassPublic\Constantes.cs" />
+    <Compile Include="Controllers\MainPageController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Epub\CreateEpub.cs" />
+    <Compile Include="Epub\Entities\EpubBook.cs" />
+    <Compile Include="Epub\Entities\EpubByteContentFile.cs" />
+    <Compile Include="Epub\Entities\EpubContent.cs" />
+    <Compile Include="Epub\Entities\EpubContentFile.cs" />
+    <Compile Include="Epub\Entities\EpubContentType.cs" />
+    <Compile Include="Epub\Entities\EpubNavigationItem.cs" />
+    <Compile Include="Epub\Entities\EpubNavigationItemLink.cs" />
+    <Compile Include="Epub\Entities\EpubNavigationItemType.cs" />
+    <Compile Include="Epub\Entities\EpubSchema.cs" />
+    <Compile Include="Epub\Entities\EpubTextContentFile.cs" />
+    <Compile Include="Epub\EpubReader.cs" />
+    <Compile Include="Epub\Readers\BookCoverReader.cs" />
+    <Compile Include="Epub\Readers\ContentReader.cs" />
+    <Compile Include="Epub\Readers\Epub2NcxReader.cs" />
+    <Compile Include="Epub\Readers\Epub3NavDocumentReader.cs" />
+    <Compile Include="Epub\Readers\NavigationReader.cs" />
+    <Compile Include="Epub\Readers\PackageReader.cs" />
+    <Compile Include="Epub\Readers\RootFilePathReader.cs" />
+    <Compile Include="Epub\Readers\SchemaReader.cs" />
+    <Compile Include="Epub\Readers\SpineReader.cs" />
+    <Compile Include="Epub\RefEntities\EpubBookRef.cs" />
+    <Compile Include="Epub\RefEntities\EpubByteContentFileRef.cs" />
+    <Compile Include="Epub\RefEntities\EpubContentFileRef.cs" />
+    <Compile Include="Epub\RefEntities\EpubContentRef.cs" />
+    <Compile Include="Epub\RefEntities\EpubNavigationItemRef.cs" />
+    <Compile Include="Epub\RefEntities\EpubTextContentFileRef.cs" />
+    <Compile Include="Epub\Schema\Common\ManifestProperty.cs" />
+    <Compile Include="Epub\Schema\Common\StructuralSemanticsProperty.cs" />
+    <Compile Include="Epub\Schema\Ncx\Epub2Ncx.cs" />
+    <Compile Include="Epub\Schema\Ncx\Epub2NcxContent.cs" />
+    <Compile Include="Epub\Schema\Ncx\Epub2NcxDocAuthor.cs" />
+    <Compile Include="Epub\Schema\Ncx\Epub2NcxDocTitle.cs" />
+    <Compile Include="Epub\Schema\Ncx\Epub2NcxHead.cs" />
+    <Compile Include="Epub\Schema\Ncx\Epub2NcxHeadMeta.cs" />
+    <Compile Include="Epub\Schema\Ncx\Epub2NcxNavigationLabel.cs" />
+    <Compile Include="Epub\Schema\Ncx\Epub2NcxNavigationList.cs" />
+    <Compile Include="Epub\Schema\Ncx\Epub2NcxNavigationMap.cs" />
+    <Compile Include="Epub\Schema\Ncx\Epub2NcxNavigationPoint.cs" />
+    <Compile Include="Epub\Schema\Ncx\Epub2NcxNavigationTarget.cs" />
+    <Compile Include="Epub\Schema\Ncx\Epub2NcxPageList.cs" />
+    <Compile Include="Epub\Schema\Ncx\Epub2NcxPageTarget.cs" />
+    <Compile Include="Epub\Schema\Ncx\Epub2NcxPageTargetType.cs" />
+    <Compile Include="Epub\Schema\Opf\EpubGuide.cs" />
+    <Compile Include="Epub\Schema\Opf\EpubGuideReference.cs" />
+    <Compile Include="Epub\Schema\Opf\EpubManifest.cs" />
+    <Compile Include="Epub\Schema\Opf\EpubManifestItem.cs" />
+    <Compile Include="Epub\Schema\Opf\EpubMetadata.cs" />
+    <Compile Include="Epub\Schema\Opf\EpubMetadataContributor.cs" />
+    <Compile Include="Epub\Schema\Opf\EpubMetadataCreator.cs" />
+    <Compile Include="Epub\Schema\Opf\EpubMetadataDate.cs" />
+    <Compile Include="Epub\Schema\Opf\EpubMetadataIdentifier.cs" />
+    <Compile Include="Epub\Schema\Opf\EpubMetadataMeta.cs" />
+    <Compile Include="Epub\Schema\Opf\EpubPackage.cs" />
+    <Compile Include="Epub\Schema\Opf\EpubSpine.cs" />
+    <Compile Include="Epub\Schema\Opf\EpubSpineItemRef.cs" />
+    <Compile Include="Epub\Schema\Opf\EpubVersion.cs" />
+    <Compile Include="Epub\Schema\Opf\PageProgressionDirection.cs" />
+    <Compile Include="Epub\Schema\Opf\SpineProperty.cs" />
+    <Compile Include="Epub\Schema\Ops\Epub3Nav.cs" />
+    <Compile Include="Epub\Schema\Ops\Epub3NavAnchor.cs" />
+    <Compile Include="Epub\Schema\Ops\Epub3NavDocument.cs" />
+    <Compile Include="Epub\Schema\Ops\Epub3NavLi.cs" />
+    <Compile Include="Epub\Schema\Ops\Epub3NavOl.cs" />
+    <Compile Include="Epub\Schema\Ops\Epub3NavSpan.cs" />
+    <Compile Include="Epub\Utils\StringExtensionMethods.cs" />
+    <Compile Include="Epub\Utils\UrlParser.cs" />
+    <Compile Include="Epub\Utils\VersionUtils.cs" />
+    <Compile Include="Epub\Utils\XmlExtensionMethods.cs" />
+    <Compile Include="Epub\Utils\XmlUtils.cs" />
+    <Compile Include="Epub\Utils\ZipPathUtils.cs" />
+    <Compile Include="GestionClubClass\EscrimeursListe.cs" />
+    <Compile Include="GestionClubClass\FichesSignalétiques_2022_2023.cs" />
+    <Compile Include="GestionClubClass\FichesSignalétiques_2024_2025.cs" />
+    <Compile Include="GestionClubClass\FichesSignalétiques_2023_2024.cs" />
+    <Compile Include="GestionClubClass\GuidConstantes.cs" />
+    <Compile Include="GestionClubClass\JoursDePrésence.cs" />
+    <Compile Include="GestionClubClass\ListGuidTireur.cs" />
+    <Compile Include="Models\TireurModel\Elodie_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\ToutTireur_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\Oscar_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\Maybelle_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\Fabrice_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\Abel_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\Baptiste_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\ArthurBarbery_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\Leander_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\ArthurCouturiaux_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\Jordan_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\Martin_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\Raedwald_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\Aurore_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\Anaelle_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\Lili_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\Mathilde_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\Mae_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\Héloïse_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\Sacha_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\Apolline_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\Amado_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\Théo_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\Rebecca_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\Remi_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\Louison_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\NosCoursParTireurLoginModel.cs" />
+    <Compile Include="GestionClubClass\ModelLogon.cs" />
+    <Compile Include="GestionClubClass\Paiement.cs" />
+    <Compile Include="GestionClubClass\Paiements_2022_2023.cs" />
+    <Compile Include="GestionClubClass\Paiements_2024_2025.cs" />
+    <Compile Include="GestionClubClass\Paiements_2023_2024.cs" />
+    <Compile Include="GestionClubClass\Periode.cs" />
+    <Compile Include="GestionClubClass\Signaletique.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Accueil.cs" />
+    <Compile Include="Models\Activites.cs" />
+    <Compile Include="Models\TireurModel\Felix_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\Eva_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\Eloi_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\RemarqueParDate.cs" />
+    <Compile Include="Models\TireurModel\Tireur.cs" />
+    <Compile Include="Models\Velo.cs" />
+    <Compile Include="Models\Mp3.cs" />
+    <Compile Include="Models\ModelShowMenuPrincipal.cs" />
+    <Compile Include="Models\ModelMainPage.cs" />
+    <Compile Include="Models\MainModel.cs" />
+    <Compile Include="Models\ModelBanniere.cs" />
+    <Compile Include="Models\ModelAgenda.cs" />
+    <Compile Include="Models\Catégories.cs" />
+    <Compile Include="Models\ModelViewBook.cs" />
+    <Compile Include="Models\ModelViewBooks.cs" />
+    <Compile Include="Models\ModelViewDico.cs" />
+    <Compile Include="Models\ModelEpub20042023.cs" />
+    <Compile Include="Models\ModelBDFile.cs" />
+    <Compile Include="Models\ModelViewEpubFile.cs" />
+    <Compile Include="Models\CoursSelectionne.cs" />
+    <Compile Include="Models\Themes.cs" />
+    <Compile Include="Models\Historique.cs" />
+    <Compile Include="Models\Albums.cs" />
+    <Compile Include="Models\NosCours.cs" />
+    <Compile Include="Models\QuelquesSites.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\ResourceGlobal.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceGlobal.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ResourceHistorique.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceHistorique.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validator\ModelLogonValidator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\francais.accdb" />
+    <Content Include="Content\5d93eb1089.css" />
+    <Content Include="Content\Accueil.css" />
+    <Content Include="Content\NosCoursMultiColor.css" />
+    <Content Include="Content\NosCours.css" />
+    <Content Include="Content\StartPageNew.css" />
+    <Content Include="Content\ActivitesStyle.css" />
+    <Content Include="Content\AgendaStyle.css" />
+    <Content Include="Content\AdministrationPage.css" />
+    <Content Include="Content\ReadEpub28012024.css" />
+    <Content Include="Content\ShowMenuPrincipal.css" />
+    <Content Include="Content\MainPage.css" />
+    <Content Include="Content\ReadEpub20042023.css" />
+    <Content Include="Content\PagePersoManager.css" />
+    <Content Include="Content\bootstrapMoi.css" />
+    <Content Include="Content\epub.css" />
+    <Content Include="Content\ExpandView.css" />
+    <Content Include="Content\CategoriesStyle.css" />
+    <Content Include="Content\HistoriqueStyle.css" />
+    <Content Include="Content\CoursSelectionneStyle.css" />
+    <Content Include="Content\NosCoursStyleSlide.css" />
+    <Content Include="Content\PhotosStyle.css" />
+    <Content Include="Content\QuelquesSitesStyle.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="home\photos\Albums\10\1.JPG" />
+    <Content Include="home\photos\Albums\10\10.JPG" />
+    <Content Include="home\photos\Albums\10\11.JPG" />
+    <Content Include="home\photos\Albums\10\12.JPG" />
+    <Content Include="home\photos\Albums\10\13.JPG" />
+    <Content Include="home\photos\Albums\10\14.JPG" />
+    <Content Include="home\photos\Albums\10\15.JPG" />
+    <Content Include="home\photos\Albums\10\16.JPG" />
+    <Content Include="home\photos\Albums\10\17.JPG" />
+    <Content Include="home\photos\Albums\10\18.JPG" />
+    <Content Include="home\photos\Albums\10\19.JPG" />
+    <Content Include="home\photos\Albums\10\2.JPG" />
+    <Content Include="home\photos\Albums\10\20.JPG" />
+    <Content Include="home\photos\Albums\10\21.JPG" />
+    <Content Include="home\photos\Albums\10\22.JPG" />
+    <Content Include="home\photos\Albums\10\23.JPG" />
+    <Content Include="home\photos\Albums\10\24.JPG" />
+    <Content Include="home\photos\Albums\10\25.JPG" />
+    <Content Include="home\photos\Albums\10\26.JPG" />
+    <Content Include="home\photos\Albums\10\27.JPG" />
+    <Content Include="home\photos\Albums\10\28.JPG" />
+    <Content Include="home\photos\Albums\10\29.JPG" />
+    <Content Include="home\photos\Albums\10\3.JPG" />
+    <Content Include="home\photos\Albums\10\30.JPG" />
+    <Content Include="home\photos\Albums\10\31.JPG" />
+    <Content Include="home\photos\Albums\10\32.JPG" />
+    <Content Include="home\photos\Albums\10\33.JPG" />
+    <Content Include="home\photos\Albums\10\34.JPG" />
+    <Content Include="home\photos\Albums\10\35.JPG" />
+    <Content Include="home\photos\Albums\10\36.JPG" />
+    <Content Include="home\photos\Albums\10\37.JPG" />
+    <Content Include="home\photos\Albums\10\38.JPG" />
+    <Content Include="home\photos\Albums\10\39.JPG" />
+    <Content Include="home\photos\Albums\10\4.JPG" />
+    <Content Include="home\photos\Albums\10\40.JPG" />
+    <Content Include="home\photos\Albums\10\41.JPG" />
+    <Content Include="home\photos\Albums\10\42.JPG" />
+    <Content Include="home\photos\Albums\10\43.JPG" />
+    <Content Include="home\photos\Albums\10\44.JPG" />
+    <Content Include="home\photos\Albums\10\45.JPG" />
+    <Content Include="home\photos\Albums\10\46.JPG" />
+    <Content Include="home\photos\Albums\10\47.JPG" />
+    <Content Include="home\photos\Albums\10\48.JPG" />
+    <Content Include="home\photos\Albums\10\49.JPG" />
+    <Content Include="home\photos\Albums\10\5.JPG" />
+    <Content Include="home\photos\Albums\10\50.JPG" />
+    <Content Include="home\photos\Albums\10\51.JPG" />
+    <Content Include="home\photos\Albums\10\52.JPG" />
+    <Content Include="home\photos\Albums\10\53.JPG" />
+    <Content Include="home\photos\Albums\10\54.JPG" />
+    <Content Include="home\photos\Albums\10\55.JPG" />
+    <Content Include="home\photos\Albums\10\56.JPG" />
+    <Content Include="home\photos\Albums\10\57.JPG" />
+    <Content Include="home\photos\Albums\10\58.JPG" />
+    <Content Include="home\photos\Albums\10\59.JPG" />
+    <Content Include="home\photos\Albums\10\6.JPG" />
+    <Content Include="home\photos\Albums\10\60.JPG" />
+    <Content Include="home\photos\Albums\10\61.JPG" />
+    <Content Include="home\photos\Albums\10\62.JPG" />
+    <Content Include="home\photos\Albums\10\63.JPG" />
+    <Content Include="home\photos\Albums\10\64.JPG" />
+    <Content Include="home\photos\Albums\10\65.JPG" />
+    <Content Include="home\photos\Albums\10\66.JPG" />
+    <Content Include="home\photos\Albums\10\67.JPG" />
+    <Content Include="home\photos\Albums\10\68.JPG" />
+    <Content Include="home\photos\Albums\10\69.JPG" />
+    <Content Include="home\photos\Albums\10\7.JPG" />
+    <Content Include="home\photos\Albums\10\70.JPG" />
+    <Content Include="home\photos\Albums\10\71.JPG" />
+    <Content Include="home\photos\Albums\10\72.JPG" />
+    <Content Include="home\photos\Albums\10\8.JPG" />
+    <Content Include="home\photos\Albums\10\9.JPG" />
+    <Content Include="home\photos\Albums\11\1.JPG" />
+    <Content Include="home\photos\Albums\11\10.JPG" />
+    <Content Include="home\photos\Albums\11\11.JPG" />
+    <Content Include="home\photos\Albums\11\12.JPG" />
+    <Content Include="home\photos\Albums\11\13.JPG" />
+    <Content Include="home\photos\Albums\11\14.JPG" />
+    <Content Include="home\photos\Albums\11\15.JPG" />
+    <Content Include="home\photos\Albums\11\16.JPG" />
+    <Content Include="home\photos\Albums\11\17.JPG" />
+    <Content Include="home\photos\Albums\11\18.JPG" />
+    <Content Include="home\photos\Albums\11\19.JPG" />
+    <Content Include="home\photos\Albums\11\2.JPG" />
+    <Content Include="home\photos\Albums\11\20.JPG" />
+    <Content Include="home\photos\Albums\11\21.JPG" />
+    <Content Include="home\photos\Albums\11\22.JPG" />
+    <Content Include="home\photos\Albums\11\23.JPG" />
+    <Content Include="home\photos\Albums\11\24.JPG" />
+    <Content Include="home\photos\Albums\11\25.JPG" />
+    <Content Include="home\photos\Albums\11\26.JPG" />
+    <Content Include="home\photos\Albums\11\27.JPG" />
+    <Content Include="home\photos\Albums\11\28.JPG" />
+    <Content Include="home\photos\Albums\11\29.JPG" />
+    <Content Include="home\photos\Albums\11\3.JPG" />
+    <Content Include="home\photos\Albums\11\30.JPG" />
+    <Content Include="home\photos\Albums\11\31.JPG" />
+    <Content Include="home\photos\Albums\11\32.JPG" />
+    <Content Include="home\photos\Albums\11\33.JPG" />
+    <Content Include="home\photos\Albums\11\34.JPG" />
+    <Content Include="home\photos\Albums\11\35.JPG" />
+    <Content Include="home\photos\Albums\11\36.JPG" />
+    <Content Include="home\photos\Albums\11\37.JPG" />
+    <Content Include="home\photos\Albums\11\38.JPG" />
+    <Content Include="home\photos\Albums\11\39.JPG" />
+    <Content Include="home\photos\Albums\11\4.JPG" />
+    <Content Include="home\photos\Albums\11\40.JPG" />
+    <Content Include="home\photos\Albums\11\41.JPG" />
+    <Content Include="home\photos\Albums\11\42.JPG" />
+    <Content Include="home\photos\Albums\11\43.JPG" />
+    <Content Include="home\photos\Albums\11\44.JPG" />
+    <Content Include="home\photos\Albums\11\45.JPG" />
+    <Content Include="home\photos\Albums\11\46.JPG" />
+    <Content Include="home\photos\Albums\11\47.JPG" />
+    <Content Include="home\photos\Albums\11\48.JPG" />
+    <Content Include="home\photos\Albums\11\49.JPG" />
+    <Content Include="home\photos\Albums\11\5.JPG" />
+    <Content Include="home\photos\Albums\11\50.JPG" />
+    <Content Include="home\photos\Albums\11\51.JPG" />
+    <Content Include="home\photos\Albums\11\52.JPG" />
+    <Content Include="home\photos\Albums\11\53.JPG" />
+    <Content Include="home\photos\Albums\11\54.JPG" />
+    <Content Include="home\photos\Albums\11\55.JPG" />
+    <Content Include="home\photos\Albums\11\56.JPG" />
+    <Content Include="home\photos\Albums\11\57.JPG" />
+    <Content Include="home\photos\Albums\11\58.JPG" />
+    <Content Include="home\photos\Albums\11\6.JPG" />
+    <Content Include="home\photos\Albums\11\7.JPG" />
+    <Content Include="home\photos\Albums\11\8.JPG" />
+    <Content Include="home\photos\Albums\11\9.JPG" />
+    <Content Include="home\photos\Albums\12\1.jpg" />
+    <Content Include="home\photos\Albums\12\10.JPG" />
+    <Content Include="home\photos\Albums\12\11.JPG" />
+    <Content Include="home\photos\Albums\12\12.JPG" />
+    <Content Include="home\photos\Albums\12\13.JPG" />
+    <Content Include="home\photos\Albums\12\14.JPG" />
+    <Content Include="home\photos\Albums\12\15.JPG" />
+    <Content Include="home\photos\Albums\12\16.JPG" />
+    <Content Include="home\photos\Albums\12\17.JPG" />
+    <Content Include="home\photos\Albums\12\18.JPG" />
+    <Content Include="home\photos\Albums\12\19.JPG" />
+    <Content Include="home\photos\Albums\12\2.JPG" />
+    <Content Include="home\photos\Albums\12\20.jpg" />
+    <Content Include="home\photos\Albums\12\21.jpg" />
+    <Content Include="home\photos\Albums\12\22.JPG" />
+    <Content Include="home\photos\Albums\12\23.JPG" />
+    <Content Include="home\photos\Albums\12\24.JPG" />
+    <Content Include="home\photos\Albums\12\25.JPG" />
+    <Content Include="home\photos\Albums\12\26.JPG" />
+    <Content Include="home\photos\Albums\12\3.JPG" />
+    <Content Include="home\photos\Albums\12\4.jpg" />
+    <Content Include="home\photos\Albums\12\5.jpg" />
+    <Content Include="home\photos\Albums\12\6.jpg" />
+    <Content Include="home\photos\Albums\12\7.JPG" />
+    <Content Include="home\photos\Albums\12\8.JPG" />
+    <Content Include="home\photos\Albums\12\9.JPG" />
+    <Content Include="home\photos\Albums\1\1.jpg" />
+    <Content Include="home\photos\Albums\1\2.jpg" />
+    <Content Include="home\photos\Albums\1\3.jpg" />
+    <Content Include="home\photos\Albums\1\4.jpg" />
+    <Content Include="home\photos\Albums\1\5.jpg" />
+    <Content Include="home\photos\Albums\1\6.jpg" />
+    <Content Include="home\photos\Albums\1\7.jpg" />
+    <Content Include="home\photos\Albums\1\8.jpg" />
+    <Content Include="home\photos\Albums\2\1.jpg" />
+    <Content Include="home\photos\Albums\2\10.jpg" />
+    <Content Include="home\photos\Albums\2\11.jpg" />
+    <Content Include="home\photos\Albums\2\12.jpg" />
+    <Content Include="home\photos\Albums\2\2.jpg" />
+    <Content Include="home\photos\Albums\2\3.jpg" />
+    <Content Include="home\photos\Albums\2\4.jpg" />
+    <Content Include="home\photos\Albums\2\5.jpg" />
+    <Content Include="home\photos\Albums\2\6.jpg" />
+    <Content Include="home\photos\Albums\2\7.jpg" />
+    <Content Include="home\photos\Albums\2\8.jpg" />
+    <Content Include="home\photos\Albums\2\9.jpg" />
+    <Content Include="home\photos\Albums\3\1.jpg" />
+    <Content Include="home\photos\Albums\3\10.jpg" />
+    <Content Include="home\photos\Albums\3\11.jpg" />
+    <Content Include="home\photos\Albums\3\12.jpg" />
+    <Content Include="home\photos\Albums\3\13.jpg" />
+    <Content Include="home\photos\Albums\3\14.jpg" />
+    <Content Include="home\photos\Albums\3\15.jpg" />
+    <Content Include="home\photos\Albums\3\16.jpg" />
+    <Content Include="home\photos\Albums\3\17.jpg" />
+    <Content Include="home\photos\Albums\3\18.jpg" />
+    <Content Include="home\photos\Albums\3\19.jpg" />
+    <Content Include="home\photos\Albums\3\2.jpg" />
+    <Content Include="home\photos\Albums\3\20.jpg" />
+    <Content Include="home\photos\Albums\3\21.jpg" />
+    <Content Include="home\photos\Albums\3\22.jpg" />
+    <Content Include="home\photos\Albums\3\23.jpg" />
+    <Content Include="home\photos\Albums\3\24.jpg" />
+    <Content Include="home\photos\Albums\3\25.jpg" />
+    <Content Include="home\photos\Albums\3\26.jpg" />
+    <Content Include="home\photos\Albums\3\27.jpg" />
+    <Content Include="home\photos\Albums\3\28.jpg" />
+    <Content Include="home\photos\Albums\3\29.jpg" />
+    <Content Include="home\photos\Albums\3\3.jpg" />
+    <Content Include="home\photos\Albums\3\30.jpg" />
+    <Content Include="home\photos\Albums\3\31.jpg" />
+    <Content Include="home\photos\Albums\3\32.jpg" />
+    <Content Include="home\photos\Albums\3\33.jpg" />
+    <Content Include="home\photos\Albums\3\34.jpg" />
+    <Content Include="home\photos\Albums\3\35.jpg" />
+    <Content Include="home\photos\Albums\3\36.jpg" />
+    <Content Include="home\photos\Albums\3\37.jpg" />
+    <Content Include="home\photos\Albums\3\38.jpg" />
+    <Content Include="home\photos\Albums\3\39.jpg" />
+    <Content Include="home\photos\Albums\3\4.jpg" />
+    <Content Include="home\photos\Albums\3\40.jpg" />
+    <Content Include="home\photos\Albums\3\41.jpg" />
+    <Content Include="home\photos\Albums\3\42.jpg" />
+    <Content Include="home\photos\Albums\3\43.jpg" />
+    <Content Include="home\photos\Albums\3\44.jpg" />
+    <Content Include="home\photos\Albums\3\45.jpg" />
+    <Content Include="home\photos\Albums\3\46.jpg" />
+    <Content Include="home\photos\Albums\3\47.jpg" />
+    <Content Include="home\photos\Albums\3\48.jpg" />
+    <Content Include="home\photos\Albums\3\49.jpg" />
+    <Content Include="home\photos\Albums\3\5.jpg" />
+    <Content Include="home\photos\Albums\3\50.jpg" />
+    <Content Include="home\photos\Albums\3\51.jpg" />
+    <Content Include="home\photos\Albums\3\52.jpg" />
+    <Content Include="home\photos\Albums\3\53.jpg" />
+    <Content Include="home\photos\Albums\3\54.jpg" />
+    <Content Include="home\photos\Albums\3\55.jpg" />
+    <Content Include="home\photos\Albums\3\56.jpg" />
+    <Content Include="home\photos\Albums\3\57.jpg" />
+    <Content Include="home\photos\Albums\3\58.jpg" />
+    <Content Include="home\photos\Albums\3\6.jpg" />
+    <Content Include="home\photos\Albums\3\7.jpg" />
+    <Content Include="home\photos\Albums\3\8.jpg" />
+    <Content Include="home\photos\Albums\3\9.jpg" />
+    <Content Include="home\photos\Albums\4\1.jpg" />
+    <Content Include="home\photos\Albums\4\10.jpg" />
+    <Content Include="home\photos\Albums\4\100.jpg" />
+    <Content Include="home\photos\Albums\4\101.jpg" />
+    <Content Include="home\photos\Albums\4\102.jpg" />
+    <Content Include="home\photos\Albums\4\103.jpg" />
+    <Content Include="home\photos\Albums\4\104.jpg" />
+    <Content Include="home\photos\Albums\4\105.jpg" />
+    <Content Include="home\photos\Albums\4\106.jpg" />
+    <Content Include="home\photos\Albums\4\107.jpg" />
+    <Content Include="home\photos\Albums\4\108.jpg" />
+    <Content Include="home\photos\Albums\4\109.jpg" />
+    <Content Include="home\photos\Albums\4\11.jpg" />
+    <Content Include="home\photos\Albums\4\110.jpg" />
+    <Content Include="home\photos\Albums\4\111.jpg" />
+    <Content Include="home\photos\Albums\4\112.jpg" />
+    <Content Include="home\photos\Albums\4\113.jpg" />
+    <Content Include="home\photos\Albums\4\114.jpg" />
+    <Content Include="home\photos\Albums\4\115.jpg" />
+    <Content Include="home\photos\Albums\4\116.jpg" />
+    <Content Include="home\photos\Albums\4\117.jpg" />
+    <Content Include="home\photos\Albums\4\118.jpg" />
+    <Content Include="home\photos\Albums\4\119.jpg" />
+    <Content Include="home\photos\Albums\4\12.jpg" />
+    <Content Include="home\photos\Albums\4\120.jpg" />
+    <Content Include="home\photos\Albums\4\121.jpg" />
+    <Content Include="home\photos\Albums\4\122.jpg" />
+    <Content Include="home\photos\Albums\4\123.jpg" />
+    <Content Include="home\photos\Albums\4\124.jpg" />
+    <Content Include="home\photos\Albums\4\125.jpg" />
+    <Content Include="home\photos\Albums\4\126.jpg" />
+    <Content Include="home\photos\Albums\4\127.jpg" />
+    <Content Include="home\photos\Albums\4\128.jpg" />
+    <Content Include="home\photos\Albums\4\129.jpg" />
+    <Content Include="home\photos\Albums\4\13.jpg" />
+    <Content Include="home\photos\Albums\4\130.jpg" />
+    <Content Include="home\photos\Albums\4\131.jpg" />
+    <Content Include="home\photos\Albums\4\132.jpg" />
+    <Content Include="home\photos\Albums\4\133.jpg" />
+    <Content Include="home\photos\Albums\4\134.jpg" />
+    <Content Include="home\photos\Albums\4\135.jpg" />
+    <Content Include="home\photos\Albums\4\136.jpg" />
+    <Content Include="home\photos\Albums\4\137.jpg" />
+    <Content Include="home\photos\Albums\4\138.jpg" />
+    <Content Include="home\photos\Albums\4\139.jpg" />
+    <Content Include="home\photos\Albums\4\14.jpg" />
+    <Content Include="home\photos\Albums\4\140.jpg" />
+    <Content Include="home\photos\Albums\4\141.jpg" />
+    <Content Include="home\photos\Albums\4\142.jpg" />
+    <Content Include="home\photos\Albums\4\143.jpg" />
+    <Content Include="home\photos\Albums\4\144.jpg" />
+    <Content Include="home\photos\Albums\4\145.jpg" />
+    <Content Include="home\photos\Albums\4\146.jpg" />
+    <Content Include="home\photos\Albums\4\147.jpg" />
+    <Content Include="home\photos\Albums\4\148.jpg" />
+    <Content Include="home\photos\Albums\4\149.jpg" />
+    <Content Include="home\photos\Albums\4\15.jpg" />
+    <Content Include="home\photos\Albums\4\150.jpg" />
+    <Content Include="home\photos\Albums\4\151.jpg" />
+    <Content Include="home\photos\Albums\4\152.jpg" />
+    <Content Include="home\photos\Albums\4\153.jpg" />
+    <Content Include="home\photos\Albums\4\154.jpg" />
+    <Content Include="home\photos\Albums\4\155.jpg" />
+    <Content Include="home\photos\Albums\4\156.jpg" />
+    <Content Include="home\photos\Albums\4\157.jpg" />
+    <Content Include="home\photos\Albums\4\158.jpg" />
+    <Content Include="home\photos\Albums\4\159.jpg" />
+    <Content Include="home\photos\Albums\4\16.jpg" />
+    <Content Include="home\photos\Albums\4\160.jpg" />
+    <Content Include="home\photos\Albums\4\161.jpg" />
+    <Content Include="home\photos\Albums\4\162.jpg" />
+    <Content Include="home\photos\Albums\4\163.jpg" />
+    <Content Include="home\photos\Albums\4\164.jpg" />
+    <Content Include="home\photos\Albums\4\165.jpg" />
+    <Content Include="home\photos\Albums\4\166.jpg" />
+    <Content Include="home\photos\Albums\4\167.jpg" />
+    <Content Include="home\photos\Albums\4\168.jpg" />
+    <Content Include="home\photos\Albums\4\169.jpg" />
+    <Content Include="home\photos\Albums\4\17.jpg" />
+    <Content Include="home\photos\Albums\4\170.jpg" />
+    <Content Include="home\photos\Albums\4\171.jpg" />
+    <Content Include="home\photos\Albums\4\172.jpg" />
+    <Content Include="home\photos\Albums\4\173.jpg" />
+    <Content Include="home\photos\Albums\4\18.jpg" />
+    <Content Include="home\photos\Albums\4\19.jpg" />
+    <Content Include="home\photos\Albums\4\2.jpg" />
+    <Content Include="home\photos\Albums\4\20.jpg" />
+    <Content Include="home\photos\Albums\4\21.jpg" />
+    <Content Include="home\photos\Albums\4\22.jpg" />
+    <Content Include="home\photos\Albums\4\23.jpg" />
+    <Content Include="home\photos\Albums\4\24.jpg" />
+    <Content Include="home\photos\Albums\4\25.jpg" />
+    <Content Include="home\photos\Albums\4\26.jpg" />
+    <Content Include="home\photos\Albums\4\27.jpg" />
+    <Content Include="home\photos\Albums\4\28.jpg" />
+    <Content Include="home\photos\Albums\4\29.jpg" />
+    <Content Include="home\photos\Albums\4\3.jpg" />
+    <Content Include="home\photos\Albums\4\30.jpg" />
+    <Content Include="home\photos\Albums\4\31.jpg" />
+    <Content Include="home\photos\Albums\4\32.jpg" />
+    <Content Include="home\photos\Albums\4\33.jpg" />
+    <Content Include="home\photos\Albums\4\34.jpg" />
+    <Content Include="home\photos\Albums\4\35.jpg" />
+    <Content Include="home\photos\Albums\4\36.jpg" />
+    <Content Include="home\photos\Albums\4\37.jpg" />
+    <Content Include="home\photos\Albums\4\38.jpg" />
+    <Content Include="home\photos\Albums\4\39.jpg" />
+    <Content Include="home\photos\Albums\4\4.jpg" />
+    <Content Include="home\photos\Albums\4\40.jpg" />
+    <Content Include="home\photos\Albums\4\41.jpg" />
+    <Content Include="home\photos\Albums\4\42.jpg" />
+    <Content Include="home\photos\Albums\4\43.jpg" />
+    <Content Include="home\photos\Albums\4\44.jpg" />
+    <Content Include="home\photos\Albums\4\45.jpg" />
+    <Content Include="home\photos\Albums\4\46.jpg" />
+    <Content Include="home\photos\Albums\4\47.jpg" />
+    <Content Include="home\photos\Albums\4\48.jpg" />
+    <Content Include="home\photos\Albums\4\49.jpg" />
+    <Content Include="home\photos\Albums\4\5.jpg" />
+    <Content Include="home\photos\Albums\4\50.jpg" />
+    <Content Include="home\photos\Albums\4\51.jpg" />
+    <Content Include="home\photos\Albums\4\52.jpg" />
+    <Content Include="home\photos\Albums\4\53.jpg" />
+    <Content Include="home\photos\Albums\4\54.jpg" />
+    <Content Include="home\photos\Albums\4\55.jpg" />
+    <Content Include="home\photos\Albums\4\56.jpg" />
+    <Content Include="home\photos\Albums\4\57.jpg" />
+    <Content Include="home\photos\Albums\4\58.jpg" />
+    <Content Include="home\photos\Albums\4\59.jpg" />
+    <Content Include="home\photos\Albums\4\6.jpg" />
+    <Content Include="home\photos\Albums\4\60.jpg" />
+    <Content Include="home\photos\Albums\4\61.jpg" />
+    <Content Include="home\photos\Albums\4\62.jpg" />
+    <Content Include="home\photos\Albums\4\63.jpg" />
+    <Content Include="home\photos\Albums\4\64.jpg" />
+    <Content Include="home\photos\Albums\4\65.jpg" />
+    <Content Include="home\photos\Albums\4\66.jpg" />
+    <Content Include="home\photos\Albums\4\67.jpg" />
+    <Content Include="home\photos\Albums\4\68.jpg" />
+    <Content Include="home\photos\Albums\4\69.jpg" />
+    <Content Include="home\photos\Albums\4\7.jpg" />
+    <Content Include="home\photos\Albums\4\70.jpg" />
+    <Content Include="home\photos\Albums\4\71.jpg" />
+    <Content Include="home\photos\Albums\4\72.jpg" />
+    <Content Include="home\photos\Albums\4\73.jpg" />
+    <Content Include="home\photos\Albums\4\74.jpg" />
+    <Content Include="home\photos\Albums\4\75.jpg" />
+    <Content Include="home\photos\Albums\4\76.jpg" />
+    <Content Include="home\photos\Albums\4\77.jpg" />
+    <Content Include="home\photos\Albums\4\78.jpg" />
+    <Content Include="home\photos\Albums\4\79.jpg" />
+    <Content Include="home\photos\Albums\4\8.jpg" />
+    <Content Include="home\photos\Albums\4\80.jpg" />
+    <Content Include="home\photos\Albums\4\81.jpg" />
+    <Content Include="home\photos\Albums\4\82.jpg" />
+    <Content Include="home\photos\Albums\4\83.jpg" />
+    <Content Include="home\photos\Albums\4\84.jpg" />
+    <Content Include="home\photos\Albums\4\85.jpg" />
+    <Content Include="home\photos\Albums\4\86.jpg" />
+    <Content Include="home\photos\Albums\4\87.jpg" />
+    <Content Include="home\photos\Albums\4\88.jpg" />
+    <Content Include="home\photos\Albums\4\89.jpg" />
+    <Content Include="home\photos\Albums\4\9.jpg" />
+    <Content Include="home\photos\Albums\4\90.jpg" />
+    <Content Include="home\photos\Albums\4\91.jpg" />
+    <Content Include="home\photos\Albums\4\92.jpg" />
+    <Content Include="home\photos\Albums\4\93.jpg" />
+    <Content Include="home\photos\Albums\4\94.jpg" />
+    <Content Include="home\photos\Albums\4\95.jpg" />
+    <Content Include="home\photos\Albums\4\96.jpg" />
+    <Content Include="home\photos\Albums\4\97.jpg" />
+    <Content Include="home\photos\Albums\4\98.jpg" />
+    <Content Include="home\photos\Albums\4\99.jpg" />
+    <Content Include="home\photos\Albums\5\1.jpg" />
+    <Content Include="home\photos\Albums\5\10.jpg" />
+    <Content Include="home\photos\Albums\5\11.jpg" />
+    <Content Include="home\photos\Albums\5\12.jpg" />
+    <Content Include="home\photos\Albums\5\13.jpg" />
+    <Content Include="home\photos\Albums\5\14.jpg" />
+    <Content Include="home\photos\Albums\5\15.jpg" />
+    <Content Include="home\photos\Albums\5\16.jpg" />
+    <Content Include="home\photos\Albums\5\17.jpg" />
+    <Content Include="home\photos\Albums\5\18.jpg" />
+    <Content Include="home\photos\Albums\5\19.jpg" />
+    <Content Include="home\photos\Albums\5\2.jpg" />
+    <Content Include="home\photos\Albums\5\20.jpg" />
+    <Content Include="home\photos\Albums\5\21.jpg" />
+    <Content Include="home\photos\Albums\5\22.jpg" />
+    <Content Include="home\photos\Albums\5\23.jpg" />
+    <Content Include="home\photos\Albums\5\24.jpg" />
+    <Content Include="home\photos\Albums\5\25.jpg" />
+    <Content Include="home\photos\Albums\5\26.jpg" />
+    <Content Include="home\photos\Albums\5\27.jpg" />
+    <Content Include="home\photos\Albums\5\28.jpg" />
+    <Content Include="home\photos\Albums\5\29.jpg" />
+    <Content Include="home\photos\Albums\5\3.jpg" />
+    <Content Include="home\photos\Albums\5\30.jpg" />
+    <Content Include="home\photos\Albums\5\31.jpg" />
+    <Content Include="home\photos\Albums\5\32.jpg" />
+    <Content Include="home\photos\Albums\5\33.jpg" />
+    <Content Include="home\photos\Albums\5\34.jpg" />
+    <Content Include="home\photos\Albums\5\35.jpg" />
+    <Content Include="home\photos\Albums\5\36.jpg" />
+    <Content Include="home\photos\Albums\5\37.jpg" />
+    <Content Include="home\photos\Albums\5\38.jpg" />
+    <Content Include="home\photos\Albums\5\39.jpg" />
+    <Content Include="home\photos\Albums\5\4.jpg" />
+    <Content Include="home\photos\Albums\5\40.jpg" />
+    <Content Include="home\photos\Albums\5\41.jpg" />
+    <Content Include="home\photos\Albums\5\42.jpg" />
+    <Content Include="home\photos\Albums\5\43.jpg" />
+    <Content Include="home\photos\Albums\5\44.jpg" />
+    <Content Include="home\photos\Albums\5\45.jpg" />
+    <Content Include="home\photos\Albums\5\46.jpg" />
+    <Content Include="home\photos\Albums\5\5.jpg" />
+    <Content Include="home\photos\Albums\5\6.jpg" />
+    <Content Include="home\photos\Albums\5\7.jpg" />
+    <Content Include="home\photos\Albums\5\8.jpg" />
+    <Content Include="home\photos\Albums\5\9.jpg" />
+    <Content Include="home\photos\Albums\6\1.jpg" />
+    <Content Include="home\photos\Albums\6\10.JPG" />
+    <Content Include="home\photos\Albums\6\11.JPG" />
+    <Content Include="home\photos\Albums\6\12.JPG" />
+    <Content Include="home\photos\Albums\6\13.JPG" />
+    <Content Include="home\photos\Albums\6\14.JPG" />
+    <Content Include="home\photos\Albums\6\15.JPG" />
+    <Content Include="home\photos\Albums\6\16.JPG" />
+    <Content Include="home\photos\Albums\6\17.JPG" />
+    <Content Include="home\photos\Albums\6\18.JPG" />
+    <Content Include="home\photos\Albums\6\19.jpg" />
+    <Content Include="home\photos\Albums\6\2.JPG" />
+    <Content Include="home\photos\Albums\6\20.JPG" />
+    <Content Include="home\photos\Albums\6\21.JPG" />
+    <Content Include="home\photos\Albums\6\22.JPG" />
+    <Content Include="home\photos\Albums\6\23.JPG" />
+    <Content Include="home\photos\Albums\6\24.JPG" />
+    <Content Include="home\photos\Albums\6\25.JPG" />
+    <Content Include="home\photos\Albums\6\26.JPG" />
+    <Content Include="home\photos\Albums\6\27.JPG" />
+    <Content Include="home\photos\Albums\6\28.JPG" />
+    <Content Include="home\photos\Albums\6\29.JPG" />
+    <Content Include="home\photos\Albums\6\3.JPG" />
+    <Content Include="home\photos\Albums\6\30.JPG" />
+    <Content Include="home\photos\Albums\6\31.JPG" />
+    <Content Include="home\photos\Albums\6\32.JPG" />
+    <Content Include="home\photos\Albums\6\33.JPG" />
+    <Content Include="home\photos\Albums\6\34.JPG" />
+    <Content Include="home\photos\Albums\6\35.JPG" />
+    <Content Include="home\photos\Albums\6\36.JPG" />
+    <Content Include="home\photos\Albums\6\37.jpg" />
+    <Content Include="home\photos\Albums\6\38.jpg" />
+    <Content Include="home\photos\Albums\6\39.jpg" />
+    <Content Include="home\photos\Albums\6\4.JPG" />
+    <Content Include="home\photos\Albums\6\40.JPG" />
+    <Content Include="home\photos\Albums\6\41.JPG" />
+    <Content Include="home\photos\Albums\6\42.JPG" />
+    <Content Include="home\photos\Albums\6\43.JPG" />
+    <Content Include="home\photos\Albums\6\44.jpg" />
+    <Content Include="home\photos\Albums\6\45.JPG" />
+    <Content Include="home\photos\Albums\6\46.JPG" />
+    <Content Include="home\photos\Albums\6\47.JPG" />
+    <Content Include="home\photos\Albums\6\48.JPG" />
+    <Content Include="home\photos\Albums\6\49.JPG" />
+    <Content Include="home\photos\Albums\6\5.JPG" />
+    <Content Include="home\photos\Albums\6\50.JPG" />
+    <Content Include="home\photos\Albums\6\51.JPG" />
+    <Content Include="home\photos\Albums\6\52.JPG" />
+    <Content Include="home\photos\Albums\6\53.jpg" />
+    <Content Include="home\photos\Albums\6\54.JPG" />
+    <Content Include="home\photos\Albums\6\55.JPG" />
+    <Content Include="home\photos\Albums\6\56.jpg" />
+    <Content Include="home\photos\Albums\6\57.JPG" />
+    <Content Include="home\photos\Albums\6\58.jpg" />
+    <Content Include="home\photos\Albums\6\6.JPG" />
+    <Content Include="home\photos\Albums\6\7.JPG" />
+    <Content Include="home\photos\Albums\6\8.JPG" />
+    <Content Include="home\photos\Albums\6\9.JPG" />
+    <Content Include="home\photos\Albums\7\1.jpg" />
+    <Content Include="home\photos\Albums\7\2.jpg" />
+    <Content Include="home\photos\Albums\7\3.jpg" />
+    <Content Include="home\photos\Albums\7\4.jpg" />
+    <Content Include="home\photos\Albums\7\5.jpg" />
+    <Content Include="home\photos\Albums\8\1.jpg" />
+    <Content Include="home\photos\Albums\8\10.jpg" />
+    <Content Include="home\photos\Albums\8\11.jpg" />
+    <Content Include="home\photos\Albums\8\12.jpg" />
+    <Content Include="home\photos\Albums\8\13.jpg" />
+    <Content Include="home\photos\Albums\8\14.jpg" />
+    <Content Include="home\photos\Albums\8\15.jpg" />
+    <Content Include="home\photos\Albums\8\16.jpg" />
+    <Content Include="home\photos\Albums\8\17.jpg" />
+    <Content Include="home\photos\Albums\8\18.jpg" />
+    <Content Include="home\photos\Albums\8\19.jpg" />
+    <Content Include="home\photos\Albums\8\2.jpg" />
+    <Content Include="home\photos\Albums\8\20.jpg" />
+    <Content Include="home\photos\Albums\8\21.jpg" />
+    <Content Include="home\photos\Albums\8\22.jpg" />
+    <Content Include="home\photos\Albums\8\23.jpg" />
+    <Content Include="home\photos\Albums\8\24.jpg" />
+    <Content Include="home\photos\Albums\8\25.jpg" />
+    <Content Include="home\photos\Albums\8\26.jpg" />
+    <Content Include="home\photos\Albums\8\27.jpg" />
+    <Content Include="home\photos\Albums\8\28.jpg" />
+    <Content Include="home\photos\Albums\8\29.jpg" />
+    <Content Include="home\photos\Albums\8\3.jpg" />
+    <Content Include="home\photos\Albums\8\30.jpg" />
+    <Content Include="home\photos\Albums\8\31.jpg" />
+    <Content Include="home\photos\Albums\8\32.jpg" />
+    <Content Include="home\photos\Albums\8\33.jpg" />
+    <Content Include="home\photos\Albums\8\34.jpg" />
+    <Content Include="home\photos\Albums\8\35.jpg" />
+    <Content Include="home\photos\Albums\8\36.jpg" />
+    <Content Include="home\photos\Albums\8\37.jpg" />
+    <Content Include="home\photos\Albums\8\38.jpg" />
+    <Content Include="home\photos\Albums\8\39.jpg" />
+    <Content Include="home\photos\Albums\8\4.jpg" />
+    <Content Include="home\photos\Albums\8\40.jpg" />
+    <Content Include="home\photos\Albums\8\41.jpg" />
+    <Content Include="home\photos\Albums\8\42.jpg" />
+    <Content Include="home\photos\Albums\8\43.jpg" />
+    <Content Include="home\photos\Albums\8\44.jpg" />
+    <Content Include="home\photos\Albums\8\45.jpg" />
+    <Content Include="home\photos\Albums\8\46.jpg" />
+    <Content Include="home\photos\Albums\8\47.jpg" />
+    <Content Include="home\photos\Albums\8\48.jpg" />
+    <Content Include="home\photos\Albums\8\5.jpg" />
+    <Content Include="home\photos\Albums\8\6.jpg" />
+    <Content Include="home\photos\Albums\8\7.jpg" />
+    <Content Include="home\photos\Albums\8\8.jpg" />
+    <Content Include="home\photos\Albums\8\9.jpg" />
+    <Content Include="home\photos\Albums\9\1.jpg" />
+    <Content Include="home\photos\Albums\9\2.jpg" />
+    <Content Include="home\photos\Albums\9\3.jpg" />
+    <Content Include="home\photos\Albums\9\4.jpg" />
+    <Content Include="home\photos\Albums\9\5.jpg" />
+    <Content Include="home\photos\Albums\9\6.jpg" />
+    <Content Include="home\photos\Albums\9\7.jpg" />
+    <Content Include="home\photos\Albums\9\8.jpg" />
+    <Content Include="home\photos\Albums\9\9.jpg" />
+    <Content Include="Content\photos\border.png" />
+    <Content Include="home\photos\CadresNosCours\TourNoire.JPG" />
+    <Content Include="home\photos\CadresNosCours\TourOcre.JPG" />
+    <Content Include="home\photos\CadresNosCours\TourOrange.JPG" />
+    <Content Include="home\photos\CadresNosCours\TourRouge.JPG" />
+    <Content Include="home\photos\CadresNosCours\TourVerte.JPG" />
+    <Content Include="home\photos\CadresNosCours\TourViolet.JPG" />
+    <Content Include="home\photos\Divers\EscrimeurRigolo.jpg" />
+    <Content Include="home\photos\Divers\logodetournai.jpg" />
+    <Content Include="home\photos\Divers\plan des entrees.jpg" />
+    <Content Include="home\photos\Divers\pub.jpg" />
+    <Content Include="home\photos\Entree\1.jpg" />
+    <Content Include="home\photos\Entree\10.jpg" />
+    <Content Include="home\photos\Entree\11.jpg" />
+    <Content Include="home\photos\Entree\12.jpg" />
+    <Content Include="home\photos\Entree\13.jpg" />
+    <Content Include="home\photos\Entree\14.jpg" />
+    <Content Include="home\photos\Entree\15.jpg" />
+    <Content Include="home\photos\Entree\16.jpg" />
+    <Content Include="home\photos\Entree\17.jpg" />
+    <Content Include="home\photos\Entree\18.jpg" />
+    <Content Include="home\photos\Entree\2.jpg" />
+    <Content Include="home\photos\Entree\3.jpg" />
+    <Content Include="home\photos\Entree\4.jpg" />
+    <Content Include="home\photos\Entree\5.jpg" />
+    <Content Include="home\photos\Entree\6.jpg" />
+    <Content Include="home\photos\Entree\7.jpg" />
+    <Content Include="home\photos\Entree\8.jpg" />
+    <Content Include="home\photos\Entree\9.jpg" />
+    <Content Include="home\photos\ImagesPourCours\epée.jpg" />
+    <Content Include="home\photos\ImagesPourCours\lapositiondattente.jpg" />
+    <Content Include="home\photos\ImagesPourCours\lapositionpreparatoire.jpg" />
+    <Content Include="home\photos\ImagesPourCours\lefleuret.jpg" />
+    <Content Include="home\photos\ImagesPourCours\lesabre.jpg" />
+    <Content Include="home\photos\ImagesPourCours\lesvaleursdelescrime.jpg" />
+    <Content Include="home\photos\ImagesPourCours\plan.jpg" />
+    <Content Include="home\photos\ImagesPourCours\reglesdesecurité.jpg" />
+    <Content Include="home\photos\NewEpub28012024\arrowLeft.PNG" />
+    <Content Include="home\photos\NewEpub28012024\arrowRight.PNG" />
+    <Content Include="home\photos\NewEpub28012024\convert.png" />
+    <Content Include="home\photos\NewEpub28012024\flag allemagne son.PNG" />
+    <Content Include="home\photos\NewEpub28012024\flag allemagne.PNG" />
+    <Content Include="home\photos\NewEpub28012024\flag angleterre son.PNG" />
+    <Content Include="home\photos\NewEpub28012024\flag angleterre.PNG" />
+    <Content Include="home\photos\NewEpub28012024\flag espagne son.PNG" />
+    <Content Include="home\photos\NewEpub28012024\flag espagne.PNG" />
+    <Content Include="home\photos\NewEpub28012024\flag France son.PNG" />
+    <Content Include="home\photos\NewEpub28012024\flag France.PNG" />
+    <Content Include="home\photos\NewEpub28012024\flag pays-bas son.PNG" />
+    <Content Include="home\photos\NewEpub28012024\flag pays-bas.PNG" />
+    <Content Include="home\photos\NewEpub28012024\open.png" />
+    <Content Include="home\photos\NewEpub28012024\showPartOfBook.PNG" />
+    <Content Include="home\photos\PhotosDemarrage\1.jpg" />
+    <Content Include="home\photos\PhotosDemarrage\10.jpg" />
+    <Content Include="home\photos\PhotosDemarrage\11.jpg" />
+    <Content Include="home\photos\PhotosDemarrage\12.jpg" />
+    <Content Include="home\photos\PhotosDemarrage\13.jpg" />
+    <Content Include="home\photos\PhotosDemarrage\14.jpg" />
+    <Content Include="home\photos\PhotosDemarrage\15.JPG" />
+    <Content Include="home\photos\PhotosDemarrage\16.JPG" />
+    <Content Include="home\photos\PhotosDemarrage\17.JPG" />
+    <Content Include="home\photos\PhotosDemarrage\2.jpg" />
+    <Content Include="home\photos\PhotosDemarrage\3.jpg" />
+    <Content Include="home\photos\PhotosDemarrage\4.jpg" />
+    <Content Include="home\photos\PhotosDemarrage\5.jpg" />
+    <Content Include="home\photos\PhotosDemarrage\6.jpg" />
+    <Content Include="home\photos\PhotosDemarrage\7.jpg" />
+    <Content Include="home\photos\PhotosDemarrage\8.jpg" />
+    <Content Include="home\photos\PhotosDemarrage\9.jpg" />
+    <Content Include="Scripts\Accueil.js" />
+    <Content Include="Scripts\5d93eb1089.js" />
+    <Content Include="Scripts\NosCours.js" />
+    <Content Include="Scripts\mainPage.js" />
+    <Content Include="Scripts\ExpandViewPDFPage.js" />
+    <Content Include="Scripts\ExpandView.js" />
+    <Content Include="Scripts\dico.js" />
+    <Content Include="Scripts\agenda.js" />
+    <Content Include="Scripts\ReadEpub28012024.js" />
+    <Content Include="Scripts\responsivevoice.js" />
+    <Content Include="Scripts\velo.js" />
+    <Content Include="Scripts\mp3.js" />
+    <Content Include="Scripts\MainPage29042023.js" />
+    <Content Include="Scripts\ReadEpub20042023.js" />
+    <Content Include="Scripts\ScreenPDFPage.js" />
+    <Content Include="Scripts\newEpub_112022.js" />
+    <Content Include="styles\PartRead_New_112022DIV.css" />
+    <Content Include="styles\ParamsView_112022.css" />
+    <Content Include="styles\newbootstrap.css" />
+    <Content Include="styles\myStylessheet.css" />
+    <Content Include="styles\StyleTranslateOtherLangue.css" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ResourceGlobal.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceGlobal.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ResourceHistorique.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceHistorique.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FileToUpload\AGENDA_SAISON_2021_2022.docx" />
+    <Content Include="FileToUpload\AGENDA_SAISON_2022_2023.docx" />
+    <Content Include="Content\font\kellyanngothic.ttf" />
+    <Content Include="Epub\Bouquins\le miroir d ambre.epublaf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Leclercq_Cyril.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Deblocq_Judith.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Deblocq_Oscar.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Gillet_Thomas.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Debruyne_Karel.pdf" />
+    <Content Include="FileToUpload\ExcelCompte\ExportCreateExcel.xls" />
+    <Content Include="FileToUpload\FichesSignaletiques\Razanajao_Fabrice.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Trannoy_Félix.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Lemaire_Antoine.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Delmotte_Maxime.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Dooms_Gabriel.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Dooms_Jules.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Carlier_Arthur.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Motte_Baptiste.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Brabant_Eliot.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Barbery_Arthur.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Basselier_Romane.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Dransart_Iann.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Dransart_Noel_Marie.pdf" />
+    <Content Include="FileToUpload\AGENDA_SAISON_2023_2024.docx" />
+    <Content Include="FileToUpload\FichesSignaletiques\Abadjene_Kossi.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Carlier_Maybelle.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Courret_Lalie.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Courret_Margaux.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Dufrasne_Eva.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Motte_Abel.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Roussel_Abygaelle.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Waeselynck_Lisa.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Cle_Eloise.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Cle_Katherine.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Cle_Leander.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Couturiaux_Arthur.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Gallant_Anicet.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\soyez_remi.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Mestdagh_Jordan.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Siu_Martin.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Vercouter_Raedwald.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Binois_Eloi.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Mestdag_Lili.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Pras_Héloïse.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Odendhal_Apolline.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Simon_Amado.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Binois_Louison.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Carlier_Aurore.pdf" />
+    <Content Include="FileToUpload\NosCours\La position en garde au fleuret et épée.docx" />
+    <Content Include="FileToUpload\NosCours\Les 4 positions de main de base au  fleuret.docx" />
+    <Content Include="FileToUpload\NosCours\Les gestes d%27arbitre.docx" />
+    <Content Include="FileToUpload\FichesSignaletiques\Vandy_Rebecca.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Carette_Mathilde.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Lessart_Sacha.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Mass_Elodie.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Vantroyen_Mae.pdf" />
+    <None Include="packages.config" />
+    <Content Include="Views\Home\Accueil.cshtml" />
+    <Content Include="Views\Home\Accueil_Part_1.cshtml" />
+    <Content Include="Views\Home\Accueil_Part_2.cshtml" />
+    <Content Include="Views\Home\Accueil_Part_3.cshtml" />
+    <Content Include="Views\Home\Activites.cshtml" />
+    <Content Include="Views\Home\Agenda.cshtml" />
+    <Content Include="Views\Home\Categories.cshtml" />
+    <Content Include="Views\Home\Historique.cshtml" />
+    <Content Include="Views\Home\Albums.cshtml" />
+    <Content Include="Views\Home\QuelquesSitesInteressants.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LayoutOld.cshtml" />
+    <Content Include="Views\Home\PartRead_New_112022DIV.cshtml" />
+    <Content Include="home\photos\Albums\1\Thumbs.db" />
+    <Content Include="home\photos\Albums\2\Thumbs.db" />
+    <Content Include="home\photos\Albums\3\Thumbs.db" />
+    <Content Include="home\photos\Albums\6\Thumbs.db" />
+    <Content Include="home\photos\Albums\7\Drawing1.pdf" />
+    <Content Include="Views\Shared\_LayoutPage_04102022.cshtml" />
+    <Content Include="Views\Home\Banniere.cshtml" />
+    <Content Include="Views\Home\MainPageOld.cshtml" />
+    <Content Include="Views\Home\Dico.cshtml" />
+    <Content Include="Views\Home\Epub_20221112.cshtml" />
+    <Content Include="Views\Home\ExpandView.cshtml" />
+    <Content Include="Views\Home\ScreenPDFPage.cshtml" />
+    <Content Include="Views\Home\ReadEpub20042023.cshtml" />
+    <Content Include="Views\MainPage\Video.cshtml" />
+    <Content Include="Views\MainPage\ShowMenuPrincipal.cshtml" />
+    <Content Include="Views\MainPage\Accueil.cshtml" />
+    <Content Include="Views\MainPage\Agenda.cshtml" />
+    <Content Include="Views\MainPage\Catégories.cshtml" />
+    <Content Include="Views\MainPage\Albums.cshtml" />
+    <Content Include="Views\MainPage\Historique.cshtml" />
+    <Content Include="Views\MainPage\Activités.cshtml" />
+    <Content Include="Views\MainPage\QuelquesSitesInteressants.cshtml" />
+    <Content Include="Views\MainPage\NosCours.cshtml" />
+    <Content Include="Views\MainPage\PagePersoManager.cshtml" />
+    <Content Include="Views\MainPage\Epub_20221112.cshtml" />
+    <Content Include="Views\MainPage\ScreenPDFPage.cshtml" />
+    <Content Include="Views\MainPage\Dico.cshtml" />
+    <Content Include="Views\MainPage\ReadEpub20042023.cshtml" />
+    <Content Include="Views\MainPage\ExpandView.cshtml" />
+    <Content Include="Views\MainPage\PartRead_New_112022DIV.cshtml" />
+    <Content Include="Views\MainPage\mp3.cshtml" />
+    <Content Include="Views\MainPage\Logon.cshtml" />
+    <Content Include="Views\MainPage\AdministrationPage.cshtml" />
+    <Content Include="Views\MainPage\Velo.cshtml" />
+    <Content Include="Views\MainPage\AdministrationPage_Presence.cshtml" />
+    <Content Include="Views\MainPage\ShowPartialViewEntreeClub.cshtml" />
+    <Content Include="Views\MainPage\ReadEpub28012024.cshtml" />
+    <Content Include="Views\MainPage\StartPageNew.cshtml" />
+    <Content Include="Views\MainPage\NosCoursParTireurLogin.cshtml" />
+    <Content Include="Views\MainPage\NosCoursTireurSelectionne.cshtml" />
+    <Content Include="Views\MainPage\NosCoursTireurSelectionnePointPositif.cshtml" />
+    <Content Include="Views\MainPage\NosCoursTireurSelectionnePointNegatif.cshtml" />
+    <Content Include="Views\MainPage\NosCoursTireurSelectionnePointDAttentionPourTous.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53208</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44356</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

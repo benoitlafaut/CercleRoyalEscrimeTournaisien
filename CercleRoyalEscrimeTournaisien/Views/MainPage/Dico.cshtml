@@ -1,0 +1,58 @@
+﻿@using CercleRoyalEscrimeTournaisien.Models;
+
+@model ModelViewDico
+
+<head>
+
+    <link href="@Url.Content("~/Content/MainPage.css")" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link id="themecss" rel="stylesheet" type="text/css" href="//www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="@Url.Content("~/Content/MainPage.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/ShowMenuPrincipal.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/AgendaStyle.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/AgendaStyle.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("/Content/CategoriesStyle.css")" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.3.1/css/flag-icon.min.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src='~/Scripts/MainPage.js'></script>
+    
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="//cdn.embed.ly/player-0.0.11.min.js"></script>
+</head>
+
+<div id="divDico">
+    <div style="text-align:right;">
+        <i class="fa fa-bars fa-beat" onclick="ShowStartPage();" style="color: red; font-size: 30px;"></i>
+    </div>
+
+    <div style=" height: 95%; width: 99%; overflow-x: hidden; ">
+        <div class="row" style="margin-bottom: 10px;">
+            @Html.TextBoxFor(x => x.WordInputOne, new { @class = "form-control" })
+            <button class="btn btn-primary" type="button" id="btnClear" onclick="$('#WordInputOne').val('');">Clear</button>
+            <button class="btn btn-primary" type="button" id="btnSearch" onclick="searchWords();">Search définitions</button>
+        </div>
+    </div>
+    
+    <table id='summaryOfResults' style="border: 1px solid black; width: 92%; margin-left: 4%; overflow-x: scroll; display: block; height: 400px;">       
+    </table>
+</div>
+
+<div id="divDicoPart2" style="margin-top: 50px; width: 92%; margin-left: 4%; border: 1px solid black; height: 400px; overflow: scroll; "></div>
+
+@Styles.Render("~/styles/myStylessheet.css")
+@Styles.Render("~/styles/StyleTranslateOtherLangue.css")
+@Styles.Render("~/styles/newbootstrap.css")
+
+<script src="~/Scripts/dico.js" type="text/javascript"></script>

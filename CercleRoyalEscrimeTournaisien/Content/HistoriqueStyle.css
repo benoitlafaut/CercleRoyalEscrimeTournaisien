@@ -1,0 +1,45 @@
+﻿.titleHistorique {
+    border-left: 6px solid #78C0A8;
+    border-bottom: 5px solid #78c0a8;
+    font-size: 20px;
+    margin-left: 5px;
+    margin-bottom: 28px;
+    margin-top: 28px;
+    width: 350px;
+}
+
+.titleHistorique  span {
+   margin-left:15px;
+}
+
+.ContentHistorique {    
+    left: 30px;
+    position: relative;
+    font-size: 13px;
+    width: 92%;
+}
+
+.sujetHistorique {
+    border-left: 6px double #78C0A8;
+    border-bottom: 5px double #78c0a8;
+    border-right: 6px double #78C0A8;
+    border-top: 5px double #78c0a8;
+    font-size: 20px;
+    margin-left: 5px;
+    margin-bottom: 25px;
+    margin-top: 28px;
+    width: 98%;
+    text-align: center;
+}
+
+.classMaitreArmes {
+    margin-right: 30px;
+    display: inline-block;
+    min-width: 150px;
+}
+
+.classSallesArmes {
+    margin-right: 88px;
+    display: inline-block;
+    min-width: 216px;
+}

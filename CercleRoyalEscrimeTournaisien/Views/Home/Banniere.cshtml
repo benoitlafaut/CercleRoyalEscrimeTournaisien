@@ -1,0 +1,29 @@
+﻿@model CercleRoyalEscrimeTournaisien.ModelBanniere
+
+@{
+    Layout = null;
+}
+<link href="@Url.Content("~/Content/bootstrapMoi.css")" rel="stylesheet" />
+
+<div style="text-align: center;">
+    <img src="~/Home/photos/divers/logodetournai.jpg" height="100" width="100" />
+    <span style="font-family: 'kellyanngothic';font-size: 50px;color: red;position: relative;top: -30px;">Cercle Royal Escrime Tournaisien</span>
+    <img src='~/Home/photos/divers/logodetournai.jpg' height="100" width="100" onclick="location.href ='@Url.Action("PagePersoManager", "Home")'" />
+</div>
+
+<div>
+    <div class="Second-Line">
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav" style="font-size: 21px;">
+                <li onclick="location.href ='@Url.Action("MainPage", "Home")'">Accueil</li>
+                <li onclick="location.href ='@Url.Action("Agenda", "Home")'">Agenda</li>
+                <li onclick="location.href ='@Url.Action("Categories", "Home")'">Les catégories</li>
+                <li onclick="location.href ='@Url.Action("Albums", "Home")'">Photos</li>
+                <li onclick="location.href ='@Url.Action("Historique", "Home")'">Historique</li>
+                <li onclick="location.href ='@Url.Action("Activites", "Home")'">Activités</li>
+                <li onclick="location.href ='@Url.Action("QuelquesSitesInteressants", "Home")'">Quelques sites intéressants</li>
+                <li onclick="location.href ='@Url.Action("NosCours", "Home")'">Nos cours</li>
+            </ul>
+        </div>
+    </div>
+</div>
