@@ -1,13 +1,14 @@
 ﻿@model RemarqueData
     
 @{ 
-    string styleDisplayVideo = Model.HasUrlVideo ? "width: 1.3%" : "display:none";
+    string styleDisplayVideo = Model.HasUrlVideo ? "" : "display:none";
+    string classDisplayVideo = Model.HasUrlVideo ? "classDisplayVideo" : "";
 }
 
-<div>
+<div style="margin-bottom:15px;">
     <i title="Cliquez pour écouter le texte" onclick='LireTexte("@Model.PointNégatif.Trim()", this, $("#HasMale").val())' class="fa fa-headphones classPointPositifNegatif CursorIcon"></i>
     <i title="Point à améliorer" class="fa fa-wrench classPointPositifNegatif classPointNegatif CursorIcon"></i>
-    <i title="Téléchargez la vidéo" class="fa fa-video-camera CursorIcon" style="@styleDisplayVideo" onclick="window.location.href='@Model.UrlVideo'"></i>
+    <i title="Téléchargez la vidéo" class="fa fa-video-camera CursorIcon @classDisplayVideo" style="@styleDisplayVideo" onclick="window.location.href='@Model.UrlVideo'"></i>
     <label class="ClassLabel">@Model.PointNégatif</label>
     @if (Model.Frequency > 1)
     {
