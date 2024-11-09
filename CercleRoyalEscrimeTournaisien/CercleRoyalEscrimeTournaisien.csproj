@@ -323,6 +323,7 @@
     <Compile Include="Models\TireurModel\Eloi_NosCoursTireurSelectionneModel.cs" />
     <Compile Include="Models\TireurModel\RemarqueParDate.cs" />
     <Compile Include="Models\TireurModel\Tireur.cs" />
+    <Compile Include="Models\karaokeViewModel.cs" />
     <Compile Include="Models\Velo.cs" />
     <Compile Include="Models\Mp3.cs" />
     <Compile Include="Models\ModelShowMenuPrincipal.cs" />
@@ -1185,6 +1186,7 @@
     <Content Include="Views\MainPage\NosCoursTireurSelectionnePointPositif.cshtml" />
     <Content Include="Views\MainPage\NosCoursTireurSelectionnePointNegatif.cshtml" />
     <Content Include="Views\MainPage\NosCoursTireurSelectionnePointDAttentionPourTous.cshtml" />
+    <Content Include="Views\MainPage\Karaoke.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

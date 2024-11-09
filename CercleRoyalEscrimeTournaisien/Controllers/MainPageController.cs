@@ -69,6 +69,20 @@ namespace CercleRoyalEscrimeTournaisien
         }
 
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+        [Route("ChangeArtiste")]
+        public ActionResult ChangeArtiste(KaraokeViewModel karaokeViewModel)
+        {
+            return Json(new { karaokeViewModel = RenderRazorViewToString(Constantes.Karaoke, karaokeViewModel) }, JsonRequestBehavior.AllowGet);
+        }
+
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+        [Route("ChangeChanson")]
+        public ActionResult ChangeChanson(KaraokeViewModel karaokeViewModel)
+        {
+            return Json(new { karaokeViewModel = RenderRazorViewToString(Constantes.Karaoke, karaokeViewModel) }, JsonRequestBehavior.AllowGet);
+        }
+
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
         [Route("ShowMenuPrincipal")]
         public ActionResult ShowMenuPrincipal()
         {
@@ -251,6 +265,13 @@ namespace CercleRoyalEscrimeTournaisien
         {
             Velo velo = new Velo();
             return View(Constantes.Velo, velo);
+        }
+
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+        public ActionResult Karaoke()
+        {
+            KaraokeViewModel karaokeViewModel = new KaraokeViewModel ();
+            return View(Constantes.Karaoke, karaokeViewModel);
         }
 
         [HttpPost]
