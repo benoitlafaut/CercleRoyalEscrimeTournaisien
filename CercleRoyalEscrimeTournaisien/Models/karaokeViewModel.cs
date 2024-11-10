@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Web.Mvc;
+using System.Web;
+using System.Text;
 
 namespace CercleRoyalEscrimeTournaisien.Models
 {
@@ -34,9 +38,8 @@ namespace CercleRoyalEscrimeTournaisien.Models
                         new ChansonData()
                         {
                             Index = "1",
-                            Chanson = " Le chant est libre",
-                            UrlChanson = "https://www.youtube.com/embed/rLfdENU19NY?list=RDEMgJD0UhYfVc2UlvaclqohxQ&enablejsapi=1",
-                            UrlChansonEmbed = "rLfdENU19NY",
+                            Chanson = "Le chant est libre",
+                            UrlChansonEmbed = "rLfdENU19NY"
                         }
                     }
                 }
@@ -56,15 +59,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
                 if (string.IsNullOrEmpty(ChanteurSelected)) { return new Dictionary<string, string>();  }
                 return ArtistesList.FirstOrDefault(x=>x.Index == ChanteurSelected).ChansonsList.ToDictionary(x => x.Index, x => x.Chanson);
             }
-        }
-        public string ChansonSelectedUrl
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(ChanteurSelected) || string.IsNullOrEmpty(ChansonSelected)) { return string.Empty; }
-                return ArtistesList.FirstOrDefault(x => x.Index == ChanteurSelected).ChansonsList.FirstOrDefault(x => x.Index == ChansonSelected).UrlChanson;
-            }
-        }
+        }        
         public string UrlChansonEmbed
         {
             get
@@ -73,7 +68,17 @@ namespace CercleRoyalEscrimeTournaisien.Models
                 return ArtistesList.FirstOrDefault(x => x.Index == ChanteurSelected).ChansonsList.FirstOrDefault(x => x.Index == ChansonSelected).UrlChansonEmbed;
             }
         }
+        public List<string> LyricsChanson
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(UrlChansonEmbed)) { return new List<string>(); }
 
+                string FilePath = HttpContext.Current.Server.MapPath("/VideoLyrics/");
+                FilePath += ArtistesList.FirstOrDefault(x => x.Index == ChanteurSelected).ChansonsList.FirstOrDefault(x => x.Index == ChansonSelected).Chanson + ".txt";
+                return File.ReadAllLines(FilePath, Encoding.Default).ToList();
+            }
+        }
         public List<Artiste> ArtistesList { get; set; }
         public string ChanteurSelected { get; set; }
         public string ChansonSelected { get; set; }
@@ -90,7 +95,6 @@ namespace CercleRoyalEscrimeTournaisien.Models
     {
         public string Index { get; set; }
         public string Chanson { get; set; }
-        public string UrlChanson { get; set; }
         public string UrlChansonEmbed { get; set; }
     }
 }

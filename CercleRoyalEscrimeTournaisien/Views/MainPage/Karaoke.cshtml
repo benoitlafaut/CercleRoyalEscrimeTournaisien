@@ -23,12 +23,16 @@
         @Html.DropDownListFor(model => model.ChansonSelected, new SelectList(Model.ListeDesChansons, "Key", "Value", Model.ChansonSelected), new { @style = "width:150px;", @onchange = "changeChanson()" })
     </div>
     
-    <div id="youtube-video"></div>
+    <div id="youtube-video" style="display:none;"></div>
+
+    <div style="margin-top: 10px;">
+        <textarea name="AnswerList" class="form-control" style="text-align: center; width: 100%; height: 44em; font-size: 20px;">@string.Join("\n ", Model.LyricsChanson)</textarea>
+    </div>
 </body>
 </html>
 
 <script type="text/javascript">
-     if ('@Model.ChansonSelectedUrl' != '') {       
+     if ('@Model.UrlChansonEmbed' != '') {       
          createYoutubeiFrame("youtube-video", '@Model.UrlChansonEmbed');
 
          setInterval(function () {
@@ -38,7 +42,7 @@
 
     function changeTexteAutomatique() {
         if (player.playerInfo.playerState == '1') {
-            alert(player.playerInfo.currentTime);
+           // alert(player.playerInfo.currentTime);
         }
     }
 
