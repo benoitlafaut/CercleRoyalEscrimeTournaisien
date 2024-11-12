@@ -23,7 +23,7 @@
         <label class="ClassTireurSelectionne" style="">Tireuse/tireur sélectionné(e) : @Model.TireurSelectionne.UserName</label>
         <input id="buttonCollapseDevelopp" style="margin-right:15px;" type="button" value="Développer tout" onclick="ExpandCollapse();" />
 
-        @Html.DropDownListFor(model => model.HasMale, new SelectList(Model.SpeakerList, "Key", "Value", Model.HasMale), new { @class = "form-control", @title= "Choisissez un homme ou une femme pour lire les textes." })     
+        @Html.DropDownListFor(model => model.HasMale, new SelectList(Model.SpeakerList, "Key", "Value", Model.HasMale), new { @class = "form-control", @title = "Choisissez un homme ou une femme pour lire les textes." })
     </div>
 
     <button class="accordion">Le fleuret</button>
@@ -42,7 +42,7 @@
                         }
                         else
                         {
-                            @Html.Partial(PartialViewNames.NosCoursTireurSelectionnePointNegatif, remarque)                          
+                            @Html.Partial(PartialViewNames.NosCoursTireurSelectionnePointNegatif, remarque)
                         }
                     }
                     break;
@@ -113,10 +113,14 @@
             break;
         }
     </div>
+
+    <div>
+    @{Html.RenderPartial("ModalPopup");}
+    </div>
 </div>
 
 <script>
-    ExpandCollapse();    
+    ExpandCollapse();
     $(".fa-headphones").css('opacity', '0.1');
     $(".fa-headphones").css('point-event', 'none');
     $("body").css('overflow-y', 'scroll');
@@ -144,5 +148,50 @@
                 panel.style.display = "block";
             }
         });
-    }    
+    }
+
+
+    function ChargerPopup(url, texteToShow) {        
+        var modal = document.getElementById("myModal");
+        modal.style.display = "block";
+        url = "774-zK6hayc";
+        $("#youtube-video").css('display', 'block');        
+
+        createYoutubeiFrame("youtube-video", url);
+
+        $("#youtube-video").prop('width', '95%');
+        $("#youtube-video").prop('height', '95%');
+
+        $("#labelTexte").text(texteToShow);
+    }
+
+    function createYoutubeiFrame(elementID, videoID) {        
+        player = new YT.Player(elementID, {
+            videoId: videoID,
+            playerVars: {
+                playsinline: 1,
+            },
+            events: {
+                'onReady': playerReadyEvent,
+            }
+        });
+
+        return player;
+    }
+    function playerReadyEvent(event) {
+        event.target.playVideo();
+        $("#labelEnChargement").css('display', 'none');
+    }
+
+
+    $(".close").click(function () {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "none";
+
+        var player = YT.get('youtube-video');
+        if (player != undefined) {
+            player.destroy();
+        }
+    });
+
 </script>

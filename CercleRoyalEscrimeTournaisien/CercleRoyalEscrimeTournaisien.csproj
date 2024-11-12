@@ -1188,6 +1188,7 @@
     <Content Include="Views\MainPage\NosCoursTireurSelectionnePointNegatif.cshtml" />
     <Content Include="Views\MainPage\NosCoursTireurSelectionnePointDAttentionPourTous.cshtml" />
     <Content Include="Views\MainPage\Karaoke.cshtml" />
+    <Content Include="Views\MainPage\ModalPopup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

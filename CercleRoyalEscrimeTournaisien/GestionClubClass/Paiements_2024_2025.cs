@@ -15,6 +15,38 @@ namespace WebApplication1.Models
                 {
                      new JourDePrésence()
                      {
+                         DatePrésence = new DateTime(2024,11,10),
+                         EscrimeurId = new List<Guid>()
+                         {
+                             //GuidConstantes.GuidMartinSiu,
+                             //GuidConstantes.GuidFélixTrannoy,
+                             GuidConstantes.GuidAuroreCarlier,
+                             //GuidConstantes.GuidAnaelleIvanov,
+                            // GuidConstantes.GuidLiliMestdag,
+                             //GuidConstantes.GuidMathildeCarette,
+                             //GuidConstantes.GuidAmadoSimon,
+                             //GuidConstantes.GuidEloiBinois,
+                             //GuidConstantes.GuidLouisonBinois,
+                             GuidConstantes.GuidOscarDeblocq,
+                             GuidConstantes.GuidArthurBarbery,
+                             GuidConstantes.GuidJordanMestdagh,
+                             //GuidConstantes.GuidRémiSoyez,
+                             //GuidConstantes.GuidRaedwaldVercouter,
+                             //GuidConstantes.GuidMaybelleCarlier,
+                             GuidConstantes.GuidFabriceRazanajao,
+                             //GuidConstantes.GuidBaptisteMotte,
+                             //GuidConstantes.GuidAbelMotte,
+                             //GuidConstantes.GuidApollineOdendhal,
+                             //GuidConstantes.GuidMaeVantroyen,
+                             //GuidConstantes.GuidSachaLessart,
+                             //GuidConstantes.GuidEvaDufrasne,
+                             //GuidConstantes.GuidHéloïsePras,
+                             //GuidConstantes.GuidElodieMass,
+                             GuidConstantes.GuidRebeccaVandy,
+                             //GuidConstantes.GuidValentinXXX,
+                         }
+                     }, new JourDePrésence()
+                     {
                          DatePrésence = new DateTime(2024,11,8),
                          EscrimeurId = new List<Guid>()
                          {
@@ -927,10 +959,10 @@ namespace WebApplication1.Models
                     IsCotisationCarte4 = false,
                     IsCotisationEnOrdre = false,
                     IsLocationMatérielEnOrdre = false,
-                    IsFicheSignaletiqueEnOrdre = false,
-                    IsLicenceEnOrdre = false,
+                    IsFicheSignaletiqueEnOrdre = true,
+                    IsLicenceEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { },
+                    PaiementsEffectues = new List<string>() { "265 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                     },
@@ -1071,8 +1103,8 @@ namespace WebApplication1.Models
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
                     IsCotisationEnOrdre = true,
-                    IsFicheSignaletiqueEnOrdre = false,
-                    IsLicenceEnOrdre = false,
+                    IsFicheSignaletiqueEnOrdre = true,
+                    IsLicenceEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
 
                     PaiementsEffectues = new List<string>() { "365 euros" },

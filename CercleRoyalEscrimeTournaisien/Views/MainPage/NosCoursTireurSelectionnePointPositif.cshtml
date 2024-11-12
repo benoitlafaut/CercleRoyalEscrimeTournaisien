@@ -8,7 +8,8 @@
 <div style="margin-bottom:15px;">
     <i title="Cliquez pour écouter le texte" onclick='LireTexte("@Model.PointPositif.Trim()", this, $("#HasMale").val())' class="fa fa-headphones classPointPositifNegatif CursorIcon"></i>
     <i title="Point positif" class="fa fa-thumbs-up classPointPositifNegatif classPointPositif CursorIcon"></i>
-    <i title="Téléchargez la vidéo" class="fa fa-video-camera CursorIcon @classDisplayVideo" style="@styleDisplayVideo" onclick="window.location.href='@Model.UrlVideo'"></i>
+    @*<i title="Téléchargez la vidéo" class="fa fa-video-camera CursorIcon @classDisplayVideo" style="@styleDisplayVideo" onclick="window.location.href='@Model.UrlVideo'"></i>*@
+    <i title="Téléchargez la vidéo" class="fa fa-download CursorIcon @classDisplayVideo" style="@styleDisplayVideo" onclick="window.location.href='@Model.UrlVideo'"></i>
     <label class="ClassLabel">@Model.PointPositif</label>
     @if (Model.Frequency > 1)
     {

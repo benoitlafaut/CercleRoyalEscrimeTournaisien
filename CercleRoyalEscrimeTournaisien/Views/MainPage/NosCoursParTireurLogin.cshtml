@@ -12,14 +12,14 @@
         @Html.ValidationSummary(true)
 
         <div style="min-height:40px;">
-            <span style="width: 406px; margin-right:15px; display: inline-block; text-align: right;">Sélectionnez la tireuse ou le tireur dans la liste :  </span>
+            <span style="width: 406px; margin-right:15px; display: inline-block;">Sélectionnez la tireuse ou le tireur dans la liste :  </span>
             @Html.DropDownListFor(m => m.UserNameSelectionne, new SelectList(Model.Tireurs.Select(x => new { Value = x.UserNameIndex, Text = x.UserName }),
                 "Value",
                 "Text"), "", new { style = "width: 150px;" })
         </div>
 
         <div>
-            <span style="width: 406px; margin-right: 15px; display: inline-block; text-align: right;">Introduisez votre mot de passe :  </span>
+            <span style="width: 406px; margin-right: 15px; display: inline-block;">Introduisez votre mot de passe :  </span>
             @Html.TextBoxFor(x => x.PasswordSelectionne, new { @class = "form-control", style = "width: 300px;" })
         </div>
 
