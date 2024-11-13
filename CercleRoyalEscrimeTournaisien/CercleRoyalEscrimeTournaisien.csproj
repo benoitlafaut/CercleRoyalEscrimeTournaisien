@@ -361,6 +361,7 @@
     <Content Include="App_Data\francais.accdb" />
     <Content Include="Content\5d93eb1089.css" />
     <Content Include="Content\Accueil.css" />
+    <Content Include="Content\karaoke.css" />
     <Content Include="Content\NosCoursMultiColor.css" />
     <Content Include="Content\NosCours.css" />
     <Content Include="Content\StartPageNew.css" />

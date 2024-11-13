@@ -14,6 +14,8 @@
     <script src="https://www.youtube.com/iframe_api"></script>
 }
 
+@Styles.Render("~/content/karaoke.css")
+
 <!DOCTYPE html>
 <html>
 
@@ -22,27 +24,40 @@
         @Html.DropDownListFor(model => model.ChanteurSelected, new SelectList(Model.ListeDesChanteurs, "Key", "Value", Model.ChanteurSelected), new { @style = "width:150px;", @onchange = "changeArtiste()" })
         @Html.DropDownListFor(model => model.ChansonSelected, new SelectList(Model.ListeDesChansons, "Key", "Value", Model.ChansonSelected), new { @style = "width:150px;", @onchange = "changeChanson()" })
     </div>
-    
+
     <div id="youtube-video" style="display:none;"></div>
 
-    <div style="margin-top: 10px;">
-        <textarea name="AnswerList" class="form-control" style="text-align: center; width: 100%; height: 44em; font-size: 20px;">@string.Join("\n ", Model.LyricsChanson)</textarea>
+    <div class="divTextAreaAnswerList">
+        <textarea id="AnswerList" class="form-control classAnswerList">@string.Join("\n ", Model.LyricsChanson)</textarea>
     </div>
 </body>
 </html>
 
 <script type="text/javascript">
-     if ('@Model.UrlChansonEmbed' != '') {       
+    var taille = 91;
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        taille = 90;
+    }
+    $("#AnswerList").css('max-height', $(window).height() * taille / 100);
+
+     if ('@Model.UrlChansonEmbed' != '') {
          createYoutubeiFrame("youtube-video", '@Model.UrlChansonEmbed');
 
          setInterval(function () {
              changeTexteAutomatique();
-         }, 3000);
+         }, 6000);
      }
 
     function changeTexteAutomatique() {
         if (player.playerInfo.playerState == '1') {
-           // alert(player.playerInfo.currentTime);
+            var playerVideo = YT.get('youtube-video');
+            var currentTime = playerVideo.getCurrentTime();
+            var currentDuration = playerVideo.getDuration();
+            var ratio = (currentTime / currentDuration) * 100;
+            var heightAnswer = ($("#AnswerList").prop("scrollHeight") * ratio / 100) - 250;
+
+            $("#AnswerList").animate(
+                { scrollTop: heightAnswer }, 1000);
         }
     }
 
@@ -60,7 +75,7 @@
                 'onReady': playerReadyEvent,
             }
         });
-        return player; 
+        return player;
     }
 
     function changeArtiste() {
