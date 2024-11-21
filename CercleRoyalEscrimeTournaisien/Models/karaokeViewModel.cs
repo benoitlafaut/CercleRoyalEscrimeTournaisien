@@ -56,6 +56,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
         {
             get
             {
+                if (ChanteurSelected == "0") { return new Dictionary<string, string>(); }
                 if (string.IsNullOrEmpty(ChanteurSelected)) { return new Dictionary<string, string>();  }
                 return ArtistesList.FirstOrDefault(x=>x.Index == ChanteurSelected).ChansonsList.ToDictionary(x => x.Index, x => x.Chanson);
             }
@@ -64,6 +65,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
         {
             get
             {
+                if (ChanteurSelected == "0") { return string.Empty; }
                 if (string.IsNullOrEmpty(ChanteurSelected) || string.IsNullOrEmpty(ChansonSelected)) { return string.Empty; }
                 return ArtistesList.FirstOrDefault(x => x.Index == ChanteurSelected).ChansonsList.FirstOrDefault(x => x.Index == ChansonSelected).UrlChansonEmbed;
             }
