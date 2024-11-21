@@ -33,13 +33,15 @@ namespace CercleRoyalEscrimeTournaisien
                                     PointPositif="J'adore ton explosivité. Continue à attaquer. Fais juste attention à ne pas faire des essuye-glaces avec ton arme. Dirige-la vers une surface valable. ",
                                     HasUrlVideo=true,
                                     UrlVideo = "/Videos/19-10-2024_Lili.avi",
-                                    Frequency = 6
+                                    Frequency = 6,
+                                    UrlYoutubeVideo = "Bb0Gh9sV77c"
                                 },
                                  new RemarqueData()
                                 {
                                     PointNégatif="Une petite passe avant non sanctionnée de Mae? ni vu ni connu allez hop.. et juste après deux passe avant de Sacha qui ne sont pas sur cette vidéo.. non sanctionnées",
                                     HasUrlVideo=true,
                                     UrlVideo = "/Videos/19-10-2024_Lili_2.avi",
+                                    UrlYoutubeVideo = "Za-UEEDVyOE"
                                 },
                             }
                     },
@@ -58,7 +60,8 @@ namespace CercleRoyalEscrimeTournaisien
                                     PointPositif="hello Lili, parfois le simple fait d'attendre le bon moment, de le laisser venir en étant à bonne distance et puis d'attaquer son adversaire alors qu'il a le bras fléchi te donne le point. Attendre le bon moment. puis Les bras d'abord les jambes ensuite et viser la cible que tu as décidée. et bam c'est touche. et exprimer avec un cri le fait d'avoir touché. magnifico!",
                                     HasUrlVideo=true,
                                     UrlVideo = "/Videos/9-10-2024_lili.avi",
-                                    Frequency = 3
+                                    Frequency = 3,
+                                    UrlYoutubeVideo = "Zg5fQ3DrPpY"
                                 },
                             }
                     }

@@ -37,7 +37,8 @@ namespace CercleRoyalEscrimeTournaisien
                                 //HasPointPositif=true,
                                 PointPositif="Les déplacements sont top",
                                 HasUrlVideo=true,
-                                UrlVideo = "/Videos/29-09-2024_ Eloi_1.avi"
+                                UrlVideo = "/Videos/29-09-2024_ Eloi_1.avi",
+                                UrlYoutubeVideo = "L2UuFq6ejpA"
                             }
                         }
                     }

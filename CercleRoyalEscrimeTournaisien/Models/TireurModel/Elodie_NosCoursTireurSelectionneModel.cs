@@ -33,7 +33,8 @@ namespace CercleRoyalEscrimeTournaisien
                                         //HasPointPositif=false,
                                         PointNégatif="Deux petites choses dans la vidéo. la première c'est décrire ce que tu vois en tant qu'arbitre (je sais c'est dur) mais ici je vois une parade de Rémi et la riposte non valable. et pour la dernière action, c'est attaque d'Arthur car Rémi ne bouge pas. C'est Arthur qui attaque. Du coup on ne regarde pas celui qui allonge le bras en premier mais celui qui est à l'attaque. Ici Rémi est statique et Arthur va chercher la touche en marchés fente. c'est lui qui attaque.",
                                         HasUrlVideo=true,
-                                        UrlVideo = "/Videos/20-09-2024_Elodie.avi"
+                                        UrlVideo = "/Videos/20-09-2024_Elodie.avi",
+                                        UrlYoutubeVideo = "DuFNWIEfDPg"
                                     },
                                 }
                     }

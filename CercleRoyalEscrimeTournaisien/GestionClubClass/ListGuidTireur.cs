@@ -179,9 +179,9 @@ namespace WebApplication1.Models
             Membres.Add(
                 new MembreData() { GuidId = GuidConstantes.GuidAnaelleIvanov, Nom = "Ivanov", Prénom = "Anaelle", Période = "2024-2025" }
             );
-            Membres.Add(
-                new MembreData() { GuidId = GuidConstantes.GuidTimXXX, Nom = "XXX", Prénom = "Tim", Période = "2024-2025" }
-            );
+            //Membres.Add(
+            //    new MembreData() { GuidId = GuidConstantes.GuidTimXXX, Nom = "XXX", Prénom = "Tim", Période = "2024-2025" }
+            //);
             Membres.Add(
                 new MembreData() { GuidId = GuidConstantes.GuidLiliMestdag, Nom = "Mestdag", Prénom = "Lili", Période = "2024-2025" }
             );
@@ -218,9 +218,9 @@ namespace WebApplication1.Models
             Membres.Add(
                 new MembreData() { GuidId = GuidConstantes.GuidRebeccaVandy, Nom = "Vandy", Prénom = "Rebecca", Période = "2024-2025" }
             );
-            Membres.Add(
-                new MembreData() { GuidId = GuidConstantes.GuidMiloXXX, Nom = "XXX", Prénom = "Milo", Période = "2024-2025" }
-            );
+            //Membres.Add(
+            //    new MembreData() { GuidId = GuidConstantes.GuidMiloXXX, Nom = "XXX", Prénom = "Milo", Période = "2024-2025" }
+            //);
             Membres.Add(
                 new MembreData() { GuidId = GuidConstantes.GuidCousineARemiJudith, Nom = "CousineARemi", Prénom = "Judidth", Période = "2024-2025" }
             );

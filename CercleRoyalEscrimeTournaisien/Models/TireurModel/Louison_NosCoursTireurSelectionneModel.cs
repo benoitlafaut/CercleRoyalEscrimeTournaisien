@@ -34,7 +34,8 @@ namespace CercleRoyalEscrimeTournaisien
                                 PointNégatif="Laisse tes deux pieds au sol. A la fin de cette vidéo, on voit que tu lèves la jambe arrière.",
                                 Frequency = 2,
                                 HasUrlVideo=true,
-                                UrlVideo = "/Videos/29-09-2024_ Louison_1.avi"
+                                UrlVideo = "/Videos/29-09-2024_ Louison_1.avi",
+                                UrlYoutubeVideo = "8OOhmJ6NS14"
                             },
                             new RemarqueData()
                             {
@@ -42,7 +43,8 @@ namespace CercleRoyalEscrimeTournaisien
                                 PointPositif="Le contre le sixte (parade circulaire) est parfait, il ne reste plus qu'à toucher. Ne t'inquiète pas si tu ne comprends pas le mot, regarde plutôt le geste sur la vidéo.",
                                 Frequency = 1,
                                 HasUrlVideo=true,
-                                UrlVideo = "/Videos/29-09-2024_ Louison_2.avi"
+                                UrlVideo = "/Videos/29-09-2024_ Louison_2.avi",
+                                UrlYoutubeVideo = "jfe2kbAemg0"
                             },
                             new RemarqueData()
                             {
@@ -50,7 +52,8 @@ namespace CercleRoyalEscrimeTournaisien
                                 PointPositif="N'attends pas que Eloi ou quelqu'un d'autre attaque, prends des initiatives. Démarre l'attaque la première. Fais des fentes. Attaque la première.",
                                 Frequency = 1,
                                 HasUrlVideo=true,
-                                UrlVideo = "/Videos/29-09-2024_ Louison_3.avi"
+                                UrlVideo = "/Videos/29-09-2024_ Louison_3.avi",
+                                UrlYoutubeVideo = "ODXjVhz0FPs"
                             }
                         }
                     }

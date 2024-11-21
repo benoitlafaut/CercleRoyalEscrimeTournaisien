@@ -15,8 +15,6 @@
     transition-delay: 0s;
 }
 
-
-
 @media (min-width: 0px) and (max-width : 991px) {
     .entree {
         height: 100% !important;
@@ -25,8 +23,11 @@
     #imgPhoto {
         width: 82%;
     }
-}
 
+    .myModalYoutubeVideo {
+        height: 80%;
+    }
+}
 
 @media (min-width: 991px) and (max-width: 1992px) {
     .entree {
@@ -38,5 +39,11 @@
 
     #imgPhoto {
         width: 57%;
+    }   
+}
+
+@media (min-width: 991px) { 
+    .myModalYoutubeVideo {
+        height: 80%;
     }
 }

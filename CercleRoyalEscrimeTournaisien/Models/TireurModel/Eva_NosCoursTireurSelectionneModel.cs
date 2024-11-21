@@ -69,7 +69,8 @@ namespace CercleRoyalEscrimeTournaisien
                             {
                                 PointNégatif="Allonge bien ton bras quand tu attaques jusqu'à ce que ta main soit à hauteur de ton épaule et puis utilise tes jambes pour aller jusqu'à la touche. Et n'oublie pas que les appareils coûtent chers.",
                                 HasUrlVideo =true,
-                                UrlVideo = "/Videos/12-10-2024_Eva.avi"
+                                UrlVideo = "/Videos/12-10-2024_Eva.avi",
+                                UrlYoutubeVideo = "MpsYOSTguvw"
                             },
                         }
                     }

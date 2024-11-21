@@ -60,7 +60,8 @@ namespace CercleRoyalEscrimeTournaisien
                             {
                                 PointPositif="Aaah Félix Félix Félix, quand tu tires contre qqn de plus grand expérimenté que toi, il ne faut pas foncer tête baissée comme un taureau. Quand tu tires contre quelqu'un de plus grand que toi, lors de l'allongement du bras, lève ta main pour qu'il soit gêné par ta coquille. C'est aussi l'occasion de se redresser aussi et être moins assis sur tes jambes. pour que ton adversaire est plus difficile à te toucher. si ton avant-bras est trop bas, un simple allongement du bras de ton adversaire suffit à te faire toucher.",
                                 HasUrlVideo =true,
-                                UrlVideo = "/Videos/12-10-2024_Félix.avi"
+                                UrlVideo = "/Videos/12-10-2024_Félix.avi",
+                                UrlYoutubeVideo = "JcSTeChd9XU"
                             },
 
                         }

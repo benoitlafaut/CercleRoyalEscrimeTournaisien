@@ -6,9 +6,9 @@
 }
 
 <div style="margin-bottom:15px;">
-    <i title="Cliquez pour écouter le texte" onclick='LireTexte("@Model.PointNégatif.Trim()", this, $("#HasMale").val())' class="fa fa-headphones classPointPositifNegatif CursorIcon"></i>
     <i title="Point à améliorer" class="fa fa-wrench classPointPositifNegatif classPointNegatif CursorIcon"></i>
-    @*<i title="Téléchargez la vidéo" class="fa fa-video-camera CursorIcon @classDisplayVideo" style="@styleDisplayVideo" onclick="window.location.href='@Model.UrlVideo'"></i>*@
+    <i title="Cliquez pour écouter le texte" onclick='LireTexte("@Model.PointNégatif.Trim()", this, $("#HasMale").val())' class="fa fa-headphones classPointPositifNegatif CursorIcon"></i>
+    <i title="Regarder la vidéo" class="fa fa-video-camera CursorIcon @classDisplayVideo" style="@styleDisplayVideo" onclick='ChargerPopup("@Model.UrlYoutubeVideo", "@Model.PointNégatif");'></i>
     <i title="Téléchargez la vidéo" class="fa fa-download CursorIcon @classDisplayVideo" style="@styleDisplayVideo" onclick="window.location.href='@Model.UrlVideo'"></i>
     <label class="ClassLabel">@Model.PointNégatif</label>
     @if (Model.Frequency > 1)

@@ -33,7 +33,8 @@ namespace CercleRoyalEscrimeTournaisien
                                     PointPositif="Belle parade de quarte avec riposte. n'hésite pas à réduire les mouvements. tu vas rechercher un peu trop loin l'arme de Valentin. Mais la riposte touche donc gooood",
                                     HasUrlVideo=true,
                                     UrlVideo = "/Videos/20-10-2024_Baptiste.avi",
-                                    Frequency = 4
+                                    Frequency = 4,
+                                    UrlYoutubeVideo = "774-zK6hayc"
                                 },
                                 
                             }
@@ -53,6 +54,7 @@ namespace CercleRoyalEscrimeTournaisien
                                 PointNégatif="Quel vent tu as fait à Lili. Je confirme donc qu'à la fin de l'assaut non seulement on salue son adversaire mais on lui serre la main. Les bonnes pratiques doivent revenir suite au covid...",
                                 HasUrlVideo=true,
                                 UrlVideo = "/Videos/19-10-2024_Baptiste.avi",
+                                UrlYoutubeVideo = "M3VeV8fgarg"
                             }
                         }
                     }

@@ -33,7 +33,8 @@ namespace CercleRoyalEscrimeTournaisien
                                    // HasPointPositif=false,
                                     PointNégatif="Au fleuret, quand tu fais un batté, tu accentues l'attaque. là je vois 3 battés sans attaque. Du coup tu peux aller directement chercher la touche. pas besoin de laisser venir le tireur, c'est toi qui as l'avantage. Et on voit que tu sautes aussi avec les deux pieds en l'air en faisant la riposte à la fin de la vidéo.",
                                     HasUrlVideo=true,
-                                    UrlVideo = "/Videos/22-09-2024_Fabrice.avi"
+                                    UrlVideo = "/Videos/22-09-2024_Fabrice.avi",
+                                    UrlYoutubeVideo = "T7R-61MgVf8"
                                 },
                                 new RemarqueData()
                                 {
@@ -41,21 +42,24 @@ namespace CercleRoyalEscrimeTournaisien
                                     PointNégatif="Je vois (à nouveau) que tu sautes aussi avec les deux pieds en l'air lors d'une attaque",
                                     HasUrlVideo=true,
                                     UrlVideo = "/Videos/22-09-2024_Fabrice_2.avi",
-                                    Frequency =3
+                                    Frequency =3,
+                                    UrlYoutubeVideo = "G-jBpBSjUkU"
                                 },
                                 new RemarqueData()
                                 {
                                    // HasPointPositif=false,
                                     PointNégatif="Utilise la flexibilité de la lame pour toucher avec le pouce à 3h, c'est mieux. Utilise le coupé horizontal pour toucher au lieu de toucher linéairement.",
                                     HasUrlVideo=true,
-                                    UrlVideo = "/Videos/22-09-2024_Fabrice_3.avi"
+                                    UrlVideo = "/Videos/22-09-2024_Fabrice_3.avi",
+                                    UrlYoutubeVideo = "L0FBJiipzUA"
                                 },
                                 new RemarqueData()
                                 {
                                     //HasPointPositif=true,
                                     PointPositif="Le trompé est bien exécuté. la finalité n'est à mon avis qu'un détail de la gestion du fleuret. le fleuret est plus flexible que l'épée. du coup tu peux utiliser la flexibilité de la lame pour toucher de manière horizontale.",
                                     HasUrlVideo=true,
-                                    UrlVideo = "/Videos/22-09-2024_Fabrice_3.avi"
+                                    UrlVideo = "/Videos/22-09-2024_Fabrice_3.avi",
+                                    UrlYoutubeVideo = "L0FBJiipzUA"
                                 },
                             }
                     },
@@ -75,7 +79,8 @@ namespace CercleRoyalEscrimeTournaisien
                                     PointNégatif="une belle passe avant. non sanctionnée.",
                                     HasUrlVideo=true,
                                     UrlVideo = "/Videos/20-10-2024_Fabrice.avi",
-                                    Frequency = 2
+                                    Frequency = 2,
+                                    UrlYoutubeVideo = "fE6ODpliUto"
                                 },
                                  new RemarqueData()
                                 {
@@ -83,6 +88,7 @@ namespace CercleRoyalEscrimeTournaisien
                                     PointNégatif="une parade suivie d'une riposte. et pas de point? bizarre...",
                                     HasUrlVideo=true,
                                     UrlVideo = "/Videos/20-10-2024_Fabrice_2.avi",
+                                    UrlYoutubeVideo = "b1MGiBGgJjk"
                                 },
                             }
                     }

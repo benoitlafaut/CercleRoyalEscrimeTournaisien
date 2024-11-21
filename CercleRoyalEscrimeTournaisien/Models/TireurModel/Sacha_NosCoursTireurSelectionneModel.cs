@@ -33,6 +33,7 @@ namespace CercleRoyalEscrimeTournaisien
                                     PointPositif="C'est un beau match. Tu prends des initiatives et tu attaques en choisissant une cible. Continue ainsi. Fais juste attention de ne pas sauter en l'air comme les kangourous au lieu de faire de beaux marchés ou marchés fente.",
                                     HasUrlVideo=true,
                                     UrlVideo = "/Videos/19-10-2024_Sacha.avi",
+                                    UrlYoutubeVideo = "KipxcKDd6Mg"
                                 }
                             }
                         }
