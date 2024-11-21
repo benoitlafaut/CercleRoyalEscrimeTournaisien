@@ -49,7 +49,8 @@ namespace CercleRoyalEscrimeTournaisien
                             {
                                 PointNégatif="Beaucoup de tireurs font des marchés ou rompés ou tout autre déplacement excepté la fente en rapprochant leurs pieds l'un de l'autre. Exercez-vous chez vous à garder la même distance entre les pieds après chaque déplacement. Sur la vidéo ci-jointe, on voit l'erreur chez les deux tireurs.",
                                 HasUrlVideo=true,
-                                UrlVideo = "/Videos/Probleme de distance entre les pieds.avi"
+                                UrlVideo = "/Videos/Probleme de distance entre les pieds.avi",
+                                UrlYoutubeVideo = "774-zK6hayc"
                             },
                         }
                     }

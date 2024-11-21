@@ -23,9 +23,9 @@ namespace CercleRoyalEscrimeTournaisien
         {
             Frequency = 1;
         }
-        //public bool HasPointPositif { get; set; }
         public string PointPositif { get; set; }
         public string PointNégatif { get; set; }
+        public string UrlYoutubeVideo { get; set; }
         public int Frequency { get; set; }
         public bool HasUrlVideo { get; set; }
         public string UrlVideo { get; set; }
