@@ -85,6 +85,32 @@ namespace CercleRoyalEscrimeTournaisien
                                         Frequency = 3
                                     },
                                 }
+                    },
+                    new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2024, 11, 10),
+                        Arme = TypeArme.Sabre,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                                {
+                                    new RemarqueData()
+                                    {
+                                        PointNégatif="Quand tu te fends, laisse ton pied arrière au sol. Si tu es trop loin de ton adversaire, utilise le marché fente en agrandissant ton marché si besoin.",
+                                        HasUrlVideo=true,
+                                        UrlVideo = "/Videos/10-11-2024 Rebecca.avi",
+                                        UrlYoutubeVideo = "zwx_HJjrmL4"
+                                    },
+                                     new RemarqueData()
+                                    {
+                                        PointNégatif="Quand tu subis une attaque, ne va pas avec ton fer vers l'arme adversaire. tu restes dans la position adéquate sans allonger le bras. c'est seulement après qu'il ait touché ta lame que tu peux faire la riposte.",
+                                        HasUrlVideo=true,
+                                        UrlVideo = "/Videos/10-11-2024 Rebecca-2.avi",
+                                        UrlYoutubeVideo = "zI1OOx0AZz0"
+                                    }
+                                }
                     }
                 });
                 return remarquesParDateTireur;

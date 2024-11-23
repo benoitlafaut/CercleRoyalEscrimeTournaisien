@@ -91,6 +91,25 @@ namespace CercleRoyalEscrimeTournaisien
                                     UrlYoutubeVideo = "b1MGiBGgJjk"
                                 },
                             }
+                    },
+                    new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2024, 11, 10),
+                        Arme = TypeArme.Sabre,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                                {
+                                    new RemarqueData()
+                                    {
+                                        PointNégatif="C'est un détail que j'avais déjà vu, mais quand tu veux faire une attaque à la tête, tu montes trop haut la main, et tu utilises tout bras pour toucher la tête au lieu de travailler le poignet, le pied arrière se soulève et ton corps est déporté vers l'avant",
+                                        HasUrlVideo=true,
+                                        UrlVideo = "/Videos/10-11-2024 fabrice.avi",
+                                        UrlYoutubeVideo = "6AiTmzFXIrw"
+                                    }
+                                }
                     }
                 });
 

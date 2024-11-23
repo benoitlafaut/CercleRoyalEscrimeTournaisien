@@ -69,6 +69,26 @@ namespace CercleRoyalEscrimeTournaisien
                                     UrlYoutubeVideo = "dUDuFE6BNnk"
                                 },
                             }
+                    },
+                    new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2024, 11, 10),
+                        Arme = TypeArme.Sabre,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                                {
+                                    new RemarqueData()
+                                    {
+                                        PointNégatif="Cela n'est pas la première fois que je le constate, quand tu attaques sans crainte d'être touché, tu vas droit vers le tireur sans l'éviter et tu te retournes en montrant ton dos comme si tu voulais voir le marquoir. Evite de foncer vers l'autre et surtout de te retourner.",
+                                        HasUrlVideo=true,
+                                        UrlVideo = "/Videos/10-11-2024 Arthur.avi",
+                                        UrlYoutubeVideo = "KmlUcgoLVAo",
+                                        Frequency = 4
+                                    }
+                                }
                     }
                 });
                 

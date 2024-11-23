@@ -97,6 +97,26 @@ namespace CercleRoyalEscrimeTournaisien
                                     UrlYoutubeVideo = "IE7ELmVVjoc"
                                 },                                
                             }
+                    },
+                    new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2024, 11, 10),
+                        Arme = TypeArme.Sabre,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                                {
+                                    new RemarqueData()
+                                    {
+                                        PointNégatif="utilise ton poignet pour viser soit le ventre - côté droit (pouce à 3h) soit le flanc - côté gauche (pouce à 9h); là je vois toujours ta pouce à midi sans vraiment créer une réaction à ton adversaire; il a juste à allonger le bras et faire manchette dessus pour te toucher. ",
+                                        HasUrlVideo=true,
+                                        UrlVideo = "/Videos/10-11-2024 Aurore.avi",
+                                        UrlYoutubeVideo = "jkbM0_Z3kHA",
+                                        Frequency = 4
+                                    }
+                                }
                     }
                 });
 
