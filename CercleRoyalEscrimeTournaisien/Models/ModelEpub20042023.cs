@@ -9,8 +9,12 @@ namespace CercleRoyalEscrimeTournaisien.Models
         public ModelEpub20042023() 
         {
             RowsToRead = new List<string>() { } ;
+            CurrentStepToListen = 1;
+            IsLivreCharge = false;
         }
 
+        public int CurrentStepToListen { get; set; }
+        public bool IsLivreCharge { get; set; }
         public List<string> RowsToRead { get; set; }
         public string TitreLivre { get; set; }
         public int CurrentRowSelected { get; set; }
