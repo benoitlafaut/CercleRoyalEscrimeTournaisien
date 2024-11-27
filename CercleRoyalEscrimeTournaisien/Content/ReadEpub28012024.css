@@ -32,6 +32,11 @@
         text-align: center;
     
     }
+    .classCadreTextArea {
+        width: 92%;
+        margin-left: 8%;
+        margin-top: -13px;
+    }
 }
 
 @media screen and (min-width: 767px) {
@@ -39,7 +44,11 @@
         font-size: 23px;
         text-align: center;
     }
-    
+    .classCadreTextArea {
+        margin-top: -13px;
+        width: 98%;
+        margin-left: 2%;
+    }
 }
 
     .classDisplay {
@@ -64,9 +73,10 @@
 
 
     .zoomImgForMobile {
-        zoom: 0.18;
+        zoom: 0.50;
     }
 
     .zoomImgForPC {
         zoom: 1;
     }
+
