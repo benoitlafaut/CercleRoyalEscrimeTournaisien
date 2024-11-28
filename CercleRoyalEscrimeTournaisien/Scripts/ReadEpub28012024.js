@@ -50,8 +50,22 @@
     document.getElementById('imgPhotoOpen').addEventListener('click', function (e) {
         $("#inputFile").click();
     });
+
+    setTimeout(function () {
+        $("div.bootstrap-select").css('width', '25px');
+        $("div.bootstrap-select").css('display', 'block');
+        $("div.bootstrap-select").find('button.selectpicker').css('max-height', '18px');
+    }, 100);
+
+    $(".dropdown-menu.open.show").find('a').on("click", function () {
+        alert('coucu');
+
+    });
 });
 function ChangeLanguage() {
+
+    
+
     checkChangeForLangue('selectFR', 'divTextAreaFrance');
     checkChangeForLangue('selectEN', 'divTextAreaAngleterre');
     checkChangeForLangue('selectES', 'divTextAreaEspagne');
@@ -74,6 +88,16 @@ function ChangeLanguage() {
     }
 
     ChargerLignesDuLivreEtTraductions();
+
+
+    setTimeout(function () {
+        $(".bootstrap-select .btn:focus").each(function (index, item) {
+            $(this).css('outline', 'none');
+        });
+        $(".bootstrap-select .btn").each(function (index, item) {
+            $(this).css('outline', 'none');
+        });
+    }, 1600);
 }
 
 function checkChangeForLangue(selectElement, divElement) {
@@ -116,6 +140,8 @@ function ListenSentence28012024(index) {
 }
 
 function StartListen() {
+    $("#divLabelStartListen").css('color', 'blue');
+
     if (responsiveVoice.isPlaying()) { return false; }
 
     switch ($("#CurrentStepToListen").val()) {
