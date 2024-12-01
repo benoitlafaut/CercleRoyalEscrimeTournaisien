@@ -44,9 +44,7 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    @*
-
-    *@
+    
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
@@ -55,8 +53,6 @@
 
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
-    @*<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" rel="stylesheet" />*@
 
 }
 
@@ -84,7 +80,7 @@
     @Html.HiddenFor(model => model.IsLivreCharge)
 
     <div id="idContainer" class="container">
-        <div>
+        <div class="classInputFile">
             <input type="file" title=" " id="inputFile" name="inputFile" style="display:none;" />
             <img class="imgGsm" id="imgPhotoConvert" src="@urlConvert" />
             <img class="imgGsm" id="imgPhotoOpen" src="@urlOpen" />
@@ -95,6 +91,16 @@
         <div style="text-align: center; margin-right: 5px; margin-right: 16px;">
             <label style="color: black; position: relative; left: 33%;">FR</label>
             <select id="selectFR" class="selectpicker" style="display: block;width:20px;" onchange="ChangeLanguage();">
+                <option data-content="<i class='fa fa-close' aria-hidden='true' style='margin-right:5px;'></i> Ni lire ni écouter"></option>
+                <option data-content="<i class='fa fa-commenting-o' aria-hidden='true' style='margin-right:5px;'></i> Lire"></option>
+                <option data-content="<i class='fa fa-volume-up' aria-hidden='true' style='margin-right:5px;'></i> Ecouter"></option>
+                <option data-content="<i class='fa fa-commenting-o' aria-hidden='true' style='margin-right:5px;'></i><i class='fa fa-volume-up' aria-hidden='true' style='margin-right:5px;'></i> Lire et écouter"></option>
+            </select>
+        </div>
+
+        <div style="text-align: center; margin-right: 5px; margin-right: 16px;">
+            <label style="color: black; position: relative; left: 33%;">DE</label>
+            <select id="selectDE" class="selectpicker" style="display: block;width:20px;" onchange="ChangeLanguage();">
                 <option data-content="<i class='fa fa-close' aria-hidden='true' style='margin-right:5px;'></i> Ni lire ni écouter"></option>
                 <option data-content="<i class='fa fa-commenting-o' aria-hidden='true' style='margin-right:5px;'></i> Lire"></option>
                 <option data-content="<i class='fa fa-volume-up' aria-hidden='true' style='margin-right:5px;'></i> Ecouter"></option>
@@ -142,15 +148,7 @@
             </select>
         </div>
 
-        <div style="text-align: center; margin-right: 5px; margin-right: 16px;">
-            <label style="color: black; position: relative; left: 33%;">DE</label>
-            <select id="selectDE" class="selectpicker" style="display: block;width:20px;" onchange="ChangeLanguage();">
-                <option data-content="<i class='fa fa-close' aria-hidden='true' style='margin-right:5px;'></i> Ni lire ni écouter"></option>
-                <option data-content="<i class='fa fa-commenting-o' aria-hidden='true' style='margin-right:5px;'></i> Lire"></option>
-                <option data-content="<i class='fa fa-volume-up' aria-hidden='true' style='margin-right:5px;'></i> Ecouter"></option>
-                <option data-content="<i class='fa fa-commenting-o' aria-hidden='true' style='margin-right:5px;'></i><i class='fa fa-volume-up' aria-hidden='true' style='margin-right:5px;'></i> Lire et écouter"></option>
-            </select>
-        </div>
+
 
         <div id="divLabelStartListen" style=" font-size: larger; top: 0.5em; position: relative; margin-left: 10px;">
             <label style="font-family:fontAwesome" onclick="setInterval(function () { StartListen();  }, 1000); ">&#xf001;</label>
@@ -173,6 +171,14 @@
         </div>
     </div>
 
+    <div id="divTextAreaAllemagne" style="margin-left: 10px; margin-right: 10px;">
+        DE
+        <i class='fa fa-play fa-play-Benoit' id="elementIForTextAreaAllemagne" style='cursor: pointer; font-size: 15px; margin-right: 3px;' onclick="ListenSentence28012024('5');"></i>
+        <div class="ma-bordure-image classCadreTextArea">
+            <textarea class="TextAreaTextClass" id="TextAreaAllemagne" style=" width: 100%; border: none;  "></textarea>
+        </div>
+    </div>
+
     <div id="divTextAreaAngleterre" style="margin-left: 10px; margin-right: 10px;">
         EN
         <i class='fa fa-play fa-play-Benoit' id="elementIForTextAreaAngleterre" style='cursor: pointer; font-size: 15px; margin-right: 3px;' onclick="ListenSentence28012024('2');"></i>
@@ -189,6 +195,14 @@
         </div>
     </div>
 
+    <div id="divTextAreaItalie" style="margin-left: 10px; margin-right: 10px;">
+        IT
+        <i class='fa fa-play fa-play-Benoit' id="elementIForTextAreaItalie" style='cursor: pointer; font-size: 15px; margin-right: 3px;' onclick="ListenSentence28012024('6');"></i>
+        <div class="ma-bordure-image classCadreTextArea">
+            <textarea class="TextAreaTextClass" id="TextAreaItalie" style=" width: 100%; border: none;  "></textarea>
+        </div>
+    </div>
+
     <div id="divTextAreaPaysBas" style="margin-left: 10px; margin-right: 10px;">
         NL
         <i class='fa fa-play fa-play-Benoit' id="elementIForTextAreaPaysBas" style='cursor: pointer; font-size: 15px; margin-right: 3px;' onclick="ListenSentence28012024('4');"></i>
@@ -197,20 +211,8 @@
         </div>
     </div>
 
-    <div id="divTextAreaAllemagne" style="margin-left: 10px; margin-right: 10px;">
-        DE
-        <i class='fa fa-play fa-play-Benoit' id="elementIForTextAreaAllemagne" style='cursor: pointer; font-size: 15px; margin-right: 3px;' onclick="ListenSentence28012024('5');"></i>
-        <div class="ma-bordure-image classCadreTextArea">
-            <textarea class="TextAreaTextClass" id="TextAreaAllemagne" style=" width: 100%; border: none;  "></textarea>
-        </div>
-    </div>
 
-    <div id="divTextAreaItalie" style="margin-left: 10px; margin-right: 10px;">
-        IT
-        <i class='fa fa-play fa-play-Benoit' id="elementIForTextAreaItalie" style='cursor: pointer; font-size: 15px; margin-right: 3px;' onclick="ListenSentence28012024('6');"></i>
-        <div class="ma-bordure-image classCadreTextArea">
-            <textarea class="TextAreaTextClass" id="TextAreaItalie" style=" width: 100%; border: none;  "></textarea>
-        </div>
-    </div>
+
+
 </body>
 </html>

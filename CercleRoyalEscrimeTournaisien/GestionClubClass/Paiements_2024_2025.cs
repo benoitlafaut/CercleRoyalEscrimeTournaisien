@@ -15,6 +15,107 @@ namespace WebApplication1.Models
                 {
                      new JourDePrésence()
                      {
+                         DatePrésence = new DateTime(2024,12,1),
+                         EscrimeurId = new List<Guid>()
+                         {
+                             //GuidConstantes.GuidMartinSiu,
+                             GuidConstantes.GuidFélixTrannoy,
+                             //GuidConstantes.GuidAuroreCarlier,
+                             //GuidConstantes.GuidAnaelleIvanov,
+                             //GuidConstantes.GuidLiliMestdag,
+                             //GuidConstantes.GuidMathildeCarette,
+                             //GuidConstantes.GuidAmadoSimon,
+                             GuidConstantes.GuidEloiBinois,
+                             GuidConstantes.GuidLouisonBinois,
+                             //GuidConstantes.GuidOscarDeblocq,
+                             //GuidConstantes.GuidArthurBarbery,
+                             GuidConstantes.GuidJordanMestdagh,
+                             //GuidConstantes.GuidRémiSoyez,
+                             GuidConstantes.GuidRaedwaldVercouter,
+                             GuidConstantes.GuidMaybelleCarlier,
+                             GuidConstantes.GuidFabriceRazanajao,
+                             //GuidConstantes.GuidBaptisteMotte,
+                             //GuidConstantes.GuidAbelMotte,
+                             //GuidConstantes.GuidApollineOdendhal,
+                             GuidConstantes.GuidMaeVantroyen,
+                             GuidConstantes.GuidSachaLessart,
+                             //GuidConstantes.GuidEvaDufrasne,
+                             GuidConstantes.GuidHéloïsePras,
+                             GuidConstantes.GuidElodieMass,
+                             GuidConstantes.GuidRebeccaVandy,
+                             //GuidConstantes.GuidValentinXXX,
+                             GuidConstantes.GuidEliotPunchoo,
+                         }
+                     },
+                    new JourDePrésence()
+                     {
+                         DatePrésence = new DateTime(2024,11,29),
+                         EscrimeurId = new List<Guid>()
+                         {
+                             GuidConstantes.GuidMartinSiu,
+                             GuidConstantes.GuidFélixTrannoy,
+                             //GuidConstantes.GuidAuroreCarlier,
+                             GuidConstantes.GuidAnaelleIvanov,
+                             //GuidConstantes.GuidLiliMestdag,
+                             //GuidConstantes.GuidMathildeCarette,
+                             GuidConstantes.GuidAmadoSimon,
+                             GuidConstantes.GuidEloiBinois,
+                             GuidConstantes.GuidLouisonBinois,
+                             //GuidConstantes.GuidOscarDeblocq,
+                             GuidConstantes.GuidArthurBarbery,
+                             //GuidConstantes.GuidJordanMestdagh,
+                             GuidConstantes.GuidRémiSoyez,
+                             GuidConstantes.GuidRaedwaldVercouter,
+                             //GuidConstantes.GuidMaybelleCarlier,
+                             GuidConstantes.GuidFabriceRazanajao,
+                             //GuidConstantes.GuidBaptisteMotte,
+                             //GuidConstantes.GuidAbelMotte,
+                             //GuidConstantes.GuidApollineOdendhal,
+                             GuidConstantes.GuidMaeVantroyen,
+                             //GuidConstantes.GuidSachaLessart,
+                             //GuidConstantes.GuidEvaDufrasne,
+                             //GuidConstantes.GuidHéloïsePras,
+                             GuidConstantes.GuidElodieMass,
+                             //GuidConstantes.GuidRebeccaVandy,
+                             //GuidConstantes.GuidValentinXXX,
+                             GuidConstantes.GuidEliotPunchoo,
+                         }
+                     },
+                   new JourDePrésence()
+                     {
+                         DatePrésence = new DateTime(2024,11,27),
+                         EscrimeurId = new List<Guid>()
+                         {
+                             //GuidConstantes.GuidMartinSiu,
+                             GuidConstantes.GuidFélixTrannoy,
+                             GuidConstantes.GuidAuroreCarlier,
+                             GuidConstantes.GuidAnaelleIvanov,
+                             //GuidConstantes.GuidLiliMestdag,
+                             //GuidConstantes.GuidMathildeCarette,
+                             GuidConstantes.GuidAmadoSimon,
+                             //GuidConstantes.GuidEloiBinois,
+                             //GuidConstantes.GuidLouisonBinois,
+                             //GuidConstantes.GuidOscarDeblocq,
+                             //GuidConstantes.GuidArthurBarbery,
+                             //GuidConstantes.GuidJordanMestdagh,
+                             GuidConstantes.GuidRémiSoyez,
+                             //GuidConstantes.GuidRaedwaldVercouter,
+                             //GuidConstantes.GuidMaybelleCarlier,
+                             //GuidConstantes.GuidFabriceRazanajao,
+                             GuidConstantes.GuidBaptisteMotte,
+                             GuidConstantes.GuidAbelMotte,
+                             GuidConstantes.GuidApollineOdendhal,
+                             GuidConstantes.GuidMaeVantroyen,
+                             //GuidConstantes.GuidSachaLessart,
+                             //GuidConstantes.GuidEvaDufrasne,
+                             GuidConstantes.GuidHéloïsePras,
+                             //GuidConstantes.GuidElodieMass,
+                             GuidConstantes.GuidRebeccaVandy,
+                             //GuidConstantes.GuidValentinXXX,
+                             GuidConstantes.GuidEliotPunchoo,
+                         }
+                     },   new JourDePrésence()
+                     {
                          DatePrésence = new DateTime(2024,11,24),
                          EscrimeurId = new List<Guid>()
                          {
@@ -44,7 +145,7 @@ namespace WebApplication1.Models
                              GuidConstantes.GuidElodieMass,
                              GuidConstantes.GuidRebeccaVandy,
                              //GuidConstantes.GuidValentinXXX,
-                             GuidConstantes.GuidElliotXXX,
+                             GuidConstantes.GuidEliotPunchoo,
                          }
                      },
                      new JourDePrésence()
@@ -1056,13 +1157,13 @@ namespace WebApplication1.Models
                     IsMatérielLoue = true
                 };
         }
-        public void Add_Paiements_XXX_Elliot(string period, List<MembreData> Membres)
+        public void Add_Paiements_Punchoo_Eliot(string period, List<MembreData> Membres)
         {
-            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidElliotXXX && x.Période == period))
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidEliotPunchoo && x.Période == period))
             {
                 return;
             }
-            Membres.Where(x => x.GuidId == GuidConstantes.GuidElliotXXX && x.Période == period).FirstOrDefault().Paiement =
+            Membres.Where(x => x.GuidId == GuidConstantes.GuidEliotPunchoo && x.Période == period).FirstOrDefault().Paiement =
                 new Paiement()
                 {
                     Periode = period,
@@ -1073,13 +1174,14 @@ namespace WebApplication1.Models
                     IsCotisationCarte4 = false,
                     IsLocationMatérielEnOrdre = false,
                     IsCotisationEnOrdre = false,
-                    IsFicheSignaletiqueEnOrdre = false,
-                    IsLicenceEnOrdre = false,
+                    IsFicheSignaletiqueEnOrdre = true,
+                    IsLicenceEnOrdre = true,
 
                     PaiementsEffectues = new List<string>() {  },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,11,24),
+                        new DateTime(2024,11,27),
                     },
                     IsMatérielLoue = true
                 };

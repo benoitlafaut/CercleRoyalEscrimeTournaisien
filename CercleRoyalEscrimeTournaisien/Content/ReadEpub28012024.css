@@ -37,6 +37,10 @@
         margin-left: 8%;
         margin-top: -13px;
     }
+
+    .classInputFile {
+        height: 30px !important;
+    }
 }
 
 @media screen and (min-width: 767px) {

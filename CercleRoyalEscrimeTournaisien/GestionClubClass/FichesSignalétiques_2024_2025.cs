@@ -141,23 +141,23 @@ namespace WebApplication1.Models
                   FicheSignaletiqueUrl = "",
               };
         }
-        public void Add_FichesSignalétiques_XXX_Elliot(string period, List<MembreData> Membres)
+        public void Add_FichesSignalétiques_Punchoo_Eliot(string period, List<MembreData> Membres)
         {
-            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidElliotXXX && x.Période == period))
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidEliotPunchoo && x.Période == period))
             {
                 return;
             }
 
-            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidElliotXXX && x.Période == period).Signaletique =
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidEliotPunchoo && x.Période == period).Signaletique =
               new Signaletique()
               {
-                  Categorie = Categorie.Inconnu,
-                  DateDeNaissance = new DateTime(9999, 12, 31),
-                  Email = new List<string>() { "", "" },
-                  NomMaman = "",
-                  NomPapa = "",
-                  Telephone = new List<string>() { "", "" },
-                  FicheSignaletiqueUrl = "",
+                  Categorie = ListGuidTireur.SearchCategorie(2013),
+                  DateDeNaissance = new DateTime(2013, 3, 24),
+                  Email = new List<string>() { "jeremypunchoo58@gmail.com", "wivterryn@gmail.com" },
+                  NomMaman = "Terryn Wivine",
+                  NomPapa = "Punchoo Jérémy",
+                  Telephone = new List<string>() { "0471/795186", "0474/048202" },
+                  FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Punchoo_Eliot.pdf",
               };
         }
         public void Add_FichesSignalétiques_Razanajao_Fabrice(string period, List<MembreData> Membres)

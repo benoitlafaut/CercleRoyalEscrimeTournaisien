@@ -14,13 +14,17 @@ namespace CercleRoyalEscrimeTournaisien
             {
                 List<RemarqueParDate> remarquesParDateTireur = new List<RemarqueParDate>() { };
                 remarquesParDateTireur.AddRange(new List<RemarqueParDate>()
-                {
+                {                   
                     new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2024,9,1),
                         Arme = TypeArme.Epée,
                         RemarquesData = new List<RemarqueData>()
                         {
+                              new RemarqueData()
+                            {
+                                PointNégatif="A chaque touche et point accordé, exclamez-vous par un yes ou 'come on à la Kim clijsters tenniswoman belge' pour vous donner du peps, ou déstabiliser votre adversaire. Cà vous aidera à prendre confiance en vous et à vous motiver pour remonter le score une touche à la fois si vous êtes en train de perdre."
+                            },
                             new RemarqueData()
                             {
                                 PointNégatif="Au début d'un assaut et à la fin d'un assaut, on salue son adversaire ainsi que l'arbitre en position préparatoire avec son arme. On lui serre la main à la fin de l'assaut. Quand il s'agit de rencontre entre 2 équipes, on se salue au début mais aussi à la fin et tous les tireurs de chaque équipe se mettent sur leur ligne de mise en garde et se saluent en même temps de la position préparatoire. Après les tireurs serrent la main de tous leurs adversaires de l'autre équipe."

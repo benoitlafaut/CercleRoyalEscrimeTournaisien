@@ -384,6 +384,7 @@
     <Content Include="Content\PhotosStyle.css" />
     <Content Include="Content\QuelquesSitesStyle.css" />
     <Content Include="favicon.ico" />
+    <Content Include="FileToUpload\FichesSignaletiques\Razanajao_Fabrice.pdf" />
     <Content Include="Global.asax" />
     <Content Include="home\photos\Albums\10\1.JPG" />
     <Content Include="home\photos\Albums\10\10.JPG" />
@@ -997,6 +998,7 @@
     <Content Include="home\photos\ImagesPourCours\reglesdesecurité.jpg" />
     <Content Include="home\photos\NewEpub28012024\arrowLeft.PNG" />
     <Content Include="home\photos\NewEpub28012024\arrowRight.PNG" />
+    <Content Include="home\photos\NewEpub28012024\CommuneTournai.png" />
     <Content Include="home\photos\NewEpub28012024\convert.png" />
     <Content Include="home\photos\NewEpub28012024\flag allemagne son.PNG" />
     <Content Include="home\photos\NewEpub28012024\flag allemagne.PNG" />
@@ -1006,6 +1008,8 @@
     <Content Include="home\photos\NewEpub28012024\flag espagne.PNG" />
     <Content Include="home\photos\NewEpub28012024\flag France son.PNG" />
     <Content Include="home\photos\NewEpub28012024\flag France.PNG" />
+    <Content Include="home\photos\NewEpub28012024\flag italie son.PNG" />
+    <Content Include="home\photos\NewEpub28012024\flag italie.PNG" />
     <Content Include="home\photos\NewEpub28012024\flag pays-bas son.PNG" />
     <Content Include="home\photos\NewEpub28012024\flag pays-bas.PNG" />
     <Content Include="home\photos\NewEpub28012024\open.png" />
@@ -1086,7 +1090,6 @@
     <Content Include="FileToUpload\FichesSignaletiques\Gillet_Thomas.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Debruyne_Karel.pdf" />
     <Content Include="FileToUpload\ExcelCompte\ExportCreateExcel.xls" />
-    <Content Include="FileToUpload\FichesSignaletiques\Razanajao_Fabrice.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Trannoy_Félix.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Lemaire_Antoine.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Delmotte_Maxime.pdf" />
@@ -1132,6 +1135,7 @@
     <Content Include="FileToUpload\FichesSignaletiques\Lessart_Sacha.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Mass_Elodie.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Vantroyen_Mae.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Punchoo_Eliot.pdf" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Accueil.cshtml" />
     <Content Include="Views\Home\Accueil_Part_1.cshtml" />

@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 @{
     var urlPath = Url.Content("~/Home/Photos/Entree/");
+    var communeTournaiPNG = Url.Content("~/Home/Photos/NewEpub28012024/CommuneTournai.PNG");
 }
 <html>
 <head>
@@ -11,7 +12,7 @@
 
 <body style=" margin: 0px;">
     @Html.Hidden("PhotoDepart", "1")
-
+    @Html.Hidden("PhotoDepart", "1")
 
     <div class="navbar" style=" align-items: center; display: flex; ">
         <h1 id="h1BannerTop">Cercle Royale Escrime Tournai</h1>
@@ -49,9 +50,14 @@
             <h1 style="text-align: center; ">Voici le plan</h1>
             <iframe id="iframeMaps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d621.4518894714855!2d3.379912655012422!3d50.60922253256725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c2dfe7620637e1%3A0xba117a921f7647c0!2sSalle%20des%20Sports%20Don%20Bosco!5e1!3m2!1sfr!2sbe!4v1713274280931!5m2!1sfr!2sbe" height="450" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
             </iframe>
+
+            <div style="margin-left: 10px;">
+                <input type="checkbox" id="checkboxNouvelleSalle" name="checkboxNouvelleSalle" onclick="ChangeSalle();" />
+                <label id="labelNouvelleSalle" for="checkboxNouvelleSalle">Ancienne Salle (jusqu'au 22 décembre 2024)</label>
+            </div>
         </div>
         <div id="planAndPhotos" class="slider-img" style="float:right">
-            <h1 style="text-align: center; ">Et l'accès à notre salle</h1>
+            <h1 style="text-align: center; ">Et l'accès à notre salle actuelle</h1>
             <div style="display:flex;">
                 <div id="colonne" style=" width: 3%; float: left; text-align: right;"></div>
                 <div id="divPreviousButton"><button id="prev_button" onclick="passToPreviousPhoto();">❮</button></div>
@@ -79,11 +85,8 @@
 
     <footer class="classFooter">
         <div class="contact">
-            <div>
-                <span>Pour tout renseignement, vous pouvez nous contacter:</span>
-            </div>
-
-            <div style="margin-top: 0px;">
+            <div style=" float: left; font-size: 14px; position: relative; width: 50%;">
+                <p style="text-align:center">Pour tout renseignement, vous pouvez nous contacter:</p>
                 <p style="text-align:center">
                     Via notre maître d'Armes <br>
                     Benoît Lafaut: 0478/34.78.95
@@ -97,12 +100,30 @@
                     escrime.tournai@gmail.com
                 </p>
             </div>
+
+            <div style=" font-size: 14px; width: 50%; ">
+                <p style="text-align:center">
+                    Avec le soutien de la Ville de Tournai
+                </p>
+                <img style="width: 120px;height: 120px;margin-left: auto;margin-right: auto;display: block;" id="imgPhotoCommuneTournai" src="@communeTournaiPNG" />
+            </div>
         </div>
     </footer>
 </body>
 </html>
 
 <script>
+function ChangeSalle() {
+    if ($("#checkboxNouvelleSalle:checked").length == 1) {
+        $("#iframeMaps").prop('src', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2854.771919283993!2d3.387963612463313!3d50.61384077150552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c2e00a4ae7319d%3A0x560260c151f31a6c!2s%C3%89cole%20communale%20du%20Ch%C3%A2teau!5e1!3m2!1sfr!2sbe!4v1732826174445!5m2!1sfr!2sbe');
+        $("#labelNouvelleSalle").text("Nouvelle Salle (à partir du 1 janvier 2025) ");
+    }
+    else {
+        $("#iframeMaps").prop('src', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d621.4518894714855!2d3.379912655012422!3d50.60922253256725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c2dfe7620637e1%3A0xba117a921f7647c0!2sSalle%20des%20Sports%20Don%20Bosco!5e1!3m2!1sfr!2sbe!4v1713274280931!5m2!1sfr!2sbe');
+        $("#labelNouvelleSalle").text("Ancienne Salle (jusqu'au 22 décembre 2024) ");
+    }   
+}
+
 function passToPreviousPhoto() {
     $("#difForImage").animate({
         opacity: 0.1,
