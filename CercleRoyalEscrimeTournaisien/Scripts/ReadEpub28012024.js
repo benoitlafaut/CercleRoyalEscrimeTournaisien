@@ -55,11 +55,9 @@
         $("div.bootstrap-select").css('width', '25px');
         $("div.bootstrap-select").css('display', 'block');
         $("div.bootstrap-select").find('button.selectpicker').css('max-height', '18px');
-        alert('coucou');
     }, 500);
 
     $(".dropdown-menu.open.show").find('a').on("click", function () {
-        alert('coucu');
 
     });
 });
