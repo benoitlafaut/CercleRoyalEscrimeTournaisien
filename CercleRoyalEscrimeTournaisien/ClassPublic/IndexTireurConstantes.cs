@@ -31,7 +31,8 @@
             LouisonBinois = 25,
             ThéoHelleputte = 26,
             HéloïsePras = 27,
-            RebeccaVandy = 28
+            RebeccaVandy = 28,
+            EliotPunchoo = 29
         }
     }
 }
