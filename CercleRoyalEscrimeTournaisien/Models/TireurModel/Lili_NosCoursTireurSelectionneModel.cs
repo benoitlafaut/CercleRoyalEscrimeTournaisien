@@ -20,6 +20,25 @@ namespace CercleRoyalEscrimeTournaisien
                 {
                     new RemarqueParDate()
                     {
+                        DateRemarque = new DateTime(2024, 11, 14),
+                        Arme = TypeArme.Epée,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                            {
+                                new RemarqueData()
+                                {
+                                    PointNégatif="A l'épée, travaille en finesse avec le bras qui est allongé vers la cible et c'est le poignet qui travaille et qui permet de contourner la coquille. et pas l'avant-bras qui te fait un cercle de 50 cm au lieu d'un cercle effectué par le poignet de 20 cm. au plus c'est petit au plus la précision est là.",
+                                    HasUrlVideo=false,
+                                    UrlVideo = "",
+                                    Frequency = 1,
+                                },
+                            }
+                    },
+                    new RemarqueParDate()
+                    {
                         DateRemarque = new DateTime(2024, 10, 19),
                         Arme = TypeArme.Sabre,
                         Tireur = new Tireur()

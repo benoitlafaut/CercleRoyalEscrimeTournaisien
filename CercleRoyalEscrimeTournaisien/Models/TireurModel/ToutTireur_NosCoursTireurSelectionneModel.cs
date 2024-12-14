@@ -21,7 +21,11 @@ namespace CercleRoyalEscrimeTournaisien
                         Arme = TypeArme.Epée,
                         RemarquesData = new List<RemarqueData>()
                         {
-                              new RemarqueData()
+                            new RemarqueData()
+                            {
+                                PointNégatif="Lorsque vous attaquez à l'épée, c'est votre bras armé votre point fort. Si vous le fléchissez lors de l'attaque, vous perdez un avantage. laissez-le allonger jusqu'à la touche."
+                            },
+                            new RemarqueData()
                             {
                                 PointNégatif="A chaque touche et point accordé, exclamez-vous par un yes ou 'come on à la Kim clijsters tenniswoman belge' pour vous donner du peps, ou déstabiliser votre adversaire. Cà vous aidera à prendre confiance en vous et à vous motiver pour remonter le score une touche à la fois si vous êtes en train de perdre."
                             },

@@ -15,6 +15,40 @@ namespace WebApplication1.Models
                 {
                       new JourDePrésence()
                       {
+                         DatePrésence = new DateTime(2024,12,13),
+                         EscrimeurId = new List<Guid>()
+                         {
+                             GuidConstantes.GuidMartinSiu,
+                             GuidConstantes.GuidFélixTrannoy,
+                             GuidConstantes.GuidAuroreCarlier,
+                             //GuidConstantes.GuidAnaelleIvanov,
+                             GuidConstantes.GuidLiliMestdag,
+                             //GuidConstantes.GuidMathildeCarette,
+                             //GuidConstantes.GuidAmadoSimon,
+                             GuidConstantes.GuidEloiBinois,
+                             GuidConstantes.GuidLouisonBinois,
+                             //GuidConstantes.GuidOscarDeblocq,
+                             //GuidConstantes.GuidArthurBarbery,
+                             GuidConstantes.GuidJordanMestdagh,
+                             GuidConstantes.GuidRémiSoyez,
+                             //GuidConstantes.GuidRaedwaldVercouter,
+                             //GuidConstantes.GuidMaybelleCarlier,
+                             //GuidConstantes.GuidFabriceRazanajao,
+                             GuidConstantes.GuidBaptisteMotte,
+                             GuidConstantes.GuidAbelMotte,
+                             GuidConstantes.GuidApollineOdendhal,
+                             //GuidConstantes.GuidMaeVantroyen,
+                             //GuidConstantes.GuidSachaLessart,
+                             GuidConstantes.GuidEvaDufrasne,
+                             //GuidConstantes.GuidHéloïsePras,
+                             //GuidConstantes.GuidElodieMass,
+                             //GuidConstantes.GuidRebeccaVandy,
+                             //GuidConstantes.GuidValentinXXX,
+                             GuidConstantes.GuidEliotPunchoo,
+                         }
+                     },
+                    new JourDePrésence()
+                      {
                          DatePrésence = new DateTime(2024,12,11),
                          EscrimeurId = new List<Guid>()
                          {
