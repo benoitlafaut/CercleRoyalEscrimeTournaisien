@@ -363,6 +363,7 @@
     <Content Include="Content\5d93eb1089.css" />
     <Content Include="Content\Accueil.css" />
     <Content Include="Content\bootstrap-select.min.css" />
+    <Content Include="Content\DicoPlayer.css" />
     <Content Include="Content\karaoke.css" />
     <Content Include="Content\NosCoursMultiColor.css" />
     <Content Include="Content\NosCours.css" />
@@ -384,6 +385,8 @@
     <Content Include="Content\NosCoursStyleSlide.css" />
     <Content Include="Content\PhotosStyle.css" />
     <Content Include="Content\QuelquesSitesStyle.css" />
+    <Content Include="dist\jquery.mb.YTPlayer.js" />
+    <Content Include="dist\jquery.mb.YTPlayer.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="FileToUpload\FichesSignaletiques\Razanajao_Fabrice.pdf" />
     <Content Include="Global.asax" />

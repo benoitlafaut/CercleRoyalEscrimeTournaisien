@@ -15,6 +15,40 @@ namespace WebApplication1.Models
                 {
                       new JourDePrésence()
                       {
+                         DatePrésence = new DateTime(2024,12,15),
+                         EscrimeurId = new List<Guid>()
+                         {
+                             //GuidConstantes.GuidMartinSiu,
+                             GuidConstantes.GuidFélixTrannoy,
+                             GuidConstantes.GuidAuroreCarlier,
+                             //GuidConstantes.GuidAnaelleIvanov,
+                             //GuidConstantes.GuidLiliMestdag,
+                             //GuidConstantes.GuidMathildeCarette,
+                             //GuidConstantes.GuidAmadoSimon,
+                             //GuidConstantes.GuidEloiBinois,
+                             //GuidConstantes.GuidLouisonBinois,
+                             GuidConstantes.GuidOscarDeblocq,
+                             GuidConstantes.GuidArthurBarbery,
+                             GuidConstantes.GuidJordanMestdagh,
+                             //GuidConstantes.GuidRémiSoyez,
+                             //GuidConstantes.GuidRaedwaldVercouter,
+                             //GuidConstantes.GuidMaybelleCarlier,
+                             //GuidConstantes.GuidFabriceRazanajao,
+                             GuidConstantes.GuidBaptisteMotte,
+                             //GuidConstantes.GuidAbelMotte,
+                             //GuidConstantes.GuidApollineOdendhal,
+                             //GuidConstantes.GuidMaeVantroyen,
+                             //GuidConstantes.GuidSachaLessart,
+                             //GuidConstantes.GuidEvaDufrasne,
+                             //GuidConstantes.GuidHéloïsePras,
+                             //GuidConstantes.GuidElodieMass,
+                             GuidConstantes.GuidRebeccaVandy,
+                             //GuidConstantes.GuidValentinXXX,
+                             GuidConstantes.GuidEliotPunchoo,
+                         }
+                     },
+                    new JourDePrésence()
+                      {
                          DatePrésence = new DateTime(2024,12,13),
                          EscrimeurId = new List<Guid>()
                          {
@@ -611,7 +645,7 @@ namespace WebApplication1.Models
                              GuidConstantes.GuidFabriceRazanajao,
                              //GuidConstantes.GuidElodieMass,
                              GuidConstantes.GuidRebeccaVandy,
-                             GuidConstantes.GuidValentinXXX,
+                             //GuidConstantes.GuidValentinXXX,
                          }
                      },
                     new JourDePrésence()
@@ -750,7 +784,7 @@ namespace WebApplication1.Models
                             GuidConstantes.GuidElodieMass,
                             GuidConstantes.GuidRebeccaVandy,
                             GuidConstantes.GuidCousineARemiJudith,
-                            GuidConstantes.GuidValentinXXX
+                            //GuidConstantes.GuidValentinXXX
                         }
                     },
                     new JourDePrésence()
@@ -1385,34 +1419,7 @@ namespace WebApplication1.Models
                     IsMatérielLoue = true
                 };
         }
-        public void Add_Paiements_XXX_Valentin(string period, List<MembreData> Membres)
-        {
-            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidValentinXXX && x.Période == period))
-            {
-                return;
-            }
-            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidValentinXXX && x.Période == period).Paiement =
-                new Paiement()
-                {
-                    Periode = period,
-                    IsCotisationAnnuelle = false,
-                    IsCotisationCarte1 = false,
-                    IsCotisationCarte2 = false,
-                    IsCotisationCarte3 = false,
-                    IsCotisationCarte4 = false,
-                    IsLocationMatérielEnOrdre = false,
-                    IsCotisationEnOrdre = false,
-                    IsFicheSignaletiqueEnOrdre = false,
-                    IsLicenceEnOrdre = false,
-
-                    PaiementsEffectues = new List<string>() { },
-                    SeancesGratuites = new List<DateTime>()
-                    {
-                         new DateTime(2024,10,6),
-                    },
-                    IsMatérielLoue = true
-                };
-        }
+       
         public void Add_Paiements_Deblocq_Judith(string period, List<MembreData> Membres)
         {
             if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidJudithDeblocq && x.Période == period))

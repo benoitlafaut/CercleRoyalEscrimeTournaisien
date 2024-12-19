@@ -122,25 +122,7 @@ namespace WebApplication1.Models
                   FicheSignaletiqueUrl = "",
               };
         }
-        public void Add_FichesSignalétiques_XXX_Valentin(string period, List<MembreData> Membres)
-        {
-            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidValentinXXX && x.Période == period))
-            {
-                return;
-            }
-
-            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidValentinXXX && x.Période == period).Signaletique =
-              new Signaletique()
-              {
-                  Categorie = Categorie.Inconnu,
-                  DateDeNaissance = new DateTime(9999, 12, 31),
-                  Email = new List<string>() { "", "" },
-                  NomMaman = "",
-                  NomPapa = "",
-                  Telephone = new List<string>() { "", "" },
-                  FicheSignaletiqueUrl = "",
-              };
-        }
+        
         public void Add_FichesSignalétiques_Punchoo_Eliot(string period, List<MembreData> Membres)
         {
             if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidEliotPunchoo && x.Période == period))

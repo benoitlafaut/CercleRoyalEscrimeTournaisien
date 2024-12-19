@@ -35,8 +35,27 @@ namespace CercleRoyalEscrimeTournaisien
                                     UrlVideo = "/Videos/19-10-2024_Sacha.avi",
                                     UrlYoutubeVideo = "KipxcKDd6Mg"
                                 }
-                            }
                         }
+                    },
+                    new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2024, 11, 16),
+                        Arme = TypeArme.Epée,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                                new RemarqueData()
+                                {
+                                    PointNégatif="Quand tu tires à l'épée, les déplacements t'aident à porter la touche. c'est perfecto.. Par contre l'arme est toujours dirigée vers une surface valable. Ici elle est dirigée vers le sol.",
+                                    HasUrlVideo=true,
+                                    UrlVideo = "/Videos/16-11-2024_Sacha.avi",
+                                    UrlYoutubeVideo = "bW8bdYmp1PM"
+                                }
+                        }
+                    }
                 });
 
                 return remarquesParDateTireur;

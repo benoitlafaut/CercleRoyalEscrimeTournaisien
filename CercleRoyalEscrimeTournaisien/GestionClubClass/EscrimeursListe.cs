@@ -116,7 +116,6 @@ namespace WebApplication1.Models
 
             fichesSignalétiques_2024_2025.Add_FichesSignalétiques_Vandy_Rebecca(period, Membres);
             fichesSignalétiques_2024_2025.Add_FichesSignalétiques_CousineARemiJudith(period, Membres);
-            fichesSignalétiques_2024_2025.Add_FichesSignalétiques_XXX_Valentin(period, Membres);
             fichesSignalétiques_2024_2025.Add_FichesSignalétiques_Punchoo_Eliot(period, Membres);
             fichesSignalétiques_2024_2025.Add_FichesSignalétiques_Trannoy_Félix(period, Membres);
             fichesSignalétiques_2024_2025.Add_FichesSignalétiques_Motte_Baptiste(period, Membres);
@@ -218,7 +217,6 @@ namespace WebApplication1.Models
             paiements.Add_Paiements_Vandy_Rebecca(period, Membres);
             paiements.Add_Paiements_Punchoo_Eliot(period, Membres);
             paiements.Add_Paiements_CousineARemiJudith(period, Membres);
-            paiements.Add_Paiements_XXX_Valentin(period, Membres);
             paiements.Add_Paiements_Deblocq_Oscar(period, Membres);
             paiements.Add_Paiements_Barbery_Arthur(period, Membres);
             paiements.Add_Paiements_Soyez_Rémi(period, Membres);

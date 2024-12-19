@@ -2,6 +2,11 @@
 
 @model ModelViewDico
 
+@Styles.Render("~/styles/myStylessheet.css")
+@Styles.Render("~/styles/StyleTranslateOtherLangue.css")
+@Styles.Render("~/styles/newbootstrap.css")
+@Styles.Render("~/styles/dicodictate.css")
+
 <head>
 
     <link href="@Url.Content("~/Content/MainPage.css")" rel="stylesheet" />
@@ -27,32 +32,44 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src='~/Scripts/MainPage.js'></script>
-    
+
     <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="//cdn.embed.ly/player-0.0.11.min.js"></script>
 </head>
 
-<div id="divDico">
-    <div style="text-align:right;">
-        <i class="fa fa-bars fa-beat" onclick="ShowStartPage();" style="color: red; font-size: 30px;"></i>
+@*<div id="divDico">
+        <div style="text-align:right;">
+            <i class="fa fa-bars fa-beat" onclick="ShowStartPage();" style="color: red; font-size: 30px;"></i>
+        </div>
+
+        <div style=" height: 95%; width: 99%; overflow-x: hidden; ">
+            <div class="row" style="margin-bottom: 10px;">
+                @Html.TextBoxFor(x => x.WordInputOne, new { @class = "form-control" })
+                <button class="btn btn-primary" type="button" id="btnClear" onclick="$('#WordInputOne').val('');">Clear</button>
+                <button class="btn btn-primary" type="button" id="btnSearch" onclick="searchWords();">Search définitions</button>
+            </div>
+        </div>
+
+        <table id='summaryOfResults' style="border: 1px solid black; width: 92%; margin-left: 4%; overflow-x: scroll; display: block; height: 400px;">
+        </table>
     </div>
 
-    <div style=" height: 95%; width: 99%; overflow-x: hidden; ">
-        <div class="row" style="margin-bottom: 10px;">
-            @Html.TextBoxFor(x => x.WordInputOne, new { @class = "form-control" })
-            <button class="btn btn-primary" type="button" id="btnClear" onclick="$('#WordInputOne').val('');">Clear</button>
-            <button class="btn btn-primary" type="button" id="btnSearch" onclick="searchWords();">Search définitions</button>
-        </div>
-    </div>
-    
-    <table id='summaryOfResults' style="border: 1px solid black; width: 92%; margin-left: 4%; overflow-x: scroll; display: block; height: 400px;">       
-    </table>
+    <div id="divDicoPart2" style="margin-top: 50px; width: 92%; margin-left: 4%; border: 1px solid black; height: 400px; overflow: scroll; "></div>*@
+
+<div onclick="startDictation();" class="classTitreDicter">
+    @*<a href="#" id="start_button" onclick="startDictation();">Dicter</a>*@
+    <label>Dicter</label>
 </div>
 
-<div id="divDicoPart2" style="margin-top: 50px; width: 92%; margin-left: 4%; border: 1px solid black; height: 400px; overflow: scroll; "></div>
+<label style="display:none">Texte temporaire: </label>
+<div style="display:none" class="textDico">
+    <label id="interim_span" class="interim"></label>
+</div>
 
-@Styles.Render("~/styles/myStylessheet.css")
-@Styles.Render("~/styles/StyleTranslateOtherLangue.css")
-@Styles.Render("~/styles/newbootstrap.css")
+<label>Texte final: </label>
+<div class="textDico">
+    <label id="final_span" class="final"></label>
+</div>
 
 <script src="~/Scripts/dico.js" type="text/javascript"></script>
+<script src="~/Scripts/dicodictate.js" type="text/javascript"></script>
