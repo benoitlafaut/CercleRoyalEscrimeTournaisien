@@ -21,6 +21,22 @@ namespace CercleRoyalEscrimeTournaisien
                 {
                     new RemarqueParDate()
                     {
+                        DateRemarque = new DateTime(2024, 11, 16),
+                        Arme = TypeArme.Epée,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointNégatif="Quand tu fais une parade circulaire ou contre le sixte, ta lame vise les mouettes. Essaie de jouer plus fin, plus petit; au plus tes gestes sont petits, au mieux c'est pour la précision. Et toujours quand il s'agit d'un grand de te cantonner à la manchette voire la saignée pas plus loin."
+                            },
+                        }
+                    },
+                    new RemarqueParDate()
+                    {
                         DateRemarque = new DateTime(2024, 10, 11),
                         Arme = TypeArme.Epée,
                         Tireur = new Tireur()

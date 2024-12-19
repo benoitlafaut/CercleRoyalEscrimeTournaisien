@@ -19,6 +19,22 @@ namespace CercleRoyalEscrimeTournaisien
                 {
                     new RemarqueParDate()
                     {
+                        DateRemarque = new DateTime(2024,11 ,16),
+                        Arme = TypeArme.Epée,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointNégatif="Quand tu attaques à l'épée, essaie d'allonger ton bras avant même de démarrer tes jambes. C'est seulement quand ton bras est allongé que tu peux démarrer les jambes. Et pas les deux en même temps sinon ton adversaire n'a qu'à allonger le bras et tu es touché."
+                            },
+                        }
+                    },
+                    new RemarqueParDate()
+                    {
                         DateRemarque = new DateTime(2024,10 ,11),
                         Arme = TypeArme.Epée,
                         Tireur = new Tireur()

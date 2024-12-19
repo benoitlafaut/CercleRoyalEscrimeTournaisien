@@ -19,6 +19,42 @@ namespace CercleRoyalEscrimeTournaisien
                 remarquesParDateTireur.AddRange(
                 new List<RemarqueParDate>()
                 {
+                     new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2024, 12, 18),
+                        Arme = TypeArme.Epée,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                            {
+                             new RemarqueData()
+                                {
+                                    PointNégatif="Souvent trop proche, tu es touchée parce que c'est toi qui te rapproches trop de ton adversaire. ",
+                                    HasUrlVideo=false,
+                                    Frequency = 3,
+                                },
+                            new RemarqueData()
+                                {
+                                    PointNégatif="Petite astuce contre les tireurs ou tireuses qui fléchissent très vite leur bras après une attaque qui ne touche pas, c'est à ce moment-là que ton attaque peut commencer. D'abord le bras, puis les jambes.",
+                                    HasUrlVideo=false,
+                                    Frequency = 2,
+                                },
+                                new RemarqueData()
+                                {
+                                    PointNégatif="Si tu vois une ouverture, le bras trop rapproché ou le masque trop rapproché, n'hésite pas à attaquer sans te soucier de te faire toucher.",
+                                    HasUrlVideo=false,
+                                    Frequency = 2,
+                                },
+                                new RemarqueData()
+                                {
+                                    PointNégatif="Au plus grand est ton adversaire, au plus grande est ta distance.",
+                                    HasUrlVideo=false,
+                                    Frequency = 2,
+                                }
+                            }
+                    },
                     new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2024, 10, 19),

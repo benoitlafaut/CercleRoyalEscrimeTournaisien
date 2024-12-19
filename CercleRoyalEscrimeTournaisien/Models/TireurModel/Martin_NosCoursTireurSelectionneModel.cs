@@ -18,7 +18,25 @@ namespace CercleRoyalEscrimeTournaisien
                 List<RemarqueParDate> remarquesParDateTireur = new List<RemarqueParDate>() { };
                 remarquesParDateTireur.AddRange(
                 new List<RemarqueParDate>()
-                {
+                { new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2024,11 ,16),
+                        Arme = TypeArme.Epée,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex ,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositif="Une fois que tu as touché et que tu sais comment tu as touché (c'est le plus important), utilise cette méthode très souvent. Par exemple, quand tu tires contre Félix, et que tu recules et que lui attaque, laisse ton bras allongé en visant la saignée et c'est celui qui aura le bras le plus allongé avec la pointe vers la saignée qui marquera. Une fois que tu mènes de 2 3 touches, laisse le temps défiler et laisse le attaquer. c'est lui qui perdra car tu as trouvé une stratégie pour le battre qui marche.",
+                                HasUrlVideo =false,
+                                UrlVideo = "",
+                                UrlYoutubeVideo = ""
+                            }                            
+                        }
+                    },
                      new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2024,10 ,12),

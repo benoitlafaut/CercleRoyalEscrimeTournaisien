@@ -20,6 +20,24 @@ namespace CercleRoyalEscrimeTournaisien
                 {
                     new RemarqueParDate()
                     {
+                        DateRemarque = new DateTime(2024, 12, 18),
+                        Arme = TypeArme.Epée,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                            {
+                                new RemarqueData()
+                                {
+                                    PointNégatif="Quand tu tires contre qqn de plus grand, ne charge pas comme un taureau. Il y a d'autres façons de parvenir à toucher qu'à foncer tête baissée. Plus en finesse. Au bras par exemple. en faisant des marchés fente.",
+                                    HasUrlVideo=false,
+                                    Frequency = 3,
+                                },
+                            }
+                    },
+                    new RemarqueParDate()
+                    {
                         DateRemarque = new DateTime(2024, 10, 19),
                         Arme = TypeArme.Sabre,
                         Tireur = new Tireur()

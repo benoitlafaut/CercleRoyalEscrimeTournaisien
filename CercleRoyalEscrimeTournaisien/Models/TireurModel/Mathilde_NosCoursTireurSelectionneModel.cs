@@ -17,7 +17,26 @@ namespace CercleRoyalEscrimeTournaisien
             {
                 List<RemarqueParDate> remarquesParDateTireur = new List<RemarqueParDate>() { };
                 remarquesParDateTireur.AddRange(new List<RemarqueParDate>()
-                {          
+                {   
+                    new RemarqueParDate()
+                {
+                    DateRemarque = new DateTime(2024, 12, 18),
+                    Arme = TypeArme.Epée,
+                    Tireur = new Tireur()
+                    {
+                        UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                    },
+                    RemarquesData = new List<RemarqueData>()
+                            {
+                             new RemarqueData()
+                                {
+                                    PointNégatif="Avant d'attaquer, pense à la cible où tu vas toucher. J'ai l'impression que tu démarres ton attaque souvent vers la ligne basse au lieu de viser la saignée ou l'épaule. Ecarte le fer avant d'attaquer pour que ton adversaire ne soit plus menaçant. Et avant de démarrer tes jambes, ton bras doit être allongé complètement.",
+                                    HasUrlVideo=false,
+                                    Frequency =3,
+                                },
+
+                            }
+                },
                     new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2024, 10, 9),

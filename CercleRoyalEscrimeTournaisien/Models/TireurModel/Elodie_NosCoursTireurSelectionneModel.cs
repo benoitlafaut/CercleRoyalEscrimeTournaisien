@@ -18,6 +18,25 @@ namespace CercleRoyalEscrimeTournaisien
                 List<RemarqueParDate> remarquesParDateTireur = new List<RemarqueParDate>() { };
                 remarquesParDateTireur.AddRange(new List<RemarqueParDate>()
                 {
+                     new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2024, 11, 16),
+                        Arme = TypeArme.Epée,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                                {
+                                    new RemarqueData()
+                                    {
+                                        PointNégatif="Quand on essaie de te toucher plusieurs fois au même endroit, c'est qu'il y a anguille sous roche. Soit tu corriges, soit tu le fais exprès d'amplifier ce défaut là et tu l'utilises à ton avantage.",
+                                        HasUrlVideo=false,
+                                        UrlVideo = "",
+                                        UrlYoutubeVideo = ""
+                                    },
+                                }
+                    },
                     new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2024, 9, 20),

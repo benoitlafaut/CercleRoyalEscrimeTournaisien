@@ -20,6 +20,37 @@ namespace CercleRoyalEscrimeTournaisien
                 {
                     new RemarqueParDate()
                     {
+                        DateRemarque = new DateTime(2024, 12, 18),
+                        Arme = TypeArme.Epée,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                            { 
+                                new RemarqueData()
+                                {
+                                    PointNégatif="Ne mets plus ta main non armée devant ton corps. si tu reçois un coup à ce moment-là, tu vas avoir mal. Tu es protégée. Si tu as des bleus, comme je l'ai dit à Apolline, tu peux mettre une sous-cuirasse en plus et vois si tu as moins mal. Ou essayer les protège-poitrines qu'on a à la salle, quitte à acheter quelques protège-poitrines pour enfants.",
+                                    HasUrlVideo=false,
+                                    Frequency = 7,
+                                },
+                                new RemarqueData()
+                                {
+                                    PointNégatif="N'allonge pas ton bras dès la reprise de l'assaut tout de suite. tu te fatigues pour rien. Tu n'allonges ton bras armé que quand tu attaques.",
+                                    HasUrlVideo=false,
+                                    Frequency = 1,
+                                },
+                                new RemarqueData()
+                                {
+                                    PointNégatif="Tu lèves encore ton pied arrière lors de la fente. quand tu fais une fente, laisse ton pied gauche par terre. au lieu de le lever. qu'il soit collé au sol. ",
+                                    HasUrlVideo=false,
+                                    Frequency = 4,
+                                },
+
+                            }
+                    },
+                    new RemarqueParDate()
+                    {
                         DateRemarque = new DateTime(2024, 10, 19),
                         Arme = TypeArme.Sabre,
                         Tireur = new Tireur()

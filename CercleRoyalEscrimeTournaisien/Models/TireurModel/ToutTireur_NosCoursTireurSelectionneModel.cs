@@ -23,6 +23,19 @@ namespace CercleRoyalEscrimeTournaisien
                         {
                             new RemarqueData()
                             {
+                                PointNégatif="Ayant remarqué cela plusieurs fois et récemment (en décembre), je rappelle à tout le monde que vous êtes protégés de la tête au pied. Du coup, évitez de mettre votre main non armée devant votre corps. Je parle surtout pour celles qui ont peur de recevoir un coup d'épée (Héloïse, Anaëlle, Mathilde, Maé, ...).",
+                                Frequency = 7
+                            },
+                            new RemarqueData()
+                            {
+                                PointNégatif="A l'épée, oubliez les combats de capes et d'épées à la Zorro ou les mousquetaires. L'arme est toujours dirigée vers la manchette ou la saignée avec la coquille qui protège votre avant-bras. Et l'arme n'est pas pointée ni vers les étoiles ni vers les mouettes ni même vers les fourmis par terre. Passez en dessous de la coquille quand il y a tentative de prendre votre fer par votre adversaire. Je passe en dessous de la coquille et j'allonge un peu le bras vers la manchette/saignée."
+                            },
+                            new RemarqueData()
+                            {
+                                PointNégatif="A l'épée, lorsque vous attaquez, allongez le bras et laissez le allonger. Mais en défense, quand vous subissez une attaque, fléchissez votre bras; une fois le fer adverse écarté d'une surface valable, attaquez en allongeant le bras progressivement vers une surface valable."
+                            },
+                            new RemarqueData()
+                            {
                                 PointNégatif="Lorsque vous attaquez à l'épée, c'est votre bras armé votre point fort. Si vous le fléchissez lors de l'attaque, vous perdez un avantage. laissez-le allonger jusqu'à la touche."
                             },
                             new RemarqueData()

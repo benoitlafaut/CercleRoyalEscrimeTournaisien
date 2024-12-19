@@ -20,6 +20,26 @@ namespace CercleRoyalEscrimeTournaisien
                 {
                     new RemarqueParDate()
                     {
+                        DateRemarque = new DateTime(2024, 11, 16),
+                        Arme = TypeArme.Epée,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointNégatif="Quand tu attaques, laisse ton bras allongé et ce sont les jambes qui amènent à la touche. Tu ne fléchis le bras que si tu es à bonne distance de ton adversaire. Si tu allonges le bras en même temps que tu marches, ton adversaire fixe sa pointe sur ta saignée et c'est toi qui lui apporte la touche.",
+                                HasUrlVideo=false,
+                                UrlVideo = "",
+                                UrlYoutubeVideo = "",
+                                Frequency = 5
+                            },
+                        }
+                    },
+                    new RemarqueParDate()
+                    {
                         DateRemarque = new DateTime(2024, 9, 22),
                         Arme = TypeArme.Fleuret,
                         Tireur = new Tireur()
