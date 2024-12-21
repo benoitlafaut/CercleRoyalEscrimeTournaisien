@@ -18,6 +18,27 @@ namespace CercleRoyalEscrimeTournaisien
                 List<RemarqueParDate> remarquesParDateTireur = new List<RemarqueParDate>() { };
                 remarquesParDateTireur.AddRange(new List<RemarqueParDate>()
                 {
+                     new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2024, 12, 20),
+                        Arme = TypeArme.Epée,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                            {
+                                new RemarqueData()
+                                {
+                                    PointNégatif="Quand tu as le bras allongé ou quand tu l'allonges, ne tourne pas ton pouce qui doit être à 11h tout le temps mais surtout utilise ton poignet pour longer la pointe tout autour de la coquille et ne te sers pas de tout ton avant-bras. Au plus petit c'est, au mieux c'est quand tu dégages.",
+                                    HasUrlVideo=false,
+                                    UrlVideo = "",
+                                    Frequency = 5,
+                                    UrlYoutubeVideo = ""
+                                },
+
+                            }
+                    },
                     new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2024, 10, 20),

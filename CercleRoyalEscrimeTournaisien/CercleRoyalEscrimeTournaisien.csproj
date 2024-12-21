@@ -1035,6 +1035,7 @@
     <Content Include="home\photos\PhotosDemarrage\7.jpg" />
     <Content Include="home\photos\PhotosDemarrage\8.jpg" />
     <Content Include="home\photos\PhotosDemarrage\9.jpg" />
+    <Content Include="home\photos\PhotosDemarrage\happyNewYear2025.JPG" />
     <Content Include="Scripts\Accueil.js" />
     <Content Include="Scripts\5d93eb1089.js" />
     <Content Include="Scripts\NosCours.js" />

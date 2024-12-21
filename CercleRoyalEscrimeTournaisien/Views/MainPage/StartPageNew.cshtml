@@ -2,6 +2,7 @@
 @{
     var urlPath = Url.Content("~/Home/Photos/Entree/");
     var communeTournaiPNG = Url.Content("~/Home/Photos/NewEpub28012024/CommuneTournai.PNG");
+    var happyNewYear2025 = Url.Content("~/Home/Photos/PhotosDemarrage/happyNewYear2025.JPG");
 }
 <html>
 <head>
@@ -85,7 +86,7 @@
 
     <footer class="classFooter">
         <div class="contact">
-            <div style=" float: left; font-size: 14px; position: relative; width: 50%;">
+            <div id="divBeforeHappyNewYear" style=" float: left; font-size: 14px; position: relative; width: 50%;">
                 <p style="text-align:center">Pour tout renseignement, vous pouvez nous contacter:</p>
                 <p style="text-align:center">
                     Via notre maître d'Armes <br>
@@ -101,7 +102,9 @@
                 </p>
             </div>
 
-            <div style=" font-size: 14px; width: 50%; ">
+            <img id="imgHappyNewYear" style="width: 250px;display: block;" src="@happyNewYear2025" />
+
+            <div id="divAfterHappyNewYear" style=" font-size: 14px; width: 50%; ">
                 <p style="text-align:center">
                     Avec le soutien de la Ville de Tournai
                 </p>

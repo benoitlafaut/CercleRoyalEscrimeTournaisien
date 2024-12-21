@@ -18,6 +18,25 @@ namespace CercleRoyalEscrimeTournaisien
                 List<RemarqueParDate> remarquesParDateTireur = new List<RemarqueParDate>() { };
                 remarquesParDateTireur.AddRange(new List<RemarqueParDate>()
                 {
+                     new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2024, 12, 20),
+                        Arme = TypeArme.Epée,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                            {
+                                new RemarqueData()
+                                {
+                                    PointNégatif="Juste un point d'attention, tu n'es pas obligée d'avoir le bras allongé alors que tu es à 3 ou 4 mètres de ton adversaire, de un tu épuises ton bras, de deux cela ne sert à rien de l'avoir déjà allongé à ce moment là. Allonge-le dès que c'est nécessaire.",
+                                    HasUrlVideo=false,
+                                    UrlVideo = "",
+                                    UrlYoutubeVideo = ""
+                                },
+                            }
+                    },
                     new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2024, 12, 18),

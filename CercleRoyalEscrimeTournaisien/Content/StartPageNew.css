@@ -184,5 +184,22 @@
     .dropbtn {
         font-size: 11px!important;
     }
+    .contact {
+        display: block;      
+    }
+
+    #divAfterHappyNewYear {
+        width: 100% !important;
+    }
+    #divBeforeHappyNewYear {
+        width: 100% !important;
+    }
+
+    #imgHappyNewYear {
+        width: 50% !important;
+        display: block !important;
+        left: 25% !important;
+        position: relative !important;
+    }
 }
 

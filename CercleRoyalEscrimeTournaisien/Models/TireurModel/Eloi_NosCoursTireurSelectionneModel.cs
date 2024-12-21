@@ -16,7 +16,26 @@ namespace CercleRoyalEscrimeTournaisien
             {
                 List<RemarqueParDate> remarquesParDateTireur = new List<RemarqueParDate>() { };
                 remarquesParDateTireur.AddRange(new List<RemarqueParDate>()
-                {
+                { 
+                    new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2024, 12, 20),
+                        Arme = TypeArme.Epée,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                            {
+                                new RemarqueData()
+                                {
+                                    PointNégatif="n'oublie pas que quand tu es en garde, ton pied droit est perpendiculaire au pied gauche. et ton coude devant le corps. Tu peux t'exercer dans un miroir en étant en garde devant. le coude est devant le corps ni au milieu ni à l'extérieur. La main armée et le coude armé à la même hauteur par rapport au sol. et la main est sortie pour que la coquille puisse protéger ton avant-bras.",
+                                    HasUrlVideo=false,
+                                    UrlVideo = "",
+                                    UrlYoutubeVideo = ""
+                                },
+                            }
+                    },
                     new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2024,11 ,16),
