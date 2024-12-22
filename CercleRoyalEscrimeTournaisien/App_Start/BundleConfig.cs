@@ -31,6 +31,12 @@ namespace CercleRoyalEscrimeTournaisien
 
             bundles.Add(new ScriptBundle("~/bundles/ReadEpub28012024JS")
                 .Include("~/Scripts/ReadEpub28012024.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/DicoJS")
+               .Include("~/Scripts/dico.js"));
+
+            bundles.Add(new StyleBundle("~/styles/DicoCss")
+               .Include("~/Content/Dico.css"));
         }
     }
 }

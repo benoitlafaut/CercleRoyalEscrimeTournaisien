@@ -59,3 +59,7 @@ function clickOnWorld(element) {
         }
     });
 }
+
+function ChangeTexte() {
+    window.location.href = 'https://www.fsolver.fr/mots-fleches/' + $("#WorldInput").val();
+}

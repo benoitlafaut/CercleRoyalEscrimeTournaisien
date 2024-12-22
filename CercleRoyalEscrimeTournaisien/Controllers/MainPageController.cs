@@ -483,7 +483,7 @@ namespace CercleRoyalEscrimeTournaisien
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> LogonControl(ModelLogon model, string returnUrl)
+        public  ActionResult LogonControl(ModelLogon model, string returnUrl)
         {
             ModelLogonValidator modelLogonValidator = new ModelLogonValidator();
             ValidationResult validationResult = modelLogonValidator.Validate(model);
