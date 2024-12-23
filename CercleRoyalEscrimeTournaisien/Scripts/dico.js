@@ -1,65 +1,71 @@
 ﻿$(document).ready(function () {
-    $('#WordInputOne').keydown(function (event) {
-        if (event.keyCode === 13) {
-            searchWords();
+    startDictation();
+
+    $('#WorldInput').keydown(function (e) {
+        var keyCode = e.keyCode || e.which;
+        if (keyCode == 13) {
+            OpenSiteFSolver();
+            return false;
         }
     });
 });
 
-
-function searchWords() {
-    var url = 'https://thesaurus.altervista.org/thesaurus/v1?word=' + $("#WordInputOne").val() + '&language=fr_FR&output=json&key=n5zInINluKKTDBfvgrrD';
-    $('#divDicoPart2').empty();
-    $.ajax({
-        url: url,
-        type: 'GET',
-        cache: false,
-        dataType: 'json',
-        success: function (response) {
-            var result = [];
-            result = response.response[0].list.synonyms.split("|");
-
-            result.sort(function (a, b) {
-                return a.length - b.length;
-            });
-
-            $("#summaryOfResults").empty();
-            for (var i = 0; i < result.length; i++) {                
-                $('#summaryOfResults').append('<ul onclick=' + 'clickOnWorld(this)' + '><li>' + result[i] + '  (' + result[i].length + ' lettres)' + '</li></ul>');
-            }
-        },
-        error: function (response) {
-            alert("Error. " + response.responseText);
-        }
-    });
+function OpenSiteFSolver() {
+    var text = $("#WorldInput").val().replaceAll(' ', '*');
+    var targetLink = 'https://www.fsolver.fr/mots-fleches/' + text;
+    window.open(targetLink, '_blank', '');
 }
 
-function clickOnWorld(element) {
-    var textSelected = $(element).find('li').text();
-    $('#divDicoPart2').empty();
-    var data = [];
-    data.push({ name: "wordInputOne", value: textSelected });
+var recognizing = false;
 
-    $.ajax({
-        url: "/MainPage/searchWorlds",
-        type: 'GET',
-        cache: false,
-        data: data,
-        dataType: 'json',
-        success: function (response) {
-            
-            for (i = 0; i < response.wordsOutputList.length; ++i)
-            {         
-                var spanText = '<span style="white-space:pre">' + response.wordsOutputList[i].Definition + '</span><hr>';
-                $('#divDicoPart2').append(spanText);
+if ('webkitSpeechRecognition' in window) {
+
+    var recognition = new webkitSpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+
+    recognition.onstart = function () {
+        recognizing = true;
+    };
+
+    recognition.onerror = function (event) {
+        console.log(event.error);
+    };
+
+    recognition.onend = function () {
+        recognizing = false;
+    };
+
+    recognition.onresult = function (event) {
+        if (event.results[event.results.length - 1].isFinal) {
+            if (event.results[event.results.length - 1][0].transcript.trim().toLowerCase() == "chercher") {
+                $("#WorldInput").val($("#WorldInputTemporaire").val());
+                OpenSiteFSolver();
+                return false;
             }
-        },
-        error: function (response) {
-            alert("Error. " + response.responseText);
+            else {
+                if (event.results[event.results.length - 1][0].transcript.trim().toLowerCase() == "effacer") {
+                    $("#WorldInputTemporaire").val('');
+                    $("#WorldInput").val('');
+                    return false;
+                }
+                else {
+                    var textToDictate = $("#WorldInputTemporaire").val() + event.results[event.results.length - 1][0].transcript;
+                    $("#WorldInputTemporaire").val(textToDictate);
+                }
+            }
         }
-    });
+    };
 }
 
-function ChangeTexte() {
-    window.location.href = 'https://www.fsolver.fr/mots-fleches/' + $("#WorldInput").val();
+function startDictation() {
+    if (recognizing) {
+        recognition.stop();
+        return;
+    }
+    final_transcript = '';
+    recognition.lang = 'fr-FR';
+    recognition.start();
+    //final_span.innerHTML = '';
+   // interim_span.innerHTML = '';
 }

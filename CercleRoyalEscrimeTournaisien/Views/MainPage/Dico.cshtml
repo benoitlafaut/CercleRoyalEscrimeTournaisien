@@ -2,14 +2,6 @@
 
 @model ModelViewDico
 
-@*@Styles.Render("~/styles/myStylessheet.css")
-    @Styles.Render("~/styles/StyleTranslateOtherLangue.css")
-    @Styles.Render("~/styles/newbootstrap.css")
-    @Styles.Render("~/styles/dicodictate.css")*@
-
-
-
-
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
@@ -26,53 +18,21 @@
 @Styles.Render("~/styles/DicoCss")
 @Scripts.Render("~/bundles/DicoJS")
 
-@*<div id="divDico">
-        <div style="text-align:right;">
-            <i class="fa fa-bars fa-beat" onclick="ShowStartPage();" style="color: red; font-size: 30px;"></i>
-        </div>
 
-        <div style=" height: 95%; width: 99%; overflow-x: hidden; ">
-            <div class="row" style="margin-bottom: 10px;">
-                @Html.TextBoxFor(x => x.WordInputOne, new { @class = "form-control" })
-                <button class="btn btn-primary" type="button" id="btnClear" onclick="$('#WordInputOne').val('');">Clear</button>
-                <button class="btn btn-primary" type="button" id="btnSearch" onclick="searchWords();">Search définitions</button>
-            </div>
-        </div>
-
-        <table id='summaryOfResults' style="border: 1px solid black; width: 92%; margin-left: 4%; overflow-x: scroll; display: block; height: 400px;">
-        </table>
-    </div>
-
-    <div id="divDicoPart2" style="margin-top: 50px; width: 92%; margin-left: 4%; border: 1px solid black; height: 400px; overflow: scroll; "></div>*@
-
-<!--<div onclick="startDictation();" class="classTitreDicter">-->
-@*<a href="#" id="start_button" onclick="startDictation();">Dicter</a>*@
-<!--<label>Dicter</label>
+<div class="divParagraphe">
+    <label>Text temporaire dicté</label>
+    @Html.TextBoxFor(m => m.WorldInputTemporaire)
 </div>
 
-<label style="display:none">Texte temporaire: </label>
-<div style="display:none" class="textDico">
-    <label id="interim_span" class="interim"></label>
+<div class="divParagraphe">
+    <label>Text final à chercher</label>
+    @Html.TextBoxFor(m => m.WorldInput)
 </div>
 
-<label>Texte final: </label>
-<div class="textDico">
-    <label id="final_span" class="final"></label>
-</div>-->
-
-@Html.TextBoxFor(r => r.WorldInput)
-
-<div>
-    @*<iframe id="iframeMaps" src="https://www.fsolver.fr/mots-fleches/" height="450" loading="lazy" sandbox="allow-same-origin allow-scripts allow-popups allow-forms" referrerpolicy="no-referrer-when-downgrade">
-    </iframe>*@
-
-    @*<object data="mypdf.pdf" type="application/pdf" width="100%" height="600px" style="padding:20px;">
-        <embed id="framePDF" src="https://www.fsolver.fr/mots-fleches/" style="position: fixed;width:99%;height:94%">
-
-    </object>*@
+<div class="divParagraphe">
+    <button class="btn btn-primary" type="button" id="btnSearch" onclick="OpenSiteFSolver();">Search définitions</button>
 </div>
 
-<button class="btn btn-primary" type="button" id="btnSearch" onclick="ChangeTexte();">Search définitions</button>
-
-
-@*<script src="~/Scripts/dico.js" type="text/javascript"></script>*@
+<div class="divParagraphe">
+    <button class="btn btn-primary" type="button" id="btnRestartDictate" onclick="startDictation();">Start Dictate</button>
+</div>

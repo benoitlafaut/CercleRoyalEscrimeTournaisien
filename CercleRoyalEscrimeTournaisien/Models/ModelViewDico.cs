@@ -13,6 +13,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
         public string WordInputOne { get; set; }
         public string WordInputTwo { get; set; }
         public string WorldInput { get; set; }
+        public string WorldInputTemporaire { get; set; }        
 
         public List<classWord> WordsOutputList { get; set; }
 

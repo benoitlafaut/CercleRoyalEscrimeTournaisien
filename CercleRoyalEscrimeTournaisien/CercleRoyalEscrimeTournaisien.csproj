@@ -364,6 +364,7 @@
     <Content Include="Content\Accueil.css" />
     <Content Include="Content\bootstrap-select.min.css" />
     <Content Include="Content\DicoPlayer.css" />
+    <Content Include="Content\Dico.css" />
     <Content Include="Content\karaoke.css" />
     <Content Include="Content\NosCoursMultiColor.css" />
     <Content Include="Content\NosCours.css" />
