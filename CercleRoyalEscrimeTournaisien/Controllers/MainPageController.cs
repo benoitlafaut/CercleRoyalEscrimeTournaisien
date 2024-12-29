@@ -402,7 +402,7 @@ namespace CercleRoyalEscrimeTournaisien
                 RowsToRead = (ChangeCharactesr(result).Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries)).ToList(),
                 TitreLivre = Request.Files[0].FileName
             };
-         
+
             return Json(new { rowsToRead = modelEpub20042023.RowsToRead }, JsonRequestBehavior.AllowGet);
         }
 

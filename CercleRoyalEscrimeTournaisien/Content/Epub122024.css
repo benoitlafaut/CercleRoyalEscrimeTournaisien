@@ -1,0 +1,194 @@
+﻿select {
+    font-family: fontAwesome
+}
+
+@media screen and (max-width: 767px) {
+    .ClassSlider {
+        top: 96%;
+        position: fixed;
+        width: 90%;
+        left: 5%;
+    }
+
+    .TreeMainExpand {
+        background-color: peachpuff;
+        width: 100%;
+        height: 300px;
+    }
+
+    #divMain{
+        font-size:14px;
+    }
+
+    .ClassTDText {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        font-size: 13px;
+        position: relative;
+        left: 31px;
+    }
+
+    .divLoadingButton {
+        width: 20em;
+        height: 10em;
+        position: fixed;
+        top: 39%;
+        font-size: 12px;
+        left: 25%;
+    }
+
+    .ClassModalContent {
+        overflow-y: scroll;
+        height: 87%;
+        top: 7%;
+        left: 5%;
+        width: 90%;
+    }
+
+    .ClassStyleSound {
+        font-size: 1.8em !important;
+        position: fixed;
+        margin-left: 5px;
+    }
+
+    .ClassDivText {
+        height: 80px;
+    }
+}
+
+@media screen and (min-width: 767px) {
+    .ClassDivText {
+        height: 40px;
+    }
+
+    .ClassModalContent {
+        overflow-y: scroll;
+        height: 71%;
+        top: 9%;
+        left: 7%;
+        width: 87%;
+    }
+
+    .ClassSlider {
+        top: 96%;
+        position: fixed;
+        width: 90%;
+        left: 5%;
+    }
+
+    .TreeMainExpand {
+        background-color: peachpuff;
+        width: 19%;
+        font-size: 13px;
+        height: 300px;
+    }
+
+    .ClassTDText {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        font-size: 16px;
+        position: relative;
+        left: 31px;
+    }
+
+    .divLoadingButton {
+        width: 20em;
+        height: 10em;
+        position: fixed;
+        left: 39%;
+        top: 39%;
+        font-size: 12px;
+    }
+
+    .ClassStyleSound {
+        font-size: 2.5em !important;
+        position: fixed;
+        margin-left: 5px;
+    }
+}
+
+.plus, .minus, .ClassSound {
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: 25px 25px !important;
+    width: 25px;
+    height: 25px;
+}
+
+
+
+.plus {
+    background-image: url(https://img.icons8.com/?size=100&id=aWZy3jlAFSa9&format=png&color=000000);
+}
+
+.minus {
+    background-image: url(https://img.icons8.com/?size=100&id=gzeZVqbrQKDg&format=png&color=000000);
+}
+
+ul {
+    list-style: none;
+    padding: 0px 0px 0px 20px;
+}
+
+ul li {    
+    margin-bottom:2px;
+}   
+
+.inner_ul {
+    padding: 0px 0px 0px 20px;
+}
+
+.ClassTextNode {
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 14px;
+}
+
+.TreeMainCollapse {
+    background-color:  none;
+    width: none;
+}
+
+.ClassMarginRight {
+    margin-right: 10px;
+}
+
+hrben {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 2em 0;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.ClassTextPopup {
+    margin-left: 15px;
+    border: 0px;
+    font-size: 13px;
+    width: 92%;
+}
+
+.ClassMotPopup {
+    font-family: Courier New;
+    font-size: 13px;
+}
+
+
+
+.ClassTitleText {
+    width: 34px;
+    float: left;
+    margin-left: 10px;
+}
+
+.ClassText {
+    left: 60px;
+    position: absolute;
+}
+
+.ClassListeDesLangues {
+    width: 100px;
+    display: inline-block;
+}

@@ -1,0 +1,55 @@
+﻿@model CercleRoyalEscrimeTournaisien.Models.ModelEpub122024
+
+@Html.HiddenFor(m => m.CurrentStep)
+@Html.HiddenFor(m => m.CurrentStepToListen)
+
+<table style="display:block">
+    @for (int i = Model.CurrentStep; i < Model.CurrentStepFinal; i++)
+    {
+        <tr>
+            <td class="ClassTDText">
+                <i class='fa fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 3px;' onclick="ListenSentence('@Model.RowsToRead[i].Replace("\'", "&#39")', 'false');"></i>
+                @{
+                    var WordsInSentence = @Model.RowsToRead[i].Split(' ');
+                }
+
+                @foreach (var word in WordsInSentence)
+                {
+                    <span class="ClassWord" onclick="ClickRow(this, '@Model.RowsToRead[i].Replace("\'", "&#39")');" style="user-select: all;">@word</span>
+                }
+
+                @Html.HiddenFor(m => m.RowsToRead[i])
+            </td>
+        </tr>
+    }
+</table>
+
+<div>
+    @{Html.RenderPartial("TraductionPopup", Model);}
+</div>
+
+<script>
+    $(document).ready(function () {
+        var modal = document.getElementById("myModalTraductionPopup");
+        modal.style.display = "none";
+
+        $("#inputRange").attr('max', @Model.RowsToRead.Count);
+        $("#inputRange").val(@Model.CurrentStep);
+        $(".ClassSound").css('display', @Model.RowsToRead.Count == 0 ? 'none' : 'inline-block');
+
+        $(".close").click(function () {
+            var modal = document.getElementById("myModalTraductionPopup");
+            modal.style.display = "none";
+        });
+
+        $(document).click(function (e) {
+            if (e.target.className != 'ClassWord') {
+                if (!$(e.target).closest(".modal-content").length) {
+                    var modal = document.getElementById("myModalTraductionPopup");
+                    modal.style.display = "none";
+                }
+            }
+
+        });
+    });
+</script>

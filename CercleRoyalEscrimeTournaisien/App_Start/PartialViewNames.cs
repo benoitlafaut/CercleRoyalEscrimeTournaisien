@@ -22,5 +22,7 @@
         public const string NosCoursTireurSelectionnePointPositif = "NosCoursTireurSelectionnePointPositif";
         public const string NosCoursTireurSelectionnePointNegatif = "NosCoursTireurSelectionnePointNegatif";
         public const string NosCoursTireurSelectionnePointDAttentionPourTous = "NosCoursTireurSelectionnePointDAttentionPourTous";
+        public const string Epub122024_Entete = "Epub122024_Entete";
+        public const string Epub122024_Body = "Epub122024_Body";
     }
 }

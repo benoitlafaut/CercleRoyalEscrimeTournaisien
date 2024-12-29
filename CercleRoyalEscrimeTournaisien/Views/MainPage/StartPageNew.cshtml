@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 @{
-    var urlPath = Url.Content("~/Home/Photos/Entree/");
+    var urlPath = Url.Content("~/Home/Photos/NewEntree/");
     var communeTournaiPNG = Url.Content("~/Home/Photos/NewEpub28012024/CommuneTournai.PNG");
     var happyNewYear2025 = Url.Content("~/Home/Photos/PhotosDemarrage/happyNewYear2025.JPG");
 }
@@ -44,31 +44,30 @@
             </div>
         </div>
     </div>
-    <div id="spanTitre"><span>Le Cercle Royal d'Escrime de Tournai vous accueille à l'école de Don Bosco, 37 Rue des Augustins.</span></div>
+    <div id="spanTitre"><span>Le Cercle Royal d'Escrime de Tournai vous accueille à l'école communale du Château, 33 Avenue Leray.</span></div>
 
     <div id="divGeneralForPhotosAndMaps" style="width:100%;">
         <div id="planAndPhotos" style="float:left">
             <h1 style="text-align: center; ">Voici le plan</h1>
-            <iframe id="iframeMaps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d621.4518894714855!2d3.379912655012422!3d50.60922253256725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c2dfe7620637e1%3A0xba117a921f7647c0!2sSalle%20des%20Sports%20Don%20Bosco!5e1!3m2!1sfr!2sbe!4v1713274280931!5m2!1sfr!2sbe" height="450" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-
-            <div style="margin-left: 10px;">
-                <input type="checkbox" id="checkboxNouvelleSalle" name="checkboxNouvelleSalle" onclick="ChangeSalle();" />
-                <label id="labelNouvelleSalle" for="checkboxNouvelleSalle">Ancienne Salle (jusqu'au 22 décembre 2024)</label>
-            </div>
+            <iframe id="iframeMaps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2854.771919283993!2d3.387963612463313!3d50.61384077150552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c2e00a4ae7319d%3A0x560260c151f31a6c!2s%C3%89cole%20communale%20du%20Ch%C3%A2teau!5e1!3m2!1sfr!2sbe!4v1732826174445!5m2!1sfr!2sbe" height="450" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>           
         </div>
         <div id="planAndPhotos" class="slider-img" style="float:right">
             <h1 style="text-align: center; ">Et l'accès à notre salle actuelle</h1>
             <div style="display:flex;">
                 <div id="colonne" style=" width: 3%; float: left; text-align: right;"></div>
                 <div id="divPreviousButton"><button id="prev_button" onclick="passToPreviousPhoto();">❮</button></div>
-                <div id="difForImage" style="background-image: url('/Home/Photos/Entree/1.jpg');float:left;"></div>
+                <div id="difForImage" style="background-image: url('/Home/Photos/NewEntree/1.jpg');float:left;"></div>
                 <div id="divNextButton" style=" float: left; width: 5%; "><button id="next_button" onclick="passToNextPhoto();">❯</button></div>
             </div>
         </div>
     </div>
 
-    <div id="spanTitre" style="margin-bottom:15px;font-size:15px;"><span>Les entraînements se font</span></div>
+    <div id="spanTitre" style="margin-bottom:15px;font-size:15px;">
+        <span class="ClassSpanTitreFirst">Pour toutes catégories, </span>
+        <span>les entraînements se font</span>
+    </div>
+
     <div id="">
         <div style="text-align:center;">
             <label style=" min-width: 162px; display: inline-grid;">Les mercredis</label>
@@ -116,23 +115,13 @@
 </html>
 
 <script>
-function ChangeSalle() {
-    if ($("#checkboxNouvelleSalle:checked").length == 1) {
-        $("#iframeMaps").prop('src', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2854.771919283993!2d3.387963612463313!3d50.61384077150552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c2e00a4ae7319d%3A0x560260c151f31a6c!2s%C3%89cole%20communale%20du%20Ch%C3%A2teau!5e1!3m2!1sfr!2sbe!4v1732826174445!5m2!1sfr!2sbe');
-        $("#labelNouvelleSalle").text("Nouvelle Salle (à partir du 1 janvier 2025) ");
-    }
-    else {
-        $("#iframeMaps").prop('src', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d621.4518894714855!2d3.379912655012422!3d50.60922253256725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c2dfe7620637e1%3A0xba117a921f7647c0!2sSalle%20des%20Sports%20Don%20Bosco!5e1!3m2!1sfr!2sbe!4v1713274280931!5m2!1sfr!2sbe');
-        $("#labelNouvelleSalle").text("Ancienne Salle (jusqu'au 22 décembre 2024) ");
-    }   
-}
 
 function passToPreviousPhoto() {
     $("#difForImage").animate({
         opacity: 0.1,
     }, 1500, function () {
         position = +$("#PhotoDepart").val() - 1;
-        if (position == 0) { position = 18; }
+        if (position == 0) { position = 4; }
 
         var url = '@urlPath' + position + '.jpg';
         $("#difForImage").css("background-image", "url(" + url + ")");
@@ -146,7 +135,7 @@ function passToNextPhoto() {
         opacity: 0.1,
     }, 1500, function () {
         position = +$("#PhotoDepart").val() + 1 ;
-        if (position == 19) { position = 1; }
+        if (position == 5) { position = 1; }
         var url = '@urlPath' + position + '.jpg';
         $("#difForImage").css("background-image", "url(" + url + ")"  );
         $("#difForImage").css("opacity", "1");

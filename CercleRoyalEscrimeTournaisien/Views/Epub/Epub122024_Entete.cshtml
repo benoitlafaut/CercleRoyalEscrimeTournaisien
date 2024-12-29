@@ -1,0 +1,55 @@
+﻿@{
+    var urlConvert = Url.Content("~/Home/Photos/NewEpub28012024/convert.png");
+    var urlOpen = Url.Content("~/Home/Photos/NewEpub28012024/open.png");
+}
+
+<div id="divMain" class="TreeMainCollapse">
+    <ul id="ulToExpandCollapse" onclick="ExpandCollapse(this);">
+        <li>
+            <span class="plus">&nbsp;</span>
+            <i onclick="StartPlayAllSentence();" class="ClassSound ClassStyleSound fa fa-volume-up" aria-hidden="true"></i>
+            <ul style="display: none">
+                <li>
+                    <span class="plus">&nbsp;</span>
+                    <span>Traitement du fichier </span>
+                    <ul style="display: none; font-size: 14px;" class="inner_ul">
+                        <li>
+                            <span id="SpanConvertEpub" class="ClassTextNode">Convertir Epub en texte</span>
+                        </li>
+                        <li>
+                            <span id="SpanSelectEpub" class="ClassTextNode">Charger roman format texte</span>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="plus">&nbsp;</span>
+                    <span>Liste des langues</span>
+                    <ul style="display: none" class="inner_ul">
+                        <li>
+                            <span class="ClassListeDesLangues">&nbsp;Français</span><input style="margin-right: 5px;" type="radio" id="languageDefaultFR" value="1" checked name="languageDefault" /><span>Langue par défaut</span>
+                        </li>
+                        <li>
+                            <span class="ClassListeDesLangues">&nbsp;Anglais</span><input style="margin-right: 5px;" type="radio" id="languageDefaultEN" value="2" name="languageDefault" /><span>Langue par défaut</span>
+                        </li>
+                        <li>
+                            <span class="ClassListeDesLangues">&nbsp;Néerlandais</span><input style="margin-right: 5px;" type="radio" id="languageDefaultNL" value="3" name="languageDefault" /><span>Langue par défaut</span>
+                        </li>
+                        <li>
+                            <span class="ClassListeDesLangues">&nbsp;Espagnol</span><input style="margin-right: 5px;" type="radio" id="languageDefaultES" value="4" name="languageDefault" /><span>Langue par défaut</span>
+                        </li>
+                        <li>
+                            <span class="ClassListeDesLangues">&nbsp;Allemand</span><input style="margin-right: 5px;" type="radio" id="languageDefaultDE" value="5" name="languageDefault" /><span>Langue par défaut</span>
+                        </li>
+                        <li>
+                            <span class="ClassListeDesLangues">&nbsp;Italien</span><input style="margin-right: 5px;" type="radio" id="languageDefaultIT" value="6" name="languageDefault" /><span>Langue par défaut</span>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div class="classInputFile">
+    <input type="file" title=" " id="inputFile" name="inputFile" style="display:none;" />
+</div>

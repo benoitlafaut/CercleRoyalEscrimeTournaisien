@@ -198,6 +198,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="ClassPublic\IndexTireurConstantes.cs" />
     <Compile Include="ClassPublic\Constantes.cs" />
+    <Compile Include="Controllers\EpubController.cs" />
     <Compile Include="Controllers\MainPageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Epub\CreateEpub.cs" />
@@ -278,6 +279,7 @@
     <Compile Include="GestionClubClass\GuidConstantes.cs" />
     <Compile Include="GestionClubClass\JoursDePrésence.cs" />
     <Compile Include="GestionClubClass\ListGuidTireur.cs" />
+    <Compile Include="Models\ModelEpub122024.cs" />
     <Compile Include="Models\TireurModel\Eliot_NosCoursTireurSelectionneModel.cs" />
     <Compile Include="Models\TireurModel\Elodie_NosCoursTireurSelectionneModel.cs" />
     <Compile Include="Models\TireurModel\ToutTireur_NosCoursTireurSelectionneModel.cs" />
@@ -365,6 +367,7 @@
     <Content Include="Content\bootstrap-select.min.css" />
     <Content Include="Content\DicoPlayer.css" />
     <Content Include="Content\Dico.css" />
+    <Content Include="Content\Epub122024.css" />
     <Content Include="Content\karaoke.css" />
     <Content Include="Content\NosCoursMultiColor.css" />
     <Content Include="Content\NosCours.css" />
@@ -1001,6 +1004,10 @@
     <Content Include="home\photos\ImagesPourCours\lesvaleursdelescrime.jpg" />
     <Content Include="home\photos\ImagesPourCours\plan.jpg" />
     <Content Include="home\photos\ImagesPourCours\reglesdesecurité.jpg" />
+    <Content Include="home\photos\NewEntree\1.JPG" />
+    <Content Include="home\photos\NewEntree\2.JPG" />
+    <Content Include="home\photos\NewEntree\3.JPG" />
+    <Content Include="home\photos\NewEntree\4.JPG" />
     <Content Include="home\photos\NewEpub28012024\arrowLeft.PNG" />
     <Content Include="home\photos\NewEpub28012024\arrowRight.PNG" />
     <Content Include="home\photos\NewEpub28012024\CommuneTournai.png" />
@@ -1039,6 +1046,7 @@
     <Content Include="home\photos\PhotosDemarrage\happyNewYear2025.JPG" />
     <Content Include="Scripts\Accueil.js" />
     <Content Include="Scripts\5d93eb1089.js" />
+    <Content Include="Scripts\Epub122024.js" />
     <Content Include="Scripts\NosCours.js" />
     <Content Include="Scripts\mainPage.js" />
     <Content Include="Scripts\ExpandViewPDFPage.js" />
@@ -1203,6 +1211,10 @@
     <Content Include="Views\MainPage\NosCoursTireurSelectionnePointDAttentionPourTous.cshtml" />
     <Content Include="Views\MainPage\Karaoke.cshtml" />
     <Content Include="Views\MainPage\ModalPopup.cshtml" />
+    <Content Include="Views\Epub\Epub122024.cshtml" />
+    <Content Include="Views\Epub\Epub122024_Entete.cshtml" />
+    <Content Include="Views\Epub\Epub122024_Body.cshtml" />
+    <Content Include="Views\Epub\TraductionPopup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
