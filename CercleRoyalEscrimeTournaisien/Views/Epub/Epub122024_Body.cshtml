@@ -3,7 +3,7 @@
 @Html.HiddenFor(m => m.CurrentStep)
 @Html.HiddenFor(m => m.CurrentStepToListen)
 
-<table style="display:block">
+<table style="display:block;overflow:hidden;">
     @for (int i = Model.CurrentStep; i < Model.CurrentStepFinal; i++)
     {
         <tr>

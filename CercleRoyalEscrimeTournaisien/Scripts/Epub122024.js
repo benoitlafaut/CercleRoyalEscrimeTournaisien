@@ -1,5 +1,7 @@
 ﻿$(document).ready(function () {
     config.speakSelectedText = false;
+    config.welcomeMessage = "";
+
     $(".plus").click(function () {
         $(this).toggleClass("minus").siblings("ul").toggle();
     })
@@ -151,7 +153,8 @@ function ClickRow(element, sentence) {
     var phraseFR = sentence.replaceAll("&#39", "'");
 
     if (motFR != '') {  
-        $(".ClassText").text('');
+        $(".ClassTextWord").text('');
+        $(".ClassTextSentence").text('');
 
         if ($("input:radio[name='languageDefault']:checked").val() != "1") {
             GetFrenchFromOtherLanguage(motFR, phraseFR);           
