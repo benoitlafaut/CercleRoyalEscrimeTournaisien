@@ -205,6 +205,12 @@ function ClickRow(element, sentence) {
             $("#MotES_Sound").off("click");
             $("#PhraseES_Sound").off("click");
 
+            responsiveVoice.speak(motFR, GetVoiceForResponsive("spa"));
+
+            $("#MotES").css('color', 'blue');
+            $("#PhraseES").css('color', 'blue');
+            $("#PhraseES").prev('.ClassTitleText').css('color', 'blue');
+
             $('#MotES_Sound').click(function () {
                 responsiveVoice.speak(motFR, GetVoiceForResponsive("spa"));
             });
@@ -227,6 +233,12 @@ function ClickRow(element, sentence) {
             $("#MotEN_Sound").off("click");
             $("#PhraseEN_Sound").off("click");
 
+            $("#MotEN").css('color', 'blue');
+            $("#PhraseEN").css('color', 'blue');
+            $("#PhraseEN").prev('.ClassTitleText').css('color', 'blue');
+
+            responsiveVoice.speak(motFR, GetVoiceForResponsive("eng"));
+
             $('#MotEN_Sound').click(function () {
                 responsiveVoice.speak(motFR, GetVoiceForResponsive("eng"));
             });
@@ -246,8 +258,14 @@ function ClickRow(element, sentence) {
             $("#MotDE").text(motFR);
             $("#PhraseDE").text(phraseFR);
 
+            $("#MotDE").css('color','blue');
+            $("#PhraseDE").css('color', 'blue');
+            $("#PhraseDE").prev('.ClassTitleText').css('color', 'blue');
+
             $("#MotDE_Sound").off("click");
             $("#PhraseDE_Sound").off("click");
+
+            responsiveVoice.speak(motFR, GetVoiceForResponsive("ger"));
 
             $('#MotDE_Sound').click(function () {
                 responsiveVoice.speak(motFR, GetVoiceForResponsive("ger"));
@@ -271,6 +289,12 @@ function ClickRow(element, sentence) {
             $("#MotNL_Sound").off("click");
             $("#PhraseNL_Sound").off("click");
 
+            $("#MotNL").css('color', 'blue');
+            $("#PhraseNL").css('color', 'blue');
+            $("#PhraseNL").prev('.ClassTitleText').css('color', 'blue');
+
+            responsiveVoice.speak(motFR, GetVoiceForResponsive("dut"));
+
             $('#MotNL_Sound').click(function () {
                 responsiveVoice.speak(motFR, GetVoiceForResponsive("dut"));
             });
@@ -292,6 +316,12 @@ function ClickRow(element, sentence) {
 
             $("#MotIT_Sound").off("click");
             $("#PhraseIT_Sound").off("click");
+
+            $("#MotIT").css('color', 'blue');
+            $("#PhraseIT").css('color', 'blue');
+            $("#PhraseIT").prev('.ClassTitleText').css('color', 'blue');
+
+            responsiveVoice.speak(motFR, GetVoiceForResponsive("ita"));
 
             $('#MotIT_Sound').click(function () {
                 responsiveVoice.speak(motFR, GetVoiceForResponsive("ita"));
