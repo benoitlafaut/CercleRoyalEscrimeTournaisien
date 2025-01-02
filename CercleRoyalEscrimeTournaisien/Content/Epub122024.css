@@ -3,6 +3,11 @@
 }
 
 @media screen and (max-width: 767px) {
+    .ClassTable {
+        display: block;
+        overflow: hidden;
+    }
+
     .ClassSlider {
         top: 96%;
         position: relative;
@@ -47,19 +52,20 @@
     }
 
     .ClassStyleSound {
-        font-size: 1.8em !important;
-        position: fixed;
+        top: 6px;
+        position: relative;
+        font-size: 1.8em !important;        
         margin-left: 5px;
-    }
-
-    .ClassDivText {
-       // height: 80px;
-    }
+    }    
 }
 
 @media screen and (min-width: 767px) {
-    .ClassDivText {
-       // height: 40px;
+    .ClassTable {
+        display: block;
+        overflow: hidden;
+        position: absolute;
+        height: 93%;
+        width: 99%;
     }
 
     .ClassModalContent {
