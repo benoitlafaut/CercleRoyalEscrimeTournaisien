@@ -31,8 +31,15 @@ namespace CercleRoyalEscrimeTournaisien
             string result;
             ModelEpub122024 modelEpub122024 = new ModelEpub122024() { };
 
+            
+
             if (currentRow != "0")
             {
+                if (Convert.ToInt32(currentRow) < 0)
+                {
+                    currentRow = "0";
+                }
+
                 result = GetValue<string>("rowsToRead");
                 modelEpub122024.RowsToRead = (ChangeCharactesr(result).Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries)).ToList();
                 modelEpub122024.CurrentStep = Convert.ToInt32(currentRow);

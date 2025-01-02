@@ -36,8 +36,9 @@
         $("#inputRange").attr('max', @Model.RowsToRead.Count);
         $("#inputRange").val(@Model.CurrentStep);
         $(".ClassSound").css('display', @Model.RowsToRead.Count == 0 ? 'none' : 'inline-block');
+        $(".ClassSlider").css('display', @Model.RowsToRead.Count == 0 ? 'none' : 'inline-block');
 
-        $(".close").click(function () {
+        $(".closePopup").click(function () {
             var modal = document.getElementById("myModalTraductionPopup");
             modal.style.display = "none";
         });
@@ -51,5 +52,29 @@
             }
 
         });
+
+        $('table').bind('mousewheel', function (e) {
+            
+            if (e.originalEvent.wheelDelta / 120 > 0) {                
+                if ($(window).scrollTop()  == 0) {
+                    //alert("Page top reached!");
+                    var inputRange = parseInt($("#inputRange").val()) - parseInt(10);
+                    ChargerEpub(inputRange);
+
+                    e.stopImmediatePropagation();
+                }
+            }
+            else {
+                if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+                    //alert("Page bottom reached!");
+
+                    var inputRange = parseInt($("#inputRange").val()) + parseInt(10);
+                    ChargerEpub(inputRange);
+                    $(window).scrollTop(0);
+                    e.stopImmediatePropagation();
+                }
+            }
+        });
+
     });
 </script>

@@ -5,7 +5,7 @@
 @media screen and (max-width: 767px) {
     .ClassSlider {
         top: 96%;
-        position: fixed;
+        position: relative;
         width: 90%;
         left: 5%;
     }
