@@ -25,6 +25,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
         }
 
         public int CurrentStepToListen { get; set; }
+        public int NumberScrollWithWheel { get; set; }
         public int CurrentStep { get; set; }
         public int CurrentStepFinal
         {

@@ -2,6 +2,7 @@
 
 @Html.HiddenFor(m => m.CurrentStep)
 @Html.HiddenFor(m => m.CurrentStepToListen)
+@Html.HiddenFor(m => m.NumberScrollWithWheel)
 
 <table class="ClassTable">
     @for (int i = Model.CurrentStep; i < Model.CurrentStepFinal; i++)
@@ -54,23 +55,39 @@
         });
 
         $('table').bind('mousewheel', function (e) {
-            
-            if (e.originalEvent.wheelDelta / 120 > 0) {                
-                if ($(window).scrollTop()  == 0) {
-                    //alert("Page top reached!");
-                    var inputRange = parseInt($("#inputRange").val()) - parseInt(10);
-                    ChargerEpub(inputRange);
+            if (e.originalEvent.wheelDelta / 120 > 0) {
+                if ($(window).scrollTop() == 0) {
+                    var numberScrollWithWheel = $("#NumberScrollWithWheel").val();
+                    numberScrollWithWheel = parseInt(numberScrollWithWheel) + 1;
+
+                    if (numberScrollWithWheel > 4) {
+                        var inputRange = parseInt($("#inputRange").val()) - parseInt(10);
+                        ChargerEpub(inputRange);
+                    }
+                    
+                    else {
+                        $("#NumberScrollWithWheel").val(numberScrollWithWheel);
+                     }
 
                     e.stopImmediatePropagation();
                 }
             }
             else {
                 if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-                    //alert("Page bottom reached!");
+                    var numberScrollWithWheel = $("#NumberScrollWithWheel").val();
+                    numberScrollWithWheel = parseInt(numberScrollWithWheel) + 1;
 
-                    var inputRange = parseInt($("#inputRange").val()) + parseInt(10);
-                    ChargerEpub(inputRange);
-                    $(window).scrollTop(0);
+                    if (numberScrollWithWheel > 4) {
+                        var inputRange = parseInt($("#inputRange").val()) + parseInt(10);
+                        ChargerEpub(inputRange);
+                        $(window).scrollTop(0);
+
+                        $("#NumberScrollWithWheel").val('0');
+                    }
+                    else {
+                        $("#NumberScrollWithWheel").val(numberScrollWithWheel);
+                    }
+                   
                     e.stopImmediatePropagation();
                 }
             }
