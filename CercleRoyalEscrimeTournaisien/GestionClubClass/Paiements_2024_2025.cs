@@ -1152,11 +1152,11 @@ namespace WebApplication1.Models
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
                     IsCotisationEnOrdre = true,
-                    IsLocationMatérielEnOrdre = false,
+                    IsLocationMatérielEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = true,
                     IsLicenceEnOrdre = false,
 
-                    PaiementsEffectues = new List<string>() { "95 euros" },
+                    PaiementsEffectues = new List<string>() { "95 euros", "75 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                     },
@@ -1181,9 +1181,9 @@ namespace WebApplication1.Models
                     IsCotisationEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = true,
                     IsLicenceEnOrdre = false,
-                    IsLocationMatérielEnOrdre = false,
+                    IsLocationMatérielEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { "95 euros" },
+                    PaiementsEffectues = new List<string>() { "95 euros","75 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2023,9,6),
@@ -1404,17 +1404,17 @@ namespace WebApplication1.Models
                 new Paiement()
                 {
                     Periode = period,
-                    IsCotisationAnnuelle = false,
+                    IsCotisationAnnuelle = true,
                     IsCotisationCarte1 = false,
                     IsCotisationCarte2 = false,
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
                     IsLocationMatérielEnOrdre = false,
-                    IsCotisationEnOrdre = false,
+                    IsCotisationEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = true,
                     IsLicenceEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { "290 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,11,24),
@@ -1724,7 +1724,7 @@ namespace WebApplication1.Models
                     Periode = period,
                     IsCotisationAnnuelle = false,
                     IsCotisationCarte1 = true,
-                    IsCotisationCarte2 = false,
+                    IsCotisationCarte2 = true,
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
                     IsCotisationEnOrdre = true,
@@ -1732,7 +1732,7 @@ namespace WebApplication1.Models
                     IsLicenceEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { "95 euros", "75 euros" },
+                    PaiementsEffectues = new List<string>() { "95 euros", "75 euros", "50 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,9,4),
