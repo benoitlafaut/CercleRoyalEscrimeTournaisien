@@ -66,6 +66,7 @@
 });
 
 function ChangeDirection(direction) {
+    
     let directionMax = 650;
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         directionMax = 50;
@@ -74,11 +75,11 @@ function ChangeDirection(direction) {
 
     if (direction < directionMaxNegatif || direction > directionMax) {
         if (direction < directionMaxNegatif) {
-            var inputRange = parseInt($("#inputRange").val()) - parseInt(10);
+            var inputRange = parseInt($("#inputRange").val()) + parseInt(10);
             ChargerEpub(inputRange);
         }
         if (direction > directionMax) {
-            var inputRange = parseInt($("#inputRange").val()) + parseInt(10);
+            var inputRange = parseInt($("#inputRange").val()) - parseInt(10);
             ChargerEpub(inputRange);
         }
     }
@@ -539,6 +540,7 @@ function ChargerEpub(currentRow) {
         }
 
         data.append("currentRow", currentRow);
+        data.append("fileNameBook", $("#FileNameBook").val());
 
         $.ajax({
             url: "/Epub/ChargerEpub",
@@ -559,9 +561,7 @@ function ChargerEpub(currentRow) {
                     addMessage(data.type, data.title, data.text, data.sticky);
                 }
 
-
-
-
+                document.getElementById("inputFile").value = null;
             },
             failure: function (response) { },
             error: function (response) {
@@ -572,6 +572,8 @@ function ChargerEpub(currentRow) {
     else {
         var data = [];
         data.push({ name: "currentRow", value: currentRow });
+        data.push({ name: "fileNameBook", value: $("#FileNameBook").val() });
+
         var processdata = 'application/x-www-form-urlencoded; charset=UTF-8';
         var contentType = 'application/x-www-form-urlencoded; charset=UTF-8';
 
@@ -604,7 +606,4 @@ function ChargerEpub(currentRow) {
             }
         });
     }
-
-
-
 }

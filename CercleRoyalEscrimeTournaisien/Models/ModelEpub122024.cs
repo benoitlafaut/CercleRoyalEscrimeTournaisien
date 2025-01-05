@@ -25,8 +25,12 @@ namespace CercleRoyalEscrimeTournaisien.Models
         }
 
         public int CurrentStepToListen { get; set; }
-        public int NumberScrollWithWheel { get; set; }
+        public int ScrollTopStart { get; set; }
+        public int ScrollTopEnd { get; set; }
+        public int PositionStartForNoScrollbar { get; set; }
+        public int PositionEndForNoScrollbar { get; set; }
         public int CurrentStep { get; set; }
+        public string FileNameBook { get; set; }
         public int CurrentStepFinal
         {
             get 

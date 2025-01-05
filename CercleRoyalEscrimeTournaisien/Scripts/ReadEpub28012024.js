@@ -555,7 +555,7 @@ function ChargerEpubNew20042023() {
             });
 
             $("#inputRange").attr('max', result.rowsToRead.length);
-            $("#inputRange").val('0');
+            $("#inputRange").val(0);
             changeInputRange();
         },
         failure: function (response) { },

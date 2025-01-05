@@ -1,10 +1,14 @@
 ﻿@model CercleRoyalEscrimeTournaisien.Models.ModelEpub122024
 
+@Html.HiddenFor(m => m.FileNameBook)
 @Html.HiddenFor(m => m.CurrentStep)
 @Html.HiddenFor(m => m.CurrentStepToListen)
-@Html.HiddenFor(m => m.NumberScrollWithWheel)
+@Html.HiddenFor(m => m.ScrollTopStart)
+@Html.HiddenFor(m => m.ScrollTopEnd)
+@Html.HiddenFor(m => m.PositionStartForNoScrollbar)
+@Html.HiddenFor(m => m.PositionEndForNoScrollbar)
 
-<table class="ClassTable">
+<table class="ClassTable" id="tableBody">
     @for (int i = Model.CurrentStep; i < Model.CurrentStepFinal; i++)
     {
         <tr>
@@ -30,12 +34,19 @@
 </div>
 
 <script>
+    (function ($) {
+        $.fn.hasScrollBar = function () {
+            return this.get(0).scrollHeight > $(window).height();
+        }
+    })(jQuery);
+
     $(document).ready(function () {
         var modal = document.getElementById("myModalTraductionPopup");
         modal.style.display = "none";
 
         $("#inputRange").attr('max', @Model.RowsToRead.Count);
         $("#inputRange").val(@Model.CurrentStep);
+        $("#FileNameBook").val('@Model.FileNameBook');
         $(".ClassSound").css('display', @Model.RowsToRead.Count == 0 ? 'none' : 'inline-block');
         $(".ClassSlider").css('display', @Model.RowsToRead.Count == 0 ? 'none' : 'inline-block');
 
@@ -54,44 +65,82 @@
 
         });
 
-        $('table').bind('mousewheel', function (e) {
-            if (e.originalEvent.wheelDelta / 120 > 0) {
-                if ($(window).scrollTop() == 0) {
-                    var numberScrollWithWheel = $("#NumberScrollWithWheel").val();
-                    numberScrollWithWheel = parseInt(numberScrollWithWheel) + 1;
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            //$('#tableBody').on('touchstart', function (e) {
+            //    $("#ScrollTopStart").val($(window).scrollTop());
+            //    $("#PositionStartForNoScrollbar").val(e.originalEvent.touches[0].pageY);
+            //});
 
-                    if (numberScrollWithWheel > 4) {
-                        var inputRange = parseInt($("#inputRange").val()) - parseInt(10);
-                        ChargerEpub(inputRange);
-                    }
-                    
-                    else {
-                        $("#NumberScrollWithWheel").val(numberScrollWithWheel);
-                     }
+            //$('#tableBody').on('touchend', function (e) {
+            //    $("#ScrollTopEnd").val($(window).scrollTop());
+            //    $("#PositionEndForNoScrollbar").val(e.originalEvent.changedTouches[0].pageY);
+
+            //    if ($('html').hasScrollBar()) {
+            //        var scrollTopStart = $("#ScrollTopStart").val();
+            //        var scrollTopEnd = $("#ScrollTopEnd").val();
+
+            //        if (scrollTopStart == 0 && scrollTopEnd == 0) {
+            //            var inputRange = parseInt($("#inputRange").val()) - parseInt(10);
+            //            ChargerEpub(inputRange);
+            //            $(window).scrollTop('0');
+            //        }
+
+            //        if (scrollTopStart != 0 && scrollTopEnd == scrollTopStart) {
+            //            var inputRange = parseInt($("#inputRange").val()) + parseInt(10);
+            //            ChargerEpub(inputRange);
+            //            $(window).scrollTop('0');
+            //        }
+            //    }
+            //    else {
+            //        var positionStartForNoScrollbar = $("#PositionStartForNoScrollbar").val();
+            //        var positionEndForNoScrollbar = $("#PositionEndForNoScrollbar").val();
+
+            //        if (parseInt(positionStartForNoScrollbar) > parseInt(positionEndForNoScrollbar)) {
+            //            var inputRange = parseInt($("#inputRange").val()) + parseInt(10);
+            //            ChargerEpub(inputRange);
+            //            $(window).scrollTop('0');
+            //        }
+            //        else {
+            //            var inputRange = parseInt($("#inputRange").val()) - parseInt(10);
+            //            ChargerEpub(inputRange);
+            //            $(window).scrollTop('0');
+            //        }
+            //    }
+            //});
+        }
+        else {
+            $('table').bind('mousewheel', function (e) {
+                if (e.originalEvent.wheelDelta / 120 > 0) {
+                    var inputRange = parseInt($("#inputRange").val()) - parseInt(10);
+                    ChargerEpub(inputRange);
 
                     e.stopImmediatePropagation();
                 }
-            }
-            else {
-                if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-                    var numberScrollWithWheel = $("#NumberScrollWithWheel").val();
-                    numberScrollWithWheel = parseInt(numberScrollWithWheel) + 1;
+                else {
+                    var inputRange = parseInt($("#inputRange").val()) + parseInt(10);
+                    ChargerEpub(inputRange);
 
-                    if (numberScrollWithWheel > 4) {
-                        var inputRange = parseInt($("#inputRange").val()) + parseInt(10);
-                        ChargerEpub(inputRange);
-                        $(window).scrollTop(0);
-
-                        $("#NumberScrollWithWheel").val('0');
-                    }
-                    else {
-                        $("#NumberScrollWithWheel").val(numberScrollWithWheel);
-                    }
-                   
                     e.stopImmediatePropagation();
                 }
-            }
-        });
-
+            });
+        }
     });
+
+    function ScrollStart() {
+        //start of scroll event for iOS
+        console.log('ScrollStart');
+    }
+
+    function Scroll() {
+        //end of scroll event for iOS
+        //and
+        //start/end of scroll event for other browsers
+        console.log('Scroll');
+    }
+
+    function process_touchmove(ev) {
+        console.log('touchmove');
+        // Set call preventDefault()
+        ev.preventDefault();
+    }
 </script>

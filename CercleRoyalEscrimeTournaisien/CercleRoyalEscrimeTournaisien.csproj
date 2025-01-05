@@ -280,6 +280,7 @@
     <Compile Include="GestionClubClass\JoursDePrésence.cs" />
     <Compile Include="GestionClubClass\ListGuidTireur.cs" />
     <Compile Include="Models\ModelEpub122024.cs" />
+    <Compile Include="Models\NumberOfPage.cs" />
     <Compile Include="Models\TireurModel\Eliot_NosCoursTireurSelectionneModel.cs" />
     <Compile Include="Models\TireurModel\Elodie_NosCoursTireurSelectionneModel.cs" />
     <Compile Include="Models\TireurModel\ToutTireur_NosCoursTireurSelectionneModel.cs" />
