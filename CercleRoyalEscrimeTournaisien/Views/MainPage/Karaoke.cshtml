@@ -20,7 +20,7 @@
 <html>
 
 <body id="karaoke" style=" overflow-y: overlay; height: 80%; width: 99%; overflow-x: hidden;">
-    <div style="text-align:center;">
+    <div style="text-align: center; top: 2px; position: relative;">
         @Html.DropDownListFor(model => model.ChanteurSelected, new SelectList(Model.ListeDesChanteurs, "Key", "Value", Model.ChanteurSelected), new { @style = "width:150px;", @onchange = "changeArtiste()" })
         @Html.DropDownListFor(model => model.ChansonSelected, new SelectList(Model.ListeDesChansons, "Key", "Value", Model.ChansonSelected), new { @style = "width:150px;", @onchange = "changeChanson()" })
     </div>
@@ -28,36 +28,62 @@
     <div id="youtube-video" style="display:none;"></div>
 
     <div class="divTextAreaAnswerList">
-        <textarea id="AnswerList" class="form-control classAnswerList">@string.Join("\n ", Model.LyricsChanson)</textarea>
+        <textarea readonly="readonly" unselectable="on" id="AnswerList" class="noselect form-control classAnswerList">@string.Join("\n ", Model.RowsToRead)</textarea>
     </div>
+    
+    @Html.HiddenFor(m => m.MomentsToRead.Count)
+
+    @for (var i = 0; i < Model.MomentsToRead.Count; i++)
+    {
+        @Html.HiddenFor(m => m.MomentsToRead[i])
+    }
+
 </body>
 </html>
 
 <script type="text/javascript">
-    var taille = 91;
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        taille = 90;
-    }
-    $("#AnswerList").css('max-height', $(window).height() * taille / 100);
-
      if ('@Model.UrlChansonEmbed' != '') {
          createYoutubeiFrame("youtube-video", '@Model.UrlChansonEmbed');
 
          setInterval(function () {
              changeTexteAutomatique();
-         }, 6000);
-     }
+         }, 4000);
+    }
+
 
     function changeTexteAutomatique() {
         if (player.playerInfo.playerState == '1') {
             var playerVideo = YT.get('youtube-video');
             var currentTime = playerVideo.getCurrentTime();
-            var currentDuration = playerVideo.getDuration();
-            var ratio = (currentTime / currentDuration) * 100;
-            var heightAnswer = ($("#AnswerList").prop("scrollHeight") * ratio / 100) - 250;
+            //var currentDuration = playerVideo.getDuration();
 
+            let countMomentsToRead = $("#MomentsToRead_Count").val();
+
+            let currentDuration = GetDurationWithCurrentTime(currentTime, countMomentsToRead);
+
+            var ratio = (currentDuration / countMomentsToRead) * 100;
+
+            
+            let changeScrollTop = 300;
+            if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                if (window.innerWidth > window.innerHeight) {
+                    changeScrollTop = 120;
+                    /*alert('changeScrollTop: ' + changeScrollTop);*/
+                }
+            }
+
+            var heightAnswer = ($("#AnswerList").prop("scrollHeight") * ratio / 100) - changeScrollTop;
             $("#AnswerList").animate(
                 { scrollTop: heightAnswer }, 1000);
+        }
+    }
+
+    function GetDurationWithCurrentTime(currentTime, countMomentsToRead) {
+        for (var i = 0; i < countMomentsToRead; i++) {
+            let momentToRead = $("#MomentsToRead_" + i + "_").val();
+            if (momentToRead > currentTime) {
+                return i;
+            }
         }
     }
 

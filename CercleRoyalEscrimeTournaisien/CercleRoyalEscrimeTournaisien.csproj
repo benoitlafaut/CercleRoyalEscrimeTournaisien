@@ -1067,6 +1067,7 @@
     <Content Include="styles\newbootstrap.css" />
     <Content Include="styles\myStylessheet.css" />
     <Content Include="styles\StyleTranslateOtherLangue.css" />
+    <Content Include="VideoLyrics\divino.txt" />
     <Content Include="VideoLyrics\Le chant est libre.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

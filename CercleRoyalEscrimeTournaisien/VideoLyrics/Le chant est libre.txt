@@ -1,55 +1,55 @@
-Hmm, hmm, hmm
-Hmm, hmm, hmm
-Y a une ombre sur le tableau
-Pourtant, le soleil brille bien haut
-Tout est cool et tout est beau
-C'est l'été sur la terrasse
-Oui, mais le mal qui le terrasse
-Est indifférent aux saisons
-Il était beau, on a beau dire
-Servait ses cafés, grand sourire
-Tout le monde était content, faut croire
-Et quand le chanteur de rue passait
-Chapeau à la main, il donnait
-Tous ses pourboires
-Il était tellement tranquille
-Qui aurait imaginé qu'il
-Portait un monde sur le dos?
-Mais qui aurait pu deviner
-Qu'un jour il ait dû renoncer
-À chanter?
-Le chant est libre (ouh)
-La voix est là, juste devant toi
-Le chant est libre (ouh)
-Si tu veux vivre plus fort que ça
-Chante avec moi
-Oh, oh, oh, oh, oh
-Pas une ombre sur le tableau
-Photo de famille sur le bureau
-Tout roule et tout est beau
-L'ascenseur au dernier étage
-Chef d'entreprise dans sa cage
-Toute seule au-dessus des nuages
-Reine du monde, on a beau dire
-Parfois, qu'elle a du mal à rire
-Mais elle gagne bien sa vie, faut croire
-Que c'est le prix de la fortune
-Que parfois, les rêves importunent
-Quand elle fredonne dans les couloirs
-Elle était tellement sereine
-Qui aurait imaginé qu'elle
-Portait un monde sur le dos?
-Mais qui aurait pu deviner
-Qu'un jour elle ait dû renoncer
-À chanter
-Le chant est libre (ouh)
-La voix est là, juste devant toi
-Le chant est libre (ouh)
-Si tu veux vivre plus fort que ça
-Chante avec moi
-Oh, oh, oh, oh, oh
-Le chant est libre
-Oh, oh, oh, oh, oh
-Il y a une ombre sur le tableau
-Pourtant, le soleil brille bien haut
-Tout est cool et tout est beau
+[0]Hmm, hmm, hmm
+[10]Hmm, hmm, hmm
+[20]Y a une ombre sur le tableau
+[22]Pourtant, le soleil brille bien haut
+[24]Tout est cool et tout est beau
+[29]C'est l'été sur la terrasse
+[31]Oui, mais le mal qui le terrasse
+[33]Est indifférent aux saisons
+[39]Il était beau, on a beau dire
+[41]Servait ses cafés, grand sourire
+[43]Tout le monde était content, faut croire
+[48]Et quand le chanteur de rue passait
+[50]Chapeau à la main, il donnait
+[54]Tous ses pourboires
+[58]Il était tellement tranquille
+[61]Qui aurait imaginé qu'il
+[63]Portait un monde sur le dos?
+[69]Mais qui aurait pu deviner
+[70]Qu'un jour il ait dû renoncer
+[74]À chanter?
+[77]Le chant est libre (ouh)
+[82]La voix est là, juste devant toi
+[88]Le chant est libre (ouh)
+[92]Si tu veux vivre plus fort que ça
+[97]Chante avec moi
+[98]Oh, oh, oh, oh, oh
+[109]Pas une ombre sur le tableau
+[111]Photo de famille sur le bureau
+[113]Tout roule et tout est beau
+[118]L'ascenseur au dernier étage
+[120]Chef d'entreprise dans sa cage
+[123]Toute seule au-dessus des nuages
+[128]Reine du monde, on a beau dire
+[130]Parfois, qu'elle a du mal à rire
+[132]Mais elle gagne bien sa vie, faut croire
+[138]Que c'est le prix de la fortune
+[140]Que parfois, les rêves importunent
+[143]Quand elle fredonne dans les couloirs
+[147]Elle était tellement sereine
+[150]Qui aurait imaginé qu'elle
+[152]Portait un monde sur le dos?
+[156]Mais qui aurait pu deviner
+[159]Qu'un jour elle ait dû renoncer
+[162]À chanter
+[167]Le chant est libre (ouh)
+[171]La voix est là, juste devant toi
+[176]Le chant est libre (ouh)
+[181]Si tu veux vivre plus fort que ça
+[186]Chante avec moi
+[187]Oh, oh, oh, oh, oh
+[195]Le chant est libre
+[197]Oh, oh, oh, oh, oh
+[207]Il y a une ombre sur le tableau
+[210]Pourtant, le soleil brille bien haut
+[212]Tout est cool et tout est beau

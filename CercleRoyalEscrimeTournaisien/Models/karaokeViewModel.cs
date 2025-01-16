@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web.Mvc;
 using System.Web;
 using System.Text;
 
@@ -14,6 +13,10 @@ namespace CercleRoyalEscrimeTournaisien.Models
         public KaraokeViewModel() 
         {
             ChargerArtistes();
+            //ChanteurSelected = "2";
+            //ChansonSelected = "1";
+            RowsToRead = new List<string>() { };
+            MomentsToRead = new List<string>() { };
         }
 
         private void ChargerArtistes()
@@ -40,6 +43,24 @@ namespace CercleRoyalEscrimeTournaisien.Models
                             Index = "1",
                             Chanson = "Le chant est libre",
                             UrlChansonEmbed = "rLfdENU19NY"
+                        }
+                    }
+                },
+                new Artiste()
+                {
+                    Index = "2",
+                    NomDeLArtiste = "Vincent Niclo",
+                    ChansonsList = new List<ChansonData>()
+                    {
+                        new ChansonData()
+                        {
+                            Index = "0",
+                        },
+                        new ChansonData()
+                        {
+                            Index = "1",
+                            Chanson = "Divino",
+                            UrlChansonEmbed = "kDHEsbkIBnE"
                         }
                     }
                 }
@@ -70,22 +91,67 @@ namespace CercleRoyalEscrimeTournaisien.Models
                 return ArtistesList.FirstOrDefault(x => x.Index == ChanteurSelected).ChansonsList.FirstOrDefault(x => x.Index == ChansonSelected).UrlChansonEmbed;
             }
         }
-        public List<string> LyricsChanson
+        private void ChargerLyricsChanson()
+        {
+            List<RowsListenWithLRC> RowsListenWithLRC = new List<RowsListenWithLRC>() { };
+            if (string.IsNullOrEmpty(ChansonSelected) || ChansonSelected == "0") 
+            {
+                RowsToRead = new List<string>() { };
+                MomentsToRead = new List<string>() { };
+                return; 
+            }
+            if (string.IsNullOrEmpty(ChanteurSelected) || ChanteurSelected == "0")
+            {
+                RowsToRead = new List<string>() { };
+                MomentsToRead = new List<string>() { };
+                return;
+            }
+
+            string FilePath = HttpContext.Current.Server.MapPath("/VideoLyrics/");
+            FilePath += ArtistesList.FirstOrDefault(x => x.Index == ChanteurSelected).ChansonsList.FirstOrDefault(x => x.Index == ChansonSelected).Chanson + ".txt";
+
+            List<string> rowsToRead  = File.ReadAllLines(FilePath, Encoding.Default).ToList();
+
+            foreach (string row in rowsToRead)
+            {
+                string[] rowFormatted = row.Split(']');
+                rowFormatted[0] = rowFormatted[0] + "]";
+                RowsListenWithLRC.Add(new Models.RowsListenWithLRC()
+                {
+                    Moment = rowFormatted[0],
+                    Row = rowFormatted[1]
+                });
+            }
+
+            RowsToRead = RowsListenWithLRC.Select(x => x.Row).ToList();
+            MomentsToRead = RowsListenWithLRC.Select(x => x.Moment.Replace("[", "").Replace("]", "")).ToList();
+        }
+
+        public List<string> RowsToRead { get; set; }
+        public List<string> MomentsToRead { get; set; }
+
+        public List<Artiste> ArtistesList { get; set; }
+        public string ChanteurSelected { get; set; }
+        
+        private string ChansonSelectedField;
+        public string ChansonSelected
         {
             get
             {
-                if (string.IsNullOrEmpty(UrlChansonEmbed)) { return new List<string>(); }
-
-                string FilePath = HttpContext.Current.Server.MapPath("/VideoLyrics/");
-                FilePath += ArtistesList.FirstOrDefault(x => x.Index == ChanteurSelected).ChansonsList.FirstOrDefault(x => x.Index == ChansonSelected).Chanson + ".txt";
-                return File.ReadAllLines(FilePath, Encoding.Default).ToList();
+                return this.ChansonSelectedField;
+            }
+            set
+            {
+                this.ChansonSelectedField = value;
+                ChargerLyricsChanson();
             }
         }
-        public List<Artiste> ArtistesList { get; set; }
-        public string ChanteurSelected { get; set; }
-        public string ChansonSelected { get; set; }
     }
-
+    public class RowsListenWithLRC
+    {
+        public string Moment { get; set; }
+        public string Row { get; set; }
+    }
     public class Artiste
     {
         public string Index { get; set; }

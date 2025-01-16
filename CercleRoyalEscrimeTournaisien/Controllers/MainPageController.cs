@@ -72,6 +72,10 @@ namespace CercleRoyalEscrimeTournaisien
         [Route("ChangeArtiste")]
         public ActionResult ChangeArtiste(KaraokeViewModel karaokeViewModel)
         {
+            if (karaokeViewModel.ChanteurSelected != "0" && string.IsNullOrEmpty(karaokeViewModel.ChansonSelected))
+            {
+                karaokeViewModel.ChansonSelected = "1";
+            }
             return Json(new { karaokeViewModel = RenderRazorViewToString(Constantes.Karaoke, karaokeViewModel) }, JsonRequestBehavior.AllowGet);
         }
 

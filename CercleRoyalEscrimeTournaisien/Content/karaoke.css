@@ -3,22 +3,70 @@
     width: 100%;
     height: 44em;
     font-size: 70px;
-    pointer-events: none;
 }
 
-@media screen and (max-width: 767px){
+textarea::selection {
+    background-color: transparent;
+}
+
+.noselect:focus {
+    outline: none;
+}
+
+#AnswerList {
+    border: 0px;
+    height: 95%;
+    position: absolute;
+}
+
+@media screen and (max-width: 767px) and (orientation: portrait) {
     .classAnswerList {
         font-size: 20px;
     }
 
     .divTextAreaAnswerList {
         width: 97%;
-        margin-top: 26px;
+        margin-top: 15px;
+    }
+
+    #AnswerList {
+        width: 98.8%;
+        margin: 0px 0px 0px -9px;
+        font-size: 15px;
+        color: bisque;
+        background-color: black;
+        line-height: 3;
     }
 }
 
 @media screen and (min-width: 767px) {
     .divTextAreaAnswerList {
-        margin-top: 10px;
+        margin-top: 5px;
+    }
+
+    #AnswerList {       
+        width: 99.4%;   
+        color: bisque;
+        background-color: black;        
+    }
+}
+
+@media screen and (orientation: landscape) {
+    .classAnswerList {
+        font-size: 20px;
+    }
+
+    .divTextAreaAnswerList {
+        width: 97%;
+        margin-top: 15px;
+    }
+
+    #AnswerList {
+        width: 98.8%;
+        margin: 0px 0px 0px -9px;
+        font-size: 15px;
+        color: bisque;
+        background-color: black;
+        line-height: 3.5;
     }
 }
