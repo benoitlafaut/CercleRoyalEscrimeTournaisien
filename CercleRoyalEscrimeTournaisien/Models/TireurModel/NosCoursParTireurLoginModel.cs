@@ -39,14 +39,12 @@ namespace CercleRoyalEscrimeTournaisien
                 new Tireur() { UserNameIndex = TireurIndex.MathildeCarette, UserName = "Mathilde" },
                 new Tireur() { UserNameIndex = TireurIndex.MaeVantroyen, UserName = "Mae" },
                 new Tireur() { UserNameIndex = TireurIndex.SachaLessart, UserName = "Sacha" },
-                new Tireur() { UserNameIndex = TireurIndex.ApollineOdendhal, UserName = "Apolline" },
                 new Tireur() { UserNameIndex = TireurIndex.AmadoSimon, UserName = "Amado" },
                 new Tireur() { UserNameIndex = TireurIndex.LouisonBinois, UserName = "Louison" },
-                new Tireur() { UserNameIndex = TireurIndex.ThéoHelleputte, UserName = "Théo" },
                 new Tireur() { UserNameIndex = TireurIndex.HéloïsePras, UserName = "Héloïse" },
                 new Tireur() { UserNameIndex = TireurIndex.RebeccaVandy, UserName = "Rebecca" },
                 new Tireur() { UserNameIndex = TireurIndex.EliotPunchoo, UserName = "Eliot" },
-            });
+            });            
 
             Tireurs = Tireurs.OrderBy(x => x.UserName).ToList();
         }

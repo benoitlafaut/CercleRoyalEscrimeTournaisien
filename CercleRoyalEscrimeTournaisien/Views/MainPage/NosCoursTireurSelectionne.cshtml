@@ -1,5 +1,6 @@
 ﻿@model NosCoursTireurSelectionneModel
 @{ 
+    string stylePoules = Model.Poules != null ?  Model.Poules.Any() ? "display:inline-block;margin-left:20px;" : "display:none" : "display:none";
     var urlCategorie = @Url.Content("~/FileToUpload/NosCours/Liste des catégories et répartition des tireurs.pdf");
 }
 <head>
@@ -32,6 +33,11 @@
                 Liste des catégories des tireuses/tireurs
                 <i style="color:black;" onclick="window.open('@urlCategorie', '_blank')" class="fa fa-info-circle" aria-hidden="true"></i>
             </label>
+        </div>
+
+        <div style="@stylePoules">
+            <label>Poules: </label>
+            @Html.DropDownListFor(model => model.PouleSelectionnee, new SelectList(Model.Poules, "Key", "Value", Model.PouleSelectionnee), new { @class = "form-control", @id= "DropDownListForPoules", @title = "Sélectionnez la poule pour la télécharger. Seul les poules complètes sont mises en ligne." })
         </div>
     </div>
 
@@ -200,6 +206,12 @@
         if (player != undefined) {
             player.destroy();
         }
+    });
+    
+    $('#DropDownListForPoules').change(function () {
+        var item = $(this);
+        if (item.val() == '') { return; }
+        window.open(item.val(), '_blank');
     });
 
 </script>

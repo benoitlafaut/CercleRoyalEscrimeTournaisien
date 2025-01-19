@@ -6,6 +6,15 @@ namespace CercleRoyalEscrimeTournaisien
     [Serializable]
     public class Anaelle_NosCoursTireurSelectionneModel : NosCoursTireurSelectionneModel
     {
+        public IDictionary<string, string> GetPoules
+        {
+            get
+            {
+                return new Dictionary<string, string>()
+                {
+                };
+            }
+        }
         private Tireur _tireurSelectionne { get; set; }
         public Anaelle_NosCoursTireurSelectionneModel(Tireur tireurSelectionne)  : base()
         {

@@ -11,6 +11,18 @@ namespace CercleRoyalEscrimeTournaisien
         {
             this._tireurSelectionne = tireurSelectionne;
         }
+        public IDictionary<string, string> GetPoules
+        {
+            get
+                {
+                return new Dictionary<string, string>()
+                {
+                     { "", ""  },
+                    { "/Poules/Poule 19-01-2025 Sabre.pdf", "Poule 19-01-2025 Sabre"  },
+                };
+
+            }
+        }
         public List<RemarqueParDate> RemarquesParDateTireur
         {
             get

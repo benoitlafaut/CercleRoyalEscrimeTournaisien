@@ -6,8 +6,8 @@ namespace CercleRoyalEscrimeTournaisien
     [Serializable]
     public class ToutTireur_NosCoursTireurSelectionneModel : NosCoursTireurSelectionneModel
     {
-        public ToutTireur_NosCoursTireurSelectionneModel()  : base()
-        {
+        public ToutTireur_NosCoursTireurSelectionneModel() : base()
+        {            
         }
         public List<RemarqueParDate> RemarquesParDateTireur { 
             get 
@@ -21,6 +21,10 @@ namespace CercleRoyalEscrimeTournaisien
                         Arme = TypeArme.Epée,
                         RemarquesData = new List<RemarqueData>()
                         {
+                            new RemarqueData()
+                            {
+                                PointNégatif="Si vous menez, utilisez le chrono à votre avantage. Laissez le défiler en prenant vos distances.",
+                            },
                             new RemarqueData()
                             {
                                 PointNégatif="Ayant remarqué cela plusieurs fois et récemment (en décembre), je rappelle à tout le monde que vous êtes protégés de la tête au pied. Du coup, évitez de mettre votre main non armée devant votre corps. Je parle surtout pour celles qui ont peur de recevoir un coup d'épée (Héloïse, Anaëlle, Mathilde, Maé, ...).",

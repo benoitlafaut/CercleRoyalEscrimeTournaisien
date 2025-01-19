@@ -15,6 +15,7 @@ using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System.Runtime.Serialization.Formatters.Binary;
 using static CercleRoyalEscrimeTournaisien.IndexTireurConstantes;
+using System.Collections.Generic;
 
 namespace CercleRoyalEscrimeTournaisien
 {
@@ -242,6 +243,7 @@ namespace CercleRoyalEscrimeTournaisien
             { 
                 TireurSelectionne = tireurSelectionne
             };            
+            
             return View(Constantes.NosCoursTireurSelectionne, nosCoursTireurSelectionneModel);
         }
         private static object Deserialize(string str)

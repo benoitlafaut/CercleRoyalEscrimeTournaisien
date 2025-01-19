@@ -1217,6 +1217,7 @@
     <Content Include="Views\Epub\Epub122024_Entete.cshtml" />
     <Content Include="Views\Epub\Epub122024_Body.cshtml" />
     <Content Include="Views\Epub\TraductionPopup.cshtml" />
+    <Content Include="Poules\Poule 19-01-2025 Sabre.pdf" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
