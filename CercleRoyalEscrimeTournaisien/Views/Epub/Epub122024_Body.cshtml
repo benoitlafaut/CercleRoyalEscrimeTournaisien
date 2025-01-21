@@ -46,9 +46,11 @@
 
         $("#inputRange").attr('max', @Model.RowsToRead.Count);
         $("#inputRange").val(@Model.CurrentStep);
+        $("#inputRangeSpan").text('@Model.CurrentStep' + '/' + '@Model.RowsToRead.Count');
+
         $("#FileNameBook").val('@Model.FileNameBook');
         $(".ClassSound").css('display', @Model.RowsToRead.Count == 0 ? 'none' : 'inline-block');
-        $(".ClassSlider").css('display', @Model.RowsToRead.Count == 0 ? 'none' : 'inline-block');
+        $(".ClassSlider").css('display', @Model.RowsToRead.Count == 0 ? 'none' : 'flex');
 
         $(".closePopup").click(function () {
             var modal = document.getElementById("myModalTraductionPopup");
