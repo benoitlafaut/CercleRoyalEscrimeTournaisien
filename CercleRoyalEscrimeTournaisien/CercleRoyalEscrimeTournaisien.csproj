@@ -1219,6 +1219,7 @@
     <Content Include="Views\Epub\TraductionPopup.cshtml" />
     <Content Include="Poules\Poule 19-01-2025 Sabre.pdf" />
     <Content Include="Poules\Poule 24-01-2025 Epée.pdf" />
+    <Content Include="Poules\Poule 24-01-2025 Epée Grand.pdf" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
