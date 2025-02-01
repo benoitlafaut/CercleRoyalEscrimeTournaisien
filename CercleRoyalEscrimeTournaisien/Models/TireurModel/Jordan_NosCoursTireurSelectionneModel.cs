@@ -31,6 +31,22 @@ namespace CercleRoyalEscrimeTournaisien
                 {
                     new RemarqueParDate()
                     {
+                        DateRemarque = new DateTime(2025, 1, 24),
+                        Arme = TypeArme.Epée,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositif="Je vois de beaux assauts. Une belle pointe qui se profile à l'horizon. bien sûr cà se travaille chaque année. même moi je dois la travailler mais une fois qu'elle est là, on a du mal à la perdre. les jambes c'est top aussi. tu bouges bien et à bonne distance. N'oublie pas de penser à la seconde intention. provoque ton adversaire, laisse lui faire croire que c'est une ouverture par exemple aux avancées mais pour que tu puisses l'utiliser pour toi à bon escient.",
+                            },
+                        }
+                    },
+                    new RemarqueParDate()
+                    {
                         DateRemarque = new DateTime(2024, 9, 22),
                         Arme = TypeArme.Fleuret,
                         Tireur = new Tireur()

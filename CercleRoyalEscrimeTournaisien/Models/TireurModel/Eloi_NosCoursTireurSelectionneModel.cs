@@ -25,7 +25,27 @@ namespace CercleRoyalEscrimeTournaisien
             {
                 List<RemarqueParDate> remarquesParDateTireur = new List<RemarqueParDate>() { };
                 remarquesParDateTireur.AddRange(new List<RemarqueParDate>()
-                { 
+                {
+                    new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 1, 17),
+                        Arme = TypeArme.Sabre,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositif="N'hésite pas à me dire si tu veux affronter l'un ou l'autre tireur (pas forcément les adultes), mais par exemple Martin ou Maé ou Félix ou Oscar. tu es capable de belles choses. il faut croire en toi !",
+                            },
+                            new RemarqueData()
+                            {
+                                PointNégatif="Evite de mettre ta main armée trop haute (Ramsés), tu risques très souvent d'être touché à ce niveau là. Ta main est à hauteur de ton coude et la coquille bloque les attaques aux avancées.",
+                            },
+                        }
+                    },
                     new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2024, 12, 20),

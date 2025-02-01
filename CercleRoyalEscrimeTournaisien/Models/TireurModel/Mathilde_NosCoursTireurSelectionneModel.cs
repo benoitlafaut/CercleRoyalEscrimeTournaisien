@@ -28,7 +28,39 @@ namespace CercleRoyalEscrimeTournaisien
             {
                 List<RemarqueParDate> remarquesParDateTireur = new List<RemarqueParDate>() { };
                 remarquesParDateTireur.AddRange(new List<RemarqueParDate>()
-                {   
+                {
+                    new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 1, 24),
+                        Arme = TypeArme.Epée,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositif="Dans les assauts que je vois, il y a du progrès par rapport au début de saison. Tu oses des choses, tu as moins peur de recevoir des coups. t'as pas peur de rentrer dans le lard. il faut continuer! ose attaquer. prends l'initiative et touche. Y a qu'en osant qu'on apprend de ses erreurs.",
+                            },
+                            new RemarqueData()
+                            {
+                                PointNégatif="Quand tu tires contre un gaucher, essaie de le toucher à l'épaule gauche. droit devant toi. En gardant ton bras allongé. et ton avant-bras toujours direction de l'épaule gauche. ",
+                            },
+                            new RemarqueData()
+                            {
+                                PointNégatif="Quand tu vois que tu peux toucher à la manchette dessous (en dessous de la main car la main est trop relevée), fléchis tes jambes et essaie de toucher la manchette.",
+                            },
+                            new RemarqueData()
+                            {
+                                PointNégatif="Lorsque tu passes de l'autre côté de la coquille, ne fléchis pas le bras, utilise ton poigner pour passer en dessous. Comme cà, l'avant-bras est toujours dirigé vers la cible que tu veux toucher.",
+                            },
+                            new RemarqueData()
+                            {
+                                PointNégatif="Lorsque tu es en garde, ta main est à la même hauteur que le coude. et lorsque tu attaques, ton bras reste allongé. même quand tu es trop près de ton adversaire, laisse ton bras allongé vers la cible que tu veux toucher. C'est seulement quand tu es à bonne distance de ton adversaire que tu peux fléchir le bras.",
+                            },
+                        }
+                    },
                     new RemarqueParDate()
                 {
                     DateRemarque = new DateTime(2024, 12, 18),

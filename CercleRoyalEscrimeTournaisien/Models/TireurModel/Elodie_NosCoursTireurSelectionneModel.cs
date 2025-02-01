@@ -29,6 +29,22 @@ namespace CercleRoyalEscrimeTournaisien
                 {
                     new RemarqueParDate()
                     {
+                        DateRemarque = new DateTime(2025, 1, 24),
+                        Arme = TypeArme.Epée,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositif="Beau spectacle que je vois quand tu tires contre Rémi ou Fabrice, il y a du répondant. il y a de la prudence. continue comme cà! je vois aussi que tu m'aides avec les plus jeunes.. merci pour cà ! je n'ai que quelques mots à dire.. Explosivité, moins compliqués parfois plus simples, distance très bonne, précision de la pointe au top. Prends le temps de faire un assaut 3' c'est long mais il faut prendre son temps surtout à chaque touche reçue pour analyser en quatrième vitesse pourquoi tu as été touchée à cet endroit et comment y remédier.",
+                            },
+                        }
+                    },
+                    new RemarqueParDate()
+                    {
                         DateRemarque = new DateTime(2024, 12, 20),
                         Arme = TypeArme.Epée,
                         Tireur = new Tireur()

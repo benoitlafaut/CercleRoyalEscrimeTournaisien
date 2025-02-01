@@ -27,7 +27,26 @@ namespace CercleRoyalEscrimeTournaisien
                 List<RemarqueParDate> remarquesParDateTireur = new List<RemarqueParDate>() { };
                 remarquesParDateTireur.AddRange(new List<RemarqueParDate>()
                 {
-                   
+                   new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 1, 24),
+                        Arme = TypeArme.Epée,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositif="La machine commence à se mettre en place. tu commences à bouger un peu plus. pas encore comme des adultes et c'est normal mais cà commence à évoluer. pour toi, cà sera surtout stabilisation des jambes, aller vers l'avant en faisant de beaux marchés ou rompés et de belles fentes. il est normal que tu puisses pas encore rivaliser avec des jeunes de 11 13 ans mais c'est en bonne voie! ",
+                            },
+                            new RemarqueData()
+                            {
+                                PointNégatif="Quand tu attaques, n'inverse pas tes épaules. L'épaule gauche est toujours derrière l'épaule droite et ne passe pas devant.",
+                            },
+                        }
+                    },
                      new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2024, 10, 9),

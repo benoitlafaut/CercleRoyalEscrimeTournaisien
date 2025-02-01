@@ -29,6 +29,26 @@ namespace CercleRoyalEscrimeTournaisien
                 List<RemarqueParDate> remarquesParDateTireur = new List<RemarqueParDate>() { };
                 remarquesParDateTireur.AddRange(new List<RemarqueParDate>()
                 {
+                    new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 1, 24),
+                        Arme = TypeArme.Epée,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositif="La machine commence à se mettre en place. au plus tu iras vite dans tes déplacements sans y penser, au plus tu gagneras.",
+                            },
+                            new RemarqueData()
+                            {
+                                PointNégatif="Tu attends souvent que l'autre fasse qqch. Non, agis ! fais qqch avant que l'autre ne le fasse. ",
+                            },
+                        }
+                    },
                      new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2024, 12, 20),

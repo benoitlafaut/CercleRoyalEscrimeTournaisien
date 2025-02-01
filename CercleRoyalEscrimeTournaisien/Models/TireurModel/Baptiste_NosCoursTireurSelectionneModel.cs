@@ -27,6 +27,38 @@ namespace CercleRoyalEscrimeTournaisien
                 List<RemarqueParDate> remarquesParDateTireur = new List<RemarqueParDate>() { };
                 remarquesParDateTireur.AddRange(new List<RemarqueParDate>()
                 {
+                    new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 1, 24),
+                        Arme = TypeArme.Epée,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointNégatif="Lorsque tu attaques, laisse ta main armée à hauteur de l'épaule. La coquille protégera ton avant-bras.",
+                            },
+                        }
+                    },
+                    new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 1, 17),
+                        Arme = TypeArme.Sabre,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointNégatif="Au sabre, lors de l'attaque, le bras reste allongé jusqu'à la touche. Et le bras est dirigé vers la cible voulue.",
+                            },
+                        }
+                    },
                      new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2024, 12, 20),

@@ -27,7 +27,40 @@ namespace CercleRoyalEscrimeTournaisien
                 List<RemarqueParDate> remarquesParDateTireur = new List<RemarqueParDate>() { };
                 remarquesParDateTireur.AddRange(
                 new List<RemarqueParDate>()
-                { new RemarqueParDate()
+                {
+                      new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 1, 24),
+                        Arme = TypeArme.Epée,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                             new RemarqueData()
+                            {
+                                PointPositif="Je n'ai pas beaucoup de vue sur tes matchs. mais je sais que la pointe tu l'attrapes un peu à la fois. Il y a encore du taf, cà c'est sur. mais le fait d'attaquer et le fait d'oser, tu peux t'en tirer en gagnant des touches par ci par là. Il faut croire en toi et oser !",
+                            },
+                        }
+                    },
+                    new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 1, 24),
+                        Arme = TypeArme.Epée,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositif="la pointe est très bonne. continue de toucher aux avancées (manchette, saignée). Tu peux y arriver, il faut croire en toi !",
+                            },
+                        }
+                    },
+                    new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2024,11 ,16),
                         Arme = TypeArme.Epée,

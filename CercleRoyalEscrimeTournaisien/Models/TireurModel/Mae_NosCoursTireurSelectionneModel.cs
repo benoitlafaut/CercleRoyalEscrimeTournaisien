@@ -30,6 +30,34 @@ namespace CercleRoyalEscrimeTournaisien
                 remarquesParDateTireur.AddRange(
                 new List<RemarqueParDate>()
                 {
+                    new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 1, 24),
+                        Arme = TypeArme.Epée,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                             new RemarqueData()
+                            {
+                                PointPositif="Tu viens de commencer cette année-ci. il est normal que cà soit dur pour toi de gagner. mais tout travail ou évolution mérite d'être souligné. je vois du répondant, peut-etre un peu timide encore mais il faut oser. je vois une belle garde, une belle précision de la pointe. il faut croire en toi et ne pas douter de toi. je suis sûr que tu es capable de faire de belles touches à la manchette ou saignée. il faut y aller, mordre sur la chique et tenter des choses. c'est à la salle qu'on tente des choses. Continue et n'aie pas peur d'attaquer, ose !",
+                            },
+                            new RemarqueData()
+                            {
+                                PointNégatif="Parfois tu démarres trop tôt les jambes. le bras doit être allongé complètement avant de démarrer les jambes. si tu fais les deux en meme temps, tu risques d'être touchée à la saignée.",
+                            },
+                            new RemarqueData()
+                            {
+                                PointNégatif="Tu es souvent trop proche de ton adversaire, plus il est grand plus tu es éloignée de lui. ",
+                            },
+                            new RemarqueData()
+                            {
+                                PointNégatif="Tu fais un retrait du bras trop vite quand tu n'es pas encore à bonne distance de lui. Laisse ton bras allonger jusqu'au moment où tu es bien loin de lui.",
+                            },
+                        }
+                    },
                      new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2024, 12, 18),

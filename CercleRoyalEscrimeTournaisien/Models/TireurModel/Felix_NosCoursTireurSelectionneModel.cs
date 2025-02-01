@@ -29,8 +29,50 @@ namespace CercleRoyalEscrimeTournaisien
             get
             {
                 List<RemarqueParDate> remarquesParDateTireur = new List<RemarqueParDate>() { };
+
                 remarquesParDateTireur.AddRange(new List<RemarqueParDate>()
                 {
+                     new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 1, 17),
+                        Arme = TypeArme.Sabre,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositif="Tu bouges beaucoup vers l'avant, tu vas chercher les touches, prends ton temps davantage pour utiliser les 3 minutes. tu ne dois pas vite vite terminer ton match. et note dans ton carnet tout ce qui marche. je suis sur que si tu le notais tu pourrais te rappeler de plus de choses qui marchent selon que tu tires contre l'un ou l'autre.",
+                            },
+                            new RemarqueData()
+                            {
+                                PointNégatif="Si une fente ne marche pas, fais un marché fente. Généralement tu arrives trop court car tu ne fais qu'une seule fente. rajoute un marché ou un déplacement plus important pour te rapprocher de ton adversaire.",
+                            },
+                            new RemarqueData()
+                            {
+                                PointNégatif="Prends ton temps après chaque touche surtout si tu te fais toucher pour analyser pourquoi tu as été touché, tu as tendance à aller trop vite et l'autre en profite et fait généralement la même chose",
+                            },
+                            new RemarqueData()
+                            {
+                                PointNégatif="lors de la retraite, le bras se fléchit bien pour faire un contre le sixte facilement. tu laisses trop souvent ton bras allongé ou à moitié allongé.",
+                            },
+                            new RemarqueData()
+                            {
+                                PointNégatif="Ta main armée est souvent trop haute par rapport à ton coude.",
+                                Frequency = 5
+                            },
+                            new RemarqueData()
+                            {
+                                PointNégatif="On ne dit pas problème de branchement quand on arbitre... on le résoud en m'appelant ou Rémi ou Fabrice.. mais là quand cà sonne régulièrement, c'est le fil de corps à changer.",
+                            },
+                            new RemarqueData()
+                            {
+                                PointNégatif="Quand un tireur touche la coquille adverse, l'autre a fait une parade.",
+                            },
+                        }
+                    },
                     new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2024, 11, 16),

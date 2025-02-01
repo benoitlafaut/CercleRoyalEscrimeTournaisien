@@ -31,6 +31,22 @@ namespace CercleRoyalEscrimeTournaisien
                 List<RemarqueParDate> remarquesParDateTireur = new List<RemarqueParDate>() { };
                 remarquesParDateTireur.AddRange(new List<RemarqueParDate>()
                 {
+                    new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 1, 24),
+                        Arme = TypeArme.Epée,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositif="Tu as commencé début de saison et tu mets déjà de belles touches. avec de la maîtrise du bras qui va vers la cible sans de détour et une bonne précision de pointe qui s'acquière avec le temps, tu gagneras en point et tu gagneras en match. tu as la volonté de gagner. c'est dur je le sais, je suis passé par là mais avec du travail tu y arriveras. ",
+                            },
+                        }
+                    },
                      new RemarqueParDate()
                                     {
                                         DateRemarque = new DateTime(2024, 12, 18),

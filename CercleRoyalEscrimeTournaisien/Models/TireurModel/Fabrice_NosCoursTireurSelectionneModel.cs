@@ -30,6 +30,26 @@ namespace CercleRoyalEscrimeTournaisien
                 List<RemarqueParDate> remarquesParDateTireur = new List<RemarqueParDate>() { };
                 remarquesParDateTireur.AddRange(new List<RemarqueParDate>()
                 {
+                     new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 1, 17),
+                        Arme = TypeArme.Sabre,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositif="Essaie les choses que tu veux mais fais en part à ceux qui sont en face par forcément pour leur montrer ce que tu fais mais pour communiquer la technique aux autres et peut-être que eux auront d'autres solutions à te donner...",
+                            },
+                            new RemarqueData()
+                            {
+                                PointNégatif="Evite de sauter en l'air. au plus longtemps tu resteras dans les airs, au moins tu sauras repartir vers l'arrière ou même vers l'avant car tu n'as pas de point d'ancrage au sol.",
+                            },
+                        }
+                    },
                     new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2024, 9, 22),

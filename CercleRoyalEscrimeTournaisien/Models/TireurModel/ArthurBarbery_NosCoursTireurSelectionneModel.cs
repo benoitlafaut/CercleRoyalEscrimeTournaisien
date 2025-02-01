@@ -29,6 +29,22 @@ namespace CercleRoyalEscrimeTournaisien
                 List<RemarqueParDate> remarquesParDateTireur = new List<RemarqueParDate>() { };
                 remarquesParDateTireur.AddRange(new List<RemarqueParDate>()
                 {
+                     new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 1, 24),
+                        Arme = TypeArme.Epée,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositif="Je remarque une nette amélioration de ta gestuelle et des combats en général. Quand tu es dans ton match, tu fais des dégâts. Reste dans tes matchs; sois impertubable. Ne te laisse pas déconcentrer par telle ou telle chose. je suis sur que tu peux faire plus de dégâts que cà. La prochaine étape pour toi, c'est de faire des 5-0. ne pas te laisser toucher, garder la distance que tu fais très bien et être posé dans chacun de tes matchs. ",
+                            },
+                        }
+                    },
                     new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2024, 9, 22),

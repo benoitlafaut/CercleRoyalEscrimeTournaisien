@@ -29,6 +29,35 @@ namespace CercleRoyalEscrimeTournaisien
                 {
                     new RemarqueParDate()
                     {
+                        DateRemarque = new DateTime(2025, 1, 24),
+                        Arme = TypeArme.Epée,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositif="Tu es très bien en garde, n'hésite pas à provoquer ton adversaire et à le laisser venir vers toi pour faire des contre le sixte ou des arrêts à la manchette. La précision de la pointe cà se travaille mais tu es dans la bonne voie.",
+                            },
+                            new RemarqueData()
+                            {
+                                PointPositif="Belles touches à la manchette/saignée, quand tu vois une ouverture, laisse traîner ta pointe vers la manchette ou la saignée. C'est l'autre qui se fera touché, il faut croire en toi !",
+                            },
+                            new RemarqueData()
+                            {
+                                PointNégatif="Lorsque tu es en garde à l'épée, ton bras armé est trop allongé. Le coude doit être à une main une main et demi grand max du corps. Pas plus.",
+                            },
+                            new RemarqueData()
+                            {
+                                PointNégatif="lorsque tu allonges le bras, la main est au même niveau que l'épaule. Soit le bras est bien fléchi soit il est allongé avec protection de la coquille.",
+                            },
+                        }
+                    },
+
+                    new RemarqueParDate()
+                    {
                         DateRemarque = new DateTime(2024, 9, 22),
                         Arme = TypeArme.Fleuret,
                         Tireur = new Tireur()
