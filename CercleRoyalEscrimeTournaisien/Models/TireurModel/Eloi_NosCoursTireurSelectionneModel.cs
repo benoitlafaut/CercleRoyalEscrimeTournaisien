@@ -12,6 +12,8 @@ namespace CercleRoyalEscrimeTournaisien
             {
                 return new Dictionary<string, string>()
                 {
+                    { "", ""  },                   
+                    { "/Poules/Poule 02-02-2025 Epée.pdf", "Poule 02-02-2025 Epée"  },
                 };
             }
         }
