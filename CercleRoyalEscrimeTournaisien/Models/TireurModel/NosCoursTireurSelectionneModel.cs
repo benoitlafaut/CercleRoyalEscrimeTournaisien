@@ -116,9 +116,7 @@ namespace CercleRoyalEscrimeTournaisien
                     case IndexTireurConstantes.TireurIndex.AmadoSimon:
                         Amado_NosCoursTireurSelectionneModel amado_NosCoursTireurSelectionneModel = new Amado_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return TrierParDate(amado_NosCoursTireurSelectionneModel.RemarquesParDateTireur);
-                    case IndexTireurConstantes.TireurIndex.ThéoHelleputte:
-                        Théo_NosCoursTireurSelectionneModel théo_NosCoursTireurSelectionneModel = new Théo_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return TrierParDate(théo_NosCoursTireurSelectionneModel.RemarquesParDateTireur);
+                   
                     case IndexTireurConstantes.TireurIndex.HéloïsePras:
                         Héloïse_NosCoursTireurSelectionneModel héloïse_NosCoursTireurSelectionneModel = new Héloïse_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return TrierParDate(héloïse_NosCoursTireurSelectionneModel.RemarquesParDateTireur);
@@ -218,9 +216,7 @@ namespace CercleRoyalEscrimeTournaisien
                     case IndexTireurConstantes.TireurIndex.AmadoSimon:
                         Amado_NosCoursTireurSelectionneModel amado_NosCoursTireurSelectionneModel = new Amado_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return amado_NosCoursTireurSelectionneModel.GetPoules;
-                    case IndexTireurConstantes.TireurIndex.ThéoHelleputte:
-                        Théo_NosCoursTireurSelectionneModel théo_NosCoursTireurSelectionneModel = new Théo_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return théo_NosCoursTireurSelectionneModel.GetPoules;
+                   
                     case IndexTireurConstantes.TireurIndex.HéloïsePras:
                         Héloïse_NosCoursTireurSelectionneModel héloïse_NosCoursTireurSelectionneModel = new Héloïse_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return héloïse_NosCoursTireurSelectionneModel.GetPoules;

@@ -29,7 +29,7 @@
             ApollineOdendhal = 23,
             AmadoSimon = 24,
             LouisonBinois = 25,
-            ThéoHelleputte = 26,
+           // ThéoHelleputte = 26,
             HéloïsePras = 27,
             RebeccaVandy = 28,
             EliotPunchoo = 29
