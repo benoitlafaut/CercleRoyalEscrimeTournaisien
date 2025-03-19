@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WebGrease.Css.Ast.Selectors;
 
 namespace CercleRoyalEscrimeTournaisien 
 { 
@@ -19,9 +20,8 @@ namespace CercleRoyalEscrimeTournaisien
             }
         }
 
-        //public IDictionary<string, string> Poules { get; set; }
         public bool HasMale { get; set; }
-        public bool PouleSelectionnee { get; set; }
+        public string PouleSelectionnee { get; set; }
         public Tireur TireurSelectionne { get; set; }
         public List<RemarqueParDate> RemarquesPourTousLesTireursParDate
         {
@@ -131,6 +131,32 @@ namespace CercleRoyalEscrimeTournaisien
             }
           
         }
+
+        public IDictionary<string, string > PoulesFormatted
+        {
+            get
+            {
+                PouleSelectionnee = "";
+
+                IDictionary<string, string> essai = new Dictionary<string, string>() { };
+                foreach (var poule in Poules)
+                {
+                    essai.Add(poule.Key, TransformPoule(poule.Value) );
+                }
+
+                return essai;
+            }
+        }
+
+        private string TransformPoule(string value)
+        {
+            if (string.IsNullOrEmpty(value)) { return value; }
+            string[] array = value.Split(' ');
+            string[] array2 = array[1].Split('-');
+            string valueNew = array[0] + " " + array2[2] + "-" + array2[1] + "-" + array2[0] + " " + array[2];
+            return valueNew;
+        }
+
         public IDictionary<string, string> Poules
         {
             get
@@ -140,89 +166,89 @@ namespace CercleRoyalEscrimeTournaisien
                 {
                     case IndexTireurConstantes.TireurIndex.EloiBinois:
                         Eloi_NosCoursTireurSelectionneModel eloi_NosCoursTireurSelectionneModel = new Eloi_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return eloi_NosCoursTireurSelectionneModel.GetPoules;
+                        return eloi_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.EvaDufrasne:
                         Eva_NosCoursTireurSelectionneModel eva_NosCoursTireurSelectionneModel = new Eva_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return eva_NosCoursTireurSelectionneModel.GetPoules;
+                        return eva_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.LouisonBinois:
                         Louison_NosCoursTireurSelectionneModel louison_NosCoursTireurSelectionneModel = new Louison_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return louison_NosCoursTireurSelectionneModel.GetPoules;
+                        return louison_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.RémiSoyez:
                         Remi_NosCoursTireurSelectionneModel remi_NosCoursTireurSelectionneModel = new Remi_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return remi_NosCoursTireurSelectionneModel.GetPoules;
+                        return remi_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.ElodieMass:
                         Elodie_NosCoursTireurSelectionneModel elodie_NosCoursTireurSelectionneModel = new Elodie_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return elodie_NosCoursTireurSelectionneModel.GetPoules;
+                        return elodie_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.FélixTrannoy:
                         Felix_NosCoursTireurSelectionneModel felix_NosCoursTireurSelectionneModel = new Felix_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return felix_NosCoursTireurSelectionneModel.GetPoules;
+                        return felix_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.OscarDeblocq:
                         Oscar_NosCoursTireurSelectionneModel oscar_NosCoursTireurSelectionneModel = new Oscar_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return oscar_NosCoursTireurSelectionneModel.GetPoules;
+                        return oscar_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.MaybelleCarlier:
                         Maybelle_NosCoursTireurSelectionneModel maybelle_NosCoursTireurSelectionneModel = new Maybelle_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return maybelle_NosCoursTireurSelectionneModel.GetPoules;
+                        return maybelle_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.FabriceRazanajao:
                         Fabrice_NosCoursTireurSelectionneModel fabrice_NosCoursTireurSelectionneModel = new Fabrice_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return fabrice_NosCoursTireurSelectionneModel.GetPoules;
+                        return fabrice_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.AbelMotte:
                         Abel_NosCoursTireurSelectionneModel abel_NosCoursTireurSelectionneModel = new Abel_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return abel_NosCoursTireurSelectionneModel.GetPoules;
+                        return abel_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.BaptisteMotte:
                         Baptiste_NosCoursTireurSelectionneModel baptiste_NosCoursTireurSelectionneModel = new Baptiste_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return baptiste_NosCoursTireurSelectionneModel.GetPoules;
+                        return baptiste_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.EliotPunchoo:
                         Eliot_NosCoursTireurSelectionneModel Eliot_NosCoursTireurSelectionneModel = new Eliot_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return Eliot_NosCoursTireurSelectionneModel.GetPoules;
+                        return Eliot_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.ArthurBarbery:
                         ArthurBarbery_NosCoursTireurSelectionneModel arthurBarbery_NosCoursTireurSelectionneModel = new ArthurBarbery_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return arthurBarbery_NosCoursTireurSelectionneModel.GetPoules;
+                        return arthurBarbery_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.LeanderCle:
                         Leander_NosCoursTireurSelectionneModel leander_NosCoursTireurSelectionneModel = new Leander_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return leander_NosCoursTireurSelectionneModel.GetPoules;
+                        return leander_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.ArthurCouturiaux:
                         ArthurCouturiaux_NosCoursTireurSelectionneModel arthurCouturiaux_NosCoursTireurSelectionneModel = new ArthurCouturiaux_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return arthurCouturiaux_NosCoursTireurSelectionneModel.GetPoules;
+                        return arthurCouturiaux_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.JordanMestdagh:
                         Jordan_NosCoursTireurSelectionneModel jordan_NosCoursTireurSelectionneModel = new Jordan_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return jordan_NosCoursTireurSelectionneModel.GetPoules;
+                        return jordan_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.MartinSiu:
                         Martin_NosCoursTireurSelectionneModel martin_NosCoursTireurSelectionneModel = new Martin_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return martin_NosCoursTireurSelectionneModel.GetPoules;
+                        return martin_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.RaedwaldVercouter:
                         Raedwald_NosCoursTireurSelectionneModel raedwald_NosCoursTireurSelectionneModel = new Raedwald_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return raedwald_NosCoursTireurSelectionneModel.GetPoules;
+                        return raedwald_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.AuroreCarlier:
                         Aurore_NosCoursTireurSelectionneModel aurore_NosCoursTireurSelectionneModel = new Aurore_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return aurore_NosCoursTireurSelectionneModel.GetPoules;
+                        return aurore_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.AnaelleIvanov:
                         Anaelle_NosCoursTireurSelectionneModel anaelle_NosCoursTireurSelectionneModel = new Anaelle_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return anaelle_NosCoursTireurSelectionneModel.GetPoules;
+                        return anaelle_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.LiliMestdag:
                         Lili_NosCoursTireurSelectionneModel lili_NosCoursTireurSelectionneModel = new Lili_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return lili_NosCoursTireurSelectionneModel.GetPoules;
+                        return lili_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.MathildeCarette:
                         Mathilde_NosCoursTireurSelectionneModel mathilde_NosCoursTireurSelectionneModel = new Mathilde_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return mathilde_NosCoursTireurSelectionneModel.GetPoules;
+                        return mathilde_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.MaeVantroyen:
                         Mae_NosCoursTireurSelectionneModel mae_NosCoursTireurSelectionneModel = new Mae_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return mae_NosCoursTireurSelectionneModel.GetPoules;
+                        return mae_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.SachaLessart:
                         Sacha_NosCoursTireurSelectionneModel sacha_NosCoursTireurSelectionneModel = new Sacha_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return sacha_NosCoursTireurSelectionneModel.GetPoules;
+                        return sacha_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.ApollineOdendhal:
                         Apolline_NosCoursTireurSelectionneModel apolline_NosCoursTireurSelectionneModel = new Apolline_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return apolline_NosCoursTireurSelectionneModel.GetPoules;
+                        return apolline_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.AmadoSimon:
                         Amado_NosCoursTireurSelectionneModel amado_NosCoursTireurSelectionneModel = new Amado_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return amado_NosCoursTireurSelectionneModel.GetPoules;
+                        return amado_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                    
                     case IndexTireurConstantes.TireurIndex.HéloïsePras:
                         Héloïse_NosCoursTireurSelectionneModel héloïse_NosCoursTireurSelectionneModel = new Héloïse_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return héloïse_NosCoursTireurSelectionneModel.GetPoules;
+                        return héloïse_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.RebeccaVandy:
                         Rebecca_NosCoursTireurSelectionneModel rebecca_NosCoursTireurSelectionneModel = new Rebecca_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return rebecca_NosCoursTireurSelectionneModel.GetPoules;
+                        return rebecca_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     default:
                         return new Dictionary<string, string>() { };
                 }

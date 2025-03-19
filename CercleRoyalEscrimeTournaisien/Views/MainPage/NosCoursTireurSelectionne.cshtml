@@ -37,7 +37,7 @@
 
         <div style="@stylePoules">
             <label>Poules: </label>
-            @Html.DropDownListFor(model => model.PouleSelectionnee, new SelectList(Model.Poules, "Key", "Value", Model.PouleSelectionnee), new { @class = "form-control", @id= "DropDownListForPoules", @title = "Sélectionnez la poule pour la télécharger. Seul les poules complètes sont mises en ligne." })
+            @Html.DropDownListFor(model => model.PouleSelectionnee, new SelectList(Model.PoulesFormatted, "Key", "Value", Model.PouleSelectionnee), new { @class = "form-control", @id= "DropDownListForPoules", @title = "Sélectionnez la poule pour la télécharger. Seul les poules complètes sont mises en ligne." })
         </div>
     </div>
 
