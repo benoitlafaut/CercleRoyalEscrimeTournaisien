@@ -16,21 +16,24 @@
 
 @Styles.Render("~/content/karaoke.css")
 
+@*<script src="https://www.youtube.com/player_api"></script>*@
+
 <!DOCTYPE html>
 <html>
 
-<body id="karaoke" style=" overflow-y: overlay; height: 80%; width: 99%; overflow-x: hidden;">
+<body id="karaoke" style=" overflow-y: hidden; height: 80%; width: 99%; overflow-x: hidden;">
     <div style="text-align: center; top: 2px; position: relative;">
         @Html.DropDownListFor(model => model.ChanteurSelected, new SelectList(Model.ListeDesChanteurs, "Key", "Value", Model.ChanteurSelected), new { @style = "width:150px;", @onchange = "changeArtiste()" })
         @Html.DropDownListFor(model => model.ChansonSelected, new SelectList(Model.ListeDesChansons, "Key", "Value", Model.ChansonSelected), new { @style = "width:150px;", @onchange = "changeChanson()" })
     </div>
 
-    <div id="youtube-video" style="display:none;"></div>
+    <div id="player" style="display:none"></div>
 
     <div class="divTextAreaAnswerList">
         <textarea readonly="readonly" unselectable="on" id="AnswerList" class="noselect form-control classAnswerList">@string.Join("\n ", Model.RowsToRead)</textarea>
     </div>
-    
+
+    @Html.HiddenFor(m => m.UrlChansonEmbed)
     @Html.HiddenFor(m => m.MomentsToRead.Count)
 
     @for (var i = 0; i < Model.MomentsToRead.Count; i++)
@@ -41,19 +44,40 @@
 </body>
 </html>
 
-<script type="text/javascript">
-     if ('@Model.UrlChansonEmbed' != '') {
-         createYoutubeiFrame("youtube-video", '@Model.UrlChansonEmbed');
+<script type="text/javascript">  
+    var tag = document.createElement('script');
 
-         setInterval(function () {
-             changeTexteAutomatique();
-         }, 4000);
+    tag.src = "https://www.youtube.com/player_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    
+    var player;
+
+
+    function onYouTubePlayerAPIReady(videoId) {
+        player = new YT.Player('player', {
+            height: '390',
+            width: '640',
+            videoId: videoId,
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            }
+        });
     }
 
 
+
+    function onPlayerReady(evt) {
+        evt.target.playVideo();
+    }
+
+    function onPlayerStateChange(evt) {
+    }
+
     function changeTexteAutomatique() {
         if (player.playerInfo.playerState == '1') {
-            var playerVideo = YT.get('youtube-video');
+            var playerVideo = YT.get('player');
             var currentTime = playerVideo.getCurrentTime();
             //var currentDuration = playerVideo.getDuration();
 
@@ -63,7 +87,7 @@
 
             var ratio = (currentDuration / countMomentsToRead) * 100;
 
-            
+
             let changeScrollTop = 300;
             if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                 if (window.innerWidth > window.innerHeight) {
@@ -87,24 +111,10 @@
         }
     }
 
-    function playerReadyEvent(event) {
-        event.target.playVideo();
-    }
-
-    function createYoutubeiFrame(elementID, videoID) {
-        player = new YT.Player(elementID, {
-            videoId: videoID,
-            playerVars: {
-                playsinline: 1,
-            },
-            events: {
-                'onReady': playerReadyEvent,
-            }
-        });
-        return player;
-    }
+    
 
     function changeArtiste() {
+
         var data = $("#karaoke :input").serializeArray();
 
         $.ajax({
@@ -133,10 +143,16 @@
             dataType: 'json',
             success: function (result) {
                 $('#karaoke').html(result.karaokeViewModel);
+                if ($("#UrlChansonEmbed").val() != '') {                    
+                    onYouTubePlayerAPIReady($("#UrlChansonEmbed").val());
+                    setInterval(function () {
+                        changeTexteAutomatique();
+                    }, 5000);
+                }
             },
             error: function (response) {
                 alert("Error. " + response.responseText);
             }
         });
     }
-</script>
+    </script>
