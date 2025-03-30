@@ -14,6 +14,7 @@ namespace CercleRoyalEscrimeTournaisien
                 { 
                     { "", ""  },                    
                     { "/Poules/Poule 2025-03-12 Epée.pdf", "Poule 2025-03-12 Epée"  },
+                     { "/Poules/Poule 2025-03-28 Sabre.pdf", "Poule 2025-03-28 Sabre"  },
                 };
             }
         }

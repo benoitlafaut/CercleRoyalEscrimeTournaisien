@@ -11,7 +11,9 @@ namespace CercleRoyalEscrimeTournaisien
             get
             {
                 return new Dictionary<string, string>()
-                {
+                { 
+                    { "", ""  },
+                     { "/Poules/Poule 2025-03-28 Sabre.pdf", "Poule 2025-03-28 Sabre"  },
                 };
             }
         }

@@ -1228,6 +1228,9 @@
     <Content Include="Poules\Poule 2025-03-12 Epée.pdf" />
     <Content Include="Poules\Poule 24-01-2025 Epée Grand.pdf" />
     <Content Include="Poules\Poule 24-01-2025 Epée.pdf" />
+    <Content Include="Poules\poule 2025-03-28 Sabre Seniors.pdf" />
+    <Content Include="Poules\Poule 2025-03-28 Sabre.pdf" />
+    <Content Include="Poules\Constatations 2025-03-28 Elodie.pdf" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
