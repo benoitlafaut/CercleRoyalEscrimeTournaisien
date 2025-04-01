@@ -24,9 +24,9 @@
 <div style="font-size:16px;margin-bottom:5px;">
     <div style="text-align: center; color: blue">
         <label class="ClassTireurSelectionne" style="">Tireuse/tireur sélectionné(e) : @Model.TireurSelectionne.UserName</label>
-        <input id="buttonCollapseDevelopp" style="margin-right:15px;" type="button" value="Développer tout" onclick="ExpandCollapse();" />
+        @*<input id="buttonCollapseDevelopp" style="margin-right:15px;" type="button" value="Développer tout" onclick="ExpandCollapse();" />*@
 
-        @Html.DropDownListFor(model => model.HasMale, new SelectList(Model.SpeakerList, "Key", "Value", Model.HasMale), new { @class = "form-control", @title = "Choisissez un homme ou une femme pour lire les textes." })
+        @*@Html.DropDownListFor(model => model.HasMale, new SelectList(Model.SpeakerList, "Key", "Value", Model.HasMale), new { @class = "form-control", @title = "Choisissez un homme ou une femme pour lire les textes." })*@
 
         <div style="display:inline-block;margin-bottom:15px;">
             <label style="color:blue;margin-left:15px;">
@@ -37,100 +37,112 @@
 
         <div style="@stylePoules">
             <label>Poules: </label>
-            @Html.DropDownListFor(model => model.PouleSelectionnee, new SelectList(Model.PoulesFormatted, "Key", "Value", Model.PouleSelectionnee), new { @class = "form-control", @id= "DropDownListForPoules", @title = "Sélectionnez la poule pour la télécharger. Seul les poules complètes sont mises en ligne." })
+            @Html.DropDownListFor(model => model.PouleSelectionnee, new SelectList(Model.PoulesFormatted, "Key", "Value", Model.PouleSelectionnee), new { @class = "form-control", @id = "DropDownListForPoules", @title = "Sélectionnez la poule pour la télécharger. Seul les poules complètes sont mises en ligne." })
         </div>
     </div>
 
-    <button class="accordion">Le fleuret</button>
-    <div class="ClassPanel">
-        @foreach (var date in Model.RemarquesParDate)
-        {
-            switch (date.Arme)
+    @foreach (var date in Model.RemarquesParDateNewLook)
+    {
+        <div class="row" style="display: flex; border-left: 6px solid goldenrod; border-bottom: 5px solid goldenrod; font-size: 20px; margin-left: 5px; margin-bottom: 28px; margin-top: 28px; width: 350px; ">
+            <span style=" margin-left: 11px;">@date.DateRemarque.ToString("dd/MM/yyyy") - @date.Arme</span>
+           
+        </div>
+       
+    }
+
+
+    @*<button class="accordion">Le fleuret</button>
+        <div class="ClassPanel">
+            @foreach (var date in Model.RemarquesParDate)
             {
-                case TypeArme.Fleuret:
-                    <label class="ClassDate">@date.DateRemarque.ToShortDateString()</label>
-                    foreach (RemarqueData remarque in date.RemarquesData)
-                    {
-                        if (!string.IsNullOrEmpty(remarque.PointPositif))
+                switch (date.Arme)
+                {
+                    case TypeArme.Fleuret:
+                        <label class="ClassDate">@date.DateRemarque.ToShortDateString()</label>
+                        foreach (RemarqueData remarque in date.RemarquesData)
                         {
-                            @Html.Partial(PartialViewNames.NosCoursTireurSelectionnePointPositif, remarque)
+                            if (!string.IsNullOrEmpty(remarque.PointPositif))
+                            {
+                                @Html.Partial(PartialViewNames.NosCoursTireurSelectionnePointPositif, remarque)
+                            }
+                            else
+                            {
+                                @Html.Partial(PartialViewNames.NosCoursTireurSelectionnePointNegatif, remarque)
+                            }
                         }
-                        else
-                        {
-                            @Html.Partial(PartialViewNames.NosCoursTireurSelectionnePointNegatif, remarque)
-                        }
-                    }
-                    break;
+                        break;
+                }
             }
-        }
-    </div>
+        </div>*@
 
-    <button class="accordion accordionMarginTop">L'épée</button>
-    <div class="ClassPanel">
-        @foreach (var date in Model.RemarquesParDate)
-        {
-            switch (date.Arme)
+    @*<button class="accordion accordionMarginTop">L'épée</button>
+        <div class="ClassPanel">
+            @foreach (var date in Model.RemarquesParDate)
             {
-                case TypeArme.Epée:
-                    <label class="ClassDate">@date.DateRemarque.ToShortDateString()</label>
-                    foreach (var remarque in date.RemarquesData)
-                    {
-                        //string styleDisplayVideo = remarque.HasUrlVideo ? "width: 2%" : "display:none";
-
-                        if (!string.IsNullOrEmpty(remarque.PointPositif))
+                switch (date.Arme)
+                {
+                    case TypeArme.Epée:
+                        <label class="ClassDate">@date.DateRemarque.ToShortDateString()</label>
+                        foreach (var remarque in date.RemarquesData)
                         {
-                            @Html.Partial(PartialViewNames.NosCoursTireurSelectionnePointPositif, remarque)
-                        }
-                        else
-                        {
-                            @Html.Partial(PartialViewNames.NosCoursTireurSelectionnePointNegatif, remarque)
-                        }
-                    }
-                    break;
+                            //string styleDisplayVideo = remarque.HasUrlVideo ? "width: 2%" : "display:none";
 
+                            if (!string.IsNullOrEmpty(remarque.PointPositif))
+                            {
+                                @Html.Partial(PartialViewNames.NosCoursTireurSelectionnePointPositif, remarque)
+                            }
+                            else
+                            {
+                                @Html.Partial(PartialViewNames.NosCoursTireurSelectionnePointNegatif, remarque)
+                            }
+                        }
+                        break;
+
+                }
             }
-        }
 
-    </div>
+        </div>*@
 
-    <button class="accordion accordionMarginTop">Le sabre</button>
-    <div class="ClassPanel">
-        @foreach (var date in Model.RemarquesParDate)
-        {
-            switch (date.Arme)
+    @*<button class="accordion accordionMarginTop">Le sabre</button>
+        <div class="ClassPanel">
+            @foreach (var date in Model.RemarquesParDate)
             {
-                case TypeArme.Sabre:
-                    <label class="ClassDate">@date.DateRemarque.ToShortDateString()</label>
-                    foreach (var remarque in date.RemarquesData)
-                    {
-                        if (!string.IsNullOrEmpty(remarque.PointPositif))
+                switch (date.Arme)
+                {
+                    case TypeArme.Sabre:
+                        <label class="ClassDate">@date.DateRemarque.ToShortDateString()</label>
+                        foreach (var remarque in date.RemarquesData)
                         {
-                            @Html.Partial(PartialViewNames.NosCoursTireurSelectionnePointPositif, remarque)
+                            if (!string.IsNullOrEmpty(remarque.PointPositif))
+                            {
+                                @Html.Partial(PartialViewNames.NosCoursTireurSelectionnePointPositif, remarque)
+                            }
+                            else
+                            {
+                                @Html.Partial(PartialViewNames.NosCoursTireurSelectionnePointNegatif, remarque)
+                            }
                         }
-                        else
-                        {
-                            @Html.Partial(PartialViewNames.NosCoursTireurSelectionnePointNegatif, remarque)
-                        }
-                    }
-                    break;
+                        break;
+                }
             }
-        }
-    </div>
+        </div>*@
 
-    <button class="accordion accordionMarginTop" style="margin-bottom:10px">Observations générales pour les tireuses et les tireurs </button>
-    <div class="ClassPanel">
-        @foreach (var date in Model.RemarquesPourTousLesTireursParDate)
-        {
-            foreach (var remarque in date.RemarquesData)
+    @*<button class="accordion accordionMarginTop" style="margin-bottom:10px">Observations générales pour les tireuses et les tireurs </button>
+        <div class="ClassPanel">
+            @foreach (var date in Model.RemarquesPourTousLesTireursParDate)
             {
-                @Html.Partial(PartialViewNames.NosCoursTireurSelectionnePointDAttentionPourTous, remarque)
+                foreach (var remarque in date.RemarquesData)
+                {
+                    @Html.Partial(PartialViewNames.NosCoursTireurSelectionnePointDAttentionPourTous, remarque)
+                }
+                break;
             }
-            break;
-        }
-    </div>
+        </div>*@
 
     <div>
-    @{Html.RenderPartial("ModalPopup");}
+        @{
+            Html.RenderPartial("ModalPopup");
+        }
     </div>
 </div>
 
@@ -213,5 +225,4 @@
         if (item.val() == '') { return; }
         window.open(item.val(), '_blank');
     });
-
 </script>

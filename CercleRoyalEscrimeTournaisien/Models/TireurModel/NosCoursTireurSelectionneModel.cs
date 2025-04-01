@@ -4,7 +4,7 @@ using System.Linq;
 using WebGrease.Css.Ast.Selectors;
 
 namespace CercleRoyalEscrimeTournaisien 
-{ 
+{
     [Serializable]
     public class NosCoursTireurSelectionneModel
     {
@@ -29,6 +29,118 @@ namespace CercleRoyalEscrimeTournaisien
             {
                 ToutTireur_NosCoursTireurSelectionneModel toutTireur_NosCoursTireurSelectionneModel = new ToutTireur_NosCoursTireurSelectionneModel() { };
                 return toutTireur_NosCoursTireurSelectionneModel.RemarquesParDateTireur;
+            }
+        }
+
+        public List<RemarqueParDate> RemarquesParDateNewLook
+        {
+            get
+            {
+                List<RemarqueParDate> remarqueParDateList = new List<RemarqueParDate>() {};
+                remarqueParDateList.AddRange(RemarquesParDate);
+                remarqueParDateList.AddRange(RemarquesPourTousLesTireursParDate);
+                remarqueParDateList.AddRange(RemarquesPourToutesLesPoules);
+                return remarqueParDateList.OrderByDescending(x => x.DateRemarque).ToList();
+            }
+        }
+
+        private List<RemarqueParDate> RemarquesPourToutesLesPoules
+        {
+            get
+            {
+                List<RemarqueParDate> remarquesPourToutesLesPoules = new List<RemarqueParDate>() { };
+                remarquesPourToutesLesPoules.AddRange(
+                    new List<RemarqueParDate>() { 
+                    new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 3, 28),
+                        Arme = TypeArme.Sabre,
+                        RemarquesData = new List<RemarqueData>()
+                        { 
+                            new RemarqueData()
+                            {
+                                PointPositif = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules."
+                            } 
+                        }
+                    },
+                     new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 2, 2),
+                        Arme = TypeArme.Epée,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositif = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules."
+                            }
+                        }
+                    },
+                        new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 1, 19),
+                        Arme = TypeArme.Sabre,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositif = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules."
+                            }
+                        }
+                    },
+                  
+                    new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 3, 12),
+                        Arme = TypeArme.Epée,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositif = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules."
+                            }
+                        }
+                    },
+                    new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 3, 14),
+                        Arme = TypeArme.Epée,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositif = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules."
+                            }
+                        }
+                    },
+                    new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 3, 16),
+                        Arme = TypeArme.Epée,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositif = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules."
+                            }
+                        }
+                    },
+                  
+                    new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 1, 24),
+                        Arme = TypeArme.Epée,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositif = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules."
+                            }
+                        }
+                    }
+                    }
+                    );
+
+                return remarquesPourToutesLesPoules;
             }
         }
 
@@ -125,11 +237,8 @@ namespace CercleRoyalEscrimeTournaisien
                         return TrierParDate(rebecca_NosCoursTireurSelectionneModel.RemarquesParDateTireur);
                     default:
                         return new List<RemarqueParDate>() { };
-                }
-
-                
-            }
-          
+                }               
+            }          
         }
 
         public IDictionary<string, string > PoulesFormatted
