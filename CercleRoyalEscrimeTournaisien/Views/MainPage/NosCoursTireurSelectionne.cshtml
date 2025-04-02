@@ -41,13 +41,26 @@
         </div>
     </div>
 
-    @foreach (var date in Model.RemarquesParDateNewLook)
+    @foreach (var remarqueParDateNewLook in Model.RemarquesParDateNewLook)
     {
         <div class="row" style="display: flex; border-left: 6px solid goldenrod; border-bottom: 5px solid goldenrod; font-size: 20px; margin-left: 5px; margin-bottom: 28px; margin-top: 28px; width: 350px; ">
-            <span style=" margin-left: 11px;">@date.DateRemarque.ToString("dd/MM/yyyy") - @date.Arme</span>
-           
+            <span style=" margin-left: 11px;">@remarqueParDateNewLook.DateRemarque.ToString("dd/MM/yyyy") - @remarqueParDateNewLook.Arme</span>
+
         </div>
-       
+        foreach (var remarqueData in remarqueParDateNewLook.RemarquesData)
+        {
+            string textPositifOuNegatif = string.IsNullOrEmpty(remarqueData.PointPositif) ? remarqueData.PointNégatif : remarqueData.PointPositif;
+            string styleColor = !string.IsNullOrEmpty(remarqueData.PointPositif) ? "green" : "red";
+            string styleDisplayVideo = remarqueData.HasUrlVideo ? "" : "display:none";
+            string classDisplayVideo = remarqueData.HasUrlVideo ? "classDisplayVideo" : "";
+
+            <div class="row" style="color:@styleColor;margin-top: 10px;margin-bottom: 10px;">                
+                <i title="Cliquez pour écouter le texte" onclick='LireTexte("@textPositifOuNegatif.Trim()", this, "True")' class="fa fa-headphones classPointPositifNegatif CursorIcon"></i>
+                <i title="Regarder la vidéo" class="fa fa-video-camera CursorIcon @classDisplayVideo" style="@styleDisplayVideo" onclick='ChargerPopup("@remarqueData.UrlYoutubeVideo", "@textPositifOuNegatif");'></i>
+                <i title="Téléchargez la vidéo" class="fa fa-download CursorIcon @classDisplayVideo" style="@styleDisplayVideo" onclick="window.location.href='@remarqueData.UrlVideo'"></i>
+                <span>@textPositifOuNegatif</span>
+            </div>
+        }
     }
 
 
