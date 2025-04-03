@@ -196,6 +196,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\PartialViewNames.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="ClassPublic\PointPositifNégatifObservationConstantes.cs" />
     <Compile Include="ClassPublic\IndexTireurConstantes.cs" />
     <Compile Include="ClassPublic\Constantes.cs" />
     <Compile Include="Controllers\EpubController.cs" />
@@ -302,7 +303,6 @@
     <Compile Include="Models\TireurModel\Mae_NosCoursTireurSelectionneModel.cs" />
     <Compile Include="Models\TireurModel\Héloïse_NosCoursTireurSelectionneModel.cs" />
     <Compile Include="Models\TireurModel\Sacha_NosCoursTireurSelectionneModel.cs" />
-    <Compile Include="Models\TireurModel\Apolline_NosCoursTireurSelectionneModel.cs" />
     <Compile Include="Models\TireurModel\Amado_NosCoursTireurSelectionneModel.cs" />
     <Compile Include="Models\TireurModel\Théo_NosCoursTireurSelectionneModel.cs" />
     <Compile Include="Models\TireurModel\Rebecca_NosCoursTireurSelectionneModel.cs" />
@@ -1223,11 +1223,7 @@
     <Content Include="Poules\Poule 2025-02-02 Epée.pdf" />
     <Content Include="Poules\Poule 2025-03-14 Epée.pdf" />
     <Content Include="Poules\Poule 2025-03-16 Epée.pdf" />
-    <Content Include="Poules\Poule 02-02-2025 Epée.pdf" />
-    <Content Include="Poules\Poule 19-01-2025 Sabre.pdf" />
     <Content Include="Poules\Poule 2025-03-12 Epée.pdf" />
-    <Content Include="Poules\Poule 24-01-2025 Epée Grand.pdf" />
-    <Content Include="Poules\Poule 24-01-2025 Epée.pdf" />
     <Content Include="Poules\poule 2025-03-28 Sabre Seniors.pdf" />
     <Content Include="Poules\Poule 2025-03-28 Sabre.pdf" />
     <Content Include="Poules\Constatations 2025-03-28 Elodie.pdf" />

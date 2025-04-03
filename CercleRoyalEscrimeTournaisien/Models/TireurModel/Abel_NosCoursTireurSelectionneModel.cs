@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using static CercleRoyalEscrimeTournaisien.PointPositifNégatifObservationConstantes;
 
 namespace CercleRoyalEscrimeTournaisien
 {
@@ -32,6 +33,29 @@ namespace CercleRoyalEscrimeTournaisien
                 {
                     new RemarqueParDate()
                     {
+                        DateRemarque = new DateTime(2025, 4, 3),
+                        Arme = TypeArme.Epée,
+                        Tireur = new Tireur()
+                        {
+                            UserNameIndex = this._tireurSelectionne.UserNameIndex,
+                        },
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                Remarque="Quand tu mènes de plus d' une touche (4-2 par exemple), c'est à ton adversaire à attaquer. Toi tu dois juste tenir la distance et laisser défiler le temps.",
+                                PointPositifNégatifObservation = PointPositifNégatifObservation.Observation
+                            },
+                            new RemarqueData()
+                            {
+                                Remarque="quand tu recules à juste titre, ne recule pas trop loin. c'est inutile. à bonne distance, je suis d'accord mais pas trop loin.",
+                                 PointPositifNégatifObservation = PointPositifNégatifObservation.Négatif
+                           },
+                            
+                        }
+                    },
+                    new RemarqueParDate()
+                    {
                         DateRemarque = new DateTime(2025, 1, 24),
                         Arme = TypeArme.Epée,
                         Tireur = new Tireur()
@@ -42,12 +66,14 @@ namespace CercleRoyalEscrimeTournaisien
                         {
                             new RemarqueData()
                             {
-                                PointPositif="Tu as beaucoup d'énergie, c'est bien. n'oublie pas que ton bras est allongé avant d'utiliser tes jambes; tu gagneras en précision pour aller toucher tes adversaires soit à la saignée soit à l'épaule droite.",
-                            },
+                                Remarque="Tu as beaucoup d'énergie, c'est bien. n'oublie pas que ton bras est allongé avant d'utiliser tes jambes; tu gagneras en précision pour aller toucher tes adversaires soit à la saignée soit à l'épaule droite.",
+                                        PointPositifNégatifObservation = PointPositifNégatifObservation.Positif
+                    },
                             new RemarqueData()
                             {
-                                PointNégatif="Laisse ton tronc bien droit. et laisse ton bras allongé quand tu n'as pas touché. il se fléchit quand tu es à bonne distance de ton adversaire.",
-                            },
+                                Remarque="Laisse ton tronc bien droit. et laisse ton bras allongé quand tu n'as pas touché. il se fléchit quand tu es à bonne distance de ton adversaire.",
+                                                  PointPositifNégatifObservation = PointPositifNégatifObservation.Négatif 
+          },
                         }
                     },
                     

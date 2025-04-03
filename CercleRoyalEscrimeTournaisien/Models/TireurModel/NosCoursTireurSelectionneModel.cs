@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using WebGrease.Css.Ast.Selectors;
+using static CercleRoyalEscrimeTournaisien.PointPositifNégatifObservationConstantes;
 
 namespace CercleRoyalEscrimeTournaisien 
 {
@@ -59,8 +60,9 @@ namespace CercleRoyalEscrimeTournaisien
                         { 
                             new RemarqueData()
                             {
-                                PointPositif = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules."
-                            } 
+                                Remarque = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules.",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Positif,
+                           }
                         }
                     },
                      new RemarqueParDate()
@@ -71,8 +73,9 @@ namespace CercleRoyalEscrimeTournaisien
                         {
                             new RemarqueData()
                             {
-                                PointPositif = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules."
-                            }
+                                Remarque = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules.",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Positif,
+                           }
                         }
                     },
                         new RemarqueParDate()
@@ -83,7 +86,8 @@ namespace CercleRoyalEscrimeTournaisien
                         {
                             new RemarqueData()
                             {
-                                PointPositif = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules."
+                                Remarque = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules.",
+                                    PointPositifNégatifObservation = PointPositifNégatifObservation.Positif,
                             }
                         }
                     },
@@ -96,8 +100,9 @@ namespace CercleRoyalEscrimeTournaisien
                         {
                             new RemarqueData()
                             {
-                                PointPositif = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules."
-                            }
+                                Remarque = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules.",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Positif,
+                           }
                         }
                     },
                     new RemarqueParDate()
@@ -108,7 +113,8 @@ namespace CercleRoyalEscrimeTournaisien
                         {
                             new RemarqueData()
                             {
-                                PointPositif = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules."
+                                Remarque = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules.",
+                                    PointPositifNégatifObservation = PointPositifNégatifObservation.Positif,
                             }
                         }
                     },
@@ -120,7 +126,8 @@ namespace CercleRoyalEscrimeTournaisien
                         {
                             new RemarqueData()
                             {
-                                PointPositif = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules."
+                                Remarque = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules.",
+                                    PointPositifNégatifObservation = PointPositifNégatifObservation.Positif,
                             }
                         }
                     },
@@ -133,7 +140,8 @@ namespace CercleRoyalEscrimeTournaisien
                         {
                             new RemarqueData()
                             {
-                                PointPositif = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules."
+                                Remarque = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules.",
+                                    PointPositifNégatifObservation = PointPositifNégatifObservation.Positif,
                             }
                         }
                     }
@@ -222,9 +230,9 @@ namespace CercleRoyalEscrimeTournaisien
                     case IndexTireurConstantes.TireurIndex.SachaLessart:
                         Sacha_NosCoursTireurSelectionneModel sacha_NosCoursTireurSelectionneModel = new Sacha_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return TrierParDate(sacha_NosCoursTireurSelectionneModel.RemarquesParDateTireur);
-                    case IndexTireurConstantes.TireurIndex.ApollineOdendhal:
-                        Apolline_NosCoursTireurSelectionneModel apolline_NosCoursTireurSelectionneModel = new Apolline_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return TrierParDate(apolline_NosCoursTireurSelectionneModel.RemarquesParDateTireur);
+                    //case IndexTireurConstantes.TireurIndex.ApollineOdendhal:
+                    //    Apolline_NosCoursTireurSelectionneModel apolline_NosCoursTireurSelectionneModel = new Apolline_NosCoursTireurSelectionneModel(TireurSelectionne) { };
+                    //    return TrierParDate(apolline_NosCoursTireurSelectionneModel.RemarquesParDateTireur);
                     case IndexTireurConstantes.TireurIndex.AmadoSimon:
                         Amado_NosCoursTireurSelectionneModel amado_NosCoursTireurSelectionneModel = new Amado_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return TrierParDate(amado_NosCoursTireurSelectionneModel.RemarquesParDateTireur);
@@ -248,7 +256,7 @@ namespace CercleRoyalEscrimeTournaisien
                 PouleSelectionnee = "";
 
                 IDictionary<string, string> essai = new Dictionary<string, string>() { };
-                foreach (var poule in Poules)
+                foreach (var poule in PoulesNew)
                 {
                     essai.Add(poule.Key, TransformPoule(poule.Value) );
                 }
@@ -263,7 +271,31 @@ namespace CercleRoyalEscrimeTournaisien
             string[] array = value.Split(' ');
             string[] array2 = array[1].Split('-');
             string valueNew = array[0] + " " + array2[2] + "-" + array2[1] + "-" + array2[0] + " " + array[2];
+            if (array.Length  > 3) { valueNew = valueNew + " " + array[3]; }
             return valueNew;
+        }
+        public IDictionary<string, string> PoulesNew
+        {
+            get
+            {
+                return new Dictionary<string, string>()
+                {
+                    { "", ""  },
+                    { "/Poules/Poule 2025-02-02 Epée.pdf", "Poule 2025-02-02 Epée"  },
+                    { "/Poules/Poule 2025-03-16 Epée.pdf", "Poule 2025-03-16 Epée"  },
+                    { "/Poules/Poule 2025-03-28 Sabre.pdf", "Poule 2025-03-28 Sabre"  },
+                    { "/Poules/Poule 2025-01-19 Sabre.pdf", "Poule 2025-01-19 Sabre"  },
+                    { "/Poules/Poule 2025-01-24 Epée Grand.pdf", "Poule 2025-01-24 Epée Grand"  },
+                    { "/Poules/Poule 2025-03-14 Epée.pdf", "Poule 2025-03-14 Epée"  },
+                    { "/Poules/Poule 2025-03-12 Epée.pdf", "Poule 2025-03-12 Epée"  },
+                    { "/Poules/Constatations 2025-03-28 Elodie.pdf", "Constatations 2025-03-28 Elodie"  },
+                    { "/Poules/Poule 2025-01-24 Epée.pdf", "Poule 2025-01-24 Epée"  },
+                    { "/Poules/poule 2025-03-28 Sabre Seniors.pdf", "poule 2025-03-28 Sabre Seniors"  },
+                }.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, y => y.Value); 
+
+              
+            }
+
         }
 
         public IDictionary<string, string> Poules
@@ -345,9 +377,9 @@ namespace CercleRoyalEscrimeTournaisien
                     case IndexTireurConstantes.TireurIndex.SachaLessart:
                         Sacha_NosCoursTireurSelectionneModel sacha_NosCoursTireurSelectionneModel = new Sacha_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return sacha_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
-                    case IndexTireurConstantes.TireurIndex.ApollineOdendhal:
-                        Apolline_NosCoursTireurSelectionneModel apolline_NosCoursTireurSelectionneModel = new Apolline_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return apolline_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
+                    //case IndexTireurConstantes.TireurIndex.ApollineOdendhal:
+                    //    Apolline_NosCoursTireurSelectionneModel apolline_NosCoursTireurSelectionneModel = new Apolline_NosCoursTireurSelectionneModel(TireurSelectionne) { };
+                    //    return apolline_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);
                     case IndexTireurConstantes.TireurIndex.AmadoSimon:
                         Amado_NosCoursTireurSelectionneModel amado_NosCoursTireurSelectionneModel = new Amado_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return amado_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, y=>y.Value);

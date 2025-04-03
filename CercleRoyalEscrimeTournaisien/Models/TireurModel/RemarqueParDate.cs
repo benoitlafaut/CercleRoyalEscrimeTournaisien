@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using static CercleRoyalEscrimeTournaisien.PointPositifNégatifObservationConstantes;
 
 namespace CercleRoyalEscrimeTournaisien
 {
@@ -23,8 +24,10 @@ namespace CercleRoyalEscrimeTournaisien
         {
             Frequency = 1;
         }
-        public string PointPositif { get; set; }
-        public string PointNégatif { get; set; }
+        //public string PointPositif { get; set; }
+        //public string PointNégatif { get; set; }
+        public PointPositifNégatifObservation PointPositifNégatifObservation { get; set;}
+        public string Remarque { get; set; }
         public string UrlYoutubeVideo { get; set; }
         public int Frequency { get; set; }
         public bool HasUrlVideo { get; set; }

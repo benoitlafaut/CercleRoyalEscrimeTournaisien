@@ -1,6 +1,6 @@
 ﻿@model NosCoursTireurSelectionneModel
 @{ 
-    string stylePoules = Model.Poules != null ?  Model.Poules.Any() ? "display:inline-block;margin-left:20px;" : "display:none" : "display:none";
+    string stylePoules = Model.PoulesFormatted != null ?  Model.PoulesFormatted.Any() ? "display:inline-block;margin-left:20px;" : "display:none" : "display:none";
     var urlCategorie = @Url.Content("~/FileToUpload/NosCours/Liste des catégories et répartition des tireurs.pdf");
 }
 <head>
@@ -49,8 +49,9 @@
         </div>
         foreach (var remarqueData in remarqueParDateNewLook.RemarquesData)
         {
-            string textPositifOuNegatif = string.IsNullOrEmpty(remarqueData.PointPositif) ? remarqueData.PointNégatif : remarqueData.PointPositif;
-            string styleColor = !string.IsNullOrEmpty(remarqueData.PointPositif) ? "green" : "red";
+            //string textPositifOuNegatif = string.IsNullOrEmpty(remarqueData.PointPositif) ? remarqueData.PointNégatif : remarqueData.PointPositif;
+            string textPositifOuNegatif = remarqueData.Remarque;
+            string styleColor = remarqueData.PointPositifNégatifObservation == PointPositifNégatifObservationConstantes.PointPositifNégatifObservation.Positif ? "green" : remarqueData.PointPositifNégatifObservation == PointPositifNégatifObservationConstantes.PointPositifNégatifObservation.Négatif ?  "red" : "blue";
             string styleDisplayVideo = remarqueData.HasUrlVideo ? "" : "display:none";
             string classDisplayVideo = remarqueData.HasUrlVideo ? "classDisplayVideo" : "";
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using static CercleRoyalEscrimeTournaisien.PointPositifNégatifObservationConstantes;
 
 namespace CercleRoyalEscrimeTournaisien
 {
@@ -42,7 +43,8 @@ namespace CercleRoyalEscrimeTournaisien
                         {
                             new RemarqueData()
                             {
-                                PointPositif="Je remarque une nette amélioration de ta gestuelle et des combats en général. Quand tu es dans ton match, tu fais des dégâts. Reste dans tes matchs; sois impertubable. Ne te laisse pas déconcentrer par telle ou telle chose. je suis sur que tu peux faire plus de dégâts que cà. La prochaine étape pour toi, c'est de faire des 5-0. ne pas te laisser toucher, garder la distance que tu fais très bien et être posé dans chacun de tes matchs. ",
+                                Remarque="Je remarque une nette amélioration de ta gestuelle et des combats en général. Quand tu es dans ton match, tu fais des dégâts. Reste dans tes matchs; sois impertubable. Ne te laisse pas déconcentrer par telle ou telle chose. je suis sur que tu peux faire plus de dégâts que cà. La prochaine étape pour toi, c'est de faire des 5-0. ne pas te laisser toucher, garder la distance que tu fais très bien et être posé dans chacun de tes matchs. ",
+                                PointPositifNégatifObservation = PointPositifNégatifObservation.Positif
                             },
                         }
                     },
@@ -59,7 +61,8 @@ namespace CercleRoyalEscrimeTournaisien
                                 new RemarqueData()
                                 {
                                     //HasPointPositif=false,
-                                    PointNégatif="Ne tourne pas le dos à ton adversaire. Celà peut te faire très mal.",
+                                    Remarque="Ne tourne pas le dos à ton adversaire. Celà peut te faire très mal.",
+                                    PointPositifNégatifObservation = PointPositifNégatifObservation.Négatif,
                                     HasUrlVideo=true,
                                     UrlVideo = "/Videos/22-09-2024_ArthurBarbery.avi",
                                     UrlYoutubeVideo = "r3-rQ0aM7eY"
@@ -67,7 +70,8 @@ namespace CercleRoyalEscrimeTournaisien
                                 new RemarqueData()
                                 {
                                    // HasPointPositif=true,
-                                    PointPositif="Quand tu vois un adversaire qui fait de trop grandes parades, profites-en. Provoque-le en faisant des feintes de coup droit pour qu'il aille chercher la parade et là tu peux passer de l'autre côté et toucher par dégagements. Quitte à faire des dégagements successifs tout en allongeant le bras progressivement.",
+                                    Remarque="Quand tu vois un adversaire qui fait de trop grandes parades, profites-en. Provoque-le en faisant des feintes de coup droit pour qu'il aille chercher la parade et là tu peux passer de l'autre côté et toucher par dégagements. Quitte à faire des dégagements successifs tout en allongeant le bras progressivement.",
+                                    PointPositifNégatifObservation = PointPositifNégatifObservation.Positif,
                                     HasUrlVideo=true,
                                     UrlVideo = "/Videos/22-09-2024_ArthurBarbery_2.avi",
                                     UrlYoutubeVideo = "JTBj_UgJ2FE"
@@ -75,23 +79,25 @@ namespace CercleRoyalEscrimeTournaisien
                                 new RemarqueData()
                                 {
                                     //HasPointPositif=true,
-                                    PointPositif="La garde est très bonne au fleuret.",
-                                    HasUrlVideo=true,
+                                    Remarque="La garde est très bonne au fleuret.",
+                                    PointPositifNégatifObservation = PointPositifNégatifObservation.Positif,
+                                   HasUrlVideo=true,
                                     UrlVideo = "/Videos/22-09-2024_ArthurBarbery_3.avi",
                                     UrlYoutubeVideo = "d_0OzLyjhNo"
                                 },
                                 new RemarqueData()
                                 {
                                     //HasPointPositif=false,
-                                    PointNégatif="N'oublie pas que les parades se font avec le bras fléchi. La parade et la riposte ne se font pas en un coup, il faut d'abord parer avec le bras fléchi et puis allonger le bras pour faire la riposte.",
+                                    PointPositifNégatifObservation = PointPositifNégatifObservation.Négatif,
+                                    Remarque="N'oublie pas que les parades se font avec le bras fléchi. La parade et la riposte ne se font pas en un coup, il faut d'abord parer avec le bras fléchi et puis allonger le bras pour faire la riposte.",
                                     HasUrlVideo=true,
                                     UrlVideo = "/Videos/22-09-2024_ArthurBarbery_3.avi",
                                     UrlYoutubeVideo = "d_0OzLyjhNo"
                                 },
                                  new RemarqueData()
                                 {
-                                    //HasPointPositif=true,
-                                    PointPositif="La parade de sixte suivie d'une riposte par dégagement est piccobello. de toute beauté!",
+                                    PointPositifNégatifObservation = PointPositifNégatifObservation.Positif,
+                                    Remarque="La parade de sixte suivie d'une riposte par dégagement est piccobello. de toute beauté!",
                                     HasUrlVideo=true,
                                     UrlVideo = "/Videos/22-09-2024_ArthurBarbery_4.avi",
                                     UrlYoutubeVideo = "dUDuFE6BNnk"
@@ -110,8 +116,9 @@ namespace CercleRoyalEscrimeTournaisien
                                 {
                                     new RemarqueData()
                                     {
-                                        PointNégatif="Cela n'est pas la première fois que je le constate, quand tu attaques sans crainte d'être touché, tu vas droit vers le tireur sans l'éviter et tu te retournes en montrant ton dos comme si tu voulais voir le marquoir. Evite de foncer vers l'autre et surtout de te retourner.",
-                                        HasUrlVideo=true,
+                                        Remarque="Cela n'est pas la première fois que je le constate, quand tu attaques sans crainte d'être touché, tu vas droit vers le tireur sans l'éviter et tu te retournes en montrant ton dos comme si tu voulais voir le marquoir. Evite de foncer vers l'autre et surtout de te retourner.",
+                                 PointPositifNégatifObservation = PointPositifNégatifObservation.Négatif,
+                                       HasUrlVideo=true,
                                         UrlVideo = "/Videos/10-11-2024 Arthur.avi",
                                         UrlYoutubeVideo = "KmlUcgoLVAo",
                                         Frequency = 4

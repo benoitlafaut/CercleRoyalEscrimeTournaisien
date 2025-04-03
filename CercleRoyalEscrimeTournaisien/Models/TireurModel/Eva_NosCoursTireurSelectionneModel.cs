@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using static CercleRoyalEscrimeTournaisien.PointPositifNégatifObservationConstantes;
 
 namespace CercleRoyalEscrimeTournaisien
 {
@@ -40,27 +41,32 @@ namespace CercleRoyalEscrimeTournaisien
                             new RemarqueData()
                             {
                                // HasPointPositif=false,
-                                PointNégatif="Ne regarde pas l'appareil lors d'un combat. Tes oreilles sont là pour écouter les ordres de l'arbitre."
+                                 PointPositifNégatifObservation = PointPositifNégatifObservation.Négatif,
+                              Remarque="Ne regarde pas l'appareil lors d'un combat. Tes oreilles sont là pour écouter les ordres de l'arbitre."
                             },
                              new RemarqueData()
                             {
                               //   HasPointPositif=false,
-                                PointNégatif="Les appareils et les caméras coûtent chers. Ne vise pas les appareils avec l'arme."
+                                PointPositifNégatifObservation = PointPositifNégatifObservation.Négatif,
+                                Remarque="Les appareils et les caméras coûtent chers. Ne vise pas les appareils avec l'arme."
                             },
                             new RemarqueData()
                             {
                              //    HasPointPositif=false,
-                                PointNégatif="Ne lève pas ta jambe arrière quand tu essayes de toucher. les deux pieds doivent être ancrés au sol pour revenir très vite en garde."
+                                PointPositifNégatifObservation = PointPositifNégatifObservation.Négatif,
+                                Remarque="Ne lève pas ta jambe arrière quand tu essayes de toucher. les deux pieds doivent être ancrés au sol pour revenir très vite en garde."
                             },
                             new RemarqueData()
                             {
                              //    HasPointPositif=false,
-                                PointNégatif="Lors de la fente, la main droite se termine à la hauteur de l'épaule."
+                                 PointPositifNégatifObservation = PointPositifNégatifObservation.Négatif,
+                               Remarque="Lors de la fente, la main droite se termine à la hauteur de l'épaule."
                             },
                             new RemarqueData()
                             {
                              //   HasPointPositif=false,
-                                PointNégatif="Prends le temps de tirer. utilise tes 3 minutes... De un, parce que tu peux les utiliser. De deux pour ne pas dégoûter les autres de tirer avec toi. De trois pour endormir ton adversaire."
+                                 PointPositifNégatifObservation = PointPositifNégatifObservation.Négatif,
+                               Remarque="Prends le temps de tirer. utilise tes 3 minutes... De un, parce que tu peux les utiliser. De deux pour ne pas dégoûter les autres de tirer avec toi. De trois pour endormir ton adversaire."
                             },
                         }
                     },
@@ -76,7 +82,8 @@ namespace CercleRoyalEscrimeTournaisien
                         {
                             new RemarqueData()
                             {
-                                PointNégatif="Allonge bien ton bras quand tu attaques jusqu'à ce que ta main soit à hauteur de ton épaule et puis utilise tes jambes pour aller jusqu'à la touche. Et n'oublie pas que les appareils coûtent chers.",
+                                 PointPositifNégatifObservation = PointPositifNégatifObservation.Négatif,
+                               Remarque="Allonge bien ton bras quand tu attaques jusqu'à ce que ta main soit à hauteur de ton épaule et puis utilise tes jambes pour aller jusqu'à la touche. Et n'oublie pas que les appareils coûtent chers.",
                                 HasUrlVideo =true,
                                 UrlVideo = "/Videos/12-10-2024_Eva.avi",
                                 UrlYoutubeVideo = "MpsYOSTguvw"

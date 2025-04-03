@@ -1,4 +1,8 @@
-﻿function LireTexte(text, SonElement, hasMale) {
+﻿$(document).ready(function () {
+    config.speakSelectedText = false;
+    config.welcomeMessage = "";
+});
+function LireTexte(text, SonElement, hasMale) {
     var voiceToRead = 'French Female';
     if (hasMale == 'True') {
         var voiceToRead = 'French Male';

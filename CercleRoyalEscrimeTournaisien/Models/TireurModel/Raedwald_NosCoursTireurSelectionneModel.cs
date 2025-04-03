@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using static CercleRoyalEscrimeTournaisien.PointPositifNégatifObservationConstantes;
 
 namespace CercleRoyalEscrimeTournaisien
 {
@@ -40,7 +41,8 @@ namespace CercleRoyalEscrimeTournaisien
                                 new RemarqueData()
                                 {
                                     //HasPointPositif=false,
-                                    PointNégatif="Au fleuret, quand tu fais une retraite, tu n'es pas considéré comme à l'attaque et du coup tu es en mode défense et tu dois essayer de reprendre la priorité en faisant une parade et ne pas allonger le bras en cherchant la touche ca la première priorité c'est l'attaque.",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Négatif,
+                                   Remarque="Au fleuret, quand tu fais une retraite, tu n'es pas considéré comme à l'attaque et du coup tu es en mode défense et tu dois essayer de reprendre la priorité en faisant une parade et ne pas allonger le bras en cherchant la touche ca la première priorité c'est l'attaque.",
                                     HasUrlVideo=true,
                                     UrlVideo = "/Videos/22-09-2024_Raedwald.avi",
                                     UrlYoutubeVideo = "pS15cMKEnVY"
@@ -48,7 +50,8 @@ namespace CercleRoyalEscrimeTournaisien
                                new RemarqueData()
                                 {
                                    // HasPointPositif=false,
-                                    PointNégatif="Dans cette vidéo, je vois de la raideur dans tes jambes. Travaille chaque jour un petit peu et celà disparaîtra. je vois aussi deux points d'attention à éviter. Ta main armée un peu basse quand elle est allongée; Elle doit être à hauteur de l'épaule. et tu décolles ton pied arrière pour toucher et tu penches ton corps. Laisse tes deux pieds ancrés au sol et le tronc bien droit. Si tu es trop court au niveau de la distance, ajoute un marché en plus de la fente.",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Négatif,
+                                   Remarque="Dans cette vidéo, je vois de la raideur dans tes jambes. Travaille chaque jour un petit peu et celà disparaîtra. je vois aussi deux points d'attention à éviter. Ta main armée un peu basse quand elle est allongée; Elle doit être à hauteur de l'épaule. et tu décolles ton pied arrière pour toucher et tu penches ton corps. Laisse tes deux pieds ancrés au sol et le tronc bien droit. Si tu es trop court au niveau de la distance, ajoute un marché en plus de la fente.",
                                     HasUrlVideo=true,
                                     UrlVideo = "/Videos/22-09-2024_Raedwald_2.avi",
                                     UrlYoutubeVideo = "S65S7kd0ZNw"
@@ -56,7 +59,8 @@ namespace CercleRoyalEscrimeTournaisien
                                 new RemarqueData()
                                 {
                                   //  HasPointPositif=true,
-                                    PointPositif="La parade de sixte est bien faite. Fais juste attention de ne pas tourner ta main lors de la touche (il n'y a pas besoin de la tourner).",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Positif,
+                                     Remarque="La parade de sixte est bien faite. Fais juste attention de ne pas tourner ta main lors de la touche (il n'y a pas besoin de la tourner).",
                                     HasUrlVideo=true,
                                     UrlVideo = "/Videos/22-09-2024_Raedwald_3.avi",
                                     UrlYoutubeVideo = "NgAeJR-ioXA"
@@ -76,7 +80,8 @@ namespace CercleRoyalEscrimeTournaisien
                                     new RemarqueData()
                                     {
                                         //HasPointPositif=false,
-                                        PointNégatif="les passe avant sont interdites au sabre. N'hésite pas à faire les gestes. et à parler plus fort. Pour le commun des mortels, c'est très dur de suivre un match sans entendre ni voir. Ici tu as même deux passe avant l'une à la suite de l'autre non sanctionnées.",
+                                    PointPositifNégatifObservation = PointPositifNégatifObservation.Négatif,
+                                        Remarque="les passe avant sont interdites au sabre. N'hésite pas à faire les gestes. et à parler plus fort. Pour le commun des mortels, c'est très dur de suivre un match sans entendre ni voir. Ici tu as même deux passe avant l'une à la suite de l'autre non sanctionnées.",
                                         HasUrlVideo=true,
                                         UrlVideo = "/Videos/20-10-2024_Raedwald.avi",
                                         UrlYoutubeVideo = "NSuLlMTWpOE",

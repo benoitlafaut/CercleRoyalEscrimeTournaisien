@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using static CercleRoyalEscrimeTournaisien.PointPositifNégatifObservationConstantes;
 
 namespace CercleRoyalEscrimeTournaisien
 {
@@ -42,7 +43,8 @@ namespace CercleRoyalEscrimeTournaisien
                             {
                                 new RemarqueData()
                                 {
-                                    PointNégatif="Quand tu tires contre qqn de plus grand, ne charge pas comme un taureau. Il y a d'autres façons de parvenir à toucher qu'à foncer tête baissée. Plus en finesse. Au bras par exemple. en faisant des marchés fente.",
+                                    PointPositifNégatifObservation = PointPositifNégatifObservation.Négatif,
+                                    Remarque="Quand tu tires contre qqn de plus grand, ne charge pas comme un taureau. Il y a d'autres façons de parvenir à toucher qu'à foncer tête baissée. Plus en finesse. Au bras par exemple. en faisant des marchés fente.",
                                     HasUrlVideo=false,
                                     Frequency = 3,
                                 },
@@ -60,7 +62,8 @@ namespace CercleRoyalEscrimeTournaisien
                         {
                                 new RemarqueData()
                                 {
-                                    PointPositif="C'est un beau match. Tu prends des initiatives et tu attaques en choisissant une cible. Continue ainsi. Fais juste attention de ne pas sauter en l'air comme les kangourous au lieu de faire de beaux marchés ou marchés fente.",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Positif,
+                                   Remarque="C'est un beau match. Tu prends des initiatives et tu attaques en choisissant une cible. Continue ainsi. Fais juste attention de ne pas sauter en l'air comme les kangourous au lieu de faire de beaux marchés ou marchés fente.",
                                     HasUrlVideo=true,
                                     UrlVideo = "/Videos/19-10-2024_Sacha.avi",
                                     UrlYoutubeVideo = "KipxcKDd6Mg"
@@ -79,7 +82,8 @@ namespace CercleRoyalEscrimeTournaisien
                         {
                                 new RemarqueData()
                                 {
-                                    PointNégatif="Quand tu tires à l'épée, les déplacements t'aident à porter la touche. c'est perfecto.. Par contre l'arme est toujours dirigée vers une surface valable. Ici elle est dirigée vers le sol.",
+                                    PointPositifNégatifObservation = PointPositifNégatifObservation.Négatif,
+                                    Remarque="Quand tu tires à l'épée, les déplacements t'aident à porter la touche. c'est perfecto.. Par contre l'arme est toujours dirigée vers une surface valable. Ici elle est dirigée vers le sol.",
                                     HasUrlVideo=true,
                                     UrlVideo = "/Videos/16-11-2024_Sacha.avi",
                                     UrlYoutubeVideo = "bW8bdYmp1PM"
