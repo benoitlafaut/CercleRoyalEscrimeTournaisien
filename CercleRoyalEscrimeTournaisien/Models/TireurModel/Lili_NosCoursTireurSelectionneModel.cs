@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WebApplication1.Models;
 using static CercleRoyalEscrimeTournaisien.PointPositifNégatifObservationConstantes;
 
 namespace CercleRoyalEscrimeTournaisien
@@ -7,6 +8,21 @@ namespace CercleRoyalEscrimeTournaisien
     [Serializable]
     public class Lili_NosCoursTireurSelectionneModel : NosCoursTireurSelectionneModel
     {
+        private DateTime DateDeNaissance
+        {
+            get
+            {
+                return new DateTime(2014, 04, 18);
+            }
+        }
+        public Categorie Categorie
+        {
+            get
+            {
+                return ListGuidTireur.SearchCategorie(DateDeNaissance.Year);
+
+            }
+        }
         public IDictionary<string, string> GetPoules
         {
             get
@@ -129,7 +145,7 @@ namespace CercleRoyalEscrimeTournaisien
                                  new RemarqueData()
                                 {
                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Négatif,
-                                    Remarque="Une petite passe avant non sanctionnée de Mae? ni vu ni connu allez hop.. et juste après deux passe avant de Sacha qui ne sont pas sur cette vidéo.. non sanctionnées",
+                                    Remarque="Une petite passe avant non sanctionnée de Maé? ni vu ni connu allez hop.. et juste après deux passe avant de Sacha qui ne sont pas sur cette vidéo.. non sanctionnées",
                                     HasUrlVideo=true,
                                     UrlVideo = "/Videos/19-10-2024_Lili_2.avi",
                                     UrlYoutubeVideo = "Za-UEEDVyOE"

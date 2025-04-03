@@ -37,7 +37,7 @@ namespace CercleRoyalEscrimeTournaisien
                 new Tireur() { UserNameIndex = TireurIndex.AnaelleIvanov, UserName = "Anaëlle" },
                 new Tireur() { UserNameIndex = TireurIndex.LiliMestdag, UserName = "Lili" },
                 new Tireur() { UserNameIndex = TireurIndex.MathildeCarette, UserName = "Mathilde" },
-                new Tireur() { UserNameIndex = TireurIndex.MaeVantroyen, UserName = "Mae" },
+                new Tireur() { UserNameIndex = TireurIndex.MaeVantroyen, UserName = "Maé" },
                 new Tireur() { UserNameIndex = TireurIndex.SachaLessart, UserName = "Sacha" },
                 new Tireur() { UserNameIndex = TireurIndex.AmadoSimon, UserName = "Amado" },
                 new Tireur() { UserNameIndex = TireurIndex.LouisonBinois, UserName = "Louison" },

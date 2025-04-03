@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WebApplication1.Models;
 using static CercleRoyalEscrimeTournaisien.PointPositifNégatifObservationConstantes;
 
 namespace CercleRoyalEscrimeTournaisien
@@ -7,6 +8,21 @@ namespace CercleRoyalEscrimeTournaisien
     [Serializable]
     public class Abel_NosCoursTireurSelectionneModel : NosCoursTireurSelectionneModel
     {
+        private DateTime DateDeNaissance
+        { 
+            get
+            {
+                return new DateTime(2015, 4, 22);
+            } 
+        }
+        public Categorie Categorie 
+        {
+            get
+            {
+                return ListGuidTireur.SearchCategorie(DateDeNaissance.Year);
+
+            }
+        }
         private Tireur _tireurSelectionne { get; set; }
         public IDictionary<string, string> GetPoules
         {

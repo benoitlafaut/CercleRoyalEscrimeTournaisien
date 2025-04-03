@@ -23,7 +23,7 @@
 
 <div style="font-size:16px;margin-bottom:5px;">
     <div style="text-align: center; color: blue">
-        <label class="ClassTireurSelectionne" style="">Tireuse/tireur sélectionné(e) : @Model.TireurSelectionne.UserName</label>
+        <label class="ClassTireurSelectionne" style="">Tireuse/tireur sélectionné(e) : @Model.TireurSelectionne.UserName (@Model.Categorie)</label>
         @*<input id="buttonCollapseDevelopp" style="margin-right:15px;" type="button" value="Développer tout" onclick="ExpandCollapse();" />*@
 
         @*@Html.DropDownListFor(model => model.HasMale, new SelectList(Model.SpeakerList, "Key", "Value", Model.HasMale), new { @class = "form-control", @title = "Choisissez un homme ou une femme pour lire les textes." })*@
