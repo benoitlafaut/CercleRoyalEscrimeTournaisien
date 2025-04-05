@@ -33,7 +33,7 @@ namespace CercleRoyalEscrimeTournaisien
                     new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2025,4,5),
-                        Arme = TypeArme.Sabre,
+                        Arme = TypeArme.Fleuret,
                         RemarquesData = new List<RemarqueData>()
                         {
                             new RemarqueData()
