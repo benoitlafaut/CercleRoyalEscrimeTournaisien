@@ -7,7 +7,7 @@ namespace WebApplication1.Models
 {
     public  class FichesSignalétiques_2024_2025
     {
-        private string period { get { return "2024-2025"; } }       
+       // private string period { get { return "2024-2025"; } }       
         public  void Add_FichesSignalétiques_Motte_Baptiste(string period, List<MembreData> Membres)
         {
             if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidBaptisteMotte && x.Période == period))
@@ -103,25 +103,25 @@ namespace WebApplication1.Models
                   FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Vandy_Rebecca.pdf",
               };
         }
-        public void Add_FichesSignalétiques_CousineARemiJudith(string period, List<MembreData> Membres)
-        {
-            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidCousineARemiJudith && x.Période == period))
-            {
-                return;
-            }
+        //public void Add_FichesSignalétiques_CousineARemiJudith(string period, List<MembreData> Membres)
+        //{
+        //    if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidCousineARemiJudith && x.Période == period))
+        //    {
+        //        return;
+        //    }
 
-            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidCousineARemiJudith && x.Période == period).Signaletique =
-              new Signaletique()
-              {
-                  Categorie = Categorie.Inconnu,
-                  DateDeNaissance = new DateTime(9999, 12, 31),
-                  Email = new List<string>() { "", "" },
-                  NomMaman = "",
-                  NomPapa = "",
-                  Telephone = new List<string>() { "", "" },
-                  FicheSignaletiqueUrl = "",
-              };
-        }
+        //    Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidCousineARemiJudith && x.Période == period).Signaletique =
+        //      new Signaletique()
+        //      {
+        //          Categorie = Categorie.Inconnu,
+        //          DateDeNaissance = new DateTime(9999, 12, 31),
+        //          Email = new List<string>() { "", "" },
+        //          NomMaman = "",
+        //          NomPapa = "",
+        //          Telephone = new List<string>() { "", "" },
+        //          FicheSignaletiqueUrl = "",
+        //      };
+        //}
         
         public void Add_FichesSignalétiques_Punchoo_Eliot(string period, List<MembreData> Membres)
         {

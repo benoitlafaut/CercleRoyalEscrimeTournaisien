@@ -1771,7 +1771,7 @@ namespace WebApplication1.Models
                             GuidConstantes.GuidJordanMestdagh,
                             GuidConstantes.GuidElodieMass,
                             GuidConstantes.GuidRebeccaVandy,
-                            GuidConstantes.GuidCousineARemiJudith,
+                            //GuidConstantes.GuidCousineARemiJudith,
                             //GuidConstantes.GuidValentinXXX
                         }
                     },
@@ -2379,34 +2379,34 @@ namespace WebApplication1.Models
                 };
         }
 
-        public void Add_Paiements_CousineARemiJudith(string period, List<MembreData> Membres)
-        {
-            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidCousineARemiJudith && x.Période == period))
-            {
-                return;
-            }
-            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidCousineARemiJudith && x.Période == period).Paiement =
-                new Paiement()
-                {
-                    Periode = period,
-                    IsCotisationAnnuelle = false,
-                    IsCotisationCarte1 = false,
-                    IsCotisationCarte2 = false,
-                    IsCotisationCarte3 = false,
-                    IsCotisationCarte4 = false,
-                    IsLocationMatérielEnOrdre = false,
-                    IsCotisationEnOrdre = false,
-                    IsFicheSignaletiqueEnOrdre = false,
-                    IsLicenceEnOrdre = false,
+        //public void Add_Paiements_CousineARemiJudith(string period, List<MembreData> Membres)
+        //{
+        //    if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidCousineARemiJudith && x.Période == period))
+        //    {
+        //        return;
+        //    }
+        //    Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidCousineARemiJudith && x.Période == period).Paiement =
+        //        new Paiement()
+        //        {
+        //            Periode = period,
+        //            IsCotisationAnnuelle = false,
+        //            IsCotisationCarte1 = false,
+        //            IsCotisationCarte2 = false,
+        //            IsCotisationCarte3 = false,
+        //            IsCotisationCarte4 = false,
+        //            IsLocationMatérielEnOrdre = false,
+        //            IsCotisationEnOrdre = false,
+        //            IsFicheSignaletiqueEnOrdre = false,
+        //            IsLicenceEnOrdre = false,
 
-                    PaiementsEffectues = new List<string>() { },
-                    SeancesGratuites = new List<DateTime>()
-                    {
-                         new DateTime(2024,10,6),
-                    },
-                    IsMatérielLoue = true
-                };
-        }
+        //            PaiementsEffectues = new List<string>() { },
+        //            SeancesGratuites = new List<DateTime>()
+        //            {
+        //                 new DateTime(2024,10,6),
+        //            },
+        //            IsMatérielLoue = true
+        //        };
+        //}
        
         public void Add_Paiements_Deblocq_Judith(string period, List<MembreData> Membres)
         {
