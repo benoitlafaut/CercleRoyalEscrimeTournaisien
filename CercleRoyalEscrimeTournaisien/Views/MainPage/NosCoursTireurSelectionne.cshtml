@@ -59,7 +59,7 @@
                 <i title="Cliquez pour écouter le texte" onclick='LireTexte("@textPositifOuNegatif.Trim()", this, "True")' class="fa fa-headphones classPointPositifNegatif CursorIcon"></i>
                 <i title="Regarder la vidéo" class="fa fa-video-camera CursorIcon @classDisplayVideo" style="@styleDisplayVideo" onclick='ChargerPopup("@remarqueData.UrlYoutubeVideo", "@textPositifOuNegatif");'></i>
                 <i title="Téléchargez la vidéo" class="fa fa-download CursorIcon @classDisplayVideo" style="@styleDisplayVideo" onclick="window.location.href='@remarqueData.UrlVideo'"></i>
-                <span>@textPositifOuNegatif</span>
+                <span>@Html.Raw(@textPositifOuNegatif)</span>
             </div>
         }
     }

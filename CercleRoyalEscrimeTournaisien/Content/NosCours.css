@@ -20,6 +20,10 @@
     background-color: #ccc;
 }
 
+.divUnderline {
+    text-decoration: underline;
+}
+
 .ClassDate {
     display: block;
     width: 5%;

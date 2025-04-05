@@ -19,6 +19,58 @@ namespace CercleRoyalEscrimeTournaisien
                 {
                     new RemarqueParDate()
                     {
+                        DateRemarque = new DateTime(2025,4,5),
+                        Arme = TypeArme.Sabre,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                                Remarque="Vous trouverez ci-joint une vidéo explicative sur les attaques simples et composées au sabre : <a class='divUnderline' target='_blank' href='https://youtu.be/QxGMfZA2-Ak?si=u0P0CNRu-jZ4PXQZ'>Cliquez ici</a>",
+                            },
+                        }
+                    },
+                    new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025,4,5),
+                        Arme = TypeArme.Sabre,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                                Remarque="Vous trouverez ci-joint une vidéo explicative sur les attaques simples au fleuret : <a class='divUnderline' target='_blank' href='https://youtu.be/CbeKK_atvQY?si=-uCgz2wm5rsjaLBs'>Cliquez ici</a>",
+                            },
+                        }
+                    },
+                    new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025,4,5),
+                        Arme = TypeArme.Sabre,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                                Remarque="Vous trouverez ci-joint une vidéo explicative sur les positions de main au fleuret et au sabre, en passant par l'explication sur la pronation et supination : <a class='divUnderline' target='_blank' href='https://youtu.be/mFYFQ8clY80?si=RPqvkcx_5I_zaEvE'>Cliquez ici</a>",
+                            },
+                        }
+                    },
+                    new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025,3,30),
+                        Arme = TypeArme.Sabre,                        
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                                Remarque="Vous trouverez ci-joint une vidéo explicative sur l'arbitrage au sabre du Maître Poizat du club du sabre noir (club liégeois) : <a class='divUnderline' target='_blank' href='https://youtu.be/0oKOLPpB8bg?si=sx0bkd0458HfpI1i'>Cliquez ici</a>",
+                            },
+                        }
+                    },
+                    new RemarqueParDate()
+                    {
                         DateRemarque = new DateTime(2024,9,1),
                         Arme = TypeArme.Epée,
                         RemarquesData = new List<RemarqueData>()
