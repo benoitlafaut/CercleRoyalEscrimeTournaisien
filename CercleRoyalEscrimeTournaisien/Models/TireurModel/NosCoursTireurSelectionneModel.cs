@@ -157,7 +157,7 @@ namespace CercleRoyalEscrimeTournaisien
                             new RemarqueData()
                             {
                                 Remarque = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules.",
-                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Positif,
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
                            }
                         }
                     },
@@ -170,7 +170,7 @@ namespace CercleRoyalEscrimeTournaisien
                             new RemarqueData()
                             {
                                 Remarque = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules.",
-                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Positif,
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
                            }
                         }
                     },
@@ -183,7 +183,7 @@ namespace CercleRoyalEscrimeTournaisien
                             new RemarqueData()
                             {
                                 Remarque = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules.",
-                                    PointPositifNégatifObservation = PointPositifNégatifObservation.Positif,
+                                    PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
                             }
                         }
                     },
@@ -197,7 +197,7 @@ namespace CercleRoyalEscrimeTournaisien
                             new RemarqueData()
                             {
                                 Remarque = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules.",
-                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Positif,
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
                            }
                         }
                     },
@@ -210,7 +210,7 @@ namespace CercleRoyalEscrimeTournaisien
                             new RemarqueData()
                             {
                                 Remarque = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules.",
-                                    PointPositifNégatifObservation = PointPositifNégatifObservation.Positif,
+                                    PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
                             }
                         }
                     },
@@ -223,7 +223,7 @@ namespace CercleRoyalEscrimeTournaisien
                             new RemarqueData()
                             {
                                 Remarque = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules.",
-                                    PointPositifNégatifObservation = PointPositifNégatifObservation.Positif,
+                                    PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
                             }
                         }
                     },
@@ -237,7 +237,7 @@ namespace CercleRoyalEscrimeTournaisien
                             new RemarqueData()
                             {
                                 Remarque = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules.",
-                                    PointPositifNégatifObservation = PointPositifNégatifObservation.Positif,
+                                    PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
                             }
                         }
                     }
