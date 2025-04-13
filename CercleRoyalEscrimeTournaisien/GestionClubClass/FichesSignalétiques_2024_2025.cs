@@ -506,6 +506,25 @@ namespace WebApplication1.Models
                    FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Ivanov_Anaelle.pdf",
                };
         }
+        public void Add_FichesSignalétiques_Dransart_NoelMarie(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidNoelMarieDransart && x.Période == period))
+            {
+                return;
+            }
+
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidNoelMarieDransart && x.Période == period).Signaletique =
+               new Signaletique()
+               {
+                   Categorie = Categorie.Inconnu,
+                   DateDeNaissance = new DateTime(9999, 12, 31),
+                   Email = new List<string>() { "" },
+                   NomMaman = "",
+                   NomPapa = "",
+                   Telephone = new List<string>() { "" },
+                   FicheSignaletiqueUrl = "",
+               };
+        }
         public void Add_FichesSignalétiques_Pras_Héloïse(string period, List<MembreData> Membres)
         {
             if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidHéloïsePras && x.Période == period))

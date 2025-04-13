@@ -35,9 +35,204 @@ namespace WebApplication1.Models
                 //GuidConstantes.GuidElodieMass,
                 //GuidConstantes.GuidRebeccaVandy,
                 //GuidConstantes.GuidEliotPunchoo,
+                //GuidConstantes.GuidNoelMarieDransart
 
                 JourDePrésence = new List<JourDePrésence>()
                 {
+                    new JourDePrésence()
+                      {
+                         DatePrésence = new DateTime(2025,4,13),
+                         EscrimeurId = new List<Guid>()
+                         {
+                              //GuidConstantes.GuidMartinSiu,
+                GuidConstantes.GuidFélixTrannoy,
+                //GuidConstantes.GuidAuroreCarlier,
+                //GuidConstantes.GuidAnaelleIvanov,
+                //GuidConstantes.GuidLiliMestdag,
+                //GuidConstantes.GuidMathildeCarette,
+                //GuidConstantes.GuidAmadoSimon,
+                GuidConstantes.GuidEloiBinois,
+                //GuidConstantes.GuidLouisonBinois,
+                //GuidConstantes.GuidOscarDeblocq,
+                //GuidConstantes.GuidArthurBarbery,
+                GuidConstantes.GuidJordanMestdagh,
+                GuidConstantes.GuidRémiSoyez,
+                //GuidConstantes.GuidRaedwaldVercouter,
+                //GuidConstantes.GuidMaybelleCarlier,
+                GuidConstantes.GuidFabriceRazanajao,
+                GuidConstantes.GuidBaptisteMotte,
+                //GuidConstantes.GuidAbelMotte,
+                //GuidConstantes.GuidMaeVantroyen,
+                //GuidConstantes.GuidSachaLessart,
+                //GuidConstantes.GuidEvaDufrasne,
+                //GuidConstantes.GuidHéloïsePras,
+                GuidConstantes.GuidElodieMass,
+                //GuidConstantes.GuidRebeccaVandy,
+                //GuidConstantes.GuidEliotPunchoo,
+                         }
+                     },
+                    new JourDePrésence()
+                      {
+                         DatePrésence = new DateTime(2025,4,11),
+                         EscrimeurId = new List<Guid>()
+                         {
+ GuidConstantes.GuidMartinSiu,
+                GuidConstantes.GuidFélixTrannoy,
+                //GuidConstantes.GuidAuroreCarlier,
+                //GuidConstantes.GuidAnaelleIvanov,
+                GuidConstantes.GuidLiliMestdag,
+                GuidConstantes.GuidMathildeCarette,
+                GuidConstantes.GuidAmadoSimon,
+                GuidConstantes.GuidEloiBinois,
+                GuidConstantes.GuidLouisonBinois,
+                GuidConstantes.GuidOscarDeblocq,
+                GuidConstantes.GuidArthurBarbery,
+                //GuidConstantes.GuidJordanMestdagh,
+                GuidConstantes.GuidRémiSoyez,
+                //GuidConstantes.GuidRaedwaldVercouter,
+                //GuidConstantes.GuidMaybelleCarlier,
+                GuidConstantes.GuidFabriceRazanajao,
+                //GuidConstantes.GuidBaptisteMotte,
+                //GuidConstantes.GuidAbelMotte,               
+                GuidConstantes.GuidMaeVantroyen,
+                GuidConstantes.GuidSachaLessart,
+                //GuidConstantes.GuidEvaDufrasne,
+                //GuidConstantes.GuidHéloïsePras,
+                GuidConstantes.GuidElodieMass,
+                //GuidConstantes.GuidRebeccaVandy,
+                //GuidConstantes.GuidEliotPunchoo,
+                GuidConstantes.GuidNoelMarieDransart
+                         }
+                     },
+                    new JourDePrésence()
+                      {
+                         DatePrésence = new DateTime(2025,4,9),
+                         EscrimeurId = new List<Guid>()
+                         {
+                              GuidConstantes.GuidMartinSiu,
+                GuidConstantes.GuidFélixTrannoy,
+                //GuidConstantes.GuidAuroreCarlier,
+                //GuidConstantes.GuidAnaelleIvanov,
+                GuidConstantes.GuidLiliMestdag,
+                GuidConstantes.GuidMathildeCarette,
+                GuidConstantes.GuidAmadoSimon,
+                //GuidConstantes.GuidEloiBinois,
+                //GuidConstantes.GuidLouisonBinois,
+                //GuidConstantes.GuidOscarDeblocq,
+                //GuidConstantes.GuidArthurBarbery,
+                //GuidConstantes.GuidJordanMestdagh,
+                GuidConstantes.GuidRémiSoyez,
+                //GuidConstantes.GuidRaedwaldVercouter,
+                //GuidConstantes.GuidMaybelleCarlier,
+                //GuidConstantes.GuidFabriceRazanajao,
+                GuidConstantes.GuidBaptisteMotte,
+                GuidConstantes.GuidAbelMotte,
+                GuidConstantes.GuidMaeVantroyen,
+                //GuidConstantes.GuidSachaLessart,
+                //GuidConstantes.GuidEvaDufrasne,
+                //GuidConstantes.GuidHéloïsePras,
+                //GuidConstantes.GuidElodieMass,
+                //GuidConstantes.GuidRebeccaVandy,
+                GuidConstantes.GuidEliotPunchoo,
+                GuidConstantes.GuidNoelMarieDransart
+                         }
+                     },
+                    new JourDePrésence()
+                      {
+                         DatePrésence = new DateTime(2025,4,6),
+                         EscrimeurId = new List<Guid>()
+                         {
+ GuidConstantes.GuidMartinSiu,
+                //GuidConstantes.GuidFélixTrannoy,
+                GuidConstantes.GuidAuroreCarlier,
+                //GuidConstantes.GuidAnaelleIvanov,
+                //GuidConstantes.GuidLiliMestdag,
+                //GuidConstantes.GuidMathildeCarette,
+                //GuidConstantes.GuidAmadoSimon,
+                GuidConstantes.GuidEloiBinois,
+                GuidConstantes.GuidLouisonBinois,
+                GuidConstantes.GuidOscarDeblocq,
+                GuidConstantes.GuidArthurBarbery,
+                //GuidConstantes.GuidJordanMestdagh,
+                GuidConstantes.GuidRémiSoyez,
+                //GuidConstantes.GuidRaedwaldVercouter,
+                //GuidConstantes.GuidMaybelleCarlier,
+                GuidConstantes.GuidFabriceRazanajao,
+                GuidConstantes.GuidBaptisteMotte,
+                //GuidConstantes.GuidAbelMotte,
+                GuidConstantes.GuidMaeVantroyen,
+                //GuidConstantes.GuidSachaLessart,
+                //GuidConstantes.GuidEvaDufrasne,
+                //GuidConstantes.GuidHéloïsePras,
+                //GuidConstantes.GuidElodieMass,
+                GuidConstantes.GuidRebeccaVandy,
+                GuidConstantes.GuidEliotPunchoo,
+                         }
+                     },
+                    new JourDePrésence()
+                      {
+                         DatePrésence = new DateTime(2025,4,4),
+                         EscrimeurId = new List<Guid>()
+                         {
+                            GuidConstantes.GuidMartinSiu,
+                //GuidConstantes.GuidFélixTrannoy,
+                GuidConstantes.GuidAuroreCarlier,
+                GuidConstantes.GuidAnaelleIvanov,
+                //GuidConstantes.GuidLiliMestdag,
+                GuidConstantes.GuidMathildeCarette,
+                GuidConstantes.GuidAmadoSimon,
+                //GuidConstantes.GuidEloiBinois,
+                //GuidConstantes.GuidLouisonBinois,
+                //GuidConstantes.GuidOscarDeblocq,
+                GuidConstantes.GuidArthurBarbery,
+                //GuidConstantes.GuidJordanMestdagh,
+                GuidConstantes.GuidRémiSoyez,
+                GuidConstantes.GuidRaedwaldVercouter,
+                //GuidConstantes.GuidMaybelleCarlier,
+                GuidConstantes.GuidFabriceRazanajao,
+                GuidConstantes.GuidBaptisteMotte,
+                //GuidConstantes.GuidAbelMotte,
+                GuidConstantes.GuidMaeVantroyen,
+                GuidConstantes.GuidSachaLessart,
+                //GuidConstantes.GuidEvaDufrasne,
+                //GuidConstantes.GuidHéloïsePras,
+                //GuidConstantes.GuidElodieMass,
+                //GuidConstantes.GuidRebeccaVandy,
+                GuidConstantes.GuidEliotPunchoo,
+                         }
+                     },
+                     new JourDePrésence()
+                      {
+                         DatePrésence = new DateTime(2025,4,2),
+                         EscrimeurId = new List<Guid>()
+                         {
+                            GuidConstantes.GuidMartinSiu,
+                            GuidConstantes.GuidFélixTrannoy,
+                            //GuidConstantes.GuidAuroreCarlier,
+                            GuidConstantes.GuidAnaelleIvanov,
+                            //GuidConstantes.GuidLiliMestdag,
+                            GuidConstantes.GuidMathildeCarette,
+                            GuidConstantes.GuidAmadoSimon,
+                            //GuidConstantes.GuidEloiBinois,
+                            //GuidConstantes.GuidLouisonBinois,
+                            //GuidConstantes.GuidOscarDeblocq,
+                            //GuidConstantes.GuidArthurBarbery,
+                            //GuidConstantes.GuidJordanMestdagh,
+                            //GuidConstantes.GuidRémiSoyez,
+                            //GuidConstantes.GuidRaedwaldVercouter,
+                            //GuidConstantes.GuidMaybelleCarlier,
+                            GuidConstantes.GuidFabriceRazanajao,
+                            GuidConstantes.GuidBaptisteMotte,
+                            GuidConstantes.GuidAbelMotte,
+                            GuidConstantes.GuidMaeVantroyen,
+                            //GuidConstantes.GuidSachaLessart,
+                            //GuidConstantes.GuidEvaDufrasne,
+                            GuidConstantes.GuidHéloïsePras,
+                            //GuidConstantes.GuidElodieMass,
+                            //GuidConstantes.GuidRebeccaVandy,
+                            GuidConstantes.GuidEliotPunchoo,   
+                         }
+                     },
                      new JourDePrésence()
                       {
                          DatePrésence = new DateTime(2025,3,30),
@@ -2022,7 +2217,6 @@ namespace WebApplication1.Models
                             GuidConstantes.GuidMathildeCarette,
                             GuidConstantes.GuidMaeVantroyen,
                             GuidConstantes.GuidSachaLessart,
-                          //  GuidConstantes.GuidThéoHelleputte
                         }
                     },
 
@@ -2111,7 +2305,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = true,
                     IsLicenceEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { "95 euros", "75 euros", "50 euros" },
+                    PaiementsEffectues = new List<string>() { "95 euros", "75 euros", "50 euros", "100 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                     },
@@ -2138,7 +2332,7 @@ namespace WebApplication1.Models
                     IsLicenceEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { "95 euros","75 euros" },
+                    PaiementsEffectues = new List<string>() { "95 euros","75 euros", "50 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2023,9,6),
@@ -2227,7 +2421,7 @@ namespace WebApplication1.Models
                     IsLicenceEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { "170 euros", "50 euros","50 euros" },
+                    PaiementsEffectues = new List<string>() { "170 euros", "50 euros","50 euros", "50 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                     },
@@ -2313,7 +2507,7 @@ namespace WebApplication1.Models
                     IsLicenceEnOrdre = true,
 
 
-                    PaiementsEffectues = new List<string>() { "170 euros", "50 euros" },
+                    PaiementsEffectues = new List<string>() { "170 euros", "50 euros", "50 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                     },
@@ -2692,6 +2886,35 @@ namespace WebApplication1.Models
                     {
                         new DateTime(2024,9,4),
                         new DateTime(2024,9,13),
+                    },
+                    IsMatérielLoue = true
+                };
+        }
+        public void Add_Paiements_Dransart_NoelMarie(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidNoelMarieDransart && x.Période == period))
+            {
+                return;
+            }
+            Membres.Where(x => x.GuidId == GuidConstantes.GuidNoelMarieDransart && x.Période == period).FirstOrDefault().Paiement =
+                new Paiement()
+                {
+                    Periode = period,
+                    IsCotisationAnnuelle = false,
+                    IsCotisationCarte1 = false,
+                    IsCotisationCarte2 = false,
+                    IsCotisationCarte3 = false,
+                    IsCotisationCarte4 = false,
+                    IsCotisationEnOrdre = false,
+                    IsFicheSignaletiqueEnOrdre = false,
+                    IsLicenceEnOrdre = false,
+                    IsLocationMatérielEnOrdre = false,
+
+                    PaiementsEffectues = new List<string>() { },
+                    SeancesGratuites = new List<DateTime>()
+                    {
+                        new DateTime(2025,4,9),
+                        new DateTime(2025,4,11),
                     },
                     IsMatérielLoue = true
                 };

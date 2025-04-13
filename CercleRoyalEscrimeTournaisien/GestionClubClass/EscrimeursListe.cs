@@ -146,6 +146,7 @@ namespace WebApplication1.Models
             fichesSignalétiques_2024_2025.Add_FichesSignalétiques_Pras_Héloïse(period, Membres);
             fichesSignalétiques_2024_2025.Add_FichesSignalétiques_Mass_Elodie(period, Membres);
             fichesSignalétiques_2024_2025.Add_FichesSignalétiques_Ivanov_Anaelle(period, Membres);
+            fichesSignalétiques_2024_2025.Add_FichesSignalétiques_Dransart_NoelMarie(period, Membres);
         }
 
         #region Add_Paiements_2022_2023
@@ -229,6 +230,7 @@ namespace WebApplication1.Models
             paiements.Add_Paiements_Vercouter_Raedwald(period, Membres);
             paiements.Add_Paiements_Binois_Eloi(period, Membres);
             paiements.Add_Paiements_Pras_Héloïse(period, Membres);
+            paiements.Add_Paiements_Dransart_NoelMarie(period, Membres);
             paiements.Add_Paiements_Simon_Amado(period, Membres);
             paiements.Add_Paiements_Mass_Elodie(period, Membres);
             paiements.Add_Paiements_Carlier_Aurore(period, Membres);
