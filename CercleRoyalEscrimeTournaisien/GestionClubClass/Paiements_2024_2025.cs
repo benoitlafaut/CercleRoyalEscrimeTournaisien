@@ -35,10 +35,85 @@ namespace WebApplication1.Models
                 //GuidConstantes.GuidElodieMass,
                 //GuidConstantes.GuidRebeccaVandy,
                 //GuidConstantes.GuidEliotPunchoo,
-                //GuidConstantes.GuidNoelMarieDransart
+                //GuidConstantes.GuidNoelMarieDransart,
+                //GuidConstantes.GuidNayaBeaucamp,
+                //GuidConstantes.GuidBarnabéBeaucamp,
+                //GuidConstantes.GuidArthurCouturiaux
 
                 JourDePrésence = new List<JourDePrésence>()
                 {
+                      new JourDePrésence()
+                      {
+                         DatePrésence = new DateTime(2025,5,16),
+                         EscrimeurId = new List<Guid>()
+                         {
+                            GuidConstantes.GuidMartinSiu,
+                            GuidConstantes.GuidFélixTrannoy,
+                            GuidConstantes.GuidAuroreCarlier,
+                            GuidConstantes.GuidAnaelleIvanov,
+                            //GuidConstantes.GuidLiliMestdag,
+                            GuidConstantes.GuidMathildeCarette,
+                            //GuidConstantes.GuidAmadoSimon,
+                            //GuidConstantes.GuidEloiBinois,
+                            //GuidConstantes.GuidLouisonBinois,
+                            //GuidConstantes.GuidOscarDeblocq,
+                            //GuidConstantes.GuidArthurBarbery,
+                            //GuidConstantes.GuidJordanMestdagh,
+                            //GuidConstantes.GuidRémiSoyez,
+                            GuidConstantes.GuidRaedwaldVercouter,
+                            //GuidConstantes.GuidMaybelleCarlier,
+                            GuidConstantes.GuidFabriceRazanajao,
+                            //GuidConstantes.GuidBaptisteMotte,
+                            //GuidConstantes.GuidAbelMotte,
+                            GuidConstantes.GuidMaeVantroyen,
+                            //GuidConstantes.GuidSachaLessart,
+                            //GuidConstantes.GuidEvaDufrasne,
+                            //GuidConstantes.GuidHéloïsePras,
+                            //GuidConstantes.GuidElodieMass,
+                            //GuidConstantes.GuidRebeccaVandy,
+                            GuidConstantes.GuidEliotPunchoo,
+                            GuidConstantes.GuidNoelMarieDransart,
+                            //GuidConstantes.GuidNayaBeaucamp,
+                            //GuidConstantes.GuidBarnabéBeaucamp,
+                            GuidConstantes.GuidArthurCouturiaux
+                         }
+                     },
+                      new JourDePrésence()
+                      {
+                         DatePrésence = new DateTime(2025,5,14),
+                         EscrimeurId = new List<Guid>()
+                         {
+                            //GuidConstantes.GuidMartinSiu,
+                            GuidConstantes.GuidFélixTrannoy,
+                            GuidConstantes.GuidAuroreCarlier,
+                            GuidConstantes.GuidAnaelleIvanov,
+                            //GuidConstantes.GuidLiliMestdag,
+                            GuidConstantes.GuidMathildeCarette,
+                            GuidConstantes.GuidAmadoSimon,
+                            //GuidConstantes.GuidEloiBinois,
+                            //GuidConstantes.GuidLouisonBinois,
+                            //GuidConstantes.GuidOscarDeblocq,
+                            //GuidConstantes.GuidArthurBarbery,
+                            //GuidConstantes.GuidJordanMestdagh,
+                            //GuidConstantes.GuidRémiSoyez,
+                            //GuidConstantes.GuidRaedwaldVercouter,
+                            //GuidConstantes.GuidMaybelleCarlier,
+                            //GuidConstantes.GuidFabriceRazanajao,
+                            //GuidConstantes.GuidBaptisteMotte,
+                            //GuidConstantes.GuidAbelMotte,
+                            GuidConstantes.GuidMaeVantroyen,
+                            //GuidConstantes.GuidSachaLessart,
+                            //GuidConstantes.GuidEvaDufrasne,
+                            //GuidConstantes.GuidHéloïsePras,
+                            //GuidConstantes.GuidElodieMass,
+                            GuidConstantes.GuidRebeccaVandy,
+                            GuidConstantes.GuidEliotPunchoo,
+                            GuidConstantes.GuidNoelMarieDransart,
+                            GuidConstantes.GuidNayaBeaucamp,
+                            GuidConstantes.GuidBarnabéBeaucamp,
+                            //GuidConstantes.GuidArthurCouturiaux
+                         }
+                     },
                      new JourDePrésence()
                       {
                          DatePrésence = new DateTime(2025,4,27),
@@ -2613,14 +2688,15 @@ namespace WebApplication1.Models
                     IsCotisationAnnuelle = false,
                     IsCotisationCarte1 = true,
                     IsCotisationCarte2 = true,
-                    IsCotisationCarte3 = false,
-                    IsCotisationCarte4 = false,
+                    IsCotisationCarte3 = true,
+                    IsCotisationCarte4 = true,
+                    IsCotisationCarte5 = true,
                     IsCotisationEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = true,
                     IsLicenceEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { "170 euros", "50 euros","50 euros", "50 euros" },
+                    PaiementsEffectues = new List<string>() { "170 euros", "50 euros","50 euros", "50 euros", "50 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                     },
@@ -3043,15 +3119,15 @@ namespace WebApplication1.Models
                     Periode = period,
                     IsCotisationAnnuelle = false,
                     IsCotisationCarte1 = true,
-                    IsCotisationCarte2 = false,
-                    IsCotisationCarte3 = false,
+                    IsCotisationCarte2 = true,
+                    IsCotisationCarte3 = true,
                     IsCotisationCarte4 = false,
                     IsCotisationEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = true,
                     IsLicenceEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { "95 euros", "50 euros", "25 euros", "50 euros" },
+                    PaiementsEffectues = new List<string>() { "95 euros", "50 euros", "25 euros", "50 euros", "50 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,5,31),
@@ -3109,11 +3185,67 @@ namespace WebApplication1.Models
                     IsLicenceEnOrdre = false,
                     IsLocationMatérielEnOrdre = false,
 
-                    PaiementsEffectues = new List<string>() { },
+                    PaiementsEffectues = new List<string>() { "170 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2025,4,9),
                         new DateTime(2025,4,11),
+                    },
+                    IsMatérielLoue = true
+                };
+        }
+        public void Add_Paiements_Beaucamp_Barnabé(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidBarnabéBeaucamp && x.Période == period))
+            {
+                return;
+            }
+            Membres.Where(x => x.GuidId == GuidConstantes.GuidBarnabéBeaucamp && x.Période == period).FirstOrDefault().Paiement =
+                new Paiement()
+                {
+                    Periode = period,
+                    IsCotisationAnnuelle = false,
+                    IsCotisationCarte1 = false,
+                    IsCotisationCarte2 = false,
+                    IsCotisationCarte3 = false,
+                    IsCotisationCarte4 = false,
+                    IsCotisationEnOrdre = false,
+                    IsFicheSignaletiqueEnOrdre = false,
+                    IsLicenceEnOrdre = false,
+                    IsLocationMatérielEnOrdre = false,
+
+                    PaiementsEffectues = new List<string>() { },
+                    SeancesGratuites = new List<DateTime>()
+                    {
+                        new DateTime(2025,5,14),
+                    },
+                    IsMatérielLoue = true
+                };
+        }
+        public void Add_Paiements_Beaucamp_Naya(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidNayaBeaucamp && x.Période == period))
+            {
+                return;
+            }
+            Membres.Where(x => x.GuidId == GuidConstantes.GuidNayaBeaucamp && x.Période == period).FirstOrDefault().Paiement =
+                new Paiement()
+                {
+                    Periode = period,
+                    IsCotisationAnnuelle = false,
+                    IsCotisationCarte1 = false,
+                    IsCotisationCarte2 = false,
+                    IsCotisationCarte3 = false,
+                    IsCotisationCarte4 = false,
+                    IsCotisationEnOrdre = false,
+                    IsFicheSignaletiqueEnOrdre = false,
+                    IsLicenceEnOrdre = false,
+                    IsLocationMatérielEnOrdre = false,
+
+                    PaiementsEffectues = new List<string>() { },
+                    SeancesGratuites = new List<DateTime>()
+                    {
+                       new DateTime(2025,5,14),
                     },
                     IsMatérielLoue = true
                 };

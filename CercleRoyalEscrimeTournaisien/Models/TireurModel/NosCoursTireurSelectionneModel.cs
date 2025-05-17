@@ -386,12 +386,10 @@ namespace CercleRoyalEscrimeTournaisien
                     { "/Poules/Poule 2025-03-12 Epée.pdf", "Poule 2025-03-12 Epée"  },
                     { "/Poules/Constatations 2025-03-28 Elodie.pdf", "Constatations 2025-03-28 Elodie"  },
                     { "/Poules/Poule 2025-01-24 Epée.pdf", "Poule 2025-01-24 Epée"  },
-                    { "/Poules/poule 2025-03-28 Sabre Seniors.pdf", "poule 2025-03-28 Sabre Seniors"  },
-                }.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, y => y.Value); 
-
-              
+                    { "/Poules/poule 2025-05-16 Epée grands.pdf", "poule 2025-05-16 Epée grands"  },
+                    { "/Poules/poule 2025-05-16 Epée petits.pdf", "poule 2025-05-16 Epée petits"  },
+                }.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, y => y.Value);               
             }
-
         }
 
         public IDictionary<string, string> Poules

@@ -29,10 +29,12 @@
             ApollineOdendhal = 23,
             AmadoSimon = 24,
             LouisonBinois = 25,
-           // ThéoHelleputte = 26,
             HéloïsePras = 27,
             RebeccaVandy = 28,
-            EliotPunchoo = 29
+            EliotPunchoo = 29,
+            NoelMarieDransart = 30,
+            NayaBeaucamp = 31,
+            BarnabéBeaucamp = 32
         }
     }
 }
