@@ -147,13 +147,26 @@ namespace CercleRoyalEscrimeTournaisien
             {
                 List<RemarqueParDate> remarquesPourToutesLesPoules = new List<RemarqueParDate>() { };
                 remarquesPourToutesLesPoules.AddRange(
-                    new List<RemarqueParDate>() { 
+                    new List<RemarqueParDate>() {
                     new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 6, 6),
+                        Arme = TypeArme.Sabre,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                Remarque = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules.",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                           }
+                        }
+                    },
+                        new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2025, 3, 28),
                         Arme = TypeArme.Sabre,
                         RemarquesData = new List<RemarqueData>()
-                        { 
+                        {
                             new RemarqueData()
                             {
                                 Remarque = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules.",
@@ -388,6 +401,7 @@ namespace CercleRoyalEscrimeTournaisien
                     { "/Poules/Poule 2025-01-24 Epée.pdf", "Poule 2025-01-24 Epée"  },
                     { "/Poules/poule 2025-05-16 Epée grands.pdf", "poule 2025-05-16 Epée grands"  },
                     { "/Poules/poule 2025-05-16 Epée petits.pdf", "poule 2025-05-16 Epée petits"  },
+                    { "/Poules/poule 2025-06-06 Sabre.pdf", "poule 2025-06-06 Sabre"  },
                 }.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, y => y.Value);               
             }
         }
