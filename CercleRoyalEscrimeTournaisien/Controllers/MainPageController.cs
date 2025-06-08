@@ -394,7 +394,8 @@ namespace CercleRoyalEscrimeTournaisien
                     return passwordSelectionne.ToUpper() == GuidConstantes.GuidNayaBeaucamp.ToString().ToUpper();
                 case IndexTireurConstantes.TireurIndex.BarnabéBeaucamp:
                     return passwordSelectionne.ToUpper() == GuidConstantes.GuidBarnabéBeaucamp.ToString().ToUpper();
-
+                case IndexTireurConstantes.TireurIndex.RomainBelbenoit:
+                    return passwordSelectionne.ToUpper() == GuidConstantes.GuidRomainBelbenoit.ToString().ToUpper();
                 default:
                     return false;
             }

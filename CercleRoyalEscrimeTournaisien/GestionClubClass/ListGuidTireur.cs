@@ -233,6 +233,9 @@ namespace WebApplication1.Models
             Membres.Add(
                 new MembreData() { GuidId = GuidConstantes.GuidBarnabéBeaucamp, Nom = "Beaucamp", Prénom = "Barnabé", Période = "2024-2025" }
             );
+            Membres.Add(
+                new MembreData() { GuidId = GuidConstantes.GuidRomainBelbenoit, Nom = "Romain", Prénom = "Belbenoit", Période = "2024-2025" }
+            );
 
 
         }

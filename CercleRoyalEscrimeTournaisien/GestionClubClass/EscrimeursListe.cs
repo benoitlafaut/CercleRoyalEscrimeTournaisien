@@ -149,6 +149,7 @@ namespace WebApplication1.Models
             fichesSignalétiques_2024_2025.Add_FichesSignalétiques_Dransart_NoelMarie(period, Membres);
             fichesSignalétiques_2024_2025.Add_FichesSignalétiques_Beaucamp_Barnabé(period, Membres);
             fichesSignalétiques_2024_2025.Add_FichesSignalétiques_Beaucamp_Naya(period, Membres);
+            fichesSignalétiques_2024_2025.Add_FichesSignalétiques_Belbenoit_Romain(period, Membres);
         }
 
         #region Add_Paiements_2022_2023
@@ -243,6 +244,7 @@ namespace WebApplication1.Models
             paiements.Add_Paiements_Odendhal_Apolline(period, Membres);
             paiements.Add_Paiements_Ivanov_Anaelle(period, Membres);
             paiements.Add_Paiements_Lessart_Sacha(period, Membres);
+            paiements.Add_Paiements_Belbenoit_Romain(period, Membres);
         }
     }
 }

@@ -34,7 +34,8 @@
             EliotPunchoo = 29,
             NoelMarieDransart = 30,
             NayaBeaucamp = 31,
-            BarnabéBeaucamp = 32
+            BarnabéBeaucamp = 32,
+            RomainBelbenoit = 33
         }
     }
 }
