@@ -26,6 +26,19 @@ namespace CercleRoyalEscrimeTournaisien
                             new RemarqueData()
                             {
                                 PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                                Remarque="Petits points d'attention...</br>Vous tirez contre qqn de plus grand? fléchissez vos jambes, descendez votre pointe pour partir avec une pointe basse, laissez le venir et touchez aux avancées (la manchette).</br>Mon adversaire est plus rapide que moi..!! Prenez le fer adverse pour qu'il ne me vise pas et attaquez le premier.</br>Je mène de deux touches et mon adversaire n'a pas l'air d'attaquer? Laissez le temps défiler, je prends de la distance. je fais de temps en temps des battés pour dire ehh je suis encore là. La piste fait 14 mètres de long, servez-vous en.<br/>N'oubliez pas le petit marché avant la fente. Le bras qui s'allonge est à faire avant la fin du marché.</br>Ne fléchissez pas le bras lors de l'attaque.</br>Ne regardez pas l'appareil lors de l'assaut. Vos oreilles sont là pour entendre les haltes de l'arbitre.</br>Quand vous attaquez, allez jusqu'à la touche sans s'arrêter. Et si par erreur vous stoppez l'attaque, reculez pour reprendre de la distance par rapport à votre adversaire.",
+                            },
+                        }
+                    },
+                    new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025,6,28),
+                        Arme = TypeArme.Epée,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
                                 Remarque="Hello hello,</br>La veille d'une compétition ou d'un assaut, je répète souvent les mêmes observations.</br>Prenez votre temps lors de chaque assaut.</br>Vous avez 3 minutes en poule et 3 x 3 minutes en assaut après les poules pour gagner.</br>Une victoire 3-1 est tout autant une victoire que 15-14.</br>Quand vous avez une stratégie qui marche, faites la régulièrement mais pas trop souvent.</br>Prenez le temps d'observer et d'avoir une stratégie pour gagner.</br>C'est en regardant les autres tirer qu'on peut savoir leurs défauts.</br>Quand vous êtes appelé(e) sur la piste ou à chaque reprise d'assaut, vous devez avoir deux fils de corps et deux armes opérationnels.</br>Si vous avez un doute sur la qualité de l'arme pendant un match (arme défectueuse ou autre), n'hésitez pas à changer d'arme rapidement.</br>Vous n'êtes pas obligé(e) d'attendre la fin du match pour changer d'arme.</br>Dans chaque compétition, il y a un espace où la liste des inscrits et la liste des résultats sont affichés.</br>Ces listes peuvent être format papier ou support écran selon la compétition.</br>N'attaquez pas comme un taureau et ne baissez pas les bras avant la fin de l'assaut.</br>Chaque assaut se finit au halte de l'arbitre.</br>Vérifiez chaque score à la fin de chaque assaut et surtout en signant la feuille de poule auprès de l'arbitre à la fin de tous les assauts d'une poule.</br></br>Amusez-vous... et ayez confiance en vous..",
                             },
                         }
