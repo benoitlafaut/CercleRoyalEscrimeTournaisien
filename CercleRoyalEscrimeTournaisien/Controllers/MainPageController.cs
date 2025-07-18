@@ -548,11 +548,11 @@ namespace CercleRoyalEscrimeTournaisien
         }
 
         [HttpGet]
-        public ActionResult DownloadExcel()
+        public ActionResult DownloadExcel(string period)
         {
             EscrimeursListe escrimeursListe = new EscrimeursListe
             {
-                Periode = "2024-2025"
+                Periode = period
             };
 
             var stream = new MemoryStream();            

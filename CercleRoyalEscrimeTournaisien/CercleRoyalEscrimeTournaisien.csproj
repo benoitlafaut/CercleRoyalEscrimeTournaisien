@@ -1154,6 +1154,7 @@
     <Content Include="FileToUpload\FichesSignaletiques\Punchoo_Eliot.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Ivanov_Anaelle.pdf" />
     <Content Include="FileToUpload\NosCours\Liste des catégories et répartition des tireurs.pdf" />
+    <Content Include="FileToUpload\NosCours\Liste des catégories et répartition des tireurs 2025 2026.pdf" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Accueil.cshtml" />
     <Content Include="Views\Home\Accueil_Part_1.cshtml" />

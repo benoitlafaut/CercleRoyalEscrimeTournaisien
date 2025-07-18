@@ -241,18 +241,31 @@ namespace WebApplication1.Models
         }
         public static Categorie SearchCategorie(int annee) 
         {
-            if (annee >= 1924 && annee <= 1954) { return Categorie.Vétéran_70; }
-            if (annee >= 1955 && annee <= 1964) { return Categorie.Vétéran_60; }
-            if (annee >= 1965 && annee <= 1974) { return Categorie.Vétéran_50; }
-            if (annee >= 1975 && annee <= 1984) { return Categorie.Vétéran_40; }
-            if (annee >= 2002 && annee <= 2004) { return Categorie.U23; }
-            if (annee >= 1984 && annee <= 2004) { return Categorie.Senior; }
-            if (annee >= 2005 && annee <= 2007) { return Categorie.U20; }
-            if (annee >= 2008 && annee <= 2009) { return Categorie.U17; }
-            if (annee >= 2010 && annee <= 2011) { return Categorie.U15; }
-            if (annee >= 2012 && annee <= 2013) { return Categorie.U13; }
-            if (annee >= 2014 && annee <= 2015) { return Categorie.U11; }
-            if (annee > 2015) { return Categorie.U11; }
+            if (annee >= 1925 && annee <= 1955) { return Categorie.Vétéran_70; }
+            if (annee >= 1956 && annee <= 1965) { return Categorie.Vétéran_60; }
+            if (annee >= 1966 && annee <= 1975) { return Categorie.Vétéran_50; }
+            if (annee >= 1976 && annee <= 1985) { return Categorie.Vétéran_40; }
+            if (annee >= 2003 && annee <= 2005) { return Categorie.U23; }
+            if (annee >= 1985 && annee <= 2005) { return Categorie.Senior; }
+            if (annee >= 2006 && annee <= 2008) { return Categorie.U20; }
+            if (annee >= 2009 && annee <= 2010) { return Categorie.U17; }
+            if (annee >= 2011 && annee <= 2012) { return Categorie.U15; }
+            if (annee >= 2013 && annee <= 2014) { return Categorie.U13; }
+            if (annee >= 2015 && annee <= 2016) { return Categorie.U11; }
+            if (annee > 2016) { return Categorie.U11; }
+
+            //if (annee >= 1924 && annee <= 1954) { return Categorie.Vétéran_70; }
+            //if (annee >= 1955 && annee <= 1964) { return Categorie.Vétéran_60; }
+            //if (annee >= 1965 && annee <= 1974) { return Categorie.Vétéran_50; }
+            //if (annee >= 1975 && annee <= 1984) { return Categorie.Vétéran_40; }
+            //if (annee >= 2002 && annee <= 2004) { return Categorie.U23; }
+            //if (annee >= 1984 && annee <= 2004) { return Categorie.Senior; }
+            //if (annee >= 2005 && annee <= 2007) { return Categorie.U20; }
+            //if (annee >= 2008 && annee <= 2009) { return Categorie.U17; }
+            //if (annee >= 2010 && annee <= 2011) { return Categorie.U15; }
+            //if (annee >= 2012 && annee <= 2013) { return Categorie.U13; }
+            //if (annee >= 2014 && annee <= 2015) { return Categorie.U11; }
+            //if (annee > 2015) { return Categorie.U11; }
 
             return Categorie.Senior;
         }
