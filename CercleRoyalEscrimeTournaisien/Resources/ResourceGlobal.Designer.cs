@@ -97,7 +97,7 @@ namespace CercleRoyalEscrimeTournaisien.Resources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Les cours au fleuret sont en bleu, à l&apos;épée en rouge et au sabre en vert..
+        ///   Recherche une chaîne localisée semblable à Les cours au fleuret sont en bleu, à l&apos;épée en rouge et au sabre en vert. Les séances Parent sont en orange..
         /// </summary>
         public static string CouleurArmesAgenda {
             get {

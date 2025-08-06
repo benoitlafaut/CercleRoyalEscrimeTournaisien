@@ -11,6 +11,9 @@
     $('.CelluleCouleurEpee').each(function (index, item) {
         $(this).parent('td').addClass("CelluleCouleurEpee");
     })
+    $('.CelluleCouleurParents').each(function (index, item) {
+        $(this).parent('td').addClass("CelluleCouleurParents");
+    })
     $('.CelluleCouleurFleuret').each(function (index, item) {
         $(this).parent('td').addClass("CelluleCouleurFleuret");
     })

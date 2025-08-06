@@ -17,11 +17,11 @@ namespace CercleRoyalEscrimeTournaisien
         {
             get
             {
-                string link = @"<a target='_blank' href=/FileToUpload/AGENDA_SAISON_2024_2025.pdf>ici</a>";
+                string link = @"<a target='_blank' href=/FileToUpload/AGENDA_SAISON_2025_2026.doc>ici</a>";
                 string texte;
 
                 texte = "L'escrime est un sport de combat. 3 armes sont utilisées : le fleuret, l'épée et le sabre. Ces 3 armes sont mixtes; individuelle ou par équipes.";
-                texte += @"<br />" + "Les cours au <b><span style='color: cornflowerblue'>fleuret</span></b> sont en bleu, à <b><span style='color: red'>l'épée</span></b> en rouge et au <b><span style='color: forestgreen'>sabre</span></b> en vert.";
+                texte += @"<br />" + "Les cours au <b><span style='color: cornflowerblue'>fleuret</span></b> sont en bleu, à <b><span style='color: red'>l'épée</span></b> en rouge et au <b><span style='color: forestgreen'>sabre</span></b> en vert. Les séances parents sont en <b><span style='color: #ED7D31'>orange</span></b>.";
                 texte += @"<br />" + "Vous trouverez " + link + " le calendrier téléchargeable sous format word.";
 
                 return texte;
@@ -90,6 +90,7 @@ namespace CercleRoyalEscrimeTournaisien
             List<DateTime> AllSeancesSabre = GetAllSeancesForSabre();
             List<DateTime> AllSeancesHolidays = GetAllHolidays();
             List<DateTime> AllSeancesSalleDéjàPrise = GetAllSalleDéjàPrise();
+            List<DateTime> AllSeancesParents = GetAllSeancesForParents();
 
             foreach (DateTime date in calculatedDates)
             {
@@ -110,6 +111,11 @@ namespace CercleRoyalEscrimeTournaisien
                 {
                     dateArmes.ArmeManieeOfDay = TypeArme.Epée;
                     dateArmes.ClassOfCell = "CelluleCouleurEpee";
+                }
+
+                if (AllSeancesParents.Contains(date))
+                {
+                    dateArmes.ClassOfCell = "CelluleCouleurParents";
                 }
 
                 if (AllSeancesSabre.Contains(date))
@@ -143,17 +149,19 @@ namespace CercleRoyalEscrimeTournaisien
 
         public List<LaSemaine> AllDatePerWeek(List<DateArmes> getAllDays)
         {
-            List<LaSemaine> allDatePerWeek = new List<LaSemaine>();
-            allDatePerWeek.Add(new LaSemaine()
+            List<LaSemaine> allDatePerWeek = new List<LaSemaine>
             {
-                PremierJour = new DateArmes() { NummerOfDay = "Lundi" },
-                SecondJour = new DateArmes() { NummerOfDay = "Mardi" },
-                TroisièmeJour = new DateArmes() { NummerOfDay = "Mercredi" },
-                QuatrièmeJour = new DateArmes() { NummerOfDay = "Jeudi" },
-                CinquièmeJour = new DateArmes() { NummerOfDay = "Vendredi" },
-                SixièmeJour = new DateArmes() { NummerOfDay = "Samedi" },
-                SeptièmeJour = new DateArmes() { NummerOfDay = "Dimanche" }
-            });
+                new LaSemaine()
+                {
+                    PremierJour = new DateArmes() { NummerOfDay = "Lundi" },
+                    SecondJour = new DateArmes() { NummerOfDay = "Mardi" },
+                    TroisièmeJour = new DateArmes() { NummerOfDay = "Mercredi" },
+                    QuatrièmeJour = new DateArmes() { NummerOfDay = "Jeudi" },
+                    CinquièmeJour = new DateArmes() { NummerOfDay = "Vendredi" },
+                    SixièmeJour = new DateArmes() { NummerOfDay = "Samedi" },
+                    SeptièmeJour = new DateArmes() { NummerOfDay = "Dimanche" }
+                }
+            };
 
             for (int i = 1; i <= getAllDays.Count - 1; i++)
             {
@@ -208,126 +216,126 @@ namespace CercleRoyalEscrimeTournaisien
         private List<DateTime> GetAllSeancesForSabre ()
         {
             List<DateTime> list = new List<DateTime>() { };
-            list.Add(new DateTime(2024, 10, 16));
-            list.Add(new DateTime(2024, 10, 18));
-            list.Add(new DateTime(2024, 10, 20));
-            list.Add(new DateTime(2024, 11, 6));
-            list.Add(new DateTime(2024, 11, 8));
-            list.Add(new DateTime(2024, 11, 10));
-            list.Add(new DateTime(2025, 1, 8));
-            list.Add(new DateTime(2025, 1, 10));
-            list.Add(new DateTime(2025, 1, 12));
-            list.Add(new DateTime(2025, 1, 15));
-            list.Add(new DateTime(2025, 1, 17));
-            list.Add(new DateTime(2025, 1, 19));
-            list.Add(new DateTime(2025, 3, 19));
-            list.Add(new DateTime(2025, 3, 21));
-            list.Add(new DateTime(2025, 3, 23));
-            list.Add(new DateTime(2025, 3, 26));
-            list.Add(new DateTime(2025, 3, 28));
-            list.Add(new DateTime(2025, 3, 30));
-            list.Add(new DateTime(2025, 5, 28));
-            list.Add(new DateTime(2025, 5, 30));
-            list.Add(new DateTime(2025, 6, 1));
-            list.Add(new DateTime(2025, 6, 4));
-            list.Add(new DateTime(2025, 6, 6));
-            list.Add(new DateTime(2025, 6, 8));
+            list.Add(new DateTime(2025, 10, 15));
+            list.Add(new DateTime(2025, 10, 17));
+            list.Add(new DateTime(2025, 10, 19));
+            list.Add(new DateTime(2025, 11, 5));
+            list.Add(new DateTime(2025, 11, 7));
+            list.Add(new DateTime(2025, 11, 9));
+            list.Add(new DateTime(2026, 1, 7));
+            list.Add(new DateTime(2026, 1, 9));
+            list.Add(new DateTime(2026, 1, 11));
+            list.Add(new DateTime(2026, 1, 14));
+            list.Add(new DateTime(2026, 1, 16));
+            list.Add(new DateTime(2026, 3, 18));
+            list.Add(new DateTime(2026, 3, 20));
+            list.Add(new DateTime(2026, 3, 22));
+            list.Add(new DateTime(2026, 3, 25));
+            list.Add(new DateTime(2026, 3, 27));
+            list.Add(new DateTime(2026, 3, 29));
+            list.Add(new DateTime(2026, 5, 27));
+            list.Add(new DateTime(2026, 5, 29));
+            list.Add(new DateTime(2026, 5, 31));
+            list.Add(new DateTime(2026, 6, 3));
+            list.Add(new DateTime(2026, 6, 5));
+            list.Add(new DateTime(2026, 6, 7));         
             return list;
         }
 
         private List<DateTime> GetAllHolidays()
         {
             List<DateTime> list = new List<DateTime>() { };
-            list.Add(new DateTime(2024, 9, 27));
-            list.Add(new DateTime(2024, 10, 21));
-            list.Add(new DateTime(2024, 10, 22));
-            list.Add(new DateTime(2024, 10, 23));
-            list.Add(new DateTime(2024, 10, 24));
-            list.Add(new DateTime(2024, 10, 25));
-            list.Add(new DateTime(2024, 10, 26));
-            list.Add(new DateTime(2024, 10, 27));
-            list.Add(new DateTime(2024, 10, 28));
-            list.Add(new DateTime(2024, 10, 29));
-            list.Add(new DateTime(2024, 10, 30));
-            list.Add(new DateTime(2024, 10, 31));
-            list.Add(new DateTime(2024, 11, 1));
-            list.Add(new DateTime(2024, 11, 2));
-            list.Add(new DateTime(2024, 11, 3));
-            list.Add(new DateTime(2024, 11, 11));
-            list.Add(new DateTime(2024, 12, 23));
-            list.Add(new DateTime(2024, 12, 24));
-            list.Add(new DateTime(2024, 12, 25));
-            list.Add(new DateTime(2024, 12, 26));
-            list.Add(new DateTime(2024, 12, 27));
-            list.Add(new DateTime(2024, 12, 28));
-            list.Add(new DateTime(2024, 12, 29));
-            list.Add(new DateTime(2024, 12, 30));
-            list.Add(new DateTime(2024, 12, 31));
-            list.Add(new DateTime(2025, 1, 1));
-            list.Add(new DateTime(2025, 1, 2));
-            list.Add(new DateTime(2025, 1, 3));
-            list.Add(new DateTime(2025, 1, 4));
-            list.Add(new DateTime(2025, 1, 5));
-            list.Add(new DateTime(2025, 2, 24));
-            list.Add(new DateTime(2025, 2, 25));
-            list.Add(new DateTime(2025, 2, 26));
-            list.Add(new DateTime(2025, 2, 27));
-            list.Add(new DateTime(2025, 2, 28));
-            list.Add(new DateTime(2025, 3, 1));
-            list.Add(new DateTime(2025, 3, 2));
-            list.Add(new DateTime(2025, 3, 3));
-            list.Add(new DateTime(2025, 3, 4));
-            list.Add(new DateTime(2025, 3, 5));
-            list.Add(new DateTime(2025, 3, 6));
-            list.Add(new DateTime(2025, 3, 7));
-            list.Add(new DateTime(2025, 3, 8));
-            list.Add(new DateTime(2025, 3, 9));
-            list.Add(new DateTime(2025, 4, 21));
-            list.Add(new DateTime(2025, 4, 28));
-            list.Add(new DateTime(2025, 4, 29));
-            list.Add(new DateTime(2025, 4, 30));
-            list.Add(new DateTime(2025, 5, 1));
-            list.Add(new DateTime(2025, 5, 2));
-            list.Add(new DateTime(2025, 5, 3));
-            list.Add(new DateTime(2025, 5, 4));
-            list.Add(new DateTime(2025, 5, 5));
-            list.Add(new DateTime(2025, 5, 6));
-            list.Add(new DateTime(2025, 5, 7));
-            list.Add(new DateTime(2025, 5, 8));
-            list.Add(new DateTime(2025, 5, 9));
-            list.Add(new DateTime(2025, 5, 10));
-            list.Add(new DateTime(2025, 5, 11));
-            list.Add(new DateTime(2025, 5, 29));
-            list.Add(new DateTime(2025, 6, 9));
+            list.Add(new DateTime(2025, 9, 27));
+            list.Add(new DateTime(2025, 10, 20));
+            list.Add(new DateTime(2025, 10, 21));
+            list.Add(new DateTime(2025, 10, 22));
+            list.Add(new DateTime(2025, 10, 23));
+            list.Add(new DateTime(2025, 10, 24));
+            list.Add(new DateTime(2025, 10, 25));
+            list.Add(new DateTime(2025, 10, 26));
+            list.Add(new DateTime(2025, 10, 27));
+            list.Add(new DateTime(2025, 10, 28));
+            list.Add(new DateTime(2025, 10, 29));
+            list.Add(new DateTime(2025, 10, 30));
+            list.Add(new DateTime(2025, 10, 31));
+            list.Add(new DateTime(2025, 11, 1));
+            list.Add(new DateTime(2025, 11, 2));
+            list.Add(new DateTime(2025, 11, 11));
+            list.Add(new DateTime(2025, 12, 22));
+            list.Add(new DateTime(2025, 12, 23));
+            list.Add(new DateTime(2025, 12, 24));
+            list.Add(new DateTime(2025, 12, 25));
+            list.Add(new DateTime(2025, 12, 26));
+            list.Add(new DateTime(2025, 12, 27));
+            list.Add(new DateTime(2025, 12, 28));
+            list.Add(new DateTime(2025, 12, 29));
+            list.Add(new DateTime(2025, 12, 30));
+            list.Add(new DateTime(2025, 12, 31));
+            list.Add(new DateTime(2026, 1, 1));
+            list.Add(new DateTime(2026, 1, 2));
+            list.Add(new DateTime(2026, 1, 3));
+            list.Add(new DateTime(2026, 1, 4));
+            list.Add(new DateTime(2026, 2, 16));
+            list.Add(new DateTime(2026, 2, 17));
+            list.Add(new DateTime(2026, 2, 18));
+            list.Add(new DateTime(2026, 2, 19));
+            list.Add(new DateTime(2026, 2, 20));
+            list.Add(new DateTime(2026, 2, 21));
+            list.Add(new DateTime(2026, 2, 22));
+            list.Add(new DateTime(2026, 2, 23));
+            list.Add(new DateTime(2026, 2, 24));
+            list.Add(new DateTime(2026, 2, 25));
+            list.Add(new DateTime(2026, 2, 26));
+            list.Add(new DateTime(2026, 2, 27));
+            list.Add(new DateTime(2026, 2, 28));
+            list.Add(new DateTime(2026, 3, 1));
+            list.Add(new DateTime(2026, 4, 6));
+            list.Add(new DateTime(2026, 4, 27));
+            list.Add(new DateTime(2026, 4, 28));
+            list.Add(new DateTime(2026, 4, 29));
+            list.Add(new DateTime(2026, 4, 30));
+            list.Add(new DateTime(2026, 5, 1));
+            list.Add(new DateTime(2026, 5, 2));
+            list.Add(new DateTime(2026, 5, 3));
+            list.Add(new DateTime(2026, 5, 4));
+            list.Add(new DateTime(2026, 5, 5));
+            list.Add(new DateTime(2026, 5, 6));
+            list.Add(new DateTime(2026, 5, 7));
+            list.Add(new DateTime(2026, 5, 8));
+            list.Add(new DateTime(2026, 5, 9));
+            list.Add(new DateTime(2026, 5, 10));
+            list.Add(new DateTime(2026, 5, 14));
+            list.Add(new DateTime(2026, 5, 25));
+           
             return list;
         }
 
         private List<DateTime> GetAllSeancesForFleuret()
         {
             List<DateTime> list = new List<DateTime>() { };
-            list.Add(new DateTime(2024, 9, 18));
-            list.Add(new DateTime(2024, 9, 20));
-            list.Add(new DateTime(2024, 9, 22));
-            list.Add(new DateTime(2024, 9, 25));
-            list.Add(new DateTime(2024, 9, 29));
-            list.Add(new DateTime(2024, 11, 27));
-            list.Add(new DateTime(2024, 11, 29));
-            list.Add(new DateTime(2024, 12, 1));
-            list.Add(new DateTime(2024, 12, 4));
-            list.Add(new DateTime(2024, 12, 6));
-            list.Add(new DateTime(2024, 12, 8));
-            list.Add(new DateTime(2025, 2, 5));
-            list.Add(new DateTime(2025, 2, 7));
-            list.Add(new DateTime(2025, 2, 9));
-            list.Add(new DateTime(2025, 2, 12));
-            list.Add(new DateTime(2025, 2, 14));
-            list.Add(new DateTime(2025, 2, 16));
-            list.Add(new DateTime(2025, 4, 16));
-            list.Add(new DateTime(2025, 4, 18));
-            list.Add(new DateTime(2025, 4, 20));
-            list.Add(new DateTime(2025, 4, 23));
-            list.Add(new DateTime(2025, 4, 25));
-            list.Add(new DateTime(2025, 4, 27));
+            list.Add(new DateTime(2025, 9, 17));
+            list.Add(new DateTime(2025, 9, 19));
+            list.Add(new DateTime(2025, 9, 21));
+            list.Add(new DateTime(2025, 9, 24));
+            list.Add(new DateTime(2025, 9, 26));
+            list.Add(new DateTime(2025, 9, 28));
+            list.Add(new DateTime(2025, 11, 26));
+            list.Add(new DateTime(2025, 11, 28));
+            list.Add(new DateTime(2025, 11, 30));
+            list.Add(new DateTime(2025, 12, 3));
+            list.Add(new DateTime(2025, 12, 5));
+            list.Add(new DateTime(2025, 12, 7));
+            list.Add(new DateTime(2026, 2, 4));
+            list.Add(new DateTime(2026, 2, 6));
+            list.Add(new DateTime(2026, 2, 8));
+            list.Add(new DateTime(2026, 2, 11));
+            list.Add(new DateTime(2026, 2, 13));
+            list.Add(new DateTime(2026, 4, 15));
+            list.Add(new DateTime(2026, 4, 17));
+            list.Add(new DateTime(2026, 4, 22));
+            list.Add(new DateTime(2026, 4, 24));
+            list.Add(new DateTime(2026, 4, 26));
+           
 
             return list;
         }
@@ -335,55 +343,68 @@ namespace CercleRoyalEscrimeTournaisien
         private List<DateTime> GetAllSeancesForEpee()
         {
             List<DateTime> list = new List<DateTime>() { };
+            list.Add(new DateTime(2025, 9, 3));
+            list.Add(new DateTime(2025, 9, 5));
+            list.Add(new DateTime(2025, 9, 7));
+            list.Add(new DateTime(2025, 9, 10));
+            list.Add(new DateTime(2025, 9, 12));
+            list.Add(new DateTime(2025, 9, 14));
+            list.Add(new DateTime(2025, 10, 1));
+            list.Add(new DateTime(2025, 10, 3));
+            list.Add(new DateTime(2025, 10, 5));
+            list.Add(new DateTime(2025, 10, 8));
+            list.Add(new DateTime(2025, 10, 10));
+            list.Add(new DateTime(2025, 11, 12));
+            list.Add(new DateTime(2025, 11, 14));
+            list.Add(new DateTime(2025, 11, 16));
+            list.Add(new DateTime(2025, 11, 19));
+            list.Add(new DateTime(2025, 11, 21));
+            list.Add(new DateTime(2025, 12, 10));
+            list.Add(new DateTime(2025, 12, 12));
+            list.Add(new DateTime(2025, 12, 14));
+            list.Add(new DateTime(2025, 12, 17));
+            list.Add(new DateTime(2025, 12, 19));
+            list.Add(new DateTime(2026, 1, 21));
+            list.Add(new DateTime(2026, 1, 23));
+            list.Add(new DateTime(2026, 1, 25));
+            list.Add(new DateTime(2026, 1, 28));
+            list.Add(new DateTime(2026, 1, 30));
+            list.Add(new DateTime(2026, 2, 1));
+            list.Add(new DateTime(2026, 3, 4));
+            list.Add(new DateTime(2026, 3, 6));
+            list.Add(new DateTime(2026, 3, 8));
+            list.Add(new DateTime(2026, 3, 11));
+            list.Add(new DateTime(2026, 3, 13));
+            list.Add(new DateTime(2026, 4, 1));
+            list.Add(new DateTime(2026, 4, 3));
+            list.Add(new DateTime(2026, 4, 5));
+            list.Add(new DateTime(2026, 4, 8));
+            list.Add(new DateTime(2026, 4, 10));
+            list.Add(new DateTime(2026, 4, 12));
+            list.Add(new DateTime(2026, 5, 13));
+            list.Add(new DateTime(2026, 5, 15));
+            list.Add(new DateTime(2026, 5, 17));
+            list.Add(new DateTime(2026, 5, 20));
+            list.Add(new DateTime(2026, 5, 22));
+            list.Add(new DateTime(2026, 6, 10));
+            list.Add(new DateTime(2026, 6, 12));
 
-            list.Add(new DateTime(2024, 9, 4));
-            list.Add(new DateTime(2024, 9, 6));
-            list.Add(new DateTime(2024, 9, 8));
-            list.Add(new DateTime(2024, 9, 11));
-            list.Add(new DateTime(2024, 9, 13));
-            list.Add(new DateTime(2024, 9, 15));
-            list.Add(new DateTime(2024, 10, 2));
-            list.Add(new DateTime(2024, 10, 4));
-            list.Add(new DateTime(2024, 10, 6));
-            list.Add(new DateTime(2024, 10, 9));
-            list.Add(new DateTime(2024, 10, 11));
-            list.Add(new DateTime(2024, 10, 13));
-            list.Add(new DateTime(2024, 11, 13));
-            list.Add(new DateTime(2024, 11, 15));
-            list.Add(new DateTime(2024, 11, 17));
-            list.Add(new DateTime(2024, 11, 20));
-            list.Add(new DateTime(2024, 11, 22));
-            list.Add(new DateTime(2024, 11, 24));
-            list.Add(new DateTime(2024, 12, 11));
-            list.Add(new DateTime(2024, 12, 13));
-            list.Add(new DateTime(2024, 12, 15));
-            list.Add(new DateTime(2024, 12, 18));
-            list.Add(new DateTime(2024, 12, 20));
-            list.Add(new DateTime(2024, 12, 22));
-            list.Add(new DateTime(2025, 1, 22));
-            list.Add(new DateTime(2025, 1, 24));
-            list.Add(new DateTime(2025, 1, 26));
-            list.Add(new DateTime(2025, 1, 29));
-            list.Add(new DateTime(2025, 1, 31));
-            list.Add(new DateTime(2025, 2, 2));
-            list.Add(new DateTime(2025, 2, 19));
-            list.Add(new DateTime(2025, 2, 21));
-            list.Add(new DateTime(2025, 2, 23));
-            list.Add(new DateTime(2025, 3, 12));
-            list.Add(new DateTime(2025, 3, 14));
-            list.Add(new DateTime(2025, 3, 16));
-            list.Add(new DateTime(2025, 4, 2));
-            list.Add(new DateTime(2025, 4, 4));
-            list.Add(new DateTime(2025, 4, 6));
-            list.Add(new DateTime(2025, 4, 9));
-            list.Add(new DateTime(2025, 4, 11));
-            list.Add(new DateTime(2025, 4, 13));
-            list.Add(new DateTime(2025, 5, 14));
-            list.Add(new DateTime(2025, 5, 16));
-            list.Add(new DateTime(2025, 5, 18));
-            list.Add(new DateTime(2025, 5, 21));
-            list.Add(new DateTime(2025, 5, 23));
-            list.Add(new DateTime(2025, 5, 25));
+           
+
+            return list;
+        }
+        private List<DateTime> GetAllSeancesForParents()
+        {
+            List<DateTime> list = new List<DateTime>() { };
+            list.Add(new DateTime(2025, 10, 12));
+            list.Add(new DateTime(2025, 11, 23));
+            list.Add(new DateTime(2025, 12, 21));
+            list.Add(new DateTime(2026, 1, 18));
+            list.Add(new DateTime(2026, 2, 15));
+            list.Add(new DateTime(2026, 3, 15));
+            list.Add(new DateTime(2026, 4, 19));
+            list.Add(new DateTime(2026, 5, 24));
+            list.Add(new DateTime(2026, 6, 14));
 
             return list;
         }

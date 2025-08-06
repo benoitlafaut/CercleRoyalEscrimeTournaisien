@@ -180,7 +180,7 @@
     <value>L'escrime est un sport de combat. 3 armes sont utilisées : le fleuret, l'épée et le sabre. Ces 3 armes sont mixtes; individuelle ou par équipes.</value>
   </data>
 	<data name="CouleurArmesAgenda" xml:space="preserve">
-    <value>Les cours au fleuret sont en bleu, à l'épée en rouge et au sabre en vert.</value>
+    <value>Les cours au fleuret sont en bleu, à l'épée en rouge et au sabre en vert. Les séances Parent sont en orange.</value>
   </data>
 	<data name="AgendaDocumentTelechargeable" xml:space="preserve">
     <value>Vous trouverez ici le calendrier téléchargeable sous format word.</value>
