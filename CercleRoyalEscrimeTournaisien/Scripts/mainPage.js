@@ -53,12 +53,13 @@ function onPlayerStateChange(event) {
 }
 
 function TakeAccountTireursOK() {
+    $("#divLoading").css('display', 'grid');
     var isNotTakeAccountTireursOK = $("#IsNotTakeAccountTireursOK:checked").val();
-
+    var period = $("#Periode").find('option:selected').val()
     $.ajax({
         url: "/MainPage/TakeAccountTireursOK",
         type: 'POST',      
-        data: { isNotTakeAccountTireursOK: isNotTakeAccountTireursOK },
+        data: { isNotTakeAccountTireursOK: isNotTakeAccountTireursOK, period: period },
         success: function (result) {  
             $("body").html(result);
         },

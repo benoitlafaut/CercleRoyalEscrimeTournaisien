@@ -9,6 +9,7 @@ namespace WebApplication1.Models
         public DateTime JourMinimumDesJoursDePrésence { 
             get
             {
+                if (JourDePrésence == null) { return DateTime.MinValue;  }
                 return JourDePrésence.OrderBy(x => x.DatePrésence).First().DatePrésence;
             }
         }

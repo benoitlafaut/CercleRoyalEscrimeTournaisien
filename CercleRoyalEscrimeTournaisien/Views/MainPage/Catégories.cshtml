@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Catégories";
+    string classTR;
 }
 
 
@@ -43,9 +44,18 @@
 
         @for (int iloop = 0; iloop < Model.RowsOfCol_1.Count(); iloop++)
         {
-            <tr>
+            if (iloop == 0)
+            {
+                classTR = "color: blue;height: 44px;";
+            }
+            else
+            {
+                classTR = "";
+            }
+
+            <tr style="@classTR">
                 <td style="width:240px;">@Model.RowsOfCol_1[iloop]</td>
-                <td style="width:240px;">@Model.RowsOfCol_4[iloop]</td>
+                <td style="width:240px;">@Model.RowsOfCol_5[iloop]</td>
             </tr>
         }
     </table>

@@ -513,9 +513,9 @@ namespace CercleRoyalEscrimeTournaisien
         }
 
         [HttpPost]
-        public Task<ActionResult> TakeAccountTireursOK(string  isNotTakeAccountTireursOK)
+        public Task<ActionResult> TakeAccountTireursOK(string  isNotTakeAccountTireursOK, string period)
         {
-            EscrimeursListe escrimeursListe = new EscrimeursListe();
+            EscrimeursListe escrimeursListe = new EscrimeursListe(period);
             escrimeursListe.IsNotTakeAccountTireursOK = isNotTakeAccountTireursOK == "true";
             return Task.FromResult<ActionResult>(View("AdministrationPage", escrimeursListe));
         }
@@ -550,7 +550,7 @@ namespace CercleRoyalEscrimeTournaisien
         [HttpGet]
         public ActionResult DownloadExcel(string period)
         {
-            EscrimeursListe escrimeursListe = new EscrimeursListe
+            EscrimeursListe escrimeursListe = new EscrimeursListe(period)
             {
                 Periode = period
             };
@@ -571,10 +571,10 @@ namespace CercleRoyalEscrimeTournaisien
                 workSheet.Cells[1, 8].Value = "Téléphone 1";
                 workSheet.Cells[1, 9].Value = "Téléphone 2";
                 workSheet.Cells[1, 10].Value = "Téléphone 3";
-                workSheet.Cells[1, 11].Value = "Licence en ordre";
-                workSheet.Cells[1, 12].Value = "Fiche signalétique en ordre";
-                workSheet.Cells[1, 13].Value = "Paiements effectués";
-                workSheet.Cells[1, 14].Value = "Tout est ok";
+                //workSheet.Cells[1, 11].Value = "Licence en ordre";
+                workSheet.Cells[1, 11].Value = "Fiche signalétique en ordre";
+                workSheet.Cells[1, 12].Value = "Paiements effectués";
+                workSheet.Cells[1, 13].Value = "Tout est ok";
 
                 using (ExcelRange Rng = workSheet.Cells[1, 1, 1, 50])
                 {
@@ -601,16 +601,16 @@ namespace CercleRoyalEscrimeTournaisien
                         if (tireur.Signaletique.Telephone.Count > 1) { workSheet.Cells[indexRow, 9].Value = tireur.Signaletique.Telephone[1]; }
                         if (tireur.Signaletique.Telephone.Count > 2) { workSheet.Cells[indexRow, 10].Value = tireur.Signaletique.Telephone[2]; }
 
-                        workSheet.Cells[indexRow, 11].Value = tireur.Paiement.IsLicenceEnOrdre ? "Y":"N" ;
-                        workSheet.Cells[indexRow, 12].Value = tireur.Paiement.IsFicheSignaletiqueEnOrdre? "Y":"N";
+                        //workSheet.Cells[indexRow, 11].Value = tireur.Paiement.IsLicenceEnOrdre ? "Y":"N" ;
+                        workSheet.Cells[indexRow, 11].Value = tireur.Paiement.IsFicheSignaletiqueEnOrdre? "Y":"N";
 
 
                         foreach (string paiement in tireur.Paiement.PaiementsEffectues)
                         {
-                            workSheet.Cells[indexRow, 13].Value += paiement + ' ';
+                            workSheet.Cells[indexRow, 12].Value += paiement + ' ';
                         }
 
-                        workSheet.Cells[indexRow, 14].Value = tireur.Paiement?.IsCotisationEnOrdre == true && tireur.Paiement?.IsLicenceEnOrdre == true && tireur.Paiement?.IsFicheSignaletiqueEnOrdre == true && tireur.Paiement?.IsLocationMatérielEnOrdre == true ? "En ordre" : "";
+                        workSheet.Cells[indexRow, 13].Value = tireur.Paiement?.IsCotisationEnOrdre == true && tireur.Paiement?.IsLicenceEnOrdre == true && tireur.Paiement?.IsFicheSignaletiqueEnOrdre == true && tireur.Paiement?.IsLocationMatérielEnOrdre == true ? "En ordre" : "";
                     }
                     indexRow++;
                 }

@@ -277,9 +277,11 @@
     <Compile Include="GestionClubClass\FichesSignalétiques_2022_2023.cs" />
     <Compile Include="GestionClubClass\FichesSignalétiques_2024_2025.cs" />
     <Compile Include="GestionClubClass\FichesSignalétiques_2023_2024.cs" />
+    <Compile Include="GestionClubClass\FichesSignalétiques_2025_2026.cs" />
     <Compile Include="GestionClubClass\GuidConstantes.cs" />
     <Compile Include="GestionClubClass\JoursDePrésence.cs" />
     <Compile Include="GestionClubClass\ListGuidTireur.cs" />
+    <Compile Include="GestionClubClass\Paiements_2025_2026.cs" />
     <Compile Include="Models\ModelEpub122024.cs" />
     <Compile Include="Models\NumberOfPage.cs" />
     <Compile Include="Models\TireurModel\Eliot_NosCoursTireurSelectionneModel.cs" />

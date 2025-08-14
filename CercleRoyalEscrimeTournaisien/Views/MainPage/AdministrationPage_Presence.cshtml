@@ -10,19 +10,21 @@
 <button class="btn btn-primary" type="button" id="btnSearch" onclick="ShowOrHideTable();">Show or Hide Table Présence</button>
 <div id="tablePresence">
     @{
-        for (var day = dateNowFormatted; day.Date >= Model.JoursDePrésence.JourMinimumDesJoursDePrésence; day = day.AddDays(-1))
+        if (Model.JoursDePrésence.JourDePrésence != null)
         {
-
-            if (day.DayOfWeek == DayOfWeek.Monday
-            || day.DayOfWeek == DayOfWeek.Wednesday
-            || day.DayOfWeek == DayOfWeek.Friday
-            || day.DayOfWeek == DayOfWeek.Sunday)
+            for (var day = dateNowFormatted; day.Date >= Model.JoursDePrésence.JourMinimumDesJoursDePrésence; day = day.AddDays(-1))
             {
-                if (Model.JoursDePrésence.JourDePrésence.Where(x => x.DatePrésence == day).Count() > 0)
-                {
-                    WebApplication1.Models.JourDePrésence jourDePrésence = Model.JoursDePrésence.JourDePrésence.Where(x => x.DatePrésence == day).First();
 
-                    <table style="display:block">
+                if (day.DayOfWeek == DayOfWeek.Monday
+                || day.DayOfWeek == DayOfWeek.Wednesday
+                || day.DayOfWeek == DayOfWeek.Friday
+                || day.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    if (Model.JoursDePrésence.JourDePrésence.Where(x => x.DatePrésence == day).Count() > 0)
+                    {
+                        WebApplication1.Models.JourDePrésence jourDePrésence = Model.JoursDePrésence.JourDePrésence.Where(x => x.DatePrésence == day).First();
+
+                        <table style="display:block">
                             <tr>
                                 <td style="min-width:130px;">@day.DayOfWeek.ToString().Replace("Monday", "Lundi").Replace("Sunday", "Dimanche").Replace("Friday", "Vendredi").Replace("Wednesday", "Mercredi")</td>
                                 <td style="min-width:130px;">@day.ToString("dd/MM")</td>
@@ -43,11 +45,14 @@
 
                                 <td style="min-width:130px;">( @compteur tireurs présents )</td>
                             </tr>
-                    </table>
+                        </table>
 
+                    }
                 }
             }
         }
+
+
     }
 
 

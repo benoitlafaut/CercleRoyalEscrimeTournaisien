@@ -16,9 +16,15 @@ namespace WebApplication1.Models
                     case "2023-2024":
                         Paiements_2023_2024 paiements_2023_2024 = new Paiements_2023_2024();
                         return paiements_2023_2024.ChargerPresences();
-                    default:
+                    case "2024-2025":
                         Paiements_2024_2025 paiements_2024_2025 = new Paiements_2024_2025();
                         return paiements_2024_2025.ChargerPresences();
+                    case "2025-2026":
+                        Paiements_2025_2026 paiements_2025_2026 = new Paiements_2025_2026();
+                        return paiements_2025_2026.ChargerPresences();
+                    default:
+                        Paiements_2025_2026 paiements_Default = new Paiements_2025_2026();
+                        return paiements_Default.ChargerPresences();
                 }
             } 
         }
@@ -28,7 +34,12 @@ namespace WebApplication1.Models
         public bool IsNotTakeAccountTireursOK { get; set; }
         public EscrimeursListe()
         {
-            if (string.IsNullOrEmpty(Periode)) { Periode = Models.Periode.Period_2024_2025; }
+            if (string.IsNullOrEmpty(Periode)) { Periode = Models.Periode.Period_2025_2026; }
+            ApplicPeriod();
+        }
+        public EscrimeursListe(string period)
+        {
+            if (string.IsNullOrEmpty(Periode)) { Periode = period; }
             ApplicPeriod();
         }
 
@@ -53,6 +64,10 @@ namespace WebApplication1.Models
                 case "2024-2025":
                     Add_FichesSignalétiques_2024_2025();
                     Add_Paiements_2024_2025();
+                    break;
+                case "2025-2026":
+                    Add_FichesSignalétiques_2025_2026();
+                    Add_Paiements_2025_2026();
                     break;
             }            
         }    
@@ -117,7 +132,6 @@ namespace WebApplication1.Models
             FichesSignalétiques_2024_2025 fichesSignalétiques_2024_2025 = new FichesSignalétiques_2024_2025();
 
             fichesSignalétiques_2024_2025.Add_FichesSignalétiques_Vandy_Rebecca(period, Membres);
-           // fichesSignalétiques_2024_2025.Add_FichesSignalétiques_CousineARemiJudith(period, Membres);
             fichesSignalétiques_2024_2025.Add_FichesSignalétiques_Punchoo_Eliot(period, Membres);
             fichesSignalétiques_2024_2025.Add_FichesSignalétiques_Trannoy_Félix(period, Membres);
             fichesSignalétiques_2024_2025.Add_FichesSignalétiques_Motte_Baptiste(period, Membres);
@@ -150,6 +164,36 @@ namespace WebApplication1.Models
             fichesSignalétiques_2024_2025.Add_FichesSignalétiques_Beaucamp_Barnabé(period, Membres);
             fichesSignalétiques_2024_2025.Add_FichesSignalétiques_Beaucamp_Naya(period, Membres);
             fichesSignalétiques_2024_2025.Add_FichesSignalétiques_Belbenoit_Romain(period, Membres);
+        }
+        private void Add_FichesSignalétiques_2025_2026()
+        {
+            const string period = "2025-2026";
+            FichesSignalétiques_2025_2026 fichesSignalétiques_2025_2026 = new FichesSignalétiques_2025_2026();
+
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Vandy_Rebecca(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Punchoo_Eliot(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Trannoy_Félix(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Motte_Baptiste(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Motte_Abel(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Vantroyen_Mae(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Razanajao_Fabrice(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Simon_Amado(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Deblocq_Oscar(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Barbery_Arthur(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Soyez_Rémi(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Couturiaux_Arthur(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Mestdagh_Jordan(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Mestdag_Lili(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Siu_Martin(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Vercouter_Raedwald(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Carette_Mathilde(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Carlier_Aurore(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Mass_Elodie(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Ivanov_Anaelle(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Dransart_NoelMarie(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Beaucamp_Barnabé(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Beaucamp_Naya(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Belbenoit_Romain(period, Membres);
         }
 
         #region Add_Paiements_2022_2023
@@ -244,6 +288,38 @@ namespace WebApplication1.Models
             paiements.Add_Paiements_Odendhal_Apolline(period, Membres);
             paiements.Add_Paiements_Ivanov_Anaelle(period, Membres);
             paiements.Add_Paiements_Lessart_Sacha(period, Membres);
+            paiements.Add_Paiements_Belbenoit_Romain(period, Membres);
+        }
+
+        private void Add_Paiements_2025_2026()
+        {
+            const string period = "2025-2026";
+
+            Paiements_2025_2026 paiements = new Paiements_2025_2026();
+
+            paiements.Add_Paiements_Trannoy_Félix(period, Membres);
+            paiements.Add_Paiements_Motte_Baptiste(period, Membres);
+            paiements.Add_Paiements_Vantroyen_Mae(period, Membres);
+            paiements.Add_Paiements_Motte_Abel(period, Membres);
+            paiements.Add_Paiements_Razanajao_Fabrice(period, Membres);
+            paiements.Add_Paiements_Vandy_Rebecca(period, Membres);
+            paiements.Add_Paiements_Punchoo_Eliot(period, Membres);
+            paiements.Add_Paiements_Deblocq_Oscar(period, Membres);
+            paiements.Add_Paiements_Barbery_Arthur(period, Membres);
+            paiements.Add_Paiements_Soyez_Rémi(period, Membres);
+            paiements.Add_Paiements_Couturiaux_Arthur(period, Membres);
+            paiements.Add_Paiements_Mestdagh_Jordan(period, Membres);
+            paiements.Add_Paiements_Siu_Martin(period, Membres);
+            paiements.Add_Paiements_Vercouter_Raedwald(period, Membres);
+            paiements.Add_Paiements_Dransart_NoelMarie(period, Membres);
+            paiements.Add_Paiements_Beaucamp_Barnabé(period, Membres);
+            paiements.Add_Paiements_Beaucamp_Naya(period, Membres);
+            paiements.Add_Paiements_Simon_Amado(period, Membres);
+            paiements.Add_Paiements_Mass_Elodie(period, Membres);
+            paiements.Add_Paiements_Carlier_Aurore(period, Membres);
+            paiements.Add_Paiements_Carette_Mathilde(period, Membres);
+            paiements.Add_Paiements_Mestdag_Lili(period, Membres);
+            paiements.Add_Paiements_Ivanov_Anaelle(period, Membres);
             paiements.Add_Paiements_Belbenoit_Romain(period, Membres);
         }
     }
