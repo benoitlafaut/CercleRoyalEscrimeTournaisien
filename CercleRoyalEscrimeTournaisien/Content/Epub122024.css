@@ -115,7 +115,7 @@
     }
 }
 
-.plus, .minus, .ClassSound {
+.glyphicon-plus, .glyphicon-minus, .ClassSound {
     display: inline-block;
     background-repeat: no-repeat;
     background-size: 25px 25px !important;
@@ -125,13 +125,7 @@
 
 
 
-.plus {
-    background-image: url(https://img.icons8.com/?size=100&id=aWZy3jlAFSa9&format=png&color=000000);
-}
 
-.minus {
-    background-image: url(https://img.icons8.com/?size=100&id=gzeZVqbrQKDg&format=png&color=000000);
-}
 
 ul {
     list-style: none;
@@ -207,4 +201,14 @@ hrben {
 .ClassListeDesLangues {
     width: 100px;
     display: inline-block;
+}
+
+.glyphicon-plus {
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+
+.glyphicon-minus {
+    font-size: 15px;
 }

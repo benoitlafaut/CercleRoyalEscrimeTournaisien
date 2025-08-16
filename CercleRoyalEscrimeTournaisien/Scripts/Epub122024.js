@@ -2,8 +2,8 @@
     config.speakSelectedText = false;
     config.welcomeMessage = "";
 
-    $(".plus").click(function () {
-        $(this).toggleClass("minus").siblings("ul").toggle();
+    $(".glyphicon-plus").click(function () {
+        $(this).toggleClass("glyphicon-minus").siblings("ul").toggle();
     })
 
     var touchRegionElement = document.getElementById('htmlId');
@@ -399,15 +399,15 @@ function GetVoiceForResponsive(voiceTo) {
     if (voiceTo == "ita") { return 'Italian Female'; }
 }
 function ExpandCollapse(element) {
-    if ($("ul").eq(0).find('span').eq(0).hasClass('minus')) {
-        $(element).find('.plus').each(function () {
-            $(this).addClass('minus');
+    if ($("ul").eq(0).find('span').eq(0).hasClass('glyphicon-minus')) {
+        $(element).find('.glyphicon-plus').each(function () {
+            $(this).addClass('glyphicon-minus');
             $(this).siblings('ul').css('display', 'block');
         });
     }
     else {
-        $(element).find('.plus').each(function () {
-            $(this).removeClass('minus');
+        $(element).find('.glyphicon-plus').each(function () {
+            $(this).removeClass('glyphicon-minus');
             $(this).siblings('ul').css('display', 'none');
         });
     }
@@ -511,7 +511,7 @@ function ConvertEpub() {
             newLink.click();
             alert('le fichier a été transformé et téléchargé.');
 
-            $("#ulToExpandCollapse").find('span').eq(0).removeClass('minus');
+            $("#ulToExpandCollapse").find('span').eq(0).removeClass('glyphicon-minus');
             ExpandCollapse($("#ulToExpandCollapse"));
 
         },
@@ -528,7 +528,7 @@ function changeInputRange() {
 function ChargerEpub(currentRow) {
     $("#divLoading").css('display', 'block');
 
-    $("#ulToExpandCollapse").find('span').eq(0).removeClass('minus');
+    $("#ulToExpandCollapse").find('span').eq(0).removeClass('glyphicon-minus');
     ExpandCollapse($("#ulToExpandCollapse"));
 
     if (currentRow == '0') {
