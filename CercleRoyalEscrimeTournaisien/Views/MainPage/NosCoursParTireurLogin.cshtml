@@ -12,6 +12,7 @@
         @Html.ValidationSummary(true)
 
         <div style="min-height:40px;">
+            <span class="row" style="width: 100%; margin-bottom:15px; margin-right:15px; display: inline-block;font-size:23px;color:blue;">Espace Tireuse/Tireur</span>
             <span style="width: 406px; margin-right:15px; display: inline-block;">Sélectionnez la tireuse ou le tireur dans la liste :  </span>
             @Html.DropDownListFor(m => m.UserNameSelectionne, new SelectList(Model.Tireurs.Select(x => new { Value = x.UserNameIndex, Text = x.UserName }),
                 "Value",

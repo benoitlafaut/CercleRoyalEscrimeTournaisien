@@ -22,25 +22,75 @@
 </div>
 
 <div style="font-size:16px;margin-bottom:5px;">
-    <div style="text-align: center; color: black">
-        <label>Explication sur les couleurs<i style="margin-left:10px;color:black;" title="La couleur bleue est une observation. La couleur verte est un point positif. La couleur rouge est à améliorer." class="fa fa-info-circle" aria-hidden="true"></i></label>
-        <label class="ClassTireurSelectionne" style="">Tireuse/tireur sélectionné(e) : @Model.TireurSelectionne.UserName (@Model.Categorie)</label>
-        @*<input id="buttonCollapseDevelopp" style="margin-right:15px;" type="button" value="Développer tout" onclick="ExpandCollapse();" />*@
 
-        @*@Html.DropDownListFor(model => model.HasMale, new SelectList(Model.SpeakerList, "Key", "Value", Model.HasMale), new { @class = "form-control", @title = "Choisissez un homme ou une femme pour lire les textes." })*@
+    <table>
+        <tr>
+            <td style=" width: 33%; text-align: left;">Explication sur les couleurs:</td>
+            <td style=" width: 33%; text-align: center;">Tireuse/tireur : @Model.TireurSelectionne.UserName (@Model.Categorie)</td>
+            <td style=" width: 33%; text-align: center;">Cliquer <a style="text-decoration:underline;" href="@urlCategorie" target="_blank">ici</a> pour avoir la liste des catégories de tous les tireurs du club</td>
+        </tr>
+        <tr>
+            <td style="color:blue;">La couleur bleue est une observation.</td>
+        </tr>
+        <tr>
+            <td style="color:green;">La couleur verte est un point positif.</td>
+        </tr>
+        <tr>
+            <td style="color:red;">La couleur rouge est à améliorer.</td>
+        </tr>
 
-        <div style="display:inline-block;margin-bottom:15px;">
-            <label style="color:black;margin-left:15px;">
-                Liste des catégories des tireuses/tireurs
-                <i style="color:black;" onclick="window.open('@urlCategorie', '_blank')" class="fa fa-info-circle" aria-hidden="true"></i>
-            </label>
-        </div>
 
-        <div style="@stylePoules">
-            <label>Poules: </label>
-            @Html.DropDownListFor(model => model.PouleSelectionnee, new SelectList(Model.PoulesFormatted, "Key", "Value", Model.PouleSelectionnee), new { @class = "form-control", @id = "DropDownListForPoules", @title = "Sélectionnez la poule pour la télécharger. Seul les poules complètes sont mises en ligne." })
-        </div>
-    </div>
+
+        @*<tr>
+            <td style="width:25%;">
+                <span style=" margin: 0 auto; display: block ">Explication sur les couleurs:</span>
+                <span style=" margin: 0 auto; display: block; ">La couleur bleue est une observation.</span>
+                <span style=" margin: 0 auto; display: block; ">La couleur verte est un point positif.</span>
+                <span style=" margin: 0 auto; display: block; ">La couleur rouge est à améliorer.</span>
+            </td>
+            <td style="text-align:center">
+                <span class="ClassTireurSelectionne" style="">Tireuse/tireur : @Model.TireurSelectionne.UserName (@Model.Categorie)</span>
+            </td>
+            <td style="text-align:center">
+                <span style="color:black;margin-left:15px;">
+                    Cliquer <a href="@urlCategorie" target="_blank">ici</a> pour avoir la liste des catégories de tous les tireurs du club
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div style="@stylePoules">
+                    <label>Poules terminées: </label>
+                    @Html.DropDownListFor(model => model.PouleSelectionnee, new SelectList(Model.PoulesFormatted, "Key", "Value", Model.PouleSelectionnee), new { @class = "form-control", @id = "DropDownListForPoules", @title = "Sélectionnez la poule pour la télécharger. Seul les poules complètes sont mises en ligne." })
+                </div>
+
+            </td>
+        </tr>*@
+    </table>
+
+    <!--<div style="color: black">-->
+
+        @*<i style="margin-left:10px;color:black;" title="La couleur bleue est une observation. La couleur verte est un point positif. La couleur rouge est à améliorer." class="fa fa-info-circle" aria-hidden="true"></i></label>*@
+    <!--</div>-->
+
+
+    @*<div style="text-align: center; color: black">
+            <label>Explication sur les couleurs<i style="margin-left:10px;color:black;" title="La couleur bleue est une observation. La couleur verte est un point positif. La couleur rouge est à améliorer." class="fa fa-info-circle" aria-hidden="true"></i></label>
+            <label class="ClassTireurSelectionne" style="">Tireuse/tireur sélectionné(e) : @Model.TireurSelectionne.UserName (@Model.Categorie)</label>
+
+            <div style="display:inline-block;margin-bottom:15px;">
+                <label style="color:black;margin-left:15px;">
+                    Liste des catégories des tireuses/tireurs
+                    <i style="color:black;" onclick="window.open('@urlCategorie', '_blank')" class="fa fa-info-circle" aria-hidden="true"></i>
+                </label>
+            </div>
+
+            <div style="@stylePoules">
+                <label>Poules: </label>
+                @Html.DropDownListFor(model => model.PouleSelectionnee, new SelectList(Model.PoulesFormatted, "Key", "Value", Model.PouleSelectionnee), new { @class = "form-control", @id = "DropDownListForPoules", @title = "Sélectionnez la poule pour la télécharger. Seul les poules complètes sont mises en ligne." })
+            </div>
+        </div>*@
 
     @foreach (var remarqueParDateNewLook in Model.RemarquesParDateNewLook)
     {
@@ -52,11 +102,11 @@
         {
             //string textPositifOuNegatif = string.IsNullOrEmpty(remarqueData.PointPositif) ? remarqueData.PointNégatif : remarqueData.PointPositif;
             string textPositifOuNegatif = remarqueData.Remarque;
-            string styleColor = remarqueData.PointPositifNégatifObservation == PointPositifNégatifObservationConstantes.PointPositifNégatifObservation.Positif ? "green" : remarqueData.PointPositifNégatifObservation == PointPositifNégatifObservationConstantes.PointPositifNégatifObservation.Négatif ?  "red" : "blue";
+            string styleColor = remarqueData.PointPositifNégatifObservation == PointPositifNégatifObservationConstantes.PointPositifNégatifObservation.Positif ? "green" : remarqueData.PointPositifNégatifObservation == PointPositifNégatifObservationConstantes.PointPositifNégatifObservation.Négatif ? "red" : "blue";
             string styleDisplayVideo = remarqueData.HasUrlVideo ? "" : "display:none";
             string classDisplayVideo = remarqueData.HasUrlVideo ? "classDisplayVideo" : "";
 
-            <div class="row" style="color:@styleColor;margin-top: 10px;margin-bottom: 10px;">                
+            <div class="row" style="color:@styleColor;margin-top: 10px;margin-bottom: 10px;">
                 <i title="Cliquez pour écouter le texte" onclick='LireTexte("@textPositifOuNegatif.Trim()", this, "True")' class="fa fa-headphones classPointPositifNegatif CursorIcon"></i>
                 <i title="Regarder la vidéo" class="fa fa-video-camera CursorIcon @classDisplayVideo" style="@styleDisplayVideo" onclick='ChargerPopup("@remarqueData.UrlYoutubeVideo", "@textPositifOuNegatif");'></i>
                 <i title="Téléchargez la vidéo" class="fa fa-download CursorIcon @classDisplayVideo" style="@styleDisplayVideo" onclick="window.location.href='@remarqueData.UrlVideo'"></i>

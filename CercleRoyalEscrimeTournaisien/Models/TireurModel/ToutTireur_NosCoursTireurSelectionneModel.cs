@@ -17,6 +17,33 @@ namespace CercleRoyalEscrimeTournaisien
                 List<RemarqueParDate> remarquesParDateTireur = new List<RemarqueParDate>() { };
                 remarquesParDateTireur.AddRange(new List<RemarqueParDate>()
                 {
+                     new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025,8,20),
+                        Arme = TypeArme.Epée,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                                Remarque="Après avoir regardé quelques fois les assauts des tireurs lors du championnat du Hainaut, j'ai plusieurs constatations à émettre:" + "<br/>" + "<br/>" +
+                                "Certains font des battés avant de toucher. A l'épée, le batté sert surtout à ouvrir la ligne lors de l'attaque. Si vous êtes assez proche de votre adversaire, les jambes avec le bras allongé suffisent. pas besoin de faire un batté.<br/>" +
+                                "Le bras est la première chose à bouger lors d'une attaque mais aussi la dernière chose à bouger lors d'une retraite. Si vous êtes trop proche de votre adversaire, utilisez d'abord vos jambes pour vous remettre à bonne distance de lui et puis fléchissez le bras armé.<br/>" +
+                                "<br/>" + "Comment savoir si l'on est trop près de son adversaire à l'épée?"  + "<br/>" +
+                                "Lorsque votre pointe dépasse de 10 cm sa pointe, vous êtes trop proche. Soit vous vous remettez à bonne distance, soit vous attaquez en mettant la touche." + "<br/>" + "<br/>" +
+                                "Durant l'année passée, sur les coups au sol (une fois ou deux fois), je vous demandais de faire un marché avant la fente ou une première fente suivie d'une deuxième fente (redoublement). Tout cà dans le but de faire ce premier déplacement très important." + "<br/>"  +
+                                "Je vois sur les vidéos, que vous essayez de faire juste la fente pour toucher. Utilisez ce premier déplacement (marché ou 1ère fente) pour vous rapprocher de votre adversaire." + "<br/>" +  "<br/>" + 
+                                "Comment casser la distance? j'entends par là, vous rapprocher de votre adversaire sans qu'il s'en aperçoive ??" + "<br/>" + "<br/>" +
+                                "Un des exemples tactiques qu'on apprend c'est tout simple faites deux déplacements chez vous : une petite retraite suivie d'un marché plus long et vous venez de casser la distance..." + "<br/>" +
+                                "Cela marche aussi pour la petite passe arrière suivie d'une passe avant plus grande." + "<br/>" + "<br/>" +
+                                "Bien sûr ce genre de manoeuvre doit être fait très discrètement, pas souvent, de façon à endormir votre adversaire. je suis sûr que si vous prenez la peine et le temps de le faire chez vous régulièrement, cà deviendra une habitude." + "<br/>" +
+                                "petite retraite, grand marché, suivi d'un marché-fente avec le bras qui s'allonge avant le marché ou même (pour les plus expérimentés) pendant le marché. " + "<br/>" +
+                                "c'est un exercice qui une fois assimilé, on le fait de manière naturelle. Beaucoup de déplacements, s'ils sont faits souvent, deviennent naturellement effectués." + "<br/>" + "<br/>" +
+                                "Pour résumer sur ce que j'ai vu, les victoires ne sont jamais acquises. On peut être fort étonné de nos exploits. Il faut croire en vous. Prenez le temps de tirer. 3 minutes c'est très long." + "<br/>" + "C'est à la salle que vous pourrez gérer votre patience à attendre le bon moment et à gagner avec le temps. " + "<br/>" + "Ouvrez les yeux à la salle comme à la compétition. Beaucoup de touches simples sont faites par les autres, il faut juste reprendre leur stratégie à votre avantage."
+                                ,
+                            },
+                        }
+                    },
                     new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2025,6,28),
