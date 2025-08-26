@@ -173,6 +173,7 @@ namespace WebApplication1.Models
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Vandy_Rebecca(period, Membres);
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Punchoo_Eliot(period, Membres);
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Trannoy_Félix(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Trannoy_Régis(period, Membres);
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Motte_Baptiste(period, Membres);
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Motte_Abel(period, Membres);
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Vantroyen_Mae(period, Membres);
@@ -298,6 +299,7 @@ namespace WebApplication1.Models
             Paiements_2025_2026 paiements = new Paiements_2025_2026();
 
             paiements.Add_Paiements_Trannoy_Félix(period, Membres);
+            paiements.Add_Paiements_Trannoy_Régis(period, Membres);
             paiements.Add_Paiements_Motte_Baptiste(period, Membres);
             paiements.Add_Paiements_Vantroyen_Mae(period, Membres);
             paiements.Add_Paiements_Motte_Abel(period, Membres);

@@ -51,5 +51,6 @@ namespace WebApplication1.Models
         public static readonly Guid GuidNayaBeaucamp = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F8FB");
         public static readonly Guid GuidBarnabéBeaucamp = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F8FC");
         public static readonly Guid GuidRomainBelbenoit = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F8FD");
+        public static readonly Guid GuidRégisTrannoy = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F8FE");
     }
 }

@@ -23,16 +23,16 @@ namespace WebApplication1.Models
                 new Paiement()
                 {
                     Periode = period,
-                    IsCotisationAnnuelle = false,
+                    IsCotisationAnnuelle = true,
                     IsCotisationCarte1 = false,
                     IsCotisationCarte2 = false,
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
-                    IsCotisationEnOrdre = false,
-                    IsLocationMatérielEnOrdre = false,
+                    IsCotisationEnOrdre = true,
+                    IsLocationMatérielEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = false,
 
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { "290 euros", "75 euros" },
 
                     SeancesGratuites = new List<DateTime>()
                     {
@@ -107,16 +107,16 @@ namespace WebApplication1.Models
                 new Paiement()
                 {
                     Periode = period,
-                    IsCotisationAnnuelle = false,
+                    IsCotisationAnnuelle = true,
                     IsCotisationCarte1 = false,
                     IsCotisationCarte2 = false,
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
-                    IsCotisationEnOrdre = false,
-                    IsFicheSignaletiqueEnOrdre = false,
-                    IsLocationMatérielEnOrdre = false,
+                    IsCotisationEnOrdre = true,
+                    IsFicheSignaletiqueEnOrdre = true,
+                    IsLocationMatérielEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { "290 euros", "75 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                     },
@@ -124,7 +124,33 @@ namespace WebApplication1.Models
                 };
         }
 
-        
+        public void Add_Paiements_Trannoy_Régis(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidRégisTrannoy && x.Période == period))
+            {
+                return;
+            }
+
+            Membres.Where(x => x.GuidId == GuidConstantes.GuidRégisTrannoy && x.Période == period).FirstOrDefault().Paiement =
+                new Paiement()
+                {
+                    Periode = period,
+                    IsCotisationAnnuelle = false,
+                    IsCotisationCarte1 = true,
+                    IsCotisationCarte2 = false,
+                    IsCotisationCarte3 = false,
+                    IsCotisationCarte4 = false,
+                    IsCotisationEnOrdre = true,
+                    IsFicheSignaletiqueEnOrdre = true,
+                    IsLocationMatérielEnOrdre = true,
+
+                    PaiementsEffectues = new List<string>() { "45 euros" },
+                    SeancesGratuites = new List<DateTime>()
+                    {
+                    },
+                    IsMatérielLoue = true
+                };
+        }
 
 
         public void Add_Paiements_Razanajao_Fabrice(string period, List<MembreData> Membres)
@@ -192,16 +218,16 @@ namespace WebApplication1.Models
                 new Paiement()
                 {
                     Periode = period,
-                    IsCotisationAnnuelle = false,
+                    IsCotisationAnnuelle = true,
                     IsCotisationCarte1 = false,
                     IsCotisationCarte2 = false,
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
-                    IsLocationMatérielEnOrdre = false,
-                    IsCotisationEnOrdre = false,
+                    IsLocationMatérielEnOrdre = true,
+                    IsCotisationEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = false,
 
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { "290 euros", "75 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,9,15),

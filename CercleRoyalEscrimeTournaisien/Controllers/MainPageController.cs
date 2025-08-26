@@ -601,7 +601,6 @@ namespace CercleRoyalEscrimeTournaisien
                         if (tireur.Signaletique.Telephone.Count > 1) { workSheet.Cells[indexRow, 9].Value = tireur.Signaletique.Telephone[1]; }
                         if (tireur.Signaletique.Telephone.Count > 2) { workSheet.Cells[indexRow, 10].Value = tireur.Signaletique.Telephone[2]; }
 
-                        //workSheet.Cells[indexRow, 11].Value = tireur.Paiement.IsLicenceEnOrdre ? "Y":"N" ;
                         workSheet.Cells[indexRow, 11].Value = tireur.Paiement.IsFicheSignaletiqueEnOrdre? "Y":"N";
 
 
@@ -610,7 +609,7 @@ namespace CercleRoyalEscrimeTournaisien
                             workSheet.Cells[indexRow, 12].Value += paiement + ' ';
                         }
 
-                        workSheet.Cells[indexRow, 13].Value = tireur.Paiement?.IsCotisationEnOrdre == true && tireur.Paiement?.IsLicenceEnOrdre == true && tireur.Paiement?.IsFicheSignaletiqueEnOrdre == true && tireur.Paiement?.IsLocationMatérielEnOrdre == true ? "En ordre" : "";
+                        workSheet.Cells[indexRow, 13].Value = tireur.Paiement?.IsCotisationEnOrdre == true && tireur.Paiement?.IsFicheSignaletiqueEnOrdre == true && tireur.Paiement?.IsLocationMatérielEnOrdre == true ? "En ordre" : "";
                     }
                     indexRow++;
                 }

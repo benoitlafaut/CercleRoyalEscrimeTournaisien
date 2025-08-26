@@ -83,6 +83,25 @@ namespace WebApplication1.Models
                   FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Trannoy_Félix.pdf",
               };
         }
+        public void Add_FichesSignalétiques_Trannoy_Régis(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidRégisTrannoy && x.Période == period))
+            {
+                return;
+            }
+
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidRégisTrannoy && x.Période == period).Signaletique =
+              new Signaletique()
+              {
+                  Categorie = ListGuidTireur.SearchCategorie(1977),
+                  DateDeNaissance = new DateTime(1977, 5, 17),
+                  Email = new List<string>() { "valerie_regis@live.be" },
+                  NomMaman = "",
+                  NomPapa = "",
+                  Telephone = new List<string>() { },
+                  FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Trannoy_Régis.pdf",
+              };
+        }
         public void Add_FichesSignalétiques_Vandy_Rebecca(string period, List<MembreData> Membres)
         {
             if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidRebeccaVandy && x.Période == period))
