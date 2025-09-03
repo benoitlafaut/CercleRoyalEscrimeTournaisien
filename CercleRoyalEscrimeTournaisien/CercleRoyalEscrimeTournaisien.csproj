@@ -1119,7 +1119,6 @@
     <Content Include="FileToUpload\FichesSignaletiques\Barbery_Arthur.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Basselier_Romane.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Dransart_Iann.pdf" />
-    <Content Include="FileToUpload\FichesSignaletiques\Dransart_Noel_Marie.pdf" />
     <Content Include="FileToUpload\AGENDA_SAISON_2023_2024.docx" />
     <Content Include="FileToUpload\FichesSignaletiques\Abadjene_Kossi.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Carlier_Maybelle.pdf" />
@@ -1158,6 +1157,8 @@
     <Content Include="FileToUpload\NosCours\Liste des catégories et répartition des tireurs.pdf" />
     <Content Include="FileToUpload\NosCours\Liste des catégories et répartition des tireurs 2025 2026.pdf" />
     <Content Include="FileToUpload\AGENDA_SAISON_2025_2026.doc" />
+    <Content Include="FileToUpload\FichesSignaletiques\Dransart_NoelMarie.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Bracquart_Romain.pdf" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Accueil.cshtml" />
     <Content Include="Views\Home\Accueil_Part_1.cshtml" />

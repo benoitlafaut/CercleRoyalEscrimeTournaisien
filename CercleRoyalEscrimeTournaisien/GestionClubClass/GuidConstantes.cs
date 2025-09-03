@@ -50,7 +50,11 @@ namespace WebApplication1.Models
         public static readonly Guid GuidEliotPunchoo = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F8FA");
         public static readonly Guid GuidNayaBeaucamp = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F8FB");
         public static readonly Guid GuidBarnabéBeaucamp = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F8FC");
-        public static readonly Guid GuidRomainBelbenoit = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F8FD");
+        public static readonly Guid GuidRomainBracquart = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F8FD");
         public static readonly Guid GuidRégisTrannoy = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F8FE");
+        public static readonly Guid GuidBenedictCosentini = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F900");
+        public static readonly Guid GuidGabrielThulier = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F901");
+        public static readonly Guid GuidPierreAugustinLepas = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F902");
+        public static readonly Guid GuidSolalSchrouf = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F903");
     }
 }

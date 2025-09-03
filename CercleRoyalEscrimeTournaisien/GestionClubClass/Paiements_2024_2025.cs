@@ -114,7 +114,7 @@ namespace WebApplication1.Models
                 //GuidConstantes.GuidNayaBeaucamp,
                 //GuidConstantes.GuidBarnabéBeaucamp,
                 //GuidConstantes.GuidArthurCouturiaux
-                GuidConstantes.GuidRomainBelbenoit
+                GuidConstantes.GuidRomainBracquart
                          }
                      },
                        new JourDePrésence()
@@ -151,7 +151,7 @@ namespace WebApplication1.Models
                 GuidConstantes.GuidNayaBeaucamp,
                 GuidConstantes.GuidBarnabéBeaucamp,
                 //GuidConstantes.GuidArthurCouturiaux,
-                GuidConstantes.GuidRomainBelbenoit
+                GuidConstantes.GuidRomainBracquart
                          }
                      },
                         new JourDePrésence()
@@ -3595,13 +3595,13 @@ namespace WebApplication1.Models
                     IsMatérielLoue = true
                 };
         }
-        public void Add_Paiements_Belbenoit_Romain(string period, List<MembreData> Membres)
+        public void Add_Paiements_Bracquart_Romain(string period, List<MembreData> Membres)
         {
-            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidRomainBelbenoit && x.Période == period))
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidRomainBracquart && x.Période == period))
             {
                 return;
             }
-            Membres.Where(x => x.GuidId == GuidConstantes.GuidRomainBelbenoit && x.Période == period).FirstOrDefault().Paiement =
+            Membres.Where(x => x.GuidId == GuidConstantes.GuidRomainBracquart && x.Période == period).FirstOrDefault().Paiement =
                 new Paiement()
                 {
                     Periode = period,

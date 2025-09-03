@@ -563,14 +563,14 @@ namespace WebApplication1.Models
                    FicheSignaletiqueUrl = "",
                };
         }
-        public void Add_FichesSignalétiques_Belbenoit_Romain(string period, List<MembreData> Membres)
+        public void Add_FichesSignalétiques_Bracquart_Romain(string period, List<MembreData> Membres)
         {
-            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidRomainBelbenoit && x.Période == period))
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidRomainBracquart && x.Période == period))
             {
                 return;
             }
 
-            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidRomainBelbenoit && x.Période == period).Signaletique =
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidRomainBracquart && x.Période == period).Signaletique =
                new Signaletique()
                {
                    Categorie = Categorie.Inconnu,

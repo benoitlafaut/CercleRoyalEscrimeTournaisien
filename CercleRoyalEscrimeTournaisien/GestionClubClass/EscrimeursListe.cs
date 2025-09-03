@@ -163,7 +163,7 @@ namespace WebApplication1.Models
             fichesSignalétiques_2024_2025.Add_FichesSignalétiques_Dransart_NoelMarie(period, Membres);
             fichesSignalétiques_2024_2025.Add_FichesSignalétiques_Beaucamp_Barnabé(period, Membres);
             fichesSignalétiques_2024_2025.Add_FichesSignalétiques_Beaucamp_Naya(period, Membres);
-            fichesSignalétiques_2024_2025.Add_FichesSignalétiques_Belbenoit_Romain(period, Membres);
+            fichesSignalétiques_2024_2025.Add_FichesSignalétiques_Bracquart_Romain(period, Membres);
         }
         private void Add_FichesSignalétiques_2025_2026()
         {
@@ -194,7 +194,12 @@ namespace WebApplication1.Models
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Dransart_NoelMarie(period, Membres);
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Beaucamp_Barnabé(period, Membres);
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Beaucamp_Naya(period, Membres);
-            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Belbenoit_Romain(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Bracquart_Romain(period, Membres);
+
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Schrouf_Solal(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Lepas_PierreAugustin(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Thulier_Gabriel(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Cosentini_Benedict(period, Membres);
         }
 
         #region Add_Paiements_2022_2023
@@ -289,7 +294,7 @@ namespace WebApplication1.Models
             paiements.Add_Paiements_Odendhal_Apolline(period, Membres);
             paiements.Add_Paiements_Ivanov_Anaelle(period, Membres);
             paiements.Add_Paiements_Lessart_Sacha(period, Membres);
-            paiements.Add_Paiements_Belbenoit_Romain(period, Membres);
+            paiements.Add_Paiements_Bracquart_Romain(period, Membres);
         }
 
         private void Add_Paiements_2025_2026()
@@ -322,7 +327,12 @@ namespace WebApplication1.Models
             paiements.Add_Paiements_Carette_Mathilde(period, Membres);
             paiements.Add_Paiements_Mestdag_Lili(period, Membres);
             paiements.Add_Paiements_Ivanov_Anaelle(period, Membres);
-            paiements.Add_Paiements_Belbenoit_Romain(period, Membres);
+            paiements.Add_Paiements_Bracquart_Romain(period, Membres);
+
+            paiements.Add_Paiements_Schrouf_Solal(period, Membres);
+            paiements.Add_Paiements_Thulier_Gabriel(period, Membres);
+            paiements.Add_Paiements_Lepas_PierreAugustin(period, Membres);
+            paiements.Add_Paiements_Cosentini_Benedict(period, Membres);
         }
     }
 }

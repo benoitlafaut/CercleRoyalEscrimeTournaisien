@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 
 namespace WebApplication1.Models
@@ -310,6 +309,74 @@ namespace WebApplication1.Models
                    FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Siu_Martin.pdf",
                };
         }
+        public void Add_FichesSignalétiques_Cosentini_Benedict(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidBenedictCosentini && x.Période == period))
+            {
+                return;
+            }
+
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidBenedictCosentini && x.Période == period).Signaletique =
+               new Signaletique()
+               {
+                   Categorie = Categorie.Inconnu,
+                   DateDeNaissance = new DateTime(9999, 12, 31),
+                   Email = new List<string>() { "" },
+                   Telephone = new List<string>() { "" },
+                   FicheSignaletiqueUrl = "",
+               };
+        }
+        public void Add_FichesSignalétiques_Thulier_Gabriel(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidGabrielThulier && x.Période == period))
+            {
+                return;
+            }
+
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidGabrielThulier && x.Période == period).Signaletique =
+               new Signaletique()
+               {
+                   Categorie = Categorie.Inconnu,
+                   DateDeNaissance = new DateTime(9999, 12, 31),
+                   Email = new List<string>() { "" },
+                   Telephone = new List<string>() { "" },
+                   FicheSignaletiqueUrl = "",
+               };
+        }
+        public void Add_FichesSignalétiques_Lepas_PierreAugustin(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidPierreAugustinLepas && x.Période == period))
+            {
+                return;
+            }
+
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidPierreAugustinLepas && x.Période == period).Signaletique =
+               new Signaletique()
+               {
+                   Categorie = Categorie.Inconnu,
+                   DateDeNaissance = new DateTime(9999, 12, 31),
+                   Email = new List<string>() { "" },
+                   Telephone = new List<string>() { "" },
+                   FicheSignaletiqueUrl = "",
+               };
+        }
+        public void Add_FichesSignalétiques_Schrouf_Solal(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidSolalSchrouf && x.Période == period))
+            {
+                return;
+            }
+
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidSolalSchrouf && x.Période == period).Signaletique =
+               new Signaletique()
+               {
+                   Categorie = Categorie.Inconnu,
+                   DateDeNaissance = new DateTime(9999, 12, 31),
+                   Email = new List<string>() { "" },
+                   Telephone = new List<string>() { "" },
+                   FicheSignaletiqueUrl = "",
+               };
+        }
         public void Add_FichesSignalétiques_Vercouter_Raedwald(string period, List<MembreData> Membres)
         {
             if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidRaedwaldVercouter && x.Période == period))
@@ -374,13 +441,13 @@ namespace WebApplication1.Models
             Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidNoelMarieDransart && x.Période == period).Signaletique =
                new Signaletique()
                {
-                   Categorie = Categorie.Inconnu,
-                   DateDeNaissance = new DateTime(9999, 12, 31),
-                   Email = new List<string>() { "" },
-                   NomMaman = "",
-                   NomPapa = "",
-                   Telephone = new List<string>() { "" },
-                   FicheSignaletiqueUrl = "",
+                   Categorie = ListGuidTireur.SearchCategorie(2015),
+                   DateDeNaissance = new DateTime(2015, 11, 10),
+                   Email = new List<string>() { "o.dransart7500@gmail.com" },
+                   NomMaman = "Dransart Oana",
+                   NomPapa = "Dransart Pierre-Emmanuel",
+                   Telephone = new List<string>() { "+33647413691" },
+                   FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Dransart_NoelMarie.pdf",
                };
         }
         public void Add_FichesSignalétiques_Beaucamp_Naya(string period, List<MembreData> Membres)
@@ -421,23 +488,23 @@ namespace WebApplication1.Models
                    FicheSignaletiqueUrl = "",
                };
         }
-        public void Add_FichesSignalétiques_Belbenoit_Romain(string period, List<MembreData> Membres)
+        public void Add_FichesSignalétiques_Bracquart_Romain(string period, List<MembreData> Membres)
         {
-            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidRomainBelbenoit && x.Période == period))
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidRomainBracquart && x.Période == period))
             {
                 return;
             }
 
-            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidRomainBelbenoit && x.Période == period).Signaletique =
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidRomainBracquart && x.Période == period).Signaletique =
                new Signaletique()
                {
-                   Categorie = Categorie.Inconnu,
-                   DateDeNaissance = new DateTime(9999, 12, 31),
-                   Email = new List<string>() { "" },
-                   NomMaman = "",
-                   NomPapa = "",
-                   Telephone = new List<string>() { "" },
-                   FicheSignaletiqueUrl = "",
+                   Categorie = ListGuidTireur.SearchCategorie(2015),
+                   DateDeNaissance = new DateTime(2015, 4, 11),
+                   Email = new List<string>() { "pauline.belbenoit@hotmail.fr", "benoitbracquart@hotmail.fr" },
+                   NomMaman = "Belbenoit Pauline",
+                   NomPapa = "Bracquart Benoit",
+                   Telephone = new List<string>() { "+33640598670", "+33612500023" },
+                   FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Bracquart_Romain.pdf",
                };
         }
        
