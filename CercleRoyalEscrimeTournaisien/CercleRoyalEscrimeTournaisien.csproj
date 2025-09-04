@@ -1159,6 +1159,10 @@
     <Content Include="FileToUpload\AGENDA_SAISON_2025_2026.doc" />
     <Content Include="FileToUpload\FichesSignaletiques\Dransart_NoelMarie.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Bracquart_Romain.pdf" />
+    <Content Include="FileToUpload\Arbitrage\grille de poule 10 personnes.docx" />
+    <Content Include="FileToUpload\Arbitrage\grille de poule 4 personnes.docx" />
+    <Content Include="FileToUpload\Arbitrage\grille de poule 7 personnes.docx" />
+    <Content Include="FileToUpload\Arbitrage\Réaliser une bonne compétition.docx" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Accueil.cshtml" />
     <Content Include="Views\Home\Accueil_Part_1.cshtml" />
