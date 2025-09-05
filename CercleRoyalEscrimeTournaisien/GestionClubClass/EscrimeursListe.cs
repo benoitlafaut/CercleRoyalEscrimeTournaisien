@@ -200,6 +200,8 @@ namespace WebApplication1.Models
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Lepas_PierreAugustin(period, Membres);
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Thulier_Gabriel(period, Membres);
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Cosentini_Benedict(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Lucas_YYY(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_XXX_Guillaume(period, Membres);
         }
 
         #region Add_Paiements_2022_2023
@@ -333,6 +335,8 @@ namespace WebApplication1.Models
             paiements.Add_Paiements_Thulier_Gabriel(period, Membres);
             paiements.Add_Paiements_Lepas_PierreAugustin(period, Membres);
             paiements.Add_Paiements_Cosentini_Benedict(period, Membres);
+            paiements.Add_Paiements_XXX_Guillaume(period, Membres);
+            paiements.Add_Paiements_YYY_Lucas(period, Membres);
         }
     }
 }

@@ -327,6 +327,12 @@ namespace WebApplication1.Models
             Membres.Add(
               new MembreData() { GuidId = GuidConstantes.GuidBenedictCosentini, Nom = "Cosentini", Prénom = "Benedict", Période = period2025_2026 }
           );
+            Membres.Add(
+              new MembreData() { GuidId = GuidConstantes.GuidLucasYYY, Nom = "YYY", Prénom = "Lucas", Période = period2025_2026 }
+          );
+            Membres.Add(
+              new MembreData() { GuidId = GuidConstantes.GuidGuillaumeXXX, Nom = "XXX", Prénom = "Guillaume", Période = period2025_2026 }
+          );
         }
         public static Categorie SearchCategorie(int annee) 
         {
