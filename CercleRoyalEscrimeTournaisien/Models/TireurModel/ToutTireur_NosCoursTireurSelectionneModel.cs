@@ -17,6 +17,65 @@ namespace CercleRoyalEscrimeTournaisien
                 List<RemarqueParDate> remarquesParDateTireur = new List<RemarqueParDate>() { };
                 remarquesParDateTireur.AddRange(new List<RemarqueParDate>()
                 {
+                    new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025,9,5),
+                        Arme = TypeArme.Epée,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                                Remarque="Vous voulez participer à une compétition ?" + "<br/>" +"<br/>" +
+                                         "Fabrice a créé un document pour vous." +   "<br/>" +"<br/>" +
+                                         "Voici son contenu :" +   "<br/>" +"<br/>" +
+                                         "Infos pratiques" +   "<br/>" +   "<br/>" +
+                                         "Dans chaque compétition, il y a des vestiaires avec des douches et des WC. L’idéale sera de regrouper les affaires de notre club au même endroit dans la salle." +   "<br/>" +
+                                         "Pour nos supporters (parents, amis, etc.), Il y a généralement une buvette et de quoi acheter à manger et à boire." + "<br/>" +
+                                         "Durant la matinée, on fait les phases de poules (match en 4 touches ou en 5 touches selon la catégorie)" + "<br/>" +
+                                         "Après la pause du midi, on fait les matchs éliminatoires (en 10 touches ou en 15 touches )." + "<br/>" +
+                                         "Si on tire toutes les places, alors cela peut prendre quasi toute l’après-midi. Cela dépend également du nombre d’inscrits." + "<br/>" +
+                                         "Durant la compétition, il y a un vendeur de matériel mais pas systématiquement." +   "<br/>"  + "<br/>" +
+                                         "Les affaires" +   "<br/>" +   "<br/>" +
+                                         "Evidement, votre tenue d’escrime : protège-poitrine, pantalon, veste, sous-veste, gant, fils de corps, t-shirts, chaussures et chaussettes hautes. Prenez un petit essuie et de quoi vous préparer si vous le voulez (baume pour les muscles, pansement, etc). Il y a des douches dans les vestiaires, prenez vos affaires pour vous laver si vous voulez." +   "<br/>" +
+                                         "Libre à vous de prendre de quoi manger et boire. L’idéale est d’avoir un biscuit, un fruit ou une boisson entre les matchs mais faites attention à ne pas trop manger. Sinon, vous sentirez votre estomac en tirant." +   "<br/>" +"<br/>" +
+                                         "Présence" +   "<br/>" +   "<br/>" +
+                                         "En entrant dans le bâtiment, présentez-vous à la table d’appel. Donnez votre nom, votre catégorie et l’arme. Il y a une contribution monétaire pour les compétiteurs de 15 à 20€ (dépendant de la compétition) en liquide. Essayez d’arriver 30 minutes avant le dernier appel (l’horaire de la compétition est sur le groupe WhatsApp ou distribué à chacun des compétiteurs). Un accompagnant sera dans la salle avec le reste de votre matériel."+   "<br/>"  +   "<br/>" +
+                                         "Echauffement" +   "<br/>" +   "<br/>" +
+                                         "Vous pouvez le faire seul avec votre masque ou en groupe. En général, on fait des aller-retour le long d’une piste. Vous faites un échauffement classique (talons aux fesses, les bras, flexions, etc); Insistez  bien sur le poignet, les chevilles et les adducteurs. Ensuite, le long d’une piste et sans l’arme, faites des marchés/rompés avec des marché-fentes. Le but n’est pas d’être le plus rapide, vous devez être capable de parler normalement durant l’échauffement. L’idéale serait de finir 5 minutes avant le début. Si vous voulez, vous pouvez faire des matchs d’échauffement entre vous. Il est important aussi de s'échauffer avant la reprise des assauts après chaque longue période d'arrêt." +   "<br/>" +"<br/>" +
+                                         "Phase de poules" +   "<br/>" +   "<br/>" +
+                                         "Il y aura des affiches avec tous les groupes, à vous de trouver votre nom et la piste. Pour les grands, vous vous auto-arbitrez comme à l’entrainement selon la compétition. Quand tous les tireurs d’une poule sont présents sur la piste, la poule est lancée. Selon la formule utilisée par l'organisateur de la compétition, on peut avoir une ou deux phases de poule. La première est totalement aléatoire et la seconde dépend du résultat de la première. Attention à la deuxième, généralement on vous aura vu tirer lors de la première poule et on saura comment vous réagissez." +   "<br/>" +"<br/>" +
+                                         "Match de poule" +   "<br/>" +   "<br/>" +
+                                         "Pour les plus grands, Il y a des chances pour que vous soyez l’arbitre. Dans ce cas, faites les choses proprement (gestuelles, mots et notations des points). Arbitre ou tireur, faites attention à la vérification du matériel. Vous devez avoir votre gourde, essuie, fils de corps de secours et deux armes." + "<br/>" +"<br/>" +
+                                         "Comment vérifier l'arme ?" +   "<br/>" +"<br/>" +
+                                         "Présence des deux petites vis"+   "<br/>" +"<br/>" +
+                                         "Poids sur la pointe : appuyez et la lumière doit rester éteinte après qu'elle se soit allumée"+   "<br/>" +"<br/>" +
+                                         "Grande jauge : doit passer partout sous la pointe"+   "<br/>" +"<br/>" +
+                                         "Petite jauge : appuyez et ça ne doit pas s’allumer"+   "<br/>" +"<br/>" +
+                                         "Si cela arrive, l'arbitre mettra l’arme ou le câble de côté et dites-le à l'encadrant. Votre matériel a un problème dès le début d'un assaut, il y a carton jaune. Entre vos matchs, vous avez l’occasion d’observer les autres. Essayez de trouver leurs points faibles et leurs points forts, c’est un grand avantage pour vous. "+   "<br/>" +"<br/>" +
+                                         "Fin de la poule" +   "<br/>" +   "<br/>" +
+                                         "Après le dernier match, il faut signer la feuille de poule. Regardez bien qu’il n’y ait pas d’erreur dans vos points (généralement on le fait régulièrement pour intervenir quand c'est encore frais dans la tête de l'arbitre). C’est à ce moment qu’on fait la pause du midi pour manger mais restez attentif aux diverses annonces." +   "<br/>" +"<br/>" +
+                                         "Phase éliminatoire" +   "<br/>" +   "<br/>" +
+                                         "Soit on tire toutes les places, soit c’est élimination directe. C’est en 10 ou 15 touches avec trois fois * trois minutes. Lorsqu’il n'y a aucune touche pendant 1 minute, on passe au tiers temps suivant. Comme pour la poule, les matchs seront affichés sur un mur. Trouvez le votre et la piste. Il est intéressant de regarder les performances de votre adversaire durant la poule. L’idéal est de faire un petit échauffement pour se remettre dans le bain à la reprise." + "<br/>" +"<br/>" +
+                                         "Conseil pour les matchs" +   "<br/>" +   "<br/>" +
+                                         "Pour les spectateurs" +   "<br/>" +   "<br/>" +
+                                         "Vous pouvez venir en bout de piste sans déranger les autres. Un match d’escrime, c’est comme un match de tennis. Les encouragements et le coaching se font après les touches ou pendant les pauses. Evitez tous mouvements pouvant déconcentrer l’adversaire et les flashs. Ce serait bien de filmer les tireurs afin qu’il puisse comprendre leur escrime et voir les avantages et les défauts."+   "<br/>" +
+                                         "Pour les tireurs" +   "<br/>" +   "<br/>" +
+                                         "Appliquer les conseils du maître Lafaut. Ne pas partir défaitiste, rester calme et réfléchir. Ne râlez pas, réfléchissez sur ce qui s’est passé : comment il a eu le point, comment il réagit, il est rapide ou il fonce sans réfléchir, ... Exprimez vos émotions, célébrez quand vous avez mis un beau point et évitez de crier un gros mots en français même si c’est contre vous. N’oubliez pas les bonnes manières. On salue l’adversaire et l’arbitre et on serre la main peu importe ce qui s’est passé. C’est aussi l’occasion de faire des rencontres et des amis, les plus expérimentés vous donneront un feedback avec plaisir. Soyez sûr d’avoir un message de maître Lafaut, il demandera surement comment ça s’est passé et ce que vous avez appris. Venez avec un objectif, il y aura tous les niveaux. " + "<br/>" 
+                                         + "Voici quelques exemples :"+   "<br/>" +
+                                         "Découvrir les compétitions d’escrime" +   "<br/>" +
+                                         "S’amuser, se défouler" +   "<br/>" +
+                                         "S’améliorer, apprendre des autres et mieux se connaître" +   "<br/>" +
+                                         "Donner le maximum de soi" +   "<br/>" +
+                                         "Gagner (c’est très amical donc disons que c’est un objectif secondaire)" +   "<br/>" +"<br/>" +
+                                         "Fin de la compétition" +   "<br/>" +   "<br/>" +
+                                         "A la fin, nous serons invités à assister à la grande finale suivie d’une remise des prix. Il y en aura une pour chaque catégorie selon la compétition. Selon le nombre de participants, les filles peuvent être amenées à tirer contre les garçons. Dans ce cas, il y aura une remise de prix filles et garçons." +   "<br/>" +"<br/>" +
+                                         "Conclusion" +   "<br/>" +   "<br/>" +
+                                         "Concernant les matchs, il y aura surtout des appareils avec uniquement les lumières OU les lumières et le score. Il existe des applications pour avoir un tableau de score avec chrono. Respecter le matériel ! On ne lâche pas le câble, on ne redresse pas son arme sur la piste et on ne tape pas les appareils. Quand je tire avec des gens que je connais, ils ont un style de jeu bien différent qu’à l’entrainement. Même si c’est amical ou votre première fois, c’est l’occasion de cultiver votre esprit de compétitions. Bien qu’il n’y ait pas d’entrainement, ce sera bien de faire un peu de sport (attention aux courbatures). Libre à vous de chercher des vidéos youtube sur l’escrime pour voir des techniques, des conseils ou ressentir l’atmosphère d’une compétition. Il y a ce genre de vidéos sur le site du club. Lisez les remarques vous concernant sur le site. En cas de questions, Rémy, Fabrice et maître Lafaut restont à votre disposition. Bon courage pour la compétition !"
+                                ,
+                            },
+                        }
+                    },
                      new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2025,8,20),

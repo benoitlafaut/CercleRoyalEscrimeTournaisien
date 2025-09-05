@@ -1057,7 +1057,6 @@
     <Content Include="Scripts\dico.js" />
     <Content Include="Scripts\agenda.js" />
     <Content Include="Scripts\ReadEpub28012024.js" />
-    <Content Include="Scripts\responsivevoice.js" />
     <Content Include="Scripts\velo.js" />
     <Content Include="Scripts\mp3.js" />
     <Content Include="Scripts\MainPage29042023.js" />
