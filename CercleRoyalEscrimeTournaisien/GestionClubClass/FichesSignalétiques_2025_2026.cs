@@ -394,14 +394,48 @@ namespace WebApplication1.Models
                    FicheSignaletiqueUrl = "",
                };
         }
-        public void Add_FichesSignalétiques_Lucas_YYY(string period, List<MembreData> Membres)
+        public void Add_FichesSignalétiques_CopainDeFélicie_Guillaume(string period, List<MembreData> Membres)
         {
-            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidLucasYYY && x.Période == period))
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidGuillaumeCopainDeFélicie && x.Période == period))
             {
                 return;
             }
 
-            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidLucasYYY && x.Période == period).Signaletique =
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidGuillaumeCopainDeFélicie && x.Période == period).Signaletique =
+               new Signaletique()
+               {
+                   Categorie = Categorie.Inconnu,
+                   DateDeNaissance = new DateTime(9999, 12, 31),
+                   Email = new List<string>() { "" },
+                   Telephone = new List<string>() { "" },
+                   FicheSignaletiqueUrl = "",
+               };
+        }
+        public void Add_FichesSignalétiques_XXX_Félicie(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidFélicieXXX && x.Période == period))
+            {
+                return;
+            }
+
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidFélicieXXX && x.Période == period).Signaletique =
+               new Signaletique()
+               {
+                   Categorie = Categorie.Inconnu,
+                   DateDeNaissance = new DateTime(9999, 12, 31),
+                   Email = new List<string>() { "" },
+                   Telephone = new List<string>() { "" },
+                   FicheSignaletiqueUrl = "",
+               };
+        }
+        public void Add_FichesSignalétiques_Lucas_Verheye(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidLucasVerheye && x.Période == period))
+            {
+                return;
+            }
+
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidLucasVerheye && x.Période == period).Signaletique =
                new Signaletique()
                {
                    Categorie = Categorie.Inconnu,
