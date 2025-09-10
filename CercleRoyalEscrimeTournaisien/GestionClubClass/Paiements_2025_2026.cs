@@ -22,9 +22,9 @@ namespace WebApplication1.Models
                     GuidConstantes.GuidBaptisteMotte,
                     GuidConstantes.GuidEliotPunchoo,
                     GuidConstantes.GuidFabriceRazanajao,
-                    GuidConstantes.GuidFélicieXXX,
+                    //GuidConstantes.GuidFélicieXXX,
                     GuidConstantes.GuidFélixTrannoy,
-                    GuidConstantes.GuidGuillaumeCopainDeFélicie,
+                    //GuidConstantes.GuidGuillaumeCopainDeFélicie,
                     GuidConstantes.GuidLucasVerheye,
                     GuidConstantes.GuidMaeVantroyen,
                     GuidConstantes.GuidMartinSiu,
@@ -170,62 +170,8 @@ namespace WebApplication1.Models
                     IsMatérielLoue = true
                 };
         }
-        public void Add_Paiements_XXX_Félicie(string period, List<MembreData> Membres)
-        {
-            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidFélicieXXX && x.Période == period))
-            {
-                return;
-            }
-            Membres.Where(x => x.GuidId == GuidConstantes.GuidFélicieXXX && x.Période == period).FirstOrDefault().Paiement =
-                new Paiement()
-                {
-                    Periode = period,
-                    IsCotisationAnnuelle = false,
-                    IsCotisationCarte1 = false,
-                    IsCotisationCarte2 = false,
-                    IsCotisationCarte3 = false,
-                    IsCotisationCarte4 = false,
-                    IsCotisationEnOrdre = false,
-                    IsLocationMatérielEnOrdre = false,
-                    IsFicheSignaletiqueEnOrdre = false,
-
-                    PaiementsEffectues = new List<string>() { "" },
-
-                    SeancesGratuites = new List<DateTime>()
-                    {
-                        new DateTime(2025,9,5),
-                    },
-                    IsMatérielLoue = true
-                };
-        }
-        public void Add_Paiements_CopainDeFélicie_Guillaume(string period, List<MembreData> Membres)
-        {
-            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidGuillaumeCopainDeFélicie && x.Période == period))
-            {
-                return;
-            }
-            Membres.Where(x => x.GuidId == GuidConstantes.GuidGuillaumeCopainDeFélicie && x.Période == period).FirstOrDefault().Paiement =
-                new Paiement()
-                {
-                    Periode = period,
-                    IsCotisationAnnuelle = false,
-                    IsCotisationCarte1 = false,
-                    IsCotisationCarte2 = false,
-                    IsCotisationCarte3 = false,
-                    IsCotisationCarte4 = false,
-                    IsCotisationEnOrdre = false,
-                    IsLocationMatérielEnOrdre = false,
-                    IsFicheSignaletiqueEnOrdre = false,
-
-                    PaiementsEffectues = new List<string>() { "" },
-
-                    SeancesGratuites = new List<DateTime>()
-                    {
-                        new DateTime(2025,9,7),
-                    },
-                    IsMatérielLoue = true
-                };
-        }
+      
+     
         public void Add_Paiements_Verheye_Lucas(string period, List<MembreData> Membres)
         {
             if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidLucasVerheye && x.Période == period))
