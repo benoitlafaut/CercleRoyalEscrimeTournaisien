@@ -285,9 +285,9 @@ namespace WebApplication1.Models
             Membres.Add(
                 new MembreData() { GuidId = GuidConstantes.GuidLiliMestdag, Nom = "Mestdag", Prénom = "Lili", Période = period2025_2026 }
             );
-            Membres.Add(
-               new MembreData() { GuidId = GuidConstantes.GuidMathildeCarette, Nom = "Carette", Prénom = "Mathilde", Période = period2025_2026 }
-           );
+           // Membres.Add(
+           //    new MembreData() { GuidId = GuidConstantes.GuidMathildeCarette, Nom = "Carette", Prénom = "Mathilde", Période = period2025_2026 }
+           //);
             Membres.Add(
                new MembreData() { GuidId = GuidConstantes.GuidMaeVantroyen, Nom = "Vantroyen", Prénom = "Maé", Période = period2025_2026 }
             );

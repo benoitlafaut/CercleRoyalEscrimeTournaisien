@@ -370,11 +370,11 @@ namespace WebApplication1.Models
             Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidSolalSchrouf && x.Période == period).Signaletique =
                new Signaletique()
                {
-                   Categorie = Categorie.Inconnu,
-                   DateDeNaissance = new DateTime(9999, 12, 31),
-                   Email = new List<string>() { "" },
-                   Telephone = new List<string>() { "" },
-                   FicheSignaletiqueUrl = "",
+                   Categorie = ListGuidTireur.SearchCategorie(2017),
+                   DateDeNaissance = new DateTime(2017, 10, 3),
+                   Email = new List<string>() { "mschrouf@gmail.com","actouzet@gmail.com" },
+                   Telephone = new List<string>() { "0622305449", "0650819039" },
+                   FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Schrouf_Solal.pdf",
                };
         }
         public void Add_FichesSignalétiques_XXX_Guillaume(string period, List<MembreData> Membres)
