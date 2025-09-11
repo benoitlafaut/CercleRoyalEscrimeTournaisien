@@ -531,7 +531,14 @@ function ChargerEpub(currentRow) {
     $("#ulToExpandCollapse").find('span').eq(0).removeClass('glyphicon-minus');
     ExpandCollapse($("#ulToExpandCollapse"));
 
-    if (currentRow == '0') {
+    if ($("#inputFile").get(0).files.length == 0) {
+        $("#CurrentStep").val(currentRow);
+        var currentStepFinal = parseInt(currentRow) + 10;
+        $("#CurrentStepFinal").val(currentStepFinal);
+        FillTable();
+        $("#divLoading").css('display', 'none');
+    }
+    else {
         let allfilesSelect = $("#inputFile").get(0).files;
 
         let data = new FormData();
@@ -556,6 +563,10 @@ function ChargerEpub(currentRow) {
                 var mx = ct.match("text\/html");
                 if (mx != null) {
                     $("#Epub122024_Body").html(data);
+
+                    setTimeout(function () {
+                        FillTable();
+                    }, 4500);
                 }
                 else {
                     addMessage(data.type, data.title, data.text, data.sticky);
@@ -569,41 +580,32 @@ function ChargerEpub(currentRow) {
             }
         });
     }
-    else {
-        var data = [];
-        data.push({ name: "currentRow", value: currentRow });
-        data.push({ name: "fileNameBook", value: $("#FileNameBook").val() });
+}
 
-        var processdata = 'application/x-www-form-urlencoded; charset=UTF-8';
-        var contentType = 'application/x-www-form-urlencoded; charset=UTF-8';
+function FillTable() {
+    $('#tableBody').empty();
+    for (let i = $("#CurrentStep").val(); i < $("#CurrentStepFinal").val(); i++) {
+        let nameOfField = "rowsToRead_" + i.toString() + "_";
+        let row = $("#" + nameOfField).val();
+        let WordsInSentence = row.split(' ');
+        let nameTd = "'tdInTable_" + i + "_'";
 
-        $.ajax({
-            url: "/Epub/ChargerEpub",
-            type: 'POST',
-            data: data,
-            dataType: 'html',
-            processData: processdata,
-            contentType: contentType,
-            success: function (data, textStatus, jqXHR) {
-                $("#divLoading").css('display', 'none');
+        $('#tableBody').append("<tr><td id=" + nameTd + " class='ClassTDText'></td></tr>");
 
-                var ct = jqXHR.getResponseHeader("Content-Type");
-                var mx = ct.match("text\/html");
-                if (mx != null) {
-                    $("#Epub122024_Body").html(data);
-                }
-                else {
-                    addMessage(data.type, data.title, data.text, data.sticky);
-                }
+        $('#' + 'tdInTable_' + i + '_').append("<i class='fa fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 3px;'></i>");
 
+        $('#' + 'tdInTable_' + i + '_' + '  .fa-play-Benoit')[0].onclick = function () {
+            ListenSentence(row, 'false');
+        };
 
+        WordsInSentence.forEach(function (item, index) {
+            let wordsInSentence = "tdInTable_" + i + "_wordsInSentence_" + index + "_" ;
 
+            $('#' + 'tdInTable_' + i + '_').append("<span id='" + wordsInSentence + "' class='ClassWord' style='user-select: all;'>" + item + " </span>");
 
-            },
-            failure: function (response) { },
-            error: function (response) {
-                alert("Error. " + response.responseText);  //
-            }
+            $('#' + wordsInSentence)[0].onclick = function () {
+                ClickRow(this, row);
+            };           
         });
     }
 }

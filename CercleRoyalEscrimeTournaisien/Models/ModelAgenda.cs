@@ -245,6 +245,7 @@ namespace CercleRoyalEscrimeTournaisien
         private List<DateTime> GetAllHolidays()
         {
             List<DateTime> list = new List<DateTime>() { };
+            list.Add(new DateTime(2025, 9, 19));
             list.Add(new DateTime(2025, 9, 27));
             list.Add(new DateTime(2025, 10, 20));
             list.Add(new DateTime(2025, 10, 21));
@@ -313,8 +314,7 @@ namespace CercleRoyalEscrimeTournaisien
         private List<DateTime> GetAllSeancesForFleuret()
         {
             List<DateTime> list = new List<DateTime>() { };
-            list.Add(new DateTime(2025, 9, 17));
-            list.Add(new DateTime(2025, 9, 19));
+            list.Add(new DateTime(2025, 9, 17));            
             list.Add(new DateTime(2025, 9, 21));
             list.Add(new DateTime(2025, 9, 24));
             list.Add(new DateTime(2025, 9, 26));
