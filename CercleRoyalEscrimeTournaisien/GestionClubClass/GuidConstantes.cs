@@ -58,8 +58,9 @@ namespace WebApplication1.Models
         public static readonly Guid GuidSolalSchrouf = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F903");
         public static readonly Guid GuidGuillaumeXXX = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F904");
         public static readonly Guid GuidLucasVerheye = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F905");
-        //public static readonly Guid GuidGuillaumeCopainDeFélicie = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F906");
-        //public static readonly Guid GuidFélicieXXX = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F907");
+        public static readonly Guid GuidOscarXXXPlusGrand = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F906");
+        public static readonly Guid GuidThéoXXX = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F907");
+        public static readonly Guid GuidGwendalXXX = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F908");
 
     }
 }

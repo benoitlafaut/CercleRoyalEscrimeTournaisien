@@ -14,6 +14,29 @@ namespace WebApplication1.Models
                 {
                                     new JourDePrésence()
                 {
+                  DatePrésence = new DateTime(2025,9,12),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAbelMotte,
+                    GuidConstantes.GuidAnaelleIvanov,
+                    GuidConstantes.GuidAuroreCarlier,
+                    GuidConstantes.GuidBaptisteMotte,
+                    GuidConstantes.GuidEliotPunchoo,
+                    GuidConstantes.GuidFabriceRazanajao,
+                    GuidConstantes.GuidFélixTrannoy,
+                    GuidConstantes.GuidGwendalXXX,
+                    GuidConstantes.GuidMaeVantroyen,
+                    GuidConstantes.GuidMartinSiu,
+                    GuidConstantes.GuidNoelMarieDransart,
+                    GuidConstantes.GuidOscarXXXPlusGrand,
+                    GuidConstantes.GuidRaedwaldVercouter,
+                    GuidConstantes.GuidRomainBracquart,
+                    GuidConstantes.GuidSolalSchrouf,
+                    GuidConstantes.GuidThéoXXX,
+                  }
+                },
+                                    new JourDePrésence()
+                {
                   DatePrésence = new DateTime(2025,9,10),
                   EscrimeurId = new List<Guid>()
                   {
@@ -191,8 +214,92 @@ namespace WebApplication1.Models
                     IsMatérielLoue = true
                 };
         }
-      
-     
+        public void Add_Paiements_XXXPlusGrand_Oscar(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidOscarXXXPlusGrand && x.Période == period))
+            {
+                return;
+            }
+            Membres.Where(x => x.GuidId == GuidConstantes.GuidOscarXXXPlusGrand && x.Période == period).FirstOrDefault().Paiement =
+                new Paiement()
+                {
+                    Periode = period,
+                    IsCotisationAnnuelle = false,
+                    IsCotisationCarte1 = false,
+                    IsCotisationCarte2 = false,
+                    IsCotisationCarte3 = false,
+                    IsCotisationCarte4 = false,
+                    IsCotisationEnOrdre = false,
+                    IsLocationMatérielEnOrdre = false,
+                    IsFicheSignaletiqueEnOrdre = false,
+
+                    PaiementsEffectues = new List<string>() { "" },
+
+                    SeancesGratuites = new List<DateTime>()
+                    {
+                        new DateTime(2025,9,12),
+                    },
+                    IsMatérielLoue = true
+                };
+        }
+        public void Add_Paiements_XXX_Théo(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidThéoXXX && x.Période == period))
+            {
+                return;
+            }
+            Membres.Where(x => x.GuidId == GuidConstantes.GuidThéoXXX && x.Période == period).FirstOrDefault().Paiement =
+                new Paiement()
+                {
+                    Periode = period,
+                    IsCotisationAnnuelle = false,
+                    IsCotisationCarte1 = false,
+                    IsCotisationCarte2 = false,
+                    IsCotisationCarte3 = false,
+                    IsCotisationCarte4 = false,
+                    IsCotisationEnOrdre = false,
+                    IsLocationMatérielEnOrdre = false,
+                    IsFicheSignaletiqueEnOrdre = false,
+
+                    PaiementsEffectues = new List<string>() { "" },
+
+                    SeancesGratuites = new List<DateTime>()
+                    {
+                        new DateTime(2025,9,12),
+                    },
+                    IsMatérielLoue = true
+                };
+        }
+        public void Add_Paiements_XXX_Gwendal(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidGwendalXXX && x.Période == period))
+            {
+                return;
+            }
+            Membres.Where(x => x.GuidId == GuidConstantes.GuidGwendalXXX && x.Période == period).FirstOrDefault().Paiement =
+                new Paiement()
+                {
+                    Periode = period,
+                    IsCotisationAnnuelle = false,
+                    IsCotisationCarte1 = false,
+                    IsCotisationCarte2 = false,
+                    IsCotisationCarte3 = false,
+                    IsCotisationCarte4 = false,
+                    IsCotisationEnOrdre = false,
+                    IsLocationMatérielEnOrdre = false,
+                    IsFicheSignaletiqueEnOrdre = false,
+
+                    PaiementsEffectues = new List<string>() { "" },
+
+                    SeancesGratuites = new List<DateTime>()
+                    {
+                        new DateTime(2025,9,12),
+                    },
+                    IsMatérielLoue = true
+                };
+        }
+
+
         public void Add_Paiements_Verheye_Lucas(string period, List<MembreData> Membres)
         {
             if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidLucasVerheye && x.Période == period))
