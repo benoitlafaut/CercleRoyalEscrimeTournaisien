@@ -8,6 +8,7 @@
 @Html.HiddenFor(m => m.ScrollTopEnd)
 @Html.HiddenFor(m => m.PositionStartForNoScrollbar)
 @Html.HiddenFor(m => m.PositionEndForNoScrollbar)
+@Html.HiddenFor(model => model.RowsToRead.Count, new { @id = "RowsToReadCount" })
 
 @if (Model.RowsToRead.Any())
 {
@@ -20,7 +21,7 @@
     </div>
 }
 
-<table class="ClassTable" id="tableBody"> 
+<table class="ClassTable" id="tableBody">
 </table>
 
 <div>
@@ -61,22 +62,7 @@
 
         });
 
-        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        }
-        else {
-            $('table').bind('mousewheel', function (e) {
-                if (e.originalEvent.wheelDelta / 120 > 0) {
-                    var inputRange = parseInt($("#inputRange").val()) - parseInt(10);
-                    ChargerEpub(inputRange);
-                    e.stopImmediatePropagation();
-                }
-                else {
-                    var inputRange = parseInt($("#inputRange").val()) + parseInt(10);
-                    ChargerEpub(inputRange);
-                    e.stopImmediatePropagation();
-                }
-            });
-        }
+        wheelLoad();   
     });
 
     function ScrollStart() {

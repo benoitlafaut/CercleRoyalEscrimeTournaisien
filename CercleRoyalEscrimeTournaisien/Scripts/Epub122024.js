@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿var timeouts = [];
+
+$(document).ready(function () {
     config.speakSelectedText = false;
     config.welcomeMessage = "";
 
@@ -86,27 +88,42 @@ function ChangeDirection(direction) {
 }
 
 function StartPlayAllSentence() {
-    $("#CurrentStepToListen").val('0');
-    PlayAllSentence();
+    if ($("#iconToListenAll").css('color') == 'rgb(255, 0, 0)') {
+        responsiveVoice.cancel();
+
+        for (var i = 0; i < timeouts.length; i++) {
+            clearTimeout(timeouts[i]);
+        }
+        //quick reset of the timer array you just cleared
+        timeouts = [];
+        $("#iconToListenAll").css('color', 'black');
+    }
+    else {    
+        $("#CurrentStepToListen").val('0');
+        PlayAllSentence();
+        $("#iconToListenAll").css('color', 'red');
+    }
 }
+
 function PlayAllSentence() {
     var currentStep = $("#CurrentStep").val();
     var currentStepPlusIndex = parseInt(currentStep) + parseInt($("#CurrentStepToListen").val());
-    var nameRowsToRead = "RowsToRead_" + currentStepPlusIndex + "_";
+    var nameRowsToRead = "rowsToRead_" + currentStepPlusIndex + "_";
     ListenSentence($("#" + nameRowsToRead).val(), 'true');
 }
+
 function ListenSentence(sentence, isContinue) {
     if (responsiveVoice.isPlaying()) {
-        setTimeout(function () {
+        timeouts.push( setTimeout(function () {
             ListenSentence(sentence);
-        }, 1600);
+        }, 1600),1000 );
 
         return;
     }
 
     let voice = GetVoice();
 
-    responsiveVoice.speak(sentence.replace("&#39", "'"), voice, {
+    responsiveVoice.speak(sentence, voice, {
         onend: function () {
             if (isContinue == 'true') {
                 var currentStepToListen = $("#CurrentStepToListen").val();
@@ -120,9 +137,9 @@ function ListenSentence(sentence, isContinue) {
                     ChargerEpub(inputRange);
                 }
 
-                setTimeout(function () {
+                timeouts.push(setTimeout(function () {
                     PlayAllSentence();
-                }, 400);
+                }, 400), 1000);
             }
         },
         onstart: function () {
@@ -525,6 +542,25 @@ function ConvertEpub() {
 function changeInputRange() {
     ChargerEpub($("#inputRange").val());
 }
+
+function wheelLoad() {
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    }
+    else {
+        $('table').bind('mousewheel', function (e) {
+            if (e.originalEvent.wheelDelta / 120 > 0) {
+                var inputRange = parseInt($("#inputRange").val()) - parseInt(10);
+                ChargerEpub(inputRange);
+                e.stopImmediatePropagation();
+            }
+            else {
+                var inputRange = parseInt($("#inputRange").val()) + parseInt(10);
+                ChargerEpub(inputRange);
+                e.stopImmediatePropagation();
+            }
+        });
+    }
+}
 function ChargerEpub(currentRow) {
     $("#divLoading").css('display', 'block');
 
@@ -537,6 +573,9 @@ function ChargerEpub(currentRow) {
         $("#CurrentStepFinal").val(currentStepFinal);
         FillTable();
         $("#divLoading").css('display', 'none');
+        $("#inputRangeSpan").text(currentRow + '/' + $("#RowsToReadCount").val());
+        wheelLoad();
+        $("#inputRange").val(currentRow);
     }
     else {
         let allfilesSelect = $("#inputFile").get(0).files;
