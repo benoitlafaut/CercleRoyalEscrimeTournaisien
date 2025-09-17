@@ -247,6 +247,7 @@ namespace CercleRoyalEscrimeTournaisien
             List<DateTime> list = new List<DateTime>() { };
             list.Add(new DateTime(2025, 9, 19));
             list.Add(new DateTime(2025, 9, 27));
+            list.Add(new DateTime(2025, 10, 10)); 
             list.Add(new DateTime(2025, 10, 20));
             list.Add(new DateTime(2025, 10, 21));
             list.Add(new DateTime(2025, 10, 22));
@@ -262,6 +263,7 @@ namespace CercleRoyalEscrimeTournaisien
             list.Add(new DateTime(2025, 11, 1));
             list.Add(new DateTime(2025, 11, 2));
             list.Add(new DateTime(2025, 11, 11));
+            list.Add(new DateTime(2025, 12, 12)); 
             list.Add(new DateTime(2025, 12, 22));
             list.Add(new DateTime(2025, 12, 23));
             list.Add(new DateTime(2025, 12, 24));
@@ -307,7 +309,7 @@ namespace CercleRoyalEscrimeTournaisien
             list.Add(new DateTime(2026, 5, 10));
             list.Add(new DateTime(2026, 5, 14));
             list.Add(new DateTime(2026, 5, 25));
-           
+            list.Add(new DateTime(2026, 6, 12));
             return list;
         }
 
@@ -353,14 +355,14 @@ namespace CercleRoyalEscrimeTournaisien
             list.Add(new DateTime(2025, 10, 3));
             list.Add(new DateTime(2025, 10, 5));
             list.Add(new DateTime(2025, 10, 8));
-            list.Add(new DateTime(2025, 10, 10));
+            
             list.Add(new DateTime(2025, 11, 12));
             list.Add(new DateTime(2025, 11, 14));
             list.Add(new DateTime(2025, 11, 16));
             list.Add(new DateTime(2025, 11, 19));
             list.Add(new DateTime(2025, 11, 21));
             list.Add(new DateTime(2025, 12, 10));
-            list.Add(new DateTime(2025, 12, 12));
+            
             list.Add(new DateTime(2025, 12, 14));
             list.Add(new DateTime(2025, 12, 17));
             list.Add(new DateTime(2025, 12, 19));
@@ -387,7 +389,7 @@ namespace CercleRoyalEscrimeTournaisien
             list.Add(new DateTime(2026, 5, 20));
             list.Add(new DateTime(2026, 5, 22));
             list.Add(new DateTime(2026, 6, 10));
-            list.Add(new DateTime(2026, 6, 12));
+            
 
            
 
