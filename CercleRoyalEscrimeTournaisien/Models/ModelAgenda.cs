@@ -17,7 +17,7 @@ namespace CercleRoyalEscrimeTournaisien
         {
             get
             {
-                string link = @"<a target='_blank' href=/FileToUpload/AGENDA_SAISON_2025_2026.doc>ici</a>";
+                string link = @"<a target='_blank' href=/FileToUpload/AGENDA_SAISON_2025_2026.docx>ici</a>";
                 string texte;
 
                 texte = "L'escrime est un sport de combat. 3 armes sont utilisées : le fleuret, l'épée et le sabre. Ces 3 armes sont mixtes; individuelle ou par équipes.";
