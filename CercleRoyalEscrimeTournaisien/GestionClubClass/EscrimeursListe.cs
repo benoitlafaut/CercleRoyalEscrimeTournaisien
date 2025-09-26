@@ -201,8 +201,8 @@ namespace WebApplication1.Models
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Cosentini_Benedict(period, Membres);
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Lucas_Verheye(period, Membres);
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_XXX_Guillaume(period, Membres);
-            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_XXXPlusGrand_Oscar(period, Membres);
-            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_XXX_Théo(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Ducrot_Oscar(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Rasson_Théo(period, Membres);
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_XXX_Gwendal(period, Membres);
         }
 
@@ -338,9 +338,9 @@ namespace WebApplication1.Models
             paiements.Add_Paiements_Cosentini_Benedict(period, Membres);
             paiements.Add_Paiements_XXX_Guillaume(period, Membres);
             paiements.Add_Paiements_Verheye_Lucas(period, Membres);
-            paiements.Add_Paiements_XXXPlusGrand_Oscar(period, Membres);
+            paiements.Add_Paiements_Ducrot_Oscar(period, Membres);
             paiements.Add_Paiements_XXX_Gwendal(period, Membres);
-            paiements.Add_Paiements_XXX_Théo(period, Membres);
+            paiements.Add_Paiements_Rasson_Théo(period, Membres);
         }
     }
 }

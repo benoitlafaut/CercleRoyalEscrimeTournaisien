@@ -335,10 +335,10 @@ namespace WebApplication1.Models
           );
 
             Membres.Add(
-                        new MembreData() { GuidId = GuidConstantes.GuidThéoXXX, Nom = "XXX", Prénom = "Théo", Période = period2025_2026 }
+                        new MembreData() { GuidId = GuidConstantes.GuidThéoCucheval_Rasson, Nom = "Cucheval_Rasson", Prénom = "Théo", Période = period2025_2026 }
                     );
             Membres.Add(
-                new MembreData() { GuidId = GuidConstantes.GuidOscarXXXPlusGrand, Nom = "XXXPlusGrand", Prénom = "Oscar", Période = period2025_2026 }
+                new MembreData() { GuidId = GuidConstantes.GuidOscarDucrot, Nom = "Ducrot", Prénom = "Oscar", Période = period2025_2026 }
             );
             Membres.Add(
                 new MembreData() { GuidId = GuidConstantes.GuidGwendalXXX, Nom = "XXX", Prénom = "Gwendal", Période = period2025_2026 }

@@ -430,38 +430,38 @@ namespace WebApplication1.Models
                    FicheSignaletiqueUrl = "",
                };
         }
-        public void Add_FichesSignalétiques_XXXPlusGrand_Oscar(string period, List<MembreData> Membres)
+        public void Add_FichesSignalétiques_Ducrot_Oscar(string period, List<MembreData> Membres)
         {
-            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidOscarXXXPlusGrand && x.Période == period))
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidOscarDucrot && x.Période == period))
             {
                 return;
             }
 
-            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidOscarXXXPlusGrand && x.Période == period).Signaletique =
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidOscarDucrot && x.Période == period).Signaletique =
                new Signaletique()
                {
                    Categorie = Categorie.Inconnu,
                    DateDeNaissance = new DateTime(9999, 12, 31),
-                   Email = new List<string>() { "" },
+                   Email = new List<string>() { "oscar.ducrot@gmail.com" },
                    Telephone = new List<string>() { "" },
                    FicheSignaletiqueUrl = "",
                };
         }
-        public void Add_FichesSignalétiques_XXX_Théo(string period, List<MembreData> Membres)
+        public void Add_FichesSignalétiques_Rasson_Théo(string period, List<MembreData> Membres)
         {
-            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidThéoXXX && x.Période == period))
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidThéoCucheval_Rasson && x.Période == period))
             {
                 return;
             }
 
-            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidThéoXXX && x.Période == period).Signaletique =
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidThéoCucheval_Rasson && x.Période == period).Signaletique =
                new Signaletique()
                {
-                   Categorie = Categorie.Inconnu,
-                   DateDeNaissance = new DateTime(9999, 12, 31),
-                   Email = new List<string>() { "" },
-                   Telephone = new List<string>() { "" },
-                   FicheSignaletiqueUrl = "",
+                   Categorie = ListGuidTireur.SearchCategorie(2016),
+                   DateDeNaissance = new DateTime(2016, 11, 9),
+                   Email = new List<string>() { "jmcucheval@gmail.com","celinerasson79@gmail.com" },
+                   Telephone = new List<string>() { "0493191193", "0497071728" },
+                   FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Rasson_Théo.pdf",
                };
         }
         public void Add_FichesSignalétiques_Vercouter_Raedwald(string period, List<MembreData> Membres)
