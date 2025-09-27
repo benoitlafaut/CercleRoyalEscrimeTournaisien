@@ -15,7 +15,7 @@
     <div>
         @for (int i = 0; i < Model.RowsToRead.Count(); i++)
         {
-            string row = Model.RowsToRead[i].Replace("\'", "&#39");
+            string row = Model.RowsToRead[i].Replace("\'", "’");
             @Html.Hidden("rowsToRead_" + i + "_", row, new { @id = "rowsToRead_" + i + "_" })
         }
     </div>

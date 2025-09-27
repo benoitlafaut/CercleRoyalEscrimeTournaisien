@@ -196,8 +196,13 @@ hrben {
     margin-left: 63px;
     margin-right: 15px;
     margin-bottom: 10px;
+    cursor:pointer;
 }
 
+.ClassTextSentence:hover {
+    color:blue;
+}
+ 
 .ClassListeDesLangues {
     width: 100px;
     display: inline-block;
