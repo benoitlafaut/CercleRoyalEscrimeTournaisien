@@ -498,7 +498,7 @@ namespace WebApplication1.Models
                    FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Carette_Mathilde.pdf",
                };
         }
-       
+
         public void Add_FichesSignalétiques_Ivanov_Anaelle(string period, List<MembreData> Membres)
         {
             if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidAnaelleIvanov && x.Période == period))
@@ -516,6 +516,25 @@ namespace WebApplication1.Models
                    NomPapa = "Ivanov Vitaliy",
                    Telephone = new List<string>() { "0498/595609", "0474/432776" },
                    FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Ivanov_Anaelle.pdf",
+               };
+        }
+        public void Add_FichesSignalétiques_XXX_Amel(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidAmelXXX && x.Période == period))
+            {
+                return;
+            }
+
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidAmelXXX && x.Période == period).Signaletique =
+               new Signaletique()
+               {
+                   Categorie = Categorie.Inconnu,
+                   DateDeNaissance = new DateTime(9999, 12, 31),
+                   Email = new List<string>() { "" },
+                   NomMaman = "",
+                   NomPapa = "",
+                   Telephone = new List<string>() { "" },
+                   FicheSignaletiqueUrl = "",
                };
         }
         public void Add_FichesSignalétiques_Dransart_NoelMarie(string period, List<MembreData> Membres)

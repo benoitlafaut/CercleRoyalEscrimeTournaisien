@@ -12,6 +12,27 @@ namespace WebApplication1.Models
             {
                 JourDePrésence = new List<JourDePrésence>()
                 {
+
+                                    new JourDePrésence()
+                {
+                  DatePrésence = new DateTime(2025,9,28),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAbelMotte,
+                    GuidConstantes.GuidAmadoSimon,
+                    GuidConstantes.GuidAmelXXX,
+                    GuidConstantes.GuidAnaelleIvanov,
+                    GuidConstantes.GuidElodieMass,
+                    GuidConstantes.GuidFélixTrannoy,
+                    GuidConstantes.GuidGwendalXXX,
+                    GuidConstantes.GuidMartinSiu,
+                    GuidConstantes.GuidNoelMarieDransart,
+                    GuidConstantes.GuidOscarDucrot,
+                    GuidConstantes.GuidRaedwaldVercouter,
+                    GuidConstantes.GuidSolalSchrouf,
+                    GuidConstantes.GuidThéoCucheval_Rasson,
+                  }
+                },
                                     new JourDePrésence()
                 {
                   DatePrésence = new DateTime(2025,9,24),
@@ -1138,6 +1159,33 @@ namespace WebApplication1.Models
                     {
                         new DateTime(2024,9,4),
                         new DateTime(2024,9,11)
+                    },
+                    IsMatérielLoue = true
+                };
+        }
+        public void Add_Paiements_XXX_Amel(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidAmelXXX && x.Période == period))
+            {
+                return;
+            }
+            Membres.Where(x => x.GuidId == GuidConstantes.GuidAmelXXX && x.Période == period).FirstOrDefault().Paiement =
+                new Paiement()
+                {
+                    Periode = period,
+                    IsCotisationAnnuelle = false,
+                    IsCotisationCarte1 = false,
+                    IsCotisationCarte2 = false,
+                    IsCotisationCarte3 = false,
+                    IsCotisationCarte4 = false,
+                    IsCotisationEnOrdre = false,
+                    IsFicheSignaletiqueEnOrdre = false,
+                    IsLocationMatérielEnOrdre = false,
+
+                    PaiementsEffectues = new List<string>() { "" },
+                    SeancesGratuites = new List<DateTime>()
+                    {
+                        new DateTime(2024,9,26),
                     },
                     IsMatérielLoue = true
                 };
