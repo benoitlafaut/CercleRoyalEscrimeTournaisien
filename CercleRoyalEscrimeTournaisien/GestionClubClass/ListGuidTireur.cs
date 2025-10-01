@@ -341,7 +341,7 @@ namespace WebApplication1.Models
                 new MembreData() { GuidId = GuidConstantes.GuidOscarDucrot, Nom = "Ducrot", Prénom = "Oscar", Période = period2025_2026 }
             );
             Membres.Add(
-                new MembreData() { GuidId = GuidConstantes.GuidGwendalXXX, Nom = "XXX", Prénom = "Gwendal", Période = period2025_2026 }
+                new MembreData() { GuidId = GuidConstantes.GuidGwendalLecomte, Nom = "Lecomte", Prénom = "Gwendal", Période = period2025_2026 }
             ); 
             Membres.Add(
                 new MembreData() { GuidId = GuidConstantes.GuidAmelXXX, Nom = "XXX", Prénom = "Amel", Période = period2025_2026 }

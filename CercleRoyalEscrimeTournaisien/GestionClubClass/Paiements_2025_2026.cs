@@ -24,7 +24,7 @@ namespace WebApplication1.Models
                     GuidConstantes.GuidAnaelleIvanov,
                     GuidConstantes.GuidElodieMass,
                     GuidConstantes.GuidFélixTrannoy,
-                    GuidConstantes.GuidGwendalXXX,
+                    GuidConstantes.GuidGwendalLecomte,
                     GuidConstantes.GuidMartinSiu,
                     GuidConstantes.GuidNoelMarieDransart,
                     GuidConstantes.GuidOscarDucrot,
@@ -124,7 +124,7 @@ namespace WebApplication1.Models
                     GuidConstantes.GuidEliotPunchoo,
                     GuidConstantes.GuidFabriceRazanajao,
                     GuidConstantes.GuidFélixTrannoy,
-                    GuidConstantes.GuidGwendalXXX,
+                    GuidConstantes.GuidGwendalLecomte,
                     GuidConstantes.GuidMaeVantroyen,
                     GuidConstantes.GuidMartinSiu,
                     GuidConstantes.GuidNoelMarieDransart,
@@ -372,13 +372,13 @@ namespace WebApplication1.Models
                     IsMatérielLoue = true
                 };
         }
-        public void Add_Paiements_XXX_Gwendal(string period, List<MembreData> Membres)
+        public void Add_Paiements_Lecomte_Gwendal(string period, List<MembreData> Membres)
         {
-            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidGwendalXXX && x.Période == period))
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidGwendalLecomte && x.Période == period))
             {
                 return;
             }
-            Membres.Where(x => x.GuidId == GuidConstantes.GuidGwendalXXX && x.Période == period).FirstOrDefault().Paiement =
+            Membres.Where(x => x.GuidId == GuidConstantes.GuidGwendalLecomte && x.Période == period).FirstOrDefault().Paiement =
                 new Paiement()
                 {
                     Periode = period,
@@ -389,7 +389,7 @@ namespace WebApplication1.Models
                     IsCotisationCarte4 = false,
                     IsCotisationEnOrdre = false,
                     IsLocationMatérielEnOrdre = false,
-                    IsFicheSignaletiqueEnOrdre = false,
+                    IsFicheSignaletiqueEnOrdre = true,
 
                     PaiementsEffectues = new List<string>() { "" },
 

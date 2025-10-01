@@ -413,21 +413,21 @@ namespace WebApplication1.Models
                    FicheSignaletiqueUrl = "",
                };
         }
-        public void Add_FichesSignalétiques_XXX_Gwendal(string period, List<MembreData> Membres)
+        public void Add_FichesSignalétiques_Lecomte_Gwendal(string period, List<MembreData> Membres)
         {
-            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidGwendalXXX && x.Période == period))
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidGwendalLecomte && x.Période == period))
             {
                 return;
             }
 
-            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidGwendalXXX && x.Période == period).Signaletique =
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidGwendalLecomte && x.Période == period).Signaletique =
                new Signaletique()
                {
-                   Categorie = Categorie.Inconnu,
-                   DateDeNaissance = new DateTime(9999, 12, 31),
-                   Email = new List<string>() { "" },
-                   Telephone = new List<string>() { "" },
-                   FicheSignaletiqueUrl = "",
+                   Categorie = ListGuidTireur.SearchCategorie(2016),
+                   DateDeNaissance = new DateTime(2016, 9, 30),
+                   Email = new List<string>() { "solenne.lebreton@hotmail.com","tom28170@hotmail.com" },
+                   Telephone = new List<string>() { "0496/716464","0477/976066" },
+                   FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Lecomte_Gwendal.pdf",
                };
         }
         public void Add_FichesSignalétiques_Ducrot_Oscar(string period, List<MembreData> Membres)

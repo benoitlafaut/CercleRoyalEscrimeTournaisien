@@ -1161,6 +1161,7 @@
     <Content Include="FileToUpload\Arbitrage\grille de poule 7 personnes.docx" />
     <Content Include="FileToUpload\Arbitrage\Réaliser une bonne compétition.docx" />
     <Content Include="FileToUpload\AGENDA_SAISON_2025_2026.docx" />
+    <Content Include="FileToUpload\FichesSignaletiques\Lecomte_Gwendal.pdf" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Accueil.cshtml" />
     <Content Include="Views\Home\Accueil_Part_1.cshtml" />
