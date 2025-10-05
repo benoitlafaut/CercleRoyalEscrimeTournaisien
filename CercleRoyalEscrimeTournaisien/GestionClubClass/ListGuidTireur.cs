@@ -342,9 +342,15 @@ namespace WebApplication1.Models
             );
             Membres.Add(
                 new MembreData() { GuidId = GuidConstantes.GuidGwendalLecomte, Nom = "Lecomte", Prénom = "Gwendal", Période = period2025_2026 }
-            ); 
+            );
             Membres.Add(
-                new MembreData() { GuidId = GuidConstantes.GuidAmelXXX, Nom = "XXX", Prénom = "Amel", Période = period2025_2026 }
+                new MembreData() { GuidId = GuidConstantes.GuidAmelLawrizy, Nom = "Lawrizy", Prénom = "Amel", Période = period2025_2026 }
+            );
+            Membres.Add(
+                new MembreData() { GuidId = GuidConstantes.GuidJéromeRohart, Nom = "Rohart", Prénom = "Jérome", Période = period2025_2026 }
+            );
+            Membres.Add(
+                new MembreData() { GuidId = GuidConstantes.GuidLubinDelplanque, Nom = "Delplanque", Prénom = "Lubin", Période = period2025_2026 }
             );
         }
         public static Categorie SearchCategorie(int annee) 

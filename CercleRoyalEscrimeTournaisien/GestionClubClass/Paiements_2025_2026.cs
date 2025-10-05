@@ -12,7 +12,85 @@ namespace WebApplication1.Models
             {
                 JourDePrésence = new List<JourDePrésence>()
                 {
-
+                                    new JourDePrésence()
+                {
+                  DatePrésence = new DateTime(2025,10,5),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAbelMotte,
+                    GuidConstantes.GuidAmelLawrizy,
+                    GuidConstantes.GuidBaptisteMotte,
+                    GuidConstantes.GuidBenedictCosentini,
+                    GuidConstantes.GuidEliotPunchoo,
+                    GuidConstantes.GuidFabriceRazanajao,
+                    GuidConstantes.GuidJordanMestdagh,
+                    GuidConstantes.GuidFélixTrannoy,
+                    GuidConstantes.GuidLucasVerheye,
+                    GuidConstantes.GuidOscarDeblocq,
+                    GuidConstantes.GuidRaedwaldVercouter,
+                    GuidConstantes.GuidRebeccaVandy,
+                    GuidConstantes.GuidThéoCucheval_Rasson,
+                  }
+                },
+                                    new JourDePrésence()
+                {
+                  DatePrésence = new DateTime(2025,10,3),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAbelMotte,
+                    GuidConstantes.GuidAmadoSimon,
+                    GuidConstantes.GuidAmelLawrizy,
+                    GuidConstantes.GuidBaptisteMotte,
+                    GuidConstantes.GuidEliotPunchoo,
+                    GuidConstantes.GuidGwendalLecomte,
+                    GuidConstantes.GuidLubinDelplanque,
+                    GuidConstantes.GuidMaeVantroyen,
+                    GuidConstantes.GuidMartinSiu,
+                    GuidConstantes.GuidNoelMarieDransart,
+                    GuidConstantes.GuidOscarDucrot,
+                    GuidConstantes.GuidThéoCucheval_Rasson,
+                  }
+                },
+                                    new JourDePrésence()
+                {
+                  DatePrésence = new DateTime(2025,10,1),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAbelMotte,
+                    GuidConstantes.GuidAmadoSimon,
+                    GuidConstantes.GuidAnaelleIvanov,
+                    GuidConstantes.GuidBaptisteMotte,
+                    GuidConstantes.GuidBenedictCosentini,
+                    GuidConstantes.GuidEliotPunchoo,
+                    GuidConstantes.GuidFélixTrannoy,
+                    GuidConstantes.GuidJéromeRohart,
+                    GuidConstantes.GuidLiliMestdag,
+                    GuidConstantes.GuidMaeVantroyen,
+                    GuidConstantes.GuidMartinSiu,
+                    GuidConstantes.GuidNoelMarieDransart,
+                    GuidConstantes.GuidRebeccaVandy,
+                    GuidConstantes.GuidRomainBracquart,
+                    GuidConstantes.GuidSolalSchrouf,
+                  }
+                },
+                                    new JourDePrésence()
+                {
+                  DatePrésence = new DateTime(2025,9,28),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAbelMotte,
+                    GuidConstantes.GuidAmelLawrizy,
+                    GuidConstantes.GuidBaptisteMotte,
+                    GuidConstantes.GuidBenedictCosentini,
+                    GuidConstantes.GuidFabriceRazanajao,
+                    GuidConstantes.GuidFélixTrannoy,
+                    GuidConstantes.GuidLucasVerheye,
+                    GuidConstantes.GuidMaeVantroyen,
+                    GuidConstantes.GuidOscarDeblocq,
+                    GuidConstantes.GuidRebeccaVandy,
+                    GuidConstantes.GuidThéoCucheval_Rasson,
+                  }
+                },
                                     new JourDePrésence()
                 {
                   DatePrésence = new DateTime(2025,9,26),
@@ -20,7 +98,7 @@ namespace WebApplication1.Models
                   {
                     GuidConstantes.GuidAbelMotte,
                     GuidConstantes.GuidAmadoSimon,
-                    GuidConstantes.GuidAmelXXX,
+                    GuidConstantes.GuidAmelLawrizy,
                     GuidConstantes.GuidAnaelleIvanov,
                     GuidConstantes.GuidElodieMass,
                     GuidConstantes.GuidFélixTrannoy,
@@ -200,7 +278,7 @@ namespace WebApplication1.Models
                 },
                     new JourDePrésence()
                     {
-                    
+
                         DatePrésence = new DateTime(2025,9,3),
                         EscrimeurId = new List<Guid>()
                         {
@@ -314,6 +392,60 @@ namespace WebApplication1.Models
                     IsMatérielLoue = true
                 };
         }
+        public void Add_Paiements_Rohart_Jérome(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidJéromeRohart && x.Période == period))
+            {
+                return;
+            }
+            Membres.Where(x => x.GuidId == GuidConstantes.GuidJéromeRohart && x.Période == period).FirstOrDefault().Paiement =
+                new Paiement()
+                {
+                    Periode = period,
+                    IsCotisationAnnuelle = false,
+                    IsCotisationCarte1 = false,
+                    IsCotisationCarte2 = false,
+                    IsCotisationCarte3 = false,
+                    IsCotisationCarte4 = false,
+                    IsCotisationEnOrdre = false,
+                    IsLocationMatérielEnOrdre = false,
+                    IsFicheSignaletiqueEnOrdre = false,
+
+                    PaiementsEffectues = new List<string>() { "" },
+
+                    SeancesGratuites = new List<DateTime>()
+                    {
+                    },
+                    IsMatérielLoue = true
+                };
+        }
+        public void Add_Paiements_Delplanque_Hubin(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidLubinDelplanque && x.Période == period))
+            {
+                return;
+            }
+            Membres.Where(x => x.GuidId == GuidConstantes.GuidLubinDelplanque && x.Période == period).FirstOrDefault().Paiement =
+                new Paiement()
+                {
+                    Periode = period,
+                    IsCotisationAnnuelle = false,
+                    IsCotisationCarte1 = false,
+                    IsCotisationCarte2 = false,
+                    IsCotisationCarte3 = false,
+                    IsCotisationCarte4 = false,
+                    IsCotisationEnOrdre = false,
+                    IsLocationMatérielEnOrdre = false,
+                    IsFicheSignaletiqueEnOrdre = false,
+
+                    PaiementsEffectues = new List<string>() { "" },
+
+                    SeancesGratuites = new List<DateTime>()
+                    {
+                    },
+                    IsMatérielLoue = true
+                };
+        }
         public void Add_Paiements_Ducrot_Oscar(string period, List<MembreData> Membres)
         {
             if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidOscarDucrot && x.Période == period))
@@ -382,16 +514,16 @@ namespace WebApplication1.Models
                 new Paiement()
                 {
                     Periode = period,
-                    IsCotisationAnnuelle = false,
+                    IsCotisationAnnuelle = true,
                     IsCotisationCarte1 = false,
                     IsCotisationCarte2 = false,
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
-                    IsCotisationEnOrdre = false,
-                    IsLocationMatérielEnOrdre = false,
+                    IsCotisationEnOrdre = true,
+                    IsLocationMatérielEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { "" },
+                    PaiementsEffectues = new List<string>() { "290 euros","75 euros" },
 
                     SeancesGratuites = new List<DateTime>()
                     {
@@ -413,15 +545,15 @@ namespace WebApplication1.Models
                 {
                     Periode = period,
                     IsCotisationAnnuelle = false,
-                    IsCotisationCarte1 = false,
+                    IsCotisationCarte1 = true,
                     IsCotisationCarte2 = false,
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
                     IsCotisationEnOrdre = false,
                     IsLocationMatérielEnOrdre = false,
-                    IsFicheSignaletiqueEnOrdre = false,
+                    IsFicheSignaletiqueEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { "" },
+                    PaiementsEffectues = new List<string>() { "95 euros" },
 
                     SeancesGratuites = new List<DateTime>()
                     {
@@ -533,7 +665,7 @@ namespace WebApplication1.Models
                     IsLocationMatérielEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = false,
 
-                    PaiementsEffectues = new List<string>() { "290 euros", "75 euros"},
+                    PaiementsEffectues = new List<string>() { "290 euros", "75 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                     },
@@ -642,7 +774,7 @@ namespace WebApplication1.Models
                     IsCotisationCarte4 = false,
                     IsCotisationCarte5 = false,
                     IsCotisationEnOrdre = true,
-                    IsFicheSignaletiqueEnOrdre = false,
+                    IsFicheSignaletiqueEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
 
                     PaiementsEffectues = new List<string>() { "95 euros (payé de main à main à la salle le 21-09-2025)" },
@@ -673,7 +805,7 @@ namespace WebApplication1.Models
                     IsCotisationEnOrdre = false,
                     IsFicheSignaletiqueEnOrdre = false,
 
-                    PaiementsEffectues = new List<string>() { },
+                    PaiementsEffectues = new List<string>() { "50 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                     },
@@ -874,7 +1006,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = false,
                     IsLocationMatérielEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { },
+                    PaiementsEffectues = new List<string>() {"290 euros", "75 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,5,27),
@@ -902,7 +1034,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { "95 euros", "75 euros"},
+                    PaiementsEffectues = new List<string>() { "95 euros", "75 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,5,31),
@@ -1163,26 +1295,26 @@ namespace WebApplication1.Models
                     IsMatérielLoue = true
                 };
         }
-        public void Add_Paiements_XXX_Amel(string period, List<MembreData> Membres)
+        public void Add_Paiements_Lawrizy_Amel(string period, List<MembreData> Membres)
         {
-            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidAmelXXX && x.Période == period))
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidAmelLawrizy && x.Période == period))
             {
                 return;
             }
-            Membres.Where(x => x.GuidId == GuidConstantes.GuidAmelXXX && x.Période == period).FirstOrDefault().Paiement =
+            Membres.Where(x => x.GuidId == GuidConstantes.GuidAmelLawrizy && x.Période == period).FirstOrDefault().Paiement =
                 new Paiement()
                 {
                     Periode = period,
-                    IsCotisationAnnuelle = false,
+                    IsCotisationAnnuelle = true,
                     IsCotisationCarte1 = false,
                     IsCotisationCarte2 = false,
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
-                    IsCotisationEnOrdre = false,
-                    IsFicheSignaletiqueEnOrdre = false,
+                    IsCotisationEnOrdre = true,
+                    IsFicheSignaletiqueEnOrdre = true,
                     IsLocationMatérielEnOrdre = false,
 
-                    PaiementsEffectues = new List<string>() { "" },
+                    PaiementsEffectues = new List<string>() { "290 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,9,26),

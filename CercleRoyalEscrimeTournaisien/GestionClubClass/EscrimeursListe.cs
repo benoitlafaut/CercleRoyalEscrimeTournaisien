@@ -199,12 +199,14 @@ namespace WebApplication1.Models
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Lepas_PierreAugustin(period, Membres);
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Thulier_Gabriel(period, Membres);
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Cosentini_Benedict(period, Membres);
-            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Lucas_Verheye(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Verheye_Lucas(period, Membres);
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_XXX_Guillaume(period, Membres);
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Ducrot_Oscar(period, Membres);
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Rasson_Théo(period, Membres);
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Lecomte_Gwendal(period, Membres);
-            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_XXX_Amel(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Lawrizy_Amel(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_XXX_Jérome(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_XXX_Hubin(period, Membres);
         }
 
         #region Add_Paiements_2022_2023
@@ -342,7 +344,9 @@ namespace WebApplication1.Models
             paiements.Add_Paiements_Ducrot_Oscar(period, Membres);
             paiements.Add_Paiements_Lecomte_Gwendal(period, Membres);
             paiements.Add_Paiements_Rasson_Théo(period, Membres);
-            paiements.Add_Paiements_XXX_Amel(period, Membres);
+            paiements.Add_Paiements_Lawrizy_Amel(period, Membres);
+            paiements.Add_Paiements_Rohart_Jérome(period, Membres);
+            paiements.Add_Paiements_Delplanque_Hubin(period, Membres);
         }
     }
 }
