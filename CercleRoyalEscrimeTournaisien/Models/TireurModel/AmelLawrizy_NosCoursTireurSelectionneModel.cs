@@ -1,11 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using WebApplication1.Models;
 
 namespace CercleRoyalEscrimeTournaisien
 {
     [Serializable]
     public class AmelLawrizy_NosCoursTireurSelectionneModel : NosCoursTireurSelectionneModel
     {
+        private DateTime DateDeNaissance
+        {
+            get
+            {
+                return new DateTime(2014, 8, 26);
+            }
+        }
+        public Categorie Categorie
+        {
+            get
+            {
+                return ListGuidTireur.SearchCategorie(DateDeNaissance.Year);
+
+            }
+        }
         public IDictionary<string, string> GetPoules
         {
             get

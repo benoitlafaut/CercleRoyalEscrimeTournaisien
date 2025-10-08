@@ -1,11 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using WebApplication1.Models;
 
 namespace CercleRoyalEscrimeTournaisien
 {
     [Serializable]
     public class SolalSchrouf_NosCoursTireurSelectionneModel : NosCoursTireurSelectionneModel
     {
+        private DateTime DateDeNaissance
+        {
+            get
+            {
+                return new DateTime(2017, 10, 3);
+            }
+        }
+        public Categorie Categorie
+        {
+            get
+            {
+                return ListGuidTireur.SearchCategorie(DateDeNaissance.Year);
+
+            }
+        }
         public IDictionary<string, string> GetPoules
         {
             get
