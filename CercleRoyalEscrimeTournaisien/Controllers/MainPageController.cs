@@ -336,24 +336,16 @@ namespace CercleRoyalEscrimeTournaisien
                     return passwordSelectionne == GuidConstantes.GuidRémiSoyez.ToString();
                 case IndexTireurConstantes.TireurIndex.ElodieMass:
                     return passwordSelectionne.ToUpper() == GuidConstantes.GuidElodieMass.ToString().ToUpper();
-                case IndexTireurConstantes.TireurIndex.EvaDufrasne:
-                    return passwordSelectionne.ToUpper() == GuidConstantes.GuidEvaDufrasne.ToString().ToUpper();
                 case IndexTireurConstantes.TireurIndex.FélixTrannoy:
                     return passwordSelectionne.ToUpper() == GuidConstantes.GuidFélixTrannoy.ToString().ToUpper();
                 case IndexTireurConstantes.TireurIndex.OscarDeblocq:
                     return passwordSelectionne.ToUpper() == GuidConstantes.GuidOscarDeblocq.ToString().ToUpper();
-                case IndexTireurConstantes.TireurIndex.MaybelleCarlier:
-                    return passwordSelectionne.ToUpper() == GuidConstantes.GuidMaybelleCarlier.ToString().ToUpper();
                 case IndexTireurConstantes.TireurIndex.FabriceRazanajao:
                     return passwordSelectionne.ToUpper() == GuidConstantes.GuidFabriceRazanajao.ToString().ToUpper();
                 case IndexTireurConstantes.TireurIndex.AbelMotte:
                     return passwordSelectionne.ToUpper() == GuidConstantes.GuidAbelMotte.ToString().ToUpper();
                 case IndexTireurConstantes.TireurIndex.BaptisteMotte:
                     return passwordSelectionne.ToUpper() == GuidConstantes.GuidBaptisteMotte.ToString().ToUpper();
-                case IndexTireurConstantes.TireurIndex.ArthurBarbery:
-                    return passwordSelectionne.ToUpper() == GuidConstantes.GuidArthurBarbery.ToString().ToUpper();
-                case IndexTireurConstantes.TireurIndex.LeanderCle:
-                    return passwordSelectionne.ToUpper() == GuidConstantes.GuidLeanderCle.ToString().ToUpper();
                 case IndexTireurConstantes.TireurIndex.ArthurCouturiaux:
                     return passwordSelectionne.ToUpper() == GuidConstantes.GuidArthurCouturiaux.ToString().ToUpper();
                 case IndexTireurConstantes.TireurIndex.JordanMestdagh:
@@ -362,28 +354,16 @@ namespace CercleRoyalEscrimeTournaisien
                     return passwordSelectionne.ToUpper() == GuidConstantes.GuidMartinSiu.ToString().ToUpper();
                 case IndexTireurConstantes.TireurIndex.RaedwaldVercouter:
                     return passwordSelectionne.ToUpper() == GuidConstantes.GuidRaedwaldVercouter.ToString().ToUpper();
-                case IndexTireurConstantes.TireurIndex.EloiBinois:
-                    return passwordSelectionne.ToUpper() == GuidConstantes.GuidEloiBinois.ToString().ToUpper();
                 case IndexTireurConstantes.TireurIndex.AuroreCarlier:
                     return passwordSelectionne.ToUpper() == GuidConstantes.GuidAuroreCarlier.ToString().ToUpper();
                 case IndexTireurConstantes.TireurIndex.AnaelleIvanov:
                     return passwordSelectionne.ToUpper() == GuidConstantes.GuidAnaelleIvanov.ToString().ToUpper();
                 case IndexTireurConstantes.TireurIndex.LiliMestdag:
                     return passwordSelectionne.ToUpper() == GuidConstantes.GuidLiliMestdag.ToString().ToUpper();
-                case IndexTireurConstantes.TireurIndex.MathildeCarette:
-                    return passwordSelectionne.ToUpper() == GuidConstantes.GuidMathildeCarette.ToString().ToUpper();
                 case IndexTireurConstantes.TireurIndex.MaeVantroyen:
                     return passwordSelectionne.ToUpper() == GuidConstantes.GuidMaeVantroyen.ToString().ToUpper();
-                case IndexTireurConstantes.TireurIndex.SachaLessart:
-                    return passwordSelectionne.ToUpper() == GuidConstantes.GuidSachaLessart.ToString().ToUpper();
-                case IndexTireurConstantes.TireurIndex.ApollineOdendhal:
-                    return passwordSelectionne.ToUpper() == GuidConstantes.GuidApollineOdendhal.ToString().ToUpper();
                 case IndexTireurConstantes.TireurIndex.AmadoSimon:
                     return passwordSelectionne.ToUpper() == GuidConstantes.GuidAmadoSimon.ToString().ToUpper();
-                case IndexTireurConstantes.TireurIndex.LouisonBinois:
-                    return passwordSelectionne.ToUpper() == GuidConstantes.GuidLouisonBinois.ToString().ToUpper();
-                case IndexTireurConstantes.TireurIndex.HéloïsePras:
-                    return passwordSelectionne.ToUpper() == GuidConstantes.GuidHéloïsePras.ToString().ToUpper();
                 case IndexTireurConstantes.TireurIndex.RebeccaVandy:
                     return passwordSelectionne.ToUpper() == GuidConstantes.GuidRebeccaVandy.ToString().ToUpper();
                 case IndexTireurConstantes.TireurIndex.EliotPunchoo:
@@ -396,6 +376,20 @@ namespace CercleRoyalEscrimeTournaisien
                     return passwordSelectionne.ToUpper() == GuidConstantes.GuidBarnabéBeaucamp.ToString().ToUpper();
                 case IndexTireurConstantes.TireurIndex.RomainBracquart:
                     return passwordSelectionne.ToUpper() == GuidConstantes.GuidRomainBracquart.ToString().ToUpper();
+                case IndexTireurConstantes.TireurIndex.BenedictCosentini:
+                    return passwordSelectionne.ToUpper() == GuidConstantes.GuidBenedictCosentini.ToString().ToUpper();
+                case IndexTireurConstantes.TireurIndex.ThéoCuchevalRasson:
+                    return passwordSelectionne.ToUpper() == GuidConstantes.GuidThéoCucheval_Rasson.ToString().ToUpper();
+                case IndexTireurConstantes.TireurIndex.OscarDucrot:
+                    return passwordSelectionne.ToUpper() == GuidConstantes.GuidOscarDucrot.ToString().ToUpper();
+                case IndexTireurConstantes.TireurIndex.AmelLawrizy:
+                    return passwordSelectionne.ToUpper() == GuidConstantes.GuidAmelLawrizy.ToString().ToUpper();
+                case IndexTireurConstantes.TireurIndex.GwendalLecomte:
+                    return passwordSelectionne.ToUpper() == GuidConstantes.GuidGwendalLecomte.ToString().ToUpper();
+                case IndexTireurConstantes.TireurIndex.SolalSchrouf:
+                    return passwordSelectionne.ToUpper() == GuidConstantes.GuidSolalSchrouf.ToString().ToUpper();
+                case IndexTireurConstantes.TireurIndex.LucasVerheye:
+                    return passwordSelectionne.ToUpper() == GuidConstantes.GuidLucasVerheye.ToString().ToUpper();
                 default:
                     return false;
             }

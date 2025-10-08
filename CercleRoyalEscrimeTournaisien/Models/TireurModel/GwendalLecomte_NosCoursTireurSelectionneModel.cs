@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace CercleRoyalEscrimeTournaisien
 {
     [Serializable]
-    public class Leander_NosCoursTireurSelectionneModel : NosCoursTireurSelectionneModel
+    public class GwendalLecomte_NosCoursTireurSelectionneModel : NosCoursTireurSelectionneModel
     {
         public IDictionary<string, string> GetPoules
         {
@@ -15,7 +15,7 @@ namespace CercleRoyalEscrimeTournaisien
                 };
             }
         }
-        public Leander_NosCoursTireurSelectionneModel(Tireur tireurSelectionne)  : base()
+        public GwendalLecomte_NosCoursTireurSelectionneModel(Tireur tireurSelectionne)  : base()
         {
             TireurSelectionne = tireurSelectionne;
         }
