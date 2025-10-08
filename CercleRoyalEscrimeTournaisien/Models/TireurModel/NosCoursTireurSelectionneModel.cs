@@ -102,6 +102,9 @@ namespace CercleRoyalEscrimeTournaisien
                     case IndexTireurConstantes.TireurIndex.LucasVerheye:
                         LucasVerheye_NosCoursTireurSelectionneModel lucasVerheye_NosCoursTireurSelectionneModel = new LucasVerheye_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return (lucasVerheye_NosCoursTireurSelectionneModel.Categorie);
+                    case IndexTireurConstantes.TireurIndex.RomainBracquart:
+                        RomainBracquart_NosCoursTireurSelectionneModel romainBracquart_NosCoursTireurSelectionneModel = new RomainBracquart_NosCoursTireurSelectionneModel(TireurSelectionne) { };
+                        return (romainBracquart_NosCoursTireurSelectionneModel.Categorie);
                     default:
                         return Categorie.Inconnu;
                 }
@@ -332,6 +335,9 @@ namespace CercleRoyalEscrimeTournaisien
                     case IndexTireurConstantes.TireurIndex.LucasVerheye:
                         LucasVerheye_NosCoursTireurSelectionneModel lucasVerheye_NosCoursTireurSelectionneModel = new LucasVerheye_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return TrierParDate(lucasVerheye_NosCoursTireurSelectionneModel.RemarquesParDateTireur);
+                    case IndexTireurConstantes.TireurIndex.RomainBracquart:
+                        RomainBracquart_NosCoursTireurSelectionneModel romainBracquart_NosCoursTireurSelectionneModel = new RomainBracquart_NosCoursTireurSelectionneModel(TireurSelectionne) { };
+                        return TrierParDate(romainBracquart_NosCoursTireurSelectionneModel.RemarquesParDateTireur);
                     default:
                         return new List<RemarqueParDate>() { };
                 }               
@@ -468,6 +474,9 @@ namespace CercleRoyalEscrimeTournaisien
                     case IndexTireurConstantes.TireurIndex.LucasVerheye:
                         LucasVerheye_NosCoursTireurSelectionneModel lucasVerheye_NosCoursTireurSelectionneModel = new LucasVerheye_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return lucasVerheye_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, y => y.Value);
+                    case IndexTireurConstantes.TireurIndex.RomainBracquart:
+                        RomainBracquart_NosCoursTireurSelectionneModel romainBracquart_NosCoursTireurSelectionneModel = new RomainBracquart_NosCoursTireurSelectionneModel(TireurSelectionne) { };
+                        return romainBracquart_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, y => y.Value);
                     default:
                         return new Dictionary<string, string>() { };
                 }

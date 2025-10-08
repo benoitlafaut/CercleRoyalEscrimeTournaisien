@@ -289,6 +289,7 @@
     <Compile Include="Models\TireurModel\Eliot_NosCoursTireurSelectionneModel.cs" />
     <Compile Include="Models\TireurModel\Elodie_NosCoursTireurSelectionneModel.cs" />
     <Compile Include="Models\TireurModel\GwendalLecomte_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\RomainBracquart_NosCoursTireurSelectionneModel.cs" />
     <Compile Include="Models\TireurModel\LucasVerheye_NosCoursTireurSelectionneModel.cs" />
     <Compile Include="Models\TireurModel\OscarDucrot_NosCoursTireurSelectionneModel.cs" />
     <Compile Include="Models\TireurModel\SolalSchrouf_NosCoursTireurSelectionneModel.cs" />
