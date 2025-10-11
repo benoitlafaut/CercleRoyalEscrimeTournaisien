@@ -1163,6 +1163,7 @@
     <Content Include="FileToUpload\FichesSignaletiques\Lecomte_Gwendal.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Lawrizy_Amel.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Verheye_Lucas.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Cosentini_Benedict.pdf" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Accueil.cshtml" />
     <Content Include="Views\Home\Accueil_Part_1.cshtml" />

@@ -319,11 +319,11 @@ namespace WebApplication1.Models
             Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidBenedictCosentini && x.Période == period).Signaletique =
                new Signaletique()
                {
-                   Categorie = Categorie.Inconnu,
-                   DateDeNaissance = new DateTime(9999, 12, 31),
-                   Email = new List<string>() { "" },
-                   Telephone = new List<string>() { "" },
-                   FicheSignaletiqueUrl = "",
+                   Categorie = ListGuidTireur.SearchCategorie(2017),
+                   DateDeNaissance = new DateTime(2017, 3, 20),
+                   Email = new List<string>() { "johncosentini@hotmail.com", "laurie0481@hotmail.com" },
+                   Telephone = new List<string>() { "0474/723948", "0473/743881" },
+                   FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Cosentini_Benedict.pdf",
                };
         }
         public void Add_FichesSignalétiques_Thulier_Gabriel(string period, List<MembreData> Membres)

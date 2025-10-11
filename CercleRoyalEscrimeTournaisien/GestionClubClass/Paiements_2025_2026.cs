@@ -574,7 +574,7 @@ namespace WebApplication1.Models
                     IsCotisationCarte2 = false,
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
-                    IsCotisationEnOrdre = false,
+                    IsCotisationEnOrdre = true,
                     IsLocationMatérielEnOrdre = false,
                     IsFicheSignaletiqueEnOrdre = true,
 
@@ -597,16 +597,16 @@ namespace WebApplication1.Models
                 new Paiement()
                 {
                     Periode = period,
-                    IsCotisationAnnuelle = false,
+                    IsCotisationAnnuelle = true,
                     IsCotisationCarte1 = false,
                     IsCotisationCarte2 = false,
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
-                    IsCotisationEnOrdre = false,
-                    IsLocationMatérielEnOrdre = false,
-                    IsFicheSignaletiqueEnOrdre = false,
+                    IsCotisationEnOrdre = true,
+                    IsLocationMatérielEnOrdre = true,
+                    IsFicheSignaletiqueEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { "" },
+                    PaiementsEffectues = new List<string>() { "290 euros", "75 euros" },
 
                     SeancesGratuites = new List<DateTime>()
                     {
@@ -826,11 +826,11 @@ namespace WebApplication1.Models
                     IsCotisationCarte2 = false,
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
-                    IsLocationMatérielEnOrdre = false,
+                    IsLocationMatérielEnOrdre = true,
                     IsCotisationEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = false,
 
-                    PaiementsEffectues = new List<string>() { "50 euros", "45 euros" },
+                    PaiementsEffectues = new List<string>() { "50 euros", "45 euros", "75 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                     },
@@ -1028,7 +1028,7 @@ namespace WebApplication1.Models
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
                     IsCotisationEnOrdre = true,
-                    IsFicheSignaletiqueEnOrdre = false,
+                    IsFicheSignaletiqueEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
 
                     PaiementsEffectues = new List<string>() {"290 euros", "75 euros" },
