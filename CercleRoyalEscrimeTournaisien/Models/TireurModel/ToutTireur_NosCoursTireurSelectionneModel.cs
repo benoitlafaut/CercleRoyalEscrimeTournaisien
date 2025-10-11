@@ -19,6 +19,45 @@ namespace CercleRoyalEscrimeTournaisien
                 {
                     new RemarqueParDate()
                     {
+                        DateRemarque = new DateTime(2025,10,11),
+                        Arme = TypeArme.Epée,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                                Remarque="Quelques points d'attention à mettre en avant: " + "<br/>" +"<br/>" +
+                                         "Quand vous tirez avec un adversaire plus faible ou moins expérimenté, c'est là que vous pouvez vous permettre de vous mettre des défis:" + "<br/>" +"<br/>" +
+                                         "Par exemple, toucher aux avancées (manchette, saignée)." + "<br/>" +"<br/>" +
+                                         "Ou prendre le temps de faire un match en 3 minutes" + "<br/>" +"<br/>" +
+                                         "Ou de vous mettre en mode défenseur si vous êtes plus attaquant ou l'inverse en mode attaquant si vous êtes plus défenseur." + "<br/>" +"<br/>" +
+                                         "Utilisez toute la piste, elle fait 14 mètres. Laissez venir votre adversaire en reculant." + "<br/>" +"<br/>" +
+                                         "N'ayez pas peur d'écrire dans vos cahiers tout enseignement que l'on vous dit. tout score aussi, toute constatation faite par vous ou qqn d'autre." + "<br/>" +"<br/>" +
+                                         "Quand vous restez bloquer dans le fer adverse, ne restez pas dans cette position trop longtemps ou anticipez ce blocage par un dégagement. Généralement quand on reste bloquer ainsi, c'est celui qui sera plus fort ou plus rapide qui aura le point." + "<br/>" +"<br/>" +
+                                         "A l'escrime, on bouge mais on prend aussi des initiatives. j'en vois régulièrement qui attendent que l'autre fasse le premier pas. Non, osez attaquer en premier! Prenez l'initiative de l'attaque quand l'autre ne s'y attend pas."
+                            },
+                        }
+                    },
+                    new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025,10,11),
+                        Arme = TypeArme.Epée,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                                Remarque="Quelques règles de sécurité à lire ou relire: " + "<br/>" +"<br/>" +
+                                         "La pointe est toujours dirigée vers le bas lorsqu'on ne tire pas." + "<br/>" +"<br/>" +
+                                         "Un tireur tire avec un masque." + "<br/>" +"<br/>" +
+                                         "On ne touche pas son fils de corps/câble, son arme ou son masque quand on tire." + "<br/>" +"<br/>" +
+                                         "L'arme est déposée complètement sur le sol quand elle n'est pas utilisée." + "<br/>" +"<br/>" +
+                                         "On salue son adversaire ainsi que l'arbitre avant et après chaque assaut, en même temps. Et on lui serre la main." + "<br/>" +"<br/>" ,
+                            },
+                        }
+                    },
+                    new RemarqueParDate()
+                    {
                         DateRemarque = new DateTime(2025,9,5),
                         Arme = TypeArme.Epée,
                         RemarquesData = new List<RemarqueData>()
