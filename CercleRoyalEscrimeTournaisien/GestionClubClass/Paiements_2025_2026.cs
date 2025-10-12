@@ -14,6 +14,26 @@ namespace WebApplication1.Models
                 {
                                     new JourDePrésence()
                 {
+                  DatePrésence = new DateTime(2025,10,12),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAbelMotte,
+                    GuidConstantes.GuidAmelLawrizy,
+                    GuidConstantes.GuidAuroreCarlier,
+                    GuidConstantes.GuidBaptisteMotte,
+                    GuidConstantes.GuidBenedictCosentini,
+                    GuidConstantes.GuidEliotPunchoo,
+                    GuidConstantes.GuidFabriceRazanajao,
+                    GuidConstantes.GuidFélixTrannoy,
+                    GuidConstantes.GuidJordanMestdagh,
+                    GuidConstantes.GuidLiliMestdag,
+                    GuidConstantes.GuidLucasVerheye,
+                    GuidConstantes.GuidOscarDeblocq,
+                    GuidConstantes.GuidRebeccaVandy,
+                  }
+                },
+                                    new JourDePrésence()
+                {
                   DatePrésence = new DateTime(2025,10,8),
                   EscrimeurId = new List<Guid>()
                   {
@@ -343,6 +363,7 @@ namespace WebApplication1.Models
                     Periode = period,
                     IsCotisationAnnuelle = true,
                     IsCotisationCarte1 = false,
+                    IsChaussettesPayéesEnOrdre = true,
                     IsCotisationCarte2 = false,
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
@@ -374,6 +395,7 @@ namespace WebApplication1.Models
                     IsCotisationCarte1 = false,
                     IsCotisationCarte2 = false,
                     IsCotisationCarte3 = false,
+                    IsChaussettesPayéesEnOrdre = true,
                     IsCotisationCarte4 = false,
                     IsCotisationEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
@@ -514,6 +536,7 @@ namespace WebApplication1.Models
                     IsCotisationCarte1 = false,
                     IsCotisationCarte2 = false,
                     IsCotisationCarte3 = false,
+                    IsChaussettesPayéesEnOrdre = true,
                     IsCotisationCarte4 = false,
                     IsCotisationEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
@@ -547,6 +570,7 @@ namespace WebApplication1.Models
                     IsCotisationEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = true,
+                    IsChaussettesPayéesEnOrdre = true,
 
                     PaiementsEffectues = new List<string>() { "290 euros","75 euros" },
 
@@ -684,17 +708,70 @@ namespace WebApplication1.Models
                     IsCotisationAnnuelle = true,
                     IsCotisationCarte1 = false,
                     IsCotisationCarte2 = false,
+                    IsChaussettesPayéesEnOrdre = true,
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
                     IsCotisationEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
-                    IsFicheSignaletiqueEnOrdre = false,
+                    IsFicheSignaletiqueEnOrdre = true,
 
                     PaiementsEffectues = new List<string>() { "290 euros", "75 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                     },
                     IsMatérielLoue = true
+                };
+        }
+        public void Add_Paiements_Vercauteren_Delphine(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidDelphineVercauteren && x.Période == period))
+            {
+                return;
+            }
+            Membres.Where(x => x.GuidId == GuidConstantes.GuidDelphineVercauteren && x.Période == period).FirstOrDefault().Paiement =
+                new Paiement()
+                {
+                    Periode = period,
+                    IsCotisationAnnuelle = false,
+                    IsCotisationCarte1 = false,
+                    IsCotisationCarte2 = false,
+                    IsCotisationCarte3 = false,
+                    IsCotisationCarte4 = false,
+                    IsCotisationEnOrdre = false,
+                    IsLocationMatérielEnOrdre = true,
+                    IsFicheSignaletiqueEnOrdre = true,
+
+                    PaiementsEffectues = new List<string>() { "" },
+                    SeancesGratuites = new List<DateTime>()
+                    {
+                    },
+                    IsMatérielLoue = false
+                };
+        }
+        public void Add_Paiements_Motte_Sébastien(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidSébastienMotte && x.Période == period))
+            {
+                return;
+            }
+            Membres.Where(x => x.GuidId == GuidConstantes.GuidSébastienMotte && x.Période == period).FirstOrDefault().Paiement =
+                new Paiement()
+                {
+                    Periode = period,
+                    IsCotisationAnnuelle = false,
+                    IsCotisationCarte1 = false,
+                    IsCotisationCarte2 = false,
+                    IsCotisationCarte3 = false,
+                    IsCotisationCarte4 = false,
+                    IsCotisationEnOrdre = false,
+                    IsLocationMatérielEnOrdre = true,
+                    IsFicheSignaletiqueEnOrdre = true,
+
+                    PaiementsEffectues = new List<string>() { "" },
+                    SeancesGratuites = new List<DateTime>()
+                    {
+                    },
+                    IsMatérielLoue = false
                 };
         }
         public void Add_Paiements_Motte_Abel(string period, List<MembreData> Membres)
@@ -710,10 +787,11 @@ namespace WebApplication1.Models
                     IsCotisationAnnuelle = true,
                     IsCotisationCarte1 = false,
                     IsCotisationCarte2 = false,
+                    IsChaussettesPayéesEnOrdre = true,
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
                     IsCotisationEnOrdre = true,
-                    IsFicheSignaletiqueEnOrdre = false,
+                    IsFicheSignaletiqueEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
 
                     PaiementsEffectues = new List<string>() { "245 euros", "75 euros" },
@@ -739,6 +817,7 @@ namespace WebApplication1.Models
                     IsCotisationAnnuelle = true,
                     IsCotisationCarte1 = false,
                     IsCotisationCarte2 = false,
+                    IsChaussettesPayéesEnOrdre = true,
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
                     IsCotisationEnOrdre = true,
@@ -824,6 +903,7 @@ namespace WebApplication1.Models
                     IsCotisationAnnuelle = false,
                     IsCotisationCarte1 = true,
                     IsCotisationCarte2 = false,
+                    IsChaussettesPayéesEnOrdre = true,
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
                     IsLocationMatérielEnOrdre = true,
@@ -879,6 +959,7 @@ namespace WebApplication1.Models
                     IsCotisationCarte1 = false,
                     IsCotisationCarte2 = false,
                     IsCotisationCarte3 = false,
+                    IsChaussettesPayéesEnOrdre = true,
                     IsCotisationCarte4 = false,
                     IsLocationMatérielEnOrdre = true,
                     IsCotisationEnOrdre = true,
@@ -1023,6 +1104,7 @@ namespace WebApplication1.Models
                 {
                     Periode = period,
                     IsCotisationAnnuelle = true,
+                    IsChaussettesPayéesEnOrdre = true,
                     IsCotisationCarte1 = false,
                     IsCotisationCarte2 = false,
                     IsCotisationCarte3 = false,
@@ -1038,6 +1120,33 @@ namespace WebApplication1.Models
                         new DateTime(2024,5,29),
                     },
                     IsMatérielLoue = true
+                };
+        }
+        public void Add_Paiements_Lafaut_Benoît(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidBenoîtLafaut && x.Période == period))
+            {
+                return;
+            }
+            Membres.Where(x => x.GuidId == GuidConstantes.GuidBenoîtLafaut && x.Période == period).FirstOrDefault().Paiement =
+                new Paiement()
+                {
+                    Periode = period,
+                    IsCotisationAnnuelle = true,
+                    IsChaussettesPayéesEnOrdre = true,
+                    IsCotisationCarte1 = false,
+                    IsCotisationCarte2 = false,
+                    IsCotisationCarte3 = false,
+                    IsCotisationCarte4 = false,
+                    IsCotisationEnOrdre = true,
+                    IsFicheSignaletiqueEnOrdre = false,
+                    IsLocationMatérielEnOrdre = true,
+
+                    PaiementsEffectues = new List<string>() { "45 euros" },
+                    SeancesGratuites = new List<DateTime>()
+                    {
+                    },
+                    IsMatérielLoue = false
                 };
         }
         public void Add_Paiements_Vercouter_Raedwald(string period, List<MembreData> Membres)
@@ -1249,6 +1358,7 @@ namespace WebApplication1.Models
                     IsCotisationCarte1 = false,
                     IsCotisationCarte2 = false,
                     IsCotisationCarte3 = false,
+                    IsChaussettesPayéesEnOrdre = true,
                     IsCotisationCarte4 = false,
                     IsCotisationEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = false,
@@ -1360,6 +1470,7 @@ namespace WebApplication1.Models
                     IsCotisationAnnuelle = true,
                     IsCotisationCarte1 = false,
                     IsCotisationCarte2 = false,
+                    IsChaussettesPayéesEnOrdre = true,
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
                     IsCotisationEnOrdre = true,

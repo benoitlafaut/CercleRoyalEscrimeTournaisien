@@ -127,17 +127,17 @@
                                 }
                             </td>
                             @*<td style="min-width:200px;">
-                                    Licence en ordre
+            Licence en ordre
 
-                                    @if (escrimeur.Paiement?.IsLicenceEnOrdre == true)
-                                    {
-                                        <i class="fa fa-check" style="color:green;" aria-hidden="true"></i>
-                                    }
-                                    else
-                                    {
-                                        <i class="fa fa-times" style="color:red;" aria-hidden="true"></i>
-                                    }
-                                </td>*@
+            @if (escrimeur.Paiement?.IsLicenceEnOrdre == true)
+            {
+                <i class="fa fa-check" style="color:green;" aria-hidden="true"></i>
+            }
+            else
+            {
+                <i class="fa fa-times" style="color:red;" aria-hidden="true"></i>
+            }
+        </td>*@
 
                             <td style="min-width:250px;">
                                 Fiche signalétique en ordre
@@ -165,21 +165,23 @@
                                 }
                             </td>
 
-                            @*<td style="min-width:200px;">
-                                    Groupe :&nbsp;
-                                    @if (escrimeur.Signaletique != null)
-                                    {
-                                        foreach (string groupe in escrimeur.Signaletique.Groupe)
-                                        {
-                                            <span>@groupe </span>
-                                        }
-                                    }
-
-                                </td>*@
 
                             <td style="min-width:200px;">
                                 Tout est en ordre ?
                                 @if (escrimeur.Paiement?.IsCotisationEnOrdre == true && escrimeur.Paiement?.IsFicheSignaletiqueEnOrdre == true && escrimeur.Paiement?.IsLocationMatérielEnOrdre == true)
+                                {
+                                    <i class="fa fa-check" style="color:green;" aria-hidden="true"></i>
+                                }
+                                else
+                                {
+                                    <i class="fa fa-times" style="color:red;" aria-hidden="true"></i>
+                                }
+                            </td>
+
+                            <td style="min-width:250px;">
+                                Achats Chaussettes
+
+                                @if (escrimeur.Paiement?.IsChaussettesPayéesEnOrdre == true)
                                 {
                                     <i class="fa fa-check" style="color:green;" aria-hidden="true"></i>
                                 }

@@ -6,7 +6,7 @@ namespace WebApplication1.Models
 {
     public  class FichesSignalétiques_2025_2026
     {
-        public  void Add_FichesSignalétiques_Motte_Baptiste(string period, List<MembreData> Membres)
+        public void Add_FichesSignalétiques_Motte_Baptiste(string period, List<MembreData> Membres)
         {
             if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidBaptisteMotte && x.Période == period))
             {
@@ -23,6 +23,57 @@ namespace WebApplication1.Models
                    NomMaman = "Vercauteren Delphine",
                    Telephone = new List<string>() { "0496/799495", "0473/766523" },
                    FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Motte_Baptiste.pdf",
+               };
+        }
+        public void Add_FichesSignalétiques_Vercauteren_Delphine(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidDelphineVercauteren && x.Période == period))
+            {
+                return;
+            }
+
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidDelphineVercauteren && x.Période == period).Signaletique =
+               new Signaletique()
+               {
+                   Categorie = ListGuidTireur.SearchCategorie(1979),
+                   DateDeNaissance = new DateTime(1979, 2, 2),
+                   Email = new List<string>() { "motte.archi@gmail.com", "delphine.vercauteren@gmail.com" },
+                   Telephone = new List<string>() { "0473/766523" },
+                   FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Vercauteren_Delphine.pdf",
+               };
+        }
+        public void Add_FichesSignalétiques_Lafaut_Benoît(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidBenoîtLafaut && x.Période == period))
+            {
+                return;
+            }
+
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidBenoîtLafaut && x.Période == period).Signaletique =
+               new Signaletique()
+               {
+                   Categorie = ListGuidTireur.SearchCategorie(1975),
+                   DateDeNaissance = new DateTime(1975, 12,17),
+                   Email = new List<string>() { "benoit.lafaut@gmail.com", "benoit.lafaut@aginsurance.be" },
+                   Telephone = new List<string>() { "0478/347895", "069/730082" },
+                   FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Lafaut_Benoit.pdf",
+               };
+        }
+        public  void Add_FichesSignalétiques_Motte_Sébastien(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidSébastienMotte && x.Période == period))
+            {
+                return;
+            }
+
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidSébastienMotte && x.Période == period).Signaletique =
+               new Signaletique()
+               {
+                   Categorie = ListGuidTireur.SearchCategorie(1978),
+                   DateDeNaissance = new DateTime(1978, 12, 9),
+                   Email = new List<string>() { "motte.archi@gmail.com", "delphine.vercauteren@gmail.com" },
+                   Telephone = new List<string>() { "0496/799495" },
+                   FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Motte_Sébastien.pdf",
                };
         }
         public void Add_FichesSignalétiques_Motte_Abel(string period, List<MembreData> Membres)

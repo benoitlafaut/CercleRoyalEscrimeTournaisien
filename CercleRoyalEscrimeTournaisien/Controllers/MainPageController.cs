@@ -565,10 +565,10 @@ namespace CercleRoyalEscrimeTournaisien
                 workSheet.Cells[1, 8].Value = "Téléphone 1";
                 workSheet.Cells[1, 9].Value = "Téléphone 2";
                 workSheet.Cells[1, 10].Value = "Téléphone 3";
-                //workSheet.Cells[1, 11].Value = "Licence en ordre";
                 workSheet.Cells[1, 11].Value = "Fiche signalétique en ordre";
                 workSheet.Cells[1, 12].Value = "Paiements effectués";
                 workSheet.Cells[1, 13].Value = "Tout est ok";
+                workSheet.Cells[1, 14].Value = "Achat Chaussette payement en ordre";
 
                 using (ExcelRange Rng = workSheet.Cells[1, 1, 1, 50])
                 {
@@ -604,6 +604,7 @@ namespace CercleRoyalEscrimeTournaisien
                         }
 
                         workSheet.Cells[indexRow, 13].Value = tireur.Paiement?.IsCotisationEnOrdre == true && tireur.Paiement?.IsFicheSignaletiqueEnOrdre == true && tireur.Paiement?.IsLocationMatérielEnOrdre == true ? "En ordre" : "";
+                        workSheet.Cells[indexRow, 14].Value = tireur.Paiement?.IsChaussettesPayéesEnOrdre == true ? "En ordre" : "";
                     }
                     indexRow++;
                 }

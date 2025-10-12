@@ -10,6 +10,7 @@ namespace WebApplication1.Models
         public bool IsCotisationEnOrdre { get; set; }
         public bool IsLicenceEnOrdre { get; set; }
         public bool IsFicheSignaletiqueEnOrdre { get; set; }
+        public bool IsChaussettesPayéesEnOrdre { get; set; }
         public bool IsLocationMatérielEnOrdre { get; set; }        
         public List<DateTime> SeancesGratuites { get; set; }
         public List<DateTime> JoursDePrésences { get; set; }
