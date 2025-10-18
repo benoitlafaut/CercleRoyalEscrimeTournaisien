@@ -697,7 +697,26 @@ namespace WebApplication1.Models
                    FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Bracquart_Romain.pdf",
                };
         }
-       
+        public void Add_FichesSignalétiques_XXX_Simeon(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidSimeonXXX && x.Période == period))
+            {
+                return;
+            }
+
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidSimeonXXX && x.Période == period).Signaletique =
+               new Signaletique()
+               {
+                   Categorie = Categorie.Inconnu,
+                   DateDeNaissance = new DateTime(9999, 12, 31),
+                   Email = new List<string>() { "" },
+                   NomMaman = "",
+                   NomPapa = "",
+                   Telephone = new List<string>() { "" },
+                   FicheSignaletiqueUrl = "",
+               };
+        }
+
         public void Add_FichesSignalétiques_Mass_Elodie(string period, List<MembreData> Membres)
         {
             if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidElodieMass && x.Période == period))
