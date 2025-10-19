@@ -84,7 +84,7 @@ function currentLanguage(textToSpeak) {
     let strThreeFirstChars = textToSpeak.substring(0, 3)
     switch (strThreeFirstChars) {
         case "FR:":
-            return "French Female";
+            return "French Male";
             
         case "EN:":
             return "UK English Male";

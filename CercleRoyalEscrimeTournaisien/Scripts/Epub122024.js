@@ -399,7 +399,7 @@ function GetFrenchFromOtherLanguage(word, sentence) {
 }
 
 function GetVoice() {
-    if ($("#languageDefaultFR:checked").length == 1) { return 'French Female'; }
+    if ($("#languageDefaultFR:checked").length == 1) { return 'French Male'; }
     if ($("#languageDefaultES:checked").length == 1) { return 'Spanish Latin American Female'; }
     if ($("#languageDefaultEN:checked").length == 1) { return 'UK English Female'; }
     if ($("#languageDefaultDE:checked").length == 1) { return 'Deutsch Female'; }
@@ -408,7 +408,7 @@ function GetVoice() {
 }
 
 function GetVoiceForResponsive(voiceTo) {
-    if (voiceTo == "fra") { return 'French Female'; }
+    if (voiceTo == "fra") { return 'French Male'; }
     if (voiceTo == "spa") { return 'Spanish Latin American Female'; }
     if (voiceTo == "eng") { return 'UK English Female'; }
     if (voiceTo == "ger") { return 'Deutsch Female'; }

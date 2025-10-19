@@ -118,7 +118,7 @@ function checkChangeForLangue(selectElement, divElement) {
 function ListenSentence28012024(index) {
     switch (index) {
         case "1":
-            ListenSentenceWithParameters('French Female', 'TextAreaFrance', 'elementIForTextAreaFrance');
+            ListenSentenceWithParameters('French Male', 'TextAreaFrance', 'elementIForTextAreaFrance');
             break;
         case "2":
             ListenSentenceWithParameters('UK English Female', 'TextAreaAngleterre', 'elementIForTextAreaAngleterre');
@@ -145,7 +145,7 @@ function StartListen() {
 
     switch ($("#CurrentStepToListen").val()) {
         case "1":
-            speakElementWithChangeCurrentStep('#TextAreaFrance', 'French Female', '2', $("#selectFR option:selected").index());
+            speakElementWithChangeCurrentStep('#TextAreaFrance', 'French Male', '2', $("#selectFR option:selected").index());
             break;
         case "2":
             speakElementWithChangeCurrentStep('#TextAreaAngleterre', 'UK English Female', '3', $("#selectEN option:selected").index());
@@ -237,7 +237,7 @@ function imgPhotoFlagFrancaisSonClick() {
     ClearAllInstance();
     imgPhotoarrowrightClick();
     setTimeout(function () {
-        responsiveVoice.speak($('#TextAreaFrance').val(), 'French Female', {
+        responsiveVoice.speak($('#TextAreaFrance').val(), 'French Male', {
             onend: function () {
                 imgPhotoFlagFrancaisSonClick();
             },

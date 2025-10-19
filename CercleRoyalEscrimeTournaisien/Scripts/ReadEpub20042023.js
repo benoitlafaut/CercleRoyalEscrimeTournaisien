@@ -68,7 +68,7 @@ function ListenSentence() {
     $("#CurrentRowSelected").val(index);
     var text = $("#bodyReadEpub20042023").find("#tableReadEpub").find("tr").eq(index).find('span')[0].innerText;
 
-    responsiveVoice.speak(text, 'French Female');
+    responsiveVoice.speak(text, 'French Male');
 
    
 

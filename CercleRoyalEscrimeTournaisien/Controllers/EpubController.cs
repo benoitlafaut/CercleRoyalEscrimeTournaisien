@@ -175,7 +175,7 @@ namespace CercleRoyalEscrimeTournaisien
         }
         private string ChangeCharactesr(string result)
         {
-            return result.Replace("&rsquo;", "'").Replace("&nbsp;", "").Replace("&mdash;", "").Replace("&ndash;", "");
+            return result.Replace("- ", "").Replace("&rsquo;", "'").Replace("&nbsp;", "").Replace("&mdash;", "").Replace("&ndash;", "");
         }
 
         private string RenderRazorViewToString(string viewName, object model, string Prefix)
