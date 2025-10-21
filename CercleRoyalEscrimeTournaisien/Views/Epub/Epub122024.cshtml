@@ -48,6 +48,8 @@
 <body>
     @Html.Hidden("PositionDepartMouse")
     @Html.Hidden("PositionArriveeMouse")
+    @Html.HiddenFor(m => m.NombreRowsToShow)
+    
 
     <div id="@PartialViewNames.Epub122024_Entete">
         @Html.Partial(PartialViewNames.Epub122024_Entete, Model)
@@ -85,4 +87,16 @@
             $("#divNextToExpandCollapse").css('display', 'none');
         }
     }   
+
+    function ChangeFaçonDeLire() {
+        if ($("#IsLectureWithLangue:checked").val() == 'true') {
+            $("#NombreRowsToShow").val('1');
+        }
+        else {
+            $("#NombreRowsToShow").val('10');
+        }
+
+        var inputRange = parseInt($("#inputRange").val());
+        ChargerEpub(inputRange);
+    }
 </script>

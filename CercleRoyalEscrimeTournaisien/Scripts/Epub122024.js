@@ -73,11 +73,11 @@ function ChangeDirection(direction) {
 
     if (direction < directionMaxNegatif || direction > directionMax) {
         if (direction < directionMaxNegatif) {
-            var inputRange = parseInt($("#inputRange").val()) + parseInt(10);
+            var inputRange = parseInt($("#inputRange").val()) + parseInt($("#NombreRowsToShow").val());
             ChargerEpub(inputRange);
         }
         if (direction > directionMax) {
-            var inputRange = parseInt($("#inputRange").val()) - parseInt(10);
+            var inputRange = parseInt($("#inputRange").val()) - parseInt($("#NombreRowsToShow").val());
             ChargerEpub(inputRange);
         }
     }
@@ -133,10 +133,10 @@ function ListenSentence(sentence, isContinue) {
                 currentStepToListen = parseInt(currentStepToListen) + 1;
                 $("#CurrentStepToListen").val(currentStepToListen);
 
-                if (currentStepToListen == 10) {
+                if (currentStepToListen == parseInt($("#NombreRowsToShow").val())) {
                     $("#CurrentStepToListen").val('0');
 
-                    var inputRange = parseInt($("#inputRange").val()) + parseInt(10);
+                    var inputRange = parseInt($("#inputRange").val()) + parseInt($("#NombreRowsToShow").val());
                     ChargerEpub(inputRange);
                 }
 
@@ -177,7 +177,7 @@ function ClickRow(element, sentence) {
         $(".ClassTextWord").text('');
         $(".ClassTextSentence").text('');
 
-        if ($("#LanguageSelected").val() != "FR") {
+        if ($("#LanguageForLanguageDefaultSelected").val() != "FR") {
             GetFrenchFromOtherLanguage(motFR, phraseFR);           
         }
 
@@ -197,7 +197,7 @@ function ClickRow(element, sentence) {
         $("#idPhraseDE").css('display', 'none');
         $("#idPhraseIT").css('display', 'none');
 
-        if ($("#LanguageSelected").val() == "FR") {
+        if ($("#LanguageForLanguageDefaultSelected").val() == "FR") {
             $("#MotFR").text(motFR);
             $("#PhraseFR").text(phraseFR);
 
@@ -361,7 +361,7 @@ function ClickRow(element, sentence) {
 }
 
 function GetVoiceFrom() {
-    switch ($("#LanguageSelected").val()) {
+    switch ($("#LanguageForLanguageDefaultSelected").val()) {
         case "FR":
             return "fra";            
         case "EN":
@@ -377,7 +377,7 @@ function GetVoiceFrom() {
     }
 }
 function GetFrenchFromOtherLanguage(word, sentence) {
-    switch ($("#LanguageSelected").val()) {
+    switch ($("#LanguageForLanguageDefaultSelected").val()) {
         case "EN":
             TranslateOtherLanguageThanFrench(word, 'fra', 'MotFR', 'eng');
             TranslateOtherLanguageThanFrench(sentence, 'fra', 'PhraseFR', 'eng');
@@ -402,12 +402,12 @@ function GetFrenchFromOtherLanguage(word, sentence) {
 }
 
 function GetVoice() {
-    if ($("#LanguageSelected").val() == "FR") { return 'French Male'; }
-    if ($("#LanguageSelected").val() == "ES") { return 'Spanish Latin American Female'; }
-    if ($("#LanguageSelected").val() == "EN") { return 'UK English Female'; }
-    if ($("#LanguageSelected").val() == "DE") { return 'Deutsch Female'; }
-    if ($("#LanguageSelected").val() == "NL") { return 'Dutch Male'; }
-    if ($("#LanguageSelected").val() == "IT") { return 'Italian Female'; }
+    if ($("#LanguageForLanguageDefaultSelected").val() == "FR") { return 'French Male'; }
+    if ($("#LanguageForLanguageDefaultSelected").val() == "ES") { return 'Spanish Latin American Female'; }
+    if ($("#LanguageForLanguageDefaultSelected").val() == "EN") { return 'UK English Female'; }
+    if ($("#LanguageForLanguageDefaultSelected").val() == "DE") { return 'Deutsch Female'; }
+    if ($("#LanguageForLanguageDefaultSelected").val() == "NL") { return 'Dutch Male'; }
+    if ($("#LanguageForLanguageDefaultSelected").val() == "IT") { return 'Italian Female'; }
 }
 
 function GetVoiceForResponsive(voiceTo) {
@@ -554,12 +554,12 @@ function wheelLoad() {
     else {
         $('table').bind('mousewheel', function (e) {
             if (e.originalEvent.wheelDelta / 120 > 0) {
-                var inputRange = parseInt($("#inputRange").val()) - parseInt(10);
+                var inputRange = parseInt($("#inputRange").val()) - parseInt($("#NombreRowsToShow").val());
                 ChargerEpub(inputRange);
                 e.stopImmediatePropagation();
             }
             else {
-                var inputRange = parseInt($("#inputRange").val()) + parseInt(10);
+                var inputRange = parseInt($("#inputRange").val()) + parseInt($("#NombreRowsToShow").val());
                 ChargerEpub(inputRange);
                 e.stopImmediatePropagation();
             }
@@ -574,7 +574,7 @@ function ChargerEpub(currentRow) {
 
     if ($("#inputFile").get(0).files.length == 0) {
         $("#CurrentStep").val(currentRow);
-        var currentStepFinal = parseInt(currentRow) + 10;
+        var currentStepFinal = parseInt(currentRow) + parseInt($("#NombreRowsToShow").val());
         $("#CurrentStepFinal").val(currentStepFinal);
         FillTable();
         $("#divLoading").css('display', 'none');
@@ -627,10 +627,13 @@ function ChargerEpub(currentRow) {
 }
 
 function FillTable() {
+    let rowToTranslate;
+
     $('#tableBody').empty();
     for (let i = $("#CurrentStep").val(); i < $("#CurrentStepFinal").val(); i++) {
         let nameOfField = "rowsToRead_" + i.toString() + "_";
         let row = $("#" + nameOfField).val();
+        rowToTranslate = row;
         let WordsInSentence = row.split(' ');
         let nameTd = "'tdInTable_" + i + "_'";
 
@@ -642,14 +645,44 @@ function FillTable() {
             ListenSentence(row, 'false');
         };
 
-        WordsInSentence.forEach(function (item, index) {
-            let wordsInSentence = "tdInTable_" + i + "_wordsInSentence_" + index + "_" ;
+        if ($("#IsLectureWithLangue:checked").val() != 'true') {
+            WordsInSentence.forEach(function (item, index) {
+                let wordsInSentence = "tdInTable_" + i + "_wordsInSentence_" + index + "_";
 
-            $('#' + 'tdInTable_' + i + '_').append("<span id='" + wordsInSentence + "' class='ClassWord' style='user-select: all;'>" + item + " </span>");
+                $('#' + 'tdInTable_' + i + '_').append("<span id='" + wordsInSentence + "' class='ClassWord' style='user-select: all;'>" + item + " </span>");
 
-            $('#' + wordsInSentence)[0].onclick = function () {
-                ClickRow(this, row);
-            };           
-        });
+                $('#' + wordsInSentence)[0].onclick = function () {
+                    ClickRow(this, row);
+                };
+            });
+        }
+        else {
+            $('#' + 'tdInTable_' + i + '_').append("<span style='user-select: all;'>" + row + " </span>");
+
+            if ($("#CheckBoxLanguageItemsForTraduceAutomatically_1__IsSelected:checked").val() == 'true') {
+                $('#tableBody').append("<tr><td id=PhraseUniqueToTranslateNL" + " class='ClassTDText'></td></tr>");
+                TranslateOtherLanguageThanFrench("NL: " + row, 'dut', 'PhraseUniqueToTranslateNL', 'fra');
+            }
+
+            if ($("#CheckBoxLanguageItemsForTraduceAutomatically_2__IsSelected:checked").val() == 'true') {
+                $('#tableBody').append("<tr><td id=PhraseUniqueToTranslateEN" + " class='ClassTDText'></td></tr>");
+                TranslateOtherLanguageThanFrench("EN: " + row, 'eng', 'PhraseUniqueToTranslateEN', 'fra');
+            }
+
+            if ($("#CheckBoxLanguageItemsForTraduceAutomatically_3__IsSelected:checked").val() == 'true') {
+                $('#tableBody').append("<tr><td id=PhraseUniqueToTranslateES" + " class='ClassTDText'></td></tr>");
+                TranslateOtherLanguageThanFrench("ES: " + row, 'spa', 'PhraseUniqueToTranslateES', 'fra');
+            }
+
+            if ($("#CheckBoxLanguageItemsForTraduceAutomatically_4__IsSelected:checked").val() == 'true') {
+                $('#tableBody').append("<tr><td id=PhraseUniqueToTranslateDE" + " class='ClassTDText'></td></tr>");
+                TranslateOtherLanguageThanFrench("DE: " + row, 'ger', 'PhraseUniqueToTranslateDE', 'fra');
+            }
+
+            if ($("#CheckBoxLanguageItemsForTraduceAutomatically_5__IsSelected:checked").val() == 'true') {
+                $('#tableBody').append("<tr><td id=PhraseUniqueToTranslateIT" + " class='ClassTDText'></td></tr>");
+                TranslateOtherLanguageThanFrench("IT: " + row, 'ita', 'PhraseUniqueToTranslateIT', 'fra');
+            }
+        }
     }
 }

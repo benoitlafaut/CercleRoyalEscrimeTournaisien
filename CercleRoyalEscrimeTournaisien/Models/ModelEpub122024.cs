@@ -31,6 +31,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
         public int CurrentStepToListen { get; set; }
         public int ScrollTopStart { get; set; }
         public int ScrollTopEnd { get; set; }
+        public int NombreRowsToShow { get; set; } = 10;
         public int PositionStartForNoScrollbar { get; set; }
         public int PositionEndForNoScrollbar { get; set; }
         public int CurrentStep { get; set; }
