@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Reflection;
+using static CercleRoyalEscrimeTournaisien.ClassEnumLanguage;
 
 namespace CercleRoyalEscrimeTournaisien.Models
 {
@@ -23,7 +27,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
             PhraseNL = string.Empty;
             PhraseIT = string.Empty;
         }
-
+        public bool IsLectureWithLangue { get; set; }
         public int CurrentStepToListen { get; set; }
         public int ScrollTopStart { get; set; }
         public int ScrollTopEnd { get; set; }
@@ -54,5 +58,35 @@ namespace CercleRoyalEscrimeTournaisien.Models
         public string PhraseES { get; set; }
         public string PhraseNL { get; set; }
         public string PhraseIT { get; set; }
+
+        public List<EnumLanguageItem> CheckBoxLanguageItems 
+        { 
+            get
+            {
+                List<EnumLanguageItem> list = new List<EnumLanguageItem>()
+                {
+                    new EnumLanguageItem() { Language = GetDisplayName(EnumLanguage.Français), IsSelected = false },
+                    new EnumLanguageItem() { Language = GetDisplayName(EnumLanguage.Néerlandais), IsSelected = false },
+                    new EnumLanguageItem() { Language = GetDisplayName(EnumLanguage.Anglais), IsSelected = false },
+                    new EnumLanguageItem() { Language = GetDisplayName(EnumLanguage.Allemand), IsSelected = false },
+                    new EnumLanguageItem() { Language = GetDisplayName(EnumLanguage.Italien), IsSelected = false }
+                };
+                return list;
+            }
+        }
+        public string GetDisplayName( Enum enumValue)
+        {
+            return enumValue.GetType()
+                            .GetMember(enumValue.ToString())
+                            .First()
+                            .GetCustomAttribute<DisplayAttribute>()
+                            .GetName();
+        }
+    }
+
+    public class EnumLanguageItem
+    {
+        public string Language { get; set; }
+        public bool IsSelected { get; set; }
     }
 }

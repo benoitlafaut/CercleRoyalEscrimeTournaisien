@@ -99,6 +99,9 @@ function ChangeLanguage() {
     }, 1600);
 }
 
+function changeIsLectureWithLangue() {
+    alert('coucou');
+}
 function checkChangeForLangue(selectElement, divElement) {
     $("#" + divElement).css('display', 'none');
     $("#" + selectElement).prev('label').css('color', 'black');

@@ -196,6 +196,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\PartialViewNames.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="ClassPublic\EnumLanguage.cs" />
     <Compile Include="ClassPublic\PointPositifNégatifObservationConstantes.cs" />
     <Compile Include="ClassPublic\IndexTireurConstantes.cs" />
     <Compile Include="ClassPublic\Constantes.cs" />
@@ -391,6 +392,12 @@
     <Content Include="Content\NosCoursStyleSlide.css" />
     <Content Include="Content\PhotosStyle.css" />
     <Content Include="Content\QuelquesSitesStyle.css" />
+    <Content Include="Content\SVG\allemand.svg" />
+    <Content Include="Content\SVG\anglais.svg" />
+    <Content Include="Content\SVG\espagnol.svg" />
+    <Content Include="Content\SVG\french.svg" />
+    <Content Include="Content\SVG\italien.svg" />
+    <Content Include="Content\SVG\néerlandais.svg" />
     <Content Include="dist\jquery.mb.YTPlayer.js" />
     <Content Include="dist\jquery.mb.YTPlayer.min.js" />
     <Content Include="favicon.ico" />

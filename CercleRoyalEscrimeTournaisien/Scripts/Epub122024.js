@@ -420,6 +420,7 @@ function ExpandCollapse(element) {
         $(element).find('.glyphicon-plus').each(function () {
             $(this).addClass('glyphicon-minus');
             $(this).siblings('ul').css('display', 'block');
+            
         });
     }
     else {
