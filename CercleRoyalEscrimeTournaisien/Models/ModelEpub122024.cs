@@ -58,18 +58,38 @@ namespace CercleRoyalEscrimeTournaisien.Models
         public string PhraseES { get; set; }
         public string PhraseNL { get; set; }
         public string PhraseIT { get; set; }
-
-        public List<EnumLanguageItem> CheckBoxLanguageItems 
+        public string LanguageForLanguageDefaultSelected { get; set; }
+        public string LanguageItemsForTraduceAutomaticallySelected { get; set; }
+        
+        public List<EnumLanguageItem> CheckBoxLanguageItemsForTraduceAutomatically
+        {
+            get
+            {
+                List<EnumLanguageItem> list = new List<EnumLanguageItem>()
+                {
+                    new EnumLanguageItem() { UrlFlag = "../Content/SVG/french.svg", Language = GetDisplayName(EnumLanguage.Français), IsSelected = true },
+                    new EnumLanguageItem() { UrlFlag = "../Content/SVG/néerlandais.svg", Language = GetDisplayName(EnumLanguage.Néerlandais), IsSelected = false },
+                    new EnumLanguageItem() { UrlFlag = "../Content/SVG/anglais.svg", Language = GetDisplayName(EnumLanguage.Anglais), IsSelected = false },
+                    new EnumLanguageItem() { UrlFlag = "../Content/SVG/espagnol.svg", Language = GetDisplayName(EnumLanguage.Espagnol), IsSelected = false },
+                    new EnumLanguageItem() { UrlFlag = "../Content/SVG/allemand.svg", Language = GetDisplayName(EnumLanguage.Allemand), IsSelected = false },
+                    new EnumLanguageItem() { UrlFlag = "../Content/SVG/italien.svg", Language = GetDisplayName(EnumLanguage.Italien), IsSelected = false }
+                };
+                return list;
+            }
+        }
+        
+        public List<EnumLanguageItem> CheckBoxLanguageItemsForLanguageDefault 
         { 
             get
             {
                 List<EnumLanguageItem> list = new List<EnumLanguageItem>()
                 {
-                    new EnumLanguageItem() { Language = GetDisplayName(EnumLanguage.Français), IsSelected = false },
-                    new EnumLanguageItem() { Language = GetDisplayName(EnumLanguage.Néerlandais), IsSelected = false },
-                    new EnumLanguageItem() { Language = GetDisplayName(EnumLanguage.Anglais), IsSelected = false },
-                    new EnumLanguageItem() { Language = GetDisplayName(EnumLanguage.Allemand), IsSelected = false },
-                    new EnumLanguageItem() { Language = GetDisplayName(EnumLanguage.Italien), IsSelected = false }
+                    new EnumLanguageItem() { UrlFlag = "../Content/SVG/french.svg", Language = GetDisplayName(EnumLanguage.Français), IsSelected = true },
+                    new EnumLanguageItem() { UrlFlag = "../Content/SVG/néerlandais.svg", Language = GetDisplayName(EnumLanguage.Néerlandais), IsSelected = false },
+                    new EnumLanguageItem() { UrlFlag = "../Content/SVG/anglais.svg", Language = GetDisplayName(EnumLanguage.Anglais), IsSelected = false },
+                    new EnumLanguageItem() { UrlFlag = "../Content/SVG/espagnol.svg", Language = GetDisplayName(EnumLanguage.Espagnol), IsSelected = false },
+                    new EnumLanguageItem() { UrlFlag = "../Content/SVG/allemand.svg", Language = GetDisplayName(EnumLanguage.Allemand), IsSelected = false },
+                    new EnumLanguageItem() { UrlFlag = "../Content/SVG/italien.svg", Language = GetDisplayName(EnumLanguage.Italien), IsSelected = false }
                 };
                 return list;
             }
@@ -86,6 +106,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
 
     public class EnumLanguageItem
     {
+        public string UrlFlag { get; set; }
         public string Language { get; set; }
         public bool IsSelected { get; set; }
     }

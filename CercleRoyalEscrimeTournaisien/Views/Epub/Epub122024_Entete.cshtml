@@ -1,89 +1,63 @@
 ﻿@model CercleRoyalEscrimeTournaisien.Models.ModelEpub122024
-    
+
 @{
     var urlConvert = Url.Content("~/Home/Photos/NewEpub28012024/convert.png");
     var urlOpen = Url.Content("~/Home/Photos/NewEpub28012024/open.png");
 }
 
 <div id="divMain" class="TreeMainCollapse">
-    <div class="glyphicon glyphicon-plus" id="ulToExpandCollapse" onclick="ExpandCollapse(this);">
-        <div style="margin-left: 15px;">
-            <div>
-                <span id="SpanConvertEpub" class="ClassTextNode">
+    <div class="glyphicon glyphicon-plus" style="margin-bottom: 10px; background-color: mistyrose;" id="ulToExpandCollapse" onclick="ExpandCollapseNew(this);">
+        <i id="iconToListenAll" style="top: 6px;" onclick="StartPlayAllSentence();" class="ClassSound ClassStyleSound fa fa-volume-up" aria-hidden="true"></i>
+        <div id="divNextToExpandCollapse" style="display: none; margin-left: 15px; margin-top: 10px;  ">
+            <div style="margin-bottom:10px;">
+                <span id="SpanConvertEpub" style="font-family: arial;" class="ClassTextNode">
                     <a href="#" class="">Convertir Epub en texte</a>
                 </span>
             </div>
 
-            <div>
-                <span id="SpanSelectEpub" class="ClassTextNode">
+            <div style="margin-bottom:10px;">
+                <span id="SpanSelectEpub" style="font-family: arial;" class="ClassTextNode">
                     <a href="#" class="">Charger roman format texte</a>
                 </span>
             </div>
 
-            <div style="margin-top:10px;">
-                @for (int i = 0; i < Model.CheckBoxLanguageItems.Count; i++)
+            <div style="margin-top: 10px; margin-bottom: 17px;">
+                <span style="font-family: FontAwesome;">Langue parlée:</span>
+                @for (int i = 0; i < Model.CheckBoxLanguageItemsForLanguageDefault.Count; i++)
                 {
-                    @Html.LabelFor(m => m.CheckBoxLanguageItems[i].Language);
-                    @Html.CheckBoxFor(m => m.CheckBoxLanguageItems[i].IsSelected);
-                    @Html.HiddenFor(m => m.CheckBoxLanguageItems[i].Language);
+                    <img height="30" width="30" src="@Url.Content(Model.CheckBoxLanguageItemsForLanguageDefault[i].UrlFlag)" />
+
+                    if (Model.CheckBoxLanguageItemsForLanguageDefault[i].IsSelected)
+                    {
+                        @Html.RadioButtonFor(model => model.LanguageForLanguageDefaultSelected, Model.CheckBoxLanguageItemsForLanguageDefault[i].Language, new { @style = "margin-left: -8px;margin-right: 9px;", @checked = Model.CheckBoxLanguageItemsForLanguageDefault[i].IsSelected ? "Checked" : "" })
+                    }
+                    else
+                    {
+                        @Html.RadioButtonFor(model => model.LanguageForLanguageDefaultSelected, Model.CheckBoxLanguageItemsForLanguageDefault[i].Language, new { @style = "margin-left: -8px;margin-right: 9px;" })
+                    }
+
+                    @Html.HiddenFor(m => m.CheckBoxLanguageItemsForLanguageDefault[i].Language);
                 }
-                
-                @*@Html.CheckBoxFor(m => Model.Language, new { @onclick = "" })
-                <img height="30" width="30" src="@Url.Content("~/Content/SVG/allemand.svg")" id="ImageAllemand" />*@
             </div>
-        </div>
-        
-        @*<ul>
-            <li>
-                <span class="glyphicon glyphicon-plus"></span>
-                <i id="iconToListenAll" style="top: 6px;" onclick="StartPlayAllSentence();" class="ClassSound ClassStyleSound fa fa-volume-up" aria-hidden="true"></i>
-                <ul style="display: none">
-                    <li>
-                        <span class="glyphicon glyphicon-plus"></span>
-                        <span>Traitement du fichier </span>
-                        <ul style="display: none; font-size: 14px;" class="inner_ul">
-                            <li>
-                                <span id="SpanConvertEpub" class="ClassTextNode">Convertir Epub en texte</span>
-                            </li>
-                            <li>
-                                <span id="SpanSelectEpub" class="ClassTextNode">Charger roman format texte</span>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span class="glyphicon glyphicon-plus"></span>
-                        <span>Liste des langues</span>
-                        <ul style="display: none" class="inner_ul">
-                            <li>
-                                <span class="ClassListeDesLangues">&nbsp;Français</span><input style="margin-right: 5px;" type="radio" id="languageDefaultFR" value="1" checked name="languageDefault" /><span>Langue par défaut</span>
-                            </li>
-                            <li>
-                                <span class="ClassListeDesLangues">&nbsp;Anglais</span><input style="margin-right: 5px;" type="radio" id="languageDefaultEN" value="2" name="languageDefault" /><span>Langue par défaut</span>
-                            </li>
-                            <li>
-                                <span class="ClassListeDesLangues">&nbsp;Néerlandais</span><input style="margin-right: 5px;" type="radio" id="languageDefaultNL" value="3" name="languageDefault" /><span>Langue par défaut</span>
-                            </li>
-                            <li>
-                                <span class="ClassListeDesLangues">&nbsp;Espagnol</span><input style="margin-right: 5px;" type="radio" id="languageDefaultES" value="4" name="languageDefault" /><span>Langue par défaut</span>
-                            </li>
-                            <li>
-                                <span class="ClassListeDesLangues">&nbsp;Allemand</span><input style="margin-right: 5px;" type="radio" id="languageDefaultDE" value="5" name="languageDefault" /><span>Langue par défaut</span>
-                            </li>
-                            <li>
-                                <span class="ClassListeDesLangues">&nbsp;Italien</span><input style="margin-right: 5px;" type="radio" id="languageDefaultIT" value="6" name="languageDefault" /><span>Langue par défaut</span>
-                            </li>
-                        </ul>
-                    </li>
 
-                    @Html.CheckBoxFor(m => Model.IsLectureWithLangue, new { @onclick = "changeIsLectureWithLangue()" })
-                    <span>Changer la façon de lire</span>
-                </ul>
-            </li>
-        </ul*@
+            <div style="font-family: FontAwesome; margin-bottom: 17px;">
+                <span>Changer la lecture avec traduction automatique :</span>
+                @Html.CheckBoxFor(m => Model.IsLectureWithLangue, new { @onclick = "changeIsLectureWithLangue()" })
+            </div>
 
+            <div style="font-family: FontAwesome; margin-bottom: 17px;">
+                @for (int i = 0; i < Model.CheckBoxLanguageItemsForTraduceAutomatically.Count; i++)
+                {
+                    <img height="30" width="30" src="@Url.Content(Model.CheckBoxLanguageItemsForTraduceAutomatically[i].UrlFlag)" />
 
+                    @Html.CheckBoxFor(model => model.CheckBoxLanguageItemsForTraduceAutomatically[i].IsSelected, new { @style= "    margin-right: 13px;" })
+
+                    @Html.HiddenFor(m => m.CheckBoxLanguageItemsForLanguageDefault[i].Language);
+                }
+
+            </div>
+        </div>           
     </div>
-    
 </div>
 
 <div class="classInputFile">

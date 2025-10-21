@@ -47,7 +47,7 @@
 <html id="htmlId" style="height:100%">
 <body>
     @Html.Hidden("PositionDepartMouse")
-    @Html.Hidden("PositionArriveeMouse")  
+    @Html.Hidden("PositionArriveeMouse")
 
     <div id="@PartialViewNames.Epub122024_Entete">
         @Html.Partial(PartialViewNames.Epub122024_Entete, Model)
@@ -70,3 +70,19 @@
     </div>
 </body>
 </html>
+
+
+<script>    
+    function ExpandCollapseNew(element) {
+        if ($(element).hasClass('glyphicon-plus')) {
+            $("#ulToExpandCollapse").removeClass('glyphicon-plus');
+            $("#ulToExpandCollapse").addClass('glyphicon-minus');
+            $("#divNextToExpandCollapse").css('display', 'block');
+        }
+        else {
+            $("#ulToExpandCollapse").removeClass('glyphicon-minus');
+            $("#ulToExpandCollapse").addClass('glyphicon-plus');
+            $("#divNextToExpandCollapse").css('display', 'none');
+        }
+    }   
+</script>

@@ -2,11 +2,7 @@
 
 $(document).ready(function () {
     config.speakSelectedText = false;
-    config.welcomeMessage = "";
-
-    $(".glyphicon-plus").click(function () {
-        $(this).toggleClass("glyphicon-minus").siblings("ul").toggle();
-    })
+    config.welcomeMessage = "";    
 
     var touchRegionElement = document.getElementById('htmlId');
     var outputElement = document.getElementById('output');
@@ -102,6 +98,7 @@ function StartPlayAllSentence() {
         $("#CurrentStepToListen").val('0');
         PlayAllSentence();
         $("#iconToListenAll").css('color', 'red');
+        $("#ulToExpandCollapse").click();
     }
 }
 
@@ -109,6 +106,9 @@ function PlayAllSentence() {
     var currentStep = $("#CurrentStep").val();
     var currentStepPlusIndex = parseInt(currentStep) + parseInt($("#CurrentStepToListen").val());
     var nameRowsToRead = "rowsToRead_" + currentStepPlusIndex + "_";
+
+    $("#tdInTable_" + currentStepPlusIndex + "_").css('color', 'blue');
+
     ListenSentence($("#" + nameRowsToRead).val(), 'true');
 }
 
@@ -127,6 +127,9 @@ function ListenSentence(sentence, isContinue) {
         onend: function () {
             if (isContinue == 'true') {
                 var currentStepToListen = $("#CurrentStepToListen").val();
+
+                $(".ClassTDText").css('color', 'black');
+
                 currentStepToListen = parseInt(currentStepToListen) + 1;
                 $("#CurrentStepToListen").val(currentStepToListen);
 
@@ -174,7 +177,7 @@ function ClickRow(element, sentence) {
         $(".ClassTextWord").text('');
         $(".ClassTextSentence").text('');
 
-        if ($("input:radio[name='languageDefault']:checked").val() != "1") {
+        if ($("#LanguageSelected").val() != "FR") {
             GetFrenchFromOtherLanguage(motFR, phraseFR);           
         }
 
@@ -194,7 +197,7 @@ function ClickRow(element, sentence) {
         $("#idPhraseDE").css('display', 'none');
         $("#idPhraseIT").css('display', 'none');
 
-        if ($("input:radio[name='languageDefault']:checked").val() == "1") {
+        if ($("#LanguageSelected").val() == "FR") {
             $("#MotFR").text(motFR);
             $("#PhraseFR").text(phraseFR);
 
@@ -358,40 +361,40 @@ function ClickRow(element, sentence) {
 }
 
 function GetVoiceFrom() {
-    switch ($("input:radio[name='languageDefault']:checked").val()) {
-        case "1":
+    switch ($("#LanguageSelected").val()) {
+        case "FR":
             return "fra";            
-        case "2":
+        case "EN":
             return "eng";            
-        case "3":
+        case "NL":
             return "dut";            
-        case "4":
+        case "ES":
             return "spa";            
-        case "5":
+        case "DE":
             return "ger";            
-        case "6":
+        case "IT":
             return "ita";            
     }
 }
 function GetFrenchFromOtherLanguage(word, sentence) {
-    switch ($("input:radio[name='languageDefault']:checked").val()) {
-        case "2":
+    switch ($("#LanguageSelected").val()) {
+        case "EN":
             TranslateOtherLanguageThanFrench(word, 'fra', 'MotFR', 'eng');
             TranslateOtherLanguageThanFrench(sentence, 'fra', 'PhraseFR', 'eng');
             break;
-        case "3":
+        case "NL":
             TranslateOtherLanguageThanFrench(word, 'fra', 'MotFR', 'dut');
             TranslateOtherLanguageThanFrench(sentence, 'fra', 'PhraseFR', 'dut');
             break;
-        case "4":
+        case "ES":
             TranslateOtherLanguageThanFrench(word, 'fra', 'MotFR', 'spa');
             TranslateOtherLanguageThanFrench(sentence, 'fra', 'PhraseFR', 'spa');
             break;
-        case "5":
+        case "DE":
             TranslateOtherLanguageThanFrench(word, 'fra', 'MotFR', 'ger');
             TranslateOtherLanguageThanFrench(sentence, 'fra', 'PhraseFR', 'ger');
             break;
-        case "6":
+        case "IT":
             TranslateOtherLanguageThanFrench(word, 'fra', 'MotFR', 'ita');
             TranslateOtherLanguageThanFrench(sentence, 'fra', 'PhraseFR', 'ita');
             break;
@@ -399,12 +402,12 @@ function GetFrenchFromOtherLanguage(word, sentence) {
 }
 
 function GetVoice() {
-    if ($("#languageDefaultFR:checked").length == 1) { return 'French Male'; }
-    if ($("#languageDefaultES:checked").length == 1) { return 'Spanish Latin American Female'; }
-    if ($("#languageDefaultEN:checked").length == 1) { return 'UK English Female'; }
-    if ($("#languageDefaultDE:checked").length == 1) { return 'Deutsch Female'; }
-    if ($("#languageDefaultNL:checked").length == 1) { return 'Dutch Male'; }
-    if ($("#languageDefaultIT:checked").length == 1) { return 'Italian Female'; }
+    if ($("#LanguageSelected").val() == "FR") { return 'French Male'; }
+    if ($("#LanguageSelected").val() == "ES") { return 'Spanish Latin American Female'; }
+    if ($("#LanguageSelected").val() == "EN") { return 'UK English Female'; }
+    if ($("#LanguageSelected").val() == "DE") { return 'Deutsch Female'; }
+    if ($("#LanguageSelected").val() == "NL") { return 'Dutch Male'; }
+    if ($("#LanguageSelected").val() == "IT") { return 'Italian Female'; }
 }
 
 function GetVoiceForResponsive(voiceTo) {
@@ -416,6 +419,7 @@ function GetVoiceForResponsive(voiceTo) {
     if (voiceTo == "ita") { return 'Italian Female'; }
 }
 function ExpandCollapse(element) {
+    
     if ($("ul").eq(0).find('span').eq(0).hasClass('glyphicon-minus')) {
         $(element).find('.glyphicon-plus').each(function () {
             $(this).addClass('glyphicon-minus');
