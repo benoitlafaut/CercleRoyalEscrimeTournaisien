@@ -660,28 +660,48 @@ function FillTable() {
             $('#' + 'tdInTable_' + i + '_').append("<span style='user-select: all;'>" + row + " </span>");
 
             if ($("#CheckBoxLanguageItemsForTraduceAutomatically_1__IsSelected:checked").val() == 'true') {
-                $('#tableBody').append("<tr><td id=PhraseUniqueToTranslateNL" + " class='ClassTDText'></td></tr>");
-                TranslateOtherLanguageThanFrench("NL: " + row, 'dut', 'PhraseUniqueToTranslateNL', 'fra');
+                $('#tableBody').append("<tr><td" + " class='ClassTDText'><span id=PhraseUniqueToTranslateNL></span></td></tr>");
+                $("#PhraseUniqueToTranslateNL").before("<i class='fa fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 3px;'></i>");
+                $('#PhraseUniqueToTranslateNL').prev('.fa-play-Benoit')[0].onclick = function () {
+                    responsiveVoice.speak($("#PhraseUniqueToTranslateNL").text(), GetVoiceForResponsive("dut"));
+                };
+                TranslateOtherLanguageThanFrench(row, 'dut', 'PhraseUniqueToTranslateNL', 'fra');
             }
 
             if ($("#CheckBoxLanguageItemsForTraduceAutomatically_2__IsSelected:checked").val() == 'true') {
-                $('#tableBody').append("<tr><td id=PhraseUniqueToTranslateEN" + " class='ClassTDText'></td></tr>");
-                TranslateOtherLanguageThanFrench("EN: " + row, 'eng', 'PhraseUniqueToTranslateEN', 'fra');
+                $('#tableBody').append("<tr><td" + " class='ClassTDText'><span id=PhraseUniqueToTranslateEN></span></td></tr>");
+                $("#PhraseUniqueToTranslateEN").before("<i class='fa fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 3px;'></i>");
+                $('#PhraseUniqueToTranslateEN').prev('.fa-play-Benoit')[0].onclick = function () {
+                    responsiveVoice.speak($("#PhraseUniqueToTranslateEN").text(), GetVoiceForResponsive("eng"));
+                };
+                TranslateOtherLanguageThanFrench( row, 'eng', 'PhraseUniqueToTranslateEN', 'fra');
             }
 
             if ($("#CheckBoxLanguageItemsForTraduceAutomatically_3__IsSelected:checked").val() == 'true') {
-                $('#tableBody').append("<tr><td id=PhraseUniqueToTranslateES" + " class='ClassTDText'></td></tr>");
-                TranslateOtherLanguageThanFrench("ES: " + row, 'spa', 'PhraseUniqueToTranslateES', 'fra');
+                $('#tableBody').append("<tr><td" + " class='ClassTDText'><span id=PhraseUniqueToTranslateES></span></td></tr>");
+                $("#PhraseUniqueToTranslateES").before("<i class='fa fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 3px;'></i>");
+                $('#PhraseUniqueToTranslateES').prev('.fa-play-Benoit')[0].onclick = function () {
+                    responsiveVoice.speak($("#PhraseUniqueToTranslateES").text(), GetVoiceForResponsive("spa"));
+                };
+                TranslateOtherLanguageThanFrench(row, 'spa', 'PhraseUniqueToTranslateES', 'fra');
             }
 
             if ($("#CheckBoxLanguageItemsForTraduceAutomatically_4__IsSelected:checked").val() == 'true') {
-                $('#tableBody').append("<tr><td id=PhraseUniqueToTranslateDE" + " class='ClassTDText'></td></tr>");
-                TranslateOtherLanguageThanFrench("DE: " + row, 'ger', 'PhraseUniqueToTranslateDE', 'fra');
+                $('#tableBody').append("<tr><td" + " class='ClassTDText'><span id=PhraseUniqueToTranslateDE></span></td></tr>");
+                $("#PhraseUniqueToTranslateDE").before("<i class='fa fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 3px;'></i>");
+                $('#PhraseUniqueToTranslateDE').prev('.fa-play-Benoit')[0].onclick = function () {
+                    responsiveVoice.speak($("#PhraseUniqueToTranslateDE").text(), GetVoiceForResponsive("ger"));
+                };
+                TranslateOtherLanguageThanFrench(row, 'ger', 'PhraseUniqueToTranslateDE', 'fra');
             }
 
             if ($("#CheckBoxLanguageItemsForTraduceAutomatically_5__IsSelected:checked").val() == 'true') {
-                $('#tableBody').append("<tr><td id=PhraseUniqueToTranslateIT" + " class='ClassTDText'></td></tr>");
-                TranslateOtherLanguageThanFrench("IT: " + row, 'ita', 'PhraseUniqueToTranslateIT', 'fra');
+                $('#tableBody').append("<tr><td" + " class='ClassTDText'><span id=PhraseUniqueToTranslateIT></span></td></tr>");
+                $("#PhraseUniqueToTranslateIT").before("<i class='fa fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 3px;'></i>");
+                $('#PhraseUniqueToTranslateIT').prev('.fa-play-Benoit')[0].onclick = function () {
+                    responsiveVoice.speak($("#PhraseUniqueToTranslateIT").text(), GetVoiceForResponsive("ita"));
+                };
+                TranslateOtherLanguageThanFrench(row, 'ita', 'PhraseUniqueToTranslateIT', 'fra');
             }
         }
     }
