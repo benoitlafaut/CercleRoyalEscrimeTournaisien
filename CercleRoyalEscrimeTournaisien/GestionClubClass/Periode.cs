@@ -7,4 +7,9 @@
         public static string Period_2024_2025 { get { return "2024-2025"; } }
         public static string Period_2025_2026 { get { return "2025-2026"; } }
     }
+    public class Annee
+    {
+        public static string Annee_2025 { get { return "2025"; } }
+        public static string Annee_2026 { get { return "2026"; } }
+    }
 }

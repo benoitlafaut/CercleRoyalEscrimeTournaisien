@@ -1,4 +1,5 @@
-﻿using CercleRoyalEscrimeTournaisien.ClassPublic;
+﻿using Excel = Microsoft.Office.Interop.Excel;
+using CercleRoyalEscrimeTournaisien.ClassPublic;
 using CercleRoyalEscrimeTournaisien.Models;
 using System;
 using System.Data.OleDb;
@@ -618,6 +619,102 @@ namespace CercleRoyalEscrimeTournaisien
 
             return File(stream, "application/octet-stream", excelName);
         }
+
+        [HttpGet]
+        public ActionResult DownloadCompteParAn(string anneeSelectedInput)
+        {
+            List<ClassExcelRow> excelRows = new List<ClassExcelRow>() { };
+
+            Excel.Application xlApp = new Excel.Application();
+            Excel.Application objExcel = new Excel.Application();
+
+            string strTempExcel = Server.MapPath("/FileToUpload/ExcelCompte/ExportCreateExcel.xls");
+
+            objExcel.DisplayAlerts = false;
+            Excel.Workbook excelWorkbook =  objExcel.Workbooks.Open(strTempExcel, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing
+                , Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing
+                , Type.Missing, Type.Missing);
+            Excel.Sheets excelSheets = excelWorkbook.Worksheets;
+            Excel.Worksheet excelWorksheet = (Excel.Worksheet)excelSheets.get_Item(1);
+            Excel.Range xlRange = excelWorksheet.UsedRange;
+            int rowCount = xlRange.Rows.Count;
+            int colCount = xlRange.Columns.Count;
+
+            for (int iLoop = 3; iLoop <= rowCount; iLoop++)
+            {
+                excelRows.Add(new ClassExcelRow()
+                {
+                    OperationDate = GetCellValueDate((excelWorksheet.Cells[iLoop, 1] as Excel.Range).Value ),
+                    Destinataire = GetCellValue((excelWorksheet.Cells[iLoop, 2] as Excel.Range).Value),
+                    MontantPositif = GetCellValue((excelWorksheet.Cells[iLoop, 3] as Excel.Range).Value),
+                    MontantNegatif = GetCellValue((excelWorksheet.Cells[iLoop, 4] as Excel.Range).Value),
+                    Motif = GetCellValue((excelWorksheet.Cells[iLoop, 5] as Excel.Range).Value),
+                    Period = GetCellValue((excelWorksheet.Cells[iLoop, 6] as Excel.Range).Value),
+                    EtatDuCompte = GetCellValue((excelWorksheet.Cells[iLoop, 7] as Excel.Range).Value),
+                });                
+            }
+
+            excelWorkbook.Close(true, System.Reflection.Missing.Value, System.Reflection.Missing.Value);
+            xlApp.Quit();
+
+            List<ClassExcelRow> excelRowTmp = excelRows.Where(item => item.OperationDate.Year == Convert.ToInt32(anneeSelectedInput)).ToList();
+
+            var stream = new MemoryStream();
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            using (var pck = new ExcelPackage(stream))
+            {
+                ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Sheet1");
+                ws.Cells[1, 1].Value = "Date";
+                ws.Cells[1, 2].Value = "Destinataire";
+                ws.Cells[1, 3].Value = "MontantPositif";
+                ws.Cells[1, 4].Value = "MontantNegatif";
+                ws.Cells[1, 5].Value = "Motif";
+                ws.Cells[1, 6].Value = "Période";
+                ws.Cells[1, 7].Value = "Etat Du compte";
+
+                int jLoop = 3;
+                for (int iLoop = 0; iLoop <= excelRowTmp.Count-1; iLoop++)
+                {
+                    ws.Cells[jLoop, 1].Value = excelRowTmp[iLoop].OperationDate.ToString("dd-MM-yyyy");
+                    ws.Cells[jLoop, 2].Value = excelRowTmp[iLoop].Destinataire;
+                    ws.Cells[jLoop, 3].Value = excelRowTmp[iLoop].MontantPositif;
+                    ws.Cells[jLoop, 4].Value = excelRowTmp[iLoop].MontantNegatif;
+                    ws.Cells[jLoop, 5].Value = excelRowTmp[iLoop].Motif;
+                    ws.Cells[jLoop, 6].Value = excelRowTmp[iLoop].Period;
+                    ws.Cells[jLoop, 7].Value = excelRowTmp[iLoop].EtatDuCompte;
+                    jLoop++;
+                }
+
+                ws.Columns.AutoFit();
+                pck.Save();               
+            }
+            stream.Position = 0;
+            string excelName = $"Save_Le_{DateTime.Now:ddMMyyyy}_ExportYear_" + anneeSelectedInput + ".xlsx";
+
+            return File(stream, "application/octet-stream", excelName);
+        }
+        private string GetCellValue(object cellValue)
+        {
+            if (cellValue != null)
+            {
+                return Convert.ToString(cellValue);
+            }
+            else
+            {
+                return string.Empty;
+            }            
+        }
+        private DateTime GetCellValueDate(object cellValue)
+        {
+            if (cellValue != null)
+            {
+                return Convert.ToDateTime(cellValue);
+            }
+            else
+            {
+                return DateTime.MinValue;
+            }
+        }
         #region renderRazorView
         private string RenderRazorViewToString(string viewName, object model)
         {
@@ -665,5 +762,16 @@ namespace CercleRoyalEscrimeTournaisien
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
         #endregion
+    }
+
+    public class ClassExcelRow
+    {
+        public DateTime OperationDate { get; set; }
+        public string Destinataire { get; set; }
+        public string MontantPositif { get; set; }
+        public string MontantNegatif { get; set; }
+        public string Motif { get; set; }
+        public string Period { get; set; }
+        public string EtatDuCompte { get; set; }
     }
 }
