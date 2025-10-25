@@ -17,6 +17,7 @@ using OfficeOpenXml.Style;
 using System.Runtime.Serialization.Formatters.Binary;
 using static CercleRoyalEscrimeTournaisien.IndexTireurConstantes;
 using System.Collections.Generic;
+using Microsoft.Office.Interop.Excel;
 
 namespace CercleRoyalEscrimeTournaisien
 {
@@ -625,37 +626,35 @@ namespace CercleRoyalEscrimeTournaisien
         {
             List<ClassExcelRow> excelRows = new List<ClassExcelRow>() { };
 
-            Excel.Application xlApp = new Excel.Application();
-            Excel.Application objExcel = new Excel.Application();
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
-            string strTempExcel = Server.MapPath("/FileToUpload/ExcelCompte/ExportCreateExcel.xls");
-
-            objExcel.DisplayAlerts = false;
-            Excel.Workbook excelWorkbook =  objExcel.Workbooks.Open(strTempExcel, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing
-                , Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing
-                , Type.Missing, Type.Missing);
-            Excel.Sheets excelSheets = excelWorkbook.Worksheets;
-            Excel.Worksheet excelWorksheet = (Excel.Worksheet)excelSheets.get_Item(1);
-            Excel.Range xlRange = excelWorksheet.UsedRange;
-            int rowCount = xlRange.Rows.Count;
-            int colCount = xlRange.Columns.Count;
-
-            for (int iLoop = 3; iLoop <= rowCount; iLoop++)
+            using (var excelPack = new ExcelPackage())
             {
-                excelRows.Add(new ClassExcelRow()
+                using (var stream1 = System.IO.File.OpenRead(Server.MapPath("/FileToUpload/ExcelCompte/ExportCreateExcel.xlsx")))
                 {
-                    OperationDate = GetCellValueDate((excelWorksheet.Cells[iLoop, 1] as Excel.Range).Value ),
-                    Destinataire = GetCellValue((excelWorksheet.Cells[iLoop, 2] as Excel.Range).Value),
-                    MontantPositif = GetCellValue((excelWorksheet.Cells[iLoop, 3] as Excel.Range).Value),
-                    MontantNegatif = GetCellValue((excelWorksheet.Cells[iLoop, 4] as Excel.Range).Value),
-                    Motif = GetCellValue((excelWorksheet.Cells[iLoop, 5] as Excel.Range).Value),
-                    Period = GetCellValue((excelWorksheet.Cells[iLoop, 6] as Excel.Range).Value),
-                    EtatDuCompte = GetCellValue((excelWorksheet.Cells[iLoop, 7] as Excel.Range).Value),
-                });                
-            }
+                    excelPack.Load(stream1);
+                }
 
-            excelWorkbook.Close(true, System.Reflection.Missing.Value, System.Reflection.Missing.Value);
-            xlApp.Quit();
+                var ws = excelPack.Workbook.Worksheets[0];
+                var rowRun = ws.Dimension.End.Row;
+                for (int iLoop = 3; iLoop <= rowRun; iLoop++)
+                {
+                    excelRows.Add(new ClassExcelRow()
+                    {
+                        OperationDate = GetCellValueDate(ws.Cells[iLoop, 1].Text),
+                        Destinataire = GetCellValue(ws.Cells[iLoop, 2].Text),
+                        MontantPositif = GetCellValue(ws.Cells[iLoop, 3].Text),
+                        MontantNegatif = GetCellValue(ws.Cells[iLoop, 4].Text),
+                        Motif = GetCellValue(ws.Cells[iLoop, 5].Text),
+                        Period = GetCellValue(ws.Cells[iLoop, 6].Text),
+                        EtatDuCompte = GetCellValue(ws.Cells[iLoop, 7].Text),
+                    });
+                }
+                excelPack.Save();
+                excelPack.Dispose();
+            }           
+
+          
 
             List<ClassExcelRow> excelRowTmp = excelRows.Where(item => item.OperationDate.Year == Convert.ToInt32(anneeSelectedInput)).ToList();
 
@@ -686,7 +685,8 @@ namespace CercleRoyalEscrimeTournaisien
                 }
 
                 ws.Columns.AutoFit();
-                pck.Save();               
+                pck.Save();
+                pck.Dispose();
             }
             stream.Position = 0;
             string excelName = $"Save_Le_{DateTime.Now:ddMMyyyy}_ExportYear_" + anneeSelectedInput + ".xlsx";

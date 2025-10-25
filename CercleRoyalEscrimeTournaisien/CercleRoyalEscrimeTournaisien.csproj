@@ -1112,7 +1112,6 @@
     <Content Include="FileToUpload\FichesSignaletiques\Deblocq_Oscar.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Gillet_Thomas.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Debruyne_Karel.pdf" />
-    <Content Include="FileToUpload\ExcelCompte\ExportCreateExcel.xls" />
     <Content Include="FileToUpload\FichesSignaletiques\Trannoy_Félix.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Lemaire_Antoine.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Delmotte_Maxime.pdf" />
@@ -1171,6 +1170,7 @@
     <Content Include="FileToUpload\FichesSignaletiques\Lawrizy_Amel.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Verheye_Lucas.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Cosentini_Benedict.pdf" />
+    <Content Include="FileToUpload\ExcelCompte\ExportCreateExcel.xlsx" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Accueil.cshtml" />
     <Content Include="Views\Home\Accueil_Part_1.cshtml" />
