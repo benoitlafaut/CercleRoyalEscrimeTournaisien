@@ -196,6 +196,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\PartialViewNames.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="ClassPublic\Constant.cs" />
     <Compile Include="ClassPublic\EnumLanguage.cs" />
     <Compile Include="ClassPublic\PointPositifNégatifObservationConstantes.cs" />
     <Compile Include="ClassPublic\IndexTireurConstantes.cs" />

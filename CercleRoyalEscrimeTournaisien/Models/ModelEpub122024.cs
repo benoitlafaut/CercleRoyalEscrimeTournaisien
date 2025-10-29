@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
+using System.Web.Mvc;
 using static CercleRoyalEscrimeTournaisien.ClassEnumLanguage;
 
 namespace CercleRoyalEscrimeTournaisien.Models
@@ -61,7 +62,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
         public string PhraseIT { get; set; }
         public string LanguageForLanguageDefaultSelected { get; set; }
         public string LanguageItemsForTraduceAutomaticallySelected { get; set; }
-        
+        public bool IsMobileDeviceDetected { get; set; }       
         public List<EnumLanguageItem> CheckBoxLanguageItemsForTraduceAutomatically
         {
             get

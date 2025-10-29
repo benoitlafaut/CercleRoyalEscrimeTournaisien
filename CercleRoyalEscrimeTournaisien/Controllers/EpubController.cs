@@ -23,6 +23,7 @@ namespace CercleRoyalEscrimeTournaisien
         public ActionResult Epub122024()
         {
             ModelEpub122024 modelEpub122024 = new ModelEpub122024();
+            modelEpub122024.IsMobileDeviceDetected = IsMobileDeviceDetected();
             return View(Constantes.Epub122024, modelEpub122024);
         }
 
@@ -62,9 +63,53 @@ namespace CercleRoyalEscrimeTournaisien
                 modelEpub122024.FileNameBook = Request.Files[0].FileName;
             }
 
+            modelEpub122024.IsMobileDeviceDetected = IsMobileDeviceDetected();
+
             return PartialView(PartialViewNames.Epub122024_Body, modelEpub122024);
         }
+        public bool IsMobileDeviceDetected()
+        {
+            bool isMobileDeviceDetected = false;
 
+            //Check Built-In ASP.NET mobile detection
+            if (ControllerContext.HttpContext.Request.Browser["IsMobileDevice"] != null)
+            {
+                Boolean.TryParse(ControllerContext.HttpContext.Request.Browser["IsMobileDevice"], out isMobileDeviceDetected);
+            }
+
+            if (isMobileDeviceDetected)
+            {
+                return true;
+            }
+            else
+            {
+                //Check HTTP_X_WAP_PROFILE header
+                if (ControllerContext.HttpContext.Request.ServerVariables["HTTP_X_WAP_PROFILE"] != null)
+                {
+                    return true;
+                }
+
+                //Check HTTP_ACCEPT header exists and contains WAP (Wireless Application Protocol)
+                if (ControllerContext.HttpContext.Request.ServerVariables["HTTP_ACCEPT"] != null &&
+                    ControllerContext.HttpContext.Request.ServerVariables["HTTP_ACCEPT"].ToLower().Contains("wap"))
+                {
+                    return true;
+                }
+
+                //Check HTTP_USER_AGENT header
+                if (ControllerContext.HttpContext.Request.ServerVariables["HTTP_USER_AGENT"] != null)
+                {
+                    string userAgent = ControllerContext.HttpContext.Request.ServerVariables["HTTP_USER_AGENT"].ToLower();
+                    isMobileDeviceDetected = (userAgent.Contains(UserAgent.Android.ToLower()) || userAgent.Contains(UserAgent.BlackBerry.ToLower())
+                                                || userAgent.Contains(UserAgent.IPad.ToLower()) || userAgent.Contains(UserAgent.IPhone.ToLower())
+                                                || userAgent.Contains(UserAgent.IPod.ToLower()) || userAgent.Contains(UserAgent.Mobile.ToLower())
+                                                || userAgent.Contains(UserAgent.Tablet.ToLower()) || userAgent.Contains(UserAgent.WebOS.ToLower())
+                                                || userAgent.Contains(UserAgent.WindowsPhone.ToLower()));
+                }
+            }
+
+            return isMobileDeviceDetected;
+        }
         private void UpdateInDBForNumberOfPage(string fileNameBook, string currentPage)
         {
             var path = Server.MapPath("/App_Data/francais.accdb");
