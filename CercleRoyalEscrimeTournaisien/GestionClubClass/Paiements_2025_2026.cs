@@ -14,6 +14,49 @@ namespace WebApplication1.Models
                 {
                                     new JourDePrésence()
                 {
+                  DatePrésence = new DateTime(2025,11,7),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAbelMotte,
+                    GuidConstantes.GuidAmadoSimon,
+                    GuidConstantes.GuidAmelLawrizy,
+                    GuidConstantes.GuidAnaelleIvanov,
+                    GuidConstantes.GuidBaptisteMotte,
+                    GuidConstantes.GuidEliotPunchoo,
+                    GuidConstantes.GuidFabriceRazanajao,
+                    GuidConstantes.GuidFélixTrannoy,
+                    GuidConstantes.GuidGwendalLecomte,
+                    GuidConstantes.GuidMaeVantroyen,
+                    GuidConstantes.GuidNoelMarieDransart,
+                    GuidConstantes.GuidOscarDeblocq,
+                    GuidConstantes.GuidOscarDucrot,
+                    GuidConstantes.GuidRomainBracquart,
+                    GuidConstantes.GuidSimeonTrovato,
+                    GuidConstantes.GuidThéoCucheval_Rasson,
+                  }
+                },
+                                    new JourDePrésence()
+                {
+                  DatePrésence = new DateTime(2025,11,5),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAnaelleIvanov,
+                    GuidConstantes.GuidAuroreCarlier,
+                    GuidConstantes.GuidBaptisteMotte,
+                    GuidConstantes.GuidBenedictCosentini,
+                    GuidConstantes.GuidEliotPunchoo,
+                    GuidConstantes.GuidFélixTrannoy,
+                    GuidConstantes.GuidLiliMestdag,
+                    GuidConstantes.GuidMaeVantroyen,
+                    GuidConstantes.GuidMartinSiu,
+                    GuidConstantes.GuidNoelMarieDransart,
+                    GuidConstantes.GuidRebeccaVandy,
+                    GuidConstantes.GuidSimeonTrovato,
+                    GuidConstantes.GuidThéoCucheval_Rasson,
+                  }
+                },
+                                    new JourDePrésence()
+                {
                   DatePrésence = new DateTime(2025,10,19),
                   EscrimeurId = new List<Guid>()
                   {
@@ -67,7 +110,7 @@ namespace WebApplication1.Models
                     GuidConstantes.GuidNoelMarieDransart,
                     GuidConstantes.GuidRebeccaVandy,
                     GuidConstantes.GuidRomainBracquart,
-                    GuidConstantes.GuidSimeonXXX,
+                    GuidConstantes.GuidSimeonTrovato,
                   }
                 },
                                     new JourDePrésence()
@@ -497,13 +540,13 @@ namespace WebApplication1.Models
                     IsMatérielLoue = true
                 };
         }
-        public void Add_Paiements_XXX_Simeon(string period, List<MembreData> Membres)
+        public void Add_Paiements_Trovato_Simeon(string period, List<MembreData> Membres)
         {
-            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidSimeonXXX && x.Période == period))
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidSimeonTrovato && x.Période == period))
             {
                 return;
             }
-            Membres.Where(x => x.GuidId == GuidConstantes.GuidSimeonXXX && x.Période == period).FirstOrDefault().Paiement =
+            Membres.Where(x => x.GuidId == GuidConstantes.GuidSimeonTrovato && x.Période == period).FirstOrDefault().Paiement =
                 new Paiement()
                 {
                     Periode = period,
@@ -516,7 +559,7 @@ namespace WebApplication1.Models
                     IsLocationMatérielEnOrdre = false,
                     IsFicheSignaletiqueEnOrdre = false,
 
-                    PaiementsEffectues = new List<string>() { "" },
+                    PaiementsEffectues = new List<string>() { "75 euros" },
 
                     SeancesGratuites = new List<DateTime>()
                     {
@@ -994,7 +1037,7 @@ namespace WebApplication1.Models
                     IsCotisationCarte4 = false,
                     IsLocationMatérielEnOrdre = true,
                     IsCotisationEnOrdre = true,
-                    IsFicheSignaletiqueEnOrdre = false,
+                    IsFicheSignaletiqueEnOrdre = true,
 
                     PaiementsEffectues = new List<string>() { "50 euros", "45 euros", "75 euros" },
                     SeancesGratuites = new List<DateTime>()
@@ -1387,7 +1430,7 @@ namespace WebApplication1.Models
                 {
                     Periode = period,
                     IsCotisationAnnuelle = false,
-                    IsCotisationCarte1 = false,
+                    IsCotisationCarte1 = true,
                     IsCotisationCarte2 = false,
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
@@ -1395,7 +1438,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = false,
                     IsLocationMatérielEnOrdre = false,
 
-                    PaiementsEffectues = new List<string>() { },
+                    PaiementsEffectues = new List<string>() { "95 euros"},
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,9,6),

@@ -697,14 +697,14 @@ namespace WebApplication1.Models
                    FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Bracquart_Romain.pdf",
                };
         }
-        public void Add_FichesSignalétiques_XXX_Simeon(string period, List<MembreData> Membres)
+        public void Add_FichesSignalétiques_Trovato_Simeon(string period, List<MembreData> Membres)
         {
-            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidSimeonXXX && x.Période == period))
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidSimeonTrovato && x.Période == period))
             {
                 return;
             }
 
-            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidSimeonXXX && x.Période == period).Signaletique =
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidSimeonTrovato && x.Période == period).Signaletique =
                new Signaletique()
                {
                    Categorie = Categorie.Inconnu,
