@@ -19,6 +19,38 @@ namespace CercleRoyalEscrimeTournaisien
                 {
                     new RemarqueParDate()
                     {
+                        DateRemarque = new DateTime(2025,11,7),
+                        Arme = TypeArme.Epée,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                                Remarque="Voici quelques questions à se poser après chaque match... " + "<br/>" +"<br/>" +
+                                         "Je ne vous oblige pas à vous les poser systématiquement mais à vous faire réfléchir, à vous faire progresser." + "<br/>" +"<br/>" +
+                                         "Que faut-il retenir de mon match/assaut ?" + "<br/>" +"<br/>" +
+                                         "" + "<br/>" +"<br/>" +
+                                         "Est-ce que j’ai utilisé mes 3 minutes ou 9 minutes judicieusement, de manière intelligente ?" + "<br/>" +"<br/>" +
+                                         "Où ai-je été touché ?" + "<br/>" +"<br/>" +
+                                         "  Combien de fois par endroit ?" + "<br/>" +"<br/>" +
+                                         "  Etais-je en attaque ou en défense ?" + "<br/>" +"<br/>" +
+                                         "  Est-ce que j’étais bien en garde ?" + "<br/>" +"<br/>" +
+                                         "  Est-ce que ma main armée était à la même hauteur que mon épaule quand j’allongeais mon bras?" + "<br/>" +"<br/>" +
+                                         "Est-ce que je fais souvent la même action ?" + "<br/>" +"<br/>" +
+                                         "Est-ce que mon adversaire essaie de toucher au même endroit plusieurs fois d’affilée ?" + "<br/>" +"<br/>" +
+                                         "Est-ce que je tombe toujours trop court ? Il manque 10 cm trop court pour la touche." + "<br/>" +"<br/>" +
+                                         "Est-ce que je vais plus lentement que mon adversaire ?" + "<br/>" +"<br/>" +
+                                         "Est-ce que je casse le rythme ? tantôt je vais lentement tantôt rapidement ?" + "<br/>" +"<br/>" +
+                                         "Est-ce que j’attaque quand je mène de 2 3 touches ?" + "<br/>" +"<br/>" +
+                                         "Est-ce que j’utilise ce qui me permets de gagner très souvent ?" + "<br/>" +"<br/>" +
+                                         "Est-ce que je note dans mon cahier mes résultats, mes réponses aux questions ci-dessus pour le futur ?" + "<br/>" +"<br/>" +
+                                         "Quel est mon point fort, mon point faible ?" + "<br/>" +"<br/>" +
+                                         "  Quel est son point fort, son point faible ?" + "<br/>" +"<br/>" 
+                            },
+                        }
+                    },
+                    new RemarqueParDate()
+                    {
                         DateRemarque = new DateTime(2025,10,11),
                         Arme = TypeArme.Epée,
                         RemarquesData = new List<RemarqueData>()

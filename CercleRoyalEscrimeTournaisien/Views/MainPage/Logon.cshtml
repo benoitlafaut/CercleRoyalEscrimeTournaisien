@@ -5,24 +5,24 @@
 {
     @Html.AntiForgeryToken()
 
-    <h1>Logon</h1>
+    <h1 style="text-align:center;">Logon</h1>
     <hr />
 
     @Html.ValidationSummary(true)
 
-    <div class="row">
-        <div style="" class="col-md-1" >@Html.LabelFor(m => m.UserName)</div>
+    <div class="row" style="font-size: 23px; text-align: center;">
+        <div style="" class="col-md-1">@Html.LabelFor(m => m.UserName)</div>
         <div class="col-md-2">@Html.TextBoxFor(m => m.UserName)</div>
         <div class="col-md-2">@Html.ValidationMessageFor(m => m.UserName)&nbsp;</div>
     </div>
     <br />
-    <div class="row">
+    <div class="row" style="font-size: 23px; text-align: center;">
         <div style="" class="col-md-1">@Html.LabelFor(m => m.Password)</div>
         <div class="col-md-2">@Html.PasswordFor(m => m.Password, new { placeholder = "Password", @class = "form-control", autocomplete = "OFF" })</div>
         <div class="col-md-2">@Html.ValidationMessageFor(m => m.Password)&nbsp;</div>
     </div>
-    
-    <div class="row">
+
+    <div class="row" style="font-size: 23px; text-align: center;">
         <div class="col-md-3"><input type="submit" value="Login" class="btn btn-primary btn-block" id="Login" /></div>
     </div>
 

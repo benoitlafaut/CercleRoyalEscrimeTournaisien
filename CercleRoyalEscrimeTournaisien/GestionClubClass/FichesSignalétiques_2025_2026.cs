@@ -707,13 +707,13 @@ namespace WebApplication1.Models
             Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidSimeonTrovato && x.Période == period).Signaletique =
                new Signaletique()
                {
-                   Categorie = Categorie.Inconnu,
-                   DateDeNaissance = new DateTime(9999, 12, 31),
-                   Email = new List<string>() { "" },
-                   NomMaman = "",
-                   NomPapa = "",
-                   Telephone = new List<string>() { "" },
-                   FicheSignaletiqueUrl = "",
+                   Categorie = ListGuidTireur.SearchCategorie(2015),
+                   DateDeNaissance = new DateTime(2015, 5,4),
+                   Email = new List<string>() { "marinecollie@msn.com","antoinetrovato@hotmail.fr" },
+                   NomMaman = "Collie Marine",
+                   NomPapa = "Trovato Antoine",
+                   Telephone = new List<string>() { "0472/433582", "0478/978160" },
+                   FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Trovato_Simeon.pdf",
                };
         }
 

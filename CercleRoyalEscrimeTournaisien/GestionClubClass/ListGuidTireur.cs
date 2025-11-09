@@ -360,7 +360,7 @@ namespace WebApplication1.Models
                new MembreData() { GuidId = GuidConstantes.GuidBenoîtLafaut, Nom = "Lafaut", Prénom = "Benoît", Période = period2025_2026 }
            );
             Membres.Add(
-               new MembreData() { GuidId = GuidConstantes.GuidSimeonTrovato, Nom = "XXX", Prénom = "Simeon", Période = period2025_2026 }
+               new MembreData() { GuidId = GuidConstantes.GuidSimeonTrovato, Nom = "Trovato", Prénom = "Simeon", Période = period2025_2026 }
            );
         }
         public static Categorie SearchCategorie(int annee) 
