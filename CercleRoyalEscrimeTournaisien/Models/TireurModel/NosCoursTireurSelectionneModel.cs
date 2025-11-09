@@ -143,6 +143,19 @@ namespace CercleRoyalEscrimeTournaisien
                     new List<RemarqueParDate>() {
                     new RemarqueParDate()
                     {
+                        DateRemarque = new DateTime(2025, 11, 9),
+                        Arme = TypeArme.Sabre,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                Remarque = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules.",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                           }
+                        }
+                    },
+                        new RemarqueParDate()
+                    {
                         DateRemarque = new DateTime(2025, 11, 7),
                         Arme = TypeArme.Sabre,
                         RemarquesData = new List<RemarqueData>()
