@@ -1057,6 +1057,7 @@
     <Content Include="Scripts\Accueil.js" />
     <Content Include="Scripts\5d93eb1089.js" />
     <Content Include="Scripts\Epub122024.js" />
+    <Content Include="Scripts\Administration.js" />
     <Content Include="Scripts\NosCours.js" />
     <Content Include="Scripts\mainPage.js" />
     <Content Include="Scripts\ExpandViewPDFPage.js" />

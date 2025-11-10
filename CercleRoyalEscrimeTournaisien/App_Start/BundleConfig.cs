@@ -13,6 +13,8 @@ namespace CercleRoyalEscrimeTournaisien
 
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include("~/Scripts/modernizr-*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/administration").Include("~/Scripts/administration.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include("~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/bootstrapMoi.css"));
