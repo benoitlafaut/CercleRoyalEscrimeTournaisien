@@ -46,10 +46,13 @@
 
 <html id="htmlId" style="height:100%">
 <body>
+    <span onclick="ClickIconLeft();" class="IconLeft glyphicon glyphicon-chevron-left"></span>
+    <span onclick="ClickIconRight();" class="IconRight glyphicon glyphicon-chevron-right"></span>
+
     @Html.Hidden("PositionDepartMouse")
     @Html.Hidden("PositionArriveeMouse")
     @Html.HiddenFor(m => m.NombreRowsToShow)
-    
+
 
     <div id="@PartialViewNames.Epub122024_Entete">
         @Html.Partial(PartialViewNames.Epub122024_Entete, Model)

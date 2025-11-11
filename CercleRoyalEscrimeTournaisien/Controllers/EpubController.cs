@@ -50,7 +50,7 @@ namespace CercleRoyalEscrimeTournaisien
             else
             {
                 result = new StreamReader(Request.Files[0].InputStream).ReadToEnd();
-                modelEpub122024.RowsToRead = (ChangeCharactesr(result).Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries)).ToList();
+                modelEpub122024.RowsToRead = (ChangeCharactesr(result.Replace(".", ".\n")).Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries)).ToList();
                 modelEpub122024.CurrentStep = Convert.ToInt32(currentRow);
                 System.Web.HttpContext.Current.Session.Add("rowsToRead", Serialize(result));
 

@@ -29,7 +29,7 @@
                 <span class="row" style="margin-left:1px;margin-bottom:8px;font-family: FontAwesome;">Langue parlée:</span>
                 @for (int i = 0; i < Model.CheckBoxLanguageItemsForLanguageDefault.Count; i++)
                 {
-                    <img height="@taille" width="@taille" src="@Url.Content(Model.CheckBoxLanguageItemsForLanguageDefault[i].UrlFlag)" />
+                    <img class="imgFlag"  height="@taille" width="@taille" src="@Url.Content(Model.CheckBoxLanguageItemsForLanguageDefault[i].UrlFlag)" />
 
                     if (Model.CheckBoxLanguageItemsForLanguageDefault[i].IsSelected)
                     {
@@ -52,9 +52,9 @@
             <div style="font-family: FontAwesome; margin-bottom: 17px;">
                 @for (int i = 0; i < Model.CheckBoxLanguageItemsForTraduceAutomatically.Count; i++)
                 {
-                    <img height="@taille" width="@taille" src="@Url.Content(Model.CheckBoxLanguageItemsForTraduceAutomatically[i].UrlFlag)" />
+                    <img class="imgFlag" height="@taille" width="@taille" src="@Url.Content(Model.CheckBoxLanguageItemsForTraduceAutomatically[i].UrlFlag)" />
 
-                    @Html.CheckBoxFor(model => model.CheckBoxLanguageItemsForTraduceAutomatically[i].IsSelected, new { @style= "top: 2px;position: relative;margin-left: 4px;margin-right: 20px;" })
+                    @Html.CheckBoxFor(model => model.CheckBoxLanguageItemsForTraduceAutomatically[i].IsSelected, new { @style= "top: 2px;position: relative;margin-left: 4px;margin-right: 20px;", onclick= "ChangeLogiqueLecture();" })
 
                     @Html.HiddenFor(m => m.CheckBoxLanguageItemsForLanguageDefault[i].Language);
                 }

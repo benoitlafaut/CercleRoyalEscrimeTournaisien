@@ -152,6 +152,14 @@ function ListenSentence(sentence, isContinue) {
         }
     });
 }
+function ClickIconLeft() {
+    var inputRange = parseInt($("#inputRange").val()) - parseInt($("#NombreRowsToShow").val());
+    ChargerEpub(inputRange);
+}
+function ClickIconRight() {
+    var inputRange = parseInt($("#inputRange").val()) + parseInt($("#NombreRowsToShow").val());
+    ChargerEpub(inputRange);
+}
 function getSelectionText() {
     let text = "";
     const activeEl = document.activeElement;
@@ -449,7 +457,7 @@ function showTooltip() {
 function TranslateOtherLanguageThanFrench(texteToTranslate, langueDestination, outputElement, langueFrom) {
     $('#' + outputElement).val('');
 
-    if (texteToTranslate == '' || texteToTranslate == ' ' || texteToTranslate == ' ') { return; }
+    if (texteToTranslate.trim() == '' || texteToTranslate == ' ' || texteToTranslate == ' ') { return; }
 
     var data = JSON.stringify({
         format: "text",
@@ -625,9 +633,18 @@ function ChargerEpub(currentRow) {
         });
     }
 }
+function ChangeLogiqueLecture() {
+    $('#IsLectureWithLangue').prop('checked', 'checked');
 
+
+    ChangeFaçonDeLire();
+}
 function FillTable() {
     let rowToTranslate;
+
+    if ($("#" + "rowsToRead_0_").val() == undefined) {
+        return;
+    }
 
     $('#tableBody').empty();
     for (let i = $("#CurrentStep").val(); i < $("#CurrentStepFinal").val(); i++) {
@@ -639,7 +656,7 @@ function FillTable() {
 
         $('#tableBody').append("<tr><td id=" + nameTd + " class='ClassTDText'></td></tr>");
 
-        $('#' + 'tdInTable_' + i + '_').append("<i class='fa fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 3px;'></i>");
+        $('#' + 'tdInTable_' + i + '_').append("<i class='fa fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
 
         $('#' + 'tdInTable_' + i + '_' + '  .fa-play-Benoit')[0].onclick = function () {
             ListenSentence(row, 'false');
@@ -661,7 +678,7 @@ function FillTable() {
 
             if ($("#CheckBoxLanguageItemsForTraduceAutomatically_1__IsSelected:checked").val() == 'true') {
                 $('#tableBody').append("<tr><td" + " class='ClassTDText'><span id=PhraseUniqueToTranslateNL></span></td></tr>");
-                $("#PhraseUniqueToTranslateNL").before("<i class='fa fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 3px;'></i>");
+                $("#PhraseUniqueToTranslateNL").before("<i class='fa fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
                 $('#PhraseUniqueToTranslateNL').prev('.fa-play-Benoit')[0].onclick = function () {
                     responsiveVoice.speak($("#PhraseUniqueToTranslateNL").text(), GetVoiceForResponsive("dut"));
                 };
@@ -670,7 +687,7 @@ function FillTable() {
 
             if ($("#CheckBoxLanguageItemsForTraduceAutomatically_2__IsSelected:checked").val() == 'true') {
                 $('#tableBody').append("<tr><td" + " class='ClassTDText'><span id=PhraseUniqueToTranslateEN></span></td></tr>");
-                $("#PhraseUniqueToTranslateEN").before("<i class='fa fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 3px;'></i>");
+                $("#PhraseUniqueToTranslateEN").before("<i class='fa fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
                 $('#PhraseUniqueToTranslateEN').prev('.fa-play-Benoit')[0].onclick = function () {
                     responsiveVoice.speak($("#PhraseUniqueToTranslateEN").text(), GetVoiceForResponsive("eng"));
                 };
@@ -679,7 +696,7 @@ function FillTable() {
 
             if ($("#CheckBoxLanguageItemsForTraduceAutomatically_3__IsSelected:checked").val() == 'true') {
                 $('#tableBody').append("<tr><td" + " class='ClassTDText'><span id=PhraseUniqueToTranslateES></span></td></tr>");
-                $("#PhraseUniqueToTranslateES").before("<i class='fa fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 3px;'></i>");
+                $("#PhraseUniqueToTranslateES").before("<i class='fa fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
                 $('#PhraseUniqueToTranslateES').prev('.fa-play-Benoit')[0].onclick = function () {
                     responsiveVoice.speak($("#PhraseUniqueToTranslateES").text(), GetVoiceForResponsive("spa"));
                 };
@@ -688,7 +705,7 @@ function FillTable() {
 
             if ($("#CheckBoxLanguageItemsForTraduceAutomatically_4__IsSelected:checked").val() == 'true') {
                 $('#tableBody').append("<tr><td" + " class='ClassTDText'><span id=PhraseUniqueToTranslateDE></span></td></tr>");
-                $("#PhraseUniqueToTranslateDE").before("<i class='fa fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 3px;'></i>");
+                $("#PhraseUniqueToTranslateDE").before("<i class='fa fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
                 $('#PhraseUniqueToTranslateDE').prev('.fa-play-Benoit')[0].onclick = function () {
                     responsiveVoice.speak($("#PhraseUniqueToTranslateDE").text(), GetVoiceForResponsive("ger"));
                 };
@@ -697,7 +714,7 @@ function FillTable() {
 
             if ($("#CheckBoxLanguageItemsForTraduceAutomatically_5__IsSelected:checked").val() == 'true') {
                 $('#tableBody').append("<tr><td" + " class='ClassTDText'><span id=PhraseUniqueToTranslateIT></span></td></tr>");
-                $("#PhraseUniqueToTranslateIT").before("<i class='fa fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 3px;'></i>");
+                $("#PhraseUniqueToTranslateIT").before("<i class='fa fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
                 $('#PhraseUniqueToTranslateIT').prev('.fa-play-Benoit')[0].onclick = function () {
                     responsiveVoice.speak($("#PhraseUniqueToTranslateIT").text(), GetVoiceForResponsive("ita"));
                 };

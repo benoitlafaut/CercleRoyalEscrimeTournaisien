@@ -10,7 +10,7 @@
                 {
                     if (Model.Francais)
                     {
-                        <li><i class='fa fa-play fa-play-Benoit' style='font-size: 15px; margin-right: 3px;' onclick="ListenOnlySentence('@Model.PhrasesFrancaises[iloop].Replace("\'", "&#39")', 'PhrasesFrancaises_' + @iloop + '_')"></i> @Html.LabelForModel(Model.PhrasesFrancaises[iloop], new { @class = "classLabelSentence", id = "PhrasesFrancaises_" + iloop + "_" }) </li>
+                        <li><i class='fa fa-play fa-play-Benoit' style='font-size: 15px; margin-right: 7px;' onclick="ListenOnlySentence('@Model.PhrasesFrancaises[iloop].Replace("\'", "&#39")', 'PhrasesFrancaises_' + @iloop + '_')"></i> @Html.LabelForModel(Model.PhrasesFrancaises[iloop], new { @class = "classLabelSentence", id = "PhrasesFrancaises_" + iloop + "_" }) </li>
                     }
                     else
                     {

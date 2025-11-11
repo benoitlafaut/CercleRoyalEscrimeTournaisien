@@ -47,3 +47,9 @@
         height: 80%;
     }
 }
+
+@media (max-width: 991px) {
+    .imgFlag {
+        zoom:0.7;
+    }
+}

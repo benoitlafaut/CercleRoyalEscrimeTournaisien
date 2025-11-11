@@ -13,6 +13,7 @@
         position: relative;
         width: 90%;
         left: 5%;
+        margin-top: 15px;
     }
 
     .TreeMainExpand {
@@ -81,6 +82,7 @@
         position: fixed;
         width: 90%;
         left: 5%;
+        margin-top: 15px;
     }
 
     .TreeMainExpand {
@@ -221,4 +223,47 @@ hrben {
 
 .glyphicon-minus {
     font-size: 15px;
+}
+
+
+
+@media screen and (min-width: 767px) {
+    .IconLeft {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 15px;
+        color: coral;
+        display: none;
+    }
+
+    .IconRight {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 15px;
+        color: coral;
+        display: none;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .IconLeft {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 15px;
+        color: coral;
+    }
+    .IconRight {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 15px;
+        color: coral;
+    }
 }
