@@ -10,8 +10,8 @@
 }
 
 <div id="divMain" class="TreeMainCollapse">
-    <div class="glyphicon glyphicon-plus" style="margin-bottom: 10px; background-color: mistyrose;" id="ulToExpandCollapse" onclick="ExpandCollapseNew(this);">
-        <i id="iconToListenAll" style="@styleIconToListelAll" onclick="StartPlayAllSentence();" class="ClassSound ClassStyleSound fa fa-volume-up" aria-hidden="true"></i>
+    <div class="ClassIconMobile glyphicon glyphicon-plus" style="margin-bottom: 10px; box-shadow: 4px 4px 20px 7px lightgrey;" id="ulToExpandCollapse" onclick="ExpandCollapseNew(this);">
+        <i id="iconToListenAll" style="@styleIconToListelAll" onclick="StartPlayAllSentence();" class="ClassIconMobile ClassSound ClassStyleSound fa fa-volume-up" aria-hidden="true"></i>
         <div id="divNextToExpandCollapse" style="display: none; margin-left: 15px; margin-top: 10px;  ">
             <div style="margin-bottom:10px;">
                 <span id="SpanConvertEpub" style="font-family: arial;" class="ClassTextNode">
@@ -33,19 +33,19 @@
 
                     if (Model.CheckBoxLanguageItemsForLanguageDefault[i].IsSelected)
                     {
-                        @Html.RadioButtonFor(model => model.LanguageForLanguageDefaultSelected, Model.CheckBoxLanguageItemsForLanguageDefault[i].Language, new { @style = "top: 2px;position: relative;margin-left: -8px;margin-right: 9px;", @checked = Model.CheckBoxLanguageItemsForLanguageDefault[i].IsSelected ? "Checked" : "" })
+                        @Html.RadioButtonFor(model => model.LanguageForLanguageDefaultSelected, Model.CheckBoxLanguageItemsForLanguageDefault[i].Language, new { @class = "ClassCheckboxNearFlag", @checked = Model.CheckBoxLanguageItemsForLanguageDefault[i].IsSelected ? "Checked" : "" })
                     }
                     else
                     {
-                        @Html.RadioButtonFor(model => model.LanguageForLanguageDefaultSelected, Model.CheckBoxLanguageItemsForLanguageDefault[i].Language, new { @style = "top: 2px;position: relative;margin-left: -8px;margin-right: 9px;" })
+                        @Html.RadioButtonFor(model => model.LanguageForLanguageDefaultSelected, Model.CheckBoxLanguageItemsForLanguageDefault[i].Language, new { @class = "ClassCheckboxNearFlag" })
                     }
 
                     @Html.HiddenFor(m => m.CheckBoxLanguageItemsForLanguageDefault[i].Language);
                     }
             </div>
 
-            <div class="row" style="font-family: FontAwesome; margin-bottom: 12px;">
-                <span  style="margin-left:13px;margin-right:8px;margin-bottom:0px;font-family: FontAwesome;">Changer la lecture avec traduction automatique :</span>
+            <div class="row" style="font-family: FontAwesome; margin-bottom: 12px; margin-top: 33px;">
+                <span  style="margin-left:13px;margin-right:8px;margin-bottom:0px;font-family: FontAwesome;">Traduction automatique :</span>
                 @Html.CheckBoxFor(m => Model.IsLectureWithLangue, new { @onclick = "ChangeFaçonDeLire();" })
             </div>
 
@@ -54,7 +54,7 @@
                 {
                     <img class="imgFlag" height="@taille" width="@taille" src="@Url.Content(Model.CheckBoxLanguageItemsForTraduceAutomatically[i].UrlFlag)" />
 
-                    @Html.CheckBoxFor(model => model.CheckBoxLanguageItemsForTraduceAutomatically[i].IsSelected, new { @style= "top: 2px;position: relative;margin-left: 4px;margin-right: 20px;", onclick= "ChangeLogiqueLecture();" })
+                    @Html.CheckBoxFor(model => model.CheckBoxLanguageItemsForTraduceAutomatically[i].IsSelected, new { @class = "ClassSecondCheckboxNearFlag", onclick= "ChangeLogiqueLecture();" })
 
                     @Html.HiddenFor(m => m.CheckBoxLanguageItemsForLanguageDefault[i].Language);
                 }

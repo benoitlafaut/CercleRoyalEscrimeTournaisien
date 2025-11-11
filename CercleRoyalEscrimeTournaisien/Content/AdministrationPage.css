@@ -46,10 +46,41 @@
     .myModalYoutubeVideo {
         height: 80%;
     }
+    .ClassCheckboxNearFlag {
+        top: 2px;
+        position: relative;
+        margin-left: -8px;
+        margin-right: 9px;
+    }
+    .ClassSecondCheckboxNearFlag {
+        top: 2px;
+        position: relative;
+        margin-left: 4px !important;
+        margin-right: 20px !important;
+    }
 }
 
 @media (max-width: 991px) {
     .imgFlag {
         zoom:0.7;
+    }
+    .ClassCheckboxNearFlag {
+        top: 2px;
+        position: relative;
+        margin-left: -10px !important;        
+    }
+    .ClassSecondCheckboxNearFlag {
+        top: 2px;
+        position: relative;
+        margin-left: 4px !important;
+        margin-right: 10px !important;
+    }
+    .ClassIconMobile {
+        font-size: 18px !important;
+        zoom: 1 !important;
+    }
+    .ClassDivTable {
+        height: 86vh;
+        overflow: scroll;
     }
 }

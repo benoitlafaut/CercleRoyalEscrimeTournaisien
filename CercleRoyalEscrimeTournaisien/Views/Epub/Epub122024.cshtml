@@ -46,8 +46,8 @@
 
 <html id="htmlId" style="height:100%">
 <body>
-    <span onclick="ClickIconLeft();" class="IconLeft glyphicon glyphicon-chevron-left"></span>
-    <span onclick="ClickIconRight();" class="IconRight glyphicon glyphicon-chevron-right"></span>
+    <span onclick="ClickIconLeft();" class="ClassIconMobile IconLeft glyphicon glyphicon-chevron-left"></span>
+    <span onclick="ClickIconRight();" class="ClassIconMobile IconRight glyphicon glyphicon-chevron-right"></span>
 
     @Html.Hidden("PositionDepartMouse")
     @Html.Hidden("PositionArriveeMouse")
@@ -65,7 +65,7 @@
         </button>
     </div>
 
-    <div id="@PartialViewNames.Epub122024_Body" style="">
+    <div id="@PartialViewNames.Epub122024_Body" style="margin-left: 12px; margin-right: 12px; ">
         @Html.Partial(PartialViewNames.Epub122024_Body, Model)
     </div>
 

@@ -9,7 +9,7 @@
     }
 
     .ClassSlider {
-        top: 96%;
+        top: 95%;
         position: relative;
         width: 90%;
         left: 5%;
@@ -55,7 +55,7 @@
     .ClassStyleSound {
         top: 6px;
         position: relative;
-        font-size: 1.8em !important;        
+        /*font-size: 1.8em !important;  */      
         margin-left: 5px;
     }    
 }
@@ -78,7 +78,7 @@
     }
 
     .ClassSlider {
-        top: 96%;
+        top: 95%;
         position: fixed;
         width: 90%;
         left: 5%;

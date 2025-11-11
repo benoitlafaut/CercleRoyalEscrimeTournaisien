@@ -410,12 +410,12 @@ function GetFrenchFromOtherLanguage(word, sentence) {
 }
 
 function GetVoice() {
-    if ($("#LanguageForLanguageDefaultSelected").val() == "FR") { return 'French Male'; }
-    if ($("#LanguageForLanguageDefaultSelected").val() == "ES") { return 'Spanish Latin American Female'; }
-    if ($("#LanguageForLanguageDefaultSelected").val() == "EN") { return 'UK English Female'; }
-    if ($("#LanguageForLanguageDefaultSelected").val() == "DE") { return 'Deutsch Female'; }
-    if ($("#LanguageForLanguageDefaultSelected").val() == "NL") { return 'Dutch Male'; }
-    if ($("#LanguageForLanguageDefaultSelected").val() == "IT") { return 'Italian Female'; }
+    if ($(".ClassCheckboxNearFlag").eq(0).is(':checked')) { return 'French Male'; }
+    if ($(".ClassCheckboxNearFlag").eq(1).is(':checked')) { return 'Spanish Latin American Female'; }
+    if ($(".ClassCheckboxNearFlag").eq(2).is(':checked')) { return 'UK English Female'; }
+    if ($(".ClassCheckboxNearFlag").eq(3).is(':checked')) { return 'Deutsch Female'; }
+    if ($(".ClassCheckboxNearFlag").eq(4).is(':checked')) { return 'Dutch Male'; }
+    if ($(".ClassCheckboxNearFlag").eq(5).is(':checked')) { return 'Italian Female'; }
 }
 
 function GetVoiceForResponsive(voiceTo) {
