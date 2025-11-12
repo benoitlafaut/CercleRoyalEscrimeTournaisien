@@ -14,6 +14,26 @@ namespace WebApplication1.Models
                 {
                                     new JourDePrésence()
                 {
+                  DatePrésence = new DateTime(2025,11,12),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAbelMotte,
+                    GuidConstantes.GuidAmadoSimon,
+                    GuidConstantes.GuidAnaelleIvanov,
+                    GuidConstantes.GuidBaptisteMotte,
+                    GuidConstantes.GuidBenedictCosentini,
+                    GuidConstantes.GuidFélixTrannoy,
+                    GuidConstantes.GuidLiliMestdag,
+                    GuidConstantes.GuidMaeVantroyen,
+                    GuidConstantes.GuidMartinSiu,
+                    GuidConstantes.GuidRebeccaVandy,
+                    GuidConstantes.GuidRomainBracquart,
+                    GuidConstantes.GuidSimeonTrovato,
+                    GuidConstantes.GuidSolalSchrouf,
+                  }
+                },
+                                    new JourDePrésence()
+                {
                   DatePrésence = new DateTime(2025,11,9),
                   EscrimeurId = new List<Guid>()
                   {
