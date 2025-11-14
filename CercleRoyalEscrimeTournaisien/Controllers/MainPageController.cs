@@ -648,6 +648,8 @@ namespace CercleRoyalEscrimeTournaisien
                         Motif = GetCellValue(ws.Cells[iLoop, 5].Text),
                         Period = GetCellValue(ws.Cells[iLoop, 6].Text),
                         EtatDuCompte = GetCellValue(ws.Cells[iLoop, 7].Text),
+                        DepensesRecettes = GetCellValue(ws.Cells[iLoop, 8].Text),
+                        Pots = GetCellValue(ws.Cells[iLoop, 9].Text),
                     });
                 }
                 excelPack.Save();
@@ -670,6 +672,8 @@ namespace CercleRoyalEscrimeTournaisien
                 ws.Cells[1, 5].Value = "Motif";
                 ws.Cells[1, 6].Value = "Période";
                 ws.Cells[1, 7].Value = "Etat Du compte";
+                ws.Cells[1, 8].Value = "Dépenses/Recettes";
+                ws.Cells[1, 9].Value = "Pots";
 
                 int jLoop = 3;
                 for (int iLoop = 0; iLoop <= excelRowTmp.Count-1; iLoop++)
@@ -681,6 +685,8 @@ namespace CercleRoyalEscrimeTournaisien
                     ws.Cells[jLoop, 5].Value = excelRowTmp[iLoop].Motif;
                     ws.Cells[jLoop, 6].Value = excelRowTmp[iLoop].Period;
                     ws.Cells[jLoop, 7].Value = excelRowTmp[iLoop].EtatDuCompte;
+                    ws.Cells[jLoop, 8].Value = excelRowTmp[iLoop].DepensesRecettes;
+                    ws.Cells[jLoop, 9].Value = excelRowTmp[iLoop].Pots;
                     jLoop++;
                 }
 
@@ -773,5 +779,7 @@ namespace CercleRoyalEscrimeTournaisien
         public string Motif { get; set; }
         public string Period { get; set; }
         public string EtatDuCompte { get; set; }
+        public string DepensesRecettes { get; set; }
+        public string Pots { get; set; }
     }
 }
