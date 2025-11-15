@@ -62,7 +62,6 @@ $(document).ready(function () {
         $("div.bootstrap-select").find('button.selectpicker').css('max-height', '18px');
     }, 500);
 });
-
 function ChangeDirection(direction) {
     
     let directionMax = 650;
@@ -82,7 +81,6 @@ function ChangeDirection(direction) {
         }
     }
 }
-
 function StartPlayAllSentence() {
     if ($("#iconToListenAll").css('color') == 'rgb(255, 0, 0)') {
         responsiveVoice.cancel();
@@ -103,46 +101,86 @@ function StartPlayAllSentence() {
 }
 
 function PlayAllSentence() {
-    var currentStep = $("#CurrentStep").val();
-    var currentStepPlusIndex = parseInt(currentStep) + parseInt($("#CurrentStepToListen").val());
-    var nameRowsToRead = "rowsToRead_" + currentStepPlusIndex + "_";
+    if ($("#IsLectureWithLangue").is(':checked') == true) {
+        var nameFR = "#tdInTable_" + $("#CurrentStep").val() + "_";
+        var nameEN = "#tdInTableEN_" + $("#CurrentStep").val() + "_";
+        var nameNL = "#tdInTableNL_" + $("#CurrentStep").val() + "_";
+        var nameES = "#tdInTableES_" + $("#CurrentStep").val() + "_";
+        var nameDE = "#tdInTableDE_" + $("#CurrentStep").val() + "_";
+        var nameIT = "#tdInTableIT_" + $("#CurrentStep").val() + "_";
 
-    $("#tdInTable_" + currentStepPlusIndex + "_").css('color', 'blue');
+        if (PlayLanguageIfNecessary(nameFR) == true) { return; };
+        if (PlayLanguageIfNecessary(nameNL) == true) { return; };
+        if (PlayLanguageIfNecessary(nameEN) == true) { return; };       
+        if (PlayLanguageIfNecessary(nameES) == true) { return; };
+        if (PlayLanguageIfNecessary(nameDE) == true) { return; };
+        if (PlayLanguageIfNecessary(nameIT) == true) { return; };        
+    }
+    else {
+        var currentStep = $("#CurrentStep").val();
+        var currentStepPlusIndex = parseInt(currentStep) + parseInt($("#CurrentStepToListen").val());
+        var nameRowsToRead = "rowsToRead_" + currentStepPlusIndex + "_";
 
-    ListenSentence($("#" + nameRowsToRead).val(), 'true');
+        $("#tdInTable_" + currentStepPlusIndex + "_").css('color', 'blue');
+
+        ListenSentence($("#" + nameRowsToRead), 'true');
+    }    
 }
 
-function ListenSentence(sentence, isContinue) {
+function PlayLanguageIfNecessary(element) {
+    if ($(element).is(':visible') == true) {
+        if ($(element).hasClass('AlreadyDone') == false) {
+            $(element).css('color', 'blue');
+            $(element).addClass('AlreadyDone');
+            ListenSentence($(element), 'true');
+            return true;
+        }
+    }
+
+    return false;
+}
+
+function ListenSentence(element, isContinue) {
+    var sentence = $(element).text();
     if (responsiveVoice.isPlaying()) {
         timeouts.push( setTimeout(function () {
-            ListenSentence(sentence);
+            ListenSentence(element);
         }, 1600),1000 );
 
         return;
     }
 
-    let voice = GetVoice();
+    let voice = GetVoice(element);
 
     responsiveVoice.speak(sentence, voice, {
         onend: function () {
-            if (isContinue == 'true') {
-                var currentStepToListen = $("#CurrentStepToListen").val();
+            if (isContinue == 'true') {   
+                if ($("#IsLectureWithLangue").is(':checked') == true) {
+                    var nameFR = "#tdInTable_" + $("#CurrentStep").val() + "_";
+                    var nameEN = "#tdInTableEN_" + $("#CurrentStep").val() + "_";
+                    var nameNL = "#tdInTableNL_" + $("#CurrentStep").val() + "_";
+                    var nameES = "#tdInTableES_" + $("#CurrentStep").val() + "_";
+                    var nameDE = "#tdInTableDE_" + $("#CurrentStep").val() + "_";
+                    var nameIT = "#tdInTableIT_" + $("#CurrentStep").val() + "_";
 
-                $(".ClassTDText").css('color', 'black');
-
-                currentStepToListen = parseInt(currentStepToListen) + 1;
-                $("#CurrentStepToListen").val(currentStepToListen);
-
-                if (currentStepToListen == parseInt($("#NombreRowsToShow").val())) {
-                    $("#CurrentStepToListen").val('0');
-
-                    var inputRange = parseInt($("#inputRange").val()) + parseInt($("#NombreRowsToShow").val());
-                    ChargerEpub(inputRange);
+                    var checkFR = checkNameVisibilityAndAlreadyDone(nameFR);
+                    var checkNL = checkNameVisibilityAndAlreadyDone(nameNL);
+                    var checkEN = checkNameVisibilityAndAlreadyDone(nameEN);                    
+                    var checkES = checkNameVisibilityAndAlreadyDone(nameES);
+                    var checkDE = checkNameVisibilityAndAlreadyDone(nameDE);
+                    var checkIT = checkNameVisibilityAndAlreadyDone(nameIT);
+                    
+                    if (checkFR && checkEN && checkNL && checkES && checkDE && checkIT) {
+                        changeRangePlusOne();                       
+                    }
                 }
+                else {
+                    changeRangePlusOne();
+                }                
 
                 timeouts.push(setTimeout(function () {
                     PlayAllSentence();
-                }, 400), 1000);
+                }, 400), 1000);            
             }
         },
         onstart: function () {
@@ -152,6 +190,30 @@ function ListenSentence(sentence, isContinue) {
         }
     });
 }
+
+function changeRangePlusOne() {
+    var currentStepToListen = $("#CurrentStepToListen").val();
+
+    $(".ClassTDText").css('color', 'black');
+
+    currentStepToListen = parseInt(currentStepToListen) + 1;
+    $("#CurrentStepToListen").val(currentStepToListen);
+
+    if (currentStepToListen == parseInt($("#NombreRowsToShow").val())) {
+        $("#CurrentStepToListen").val('0');
+
+        var inputRange = parseInt($("#inputRange").val()) + parseInt($("#NombreRowsToShow").val());
+        ChargerEpub(inputRange);
+    }
+}
+function checkNameVisibilityAndAlreadyDone(element) {
+    if ($(element).is(':visible') == true) {
+        if ($(element).hasClass('AlreadyDone') == false) {
+            return false;
+        }
+    }
+    return true;
+}
 function ClickIconLeft() {
     var inputRange = parseInt($("#inputRange").val()) - parseInt($("#NombreRowsToShow").val());
     ChargerEpub(inputRange);
@@ -160,272 +222,65 @@ function ClickIconRight() {
     var inputRange = parseInt($("#inputRange").val()) + parseInt($("#NombreRowsToShow").val());
     ChargerEpub(inputRange);
 }
-function getSelectionText() {
-    let text = "";
-    const activeEl = document.activeElement;
-    const activeElTagName = activeEl ? activeEl.tagName.toLowerCase() : null;
+//function getSelectionText() {
+//    let text = "";
+//    const activeEl = document.activeElement;
+//    const activeElTagName = activeEl ? activeEl.tagName.toLowerCase() : null;
 
-    if (
-        (activeElTagName == "textarea") || (activeElTagName == "input" &&
-            /^(?:text|search|password|tel|url)$/i.test(activeEl.type)) &&
-        (typeof activeEl.selectionStart == "number")
-    ) {
-        text = activeEl.value.slice(activeEl.selectionStart, activeEl.selectionEnd);
-    } else if (window.getSelection) {
-        text = window.getSelection().toString();
-    }
+//    if (
+//        (activeElTagName == "textarea") || (activeElTagName == "input" &&
+//            /^(?:text|search|password|tel|url)$/i.test(activeEl.type)) &&
+//        (typeof activeEl.selectionStart == "number")
+//    ) {
+//        text = activeEl.value.slice(activeEl.selectionStart, activeEl.selectionEnd);
+//    } else if (window.getSelection) {
+//        text = window.getSelection().toString();
+//    }
 
-    return text;
-}
-function ClickRow(element, sentence) {
-    var motFR = element.innerText;
-    var phraseFR = sentence.replaceAll("&#39", "'");
+//    return text;
+//}
 
-    if (motFR != '') {  
-        $(".ClassTextWord").text('');
-        $(".ClassTextSentence").text('');
 
-        if ($("#LanguageForLanguageDefaultSelected").val() != "FR") {
-            GetFrenchFromOtherLanguage(motFR, phraseFR);           
-        }
+//function GetFrenchFromOtherLanguage(word, sentence) {
+//    switch ($("#LanguageForLanguageDefaultSelected").val()) {
+//        case "EN":
+//            TranslateOtherLanguageThanFrench(word, 'fra', 'MotFR', 'eng');
+//            TranslateOtherLanguageThanFrench(sentence, 'fra', 'PhraseFR', 'eng');
+//            break;
+//        case "NL":
+//            TranslateOtherLanguageThanFrench(word, 'fra', 'MotFR', 'dut');
+//            TranslateOtherLanguageThanFrench(sentence, 'fra', 'PhraseFR', 'dut');
+//            break;
+//        case "ES":
+//            TranslateOtherLanguageThanFrench(word, 'fra', 'MotFR', 'spa');
+//            TranslateOtherLanguageThanFrench(sentence, 'fra', 'PhraseFR', 'spa');
+//            break;
+//        case "DE":
+//            TranslateOtherLanguageThanFrench(word, 'fra', 'MotFR', 'ger');
+//            TranslateOtherLanguageThanFrench(sentence, 'fra', 'PhraseFR', 'ger');
+//            break;
+//        case "IT":
+//            TranslateOtherLanguageThanFrench(word, 'fra', 'MotFR', 'ita');
+//            TranslateOtherLanguageThanFrench(sentence, 'fra', 'PhraseFR', 'ita');
+//            break;
+//    }    
+//}
 
-        var voiceFrom = GetVoiceFrom();
-
-        $("#idMotFR").css('display', 'none');
-        $("#idMotEN").css('display', 'none');
-        $("#idMotES").css('display', 'none');
-        $("#idMotNL").css('display', 'none');
-        $("#idMotDE").css('display', 'none');
-        $("#idMotIT").css('display', 'none');
-
-        $("#idPhraseFR").css('display', 'none');
-        $("#idPhraseEN").css('display', 'none');
-        $("#idPhraseES").css('display', 'none');
-        $("#idPhraseNL").css('display', 'none');
-        $("#idPhraseDE").css('display', 'none');
-        $("#idPhraseIT").css('display', 'none');
-
-        if ($("#LanguageForLanguageDefaultSelected").val() == "FR") {
-            $("#MotFR").text(motFR);
-            $("#PhraseFR").text(phraseFR);
-
-            $("#MotFR_Sound").off("click");
-            $("#PhraseFR_Sound").off("click");
-
-            $('#MotFR_Sound').click(function () {
-                responsiveVoice.speak(motFR, GetVoiceForResponsive("fra"));
-            });
-            $('#PhraseFR_Sound').click(function () {
-                responsiveVoice.speak(phraseFR, GetVoiceForResponsive("fra"));
-            });
-        }
-
-        $("#idMotFR").css('display', 'block');
-        $("#idPhraseFR").css('display', 'block');
-
-        if (voiceFrom != 'spa') {
-            TranslateOtherLanguageThanFrench(motFR, 'spa', 'MotES', voiceFrom);
-            TranslateOtherLanguageThanFrench(phraseFR, 'spa', 'PhraseES', voiceFrom);
-        }
-        else {
-            $("#MotES").text(motFR);
-            $("#PhraseES").text(phraseFR);
-
-            $("#MotES_Sound").off("click");
-            $("#PhraseES_Sound").off("click");
-
-            responsiveVoice.speak(motFR, GetVoiceForResponsive("spa"));
-
-            $("#MotES").css('color', 'blue');
-            $("#PhraseES").css('color', 'blue');
-            $("#PhraseES").prev('.ClassTitleText').css('color', 'blue');
-
-            $('#MotES_Sound').click(function () {
-                responsiveVoice.speak(motFR, GetVoiceForResponsive("spa"));
-            });
-            $('#PhraseES_Sound').click(function () {
-                responsiveVoice.speak(phraseFR, GetVoiceForResponsive("spa"));
-            });
-        }
-
-        $("#idMotES").css('display', 'block');
-        $("#idPhraseES").css('display', 'block');
-
-        if (voiceFrom != 'eng') {
-            TranslateOtherLanguageThanFrench(motFR, 'eng', 'MotEN', voiceFrom);
-            TranslateOtherLanguageThanFrench(phraseFR, 'eng', 'PhraseEN', voiceFrom);
-        }
-        else {
-            $("#MotEN").text(motFR);
-            $("#PhraseEN").text(phraseFR);
-
-            $("#MotEN_Sound").off("click");
-            $("#PhraseEN_Sound").off("click");
-
-            $("#MotEN").css('color', 'blue');
-            $("#PhraseEN").css('color', 'blue');
-            $("#PhraseEN").prev('.ClassTitleText').css('color', 'blue');
-
-            responsiveVoice.speak(motFR, GetVoiceForResponsive("eng"));
-
-            $('#MotEN_Sound').click(function () {
-                responsiveVoice.speak(motFR, GetVoiceForResponsive("eng"));
-            });
-            $('#PhraseEN_Sound').click(function () {
-                responsiveVoice.speak(phraseFR, GetVoiceForResponsive("eng"));
-            });
-        }
-
-        $("#idMotEN").css('display', 'block');
-        $("#idPhraseEN").css('display', 'block');
-
-        if (voiceFrom != 'ger') {
-            TranslateOtherLanguageThanFrench(motFR, 'ger', 'MotDE', voiceFrom);
-            TranslateOtherLanguageThanFrench(phraseFR, 'ger', 'PhraseDE', voiceFrom);
-        }
-        else {
-            $("#MotDE").text(motFR);
-            $("#PhraseDE").text(phraseFR);
-
-            $("#MotDE").css('color','blue');
-            $("#PhraseDE").css('color', 'blue');
-            $("#PhraseDE").prev('.ClassTitleText').css('color', 'blue');
-
-            $("#MotDE_Sound").off("click");
-            $("#PhraseDE_Sound").off("click");
-
-            responsiveVoice.speak(motFR, GetVoiceForResponsive("ger"));
-
-            $('#MotDE_Sound').click(function () {
-                responsiveVoice.speak(motFR, GetVoiceForResponsive("ger"));
-            });
-            $('#PhraseDE_Sound').click(function () {
-                responsiveVoice.speak(phraseFR, GetVoiceForResponsive("ger"));
-            });
-        }
-
-        $("#idMotDE").css('display', 'block');
-        $("#idPhraseDE").css('display', 'block');
-
-        if (voiceFrom != 'dut') {
-            TranslateOtherLanguageThanFrench(motFR, 'dut', 'MotNL', voiceFrom);
-            TranslateOtherLanguageThanFrench(phraseFR, 'dut', 'PhraseNL', voiceFrom);
-        }
-        else {
-            $("#MotNL").text(motFR);
-            $("#PhraseNL").text(phraseFR);
-
-            $("#MotNL_Sound").off("click");
-            $("#PhraseNL_Sound").off("click");
-
-            $("#MotNL").css('color', 'blue');
-            $("#PhraseNL").css('color', 'blue');
-            $("#PhraseNL").prev('.ClassTitleText').css('color', 'blue');
-
-            responsiveVoice.speak(motFR, GetVoiceForResponsive("dut"));
-
-            $('#MotNL_Sound').click(function () {
-                responsiveVoice.speak(motFR, GetVoiceForResponsive("dut"));
-            });
-            $('#PhraseNL_Sound').click(function () {
-                responsiveVoice.speak(phraseFR, GetVoiceForResponsive("dut"));
-            });
-        }
-
-        $("#idMotNL").css('display', 'block');
-        $("#idPhraseNL").css('display', 'block');
-
-        if (voiceFrom != 'ita') {
-            TranslateOtherLanguageThanFrench(motFR, 'ita', 'MotIT', voiceFrom);
-            TranslateOtherLanguageThanFrench(phraseFR, 'ita', 'PhraseIT', voiceFrom);
-        }
-        else {
-            $("#MotIT").text(motFR);
-            $("#PhraseIT").text(phraseFR);
-
-            $("#MotIT_Sound").off("click");
-            $("#PhraseIT_Sound").off("click");
-
-            $("#MotIT").css('color', 'blue');
-            $("#PhraseIT").css('color', 'blue');
-            $("#PhraseIT").prev('.ClassTitleText').css('color', 'blue');
-
-            responsiveVoice.speak(motFR, GetVoiceForResponsive("ita"));
-
-            $('#MotIT_Sound').click(function () {
-                responsiveVoice.speak(motFR, GetVoiceForResponsive("ita"));
-            });
-            $('#PhraseIT_Sound').click(function () {
-                responsiveVoice.speak(phraseFR, GetVoiceForResponsive("ita"));
-            });
-        }
-
-        $("#idMotIT").css('display', 'block');
-        $("#idPhraseIT").css('display', 'block');
-
-        var modal = document.getElementById("myModalTraductionPopup");
-        modal.style.display = "block";
-    };
+function GetVoice(element) {
+    if ($(element).find('i').hasClass('playFR')) { return 'French Male'; }
+    if ($(element).find('i').hasClass('playES')) { return 'Spanish Latin American Female'; }
+    if ($(element).find('i').hasClass('playEN')) { return 'UK English Female'; }
+    if ($(element).find('i').hasClass('playNL')) { return 'Dutch Male'; }
+    if ($(element).find('i').hasClass('playIT')) { return 'Italian Female'; }
+    if ($(element).find('i').hasClass('playDE')) { return 'Deutsch Female'; }
+//    if ($(".ClassCheckboxNearFlag").eq(1).is(':checked')) { return 'Spanish Latin American Female'; }
+//    if ($(".ClassCheckboxNearFlag").eq(2).is(':checked')) { return 'UK English Female'; }
+//    if ($(".ClassCheckboxNearFlag").eq(3).is(':checked')) { return 'Deutsch Female'; }
+//    if ($(".ClassCheckboxNearFlag").eq(4).is(':checked')) { return 'Dutch Male'; }
+//    if ($(".ClassCheckboxNearFlag").eq(5).is(':checked')) { return 'Italian Female'; }
 }
 
-function GetVoiceFrom() {
-    switch ($("#LanguageForLanguageDefaultSelected").val()) {
-        case "FR":
-            return "fra";            
-        case "EN":
-            return "eng";            
-        case "NL":
-            return "dut";            
-        case "ES":
-            return "spa";            
-        case "DE":
-            return "ger";            
-        case "IT":
-            return "ita";            
-    }
-}
-function GetFrenchFromOtherLanguage(word, sentence) {
-    switch ($("#LanguageForLanguageDefaultSelected").val()) {
-        case "EN":
-            TranslateOtherLanguageThanFrench(word, 'fra', 'MotFR', 'eng');
-            TranslateOtherLanguageThanFrench(sentence, 'fra', 'PhraseFR', 'eng');
-            break;
-        case "NL":
-            TranslateOtherLanguageThanFrench(word, 'fra', 'MotFR', 'dut');
-            TranslateOtherLanguageThanFrench(sentence, 'fra', 'PhraseFR', 'dut');
-            break;
-        case "ES":
-            TranslateOtherLanguageThanFrench(word, 'fra', 'MotFR', 'spa');
-            TranslateOtherLanguageThanFrench(sentence, 'fra', 'PhraseFR', 'spa');
-            break;
-        case "DE":
-            TranslateOtherLanguageThanFrench(word, 'fra', 'MotFR', 'ger');
-            TranslateOtherLanguageThanFrench(sentence, 'fra', 'PhraseFR', 'ger');
-            break;
-        case "IT":
-            TranslateOtherLanguageThanFrench(word, 'fra', 'MotFR', 'ita');
-            TranslateOtherLanguageThanFrench(sentence, 'fra', 'PhraseFR', 'ita');
-            break;
-    }    
-}
 
-function GetVoice() {
-    if ($(".ClassCheckboxNearFlag").eq(0).is(':checked')) { return 'French Male'; }
-    if ($(".ClassCheckboxNearFlag").eq(1).is(':checked')) { return 'Spanish Latin American Female'; }
-    if ($(".ClassCheckboxNearFlag").eq(2).is(':checked')) { return 'UK English Female'; }
-    if ($(".ClassCheckboxNearFlag").eq(3).is(':checked')) { return 'Deutsch Female'; }
-    if ($(".ClassCheckboxNearFlag").eq(4).is(':checked')) { return 'Dutch Male'; }
-    if ($(".ClassCheckboxNearFlag").eq(5).is(':checked')) { return 'Italian Female'; }
-}
-
-function GetVoiceForResponsive(voiceTo) {
-    if (voiceTo == "fra") { return 'French Male'; }
-    if (voiceTo == "spa") { return 'Spanish Latin American Female'; }
-    if (voiceTo == "eng") { return 'UK English Female'; }
-    if (voiceTo == "ger") { return 'Deutsch Female'; }
-    if (voiceTo == "dut") { return 'Dutch Male'; }
-    if (voiceTo == "ita") { return 'Italian Female'; }
-}
 function ExpandCollapse(element) {
     
     if ($("ul").eq(0).find('span').eq(0).hasClass('glyphicon-minus')) {
@@ -495,6 +350,15 @@ function TranslateOtherLanguageThanFrench(texteToTranslate, langueDestination, o
             alert(b + '-' + c);
         }
     });
+}
+
+function GetVoiceForResponsive(voiceTo) {
+    if (voiceTo == "fra") { return 'French Male'; }
+    if (voiceTo == "spa") { return 'Spanish Latin American Female'; }
+    if (voiceTo == "eng") { return 'UK English Female'; }
+    if (voiceTo == "ger") { return 'Deutsch Female'; }
+    if (voiceTo == "dut") { return 'Dutch Male'; }
+    if (voiceTo == "ita") { return 'Italian Female'; }
 }
 function ConvertEpub() {
     let formData = new FormData();
@@ -635,8 +499,6 @@ function ChargerEpub(currentRow) {
 }
 function ChangeLogiqueLecture() {
     $('#IsLectureWithLangue').prop('checked', 'checked');
-
-
     ChangeFaçonDeLire();
 }
 function FillTable() {
@@ -656,10 +518,11 @@ function FillTable() {
 
         $('#tableBody').append("<tr><td id=" + nameTd + " class='ClassTDText'></td></tr>");
 
-        $('#' + 'tdInTable_' + i + '_').append("<i class='fa fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
+        $('#' + 'tdInTable_' + i + '_').append("<i class='fa playFR fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
 
         $('#' + 'tdInTable_' + i + '_' + '  .fa-play-Benoit')[0].onclick = function () {
-            ListenSentence(row, 'false');
+           // ListenSentence(row, 'false');
+            responsiveVoice.speak($('#' + 'tdInTable_' + i + '_').text(), GetVoiceForResponsive("fra"));
         };
 
         if ($("#IsLectureWithLangue:checked").val() != 'true') {
@@ -668,17 +531,17 @@ function FillTable() {
 
                 $('#' + 'tdInTable_' + i + '_').append("<span id='" + wordsInSentence + "' class='ClassWord' style='user-select: all;'>" + item + " </span>");
 
-                $('#' + wordsInSentence)[0].onclick = function () {
-                    ClickRow(this, row);
-                };
+                //$('#' + wordsInSentence)[0].onclick = function () {
+                //    ClickRow(this, row);
+                //};
             });
         }
         else {
             $('#' + 'tdInTable_' + i + '_').append("<span style='user-select: all;'>" + row + " </span>");
 
             if ($("#CheckBoxLanguageItemsForTraduceAutomatically_1__IsSelected:checked").val() == 'true') {
-                $('#tableBody').append("<tr><td" + " class='ClassTDText'><span id=PhraseUniqueToTranslateNL></span></td></tr>");
-                $("#PhraseUniqueToTranslateNL").before("<i class='fa fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
+                $('#tableBody').append("<tr><td" + " id=tdInTableNL_" + i + "_" + " class='ClassTDText'><span id=PhraseUniqueToTranslateNL></span></td></tr>");
+                $("#PhraseUniqueToTranslateNL").before("<i class='fa playNL fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
                 $('#PhraseUniqueToTranslateNL').prev('.fa-play-Benoit')[0].onclick = function () {
                     responsiveVoice.speak($("#PhraseUniqueToTranslateNL").text(), GetVoiceForResponsive("dut"));
                 };
@@ -686,8 +549,8 @@ function FillTable() {
             }
 
             if ($("#CheckBoxLanguageItemsForTraduceAutomatically_2__IsSelected:checked").val() == 'true') {
-                $('#tableBody').append("<tr><td" + " class='ClassTDText'><span id=PhraseUniqueToTranslateEN></span></td></tr>");
-                $("#PhraseUniqueToTranslateEN").before("<i class='fa fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
+                $('#tableBody').append("<tr><td" + " id=tdInTableEN_" + i + "_" + " class='ClassTDText'><span id=PhraseUniqueToTranslateEN></span></td></tr>");
+                $("#PhraseUniqueToTranslateEN").before("<i class='fa playEN fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
                 $('#PhraseUniqueToTranslateEN').prev('.fa-play-Benoit')[0].onclick = function () {
                     responsiveVoice.speak($("#PhraseUniqueToTranslateEN").text(), GetVoiceForResponsive("eng"));
                 };
@@ -695,8 +558,8 @@ function FillTable() {
             }
 
             if ($("#CheckBoxLanguageItemsForTraduceAutomatically_3__IsSelected:checked").val() == 'true') {
-                $('#tableBody').append("<tr><td" + " class='ClassTDText'><span id=PhraseUniqueToTranslateES></span></td></tr>");
-                $("#PhraseUniqueToTranslateES").before("<i class='fa fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
+                $('#tableBody').append("<tr><td" + " id=tdInTableES_" + i + "_" + " class='ClassTDText'><span id=PhraseUniqueToTranslateES></span></td></tr>");
+                $("#PhraseUniqueToTranslateES").before("<i class='fa playES fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
                 $('#PhraseUniqueToTranslateES').prev('.fa-play-Benoit')[0].onclick = function () {
                     responsiveVoice.speak($("#PhraseUniqueToTranslateES").text(), GetVoiceForResponsive("spa"));
                 };
@@ -704,8 +567,8 @@ function FillTable() {
             }
 
             if ($("#CheckBoxLanguageItemsForTraduceAutomatically_4__IsSelected:checked").val() == 'true') {
-                $('#tableBody').append("<tr><td" + " class='ClassTDText'><span id=PhraseUniqueToTranslateDE></span></td></tr>");
-                $("#PhraseUniqueToTranslateDE").before("<i class='fa fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
+                $('#tableBody').append("<tr><td" + " id=tdInTableDE_" + i + "_" + " class='ClassTDText'><span id=PhraseUniqueToTranslateDE></span></td></tr>");
+                $("#PhraseUniqueToTranslateDE").before("<i class='fa playDE fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
                 $('#PhraseUniqueToTranslateDE').prev('.fa-play-Benoit')[0].onclick = function () {
                     responsiveVoice.speak($("#PhraseUniqueToTranslateDE").text(), GetVoiceForResponsive("ger"));
                 };
@@ -713,8 +576,8 @@ function FillTable() {
             }
 
             if ($("#CheckBoxLanguageItemsForTraduceAutomatically_5__IsSelected:checked").val() == 'true') {
-                $('#tableBody').append("<tr><td" + " class='ClassTDText'><span id=PhraseUniqueToTranslateIT></span></td></tr>");
-                $("#PhraseUniqueToTranslateIT").before("<i class='fa fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
+                $('#tableBody').append("<tr><td" + " id=tdInTableIT_" + i + "_" + " class='ClassTDText'><span id=PhraseUniqueToTranslateIT></span></td></tr>");
+                $("#PhraseUniqueToTranslateIT").before("<i class='fa playIT fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
                 $('#PhraseUniqueToTranslateIT').prev('.fa-play-Benoit')[0].onclick = function () {
                     responsiveVoice.speak($("#PhraseUniqueToTranslateIT").text(), GetVoiceForResponsive("ita"));
                 };

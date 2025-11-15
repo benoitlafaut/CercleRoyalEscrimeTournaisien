@@ -208,3 +208,11 @@
     }
 }
 
+@media (min-width: 1300px) and (max-width : 1600px) {
+    #planAndPhotos {
+        zoom: 0.9;
+    }
+    #divGeneralForPhotosAndMaps {
+        height: 480px;
+    }   
+}
