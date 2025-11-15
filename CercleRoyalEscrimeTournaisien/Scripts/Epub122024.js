@@ -171,7 +171,10 @@ function ListenSentence(element, isContinue) {
                     var checkIT = checkNameVisibilityAndAlreadyDone(nameIT);
                     
                     if (checkFR && checkEN && checkNL && checkES && checkDE && checkIT) {
-                        changeRangePlusOne();                       
+                        changeRangePlusOne();
+                    }
+                    else {
+                        $(element).css('color', 'black');
                     }
                 }
                 else {
