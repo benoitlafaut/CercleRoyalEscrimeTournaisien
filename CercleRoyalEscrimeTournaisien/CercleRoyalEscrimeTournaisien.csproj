@@ -1255,6 +1255,7 @@
     <Content Include="Poules\Poule 2025-11-09 Sabre.pdf" />
     <Content Include="Poules\Poule 2025-11-16 Débutants Epée.pdf" />
     <Content Include="Poules\Poule 2025-11-16 Epée.pdf" />
+    <Content Include="Poules\Questions après chaque match.docx" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

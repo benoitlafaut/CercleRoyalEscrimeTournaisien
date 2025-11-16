@@ -143,6 +143,32 @@ namespace CercleRoyalEscrimeTournaisien
                     new List<RemarqueParDate>() {
                     new RemarqueParDate()
                     {
+                        DateRemarque = new DateTime(2025, 11, 16),
+                        Arme = TypeArme.Epée,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                Remarque = "Un document a été rajouté dans les poules terminées. c'est un document qui sert non seulement aux poules et qui va vous permettre de progresser. Toutes les questions devraient se poser après chaque match. Le nom dans la liste des poules est 'Questions après chaque match'",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                           }
+                        }
+                    }, 
+                        new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 11, 16),
+                        Arme = TypeArme.Epée,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                Remarque = "2 poules ont été effectuées ce jour-là. Vous les trouverez en ligne avec les autres poules.",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                           }
+                        }
+                    }, 
+                        new RemarqueParDate()
+                    {
                         DateRemarque = new DateTime(2025, 11, 14),
                         Arme = TypeArme.Sabre,
                         RemarquesData = new List<RemarqueData>()
@@ -414,6 +440,7 @@ namespace CercleRoyalEscrimeTournaisien
                 return new Dictionary<string, string>()
                 {
                     { "", ""  },
+                    { "/Poules/Questions après chaque match.docx","Questions après chaque match" },
                     { "/Poules/Poule 2025-11-16 Débutants Epée.pdf","Poule 2025-11-16 Débutants Epée" },
                     { "/Poules/Poule 2025-11-16 Epée.pdf","Poule 2025-11-16 Epée" },
                     { "/Poules/Poule 2025-11-14 Epee.pdf","Poule 2025-11-14 Epee" },
