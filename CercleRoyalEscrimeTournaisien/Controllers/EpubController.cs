@@ -67,6 +67,14 @@ namespace CercleRoyalEscrimeTournaisien
 
             return PartialView(PartialViewNames.Epub122024_Body, modelEpub122024);
         }
+
+        [HttpPost]
+        public Task<ActionResult> stockerCurrentRowInDB(string currentRow, string fileNameBook)
+        {
+            UpdateInDBForNumberOfPage(fileNameBook, currentRow);
+            return null;
+        }
+
         public bool IsMobileDeviceDetected()
         {
             bool isMobileDeviceDetected = false;

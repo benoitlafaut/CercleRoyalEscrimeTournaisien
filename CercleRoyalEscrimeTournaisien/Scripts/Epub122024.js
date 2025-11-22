@@ -456,6 +456,7 @@ function ChargerEpub(currentRow) {
         $("#inputRangeSpan").text(currentRow + '/' + $("#RowsToReadCount").val());
         wheelLoad();
         $("#inputRange").val(currentRow);
+        stockerCurrentRowInDB();
     }
     else {
         let allfilesSelect = $("#inputFile").get(0).files;
@@ -499,6 +500,17 @@ function ChargerEpub(currentRow) {
             }
         });
     }
+}
+
+function stockerCurrentRowInDB()
+{
+    $.ajax({
+        type: "POST",
+        url: "/Epub/stockerCurrentRowInDB",
+        data: { currentRow: $("#CurrentStep").val(), fileNameBook: $("#FileNameBook").val() },
+        success: function (result) {            
+        }
+    });
 }
 function ChangeLogiqueLecture() {
     $('#IsLectureWithLangue').prop('checked', 'checked');
