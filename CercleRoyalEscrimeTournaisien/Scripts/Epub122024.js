@@ -225,49 +225,8 @@ function ClickIconRight() {
     var inputRange = parseInt($("#inputRange").val()) + parseInt($("#NombreRowsToShow").val());
     ChargerEpub(inputRange);
 }
-//function getSelectionText() {
-//    let text = "";
-//    const activeEl = document.activeElement;
-//    const activeElTagName = activeEl ? activeEl.tagName.toLowerCase() : null;
-
-//    if (
-//        (activeElTagName == "textarea") || (activeElTagName == "input" &&
-//            /^(?:text|search|password|tel|url)$/i.test(activeEl.type)) &&
-//        (typeof activeEl.selectionStart == "number")
-//    ) {
-//        text = activeEl.value.slice(activeEl.selectionStart, activeEl.selectionEnd);
-//    } else if (window.getSelection) {
-//        text = window.getSelection().toString();
-//    }
-
-//    return text;
-//}
 
 
-//function GetFrenchFromOtherLanguage(word, sentence) {
-//    switch ($("#LanguageForLanguageDefaultSelected").val()) {
-//        case "EN":
-//            TranslateOtherLanguageThanFrench(word, 'fra', 'MotFR', 'eng');
-//            TranslateOtherLanguageThanFrench(sentence, 'fra', 'PhraseFR', 'eng');
-//            break;
-//        case "NL":
-//            TranslateOtherLanguageThanFrench(word, 'fra', 'MotFR', 'dut');
-//            TranslateOtherLanguageThanFrench(sentence, 'fra', 'PhraseFR', 'dut');
-//            break;
-//        case "ES":
-//            TranslateOtherLanguageThanFrench(word, 'fra', 'MotFR', 'spa');
-//            TranslateOtherLanguageThanFrench(sentence, 'fra', 'PhraseFR', 'spa');
-//            break;
-//        case "DE":
-//            TranslateOtherLanguageThanFrench(word, 'fra', 'MotFR', 'ger');
-//            TranslateOtherLanguageThanFrench(sentence, 'fra', 'PhraseFR', 'ger');
-//            break;
-//        case "IT":
-//            TranslateOtherLanguageThanFrench(word, 'fra', 'MotFR', 'ita');
-//            TranslateOtherLanguageThanFrench(sentence, 'fra', 'PhraseFR', 'ita');
-//            break;
-//    }    
-//}
 
 function GetVoice(element) {
     if ($(element).find('i').hasClass('playFR')) { return 'French Male'; }
@@ -276,11 +235,6 @@ function GetVoice(element) {
     if ($(element).find('i').hasClass('playNL')) { return 'Dutch Male'; }
     if ($(element).find('i').hasClass('playIT')) { return 'Italian Female'; }
     if ($(element).find('i').hasClass('playDE')) { return 'Deutsch Female'; }
-//    if ($(".ClassCheckboxNearFlag").eq(1).is(':checked')) { return 'Spanish Latin American Female'; }
-//    if ($(".ClassCheckboxNearFlag").eq(2).is(':checked')) { return 'UK English Female'; }
-//    if ($(".ClassCheckboxNearFlag").eq(3).is(':checked')) { return 'Deutsch Female'; }
-//    if ($(".ClassCheckboxNearFlag").eq(4).is(':checked')) { return 'Dutch Male'; }
-//    if ($(".ClassCheckboxNearFlag").eq(5).is(':checked')) { return 'Italian Female'; }
 }
 
 
@@ -536,8 +490,12 @@ function FillTable() {
         $('#' + 'tdInTable_' + i + '_').append("<i class='fa playFR fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
 
         $('#' + 'tdInTable_' + i + '_' + '  .fa-play-Benoit')[0].onclick = function () {
-           // ListenSentence(row, 'false');
-            responsiveVoice.speak($('#' + 'tdInTable_' + i + '_').text(), GetVoiceForResponsive("fra"));
+            $("#tdInTable_" + i + "_").css('color', 'blue');
+            responsiveVoice.speak($('#tdInTable_' + i + '_').text(), GetVoiceForResponsive("fra"), {
+                onend: function () {
+                    $("#tdInTable_" + i + "_").css('color', 'black');
+                }
+            });
         };
 
         if ($("#IsLectureWithLangue:checked").val() != 'true') {
@@ -545,10 +503,6 @@ function FillTable() {
                 let wordsInSentence = "tdInTable_" + i + "_wordsInSentence_" + index + "_";
 
                 $('#' + 'tdInTable_' + i + '_').append("<span id='" + wordsInSentence + "' class='ClassWord' style='user-select: all;'>" + item + " </span>");
-
-                //$('#' + wordsInSentence)[0].onclick = function () {
-                //    ClickRow(this, row);
-                //};
             });
         }
         else {
@@ -558,7 +512,12 @@ function FillTable() {
                 $('#tableBody').append("<tr><td" + " id=tdInTableNL_" + i + "_" + " class='ClassTDText'><span id=PhraseUniqueToTranslateNL></span></td></tr>");
                 $("#PhraseUniqueToTranslateNL").before("<i class='fa playNL fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
                 $('#PhraseUniqueToTranslateNL').prev('.fa-play-Benoit')[0].onclick = function () {
-                    responsiveVoice.speak($("#PhraseUniqueToTranslateNL").text(), GetVoiceForResponsive("dut"));
+                    $("#PhraseUniqueToTranslateNL").css('color', 'blue');
+                    responsiveVoice.speak($("#PhraseUniqueToTranslateNL").text(), GetVoiceForResponsive("dut"), {
+                        onend: function () {
+                            $("#PhraseUniqueToTranslateNL").css('color', 'black');
+                        }
+                    });
                 };
                 TranslateOtherLanguageThanFrench(row, 'dut', 'PhraseUniqueToTranslateNL', 'fra');
             }
@@ -567,7 +526,12 @@ function FillTable() {
                 $('#tableBody').append("<tr><td" + " id=tdInTableEN_" + i + "_" + " class='ClassTDText'><span id=PhraseUniqueToTranslateEN></span></td></tr>");
                 $("#PhraseUniqueToTranslateEN").before("<i class='fa playEN fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
                 $('#PhraseUniqueToTranslateEN').prev('.fa-play-Benoit')[0].onclick = function () {
-                    responsiveVoice.speak($("#PhraseUniqueToTranslateEN").text(), GetVoiceForResponsive("eng"));
+                    $("#PhraseUniqueToTranslateEN").css('color', 'blue');
+                    responsiveVoice.speak($("#PhraseUniqueToTranslateEN").text(), GetVoiceForResponsive("eng"), {
+                        onend: function () {
+                            $("#PhraseUniqueToTranslateEN").css('color', 'black');
+                        }
+                    });
                 };
                 TranslateOtherLanguageThanFrench( row, 'eng', 'PhraseUniqueToTranslateEN', 'fra');
             }
@@ -576,7 +540,12 @@ function FillTable() {
                 $('#tableBody').append("<tr><td" + " id=tdInTableES_" + i + "_" + " class='ClassTDText'><span id=PhraseUniqueToTranslateES></span></td></tr>");
                 $("#PhraseUniqueToTranslateES").before("<i class='fa playES fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
                 $('#PhraseUniqueToTranslateES').prev('.fa-play-Benoit')[0].onclick = function () {
-                    responsiveVoice.speak($("#PhraseUniqueToTranslateES").text(), GetVoiceForResponsive("spa"));
+                    $("#PhraseUniqueToTranslateES").css('color', 'blue');
+                    responsiveVoice.speak($("#PhraseUniqueToTranslateES").text(), GetVoiceForResponsive("spa"), {
+                        onend: function () {
+                            $("#PhraseUniqueToTranslateES").css('color', 'black');
+                        }
+                    });
                 };
                 TranslateOtherLanguageThanFrench(row, 'spa', 'PhraseUniqueToTranslateES', 'fra');
             }
@@ -585,7 +554,12 @@ function FillTable() {
                 $('#tableBody').append("<tr><td" + " id=tdInTableDE_" + i + "_" + " class='ClassTDText'><span id=PhraseUniqueToTranslateDE></span></td></tr>");
                 $("#PhraseUniqueToTranslateDE").before("<i class='fa playDE fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
                 $('#PhraseUniqueToTranslateDE').prev('.fa-play-Benoit')[0].onclick = function () {
-                    responsiveVoice.speak($("#PhraseUniqueToTranslateDE").text(), GetVoiceForResponsive("ger"));
+                    $("#PhraseUniqueToTranslateDE").css('color', 'blue');
+                    responsiveVoice.speak($("#PhraseUniqueToTranslateDE").text(), GetVoiceForResponsive("ger"), {
+                        onend: function () {
+                            $("#PhraseUniqueToTranslateDE").css('color', 'black');
+                        }
+                    });
                 };
                 TranslateOtherLanguageThanFrench(row, 'ger', 'PhraseUniqueToTranslateDE', 'fra');
             }
@@ -594,7 +568,12 @@ function FillTable() {
                 $('#tableBody').append("<tr><td" + " id=tdInTableIT_" + i + "_" + " class='ClassTDText'><span id=PhraseUniqueToTranslateIT></span></td></tr>");
                 $("#PhraseUniqueToTranslateIT").before("<i class='fa playIT fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
                 $('#PhraseUniqueToTranslateIT').prev('.fa-play-Benoit')[0].onclick = function () {
-                    responsiveVoice.speak($("#PhraseUniqueToTranslateIT").text(), GetVoiceForResponsive("ita"));
+                    $("#PhraseUniqueToTranslateIT").css('color', 'blue');
+                    responsiveVoice.speak($("#PhraseUniqueToTranslateIT").text(), GetVoiceForResponsive("ita"), {
+                        onend: function () {
+                            $("#PhraseUniqueToTranslateIT").css('color', 'black');
+                        }
+                    });
                 };
                 TranslateOtherLanguageThanFrench(row, 'ita', 'PhraseUniqueToTranslateIT', 'fra');
             }
