@@ -524,11 +524,11 @@ namespace WebApplication1.Models
             Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidOscarDucrot && x.Période == period).Signaletique =
                new Signaletique()
                {
-                   Categorie = Categorie.Inconnu,
-                   DateDeNaissance = new DateTime(9999, 12, 31),
+                   Categorie = ListGuidTireur.SearchCategorie(2007),
+                   DateDeNaissance = new DateTime(2007, 2, 2),
                    Email = new List<string>() { "oscar.ducrot@gmail.com" },
-                   Telephone = new List<string>() { "" },
-                   FicheSignaletiqueUrl = "",
+                   Telephone = new List<string>() { "0771650092" },
+                   FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Ducrot_Oscar.pdf",
                };
         }
         public void Add_FichesSignalétiques_Rasson_Théo(string period, List<MembreData> Membres)
