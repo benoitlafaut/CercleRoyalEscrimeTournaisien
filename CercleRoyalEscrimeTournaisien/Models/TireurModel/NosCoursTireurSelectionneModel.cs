@@ -141,6 +141,70 @@ namespace CercleRoyalEscrimeTournaisien
                 List<RemarqueParDate> remarquesPourToutesLesPoules = new List<RemarqueParDate>() { };
                 remarquesPourToutesLesPoules.AddRange(
                     new List<RemarqueParDate>() {
+                         new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 12, 6),
+                        Arme = TypeArme.Fleuret,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                Remarque = "Voici encore une vidéo sur l'arbitrage au fleuret. Cliquez<a target='_blank' href='https://www.youtube.com/watch?v=GK9JG3b5cWs'> ici</a>",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                           }
+                        }
+                    },
+                         new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 12, 6),
+                        Arme = TypeArme.Sabre,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                Remarque = "Voici une vidéo qui explique l'arbitrage (première vidéo). Cliquez <a target='_blank' href='https://www.youtube.com/watch?v=ui-vLt2U63M'>ici</a>. </br> Voici une autre vidéo expliquant les gestes au fleuret/sabre. Cliquez <a target='_blank' href='https://www.youtube.com/watch?v=4IooMLN1SU8'>ici</a>",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                           }
+                        }
+                    }, new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 12, 6),
+                        Arme = TypeArme.Sabre,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                Remarque = "Voici une vidéo qui explique les attaques simples au fleuret. Cliquez<a target='_blank' href='https://www.youtube.com/watch?v=CbeKK_atvQY'> ici</a>",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                           }
+                        }
+                    },
+                        new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 12, 6),
+                        Arme = TypeArme.Sabre,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                Remarque = "Voici une vidéo qui explique les positions de main au fleuret. Cliquez<a target='_blank' href='https://www.youtube.com/watch?v=mFYFQ8clY80'> ici</a>",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                           }
+                        }
+                    },
+                        new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 12, 6),
+                        Arme = TypeArme.Sabre,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                Remarque = "Voici une vidéo qui explique certaines phrases d'arme difficiles à comprendre pour l'arbitre. Cliquez<a target='_blank' href='https://www.youtube.com/watch?v=PDK673_NLmE'> ici</a>",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                           }
+                        }
+                    },
                     new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2025, 11, 16),
@@ -149,7 +213,7 @@ namespace CercleRoyalEscrimeTournaisien
                         {
                             new RemarqueData()
                             {
-                                Remarque = "Un document a été rajouté dans les poules terminées. c'est un document qui sert non seulement aux poules et qui va vous permettre de progresser. Toutes les questions devraient se poser après chaque match. Le nom dans la liste des poules est 'Questions après chaque match'",
+                                Remarque = "Un document a été rajouté dans les poules terminées. c'est un document qui sert non seulement aux poules et qui va vous permettre de progresser." + "</br>" + "Toutes les questions devraient se poser après chaque match. Le nom dans la liste des poules est 'Questions après chaque match'",
                                      PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
                            }
                         }
@@ -426,6 +490,11 @@ namespace CercleRoyalEscrimeTournaisien
 
         private string TransformPoule(string value)
         {
+            if (value.IndexOf("Poule") == -1)
+            {
+                return value;
+            }
+
             if (string.IsNullOrEmpty(value)) { return value; }
             string[] array = value.Split(' ');
             string[] array2 = array[1].Split('-');
