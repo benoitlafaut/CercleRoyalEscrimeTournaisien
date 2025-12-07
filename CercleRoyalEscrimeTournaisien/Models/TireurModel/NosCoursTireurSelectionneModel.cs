@@ -105,6 +105,9 @@ namespace CercleRoyalEscrimeTournaisien
                     case IndexTireurConstantes.TireurIndex.RomainBracquart:
                         RomainBracquart_NosCoursTireurSelectionneModel romainBracquart_NosCoursTireurSelectionneModel = new RomainBracquart_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return (romainBracquart_NosCoursTireurSelectionneModel.Categorie);
+                    case IndexTireurConstantes.TireurIndex.SiméonTrovato:
+                        SiméonTrovato_NosCoursTireurSelectionneModel siméonTrovato_NosCoursTireurSelectionneModel = new SiméonTrovato_NosCoursTireurSelectionneModel(TireurSelectionne) { };
+                        return (siméonTrovato_NosCoursTireurSelectionneModel.Categorie);
                     default:
                         return Categorie.Inconnu;
                 }
@@ -466,6 +469,9 @@ namespace CercleRoyalEscrimeTournaisien
                     case IndexTireurConstantes.TireurIndex.RomainBracquart:
                         RomainBracquart_NosCoursTireurSelectionneModel romainBracquart_NosCoursTireurSelectionneModel = new RomainBracquart_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return TrierParDate(romainBracquart_NosCoursTireurSelectionneModel.RemarquesParDateTireur);
+                    case IndexTireurConstantes.TireurIndex.SiméonTrovato:
+                        SiméonTrovato_NosCoursTireurSelectionneModel siméonTrovato_NosCoursTireurSelectionneModel = new SiméonTrovato_NosCoursTireurSelectionneModel(TireurSelectionne) { };
+                        return TrierParDate(siméonTrovato_NosCoursTireurSelectionneModel.RemarquesParDateTireur);
                     default:
                         return new List<RemarqueParDate>() { };
                 }               

@@ -32,7 +32,8 @@
             AmelLawrizy = 37,
             GwendalLecomte = 38,
             SolalSchrouf = 39,
-            LucasVerheye = 40
+            LucasVerheye = 40,
+            SiméonTrovato = 41
         }
     }
 }

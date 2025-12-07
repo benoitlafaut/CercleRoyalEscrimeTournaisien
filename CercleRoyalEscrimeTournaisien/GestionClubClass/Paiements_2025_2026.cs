@@ -106,7 +106,7 @@ namespace WebApplication1.Models
                     GuidConstantes.GuidLiliMestdag,
                     GuidConstantes.GuidMaeVantroyen,
                     GuidConstantes.GuidMartinSiu,
-                    GuidConstantes.GuidSimeonTrovato,
+                    GuidConstantes.GuidSiméonTrovato,
                     GuidConstantes.GuidThéoCucheval_Rasson,
                   }
                 },
@@ -126,7 +126,7 @@ namespace WebApplication1.Models
                     GuidConstantes.GuidMartinSiu,
                     GuidConstantes.GuidNoelMarieDransart,
                     GuidConstantes.GuidRomainBracquart,
-                    GuidConstantes.GuidSimeonTrovato,
+                    GuidConstantes.GuidSiméonTrovato,
                     GuidConstantes.GuidSolalSchrouf,
                     GuidConstantes.GuidThéoCucheval_Rasson,
                   }
@@ -166,7 +166,7 @@ namespace WebApplication1.Models
                     GuidConstantes.GuidMaeVantroyen,
                     GuidConstantes.GuidMartinSiu,
                     GuidConstantes.GuidNoelMarieDransart,
-                    GuidConstantes.GuidSimeonTrovato,
+                    GuidConstantes.GuidSiméonTrovato,
                     GuidConstantes.GuidThéoCucheval_Rasson,
                   }
                 },
@@ -186,7 +186,7 @@ namespace WebApplication1.Models
                     GuidConstantes.GuidMartinSiu,
                     GuidConstantes.GuidRebeccaVandy,
                     GuidConstantes.GuidRomainBracquart,
-                    GuidConstantes.GuidSimeonTrovato,
+                    GuidConstantes.GuidSiméonTrovato,
                     GuidConstantes.GuidSolalSchrouf,
                   }
                 },
@@ -225,7 +225,7 @@ namespace WebApplication1.Models
                     GuidConstantes.GuidOscarDeblocq,
                     GuidConstantes.GuidOscarDucrot,
                     GuidConstantes.GuidRomainBracquart,
-                    GuidConstantes.GuidSimeonTrovato,
+                    GuidConstantes.GuidSiméonTrovato,
                     GuidConstantes.GuidThéoCucheval_Rasson,
                   }
                 },
@@ -245,7 +245,7 @@ namespace WebApplication1.Models
                     GuidConstantes.GuidMartinSiu,
                     GuidConstantes.GuidNoelMarieDransart,
                     GuidConstantes.GuidRebeccaVandy,
-                    GuidConstantes.GuidSimeonTrovato,
+                    GuidConstantes.GuidSiméonTrovato,
                     GuidConstantes.GuidThéoCucheval_Rasson,
                   }
                 },
@@ -304,7 +304,7 @@ namespace WebApplication1.Models
                     GuidConstantes.GuidNoelMarieDransart,
                     GuidConstantes.GuidRebeccaVandy,
                     GuidConstantes.GuidRomainBracquart,
-                    GuidConstantes.GuidSimeonTrovato,
+                    GuidConstantes.GuidSiméonTrovato,
                   }
                 },
                                     new JourDePrésence()
@@ -736,11 +736,11 @@ namespace WebApplication1.Models
         }
         public void Add_Paiements_Trovato_Simeon(string period, List<MembreData> Membres)
         {
-            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidSimeonTrovato && x.Période == period))
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidSiméonTrovato && x.Période == period))
             {
                 return;
             }
-            Membres.Where(x => x.GuidId == GuidConstantes.GuidSimeonTrovato && x.Période == period).FirstOrDefault().Paiement =
+            Membres.Where(x => x.GuidId == GuidConstantes.GuidSiméonTrovato && x.Période == period).FirstOrDefault().Paiement =
                 new Paiement()
                 {
                     Periode = period,

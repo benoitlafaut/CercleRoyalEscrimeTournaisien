@@ -699,12 +699,12 @@ namespace WebApplication1.Models
         }
         public void Add_FichesSignalétiques_Trovato_Simeon(string period, List<MembreData> Membres)
         {
-            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidSimeonTrovato && x.Période == period))
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidSiméonTrovato && x.Période == period))
             {
                 return;
             }
 
-            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidSimeonTrovato && x.Période == period).Signaletique =
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidSiméonTrovato && x.Période == period).Signaletique =
                new Signaletique()
                {
                    Categorie = ListGuidTireur.SearchCategorie(2015),
