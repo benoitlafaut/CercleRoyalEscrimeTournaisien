@@ -146,6 +146,19 @@ namespace CercleRoyalEscrimeTournaisien
                     new List<RemarqueParDate>() {
                          new RemarqueParDate()
                     {
+                        DateRemarque = new DateTime(2025, 12,7),
+                        Arme = TypeArme.Fleuret,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                Remarque = "Voici un pdf qui explique l'appareil et la télécommande. Cliquez<a target='_blank' href='/FileToUpload/NosCours/appareil.pps'> ici</a>",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                           }
+                        }
+                    },
+                        new RemarqueParDate()
+                    {
                         DateRemarque = new DateTime(2025, 12, 6),
                         Arme = TypeArme.Fleuret,
                         RemarquesData = new List<RemarqueData>()
