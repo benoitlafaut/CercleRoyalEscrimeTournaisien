@@ -146,6 +146,20 @@ namespace CercleRoyalEscrimeTournaisien
                     new List<RemarqueParDate>() {
                          new RemarqueParDate()
                     {
+                        DateRemarque = new DateTime(2025, 12,10),
+                        Arme = TypeArme.Fleuret,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                Remarque = "Voici un pdf qui essaie d'expliquer le fleuret et la priorité. Cliquez<a target='_blank' href='/FileToUpload/NosCours/Le fleuret.pps'> ici</a>",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                           }
+                        }
+                    },
+                        
+                        new RemarqueParDate()
+                    {
                         DateRemarque = new DateTime(2025, 12,7),
                         Arme = TypeArme.Fleuret,
                         RemarquesData = new List<RemarqueData>()

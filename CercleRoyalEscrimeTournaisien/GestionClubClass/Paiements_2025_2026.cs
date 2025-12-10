@@ -12,7 +12,84 @@ namespace WebApplication1.Models
             {
 
                 JourDePrésence = new List<JourDePrésence>()
+                {      
+                    
+                    new JourDePrésence()
                 {
+                  DatePrésence = new DateTime(2025,12,10),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAbelMotte,
+                    GuidConstantes.GuidAmadoSimon,
+                    GuidConstantes.GuidAnaelleIvanov,
+                    GuidConstantes.GuidBaptisteMotte,
+                    GuidConstantes.GuidBenedictCosentini,
+                    GuidConstantes.GuidEliotPunchoo,
+                    GuidConstantes.GuidFélixTrannoy,
+                    GuidConstantes.GuidLiliMestdag,
+                    GuidConstantes.GuidMaeVantroyen,
+                    GuidConstantes.GuidMartinSiu,
+                    GuidConstantes.GuidNoelMarieDransart,
+                    GuidConstantes.GuidSiméonTrovato,
+                  }
+                },
+                    new JourDePrésence()
+                {
+                  DatePrésence = new DateTime(2025,12,7),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAuroreCarlier,
+                    GuidConstantes.GuidBenedictCosentini,
+                    GuidConstantes.GuidFabriceRazanajao,
+                    GuidConstantes.GuidFélixTrannoy,
+                    GuidConstantes.GuidLucasVerheye,
+                    GuidConstantes.GuidMaeVantroyen,
+                    GuidConstantes.GuidOscarDeblocq,
+                    GuidConstantes.GuidThéoCucheval_Rasson,
+                  }
+                },
+                                    new JourDePrésence()
+                {
+                  DatePrésence = new DateTime(2025,12,5),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAbelMotte,
+                    GuidConstantes.GuidAmelLawrizy,
+                    GuidConstantes.GuidAnaelleIvanov,
+                    GuidConstantes.GuidBaptisteMotte,
+                    GuidConstantes.GuidEliotPunchoo,
+                    GuidConstantes.GuidFabriceRazanajao,
+                    GuidConstantes.GuidFélixTrannoy,
+                    GuidConstantes.GuidGwendalLecomte,
+                    GuidConstantes.GuidMaeVantroyen,
+                    GuidConstantes.GuidMartinSiu,
+                    GuidConstantes.GuidNoelMarieDransart,
+                    GuidConstantes.GuidSiméonTrovato,
+                    GuidConstantes.GuidSolalSchrouf,
+                    GuidConstantes.GuidThéoCucheval_Rasson,
+                  }
+                },
+                                    new JourDePrésence()
+                {
+                  DatePrésence = new DateTime(2025,12,3),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAbelMotte,
+                    GuidConstantes.GuidAnaelleIvanov,
+                    GuidConstantes.GuidAuroreCarlier,
+                    GuidConstantes.GuidBaptisteMotte,
+                    GuidConstantes.GuidBenedictCosentini,
+                    GuidConstantes.GuidEliotPunchoo,
+                    GuidConstantes.GuidFélixTrannoy,
+                    GuidConstantes.GuidLiliMestdag,
+                    GuidConstantes.GuidMaeVantroyen,
+                    GuidConstantes.GuidMartinSiu,
+                    GuidConstantes.GuidNoelMarieDransart,
+                    GuidConstantes.GuidRebeccaVandy,
+                    GuidConstantes.GuidRomainBracquart,
+                    GuidConstantes.GuidSiméonTrovato,
+                  }
+                },
                                     new JourDePrésence()
                 {
                   DatePrésence = new DateTime(2025,11,30),
@@ -754,7 +831,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = true,
                     IsChaussettesPayéesEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { "75 euros","290 euros", "14 euros" },
+                    PaiementsEffectues = new List<string>() { "75 euros", "290 euros", "14 euros" },
 
                     SeancesGratuites = new List<DateTime>()
                     {
@@ -896,7 +973,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = true,
                     IsChaussettesPayéesEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { "290 euros","75 euros" },
+                    PaiementsEffectues = new List<string>() { "290 euros", "75 euros" },
 
                     SeancesGratuites = new List<DateTime>()
                     {
@@ -1410,7 +1487,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { "95 euros","75 euros" },
+                    PaiementsEffectues = new List<string>() { "95 euros", "75 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,2,2),
@@ -1439,7 +1516,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() {"290 euros", "75 euros" },
+                    PaiementsEffectues = new List<string>() { "290 euros", "75 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,5,27),
@@ -1634,7 +1711,7 @@ namespace WebApplication1.Models
                     IsLocationMatérielEnOrdre = false,
                     IsChaussettesPayéesEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { "95 euros", "14 euros"},
+                    PaiementsEffectues = new List<string>() { "95 euros", "14 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,9,6),
