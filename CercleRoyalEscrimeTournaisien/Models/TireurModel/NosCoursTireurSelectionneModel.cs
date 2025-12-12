@@ -144,7 +144,33 @@ namespace CercleRoyalEscrimeTournaisien
                 List<RemarqueParDate> remarquesPourToutesLesPoules = new List<RemarqueParDate>() { };
                 remarquesPourToutesLesPoules.AddRange(
                     new List<RemarqueParDate>() {
-                         new RemarqueParDate()
+                     new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 12,12),
+                        Arme = TypeArme.Fleuret,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                Remarque = "Je vous propose aujourd'hui un petit pdf qui explique l'épée avec quelques constatations que j'ai vues à la salle. Cliquez<a target='_blank' href='/FileToUpload/NosCours/l épée.pps'> ici</a>",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                           }
+                        }
+                    },
+                          new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2025, 12,12),
+                        Arme = TypeArme.Fleuret,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                Remarque = "Voici quelques photos de matériel que vous utilisez quotidiennement. Cliquez<a target='_blank' href='/FileToUpload/NosCours/Quelques photos diverses.pps'> ici</a>",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                           }
+                        }
+                    },
+                        new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2025, 12,10),
                         Arme = TypeArme.Fleuret,

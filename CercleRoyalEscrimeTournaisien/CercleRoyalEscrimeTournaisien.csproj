@@ -1178,6 +1178,9 @@
     <Content Include="FileToUpload\FichesSignaletiques\Lafaut_Benoit.pdf" />
     <Content Include="FileToUpload\NosCours\appareil.pps" />
     <Content Include="FileToUpload\NosCours\Le fleuret.pps" />
+    <Content Include="FileToUpload\NosCours\l épée.pps" />
+    <Content Include="FileToUpload\NosCours\Liste des catégories et répartition des tireurs.docx" />
+    <Content Include="FileToUpload\NosCours\Quelques photos diverses.pps" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Accueil.cshtml" />
     <Content Include="Views\Home\Accueil_Part_1.cshtml" />
