@@ -8,10 +8,7 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Web.UI;
 using System.Threading.Tasks;
-using WebApplication1.Models;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Collections.Generic;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CercleRoyalEscrimeTournaisien
 {

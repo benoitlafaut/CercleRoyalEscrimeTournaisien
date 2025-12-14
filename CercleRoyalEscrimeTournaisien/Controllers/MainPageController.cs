@@ -79,6 +79,7 @@ namespace CercleRoyalEscrimeTournaisien
             return Json(new { karaokeViewModel = RenderRazorViewToString(Constantes.Karaoke, karaokeViewModel) }, JsonRequestBehavior.AllowGet);
         }
 
+
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
         [Route("ChangeChanson")]
         public ActionResult ChangeChanson(KaraokeViewModel karaokeViewModel)
@@ -238,6 +239,8 @@ namespace CercleRoyalEscrimeTournaisien
                 return RedirectToAction("NosCoursParTireurLogin", "MainPage");
             }
 
+            SauvegardeInDB(tireurSelectionne);
+
             NosCoursTireurSelectionneModel nosCoursTireurSelectionneModel = new NosCoursTireurSelectionneModel() 
             { 
                 TireurSelectionne = tireurSelectionne
@@ -245,6 +248,30 @@ namespace CercleRoyalEscrimeTournaisien
             
             return View(Constantes.NosCoursTireurSelectionne, nosCoursTireurSelectionneModel);
         }
+
+        private void SauvegardeInDB(Tireur tireurSelectionne)
+        {
+            try {
+                var path = Server.MapPath("/App_Data/tireursLog.accdb");
+                string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
+                OleDbConnection myConnection = new OleDbConnection(ConnectionString);
+                string query = "INSERT INTO TableTireursLogin (TireurLoggé, DateLog) VALUES (?, ?)";
+
+                using (OleDbCommand cmd = new OleDbCommand(query, myConnection))
+                {
+                    myConnection.Open();
+                    cmd.Parameters.AddWithValue("TireurLoggé", tireurSelectionne.UserName);
+                    cmd.Parameters.AddWithValue("DateLog", DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
+                    cmd.ExecuteNonQuery();
+                }
+
+                myConnection.Close();
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
         private static object Deserialize(string str)
         {
             byte[] bytes = Convert.FromBase64String(str);
@@ -275,8 +302,15 @@ namespace CercleRoyalEscrimeTournaisien
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
         public ActionResult Karaoke()
         {
-            KaraokeViewModel karaokeViewModel = new KaraokeViewModel ();
+            KaraokeViewModel karaokeViewModel = new KaraokeViewModel();
             return View(Constantes.Karaoke, karaokeViewModel);
+        }
+
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+        public ActionResult LoggingUsers()
+        {
+            LoggingUsersViewModel loggingUsersViewModel = new LoggingUsersViewModel(Server);
+            return View(Constantes.LoggingUsers, loggingUsersViewModel);
         }
 
         [HttpPost]

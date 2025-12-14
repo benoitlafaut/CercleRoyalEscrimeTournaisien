@@ -1,0 +1,27 @@
+﻿@model CercleRoyalEscrimeTournaisien.Models.LoggingUsersViewModel
+
+<!DOCTYPE html>
+<html>
+<body>
+
+    <table>
+        @if (Model.TireursLoggés.Count == 0)
+        {
+            <span>Pas de tireur connecté</span>
+        }
+        else
+        {
+            foreach (CercleRoyalEscrimeTournaisien.Models.ClassTireurLoggé tireurloggé in Model.TireursLoggés)
+            {
+                <tr>
+                    <td>Tireur connecté:</td>
+                    <td>@tireurloggé.TireurLoggé</td>
+                    <td>Date de connection:</td>
+                    <td>@tireurloggé.DateLog</td>
+                </tr>
+
+            }
+        }
+    </table>
+</body>
+</html>

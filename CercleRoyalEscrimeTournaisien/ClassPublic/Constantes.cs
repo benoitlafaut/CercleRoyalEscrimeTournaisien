@@ -27,6 +27,7 @@ namespace CercleRoyalEscrimeTournaisien.ClassPublic
         public const string Logon = "Logon";
         public const string Velo = "Velo";
         public const string Karaoke = "Karaoke";
+        public const string LoggingUsers = "LoggingUsers";
         public const string ReadEpub28012024 = "ReadEpub28012024";
         public const string NosCoursTireurSelectionne = "NosCoursTireurSelectionne";
         public const string Epub122024 = "Epub122024";

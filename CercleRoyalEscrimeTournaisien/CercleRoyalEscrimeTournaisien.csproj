@@ -284,6 +284,7 @@
     <Compile Include="GestionClubClass\JoursDePrésence.cs" />
     <Compile Include="GestionClubClass\ListGuidTireur.cs" />
     <Compile Include="GestionClubClass\Paiements_2025_2026.cs" />
+    <Compile Include="Models\LoggingUsersViewModel.cs" />
     <Compile Include="Models\ModelEpub122024.cs" />
     <Compile Include="Models\NumberOfPage.cs" />
     <Compile Include="Models\TireurModel\AmelLawrizy_NosCoursTireurSelectionneModel.cs" />
@@ -1263,6 +1264,7 @@
     <Content Include="Poules\Poule 2025-11-16 Débutants Epée.pdf" />
     <Content Include="Poules\Poule 2025-11-16 Epée.pdf" />
     <Content Include="Poules\Questions après chaque match.docx" />
+    <Content Include="Views\MainPage\LoggingUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
