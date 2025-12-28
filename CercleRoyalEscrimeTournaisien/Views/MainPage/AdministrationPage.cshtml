@@ -159,6 +159,19 @@
                                     <i class="fa fa-times" style="color:red;" aria-hidden="true"></i>
                                 }
                             </td>
+
+                            <td style="min-width:250px;">
+                                Achats Tee-Shirts
+
+                                @if (escrimeur.Paiement?.IsTeeShirtsPayéesEnOrdre == true)
+                                {
+                                    <i class="fa fa-check" style="color:green;" aria-hidden="true"></i>
+                                }
+                                else
+                                {
+                                    <i class="fa fa-times" style="color:red;" aria-hidden="true"></i>
+                                }
+                            </td>
                         </tr>
                     </table>
 
