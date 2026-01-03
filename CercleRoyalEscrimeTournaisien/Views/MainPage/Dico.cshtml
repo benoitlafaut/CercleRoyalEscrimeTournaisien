@@ -2,37 +2,50 @@
 
 @model ModelViewDico
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+@section css {
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <link href="@Url.Content("/Content/Dico.css")" rel="stylesheet" type="text/css" />
+    <script src='~/Scripts/dico.js'></script>
+}
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!DOCTYPE html>
+<body>
+    <div class="alphabet">
+        <div class="letter">a</div>
+        <div class="letter">b</div>
+        <div class="letter">c</div>
+        <div class="letter">d</div>
+        <div class="letter">e</div>
+        <div class="letter">f</div>
+        <div class="letter">g</div>
+        <div class="letter">h</div>
+        <div class="letter">i</div>
+        <div class="letter">j</div>
+        <div class="letter">k</div>
+        <div class="letter">l</div>
+        <div class="letter">m</div>
+        <div class="letter">n</div>
+        <div class="letter">o</div>
+        <div class="letter">p</div>
+        <div class="letter">q</div>
+        <div class="letter">r</div>
+        <div class="letter">s</div>
+        <div class="letter">t</div>
+        <div class="letter">u</div>
+        <div class="letter">v</div>
+        <div class="letter">w</div>
+        <div class="letter">x</div>
+        <div class="letter">y</div>
+        <div class="letter">z</div>
+        <div class="letter">*</div>
+    </div>
 
-<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <div>
+        <input id="textInput" type="text" style="width:150px;margin-top:20px;">
+        <input style="width:100px;" type="button" value="Clear" onclick="ClearInput()" />
+        <input style="width:100px;" type="button" value="search" onclick="SearchMots()" />
+    </div>
 
-@Styles.Render("~/styles/DicoCss")
-@Scripts.Render("~/bundles/DicoJS")
-
-
-<div class="divParagraphe">
-    <label>Text temporaire dicté</label>
-    @Html.TextBoxFor(m => m.WorldInputTemporaire)
-</div>
-
-<div class="divParagraphe">
-    <label>Text final à chercher</label>
-    @Html.TextBoxFor(m => m.WorldInput)
-</div>
-
-<div class="divParagraphe">
-    <button class="btn btn-primary" type="button" id="btnSearch" onclick="OpenSiteFSolver();">Search définitions</button>
-</div>
-
-<div class="divParagraphe">
-    <button class="btn btn-primary" type="button" id="btnRestartDictate" onclick="startDictation();">Start Dictate</button>
-</div>
+    <div id="result"></div>
+</body>

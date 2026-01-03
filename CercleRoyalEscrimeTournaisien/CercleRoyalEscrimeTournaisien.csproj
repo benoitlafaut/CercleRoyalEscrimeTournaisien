@@ -202,6 +202,7 @@
     <Compile Include="ClassPublic\IndexTireurConstantes.cs" />
     <Compile Include="ClassPublic\Constantes.cs" />
     <Compile Include="Controllers\EpubController.cs" />
+    <Compile Include="Controllers\DicoController.cs" />
     <Compile Include="Controllers\MainPageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Epub\CreateEpub.cs" />
