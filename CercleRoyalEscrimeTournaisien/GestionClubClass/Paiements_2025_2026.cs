@@ -819,6 +819,7 @@ namespace WebApplication1.Models
                     IsCotisationEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = true,
+                    IsTeeShirtsPayéesEnOrdre = true,
 
                     PaiementsEffectues = new List<string>() { "290 euros", "75 euros" },
 
@@ -1074,14 +1075,14 @@ namespace WebApplication1.Models
                     Periode = period,
                     IsCotisationAnnuelle = false,
                     IsCotisationCarte1 = true,
-                    IsCotisationCarte2 = false,
+                    IsCotisationCarte2 = true,
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
                     IsCotisationEnOrdre = true,
-                    IsLocationMatérielEnOrdre = false,
+                    IsLocationMatérielEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { "95 euros" },
+                    PaiementsEffectues = new List<string>() { "95 euros", "75 euros", "50 euros" },
 
                     SeancesGratuites = new List<DateTime>()
                     {
@@ -1416,6 +1417,7 @@ namespace WebApplication1.Models
                     IsLocationMatérielEnOrdre = true,
                     IsCotisationEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = true,
+                    IsTeeShirtsPayéesEnOrdre = true,
 
                     PaiementsEffectues = new List<string>() { "290 euros", "75 euros" },
                     SeancesGratuites = new List<DateTime>()
@@ -1643,7 +1645,7 @@ namespace WebApplication1.Models
                     Periode = period,
                     IsCotisationAnnuelle = false,
                     IsCotisationCarte1 = true,
-                    IsCotisationCarte2 = false,
+                    IsCotisationCarte2 = true,
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
                     IsChaussettesPayéesEnOrdre = true,
@@ -1651,7 +1653,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { "95 euros", "75 euros" },
+                    PaiementsEffectues = new List<string>() { "95 euros", "75 euros", "50 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,5,31),
