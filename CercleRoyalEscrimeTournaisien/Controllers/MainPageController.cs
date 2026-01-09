@@ -1,23 +1,22 @@
-﻿using Excel = Microsoft.Office.Interop.Excel;
-using CercleRoyalEscrimeTournaisien.ClassPublic;
+﻿using CercleRoyalEscrimeTournaisien.ClassPublic;
 using CercleRoyalEscrimeTournaisien.Models;
+using FluentValidation.Results;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
 using System;
-using System.Data.OleDb;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.OleDb;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
 using WebApplication1.Models;
-using System.Threading.Tasks;
-using FluentValidation.Results;
-using System.Web;
-using OfficeOpenXml;
-using OfficeOpenXml.Style;
-using System.Runtime.Serialization.Formatters.Binary;
 using static CercleRoyalEscrimeTournaisien.IndexTireurConstantes;
-using System.Collections.Generic;
-using Microsoft.Office.Interop.Excel;
+using InteropWord = Microsoft.Office.Interop.Word;
 
 namespace CercleRoyalEscrimeTournaisien
 {
@@ -737,6 +736,163 @@ namespace CercleRoyalEscrimeTournaisien
 
             return File(stream, "application/octet-stream", excelName);
         }
+
+        [HttpGet]
+        public ActionResult DownloadButtonRapportAnnuel(string anneeSelectedInput)
+        {
+            List<ClassExcelRow> excelRows = new List<ClassExcelRow>() { };
+
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+            using (var excelPack = new ExcelPackage())
+            {
+                using (var stream1 = System.IO.File.OpenRead(Server.MapPath("/FileToUpload/ExcelCompte/ExportCreateExcel.xlsx")))
+                {
+                    excelPack.Load(stream1);
+                }
+
+                var ws = excelPack.Workbook.Worksheets[0];
+                var rowRun = ws.Dimension.End.Row;
+                for (int iLoop = 3; iLoop <= rowRun; iLoop++)
+                {
+                    excelRows.Add(new ClassExcelRow()
+                    {
+                        OperationDate = GetCellValueDate(ws.Cells[iLoop, 1].Text),
+                        Destinataire = GetCellValue(ws.Cells[iLoop, 2].Text),
+                        MontantPositif = GetCellValue(ws.Cells[iLoop, 3].Text),
+                        MontantNegatif = GetCellValue(ws.Cells[iLoop, 4].Text),
+                        Motif = GetCellValue(ws.Cells[iLoop, 5].Text),
+                        Period = GetCellValue(ws.Cells[iLoop, 6].Text),
+                        EtatDuCompte = GetCellValue(ws.Cells[iLoop, 7].Text),
+                        DepensesRecettes = GetCellValue(ws.Cells[iLoop, 8].Text),
+                        Pots = GetCellValue(ws.Cells[iLoop, 9].Text),
+                    });
+                }
+                excelPack.Save();
+                excelPack.Dispose();
+            }
+
+            decimal totalDépenses = excelRows.Where(x => x.DepensesRecettes == "Dépenses").Sum(x => Convert.ToDecimal(x.MontantNegatif));
+            totalDépenses = totalDépenses * -1;
+            decimal totalRecettes = excelRows.Where(x => x.DepensesRecettes == "Recettes").Sum(x => Convert.ToDecimal(x.MontantPositif));
+            decimal solde = totalRecettes - totalDépenses;
+
+            // Create a temporary file path
+            string tempPath = Path.Combine(Path.GetTempPath(), $"RapportAnnuel_Sauvé_le_{DateTime.Now:ddMMyyyy}_Year_" + anneeSelectedInput + ".docx");
+
+            // Create Word application
+            Microsoft.Office.Interop.Word.Application wordApp = new Microsoft.Office.Interop.Word.Application();
+            InteropWord.Document doc = wordApp.Documents.Add();
+
+            try
+            {
+                InteropWord.Paragraph newParagraph = doc.Content.Paragraphs.Add();
+
+                newParagraph.Range.Text = "Cercle Royal Escrime Tournaisien ASBL";
+                newParagraph.Range.Font.Size = 20;
+                newParagraph.Range.Font.Bold = 1;
+                newParagraph.Range.Font.Name = "Arial";
+                newParagraph.Range.InsertParagraphAfter();
+
+                newParagraph.Range.Font.Size = 10;
+                newParagraph.Range.Text = "N° d'entreprise 1029793570 • IBAN BE77 3750 0065 5942"
+                    + Environment.NewLine + "https://www.cercleroyalescrimetournaisien.be • escrime.tournai@gmail.com"
+                    + Environment.NewLine + "Rue Chèrequefosse(TOU) 14 • 7500 Tournai";
+                newParagraph.Range.InsertParagraphAfter();
+
+                newParagraph.Range.Font.Bold = 0;
+                newParagraph.Range.Text = Environment.NewLine + "Comptes simplifiés de l’année   " + anneeSelectedInput;
+                newParagraph.Range.InsertParagraphAfter();
+
+                InteropWord.Range tableRange = newParagraph.Range;
+                tableRange.Collapse(InteropWord.WdCollapseDirection.wdCollapseEnd);
+
+
+                InteropWord.Table table = doc.Tables.Add(tableRange, 2, 5);
+                table.Borders.Enable = 1; 
+
+                InteropWord.Cell top = table.Cell(1, 3);
+                for (int r = 2; r <= 2; r++)
+                {
+                    InteropWord.Cell next = table.Cell(r, 3);
+                    top.Merge(next);
+                }
+
+                table.Cell(1, 4).Merge(table.Cell(1, 5));
+                table.Cell(1, 1).Merge(table.Cell(1, 2));
+
+                // Fill cells
+                table.Cell(1, 1).Range.Font.Bold = 1;
+                table.Cell(1, 2).Range.Font.Bold = 1;
+                table.Cell(1, 3).Range.Font.Bold = 1;
+                table.Cell(2, 1).Range.Font.Bold = 1;
+                table.Cell(2, 2).Range.Font.Bold = 1;
+                table.Cell(2, 4).Range.Font.Bold = 1;
+                table.Cell(2, 5).Range.Font.Bold = 1;
+
+                table.Cell(1, 1).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
+                table.Cell(1, 2).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
+                table.Cell(1, 3).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
+                table.Cell(2, 1).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
+                table.Cell(2, 2).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
+                table.Cell(2, 4).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
+                table.Cell(2, 5).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
+
+                table.Cell(1, 1).Range.Text = "Dépenses";
+                table.Cell(1, 2).Range.Text = "Solde" + Environment.NewLine + solde.ToString();
+                table.Cell(1, 3).Range.Text = "Recettes";
+                
+                table.Cell(2, 1).Range.Text = "Total";
+                table.Cell(2, 2).Range.Text = totalDépenses.ToString();
+                table.Cell(2, 4).Range.Text = "Total";
+                table.Cell(2, 5).Range.Text = totalRecettes.ToString();
+
+                InteropWord.Cell target = table.Cell(1, 1);
+                target.Borders[InteropWord.WdBorderType.wdBorderTop].Color = InteropWord.WdColor.wdColorGray20;
+                target.Borders[InteropWord.WdBorderType.wdBorderBottom].Color = InteropWord.WdColor.wdColorGray20;
+                target.Borders[InteropWord.WdBorderType.wdBorderLeft].Color = InteropWord.WdColor.wdColorGray20;
+
+                target = table.Cell(1, 3);
+                target.Borders[InteropWord.WdBorderType.wdBorderTop].Color = InteropWord.WdColor.wdColorGray20;
+                target.Borders[InteropWord.WdBorderType.wdBorderBottom].Color = InteropWord.WdColor.wdColorGray20;
+                target.Borders[InteropWord.WdBorderType.wdBorderRight].Color = InteropWord.WdColor.wdColorGray20;
+
+                target = table.Cell(2, 1);
+                target.Borders[InteropWord.WdBorderType.wdBorderTop].Color = InteropWord.WdColor.wdColorGray20;
+                target.Borders[InteropWord.WdBorderType.wdBorderBottom].Color = InteropWord.WdColor.wdColorGray20;
+                target.Borders[InteropWord.WdBorderType.wdBorderLeft].Color = InteropWord.WdColor.wdColorGray20;
+
+                target = table.Cell(2, 2);
+                target.Borders[InteropWord.WdBorderType.wdBorderTop].Color = InteropWord.WdColor.wdColorBlack;
+
+                target = table.Cell(2,4);
+                target.Borders[InteropWord.WdBorderType.wdBorderTop].Color = InteropWord.WdColor.wdColorGray20;
+                target.Borders[InteropWord.WdBorderType.wdBorderBottom].Color = InteropWord.WdColor.wdColorGray20;
+
+                target = table.Cell(2, 5);
+                target.Borders[InteropWord.WdBorderType.wdBorderTop].Color = InteropWord.WdColor.wdColorBlack;
+
+                doc.SaveAs2(tempPath);
+            }
+            finally
+            {
+                // Close Word
+                doc.Close();
+                wordApp.Quit();
+            }
+
+            // Read file into memory
+            byte[] fileBytes = System.IO.File.ReadAllBytes(tempPath);
+
+            // Delete temp file
+            System.IO.File.Delete(tempPath);
+
+            // Return as download
+            return File(fileBytes,
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                $"RapportAnnuel_Sauvé_le_{DateTime.Now:ddMMyyyy}_Year_" + anneeSelectedInput + ".docx");
+        }       
+
         private string GetCellValue(object cellValue)
         {
             if (cellValue != null)
