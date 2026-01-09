@@ -144,10 +144,37 @@ namespace CercleRoyalEscrimeTournaisien
                 List<RemarqueParDate> remarquesPourToutesLesPoules = new List<RemarqueParDate>() { };
                 remarquesPourToutesLesPoules.AddRange(
                     new List<RemarqueParDate>() {
+                         new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2026, 1,9),
+                        Arme = TypeArme.Sabre,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                Remarque = "Aujourd'hui , vous étiez nombreux à reprendre après les fêtes.</br></br> "+
+                                        "Je vais essayer de résumer ce que j'ai vu à la salle.</br>" +
+                                        "Vous avez habituellement une série de poules à suivre. Aujourd'hui c'était deux, demain cà sera peut-être trois. Aujourd'hui c'était individuellement, demain cela pourrait être par équipes.</br></br>" + 
+                                        "L'ordre des matchs est important. Il permet par exemple de ne pas tirer 2x d'affilée, d'écrire le score obtenu dans son cahier, de se faire une auto-évaluation de ce qui a été et de ce qui n'a pas été. </br>" + 
+                                        "Ce que vous écrivez ne doit pas être un roman; juste quelques mots clés, des points d'attention du genre, des scores : </br>" +
+                                        "Par exemple : </br>" +
+                                        "Je gagne parce que j'ai touché à cet endroit-là. </br>" +
+                                        "Je perds parce que j'ai trop attaqué. </br>" +
+                                        "j'ai perdu mon match en 15 secondes.</br></br> "+
+                                        "Au sabre, on distincte principalement 2 types de tireurs : les attaquants et les défenseurs.</br>" + 
+                                        "Les attaquants vont chercher la touche sans toucher le fer adverse avec le bras qui s'allonge ou qui est allongé.</br>"+
+                                        "Les défenseurs subissent 1 attaque, ils ont leur bras fléchi essayant de faire une parade et bien sûr la riposte qui devrait suivre toujours après une parade.</br>" +
+                                        "La seule façon de récupérer la priorité après 1 parade, c'est de refaire une parade.</br></br>" + 
+                                        "Ce que je vois quand j'observe vos matchs, c'est le fait de ne pas prendre votre temps dans les 3 minutes imparties.</br>"+
+                                        "Prenez votre temps, utilisez toute la longueur de la piste, changez de rythme souvent (ne rien faire pendant quelques secondes, attaquer d'un coup), n'attaquez pas quand vous tirez contre quelqu'un de plus fort que vous, ne faites pas la même action perdante 2x d'affilée."
+                                     ,PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                           }
+                        }
+                    },
                      new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2025, 12,12),
-                        Arme = TypeArme.Fleuret,
+                        Arme = TypeArme.Epée,
                         RemarquesData = new List<RemarqueData>()
                         {
                             new RemarqueData()
