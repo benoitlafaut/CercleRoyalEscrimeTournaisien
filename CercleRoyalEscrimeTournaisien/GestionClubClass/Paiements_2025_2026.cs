@@ -15,6 +15,30 @@ namespace WebApplication1.Models
                 {
                                     new JourDePrésence()
                 {
+                  DatePrésence = new DateTime(2026,1,9),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAbelMotte,
+                    GuidConstantes.GuidAmadoSimon,
+                    GuidConstantes.GuidAmelLawrizy,
+                    GuidConstantes.GuidAnaelleIvanov,
+                    GuidConstantes.GuidBaptisteMotte,
+                    GuidConstantes.GuidEliotPunchoo,
+                    GuidConstantes.GuidFabriceRazanajao,
+                    GuidConstantes.GuidFélixTrannoy,
+                    GuidConstantes.GuidGwendalLecomte,
+                    GuidConstantes.GuidLiliMestdag,
+                    GuidConstantes.GuidLucasVerheye,
+                    GuidConstantes.GuidMaeVantroyen,
+                    GuidConstantes.GuidMartinSiu,
+                    GuidConstantes.GuidOscarDucrot,
+                    GuidConstantes.GuidRaedwaldVercouter,
+                    GuidConstantes.GuidSiméonTrovato,
+                    GuidConstantes.GuidThéoCucheval_Rasson,
+                  }
+                },
+                                    new JourDePrésence()
+                {
                   DatePrésence = new DateTime(2025,12,21),
                   EscrimeurId = new List<Guid>()
                   {
@@ -1784,7 +1808,7 @@ namespace WebApplication1.Models
                     Periode = period,
                     IsCotisationAnnuelle = false,
                     IsCotisationCarte1 = true,
-                    IsCotisationCarte2 = false,
+                    IsCotisationCarte2 = true,
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
                     IsCotisationEnOrdre = true,
@@ -1792,7 +1816,7 @@ namespace WebApplication1.Models
                     IsLocationMatérielEnOrdre = true,
                     IsChaussettesPayéesEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { "95 euros", "14 euros","75 euros" },
+                    PaiementsEffectues = new List<string>() { "95 euros", "14 euros","75 euros", "50 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,9,6),
