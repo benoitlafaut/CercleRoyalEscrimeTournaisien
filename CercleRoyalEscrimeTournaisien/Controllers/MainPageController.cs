@@ -757,18 +757,23 @@ namespace CercleRoyalEscrimeTournaisien
                 var rowRun = ws.Dimension.End.Row;
                 for (int iLoop = 3; iLoop <= rowRun; iLoop++)
                 {
-                    excelRows.Add(new ClassExcelRow()
+                    DateTime operationDate = GetCellValueDate(ws.Cells[iLoop, 1].Text);
+                    if (operationDate.Year.ToString() == anneeSelectedInput)
                     {
-                        OperationDate = GetCellValueDate(ws.Cells[iLoop, 1].Text),
-                        Destinataire = GetCellValue(ws.Cells[iLoop, 2].Text),
-                        MontantPositif = GetCellValue(ws.Cells[iLoop, 3].Text),
-                        MontantNegatif = GetCellValue(ws.Cells[iLoop, 4].Text),
-                        Motif = GetCellValue(ws.Cells[iLoop, 5].Text),
-                        Period = GetCellValue(ws.Cells[iLoop, 6].Text),
-                        EtatDuCompte = GetCellValue(ws.Cells[iLoop, 7].Text),
-                        DepensesRecettes = GetCellValue(ws.Cells[iLoop, 8].Text),
-                        Pots = GetCellValue(ws.Cells[iLoop, 9].Text),
-                    });
+                        excelRows.Add(new ClassExcelRow()
+                        {
+                            OperationDate = operationDate,
+                            Destinataire = GetCellValue(ws.Cells[iLoop, 2].Text),
+                            MontantPositif = GetCellValue(ws.Cells[iLoop, 3].Text),
+                            MontantNegatif = GetCellValue(ws.Cells[iLoop, 4].Text),
+                            Motif = GetCellValue(ws.Cells[iLoop, 5].Text),
+                            Period = GetCellValue(ws.Cells[iLoop, 6].Text),
+                            EtatDuCompte = GetCellValue(ws.Cells[iLoop, 7].Text),
+                            DepensesRecettes = GetCellValue(ws.Cells[iLoop, 8].Text),
+                            Pots = GetCellValue(ws.Cells[iLoop, 9].Text),
+                        });
+                    }
+
                 }
                 excelPack.Save();
                 excelPack.Dispose();
