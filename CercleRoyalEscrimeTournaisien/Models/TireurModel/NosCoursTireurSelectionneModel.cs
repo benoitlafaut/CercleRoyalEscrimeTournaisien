@@ -152,6 +152,44 @@ namespace CercleRoyalEscrimeTournaisien
                         {
                             new RemarqueData()
                             {
+                                Remarque = "Voici une autre vidéo qui montre les 5 types de parade au sabre (3 pour les débutants). Les actions sont rapides mais elles sont vues au ralenti dans la vidéo. les 3 habituelles parades (tierce, quarte, quinte) sont vues à partir de la minute 48 secondes. Celles avant cette minute 48s (parade de seconde et de prime) sont moins souvent vues en assaut mais elles existent. Cliquez<a target='_blank' href='https://www.youtube.com/watch?v=UpX5IwaAt_0'> ici</a>",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                           }
+                        }
+                    },    
+                        new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2026, 1, 11),
+                        Arme = TypeArme.Sabre,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                Remarque = "Voici une vidéo qui montre une parade de quarte suivie d'une riposte avec l'arbitrage. Elle est courte mais très facile à comprendre. Cliquez<a target='_blank' href='https://www.youtube.com/watch?v=T6pxldWGsM4'> ici</a>",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                           }
+                        }
+                    },    new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2026, 1, 11),
+                        Arme = TypeArme.Sabre,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                Remarque = "Voici une vidéo qui explique les positions de main au sabre et le passage d'une position de main à une autre. Cliquez<a target='_blank' href='https://www.youtube.com/watch?v=7tNp4ap8ZEE'> ici</a>",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                           }
+                        }
+                    },
+                       new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2026, 1, 11),
+                        Arme = TypeArme.Sabre,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
                                 Remarque = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules. (Amel,Lucas,Romain,Théo)",
                                      PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
                            }
