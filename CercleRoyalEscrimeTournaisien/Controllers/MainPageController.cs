@@ -16,7 +16,9 @@ using System.Web.Mvc;
 using System.Web.UI;
 using WebApplication1.Models;
 using static CercleRoyalEscrimeTournaisien.IndexTireurConstantes;
-using InteropWord = Microsoft.Office.Interop.Word;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace CercleRoyalEscrimeTournaisien
 {
@@ -777,122 +779,228 @@ namespace CercleRoyalEscrimeTournaisien
             decimal totalRecettes = excelRows.Where(x => x.DepensesRecettes == "Recettes").Sum(x => Convert.ToDecimal(x.MontantPositif));
             decimal solde = totalRecettes - totalDépenses;
 
-            // Create a temporary file path
             string tempPath = Path.Combine(Path.GetTempPath(), $"RapportAnnuel_Sauvé_le_{DateTime.Now:ddMMyyyy}_Year_" + anneeSelectedInput + ".docx");
-
-            // Create Word application
-            Microsoft.Office.Interop.Word.Application wordApp = new Microsoft.Office.Interop.Word.Application();
-            InteropWord.Document doc = wordApp.Documents.Add();
-
-            try
+            using (MemoryStream stream = new MemoryStream())
             {
-                InteropWord.Paragraph newParagraph = doc.Content.Paragraphs.Add();
+                using (WordprocessingDocument wordDoc = WordprocessingDocument.Create(stream, WordprocessingDocumentType.Document))
+                {    
+                    MainDocumentPart mainPart = wordDoc.AddMainDocumentPart(); 
+                    mainPart.Document = new Document(); 
+                    Body body = new Body();                     
+                    Paragraph para = new Paragraph();
 
-                newParagraph.Range.Text = "Cercle Royal Escrime Tournaisien ASBL";
-                newParagraph.Range.Font.Size = 20;
-                newParagraph.Range.Font.Bold = 1;
-                newParagraph.Range.Font.Name = "Arial";
-                newParagraph.Range.InsertParagraphAfter();
+                    Run run = new Run(
+                        new RunProperties(new RunFonts() { Ascii = "Arial", HighAnsi = "Arial" },
+                        new Bold(),
+                        new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "40" },
+                        new Text("Cercle Royal Escrime Tournaisien ASBL")
+                        )
+                    );
+                    para.Append(run);
 
-                newParagraph.Range.Font.Size = 10;
-                newParagraph.Range.Text = "N° d'entreprise 1029793570 • IBAN BE77 3750 0065 5942"
-                    + Environment.NewLine + "https://www.cercleroyalescrimetournaisien.be • escrime.tournai@gmail.com"
-                    + Environment.NewLine + "Rue Chèrequefosse(TOU) 14 • 7500 Tournai";
-                newParagraph.Range.InsertParagraphAfter();
+                    run = new Run(
+                            new Break(),
+                            new RunProperties(new RunFonts() { Ascii = "Arial", HighAnsi = "Arial" },
+                            new Bold(),
+                            new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "20" },
+                            new Text("N° d'entreprise 1029793570 • IBAN BE77 3750 0065 5942"),
+                            new Break(),
+                            new Text("https://www.cercleroyalescrimetournaisien.be • escrime.tournai@gmail.com"),
+                            new Break(),
+                            new Text("Rue Chèrequefosse(TOU) 14 • 7500 Tournai")
+                            )
+                        );
+                    para.Append(run);
 
-                newParagraph.Range.Font.Bold = 0;
-                newParagraph.Range.Text = Environment.NewLine + "Comptes simplifiés de l’année   " + anneeSelectedInput;
-                newParagraph.Range.InsertParagraphAfter();
+                    run = new Run(
+                            new Break(),
+                            new Break(),
+                            new RunProperties(new RunFonts() { Ascii = "Arial", HighAnsi = "Arial" },                                                   
+                            new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "20" },
+                            new Text(Environment.NewLine + "Comptes simplifiés de l’année   " + anneeSelectedInput)
+                            )
+                        );
+                    para.Append(run);
 
-                InteropWord.Range tableRange = newParagraph.Range;
-                tableRange.Collapse(InteropWord.WdCollapseDirection.wdCollapseEnd);
+
+                    Table table = new Table();
+                    
+                    TableProperties tblProps = new TableProperties(
+                        new TableWidth()
+                        {
+                            Width = "5000", 
+                            Type = TableWidthUnitValues.Pct 
+                        },                                            
+                        new TableBorders(new TopBorder(){ Val = new EnumValue<BorderValues>(BorderValues.Single), Size = 6 }, 
+                        new BottomBorder() { Val = new EnumValue<BorderValues>(BorderValues.Single), Size = 6 }, 
+                        new LeftBorder() { Val = new EnumValue<BorderValues>(BorderValues.Single), Size = 6 }, 
+                        new RightBorder() { Val = new EnumValue<BorderValues>(BorderValues.Single), Size = 6 }, 
+                        new InsideHorizontalBorder() { Val = new EnumValue<BorderValues>(BorderValues.Single), Size = 6 }, 
+                        new InsideVerticalBorder() { Val = new EnumValue<BorderValues>(BorderValues.Single), Size = 6 }));
+                        
+                    table.AppendChild(tblProps);
 
 
-                InteropWord.Table table = doc.Tables.Add(tableRange, 2, 5);
-                table.Borders.Enable = 1; 
+                    TableRow row0 = new TableRow();
 
-                InteropWord.Cell top = table.Cell(1, 3);
-                for (int r = 2; r <= 2; r++)
-                {
-                    InteropWord.Cell next = table.Cell(r, 3);
-                    top.Merge(next);
+                    TableCell r0c1_2 = new TableCell(
+                        new TableCellProperties(
+                            new GridSpan() { Val = 2 }                            
+                        ),
+                        new Paragraph(new ParagraphProperties(new Justification() { Val = JustificationValues.Center }), new Run(new Text("Dépenses")))
+                    );
+
+                    TableCell r0c3 = new TableCell(
+                        new TableCellProperties(
+                            new VerticalMerge() { Val = MergedCellValues.Restart }                            
+                        ),
+                        new Paragraph(new ParagraphProperties(new Justification() { Val = JustificationValues.Center }), 
+                        new Run(
+                            new Text("Solde"),
+                            new Break(),
+                            new Text(solde.ToString())))
+                    );
+
+                    TableCell r0c4_5 = new TableCell(
+                        new TableCellProperties(
+                            new GridSpan() { Val = 2 }                            
+                        ),
+                        new Paragraph(new ParagraphProperties(new Justification() { Val = JustificationValues.Center }), 
+                        new Run(new Text("Recettes")))
+                    );
+
+                    row0.Append(r0c1_2, r0c3, r0c4_5);
+                    table.Append(row0);
+
+
+                    TableRow row1 = new TableRow();
+
+                    TableCell r1c1 = new TableCell(                        
+                        new Paragraph(new ParagraphProperties(new Justification() { Val = JustificationValues.Center }), 
+                        new Run(new Text("Total")))
+                    );
+
+                    TableCell r1c2 = new TableCell(                       
+                        new Paragraph(new ParagraphProperties(new Justification() { Val = JustificationValues.Center }), 
+                        new Run(new Text(totalDépenses.ToString())))
+                    );
+
+                    TableCell r1c3 = new TableCell(
+                        new TableCellProperties(
+                            new VerticalMerge() { Val = MergedCellValues.Continue }                            
+                        ),
+                        new Paragraph()
+                    );
+
+                    TableCell r1c4 = new TableCell(                       
+                        new Paragraph(new ParagraphProperties(new Justification() { Val = JustificationValues.Center }), 
+                        new Run(new Text("Total")))
+                    );
+
+                    TableCell r1c5 = new TableCell(                        
+                        new Paragraph(new ParagraphProperties(new Justification() { Val = JustificationValues.Center }), 
+                        new Run(new Text(totalRecettes.ToString())))
+                    );
+
+                    row1.Append(r1c1, r1c2, r1c3, r1c4, r1c5);
+                    table.Append(row1);                    
+
+                    body.Append(para);
+                    body.Append(table);
+
+                    mainPart.Document.Append(body);
+                    mainPart.Document.Save();                
                 }
 
-                table.Cell(1, 4).Merge(table.Cell(1, 5));
-                table.Cell(1, 1).Merge(table.Cell(1, 2));
+                return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.wordprocessingml.document", $"RapportAnnuel_Sauvé_le_{DateTime.Now:ddMMyyyy}_Year_" + anneeSelectedInput + ".docx");
+            }         
 
-                // Fill cells
-                table.Cell(1, 1).Range.Font.Bold = 1;
-                table.Cell(1, 2).Range.Font.Bold = 1;
-                table.Cell(1, 3).Range.Font.Bold = 1;
-                table.Cell(2, 1).Range.Font.Bold = 1;
-                table.Cell(2, 2).Range.Font.Bold = 1;
-                table.Cell(2, 4).Range.Font.Bold = 1;
-                table.Cell(2, 5).Range.Font.Bold = 1;
 
-                table.Cell(1, 1).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
-                table.Cell(1, 2).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
-                table.Cell(1, 3).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
-                table.Cell(2, 1).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
-                table.Cell(2, 2).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
-                table.Cell(2, 4).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
-                table.Cell(2, 5).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
 
-                table.Cell(1, 1).Range.Text = "Dépenses";
-                table.Cell(1, 2).Range.Text = "Solde" + Environment.NewLine + solde.ToString();
-                table.Cell(1, 3).Range.Text = "Recettes";
-                
-                table.Cell(2, 1).Range.Text = "Total";
-                table.Cell(2, 2).Range.Text = totalDépenses.ToString();
-                table.Cell(2, 4).Range.Text = "Total";
-                table.Cell(2, 5).Range.Text = totalRecettes.ToString();
+            //    InteropWord.Table table = doc.Tables.Add(tableRange, 2, 5);
+            //    table.Borders.Enable = 1; 
 
-                InteropWord.Cell target = table.Cell(1, 1);
-                target.Borders[InteropWord.WdBorderType.wdBorderTop].Color = InteropWord.WdColor.wdColorGray20;
-                target.Borders[InteropWord.WdBorderType.wdBorderBottom].Color = InteropWord.WdColor.wdColorGray20;
-                target.Borders[InteropWord.WdBorderType.wdBorderLeft].Color = InteropWord.WdColor.wdColorGray20;
+            //    InteropWord.Cell top = table.Cell(1, 3);
+            //    for (int r = 2; r <= 2; r++)
+            //    {
+            //        InteropWord.Cell next = table.Cell(r, 3);
+            //        top.Merge(next);
+            //    }
 
-                target = table.Cell(1, 3);
-                target.Borders[InteropWord.WdBorderType.wdBorderTop].Color = InteropWord.WdColor.wdColorGray20;
-                target.Borders[InteropWord.WdBorderType.wdBorderBottom].Color = InteropWord.WdColor.wdColorGray20;
-                target.Borders[InteropWord.WdBorderType.wdBorderRight].Color = InteropWord.WdColor.wdColorGray20;
+            //    table.Cell(1, 4).Merge(table.Cell(1, 5));
+            //    table.Cell(1, 1).Merge(table.Cell(1, 2));
 
-                target = table.Cell(2, 1);
-                target.Borders[InteropWord.WdBorderType.wdBorderTop].Color = InteropWord.WdColor.wdColorGray20;
-                target.Borders[InteropWord.WdBorderType.wdBorderBottom].Color = InteropWord.WdColor.wdColorGray20;
-                target.Borders[InteropWord.WdBorderType.wdBorderLeft].Color = InteropWord.WdColor.wdColorGray20;
+            //    // Fill cells
+            //    table.Cell(1, 1).Range.Font.Bold = 1;
+            //    table.Cell(1, 2).Range.Font.Bold = 1;
+            //    table.Cell(1, 3).Range.Font.Bold = 1;
+            //    table.Cell(2, 1).Range.Font.Bold = 1;
+            //    table.Cell(2, 2).Range.Font.Bold = 1;
+            //    table.Cell(2, 4).Range.Font.Bold = 1;
+            //    table.Cell(2, 5).Range.Font.Bold = 1;
 
-                target = table.Cell(2, 2);
-                target.Borders[InteropWord.WdBorderType.wdBorderTop].Color = InteropWord.WdColor.wdColorBlack;
+            //    table.Cell(1, 1).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
+            //    table.Cell(1, 2).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
+            //    table.Cell(1, 3).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
+            //    table.Cell(2, 1).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
+            //    table.Cell(2, 2).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
+            //    table.Cell(2, 4).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
+            //    table.Cell(2, 5).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
 
-                target = table.Cell(2,4);
-                target.Borders[InteropWord.WdBorderType.wdBorderTop].Color = InteropWord.WdColor.wdColorGray20;
-                target.Borders[InteropWord.WdBorderType.wdBorderBottom].Color = InteropWord.WdColor.wdColorGray20;
+            //    table.Cell(1, 1).Range.Text = "Dépenses";
+            //    table.Cell(1, 2).Range.Text = "Solde" + Environment.NewLine + solde.ToString();
+            //    table.Cell(1, 3).Range.Text = "Recettes";
 
-                target = table.Cell(2, 5);
-                target.Borders[InteropWord.WdBorderType.wdBorderTop].Color = InteropWord.WdColor.wdColorBlack;
+            //    table.Cell(2, 1).Range.Text = "Total";
+            //    table.Cell(2, 2).Range.Text = totalDépenses.ToString();
+            //    table.Cell(2, 4).Range.Text = "Total";
+            //    table.Cell(2, 5).Range.Text = totalRecettes.ToString();
 
-                doc.SaveAs2(tempPath);
-            }
-            finally
-            {
-                // Close Word
-                doc.Close();
-                wordApp.Quit();
-            }
+            //    InteropWord.Cell target = table.Cell(1, 1);
+            //    target.Borders[InteropWord.WdBorderType.wdBorderTop].Color = InteropWord.WdColor.wdColorGray20;
+            //    target.Borders[InteropWord.WdBorderType.wdBorderBottom].Color = InteropWord.WdColor.wdColorGray20;
+            //    target.Borders[InteropWord.WdBorderType.wdBorderLeft].Color = InteropWord.WdColor.wdColorGray20;
 
-            // Read file into memory
-            byte[] fileBytes = System.IO.File.ReadAllBytes(tempPath);
+            //    target = table.Cell(1, 3);
+            //    target.Borders[InteropWord.WdBorderType.wdBorderTop].Color = InteropWord.WdColor.wdColorGray20;
+            //    target.Borders[InteropWord.WdBorderType.wdBorderBottom].Color = InteropWord.WdColor.wdColorGray20;
+            //    target.Borders[InteropWord.WdBorderType.wdBorderRight].Color = InteropWord.WdColor.wdColorGray20;
 
-            // Delete temp file
-            System.IO.File.Delete(tempPath);
+            //    target = table.Cell(2, 1);
+            //    target.Borders[InteropWord.WdBorderType.wdBorderTop].Color = InteropWord.WdColor.wdColorGray20;
+            //    target.Borders[InteropWord.WdBorderType.wdBorderBottom].Color = InteropWord.WdColor.wdColorGray20;
+            //    target.Borders[InteropWord.WdBorderType.wdBorderLeft].Color = InteropWord.WdColor.wdColorGray20;
 
-            // Return as download
-            return File(fileBytes,
-                "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                $"RapportAnnuel_Sauvé_le_{DateTime.Now:ddMMyyyy}_Year_" + anneeSelectedInput + ".docx");
-        }       
+            //    target = table.Cell(2, 2);
+            //    target.Borders[InteropWord.WdBorderType.wdBorderTop].Color = InteropWord.WdColor.wdColorBlack;
 
+            //    target = table.Cell(2,4);
+            //    target.Borders[InteropWord.WdBorderType.wdBorderTop].Color = InteropWord.WdColor.wdColorGray20;
+            //    target.Borders[InteropWord.WdBorderType.wdBorderBottom].Color = InteropWord.WdColor.wdColorGray20;
+
+            //    target = table.Cell(2, 5);
+            //    target.Borders[InteropWord.WdBorderType.wdBorderTop].Color = InteropWord.WdColor.wdColorBlack;
+
+            //    doc.SaveAs2(tempPath);
+            //}
+            //finally
+            //{
+            //    // Close Word
+            //    doc.Close();
+            //    wordApp.Quit();
+            //}
+
+            //// Read file into memory
+            //byte[] fileBytes = System.IO.File.ReadAllBytes(tempPath);
+
+            //// Delete temp file
+            //System.IO.File.Delete(tempPath);
+
+            //// Return as download
+            //return File(fileBytes,
+            //    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            //    $"RapportAnnuel_Sauvé_le_{DateTime.Now:ddMMyyyy}_Year_" + anneeSelectedInput + ".docx");
+        }        
         private string GetCellValue(object cellValue)
         {
             if (cellValue != null)
