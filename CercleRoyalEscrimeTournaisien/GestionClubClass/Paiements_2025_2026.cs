@@ -15,6 +15,25 @@ namespace WebApplication1.Models
                 {
                                     new JourDePrésence()
                 {
+                  DatePrésence = new DateTime(2026,1,11),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAbelMotte,
+                    GuidConstantes.GuidAmelLawrizy,
+                    GuidConstantes.GuidAuroreCarlier,
+                    GuidConstantes.GuidBaptisteMotte,
+                    GuidConstantes.GuidEliotPunchoo,
+                    GuidConstantes.GuidFélixTrannoy,
+                    GuidConstantes.GuidLucasVerheye,
+                    GuidConstantes.GuidMaeVantroyen,
+                    GuidConstantes.GuidRaedwaldVercouter,
+                    GuidConstantes.GuidRebeccaVandy,
+                    GuidConstantes.GuidRomainBracquart,
+                    GuidConstantes.GuidThéoCucheval_Rasson,
+                  }
+                },
+                                    new JourDePrésence()
+                {
                   DatePrésence = new DateTime(2026,1,9),
                   EscrimeurId = new List<Guid>()
                   {
@@ -1044,6 +1063,7 @@ namespace WebApplication1.Models
                     IsCotisationEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = true,
+                    IsTeeShirtsPayéesEnOrdre = true,
 
                     PaiementsEffectues = new List<string>() { "75 euros", "290 euros" },
 
@@ -1218,7 +1238,7 @@ namespace WebApplication1.Models
                     IsCotisationEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = true,
-
+                    IsTeeShirtsPayéesEnOrdre = true,
                     PaiementsEffectues = new List<string>() { "290 euros", "75 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
@@ -1297,7 +1317,7 @@ namespace WebApplication1.Models
                     IsCotisationEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
-
+                    IsTeeShirtsPayéesEnOrdre = true,
                     PaiementsEffectues = new List<string>() { "245 euros", "75 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {

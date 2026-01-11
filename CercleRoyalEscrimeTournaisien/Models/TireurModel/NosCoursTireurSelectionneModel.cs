@@ -144,7 +144,21 @@ namespace CercleRoyalEscrimeTournaisien
                 List<RemarqueParDate> remarquesPourToutesLesPoules = new List<RemarqueParDate>() { };
                 remarquesPourToutesLesPoules.AddRange(
                     new List<RemarqueParDate>() {
-                         new RemarqueParDate()
+                       new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2026, 1, 11),
+                        Arme = TypeArme.Sabre,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                Remarque = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules. (Amel,Lucas,Romain,Théo)",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                           }
+                        }
+                    },
+
+                        new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2026, 1,9),
                         Arme = TypeArme.Sabre,
@@ -595,6 +609,7 @@ namespace CercleRoyalEscrimeTournaisien
                 return new Dictionary<string, string>()
                 {
                     { "", ""  },
+                    { "/Poules/Poule 2026-01-11 Sabre.pdf", "Poule 2026-01-11 Sabre"  },                    
                     { "/Poules/Questions après chaque match.docx","Questions après chaque match" },
                     { "/Poules/Poule 2025-11-16 Débutants Epée.pdf","Poule 2025-11-16 Débutants Epée" },
                     { "/Poules/Poule 2025-11-16 Epée.pdf","Poule 2025-11-16 Epée" },

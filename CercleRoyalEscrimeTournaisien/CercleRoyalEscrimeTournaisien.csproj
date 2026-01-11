@@ -1278,6 +1278,7 @@
     <Content Include="Poules\Poule 2025-11-16 Epée.pdf" />
     <Content Include="Poules\Questions après chaque match.docx" />
     <Content Include="Views\MainPage\LoggingUsers.cshtml" />
+    <Content Include="Poules\Poule 2026-01-11 Sabre.pdf" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
