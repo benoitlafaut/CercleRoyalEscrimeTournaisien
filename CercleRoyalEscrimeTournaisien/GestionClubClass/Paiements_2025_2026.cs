@@ -1612,7 +1612,7 @@ namespace WebApplication1.Models
                     IsCotisationEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
-
+                    IsTeeShirtsPayéesEnOrdre = true,
                     PaiementsEffectues = new List<string>() { "95 euros", "75 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
