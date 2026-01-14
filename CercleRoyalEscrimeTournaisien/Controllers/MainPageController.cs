@@ -742,6 +742,11 @@ namespace CercleRoyalEscrimeTournaisien
         [HttpGet]
         public ActionResult DownloadButtonRapportAnnuel(string anneeSelectedInput)
         {
+            TableRowProperties rowProps = new TableRowProperties(
+                new TableRowHeight() { Val = 380, HeightType = HeightRuleValues.Exact }
+            );
+
+            #region Get All rows with year input selected
             List<ClassExcelRow> excelRows = new List<ClassExcelRow>() { };
 
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -778,10 +783,17 @@ namespace CercleRoyalEscrimeTournaisien
                 excelPack.Save();
                 excelPack.Dispose();
             }
+            #endregion
 
-            decimal totalDépenses = excelRows.Where(x => x.DepensesRecettes == "Dépenses").Sum(x => Convert.ToDecimal(x.MontantNegatif));
+            List<ClassExcelRow> dépenses = excelRows.Where(x => x.DepensesRecettes == "Dépenses").ToList();
+            List<ClassExcelRow> recettes = excelRows.Where(x => x.DepensesRecettes == "Recettes").ToList();
+
+            List<string> différentsPotsDépenses = dépenses.GroupBy(x => x.Pots).SelectMany(g => g.Select(p => p.Pots)).Distinct().ToList();
+            List<string> différentsPotsRecettes = recettes.GroupBy(x => x.Pots).SelectMany(g => g.Select(p => p.Pots)).Distinct().ToList();
+
+            decimal totalDépenses = dépenses.Sum(x => Convert.ToDecimal(x.MontantNegatif));
             totalDépenses = totalDépenses * -1;
-            decimal totalRecettes = excelRows.Where(x => x.DepensesRecettes == "Recettes").Sum(x => Convert.ToDecimal(x.MontantPositif));
+            decimal totalRecettes = recettes.Sum(x => Convert.ToDecimal(x.MontantPositif));
             decimal solde = totalRecettes - totalDépenses;
 
             string tempPath = Path.Combine(Path.GetTempPath(), $"RapportAnnuel_Sauvé_le_{DateTime.Now:ddMMyyyy}_Year_" + anneeSelectedInput + ".docx");
@@ -793,6 +805,10 @@ namespace CercleRoyalEscrimeTournaisien
                     mainPart.Document = new Document(); 
                     Body body = new Body();                     
                     Paragraph para = new Paragraph();
+
+
+                    // paragraphe 1
+                    #region Paragraphe 1
 
                     Run run = new Run(
                         new RunProperties(new RunFonts() { Ascii = "Arial", HighAnsi = "Arial" },
@@ -826,10 +842,11 @@ namespace CercleRoyalEscrimeTournaisien
                             )
                         );
                     para.Append(run);
+                    #endregion
 
+                    #region Table 1
+                    Table table1AfterParagraphe1 = new Table();
 
-                    Table table = new Table();
-                    
                     TableProperties tblProps = new TableProperties(
                         new TableWidth()
                         {
@@ -843,7 +860,7 @@ namespace CercleRoyalEscrimeTournaisien
                         new InsideHorizontalBorder() { Val = new EnumValue<BorderValues>(BorderValues.Single), Size = 6 }, 
                         new InsideVerticalBorder() { Val = new EnumValue<BorderValues>(BorderValues.Single), Size = 6 }));
                         
-                    table.AppendChild(tblProps);
+                    table1AfterParagraphe1.AppendChild(tblProps);
 
 
                     TableRow row0 = new TableRow();
@@ -852,15 +869,18 @@ namespace CercleRoyalEscrimeTournaisien
                         new TableCellProperties(
                             new GridSpan() { Val = 2 }                            
                         ),
-                        new Paragraph(new ParagraphProperties(new Justification() { Val = JustificationValues.Center }), new Run(new Text("Dépenses")))
+                        new Paragraph(new ParagraphProperties(
+                            new Justification() { Val = JustificationValues.Center }),
+                            new Run(new RunProperties(new Bold()), new Text("Dépenses")))
                     );
 
                     TableCell r0c3 = new TableCell(
                         new TableCellProperties(
                             new VerticalMerge() { Val = MergedCellValues.Restart }                            
                         ),
-                        new Paragraph(new ParagraphProperties(new Justification() { Val = JustificationValues.Center }), 
+                        new Paragraph(new ParagraphProperties(new Justification() { Val = JustificationValues.Center }),
                         new Run(
+                            new RunProperties(new Bold()),
                             new Text("Solde"),
                             new Break(),
                             new Text(solde.ToString())))
@@ -870,24 +890,25 @@ namespace CercleRoyalEscrimeTournaisien
                         new TableCellProperties(
                             new GridSpan() { Val = 2 }                            
                         ),
-                        new Paragraph(new ParagraphProperties(new Justification() { Val = JustificationValues.Center }), 
-                        new Run(new Text("Recettes")))
+                        new Paragraph(new ParagraphProperties(new Justification() { Val = JustificationValues.Center }),
+                        new Run(new RunProperties(new Bold()), new Text("Recettes")))
                     );
 
+                    row0.AppendChild(rowProps);
                     row0.Append(r0c1_2, r0c3, r0c4_5);
-                    table.Append(row0);
+                    table1AfterParagraphe1.Append(row0);
 
 
                     TableRow row1 = new TableRow();
 
                     TableCell r1c1 = new TableCell(                        
-                        new Paragraph(new ParagraphProperties(new Justification() { Val = JustificationValues.Center }), 
-                        new Run(new Text("Total")))
+                        new Paragraph(new ParagraphProperties(new Justification() { Val = JustificationValues.Center }),
+                        new Run(new RunProperties(new Bold()), new Text("Total")))
                     );
 
                     TableCell r1c2 = new TableCell(                       
-                        new Paragraph(new ParagraphProperties(new Justification() { Val = JustificationValues.Center }), 
-                        new Run(new Text(totalDépenses.ToString())))
+                        new Paragraph(new ParagraphProperties(new Justification() { Val = JustificationValues.Center }),
+                        new Run(new RunProperties(new Bold()), new Text(totalDépenses.ToString())))
                     );
 
                     TableCell r1c3 = new TableCell(
@@ -898,113 +919,84 @@ namespace CercleRoyalEscrimeTournaisien
                     );
 
                     TableCell r1c4 = new TableCell(                       
-                        new Paragraph(new ParagraphProperties(new Justification() { Val = JustificationValues.Center }), 
-                        new Run(new Text("Total")))
+                        new Paragraph(new ParagraphProperties(new Justification() { Val = JustificationValues.Center }),
+                        new Run(new RunProperties(new Bold()), new Text("Total")))
                     );
 
                     TableCell r1c5 = new TableCell(                        
-                        new Paragraph(new ParagraphProperties(new Justification() { Val = JustificationValues.Center }), 
-                        new Run(new Text(totalRecettes.ToString())))
+                        new Paragraph(new ParagraphProperties(new Justification() { Val = JustificationValues.Center }),
+                        new Run(new RunProperties(new Bold()), new Text(totalRecettes.ToString())))
                     );
 
+                    TableRowProperties row2Props = new TableRowProperties(
+                        new TableRowHeight() { Val = 380, HeightType = HeightRuleValues.Exact }
+                    );
+                    row1.AppendChild(row2Props);
                     row1.Append(r1c1, r1c2, r1c3, r1c4, r1c5);
-                    table.Append(row1);                    
+                    table1AfterParagraphe1.Append(row1);
+                    #endregion
+
+                    #region Table 2
+                    Table table2ForDépensesAfterTable1 = new Table();
+
+                    TableProperties tblProps2 = new TableProperties(
+                        new TableWidth()
+                        {
+                            Width = "2100",
+                            Type = TableWidthUnitValues.Pct
+                        },
+                        new TableBorders(new TopBorder() { Val = new EnumValue<BorderValues>(BorderValues.Single), Size = 6 },
+                        new BottomBorder() { Val = new EnumValue<BorderValues>(BorderValues.Single), Size = 6 },
+                        new LeftBorder() { Val = new EnumValue<BorderValues>(BorderValues.Single), Size = 6 },
+                        new RightBorder() { Val = new EnumValue<BorderValues>(BorderValues.Single), Size = 6 },
+                        new InsideHorizontalBorder() { Val = new EnumValue<BorderValues>(BorderValues.Single), Size = 6 },
+                        new InsideVerticalBorder() { Val = new EnumValue<BorderValues>(BorderValues.Single), Size = 6 }));
+
+                    table2ForDépensesAfterTable1.AppendChild(tblProps2);
+
+                    foreach (string potForDépense in différentsPotsDépenses)
+                    {
+                        TableRow rowForDépense = new TableRow();
+
+                        TableCell rowCellule1ForDépense = new TableCell(
+                            new Paragraph(
+                                new Run(new RunProperties(new Bold()), new Text(potForDépense)))
+                        );
+
+                        decimal totalPotForDépense = dépenses.Where(x => x.Pots == potForDépense).Sum( y => Convert.ToDecimal(y.MontantNegatif));
+                        totalPotForDépense = totalPotForDépense * -1;
+
+                        TableCell rowCellule2ForDépense = new TableCell(
+                            new Paragraph(
+                                new ParagraphProperties(
+                                    new Justification() { Val = JustificationValues.Center }),
+                                new Run(new RunProperties(new Bold()), new Text(totalPotForDépense.ToString())))
+                        );
+
+
+                        TableRowProperties row3Props = new TableRowProperties(
+                            new TableRowHeight() { Val = 380, HeightType = HeightRuleValues.Exact }
+                        );
+                        rowForDépense.AppendChild(row3Props);
+                        rowForDépense.Append(rowCellule1ForDépense, rowCellule2ForDépense);
+                        table2ForDépensesAfterTable1.Append(rowForDépense);
+                    }                    
+
+                    
+
+                    #endregion
 
                     body.Append(para);
-                    body.Append(table);
+                    body.Append(table1AfterParagraphe1);
+                    body.Append(new Paragraph(new Run(new Text(""))));
+                    body.Append(table2ForDépensesAfterTable1);
 
                     mainPart.Document.Append(body);
                     mainPart.Document.Save();                
                 }
 
                 return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.wordprocessingml.document", $"RapportAnnuel_Sauvé_le_{DateTime.Now:ddMMyyyy}_Year_" + anneeSelectedInput + ".docx");
-            }         
-
-
-
-            //    InteropWord.Table table = doc.Tables.Add(tableRange, 2, 5);
-            //    table.Borders.Enable = 1; 
-
-            //    InteropWord.Cell top = table.Cell(1, 3);
-            //    for (int r = 2; r <= 2; r++)
-            //    {
-            //        InteropWord.Cell next = table.Cell(r, 3);
-            //        top.Merge(next);
-            //    }
-
-            //    table.Cell(1, 4).Merge(table.Cell(1, 5));
-            //    table.Cell(1, 1).Merge(table.Cell(1, 2));
-
-            //    // Fill cells
-            //    table.Cell(1, 1).Range.Font.Bold = 1;
-            //    table.Cell(1, 2).Range.Font.Bold = 1;
-            //    table.Cell(1, 3).Range.Font.Bold = 1;
-            //    table.Cell(2, 1).Range.Font.Bold = 1;
-            //    table.Cell(2, 2).Range.Font.Bold = 1;
-            //    table.Cell(2, 4).Range.Font.Bold = 1;
-            //    table.Cell(2, 5).Range.Font.Bold = 1;
-
-            //    table.Cell(1, 1).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
-            //    table.Cell(1, 2).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
-            //    table.Cell(1, 3).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
-            //    table.Cell(2, 1).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
-            //    table.Cell(2, 2).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
-            //    table.Cell(2, 4).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
-            //    table.Cell(2, 5).Range.ParagraphFormat.Alignment = InteropWord.WdParagraphAlignment.wdAlignParagraphCenter;
-
-            //    table.Cell(1, 1).Range.Text = "Dépenses";
-            //    table.Cell(1, 2).Range.Text = "Solde" + Environment.NewLine + solde.ToString();
-            //    table.Cell(1, 3).Range.Text = "Recettes";
-
-            //    table.Cell(2, 1).Range.Text = "Total";
-            //    table.Cell(2, 2).Range.Text = totalDépenses.ToString();
-            //    table.Cell(2, 4).Range.Text = "Total";
-            //    table.Cell(2, 5).Range.Text = totalRecettes.ToString();
-
-            //    InteropWord.Cell target = table.Cell(1, 1);
-            //    target.Borders[InteropWord.WdBorderType.wdBorderTop].Color = InteropWord.WdColor.wdColorGray20;
-            //    target.Borders[InteropWord.WdBorderType.wdBorderBottom].Color = InteropWord.WdColor.wdColorGray20;
-            //    target.Borders[InteropWord.WdBorderType.wdBorderLeft].Color = InteropWord.WdColor.wdColorGray20;
-
-            //    target = table.Cell(1, 3);
-            //    target.Borders[InteropWord.WdBorderType.wdBorderTop].Color = InteropWord.WdColor.wdColorGray20;
-            //    target.Borders[InteropWord.WdBorderType.wdBorderBottom].Color = InteropWord.WdColor.wdColorGray20;
-            //    target.Borders[InteropWord.WdBorderType.wdBorderRight].Color = InteropWord.WdColor.wdColorGray20;
-
-            //    target = table.Cell(2, 1);
-            //    target.Borders[InteropWord.WdBorderType.wdBorderTop].Color = InteropWord.WdColor.wdColorGray20;
-            //    target.Borders[InteropWord.WdBorderType.wdBorderBottom].Color = InteropWord.WdColor.wdColorGray20;
-            //    target.Borders[InteropWord.WdBorderType.wdBorderLeft].Color = InteropWord.WdColor.wdColorGray20;
-
-            //    target = table.Cell(2, 2);
-            //    target.Borders[InteropWord.WdBorderType.wdBorderTop].Color = InteropWord.WdColor.wdColorBlack;
-
-            //    target = table.Cell(2,4);
-            //    target.Borders[InteropWord.WdBorderType.wdBorderTop].Color = InteropWord.WdColor.wdColorGray20;
-            //    target.Borders[InteropWord.WdBorderType.wdBorderBottom].Color = InteropWord.WdColor.wdColorGray20;
-
-            //    target = table.Cell(2, 5);
-            //    target.Borders[InteropWord.WdBorderType.wdBorderTop].Color = InteropWord.WdColor.wdColorBlack;
-
-            //    doc.SaveAs2(tempPath);
-            //}
-            //finally
-            //{
-            //    // Close Word
-            //    doc.Close();
-            //    wordApp.Quit();
-            //}
-
-            //// Read file into memory
-            //byte[] fileBytes = System.IO.File.ReadAllBytes(tempPath);
-
-            //// Delete temp file
-            //System.IO.File.Delete(tempPath);
-
-            //// Return as download
-            //return File(fileBytes,
-            //    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-            //    $"RapportAnnuel_Sauvé_le_{DateTime.Now:ddMMyyyy}_Year_" + anneeSelectedInput + ".docx");
+            }
         }        
         private string GetCellValue(object cellValue)
         {
