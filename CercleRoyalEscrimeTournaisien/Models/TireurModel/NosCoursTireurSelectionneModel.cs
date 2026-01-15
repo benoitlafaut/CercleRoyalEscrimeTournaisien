@@ -144,6 +144,32 @@ namespace CercleRoyalEscrimeTournaisien
                 List<RemarqueParDate> remarquesPourToutesLesPoules = new List<RemarqueParDate>() { };
                 remarquesPourToutesLesPoules.AddRange(
                     new List<RemarqueParDate>() {
+                           new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2026, 1, 15),
+                        Arme = TypeArme.Sabre,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                Remarque = "Voici aussi un site français sur l'arbitrage au sabre (une petite tartine à lire à votre aise).  Cliquez<a target='_blank' href='https://charentonescrime.fr/comprendre-larbitrage-du-sabre/'> ici</a>",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                           }
+                        }
+                    },
+                        new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2026, 1, 15),
+                        Arme = TypeArme.Sabre,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                Remarque = "cette semaine et la semaine dernière, le sabre était au rendez-vous. L'arbitrage au sabre est très compliqué. Vous faites des mouvements rapides, les arbitres sont jeunes. L'arbitre doit prendre un temps de réflexion après le halte pour donner une bonne décision d'arbitrage. Ici vous trouverez une explication d'arbitrage par le maître Poizat qui enseigne au club Le Sabre Noir. Cliquez<a target='_blank' href='https://www.youtube.com/watch?v=0oKOLPpB8bg&t=455s'> ici</a>",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                           }
+                        }
+                    },
                        new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2026, 1, 11),
