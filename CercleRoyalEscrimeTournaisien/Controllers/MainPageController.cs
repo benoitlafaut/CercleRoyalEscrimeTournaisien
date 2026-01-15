@@ -852,6 +852,61 @@ namespace CercleRoyalEscrimeTournaisien
                 rowIndex++;
             }
 
+            workSheet.Cells[19, 1].Value = "Annexes";
+            workSheet.Cells[21, 1].Value = "1. Résumé des règles d'évaluation";
+            workSheet.Cells[23, 1].Value = "- Un bien meuble acheté neuf pour une valeur égale ou supérieure à 450 euros, est évalué à 2/3 du prix d’achat\n les 12 mois suivant l’achat, 1/3 du prix d’achat les 12 mois suivants et est réputé sans valeur 24 mois après l’achat.";
+            workSheet.Cells[24, 1].Value = "- Un bien meuble acheté neuf pour une valeur inférieure à 450 euros, un bien acheté d’occasion, le matériel\n d’usure et les biens divers sont réputés sans valeur dès leur réception.";
+            workSheet.Cells[26, 1].Value = "2. Adaptation des règles d'évaluation\r\n";
+            workSheet.Cells[28, 1].Value = "néant";
+            workSheet.Cells[30, 1].Value = "3. Informations complémentaires";
+            workSheet.Cells[32, 1].Value = "néant";
+            workSheet.Cells[34, 1].Value = "4. État du patrimoine";
+
+            workSheet.Cells[36, 1].Value = "AVOIRS";
+            workSheet.Cells[36, 3].Value = "DETTES";
+            workSheet.Cells[37, 1].Value = "immobilier";
+            workSheet.Cells[37, 3].Value = "dettes financières";
+            workSheet.Cells[38, 1].Value = "machines, installation, outillage";
+            workSheet.Cells[38, 3].Value = "dettes fournisseurs";
+            workSheet.Cells[39, 1].Value = "mobilier et matériel rouant";
+            workSheet.Cells[39, 3].Value = "dettes à l’égard des membres";
+            workSheet.Cells[40, 1].Value = "stock";
+            workSheet.Cells[40, 3].Value = "dettes fiscales, salariales et soc.";
+            workSheet.Cells[41, 1].Value = "créances";
+            workSheet.Cells[41, 3].Value = "autres dettes";
+            workSheet.Cells[42, 1].Value = "placements de trésorerie";
+            workSheet.Cells[43, 1].Value = "valeurs disponibles";
+            workSheet.Cells[44, 1].Value = "autres avoirs";
+            workSheet.Cells[45, 1].Value = "DROITS";
+            workSheet.Cells[45, 3].Value = "ENGAGEMENTS";
+            workSheet.Cells[46, 1].Value = "subsides promis";
+            workSheet.Cells[46, 3].Value = "hypothèques et promesses d’hyp.  ";
+            workSheet.Cells[47, 1].Value = "dons promis";
+            workSheet.Cells[47, 3].Value = "garanties données";
+            workSheet.Cells[48, 1].Value = "autres droits ";
+            workSheet.Cells[48, 3].Value = "autres engagements";
+
+            workSheet.Cells[50, 1].Value = "5 Droits et engagements importants qui ne sont pas susceptibles d'être quantifiés";
+            workSheet.Cells[52, 1].Value = "néant";
+
+            for (int iloop = 36; iloop <= 48; iloop++)
+            {
+                ChangeBorderStyle(workSheet, iloop, 1, iloop, 1);
+                ChangeBorderStyle(workSheet, iloop, 2, iloop, 2);
+                ChangeBorderStyle(workSheet, iloop, 3, iloop, 3);
+                ChangeBorderStyle(workSheet, iloop, 4, iloop, 4);
+            }
+
+            workSheet.Cells[36, 1, 36, 2].Merge = true;
+            workSheet.Cells[36, 3, 36, 4].Merge = true;
+            workSheet.Cells[45, 1, 45, 2].Merge = true;
+            workSheet.Cells[45, 3, 45, 4].Merge = true;
+
+            workSheet.Cells[36, 1, 36, 2].Style.Font.Bold = true;
+            workSheet.Cells[36, 3, 36, 4].Style.Font.Bold = true;
+            workSheet.Cells[45, 1, 45, 2].Style.Font.Bold = true;
+            workSheet.Cells[45, 3, 45, 4].Style.Font.Bold = true;
+
             ChangeBorderStyle(workSheet, 8, 1,8,2);
             ChangeBorderStyle(workSheet, 8, 3,9,3);
             ChangeBorderStyle(workSheet, 8, 4,8,5);
@@ -868,6 +923,19 @@ namespace CercleRoyalEscrimeTournaisien
             workSheet.Cells[8, 1, 8, 2].Merge = true;
             workSheet.Cells[8, 4, 8, 5].Merge = true;
             workSheet.Cells[8, 3, 9, 3].Merge = true;
+
+            workSheet.Cells[23, 1, 23, 6].Merge = true;
+            workSheet.Cells[24, 1, 24, 6].Merge = true;
+
+            var range = workSheet.Cells[23, 1, 23, 6];
+            range.Style.WrapText = true;
+            range.AutoFitColumns();
+
+            range = workSheet.Cells[24, 1, 24, 6];
+            range.Style.WrapText = true;
+            range.AutoFitColumns();
+
+            workSheet.Cells[50, 1,50,5].Merge = true;
 
             workSheet.Cells[1, 1, 1, 5].Style.Font.Bold = true;
             workSheet.Cells[2, 1, 2, 5].Style.Font.Bold = true;
