@@ -15,6 +15,27 @@ namespace WebApplication1.Models
                 {
                                     new JourDePrésence()
                 {
+                  DatePrésence = new DateTime(2026,1,16),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAbelMotte,
+                    GuidConstantes.GuidAmadoSimon,
+                    GuidConstantes.GuidAnaelleIvanov,
+                    GuidConstantes.GuidBaptisteMotte,
+                    GuidConstantes.GuidEliotPunchoo,
+                    GuidConstantes.GuidGwendalLecomte,
+                    GuidConstantes.GuidLiliMestdag,
+                    GuidConstantes.GuidLucasVerheye,
+                    GuidConstantes.GuidMaeVantroyen,
+                    GuidConstantes.GuidNoelMarieDransart,
+                    GuidConstantes.GuidOscarDeblocq,
+                    GuidConstantes.GuidRaedwaldVercouter,
+                    GuidConstantes.GuidSolalSchrouf,
+                    GuidConstantes.GuidThéoCucheval_Rasson,
+                  }
+                },
+                                    new JourDePrésence()
+                {
                   DatePrésence = new DateTime(2026,1,14),
                   EscrimeurId = new List<Guid>()
                   {
@@ -1688,7 +1709,7 @@ namespace WebApplication1.Models
                     IsCotisationEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
-
+                    IsTeeShirtsPayéesEnOrdre = true,
                     PaiementsEffectues = new List<string>() { "45 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
