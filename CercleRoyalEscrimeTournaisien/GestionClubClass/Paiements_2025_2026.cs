@@ -1531,6 +1531,7 @@ namespace WebApplication1.Models
                     IsLocationMatérielEnOrdre = true,
                     IsCotisationEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = true,
+                    IsTeeShirtsPayéesEnOrdre = true,
 
                     PaiementsEffectues = new List<string>() { "290 euros", "75 euros" },
                     SeancesGratuites = new List<DateTime>()
