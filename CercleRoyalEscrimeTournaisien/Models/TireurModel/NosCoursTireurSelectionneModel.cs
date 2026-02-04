@@ -144,6 +144,58 @@ namespace CercleRoyalEscrimeTournaisien
                 List<RemarqueParDate> remarquesPourToutesLesPoules = new List<RemarqueParDate>() { };
                 remarquesPourToutesLesPoules.AddRange(
                     new List<RemarqueParDate>() {
+                       new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2026, 1, 25),
+                        Arme = TypeArme.Epée,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                Remarque = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules. (Amel, Benedict, Lucas, Théo)",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                           }
+                        }
+                    },
+                        new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2026, 2, 1),
+                        Arme = TypeArme.Epée,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                Remarque = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules. (Romain, Rebecca, Oscar, Benedict, Théo, Lucas)",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                           }
+                        }
+                    },
+                       new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2026, 1, 28),
+                        Arme = TypeArme.Epée,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                Remarque = "Deux poules ont été effectuées ce jour-là. Vous les trouverez en ligne avec les autres poules. (Aurore, Fabrice, Oscar, Baptiste, Félix et Maé) et (Amado, Bénédict, Siméon, Romain)",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                           }
+                        }
+                    },
+                        new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2026, 1, 30),
+                        Arme = TypeArme.Epée,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                Remarque = "Deux poules ont été effectuées ce jour-là. Vous les trouverez en ligne avec les autres poules. (Aurore, Fabrice, Raedwald) et (Gwendal, Lucas, Romain, Siméon, Solal, Théo)",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                           }
+                        }
+                    },
                            new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2026, 1, 15),
@@ -673,6 +725,12 @@ namespace CercleRoyalEscrimeTournaisien
                 return new Dictionary<string, string>()
                 {
                     { "", ""  },
+                    { "/Poules/Poule 2026-02-01 Epée.pdf", "Poule 2026-02-01 Epée"  },
+                    { "/Poules/Poule 2026-01-25 Epée.pdf", "Poule 2026-01-25 Epée"  },
+                    { "/Poules/Poule 2026-01-28 Epée.pdf", "Poule 2026-01-28 Epée"  },
+                    { "/Poules/Poule 2026-01-28 Epée Adultes.pdf", "Poule 2026-01-28 Epée Adultes"  },
+                    { "/Poules/Poule 2026-01-30 Epée Adultes.pdf", "Poule 2026-01-30 Epée Adultes"  },
+                    { "/Poules/Poule 2026-01-30 Epée.pdf", "Poule 2026-01-30 Epée"  },
                     { "/Poules/Poule 2026-01-11 Sabre.pdf", "Poule 2026-01-11 Sabre"  },                    
                     { "/Poules/Questions après chaque match.docx","Questions après chaque match" },
                     { "/Poules/Poule 2025-11-16 Débutants Epée.pdf","Poule 2025-11-16 Débutants Epée" },
