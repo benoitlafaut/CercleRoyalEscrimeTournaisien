@@ -15,6 +15,146 @@ namespace WebApplication1.Models
                 {
                                     new JourDePrésence()
                 {
+                  DatePrésence = new DateTime(2026,2,1),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidBenedictCosentini,
+                    GuidConstantes.GuidLucasVerheye,
+                    GuidConstantes.GuidOscarDucrot,
+                    GuidConstantes.GuidRebeccaVandy,
+                    GuidConstantes.GuidRomainBracquart,
+                    GuidConstantes.GuidThéoCucheval_Rasson,
+                  }
+                },
+                    new JourDePrésence()
+                {
+                  DatePrésence = new DateTime(2026,1,30),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAbelMotte,
+                    GuidConstantes.GuidAmelLawrizy,
+                    GuidConstantes.GuidAnaelleIvanov,
+                    GuidConstantes.GuidAuroreCarlier,
+                    GuidConstantes.GuidBaptisteMotte,
+                    GuidConstantes.GuidEliotPunchoo,
+                    GuidConstantes.GuidFabriceRazanajao,
+                    GuidConstantes.GuidFélixTrannoy,
+                    GuidConstantes.GuidGwendalLecomte,
+                    GuidConstantes.GuidLiliMestdag,
+                    GuidConstantes.GuidLucasVerheye,
+                    GuidConstantes.GuidMaeVantroyen,
+                    GuidConstantes.GuidMartinSiu,
+                    GuidConstantes.GuidRaedwaldVercouter,
+                    GuidConstantes.GuidRomainBracquart,
+                    GuidConstantes.GuidSiméonTrovato,
+                    GuidConstantes.GuidSolalSchrouf,
+                    GuidConstantes.GuidThéoCucheval_Rasson,
+                  }
+                },
+                                    new JourDePrésence()
+                {
+                  DatePrésence = new DateTime(2026,1,28),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAbelMotte,
+                    GuidConstantes.GuidAmadoSimon,
+                    GuidConstantes.GuidAmelLawrizy,
+                    GuidConstantes.GuidAnaelleIvanov,
+                    GuidConstantes.GuidAuroreCarlier,
+                    GuidConstantes.GuidBaptisteMotte,
+                    GuidConstantes.GuidBenedictCosentini,
+                    GuidConstantes.GuidEliotPunchoo,
+                    GuidConstantes.GuidFabriceRazanajao,
+                    GuidConstantes.GuidFélixTrannoy,
+                    GuidConstantes.GuidLiliMestdag,
+                    GuidConstantes.GuidMaeVantroyen,
+                    GuidConstantes.GuidMartinSiu,
+                    GuidConstantes.GuidNoelMarieDransart,
+                    GuidConstantes.GuidOscarDucrot,
+                    GuidConstantes.GuidRomainBracquart,
+                    GuidConstantes.GuidSiméonTrovato,
+                  }
+                },
+                    new JourDePrésence()
+                {
+                  DatePrésence = new DateTime(2026,1,25),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAmelLawrizy,
+                    GuidConstantes.GuidAuroreCarlier,
+                    GuidConstantes.GuidBenedictCosentini,
+                    GuidConstantes.GuidEliotPunchoo,
+                    GuidConstantes.GuidFélixTrannoy,
+                    GuidConstantes.GuidLucasVerheye,
+                    GuidConstantes.GuidMartinSiu,
+                    GuidConstantes.GuidOscarDeblocq,
+                    GuidConstantes.GuidOscarDucrot,
+                    GuidConstantes.GuidRaedwaldVercouter,
+                    GuidConstantes.GuidRebeccaVandy,
+                    GuidConstantes.GuidThéoCucheval_Rasson,
+                  }
+                },
+                                    new JourDePrésence()
+                {
+                  DatePrésence = new DateTime(2026,1,23),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAnaelleIvanov,
+                    GuidConstantes.GuidAuroreCarlier,
+                    GuidConstantes.GuidEliotPunchoo,
+                    GuidConstantes.GuidGwendalLecomte,
+                    GuidConstantes.GuidLiliMestdag,
+                    GuidConstantes.GuidLucasVerheye,
+                    GuidConstantes.GuidMaeVantroyen,
+                    GuidConstantes.GuidNoelMarieDransart,
+                    GuidConstantes.GuidRaedwaldVercouter,
+                    GuidConstantes.GuidRomainBracquart,
+                    GuidConstantes.GuidSolalSchrouf,
+                    GuidConstantes.GuidThéoCucheval_Rasson,
+                  }
+                },
+                                    new JourDePrésence()
+                {
+                  DatePrésence = new DateTime(2026,1,21),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAbelMotte,
+                    GuidConstantes.GuidAmadoSimon,
+                    GuidConstantes.GuidAnaelleIvanov,
+                    GuidConstantes.GuidBaptisteMotte,
+                    GuidConstantes.GuidBenedictCosentini,
+                    GuidConstantes.GuidEliotPunchoo,
+                    GuidConstantes.GuidFabriceRazanajao,
+                    GuidConstantes.GuidFélixTrannoy,
+                    GuidConstantes.GuidLiliMestdag,
+                    GuidConstantes.GuidMaeVantroyen,
+                    GuidConstantes.GuidMartinSiu,
+                    GuidConstantes.GuidNoelMarieDransart,
+                    GuidConstantes.GuidOscarDucrot,
+                    GuidConstantes.GuidRebeccaVandy,
+                    GuidConstantes.GuidSolalSchrouf,
+                  }
+                },
+                                    new JourDePrésence()
+                {
+                  DatePrésence = new DateTime(2026,1,18),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAbelMotte,
+                    GuidConstantes.GuidAmelLawrizy,
+                    GuidConstantes.GuidBaptisteMotte,
+                    GuidConstantes.GuidEliotPunchoo,
+                    GuidConstantes.GuidLucasVerheye,
+                    GuidConstantes.GuidMaeVantroyen,
+                    GuidConstantes.GuidMartinSiu,
+                    GuidConstantes.GuidOscarDeblocq,
+                    GuidConstantes.GuidRebeccaVandy,
+                    GuidConstantes.GuidRomainBracquart,
+                    GuidConstantes.GuidThéoCucheval_Rasson,
+                  }
+                },
+                                    new JourDePrésence()
+                {
                   DatePrésence = new DateTime(2026,1,16),
                   EscrimeurId = new List<Guid>()
                   {
