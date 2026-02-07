@@ -24,5 +24,6 @@
         public const string NosCoursTireurSelectionnePointDAttentionPourTous = "NosCoursTireurSelectionnePointDAttentionPourTous";
         public const string Epub122024_Entete = "Epub122024_Entete";
         public const string Epub122024_Body = "Epub122024_Body";
+        public const string NormesMatériel = "NormesMatériel";
     }
 }

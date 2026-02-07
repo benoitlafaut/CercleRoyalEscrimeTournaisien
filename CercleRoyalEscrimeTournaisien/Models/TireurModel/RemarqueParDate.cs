@@ -12,6 +12,9 @@ namespace CercleRoyalEscrimeTournaisien
             RemarquesData = new List<RemarqueData>() { };
         }
         public DateTime DateRemarque { get; set; }
+        public bool IsShowPartialView { get; set; }
+        public string PartialViewToShow { get; set; }
+        public string Titre { get; set; }
         public TypeArme Arme { get; set; }
         public Tireur Tireur { get; set; }
         public List<RemarqueData> RemarquesData { get; set; }
@@ -24,8 +27,6 @@ namespace CercleRoyalEscrimeTournaisien
         {
             Frequency = 1;
         }
-        //public string PointPositif { get; set; }
-        //public string PointNégatif { get; set; }
         public PointPositifNégatifObservation PointPositifNégatifObservation { get; set;}
         public string Remarque { get; set; }
         public string UrlYoutubeVideo { get; set; }

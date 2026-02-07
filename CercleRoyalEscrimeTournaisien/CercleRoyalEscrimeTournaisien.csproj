@@ -297,6 +297,7 @@
     <Compile Include="GestionClubClass\JoursDePrésence.cs" />
     <Compile Include="GestionClubClass\ListGuidTireur.cs" />
     <Compile Include="GestionClubClass\Paiements_2025_2026.cs" />
+    <Compile Include="Models\Normes.cs" />
     <Compile Include="Models\LoggingUsersViewModel.cs" />
     <Compile Include="Models\ModelEpub122024.cs" />
     <Compile Include="Models\NumberOfPage.cs" />
@@ -1069,6 +1070,23 @@
     <Content Include="home\photos\PhotosDemarrage\8.jpg" />
     <Content Include="home\photos\PhotosDemarrage\9.jpg" />
     <Content Include="home\photos\PhotosDemarrage\happyNewYear2025.JPG" />
+    <Content Include="home\photos\Ronse février 2026\u-11 en u-13 mix Epee - Classement Provisoire après 1ere poule.JPG" />
+    <Content Include="home\photos\Ronse février 2026\u-11 en u-13 mix Epee - Classement Provisoire après 2eme poule.JPG" />
+    <Content Include="home\photos\Ronse février 2026\u-11 en u-13 mix Epee - Poule 1 Anaëlle Félix.JPG" />
+    <Content Include="home\photos\Ronse février 2026\u-11 en u-13 mix Epee - Poule 1 Eliot Lili Abel.JPG" />
+    <Content Include="home\photos\Ronse février 2026\u-11 en u-13 mix Epee - Poule 1 Martin Amel.JPG" />
+    <Content Include="home\photos\Ronse février 2026\u-11 en u-13 mix Epee - Poule 2 Anaelle Félix Martin.JPG" />
+    <Content Include="home\photos\Ronse février 2026\u-11 en u-13 mix Epee - Poule 2 Eliot  Abel.JPG" />
+    <Content Include="home\photos\Ronse février 2026\u-11 en u-13 mix Epee - Poule 2 Lili Amel.JPG" />
+    <Content Include="home\photos\Ronse février 2026\u-11 en u-13 mix Epee - Résultat final.JPG" />
+    <Content Include="home\photos\Ronse février 2026\U13 Filles Classement final.JPG" />
+    <Content Include="home\photos\Ronse février 2026\U13 Filles Eliminatoires.JPG" />
+    <Content Include="home\photos\Ronse février 2026\U13 Garçons Classement final.JPG" />
+    <Content Include="home\photos\Ronse février 2026\U13 Garçons Eliminatoires.JPG" />
+    <Content Include="home\photos\Ronse février 2026\U15 Classement final.JPG" />
+    <Content Include="home\photos\Ronse février 2026\U15 Eliminatoires.JPG" />
+    <Content Include="home\photos\Ronse février 2026\U15 mixed Poule 1 Maé Oscar Baptiste.JPG" />
+    <Content Include="home\photos\Ronse février 2026\U15 mixed Poule 2 Maé Oscar Baptiste.JPG" />
     <Content Include="Scripts\Accueil.js" />
     <Content Include="Scripts\5d93eb1089.js" />
     <Content Include="Scripts\Epub122024.js" />
@@ -1279,6 +1297,7 @@
     <Content Include="Poules\Questions après chaque match.docx" />
     <Content Include="Views\MainPage\LoggingUsers.cshtml" />
     <Content Include="Poules\Poule 2026-01-11 Sabre.pdf" />
+    <Content Include="Views\MainPage\NormesMatériel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

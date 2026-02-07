@@ -5,8 +5,6 @@
     string classTR;
 }
 
-
-
 @section css {
     <link href="@Url.Content("~/Content/MainPage.css")" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -34,29 +32,32 @@
     <script type="text/javascript" src="//cdn.embed.ly/player-0.0.11.min.js"></script>
 }
 
-<div class="jumbotronCatégories">
+<div class="categorieToChangeClass jumbotronCatégories">
     <div style="text-align:right;">
         <i class="fa fa-bars fa-beat" onclick="ShowStartPage();" style="color: red; font-size: 30px;"></i>
     </div>
 
-    <p class="cssForTitreCategories">@Html.Raw(@CercleRoyalEscrimeTournaisien.Categories.Title)</p>
-    <table class="cssForCategories" style="display: inline-grid;">
-
-        @for (int iloop = 0; iloop < Model.RowsOfCol_1.Count(); iloop++)
+    <p style="color: blue; text-decoration: underline;"class="cssForTitreCategories">Les catégories pour la saison <b>2025-2026</b></p>
+    <div>
+        @for (int iloop = 1; iloop < Model.RowsOfCol_1.Count; iloop++)
         {
-            if (iloop == 0)
-            {
-                classTR = "color: blue;height: 44px;";
-            }
-            else
-            {
-                classTR = "";
-            }
-
-            <tr style="@classTR">
-                <td style="width:240px;">@Model.RowsOfCol_1[iloop]</td>
-                <td style="width:240px;">@Model.RowsOfCol_5[iloop]</td>
-            </tr>
-        }
-    </table>
+            <span style="margin-right:15px;">@Model.RowsOfCol_1[iloop] (@Model.RowsOfCol_5[iloop])</span>            
+        }        
+    </div>
 </div>
+
+
+<div id="@PartialViewNames.NormesMatériel" style="margin-left: 12px; margin-right: 12px; ">
+    @Html.Partial(PartialViewNames.NormesMatériel, Model.Normes)
+</div>
+
+<script>
+    window.addEventListener("load", () => {
+        document.querySelectorAll(".categorieToChangeClass span").forEach(span => {
+            const colors = ["red", "blue", "green", "orange", "purple", "pink",  "cyan", "magenta", "lime", "teal", "indigo", "violet", "gold", "silver", "brown", "coral", "crimson", "salmon", "turquoise", "aquamarine", "chartreuse", "chocolate", "darkred", "darkblue", "darkgreen", "darkorange", "deeppink", "deepskyblue", "forestgreen", "fuchsia", "hotpink", "khaki", "lavender", "lightblue", "lightgreen", "maroon", "midnightblue", "navy", "olive", "orchid", "plum", "royalblue", "sienna", "skyblue", "slateblue", "springgreen", "steelblue", "tan", "tomato", "wheat"];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            span.style.color = randomColor;
+        })
+    });
+
+</script>
