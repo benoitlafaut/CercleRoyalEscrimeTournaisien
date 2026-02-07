@@ -13,6 +13,8 @@ namespace CercleRoyalEscrimeTournaisien
         }
         public DateTime DateRemarque { get; set; }
         public bool IsShowPartialView { get; set; }
+        public bool IsSwitchToShowDossierPhotos { get; set; }
+        public Guid SwitchToDossierPhotosGuid { get; set; }
         public string PartialViewToShow { get; set; }
         public string Titre { get; set; }
         public TypeArme Arme { get; set; }

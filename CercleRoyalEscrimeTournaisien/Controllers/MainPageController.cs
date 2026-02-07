@@ -569,6 +569,17 @@ namespace CercleRoyalEscrimeTournaisien
         }
 
         [HttpGet]
+        public Task<ActionResult> SwitchToDossierPhotos(Guid switchToDossierPhotosGuid)
+        {
+            SwitchToDossierPhotosViewModel switchToDossierPhotosViewModel = new SwitchToDossierPhotosViewModel
+            {
+                SwitchToDossierPhotosGuid = switchToDossierPhotosGuid
+            };                 
+
+            return Task.FromResult<ActionResult>(View("SwitchToDossierPhotos", switchToDossierPhotosViewModel));
+        }
+
+        [HttpGet]
         public ActionResult ChangeCurrentSon(string selectedLanguage, string SelectedNameDossier, string SelectedIndexDossier, string SelectedIndexFile)
         {
             string currentLanguageSelected = selectedLanguage + "/" + SelectedNameDossier + "/" + SelectedIndexDossier + "/" + SelectedIndexFile;

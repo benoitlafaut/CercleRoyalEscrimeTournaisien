@@ -1,0 +1,37 @@
+﻿@model CercleRoyalEscrimeTournaisien.Models.SwitchToDossierPhotosViewModel
+
+<head>
+    @Styles.Render("~/styles/SwitchToDossierPhotos")
+    @Scripts.Render("~/bundles/SwitchToDossierPhotosJS")
+</head>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+@Html.Hidden("CurrentPhoto", "0", new { @id = "CurrentPhoto" })
+@Html.HiddenFor(Model => Model.ImagesPath.Count, new { @id = "ImagesPathCount" })
+
+<span id="fileNamePhoto" style="width: 100%; text-align: center; display: block;">@Model.ImagesWithoutDossierPath[0]</span>
+
+@for (int i = 0; i < Model.ImagesPath.Count; i++)
+{
+    string row = Model.ImagesPath[i].Replace("\'", "’");
+    @Html.Hidden("ImagesPath_" + i + "_", row, new { @id = "ImagesPath_" + i + "_" })
+
+    string rowWithoutDossier = Model.ImagesWithoutDossierPath[i].Replace("\'", "’");
+    @Html.Hidden("ImagesPathWithoutDossier_" + i + "_", rowWithoutDossier, new { @id = "ImagesPathWithoutDossier_" + i + "_" })    
+}
+
+<div class="carousel-wrapper">
+
+    <div onclick="passToPreviousPhoto();" class="carousel-arrow left-arrow">
+        <span>&lt;</span>
+    </div>
+
+    <div class="image-box">
+        <img id="imagePhoto" src="@Model.ImagesPath[0]" alt="photo">
+    </div>
+
+    <div onclick="passToNextPhoto();" class="carousel-arrow right-arrow">
+        <span>&gt;</span>
+    </div>
+</div>
