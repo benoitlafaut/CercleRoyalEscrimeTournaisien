@@ -1303,6 +1303,7 @@
     <Content Include="Poules\Poule 2026-01-11 Sabre.pdf" />
     <Content Include="Views\MainPage\NormesMatériel.cshtml" />
     <Content Include="Views\MainPage\SwitchToDossierPhotos.cshtml" />
+    <Content Include="Poules\Poule 2026-02-08 Fleuret.pdf" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

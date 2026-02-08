@@ -144,6 +144,19 @@ namespace CercleRoyalEscrimeTournaisien
                 List<RemarqueParDate> remarquesPourToutesLesPoules = new List<RemarqueParDate>() { };
                 remarquesPourToutesLesPoules.AddRange(
                     new List<RemarqueParDate>() {
+                        new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2026, 2, 8),
+                        Arme = TypeArme.Fleuret,
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                Remarque = "Une poule a été effectuée ce jour-là. Vous la trouverez en ligne avec les autres poules. (Amado, Romain, Théo, Bénédict)",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                           }
+                        }
+                    },
                          new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2026, 2, 7),
@@ -757,6 +770,7 @@ namespace CercleRoyalEscrimeTournaisien
                 return new Dictionary<string, string>()
                 {
                     { "", ""  },
+                    { "/Poules/Poule 2026-02-08 Fleuret.pdf", "Poule 2026-02-08 Fleuret"  },
                     { "/Poules/Poule 2026-02-01 Epée.pdf", "Poule 2026-02-01 Epée"  },
                     { "/Poules/Poule 2026-01-25 Epée.pdf", "Poule 2026-01-25 Epée"  },
                     { "/Poules/Poule 2026-01-28 Epée.pdf", "Poule 2026-01-28 Epée"  },
