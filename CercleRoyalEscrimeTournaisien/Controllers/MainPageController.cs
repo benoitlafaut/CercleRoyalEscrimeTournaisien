@@ -816,10 +816,13 @@ namespace CercleRoyalEscrimeTournaisien
             var package = new ExcelPackage(stream);
             var workSheet = package.Workbook.Worksheets.Add("Rapport_" + DateTime.Now.ToString("ddMMyyyy"));
             workSheet.Cells[1, 1].Value = "Cercle Royal Escrime Tournaisien ASBL";
-            workSheet.Cells[2, 1].Value = "N° d'entreprise 1029793570 • IBAN BE77 3750 0065 5942";
+            workSheet.Cells[2, 1].Value = "N° d'entreprise 1029.793.570 • IBAN BE77 3750 0065 5942";
             workSheet.Cells[3, 1].Value = "https://www.cercleroyalescrimetournaisien.be • escrime.tournai@gmail.com";
             workSheet.Cells[4, 1].Value = "Rue Chèrequefosse(TOU) 14 • 7500 Tournai";
             workSheet.Cells[6, 1].Value = "Comptes simplifiés de l’année " + anneeSelectedInput;
+
+            workSheet.Cells[6, 1].Style.Font.UnderLine = true;
+            workSheet.Cells[6, 1].Style.Font.Bold = true;
 
             workSheet.Cells[8,1].Value = "Dépenses";
             workSheet.Cells[8, 3].Value = "Solde" + Environment.NewLine + solde;
@@ -834,7 +837,7 @@ namespace CercleRoyalEscrimeTournaisien
             int rowIndex = 11;
             foreach (string potForDépense in différentsPotsDépenses)
             {
-                workSheet.Cells[rowIndex, 1].Value = potForDépense;
+                workSheet.Cells[rowIndex, 1].Value = TransformText(potForDépense);
                 decimal totalPotForDépenses = dépenses.Where(x => x.Pots == potForDépense).Sum(y => Convert.ToDecimal(y.MontantNegatif));
                 workSheet.Cells[rowIndex, 2].Value = totalPotForDépenses * -1;
 
@@ -850,7 +853,7 @@ namespace CercleRoyalEscrimeTournaisien
             rowIndex = 11;
             foreach (string potForRecette in différentsPotsRecettes)
             {
-                workSheet.Cells[rowIndex, 4].Value = potForRecette;
+                workSheet.Cells[rowIndex, 4].Value = TransformText(potForRecette);
                 decimal totalPotForRecettes = recettes.Where(x => x.Pots == potForRecette).Sum(y => Convert.ToDecimal(y.MontantPositif));
                 workSheet.Cells[rowIndex, 5].Value = totalPotForRecettes;
 
@@ -864,10 +867,17 @@ namespace CercleRoyalEscrimeTournaisien
             }
 
             workSheet.Cells[19, 1].Value = "Annexes";
+            workSheet.Cells[19, 1].Style.Font.UnderLine = true;
+            workSheet.Cells[19, 1].Style.Font.Bold = true;
+
             workSheet.Cells[21, 1].Value = "1. Résumé des règles d'évaluation";
-            workSheet.Cells[23, 1].Value = "- Un bien meuble acheté neuf pour une valeur égale ou supérieure à 450 euros, est évalué à 2/3 du prix d’achat\n les 12 mois suivant l’achat, 1/3 du prix d’achat les 12 mois suivants et est réputé sans valeur 24 mois après l’achat.";
-            workSheet.Cells[24, 1].Value = "- Un bien meuble acheté neuf pour une valeur inférieure à 450 euros, un bien acheté d’occasion, le matériel\n d’usure et les biens divers sont réputés sans valeur dès leur réception.";
-            workSheet.Cells[26, 1].Value = "2. Adaptation des règles d'évaluation\r\n";
+            workSheet.Cells[23, 1].Value = "Un bien meuble acheté neuf pour une valeur égale ou supérieure à 450 euros, est évalué à 2/3 du prix d’achat\n les 12 mois suivant l’achat, 1/3 du prix d’achat les 12 mois suivants et est réputé sans valeur 24 mois après l’achat.";
+            workSheet.Cells[24, 1].Value = "Un bien meuble acheté neuf pour une valeur inférieure à 450 euros, un bien acheté d’occasion, le matériel\n d’usure et les biens divers sont réputés sans valeur dès leur réception.";
+
+            workSheet.Row(23).Height = 30;
+            workSheet.Row(24).Height = 30;
+
+            workSheet.Cells[26, 1].Value = "2. Adaptation des règles d'évaluation";
             workSheet.Cells[28, 1].Value = "néant";
             workSheet.Cells[30, 1].Value = "3. Informations complémentaires";
             workSheet.Cells[32, 1].Value = "néant";
@@ -1279,6 +1289,39 @@ namespace CercleRoyalEscrimeTournaisien
             //    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.wordprocessingml.document", $"RapportAnnuel_Sauvé_le_{DateTime.Now:ddMMyyyy}_Year_" + anneeSelectedInput + ".docx");
             return null;
             //}
+        }
+
+        private string TransformText(string pot)
+        {
+            switch (pot)
+            {
+                case "Marchandises":
+                    return "Achat de matériels";
+                case "Autres dépenses":
+                    return "Autres dépenses";
+                case "Ligue":
+                    return "Paiement des licences à la Fédération";
+                case "asbl":
+                    return "Frais de publication asbl";
+                case "Assurance":
+                    return "Assurance Protection juridique";
+                case "Site":
+                    return "Frais Site web";
+                case "Salle":
+                    return "Location Salle";
+                case "VenteMatériel":
+                    return "Vente Matériel (vente de teeshirts, chaussettes, gant, pantalon pour tireurs)";
+                case "Cotisations":
+                    return "Cotisations";
+                case "LocationMatériel":
+                    return "Location Matériel";
+                case "Autres recettes":
+                    return "Autres recettes";
+                case "Subsides":
+                    return "Subsides";
+                default:
+                    return "";
+            }
         }
 
         private void ChangeBorderStyle(ExcelWorksheet workSheet, int v1, int v2, int v3, int v4)
