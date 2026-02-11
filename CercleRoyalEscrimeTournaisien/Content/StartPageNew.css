@@ -36,6 +36,7 @@
     position: absolute;
     right: 0%;
     text-align: center;
+    margin-top:8px;
 }
 
     .dropdown-content a {
@@ -87,7 +88,7 @@
     margin-left: 15px;
     color: white;
     width: 60%;
-    font-size: 15px;
+    font-size: 18px;
 }
 
 #dropDownList {
