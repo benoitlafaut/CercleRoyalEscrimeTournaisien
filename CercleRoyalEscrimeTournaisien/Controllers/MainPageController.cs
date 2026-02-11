@@ -891,16 +891,16 @@ namespace CercleRoyalEscrimeTournaisien
             workSheet.Cells[41, 1].Value = "Créances";
             workSheet.Cells[41, 3].Value = "Autres dettes";
             workSheet.Cells[42, 1].Value = "Placements de trésorerie";
-            workSheet.Cells[44, 1].Value = "Valeurs disponibles";
-            workSheet.Cells[45, 1].Value = "Autres avoirs";
-            workSheet.Cells[46, 1].Value = "DROITS";
-            workSheet.Cells[46, 3].Value = "ENGAGEMENTS";
-            workSheet.Cells[47, 1].Value = "Subsides promis";
-            workSheet.Cells[47, 3].Value = "Hypothèques et promesses d’hyp.";
-            workSheet.Cells[48, 1].Value = "Dons promis";
-            workSheet.Cells[48, 3].Value = "Garanties données";
-            workSheet.Cells[49, 1].Value = "Autres droits ";
-            workSheet.Cells[49, 3].Value = "Autres engagements";
+            workSheet.Cells[43, 1].Value = "Valeurs disponibles";
+            workSheet.Cells[44, 1].Value = "Autres avoirs";
+            workSheet.Cells[45, 1].Value = "DROITS";
+            workSheet.Cells[45, 3].Value = "ENGAGEMENTS";
+            workSheet.Cells[46, 1].Value = "Subsides promis";
+            workSheet.Cells[46, 3].Value = "Hypothèques et promesses d’hyp.";
+            workSheet.Cells[47, 1].Value = "Dons promis";
+            workSheet.Cells[47, 3].Value = "Garanties données";
+            workSheet.Cells[48, 1].Value = "Autres droits ";
+            workSheet.Cells[48, 3].Value = "Autres engagements";
 
             workSheet.Cells[37, 2].Value = "/";
             workSheet.Cells[37, 4].Value = "/";
@@ -912,26 +912,26 @@ namespace CercleRoyalEscrimeTournaisien
             workSheet.Cells[40, 4].Value = "/";
             workSheet.Cells[41, 2].Value = "/";
             workSheet.Cells[42, 2].Value = anneeSelectedInput == "2025" ? "cpe ING (BE46 3635 4543 0636): 8350" : "";
-            workSheet.Cells[43, 2].Value = anneeSelectedInput == "2025" ? "cpe CPH (BE43 1710 0670 3001): 4145" : "";
-            workSheet.Cells[44, 2].Value = string.Concat("c/c ING (BE77 3750 0065 5942): " , anneeSelectedInput == "2025" ? EtatDuCompteListOrdered.FirstOrDefault().EtatDuCompte : "");
-            workSheet.Cells[47, 2].Value = anneeSelectedInput == "2025" ? "500" : "";
+            //workSheet.Cells[43, 2].Value = anneeSelectedInput == "2025" ? "cpe CPH (BE43 1710 0670 3001): 4145" : "";
+            workSheet.Cells[43, 2].Value = string.Concat("c/c ING (BE77 3750 0065 5942): " , anneeSelectedInput == "2025" ? EtatDuCompteListOrdered.FirstOrDefault().EtatDuCompte : "");
+            workSheet.Cells[46, 2].Value = anneeSelectedInput == "2025" ? "500" : "";
 
             workSheet.Cells[42, 2].Style.Font.Size = 8;
             workSheet.Cells[43, 2].Style.Font.Size = 8;
-            workSheet.Cells[44, 2].Style.Font.Size = 8;
+            workSheet.Cells[43, 2].Style.Font.Size = 8;
 
-            workSheet.Cells[45, 2].Value = "/";
+            workSheet.Cells[44, 2].Value = "/";
+            workSheet.Cells[47, 2].Value = "/";
             workSheet.Cells[48, 2].Value = "/";
-            workSheet.Cells[49, 2].Value = "/";
             workSheet.Cells[41, 4].Value = "/";
+            workSheet.Cells[46, 4].Value = "/";
             workSheet.Cells[47, 4].Value = "/";
             workSheet.Cells[48, 4].Value = "/";
-            workSheet.Cells[49, 4].Value = "/";
 
-            workSheet.Cells[51, 1].Value = "5. Droits et engagements importants qui ne sont pas susceptibles d'être quantifiés";
-            workSheet.Cells[53, 1].Value = "néant";
+            workSheet.Cells[50, 1].Value = "5. Droits et engagements importants qui ne sont pas susceptibles d'être quantifiés";
+            workSheet.Cells[52, 1].Value = "néant";
 
-            for (int iloop = 36; iloop <= 49; iloop++)
+            for (int iloop = 36; iloop <= 48; iloop++)
             {
                 ChangeBorderStyle(workSheet, iloop, 1, iloop, 1);
                 ChangeBorderStyle(workSheet, iloop, 2, iloop, 2);
@@ -941,13 +941,13 @@ namespace CercleRoyalEscrimeTournaisien
 
             workSheet.Cells[36, 1, 36, 2].Merge = true;
             workSheet.Cells[36, 3, 36, 4].Merge = true;
-            workSheet.Cells[46, 1, 46, 2].Merge = true;
-            workSheet.Cells[46, 3, 46, 4].Merge = true;
+            workSheet.Cells[45, 1, 45, 2].Merge = true;
+            workSheet.Cells[45, 3, 45, 4].Merge = true;
 
             workSheet.Cells[36, 1, 36, 2].Style.Font.Bold = true;
             workSheet.Cells[36, 3, 36, 4].Style.Font.Bold = true;
-            workSheet.Cells[46, 1, 46, 2].Style.Font.Bold = true;
-            workSheet.Cells[46, 3, 46, 4].Style.Font.Bold = true;
+            workSheet.Cells[45, 1, 45, 2].Style.Font.Bold = true;
+            workSheet.Cells[45, 3, 45, 4].Style.Font.Bold = true;
 
             ChangeBorderStyle(workSheet, 8, 1,8,2);
             ChangeBorderStyle(workSheet, 8, 3,9,3);
