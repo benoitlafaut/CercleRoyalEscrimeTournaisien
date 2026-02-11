@@ -13,8 +13,8 @@
     $("#downloadButtonRapportAnnuel").click(function (e) {
         e.preventDefault();
         var anneeSelected = $("#anneeSelected").val();
-        var url = $("#UrlDownloadButtonRapportAnnuel").val() + "?anneeSelectedInput=" + anneeSelected;
-        window.open(url, '_blank');
+        var url = $("#UrlDownloadButtonRapportAnnuel").val() + "?anneeSelectedInput=" + anneeSelected + "&type=xls";
+        window.open(url, '_blank');        
     });
 });
 function DownloadFile(url, filename) {
