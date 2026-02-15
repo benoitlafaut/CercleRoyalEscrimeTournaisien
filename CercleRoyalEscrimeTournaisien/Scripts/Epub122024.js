@@ -141,7 +141,16 @@ function PlayLanguageIfNecessary(element) {
 }
 
 function ListenSentence(element, isContinue) {
+    let voice;
     var sentence = $(element).text();
+    if (sentence == '') {
+        sentence = $(element).val();
+        voice = 'French Male';
+    }
+    else {
+        voice = GetVoice(element);
+    }
+
     if (responsiveVoice.isPlaying()) {
         timeouts.push( setTimeout(function () {
             ListenSentence(element);
@@ -150,7 +159,6 @@ function ListenSentence(element, isContinue) {
         return;
     }
 
-    let voice = GetVoice(element);
 
     responsiveVoice.speak(sentence, voice, {
         onend: function () {
@@ -490,12 +498,8 @@ function FillTable() {
         $('#' + 'tdInTable_' + i + '_').append("<i class='fa playFR fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
 
         $('#' + 'tdInTable_' + i + '_' + '  .fa-play-Benoit')[0].onclick = function () {
-            $("#tdInTable_" + i + "_").css('color', 'blue');
-            responsiveVoice.speak($('#tdInTable_' + i + '_').text(), GetVoiceForResponsive("fra"), {
-                onend: function () {
-                    $("#tdInTable_" + i + "_").css('color', 'black');
-                }
-            });
+            ListenSentenceInFrench(i);
+           
         };
 
         if ($("#IsLectureWithLangue:checked").val() != 'true') {
@@ -579,4 +583,13 @@ function FillTable() {
             }
         }
     }
+}
+
+function ListenSentenceInFrench(i) {
+    $("#tdInTable_" + i + "_").css('color', 'blue');
+    responsiveVoice.speak($('#tdInTable_' + i + '_').text(), GetVoiceForResponsive("fra"), {
+        onend: function () {
+            $("#tdInTable_" + i + "_").css('color', 'black');
+        }
+    });
 }
