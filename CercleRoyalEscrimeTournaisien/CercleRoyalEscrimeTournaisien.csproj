@@ -212,12 +212,14 @@
     <Compile Include="App_Start\PartialViewNames.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="ClassPublic\Constant.cs" />
+    <Compile Include="ClassPublic\EnumScreen.cs" />
     <Compile Include="ClassPublic\EnumLanguage.cs" />
     <Compile Include="ClassPublic\PointPositifNégatifObservationConstantes.cs" />
     <Compile Include="ClassPublic\IndexTireurConstantes.cs" />
     <Compile Include="ClassPublic\Constantes.cs" />
     <Compile Include="Controllers\EpubController.cs" />
     <Compile Include="Controllers\DicoController.cs" />
+    <Compile Include="Controllers\PoulesController.cs" />
     <Compile Include="Controllers\MainPageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Epub\CreateEpub.cs" />
@@ -300,6 +302,9 @@
     <Compile Include="GestionClubClass\JoursDePrésence.cs" />
     <Compile Include="GestionClubClass\ListGuidTireur.cs" />
     <Compile Include="GestionClubClass\Paiements_2025_2026.cs" />
+    <Compile Include="Models\MyRequestScoreToSaveInPoule.cs" />
+    <Compile Include="Models\MyRequestToSaveInPoule.cs" />
+    <Compile Include="Models\PoulesViewModel.cs" />
     <Compile Include="Models\SwitchToDossierPhotosViewModel.cs" />
     <Compile Include="Models\Normes.cs" />
     <Compile Include="Models\LoggingUsersViewModel.cs" />
@@ -386,11 +391,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\francais.accdb" />
+    <Content Include="App_Data\Poules.accdb" />
     <Content Include="Content\5d93eb1089.css" />
     <Content Include="Content\Accueil.css" />
     <Content Include="Content\bootstrap-select.min.css" />
     <Content Include="Content\DicoPlayer.css" />
     <Content Include="Content\Dico.css" />
+    <Content Include="Content\Poules.css" />
     <Content Include="Content\SwitchToDossierPhotos.css" />
     <Content Include="Content\Epub122024.css" />
     <Content Include="Content\karaoke.css" />
@@ -1095,6 +1102,7 @@
     <Content Include="home\photos\RonseFévrier2026\U15 mixed Poule 2 Maé Oscar Baptiste.JPG" />
     <Content Include="Scripts\Accueil.js" />
     <Content Include="Scripts\5d93eb1089.js" />
+    <Content Include="Scripts\Poules.js" />
     <Content Include="Scripts\SwitchToDossierPhotos.js" />
     <Content Include="Scripts\Epub122024.js" />
     <Content Include="Scripts\Administration.js" />
@@ -1307,6 +1315,7 @@
     <Content Include="Views\MainPage\NormesMatériel.cshtml" />
     <Content Include="Views\MainPage\SwitchToDossierPhotos.cshtml" />
     <Content Include="Poules\Poule 2026-02-08 Fleuret.pdf" />
+    <Content Include="Views\Poules\Poules.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

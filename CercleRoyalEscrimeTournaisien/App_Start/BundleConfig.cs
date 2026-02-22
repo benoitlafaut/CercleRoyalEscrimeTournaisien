@@ -51,6 +51,12 @@ namespace CercleRoyalEscrimeTournaisien
 
             bundles.Add(new ScriptBundle("~/bundles/SwitchToDossierPhotosJS")
             .Include("~/Scripts/SwitchToDossierPhotos.js"));
+
+            bundles.Add(new StyleBundle("~/styles/Poules")
+               .Include("~/Content/Poules.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/PoulesJS")
+            .Include("~/Scripts/Poules.js"));
         }
     }
 }
