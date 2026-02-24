@@ -136,7 +136,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
         { 
             get
             {
-                return DateTime.Now.AddDays(3);
+                return DateTime.Now.AddDays(1);
             }
         }
 
@@ -151,7 +151,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
                 case 5:
                     return new List<string>() { "1-5","2-4","3-5","1-4","2-3","4-5","1-3", "2-5", "3-4", "1-2" };
                 case 6:
-                    return new List<string>() { "1–6", "2-5", "3-4", "4-6", "3-5", "1-2", "2-4", "1-3", "5-6", "2-3", "1-4", "3-6", "1-5", "2-6", "4-5" };
+                    return new List<string>() { "1-6", "2-5", "3-4", "4-6", "3-5", "1-2", "2-4", "1-3", "5-6", "2-3", "1-4", "3-6", "1-5", "2-6", "4-5" };
                 default:
                     return new List<string>() { };
             }
@@ -337,5 +337,19 @@ namespace CercleRoyalEscrimeTournaisien.Models
         public bool VictoireOuDéfaiteDuTireur2 { get; set; }
         public int ScoreDuTireur1 { get; set; }
         public int ScoreDuTireur2 { get; set; }
+    }
+    public class ClassRound
+    {
+        public string DateDuJour { get; set; }
+        public string Poule { get; set; }
+        public string Round { get; set; }
+        public Guid Tireur1Guid { get; set; }
+        public Guid Tireur2Guid { get; set; }
+        public bool VictoireOuDéfaiteDuTireur1 { get; set; }
+        public bool VictoireOuDéfaiteDuTireur2 { get; set; }
+        public int ScoreDuTireur1 { get; set; }
+        public int ScoreDuTireur2 { get; set; }
+        public int IndexTireur1 { get; set; }
+        public int IndexTireur2 { get; set; }
     }
 }

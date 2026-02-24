@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.UI;
 
@@ -165,6 +166,56 @@ namespace CercleRoyalEscrimeTournaisien
             return Json(new { redirectUrl = Url.Action("AfficherLesPoules", "Poules") });            
         }
 
+        [HttpPost]
+        public ActionResult TraiterTableau(MyRequestResultatsPoule myRequestResultatsPoule, string pouleSelected)
+        {
+            myRequestResultatsPoule.ClassResultatsList.RemoveAll(x => x.NombreDeVictoiresParMatchs == null);
+
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+            List<ClassPoulesDuJour> poules = poulesViewModel.PoulesDuJourList.Where(x => x.Poule == pouleSelected).ToList();
+
+            int index = 0;
+
+            foreach (ClassResultats classResultats in myRequestResultatsPoule.ClassResultatsList)
+            {
+                classResultats.TireurGuid = poules[index].TireurGuid;
+                classResultats.Tireur = poules[index].Tireur;
+                index++;
+            }
+
+            List<ClassResultats> classResultatsList = myRequestResultatsPoule.ClassResultatsList.OrderByDescending(x => x.NombreDeVictoiresParMatchs).ThenByDescending(x => int.Parse(x.TDMoinsTR)).ThenByDescending(x => int.Parse(x.TD)).ThenBy(x => x.Tireur).ToList();
+
+            int nombreRoundMax = CalculerRoundMax(myRequestResultatsPoule.ClassResultatsList.Count);
+            int nombreDePlaces = CalculerNombreDePlaces(myRequestResultatsPoule.ClassResultatsList.Count);
+            int nombreDeMatchs = nombreDePlaces / 2;
+            List<ClassRound> roundsList = new List<ClassRound>() { };
+
+            for (int loop = 1; loop <= nombreDeMatchs; loop++)
+            {
+                int indexAdversaire = nombreDePlaces + 1 - loop;
+
+                roundsList.Add(new ClassRound()
+                {
+                    Tireur1Guid = classResultatsList[loop - 1].TireurGuid,
+                    Tireur2Guid = indexAdversaire <= classResultatsList.Count ? classResultatsList[indexAdversaire - 1].TireurGuid : new Guid(),
+                    DateDuJour = poulesViewModel.DateDuJourWithoutDay,
+                    Poule = pouleSelected,
+                    Round = "1/" + nombreRoundMax.ToString(),
+                    IndexTireur1 = loop,
+                    IndexTireur2 = indexAdversaire
+                });
+            }
+
+            return null; 
+        }
+        private int CalculerNombreDePlaces(int nbTireurs) 
+        { 
+            int roundMax = (int)Math.Ceiling(Math.Log(nbTireurs, 2)); return (int)Math.Pow(2, roundMax); 
+        }
+        private int CalculerRoundMax(int nbTireurs)
+        { 
+            return (int)Math.Ceiling(Math.Log(nbTireurs, 2)); 
+        }
         private bool ExistsRecord(string dateDuJourWithoutDay, string pouleSelected, string tireur)
         {
             var path = Server.MapPath("/App_Data/Poules.accdb");

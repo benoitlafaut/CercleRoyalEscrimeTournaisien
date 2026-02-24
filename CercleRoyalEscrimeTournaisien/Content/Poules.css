@@ -44,7 +44,25 @@
     margin-bottom: 20px;
 }
 
-#tablePoules.table, #tablePoules table, #tablePoules th, #tablePoules td {
+#table_Poule1.table, #table_Poule1 table, #table_Poule1 th, #table_Poule1 td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+#table_Poule2.table, #table_Poule2 table, #table_Poule2 th, #table_Poule2 td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+#table_Poule3.table, #table_Poule3 table, #table_Poule3 th, #table_Poule3 td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+#table_Poule4.table, #table_Poule4 table, #table_Poule4 th, #table_Poule4 td {
     border: 1px solid black;
     border-collapse: collapse;
     border-spacing: 0;

@@ -102,10 +102,11 @@
                 int NombreDeMatchsEffectuesAuTotal = 0;
                 int NombreDeMatchsCalculés = (n * (n - 1));
                 List<string> listDesMatchs = Model.GetListeDesMatchs(n);
+                string namePoule = "table_" + poule.Key.Replace(" ","");
 
                 <h3>@poule.Key</h3>
 
-                <table id="tablePoules" class="ClassMarginBottom table table-bordered table-sm text-center align-middle">
+                <table id="@namePoule" class="ClassMarginBottom table table-bordered table-sm text-center align-middle">
                     <thead>
                         <tr>
                             <th class="fixed-FirstCol"></th>
@@ -216,7 +217,7 @@
                 if (NombreDeMatchsEffectuesAuTotal == NombreDeMatchsCalculés)
                 {
                     <div class="ClassMarginTopAndBottom">
-                        <a href="@Url.Action("CalcullEliminations", "Poules")" class="btnAction-custom">La poule est finie. Cliquez ici pour afficher les éliminations directes.</a>
+                        <a href="#" onclick="CalculEliminatoires('@namePoule', '@poule.Key'); " class="btnAction-custom">La poule est finie. Cliquez ici pour afficher les éliminations directes.</a>
                     </div>
                 }
             }

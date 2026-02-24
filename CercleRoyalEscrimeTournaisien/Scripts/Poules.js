@@ -9,8 +9,7 @@
     if ($(".chk-tireur:checked").map(function () { return $(this).data('id'); }).get() == '') {
         alert("vous n'avez pas sélectionné de tireur.");
         return;
-    }
-    //return;
+    }    
 
     var pouleSelected = $("#ddlPoules option:selected").val();
     var tireursSelected = $(".chk-tireur:checked").map(function () { return $(this).data('id'); }).get();
@@ -73,6 +72,29 @@ function AddScoreToTireursSelected() {
         failure: function (response) { },
         error: function (response) {
             alert("Error. " + response.responseText);  //
+        }
+    });
+}
+
+function CalculEliminatoires(nameTablePoule, pouleSelected) {
+    const ClassResultatsList = [];
+
+    $("#" + nameTablePoule + " tr").each(function () {
+        let tds = $(this).find("td");
+        ClassResultatsList.push({
+            NombreDeVictoiresParMatchs: $(tds[tds.length - 3]).text(),
+            TDMoinsTR: $(tds[tds.length - 2]).text(),
+            TD: $(tds[tds.length - 1]).text()
+        });
+    });
+
+    $.ajax({
+        url: '/Poules/TraiterTableau',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ pouleSelected: pouleSelected, ClassResultatsList: ClassResultatsList }),
+        success: function (response) {
+            console.log("OK", response);
         }
     });
 }
