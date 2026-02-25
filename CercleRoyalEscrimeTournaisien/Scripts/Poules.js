@@ -93,8 +93,8 @@ function CalculEliminatoires(nameTablePoule, pouleSelected) {
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({ pouleSelected: pouleSelected, ClassResultatsList: ClassResultatsList }),
-        success: function (response) {
-            console.log("OK", response);
+        success: function (data) {
+            if (data.redirectUrl) { window.location.href = data.redirectUrl; }
         }
     });
 }

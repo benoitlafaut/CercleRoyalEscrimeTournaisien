@@ -28,6 +28,9 @@
             <div class="ClassMarginTopAndBottom">
                 <a href="@Url.Action("AfficherLesPoules", "Poules")" class="btn-custom">Afficher les poules</a>
             </div>
+            <div class="ClassMarginTopAndBottom">
+                <a href="@Url.Action("AfficherLesEliminationsDirectes", "Poules")" class="btn-custom">Afficher les éliminations directes</a>
+            </div>
 
             break;
         case ClassEnumScreen.EnumScreen.AddTireurs:
@@ -102,7 +105,7 @@
                 int NombreDeMatchsEffectuesAuTotal = 0;
                 int NombreDeMatchsCalculés = (n * (n - 1));
                 List<string> listDesMatchs = Model.GetListeDesMatchs(n);
-                string namePoule = "table_" + poule.Key.Replace(" ","");
+                string namePoule = "table_" + poule.Key.Replace(" ", "");
 
                 <h3>@poule.Key</h3>
 
@@ -216,9 +219,12 @@
 
                 if (NombreDeMatchsEffectuesAuTotal == NombreDeMatchsCalculés)
                 {
-                    <div class="ClassMarginTopAndBottom">
-                        <a href="#" onclick="CalculEliminatoires('@namePoule', '@poule.Key'); " class="btnAction-custom">La poule est finie. Cliquez ici pour afficher les éliminations directes.</a>
-                    </div>
+                    if (!Model.ExistEliminationsDirectes(Model.DateDuJourWithoutDay, poule.Key))
+                    {
+                        <div class="ClassMarginTopAndBottom">
+                            <a href="#" onclick="CalculEliminatoires('@namePoule', '@poule.Key'); " class="btnAction-custom">La poule est finie. Cliquez ici pour afficher les éliminations directes.</a>
+                        </div>
+                    }
                 }
             }
 
@@ -290,6 +296,16 @@
 
             <div class="ClassMarginTopAndBottom">
                 <a href="#" onclick="AddScoreToTireursSelected(); " class="btnAction-custom">Ajouter les scores aux tireurs sélectionnés dans la poule sélectionnée</a>
+            </div>
+
+            <div class="ClassMarginTopAndBottom">
+                <a href="@Url.Action("Poules", "Poules")" class="btn-custom">Retourner au menu principal</a>
+            </div>
+
+            break;
+        case ClassEnumScreen.EnumScreen.AfficherLesEliminationsDirectes:
+            <div class="infos1 clearfix">
+                @Html.Partial(PartialViewNames.PoulesEliminationsDirectes, Model)
             </div>
 
             <div class="ClassMarginTopAndBottom">

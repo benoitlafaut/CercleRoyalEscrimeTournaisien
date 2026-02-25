@@ -17,12 +17,14 @@ namespace CercleRoyalEscrimeTournaisien.Models
             ChargerListeDesPoulesPotentielles();
             ChargerListeDesTireurs();
             ChargerPoulesDuJour();
-            ChargerRésultatsDuJour();
+            ChargerRésultatsDesPoulesDuJour();
+            ChargerRésultatsDesElimintationsDirectesDuJour();
         }
 
         public HttpServerUtilityBase ServerTmp { get; set; }
         public List<ClassPoule> PoulesList { get; set; }
         public List<ClassScore> ScoresList { get; set; }
+        public List<ClassScoreEliminationsDirectes> ScoresEliminitationsDirectesList { get; set; }        
         public List<ClassPoulesDuJour> PoulesDuJourList { get; set; }
         public List<ClassTireur> TireursList { get; set; }
         public List<ClassTireur> TireursPourLaPouleSelectionneeList
@@ -81,9 +83,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
                     return new Dictionary<Guid, string>() { };
                 }
 
-                return PoulesDuJourList.Where(x => x.Poule == PouleSelected).GroupBy(x => x.TireurGuid).ToDictionary(g => g.Key, g => g.First().Tireur);
-
-               
+                return PoulesDuJourList.Where(x => x.Poule == PouleSelected).GroupBy(x => x.TireurGuid).ToDictionary(g => g.Key, g => g.First().Tireur);               
             }
         }
         public int ScoreTireur1 { get; set; }
@@ -132,11 +132,15 @@ namespace CercleRoyalEscrimeTournaisien.Models
                 return string.Empty;
             } 
         }
+        public bool ExistEliminationsDirectes(string dateDuJourWithoutDay, string pouleSelected)
+        {
+            return ScoresEliminitationsDirectesList.Any(x=>x.DateDeLaPoule == dateDuJourWithoutDay && x.PouleSelected == pouleSelected);
+        }
         public DateTime DateDAujourdhui 
         { 
             get
             {
-                return DateTime.Now.AddDays(1);
+                return DateTime.Now.AddDays(0);
             }
         }
 
@@ -212,13 +216,13 @@ namespace CercleRoyalEscrimeTournaisien.Models
 
             myCommand.Connection.Close();
         }
-        private void ChargerRésultatsDuJour()
+        private void ChargerRésultatsDesPoulesDuJour()
         {
             ScoresList = new List<ClassScore>() { };
 
             var path = ServerTmp.MapPath("/App_Data/Poules.accdb");
             string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
-            string mySelectQuery = " SELECT * FROM TableRésultats where DateDeLaPoule = '" + DateDuJourWithoutDay + "'";
+            string mySelectQuery = " SELECT * FROM TableRésultatsDesPoules where DateDeLaPoule = '" + DateDuJourWithoutDay + "'";
             OleDbConnection myConnection = new OleDbConnection(ConnectionString);
             OleDbCommand myCommand = new OleDbCommand(mySelectQuery, myConnection);
             myCommand.Connection.Open();
@@ -247,6 +251,58 @@ namespace CercleRoyalEscrimeTournaisien.Models
                     VictoireOuDéfaiteDuTireur2 = victoireOuDéfaiteDuTireur2,
                     ScoreDuTireur1 = scoreDuTireur1,
                     ScoreDuTireur2 = scoreDuTireur2
+                });
+            }
+
+            myCommand.Connection.Close();
+        }
+        private void ChargerRésultatsDesElimintationsDirectesDuJour()
+        {
+            ScoresEliminitationsDirectesList = new List<ClassScoreEliminationsDirectes>() { };
+
+            var path = ServerTmp.MapPath("/App_Data/Poules.accdb");
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
+            string mySelectQuery = " SELECT * FROM TableRésultatsDesEliminationsDirectes where DateDeLaPoule = '" + DateDuJourWithoutDay + "'";
+            OleDbConnection myConnection = new OleDbConnection(ConnectionString);
+            OleDbCommand myCommand = new OleDbCommand(mySelectQuery, myConnection);
+            myCommand.Connection.Open();
+            OleDbDataReader myReader = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+            while (myReader.Read())
+            {
+                string poule = (string)myReader["Poule"];
+                string dateDeLaPoule = (string)myReader["DateDeLaPoule"];
+                string round = (string)myReader["Round"];
+                string indexTireur1 = (string)myReader["IndexTireur1"];
+                string indexTireur2 = (string)myReader["IndexTireur2"];
+                string tireur1Name = (string)myReader["Tireur1Name"];
+                string tireur2Name = (string)myReader["Tireur2Name"];
+
+                string guidStr1 = myReader["Tireur1Guid"].ToString().Trim();
+                Guid tireur1Guid = Guid.Parse(guidStr1);
+
+                string guidStr2 = myReader["Tireur2Guid"].ToString().Trim();
+                Guid tireur2Guid = Guid.Parse(guidStr2);
+
+                bool victoireOuDéfaiteDuTireur1 = (bool)myReader["VictoireOuDéfaiteDuTireur1"];
+                bool victoireOuDéfaiteDuTireur2 = (bool)myReader["VictoireOuDéfaiteDuTireur2"];
+                int scoreDuTireur1 = (int)myReader["ScoreDuTireur1"];
+                int scoreDuTireur2 = (int)myReader["ScoreDuTireur2"];
+                ScoresEliminitationsDirectesList.Add(new ClassScoreEliminationsDirectes()
+                {
+                    DateDeLaPoule = dateDeLaPoule,
+                    PouleSelected = poule,
+                    Tireur1Guid = tireur1Guid,
+                    Tireur2Guid = tireur2Guid,
+                    VictoireOuDéfaiteDuTireur1 = victoireOuDéfaiteDuTireur1,
+                    VictoireOuDéfaiteDuTireur2 = victoireOuDéfaiteDuTireur2,
+                    ScoreDuTireur1 = scoreDuTireur1,
+                    ScoreDuTireur2 = scoreDuTireur2,
+                    Round = round,
+                    IndexTireur1 = indexTireur1,
+                    IndexTireur2 = indexTireur2,
+                    Tireur1Name = tireur1Name,
+                    Tireur2Name = tireur2Name,
                 });
             }
 
@@ -338,13 +394,31 @@ namespace CercleRoyalEscrimeTournaisien.Models
         public int ScoreDuTireur1 { get; set; }
         public int ScoreDuTireur2 { get; set; }
     }
+    public class ClassScoreEliminationsDirectes
+    {
+        public string DateDeLaPoule { get; set; }
+        public string PouleSelected { get; set; }
+        public Guid Tireur1Guid { get; set; }
+        public Guid Tireur2Guid { get; set; }
+        public string Round { get; set; }
+        public string IndexTireur1 { get; set; }
+        public string IndexTireur2 { get; set; }
+        public string Tireur1Name { get; set; }
+        public string Tireur2Name { get; set; }
+        public bool VictoireOuDéfaiteDuTireur1 { get; set; }
+        public bool VictoireOuDéfaiteDuTireur2 { get; set; }
+        public int ScoreDuTireur1 { get; set; }
+        public int ScoreDuTireur2 { get; set; }
+    }
     public class ClassRound
     {
-        public string DateDuJour { get; set; }
-        public string Poule { get; set; }
+        public string DateDuJourWithoutDay { get; set; }
+        public string PouleSelected { get; set; }
         public string Round { get; set; }
         public Guid Tireur1Guid { get; set; }
         public Guid Tireur2Guid { get; set; }
+        public string Tireur1Name { get; set; }
+        public string Tireur2Name { get; set; }
         public bool VictoireOuDéfaiteDuTireur1 { get; set; }
         public bool VictoireOuDéfaiteDuTireur2 { get; set; }
         public int ScoreDuTireur1 { get; set; }

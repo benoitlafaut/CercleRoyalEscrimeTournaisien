@@ -25,5 +25,6 @@
         public const string Epub122024_Entete = "Epub122024_Entete";
         public const string Epub122024_Body = "Epub122024_Body";
         public const string NormesMatériel = "NormesMatériel";
+        public const string PoulesEliminationsDirectes = "PoulesEliminationsDirectes";
     }
 }

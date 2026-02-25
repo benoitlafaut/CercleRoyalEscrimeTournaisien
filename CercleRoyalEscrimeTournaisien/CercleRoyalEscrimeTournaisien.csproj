@@ -1317,6 +1317,7 @@
     <Content Include="Views\MainPage\SwitchToDossierPhotos.cshtml" />
     <Content Include="Poules\Poule 2026-02-08 Fleuret.pdf" />
     <Content Include="Views\Poules\Poules.cshtml" />
+    <Content Include="Views\Poules\PoulesEliminationsDirectes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

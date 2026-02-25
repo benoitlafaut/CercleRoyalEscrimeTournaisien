@@ -7,7 +7,8 @@
             MenuPrincipal = 1,
             AddTireurs = 2,
             AfficherLesPoules = 3,
-            AjouterScoreAUnePoule = 4
+            AjouterScoreAUnePoule = 4,
+            AfficherLesEliminationsDirectes=5
         }
     }
 }
