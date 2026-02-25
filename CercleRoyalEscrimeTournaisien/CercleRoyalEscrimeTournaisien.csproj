@@ -303,6 +303,7 @@
     <Compile Include="GestionClubClass\ListGuidTireur.cs" />
     <Compile Include="GestionClubClass\Paiements_2025_2026.cs" />
     <Compile Include="Models\MyRequestResultatsPoule.cs" />
+    <Compile Include="Models\MyRequestEliminationDirecteToSaveInPoule.cs" />
     <Compile Include="Models\MyRequestScoreToSaveInPoule.cs" />
     <Compile Include="Models\MyRequestToSaveInPoule.cs" />
     <Compile Include="Models\PoulesViewModel.cs" />

@@ -1,6 +1,8 @@
 ﻿using CercleRoyalEscrimeTournaisien.ClassPublic;
 using CercleRoyalEscrimeTournaisien.Models;
 using DocumentFormat.OpenXml.Office.Word;
+using DocumentFormat.OpenXml.Spreadsheet;
+using OfficeOpenXml.FormulaParsing.LexicalAnalysis;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -73,6 +75,33 @@ namespace CercleRoyalEscrimeTournaisien
         }
 
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+        public ActionResult ChangePoulePourShowEliminationsDirectes(string pouleSelected)
+        {
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+            poulesViewModel.ScreenIndex = ClassEnumScreen.EnumScreen.AfficherLesEliminationsDirectes;
+            poulesViewModel.PouleSelected = pouleSelected;
+
+            return View(Constantes.Poules, poulesViewModel);
+        }
+
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+        public ActionResult ChangeRoundPourShowEliminationsDirectes(string roundSelected, string pouleSelected)
+        {
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+            poulesViewModel.ScreenIndex = ClassEnumScreen.EnumScreen.AfficherLesEliminationsDirectes;
+            poulesViewModel.PouleSelected = pouleSelected;
+            poulesViewModel.RoundSelected = roundSelected;
+
+            return View(Constantes.Poules, poulesViewModel);
+        }
+
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+        public ActionResult CalculerLeRoundSuivant(string roundSelected, string pouleSelected, string dateDuJourWithoutDay)
+        {
+            return null;
+        }
+
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
         public ActionResult AjouterDesScores()
         {
             PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
@@ -111,7 +140,35 @@ namespace CercleRoyalEscrimeTournaisien
 
             // return RedirectToAction("AfficherLesPoules", "Poules");
         }
+        [HttpPost]
+        public ActionResult AddScoreEliminationDirecte(MyRequestEliminationDirecteToSaveInPoule myRequestEliminationDirecteToSaveInPoule)
+        {
+            var path = Server.MapPath("/App_Data/Poules.accdb");
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
 
+            string mySelectQuery = "UPDATE TableRésultatsDesEliminationsDirectes SET VictoireOuDéfaiteDuTireur1 = ?,VictoireOuDéfaiteDuTireur2 = ?, ScoreDuTireur1 = ?, ScoreDuTireur2 = ?, ScoreDejaIntroduit = ? "
+                + " where DateDeLaPoule = ? and Poule = ? and Tireur1Guid = ? and Tireur2Guid = ?";
+
+            OleDbConnection myConnection = new OleDbConnection(ConnectionString);
+            OleDbCommand myCommand = new OleDbCommand(mySelectQuery, myConnection);
+
+            myCommand.Parameters.AddWithValue("?", myRequestEliminationDirecteToSaveInPoule.InputScoreTireur1Guid > myRequestEliminationDirecteToSaveInPoule.InputScoreTireur2Guid ? "1" : "0");
+            myCommand.Parameters.AddWithValue("?", myRequestEliminationDirecteToSaveInPoule.InputScoreTireur2Guid > myRequestEliminationDirecteToSaveInPoule.InputScoreTireur1Guid ? "1" : "0");
+            myCommand.Parameters.AddWithValue("?", myRequestEliminationDirecteToSaveInPoule.InputScoreTireur1Guid);
+            myCommand.Parameters.AddWithValue("?", myRequestEliminationDirecteToSaveInPoule.InputScoreTireur2Guid);
+            myCommand.Parameters.AddWithValue("?", "1");
+            myCommand.Parameters.AddWithValue("?", myRequestEliminationDirecteToSaveInPoule.DateDuJourWithoutDay);
+            myCommand.Parameters.AddWithValue("?", myRequestEliminationDirecteToSaveInPoule.PouleSelected);
+            myCommand.Parameters.AddWithValue("?", myRequestEliminationDirecteToSaveInPoule.Tireur1Guid.ToString().TrimEnd());
+            myCommand.Parameters.AddWithValue("?", myRequestEliminationDirecteToSaveInPoule.Tireur2Guid.ToString().TrimEnd());
+
+            myCommand.Connection.Open();
+
+            OleDbDataReader myReader = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            myCommand.Connection.Close();
+
+            return Json(new { redirectUrl = Url.Action("ChangeRoundPourShowEliminationsDirectes", "Poules", new { roundSelected = myRequestEliminationDirecteToSaveInPoule.Round, PouleSelected = myRequestEliminationDirecteToSaveInPoule.PouleSelected }) });
+        }
         [HttpPost]
         public ActionResult AddScoreToTireursSelected(MyRequestScoreToSaveInPoule myRequestScoreToSaveInPoule)
         {
@@ -226,6 +283,9 @@ namespace CercleRoyalEscrimeTournaisien
             {
                 var victoireOuDéfaiteDuTireur1 = (round.Tireur2Guid.ToString().TrimEnd() == Guid.Empty.ToString()) ? "1" : null;
                 var victoireOuDéfaiteDuTireur2 = (round.Tireur2Guid.ToString().TrimEnd() == Guid.Empty.ToString()) ? "0" : null;
+
+                var scoreDejaIntroduit = (round.Tireur2Guid.ToString().TrimEnd() == Guid.Empty.ToString()) ? "1" : "0";
+
                 var scoreDuTireur1 = (round.Tireur2Guid.ToString().TrimEnd() == Guid.Empty.ToString()) ? "15" : "0";
                 var scoreDuTireur2 = (round.Tireur2Guid.ToString().TrimEnd() == Guid.Empty.ToString()) ? "0" : "0";
 
@@ -233,8 +293,8 @@ namespace CercleRoyalEscrimeTournaisien
                 {
                     string mySelectQuery2 = "INSERT INTO TableRésultatsDesEliminationsDirectes " +
                         "(Poule, Tireur1Guid,Tireur2Guid,DateDeLaPoule," +
-                        "ScoreDuTireur1,ScoreDuTireur2, Round, IndexTireur1, IndexTireur2, tireur1Name,tireur2Name) " +
-                        "Values (@param1, @param2,@param3,@param4,@param7,@param8,@param9,@param10,@param11,@param12,@param13)";
+                        "ScoreDuTireur1,ScoreDuTireur2, Round, IndexTireur1, IndexTireur2, tireur1Name,tireur2Name,ScoreDejaIntroduit) " +
+                        "Values (@param1, @param2,@param3,@param4,@param7,@param8,@param9,@param10,@param11,@param12,@param13,@param14)";
 
                     OleDbCommand myCommand2 = new OleDbCommand(mySelectQuery2, myConnection);
 
@@ -249,6 +309,7 @@ namespace CercleRoyalEscrimeTournaisien
                     myCommand2.Parameters.AddWithValue("@param11", round.IndexTireur2);
                     myCommand2.Parameters.AddWithValue("@param12", round.Tireur1Name);
                     myCommand2.Parameters.AddWithValue("@param13", round.Tireur2Name);
+                    myCommand2.Parameters.AddWithValue("@param14", scoreDejaIntroduit);
 
                     myCommand2.Connection.Open();
                     OleDbDataReader myReader2 = myCommand2.ExecuteReader(CommandBehavior.CloseConnection);
@@ -258,8 +319,8 @@ namespace CercleRoyalEscrimeTournaisien
                 {
                     string mySelectQuery2 = "INSERT INTO TableRésultatsDesEliminationsDirectes " +
                         "(Poule, Tireur1Guid,Tireur2Guid,DateDeLaPoule ,VictoireOuDéfaiteDuTireur1,VictoireOuDéfaiteDuTireur2," +
-                        "ScoreDuTireur1,ScoreDuTireur2, Round, IndexTireur1, IndexTireur2, Tireur1Name,Tireur2Name) " +
-                        "Values (@param1, @param2,@param3,@param4,@param5,@param6,@param7,@param8,@param9,@param10,@param11 ,@param12 ,@param13 ) ";
+                        "ScoreDuTireur1,ScoreDuTireur2, Round, IndexTireur1, IndexTireur2, Tireur1Name,Tireur2Name,ScoreDejaIntroduit) " +
+                        "Values (@param1, @param2,@param3,@param4,@param5,@param6,@param7,@param8,@param9,@param10,@param11 ,@param12 ,@param13,@param14 ) ";
 
                     OleDbCommand myCommand2 = new OleDbCommand(mySelectQuery2, myConnection);
 
@@ -276,6 +337,7 @@ namespace CercleRoyalEscrimeTournaisien
                     myCommand2.Parameters.AddWithValue("@param11", round.IndexTireur2);
                     myCommand2.Parameters.AddWithValue("@param12", round.Tireur1Name);
                     myCommand2.Parameters.AddWithValue("@param13", round.Tireur2Name);
+                    myCommand2.Parameters.AddWithValue("@param14", scoreDejaIntroduit);
 
                     myCommand2.Connection.Open();
                     OleDbDataReader myReader2 = myCommand2.ExecuteReader(CommandBehavior.CloseConnection);

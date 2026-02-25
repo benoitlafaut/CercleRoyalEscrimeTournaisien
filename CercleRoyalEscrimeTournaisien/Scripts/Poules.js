@@ -28,7 +28,30 @@
         }
     });
 }
-
+function AddScoreEliminationDirecte(dateDuJourWithoutDay, pouleSelected, round, tireur1Guid, tireur2Guid, inputScoreTireur1Guid, inputScoreTireur2Guid)
+{
+    $.ajax({
+        url: "/Poules/AddScoreEliminationDirecte",
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            dateDuJourWithoutDay: dateDuJourWithoutDay,
+            pouleSelected: pouleSelected,
+            round: round,
+            tireur1Guid: tireur1Guid,
+            tireur2Guid: tireur2Guid,            
+            inputScoreTireur1Guid: $("#" + inputScoreTireur1Guid).val(),
+            inputScoreTireur2Guid: $("#" + inputScoreTireur2Guid).val()
+        }),
+        success: function (data) {
+            if (data.redirectUrl) { window.location.href = data.redirectUrl; }
+        },
+        failure: function (response) { },
+        error: function (response) {
+            alert("Error. " + response.responseText);  //
+        }
+    });
+}
 function AddScoreToTireursSelected() {
     if ($("#ddlPoulesScores option:selected").val() == '') {
         alert("vous n'avez pas sélectionné la poule");

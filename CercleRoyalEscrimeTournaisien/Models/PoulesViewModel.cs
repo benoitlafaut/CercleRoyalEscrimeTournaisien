@@ -143,7 +143,15 @@ namespace CercleRoyalEscrimeTournaisien.Models
                 return DateTime.Now.AddDays(0);
             }
         }
-
+        public string RoundSelected { get; set; }
+        public string Score { get; set; }
+        public IDictionary<string, string> RoundsList
+        {
+            get
+            {
+                return ScoresEliminitationsDirectesList.Where(x => x.PouleSelected == PouleSelected).GroupBy(x => x.Round).ToDictionary(g => g.Key, g => g.Key);
+            }
+        }
         public List<string> GetListeDesMatchs(int nombreDeTireurs)
         {
             switch (nombreDeTireurs)
@@ -286,6 +294,9 @@ namespace CercleRoyalEscrimeTournaisien.Models
 
                 bool victoireOuDéfaiteDuTireur1 = (bool)myReader["VictoireOuDéfaiteDuTireur1"];
                 bool victoireOuDéfaiteDuTireur2 = (bool)myReader["VictoireOuDéfaiteDuTireur2"];
+
+                bool scoreDejaIntroduit = (bool)myReader["ScoreDejaIntroduit"];
+
                 int scoreDuTireur1 = (int)myReader["ScoreDuTireur1"];
                 int scoreDuTireur2 = (int)myReader["ScoreDuTireur2"];
                 ScoresEliminitationsDirectesList.Add(new ClassScoreEliminationsDirectes()
@@ -303,8 +314,10 @@ namespace CercleRoyalEscrimeTournaisien.Models
                     IndexTireur2 = indexTireur2,
                     Tireur1Name = tireur1Name,
                     Tireur2Name = tireur2Name,
+                    ScoreDejaIntroduit = scoreDejaIntroduit
                 });
             }
+
 
             myCommand.Connection.Close();
         }
@@ -409,6 +422,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
         public bool VictoireOuDéfaiteDuTireur2 { get; set; }
         public int ScoreDuTireur1 { get; set; }
         public int ScoreDuTireur2 { get; set; }
+        public bool ScoreDejaIntroduit { get; set; }
     }
     public class ClassRound
     {

@@ -125,3 +125,20 @@
             color: white;
             font-weight: 600;
         }
+
+
+.ClassSpanMinWidthFixed {
+    min-width: 100px;
+    display: inline-block;
+}
+
+.ClassDivRencontre {
+    border-right: 1px solid black;
+    max-width: 300px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+.ClassMaxWidth {
+    max-width: 16px;
+}
