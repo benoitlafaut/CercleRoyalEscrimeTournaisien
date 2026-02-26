@@ -4,6 +4,8 @@ using System.Data;
 using System.Data.OleDb;
 using System.Globalization;
 using System.Linq;
+using System.Net.Http.Headers;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace CercleRoyalEscrimeTournaisien.Models
@@ -25,6 +27,43 @@ namespace CercleRoyalEscrimeTournaisien.Models
         public List<ClassPoule> PoulesList { get; set; }
         public List<ClassScore> ScoresList { get; set; }
         public List<ClassScoreEliminationsDirectes> ScoresEliminitationsDirectesList { get; set; }        
+        public List<ClassScoreEliminationsDirectes> GetOrdreDesMatchs(List<ClassScoreEliminationsDirectes> scores)
+        {
+            List<ClassScoreEliminationsDirectes> scoresResult = new List<ClassScoreEliminationsDirectes>() { };
+
+            if (!scores.Any()) { return scores; }
+
+            List<int> ordreDesMatchsList = GenerateFirstRound(scores.Count * 2);
+
+            for (int i = 0; i < ordreDesMatchsList.Count; i += 2)
+
+              //  foreach (int ordre in ordreDesMatchsList step 2)
+            {
+                ClassScoreEliminationsDirectes score = scores.Where(x => x.IndexTireur1 == ordreDesMatchsList[i].ToString() || x.IndexTireur2 == ordreDesMatchsList[i].ToString()).First();
+                scoresResult.Add(score);
+            }
+
+            return scoresResult;
+        }
+        private List<int> GenerateFirstRound(int fencers)
+        {
+            switch (fencers)
+            {
+                case 2:
+                    return new List<int> { 1, 2 };
+                case 4:
+                    return new List<int> { 1, 4, 3, 2 };
+                case 8:
+                    return new List<int> { 1, 8, 5, 4, 3, 6, 7, 2 };
+                case 16:
+                    return new List<int> { 1, 16, 9, 8, 5, 12, 13, 4, 3, 14, 11, 6, 7, 10, 15, 2 };
+                default:
+                    return new List<int> { 1 };
+
+            }
+        }
+
+
         public List<ClassPoulesDuJour> PoulesDuJourList { get; set; }
         public List<ClassTireur> TireursList { get; set; }
         public List<ClassTireur> TireursPourLaPouleSelectionneeList
@@ -140,7 +179,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
         { 
             get
             {
-                return DateTime.Now.AddDays(0);
+                return DateTime.Now.AddDays(-1);
             }
         }
         public string RoundSelected { get; set; }
@@ -439,5 +478,11 @@ namespace CercleRoyalEscrimeTournaisien.Models
         public int ScoreDuTireur2 { get; set; }
         public int IndexTireur1 { get; set; }
         public int IndexTireur2 { get; set; }
+    }
+    public class MatchFencer 
+    { 
+        public int Round { get; set; }
+        public int Seed1 { get; set; } 
+        public int Seed2 { get; set; }
     }
 }

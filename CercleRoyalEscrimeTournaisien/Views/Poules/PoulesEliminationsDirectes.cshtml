@@ -50,7 +50,7 @@
         </select>
     </div>
 
-    @foreach (var rencontre in Model.ScoresEliminitationsDirectesList.Where(x => x.PouleSelected == Model.PouleSelected && x.Round == Model.RoundSelected))
+    @foreach (var rencontre in Model.GetOrdreDesMatchs(Model.ScoresEliminitationsDirectesList.Where(x => x.PouleSelected == Model.PouleSelected && x.Round == Model.RoundSelected).ToList()))
     {
         string tireur1Name = string.IsNullOrEmpty(rencontre.Tireur1Name) ? "/" : rencontre.Tireur1Name;
         string tireur2Name = string.IsNullOrEmpty(rencontre.Tireur2Name) ? "/" : rencontre.Tireur2Name;

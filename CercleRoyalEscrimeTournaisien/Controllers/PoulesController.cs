@@ -1,5 +1,6 @@
 ﻿using CercleRoyalEscrimeTournaisien.ClassPublic;
 using CercleRoyalEscrimeTournaisien.Models;
+using DocumentFormat.OpenXml.Drawing;
 using DocumentFormat.OpenXml.Office.Word;
 using DocumentFormat.OpenXml.Spreadsheet;
 using OfficeOpenXml.FormulaParsing.LexicalAnalysis;
@@ -98,7 +99,82 @@ namespace CercleRoyalEscrimeTournaisien
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
         public ActionResult CalculerLeRoundSuivant(string roundSelected, string pouleSelected, string dateDuJourWithoutDay)
         {
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+            List<ClassScoreEliminationsDirectes> scores = poulesViewModel.ScoresEliminitationsDirectesList.Where(x => x.PouleSelected == pouleSelected && x.Round == roundSelected).ToList();
+
+            string roundSuivant = GetRoundSuivant(roundSelected);
+
+            int nombreDePlaces = CalculerNombreDePlaces(scores.Count);
+            int nombreDeMatchs = nombreDePlaces / 2;
+            List<ClassRound> roundsList = new List<ClassRound>() { };
+
+            for (int loop = 1; loop <= nombreDeMatchs; loop++)
+            {
+                int indexAdversaire = nombreDePlaces + 1 - loop;
+
+                roundsList.Add(new ClassRound()
+                {
+                    Tireur1Guid = scores[loop - 1].Tireur1Guid,
+                    Tireur1Name = scores[loop - 1].Tireur1Name,
+                    Tireur2Guid = indexAdversaire <= scores.Count ? scores[indexAdversaire - 1].Tireur2Guid : new Guid(),
+                    Tireur2Name = indexAdversaire <= scores.Count ? scores[indexAdversaire - 1].Tireur2Name : "",
+                    DateDuJourWithoutDay = poulesViewModel.DateDuJourWithoutDay,
+                    PouleSelected = pouleSelected,
+                    Round = roundSuivant,
+                    IndexTireur1 = loop,
+                    IndexTireur2 = indexAdversaire
+                });
+            }
+
+            var path = Server.MapPath("/App_Data/Poules.accdb");
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
+            OleDbConnection myConnection = new OleDbConnection(ConnectionString);
+
+            foreach (var round in roundsList)
+            {
+                string mySelectQuery2 = "INSERT INTO TableRésultatsDesEliminationsDirectes " +
+                       "(Poule, Tireur1Guid,Tireur2Guid,DateDeLaPoule," +
+                       "ScoreDuTireur1,ScoreDuTireur2, Round, IndexTireur1, IndexTireur2, tireur1Name,tireur2Name,ScoreDejaIntroduit) " +
+                       "Values (@param1, @param2,@param3,@param4,@param7,@param8,@param9,@param10,@param11,@param12,@param13,@param14)";
+
+                OleDbCommand myCommand2 = new OleDbCommand(mySelectQuery2, myConnection);
+
+                myCommand2.Parameters.AddWithValue("@param1", pouleSelected);
+                myCommand2.Parameters.AddWithValue("@param2", round.Tireur1Guid.ToString().TrimEnd());
+                myCommand2.Parameters.AddWithValue("@param3", round.Tireur2Guid.ToString().TrimEnd());
+                myCommand2.Parameters.AddWithValue("@param4", dateDuJourWithoutDay);
+                myCommand2.Parameters.AddWithValue("@param7", round.ScoreDuTireur1);
+                myCommand2.Parameters.AddWithValue("@param8", round.ScoreDuTireur2);
+                myCommand2.Parameters.AddWithValue("@param9", round.Round);
+                myCommand2.Parameters.AddWithValue("@param10", round.IndexTireur1);
+                myCommand2.Parameters.AddWithValue("@param11", round.IndexTireur2);
+                myCommand2.Parameters.AddWithValue("@param12", round.Tireur1Name);
+                myCommand2.Parameters.AddWithValue("@param13", round.Tireur2Name);
+                myCommand2.Parameters.AddWithValue("@param14", "0");
+
+                myCommand2.Connection.Open();
+                OleDbDataReader myReader2 = myCommand2.ExecuteReader(CommandBehavior.CloseConnection);
+                myCommand2.Connection.Close();
+            }
+
             return null;
+        }
+
+        private string GetRoundSuivant(string roundSelected)
+        {
+            switch(roundSelected)
+            {
+                case "1/16":
+                    return "1/8";
+                case "1/8":
+                    return "1/4";
+                case "1/4":
+                    return "1/2";
+                case "1/2":
+                    return "Finale";
+                default:
+                    return "";
+            }
         }
 
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
@@ -251,7 +327,8 @@ namespace CercleRoyalEscrimeTournaisien
 
             List<ClassResultats> classResultatsList = myRequestResultatsPoule.ClassResultatsList.OrderByDescending(x => x.NombreDeVictoiresParMatchs).ThenByDescending(x => int.Parse(x.TDMoinsTR)).ThenByDescending(x => int.Parse(x.TD)).ThenBy(x => x.Tireur).ToList();
 
-            int nombreRoundMax = CalculerRoundMax(myRequestResultatsPoule.ClassResultatsList.Count);
+            //int nombreRoundMax = CalculerRoundMax(myRequestResultatsPoule.ClassResultatsList.Count);
+            int nombreRoundMax = GetTableau(index);
             int nombreDePlaces = CalculerNombreDePlaces(myRequestResultatsPoule.ClassResultatsList.Count);
             int nombreDeMatchs = nombreDePlaces / 2;
             List<ClassRound> roundsList = new List<ClassRound>() { };
@@ -268,7 +345,7 @@ namespace CercleRoyalEscrimeTournaisien
                     Tireur2Name = indexAdversaire <= classResultatsList.Count ? classResultatsList[indexAdversaire - 1].Tireur : "",
                     DateDuJourWithoutDay = poulesViewModel.DateDuJourWithoutDay,
                     PouleSelected = pouleSelected,
-                    Round = "1/" + nombreRoundMax.ToString(),
+                    Round = "1/" + (nombreRoundMax / 2).ToString(),
                     IndexTireur1 = loop,
                     IndexTireur2 = indexAdversaire
                 });
@@ -347,14 +424,23 @@ namespace CercleRoyalEscrimeTournaisien
 
             return Json(new { redirectUrl = Url.Action("Poules", "Poules") });
         }
+        private int GetTableau(int nbTireurs)
+        {
+            if (nbTireurs < 2)
+                return 0;
+
+            // Trouver la plus petite puissance de 2 >= nbTireurs
+            int tableau = 1;
+            while (tableau < nbTireurs)
+                tableau *= 2;
+
+            return tableau;
+        }
         private int CalculerNombreDePlaces(int nbTireurs) 
         { 
             int roundMax = (int)Math.Ceiling(Math.Log(nbTireurs, 2)); return (int)Math.Pow(2, roundMax); 
         }
-        private int CalculerRoundMax(int nbTireurs)
-        { 
-            return (int)Math.Ceiling(Math.Log(nbTireurs, 2)); 
-        }
+       
         private bool ExistsRecord(string dateDuJourWithoutDay, string pouleSelected, string tireur)
         {
             var path = Server.MapPath("/App_Data/Poules.accdb");
