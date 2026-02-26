@@ -99,38 +99,39 @@ namespace CercleRoyalEscrimeTournaisien
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
         public ActionResult CalculerLeRoundSuivant(string roundSelected, string pouleSelected, string dateDuJourWithoutDay)
         {
-            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
-            List<ClassScoreEliminationsDirectes> scores = poulesViewModel.ScoresEliminitationsDirectesList.Where(x => x.PouleSelected == pouleSelected && x.Round == roundSelected).ToList();
-
             string roundSuivant = GetRoundSuivant(roundSelected);
+
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+            List<ClassScoreEliminationsDirectes> scores = poulesViewModel.GetOrdreDesMatchs(poulesViewModel.ScoresEliminitationsDirectesList.Where(x => x.PouleSelected == pouleSelected && x.Round == roundSelected).ToList());
 
             int nombreDePlaces = CalculerNombreDePlaces(scores.Count);
             int nombreDeMatchs = nombreDePlaces / 2;
-            List<ClassRound> roundsList = new List<ClassRound>() { };
 
-            for (int loop = 1; loop <= nombreDeMatchs; loop++)
+            List<ClassScoreEliminationsDirectes> newScores = new List<ClassScoreEliminationsDirectes>() { };
+
+            for (int i = 0; i < scores.Count; i += 2)
             {
-                int indexAdversaire = nombreDePlaces + 1 - loop;
-
-                roundsList.Add(new ClassRound()
+                newScores.Add(new ClassScoreEliminationsDirectes()
                 {
-                    Tireur1Guid = scores[loop - 1].Tireur1Guid,
-                    Tireur1Name = scores[loop - 1].Tireur1Name,
-                    Tireur2Guid = indexAdversaire <= scores.Count ? scores[indexAdversaire - 1].Tireur2Guid : new Guid(),
-                    Tireur2Name = indexAdversaire <= scores.Count ? scores[indexAdversaire - 1].Tireur2Name : "",
-                    DateDuJourWithoutDay = poulesViewModel.DateDuJourWithoutDay,
-                    PouleSelected = pouleSelected,
                     Round = roundSuivant,
-                    IndexTireur1 = loop,
-                    IndexTireur2 = indexAdversaire
+                    PouleSelected = pouleSelected,
+                    DateDeLaPoule = dateDuJourWithoutDay,
+                    Tireur1Guid = scores[i].ScoreDuTireur1 > scores[i].ScoreDuTireur2 ? scores[i].Tireur1Guid : scores[i].Tireur2Guid,
+                    Tireur1Name = scores[i].ScoreDuTireur1 > scores[i].ScoreDuTireur2 ? scores[i].Tireur1Name : scores[i].Tireur2Name,
+                    IndexTireur1 = scores[i].ScoreDuTireur1 > scores[i].ScoreDuTireur2 ? scores[i].IndexTireur1 : scores[i].IndexTireur2,
+                    Tireur2Guid = scores[i+1].ScoreDuTireur1 > scores[i+1].ScoreDuTireur2 ? scores[i+1].Tireur1Guid : scores[i + 1].Tireur2Guid,
+                    Tireur2Name = scores[i + 1].ScoreDuTireur1 > scores[i + 1].ScoreDuTireur2 ? scores[i+1].Tireur1Name : scores[i + 1].Tireur2Name,
+                    IndexTireur2 = scores[i + 1].ScoreDuTireur1 > scores[i + 1].ScoreDuTireur2 ? scores[i+1].IndexTireur1 : scores[i + 1].IndexTireur2,
                 });
-            }
+            }            
+                       
+            
 
             var path = Server.MapPath("/App_Data/Poules.accdb");
             string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
             OleDbConnection myConnection = new OleDbConnection(ConnectionString);
 
-            foreach (var round in roundsList)
+            foreach (var score in newScores)
             {
                 string mySelectQuery2 = "INSERT INTO TableRésultatsDesEliminationsDirectes " +
                        "(Poule, Tireur1Guid,Tireur2Guid,DateDeLaPoule," +
@@ -140,16 +141,16 @@ namespace CercleRoyalEscrimeTournaisien
                 OleDbCommand myCommand2 = new OleDbCommand(mySelectQuery2, myConnection);
 
                 myCommand2.Parameters.AddWithValue("@param1", pouleSelected);
-                myCommand2.Parameters.AddWithValue("@param2", round.Tireur1Guid.ToString().TrimEnd());
-                myCommand2.Parameters.AddWithValue("@param3", round.Tireur2Guid.ToString().TrimEnd());
+                myCommand2.Parameters.AddWithValue("@param2", score.Tireur1Guid.ToString().TrimEnd());
+                myCommand2.Parameters.AddWithValue("@param3", score.Tireur2Guid.ToString().TrimEnd());
                 myCommand2.Parameters.AddWithValue("@param4", dateDuJourWithoutDay);
-                myCommand2.Parameters.AddWithValue("@param7", round.ScoreDuTireur1);
-                myCommand2.Parameters.AddWithValue("@param8", round.ScoreDuTireur2);
-                myCommand2.Parameters.AddWithValue("@param9", round.Round);
-                myCommand2.Parameters.AddWithValue("@param10", round.IndexTireur1);
-                myCommand2.Parameters.AddWithValue("@param11", round.IndexTireur2);
-                myCommand2.Parameters.AddWithValue("@param12", round.Tireur1Name);
-                myCommand2.Parameters.AddWithValue("@param13", round.Tireur2Name);
+                myCommand2.Parameters.AddWithValue("@param7", 0);
+                myCommand2.Parameters.AddWithValue("@param8", 0);
+                myCommand2.Parameters.AddWithValue("@param9", score.Round);
+                myCommand2.Parameters.AddWithValue("@param10", score.IndexTireur1);
+                myCommand2.Parameters.AddWithValue("@param11", score.IndexTireur2);
+                myCommand2.Parameters.AddWithValue("@param12", score.Tireur1Name);
+                myCommand2.Parameters.AddWithValue("@param13", score.Tireur2Name);
                 myCommand2.Parameters.AddWithValue("@param14", "0");
 
                 myCommand2.Connection.Open();
@@ -157,7 +158,7 @@ namespace CercleRoyalEscrimeTournaisien
                 myCommand2.Connection.Close();
             }
 
-            return null;
+            return Json(new { redirectUrl = Url.Action("Poules", "Poules") });
         }
 
         private string GetRoundSuivant(string roundSelected)

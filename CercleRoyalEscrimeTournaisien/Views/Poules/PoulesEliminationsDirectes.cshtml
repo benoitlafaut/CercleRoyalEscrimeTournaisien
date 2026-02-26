@@ -91,7 +91,7 @@
         </div>
     }
 
-    @if (isAllIntroduit)
+    @if (isAllIntroduit && Model.RoundSelected != "Finale")
     {
        <div class="ClassMarginTopAndBottom">
            <a id="btnCalculerLeRoundSuivant" href="#" class="btnAction-custom">Calculer le round suivant</a>
@@ -107,8 +107,23 @@
         var pouleSelected = $("#ddlPoulesEliminationsDirectes option:selected").val();
         var roundSelected = $("#ddlRoundsEliminationsDirectes option:selected").val();
         var dateDuJourWithoutDay = '@Model.DateDuJourWithoutDay';
-        var url = '@Url.Action("CalculerLeRoundSuivant", "Poules")' + '?pouleSelected=' + pouleSelected + "&roundSelected=" + roundSelected + "&dateDuJourWithoutDay=" + dateDuJourWithoutDay;
-        window.location.href = url;
+
+        $.ajax({
+            url: "/Poules/CalculerLeRoundSuivant",
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ pouleSelected: pouleSelected, roundSelected: roundSelected, dateDuJourWithoutDay: dateDuJourWithoutDay  }),
+            success: function (data) {
+                if (data.redirectUrl) { window.location.href = data.redirectUrl; }
+            },
+            failure: function (response) { },
+            error: function (response) {
+                alert("Error. " + response.responseText);  //
+            }
+        });
+
+        @*var url = '@Url.Action("CalculerLeRoundSuivant", "Poules")' + '?pouleSelected=' + pouleSelected + "&roundSelected=" + roundSelected + "&dateDuJourWithoutDay=" + dateDuJourWithoutDay;
+        window.location.href = url;*@
     }); 
 
  </script>
