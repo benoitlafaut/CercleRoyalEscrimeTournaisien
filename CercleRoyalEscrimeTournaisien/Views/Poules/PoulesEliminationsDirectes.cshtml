@@ -19,13 +19,18 @@
             <option value="">Sélectionnez la poule...</option>
             @foreach (var p in Model.PoulesList)
             {
-                if (p.Poule == Model.PouleSelected)
+                var scoreListe = Model.ScoresEliminitationsDirectesList.Where(x => x.PouleSelected == p.Poule).GroupBy(x => x.Round).ToDictionary(g => g.Key, g => g.Key);
+
+                if (scoreListe.Any())
                 {
+                    if (p.Poule == Model.PouleSelected)
+                    {
                     <option selected value="@p.Poule"> @p.Poule (@p.DescriptionDeLaPoule) </option>
-                }
-                else
-                {
+                    }
+                    else
+                    {
                     <option value="@p.Poule"> @p.Poule (@p.DescriptionDeLaPoule) </option>
+                    }
                 }
             }
         </select>
@@ -64,15 +69,21 @@
                 }
                 else
                 {
-                    @Html.TextBoxFor(x => x.Score, new { @class = "ClassMaxWidth form-control", @id = "inputScore_" + rencontre.Tireur1Guid })
+                    if (Model.IsDateDAujourdhuiEqualsDateNow)
+                    {
+                        @Html.TextBoxFor(x => x.Score, new { @class = "ClassMaxWidth form-control", @id = "inputScore_" + rencontre.Tireur1Guid })
+                    }
                 }
             </div>
 
             @if (!rencontre.ScoreDejaIntroduit)
             {
-                <div class="">
-                    <a style="margin-left:150px;" href="#" onclick="AddScoreEliminationDirecte('@Model.DateDuJourWithoutDayLabel','@Model.PouleSelected','@rencontre.Round','@rencontre.Tireur1Guid','@rencontre.Tireur2Guid','inputScore_' + '@rencontre.Tireur1Guid','inputScore_' + '@rencontre.Tireur2Guid'); ">Sauver score</a>
-                </div>
+                if (Model.IsDateDAujourdhuiEqualsDateNow)
+                {
+                    <div class="">
+                        <a style="margin-left:150px;" href="#" onclick="AddScoreEliminationDirecte('@Model.DateDuJourWithoutDayLabel','@Model.PouleSelected','@rencontre.Round','@rencontre.Tireur1Guid','@rencontre.Tireur2Guid','inputScore_' + '@rencontre.Tireur1Guid','inputScore_' + '@rencontre.Tireur2Guid'); ">Sauver score</a>
+                    </div>
+                }
             }
 
             <div style="display: flex;">
@@ -83,7 +94,10 @@
                 }
                 else
                 {
-                    @Html.TextBoxFor(x => x.Score, new { @class = "ClassMaxWidth form-control", @id = "inputScore_" + rencontre.Tireur2Guid })
+                    if (Model.IsDateDAujourdhuiEqualsDateNow)
+                    {
+                        @Html.TextBoxFor(x => x.Score, new { @class = "ClassMaxWidth form-control", @id = "inputScore_" + rencontre.Tireur2Guid })
+                    }
                 }
             </div>
 
@@ -91,7 +105,7 @@
         </div>
     }
 
-    @if (isAllIntroduit && Model.RoundSelected != "Finale")
+    @if (isAllIntroduit && Model.RoundSelected != "Finale" && Model.IsDateDAujourdhuiEqualsDateNow)
     {
         <div class="ClassMarginTopAndBottom">
             <a id="btnCalculerLeRoundSuivant" href="#" class="btnAction-custom">Calculer le round suivant</a>

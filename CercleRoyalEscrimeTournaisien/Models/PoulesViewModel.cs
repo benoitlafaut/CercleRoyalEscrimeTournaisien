@@ -192,6 +192,13 @@ namespace CercleRoyalEscrimeTournaisien.Models
                 return DateTime.Now.AddDays(0);
             }
         }
+        public bool IsDateDAujourdhuiEqualsDateNow
+        {
+            get
+            {
+                return DateDAujourdhui.ToString("ddMMyyyy") == DateTime.Now.ToString("ddMMyyyy");
+            }
+        }
         public string RoundSelected { get; set; }
         public string Score { get; set; }
         public IDictionary<string, string> RoundsList

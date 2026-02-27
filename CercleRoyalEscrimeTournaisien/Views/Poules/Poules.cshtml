@@ -19,23 +19,28 @@
     {
         case ClassEnumScreen.EnumScreen.MenuPrincipal:
             <label style="display: inline-flex;" class="ClassFontSizeTitre ClassDecorationUnderline">Menu principal</label>
+            <div style="margin-left:40px;">
 
-            <div class="ClassMarginTopAndBottom">
-                <a href="@Url.Action("AjouterTireurAUnePoule", "Poules")" class="btn-custom">Ajouter un tireur à une poule</a>
-            </div>
+                @if (Model.IsDateDAujourdhuiEqualsDateNow)
+                {
+                    <div class="ClassMarginTopAndBottom">
+                        <a href="@Url.Action("AjouterTireurAUnePoule", "Poules")" class="btn-custom">Ajouter un tireur à une poule</a>
+                    </div>
 
-            <div class="ClassMarginTopAndBottom">
-                <a href="@Url.Action("AjouterDesScores", "Poules")" class="btn-custom">Ajouter un score à une poule</a>
-            </div>
+                    <div class="ClassMarginTopAndBottom">
+                        <a href="@Url.Action("AjouterDesScores", "Poules")" class="btn-custom">Ajouter un score à une poule</a>
+                    </div>
+                }
 
-            <div class="ClassMarginTopAndBottom">
-                <a href="@Url.Action("AfficherLesPoules", "Poules")" class="btn-custom">Afficher les poules</a>
-            </div>
-            <div class="ClassMarginTopAndBottom">
-                <a href="@Url.Action("AfficherLesEliminationsDirectes", "Poules")" class="btn-custom">Afficher les éliminations directes</a>
-            </div>
-            <div class="ClassMarginTopAndBottom">
-                <a href="@Url.Action("AfficherLesDatesPrecedentes", "Poules")" class="btn-custom">Afficher les résultats des jours antérieurs</a>
+                <div class="ClassMarginTopAndBottom">
+                    <a href="@Url.Action("AfficherLesPoules", "Poules")" class="btn-custom">Afficher les poules</a>
+                </div>
+                <div class="ClassMarginTopAndBottom">
+                    <a href="@Url.Action("AfficherLesEliminationsDirectes", "Poules")" class="btn-custom">Afficher les éliminations directes</a>
+                </div>
+                <div class="ClassMarginTopAndBottom">
+                    <a href="@Url.Action("AfficherLesDatesPrecedentes", "Poules")" class="btn-custom">Afficher les résultats des jours antérieurs</a>
+                </div>
             </div>
 
             break;
