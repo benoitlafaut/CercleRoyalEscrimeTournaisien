@@ -1,0 +1,67 @@
+﻿@model CercleRoyalEscrimeTournaisien.Models.PoulesViewModel
+
+<label style="display: inline-flex;" class="ClassMarginBottom ClassFontSizeTitre ClassDecorationUnderline">Ajouter un score à une poule</label>
+
+<table>
+    <thead>
+        <tr>
+            <th colspan="2" class="tableScoreAlign">
+                <select onchange="location.href='@Url.Action("ChangePoulePourAjouterScore", "Poules")?pouleSelected=' + this.value" id="ddlPoulesScores" class="form-control">
+                    <option value="">Sélectionnez la poule...</option>
+                    @foreach (var p in Model.PoulesList)
+                    {
+                        if (p.Poule == Model.PouleSelected)
+                        {
+                            <option selected value="@p.Poule"> @p.Poule (@p.DescriptionDeLaPoule) </option>
+                        }
+                        else
+                        {
+                            <option value="@p.Poule"> @p.Poule (@p.DescriptionDeLaPoule) </option>
+                        }
+                    }
+                </select>
+            </th>
+
+
+        </tr>
+        <tr>
+            <th class="tableScoreAlign">Tireur 1</th>
+            <th class="tableScoreAlign">Tireur 2</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td class="tableScoreAlign">
+                @Html.DropDownListFor(model => model.Tireur1Selected, new SelectList(Model.ListTireursToAddScore, "Key", "Value", Model.Tireur1Selected), new { @class = "form-control" })
+            </td>
+            <td class="tableScoreAlign">
+                @Html.DropDownListFor(model => model.Tireur2Selected, new SelectList(Model.ListTireursToAddScore, "Key", "Value", Model.Tireur2Selected), new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td class="tableScoreAlign">
+                <input type="radio" name="choixVictoire" value="1">Victoire du tireur 1
+            </td>
+            <td class="tableScoreAlign">
+                <input type="radio" name="choixVictoire" value="2">Victoire du tireur 2
+            </td>
+        </tr>
+        <tr>
+            <td class="tableScoreAlign">
+                Score :  @Html.TextBoxFor(x => x.ScoreTireur1, new { @class = "form-control" })
+            </td>
+            <td class="tableScoreAlign">
+                Score : @Html.TextBoxFor(x => x.ScoreTireur2, new { @class = "form-control" })
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="ClassMarginTopAndBottom">
+    <a href="#" onclick="AddScoreToTireursSelected(); " class="btnAction-custom">Ajouter les scores aux tireurs sélectionnés dans la poule sélectionnée</a>
+</div>
+
+<div class="ClassMarginTopAndBottom">
+    <a href="@Url.Action("Poules", "Poules")" class="btn-custom">Retourner au menu principal</a>
+</div>

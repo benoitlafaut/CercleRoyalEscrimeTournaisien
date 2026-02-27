@@ -1319,6 +1319,10 @@
     <Content Include="Poules\Poule 2026-02-08 Fleuret.pdf" />
     <Content Include="Views\Poules\Poules.cshtml" />
     <Content Include="Views\Poules\PoulesEliminationsDirectes.cshtml" />
+    <Content Include="Views\Poules\AfficherLesPoules.cshtml" />
+    <Content Include="Views\Poules\AddTireurs.cshtml" />
+    <Content Include="Views\Poules\AjouterScoreAUnePoule.cshtml" />
+    <Content Include="Views\Poules\AfficherLesDatesPrecedentes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

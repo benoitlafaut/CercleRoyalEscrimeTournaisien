@@ -26,5 +26,9 @@
         public const string Epub122024_Body = "Epub122024_Body";
         public const string NormesMatériel = "NormesMatériel";
         public const string PoulesEliminationsDirectes = "PoulesEliminationsDirectes";
+        public const string AfficherLesPoules = "AfficherLesPoules";
+        public const string AddTireurs = "AddTireurs";
+        public const string AjouterScoreAUnePoule = "AjouterScoreAUnePoule";
+        public const string AfficherLesDatesPrecedentes = "AfficherLesDatesPrecedentes";
     }
 }

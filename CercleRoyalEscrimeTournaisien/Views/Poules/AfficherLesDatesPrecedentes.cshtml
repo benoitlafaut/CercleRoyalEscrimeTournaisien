@@ -1,0 +1,21 @@
+﻿@model CercleRoyalEscrimeTournaisien.Models.PoulesViewModel
+
+<div>
+    <span>Liste des Dates d'entraînement: </span>
+
+    <select onchange="location.href='@Url.Action("ChangeDateDeLaPoule", "Poules")?dateDeLaPouleSelected=' + this.value" class="form-control">
+        <option value="">Sélectionnez la date antérieure à aujourd'hui...</option>
+        @foreach (var p in Model.DatesPourToutesLesPoulesList)
+        {
+           <option value="@p.DateDeLaPoule">@p.DateDeLaPoule</option>
+        }
+    </select>
+</div>
+
+<div class="ClassMarginTopAndBottom">
+    <a href="@Url.Action("ResetDates", "Poules")" class="btnAction-custom">Réinitialisez la date et la remettre à la date du jour</a>
+</div>
+
+<div class="ClassMarginTopAndBottom">
+    <a href="@Url.Action("Poules", "Poules")" class="btn-custom">Retourner au menu principal</a>
+</div>

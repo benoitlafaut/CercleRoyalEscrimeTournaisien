@@ -8,7 +8,8 @@
             AddTireurs = 2,
             AfficherLesPoules = 3,
             AjouterScoreAUnePoule = 4,
-            AfficherLesEliminationsDirectes=5
+            AfficherLesEliminationsDirectes=5,
+            AfficherLesDatesPrecedentes=6
         }
     }
 }

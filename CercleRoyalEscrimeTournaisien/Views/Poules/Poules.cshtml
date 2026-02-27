@@ -8,9 +8,12 @@
 <!DOCTYPE html>
 <html>
 <body id="">
-    <div class="ClassTextAlignCenter">
-        <h2>@Model.DateDuJour</h2>
-    </div>
+    @if (Model.ScreenIndex != ClassEnumScreen.EnumScreen.AfficherLesDatesPrecedentes)
+    {
+        <div class="ClassTextAlignCenter">
+            <h2>@Model.DateDuJourWithDayLabel</h2>
+        </div>
+    }
 
     @switch (Model.ScreenIndex)
     {
@@ -31,275 +34,26 @@
             <div class="ClassMarginTopAndBottom">
                 <a href="@Url.Action("AfficherLesEliminationsDirectes", "Poules")" class="btn-custom">Afficher les éliminations directes</a>
             </div>
+            <div class="ClassMarginTopAndBottom">
+                <a href="@Url.Action("AfficherLesDatesPrecedentes", "Poules")" class="btn-custom">Afficher les résultats des jours antérieurs</a>
+            </div>
 
             break;
         case ClassEnumScreen.EnumScreen.AddTireurs:
-            <label style="display: inline-flex;" class="ClassFontSizeTitre ClassDecorationUnderline ClassMarginTopAndBottom">Ajouter un ou plusieurs tireurs à une poule.</label>
-
-            <div class="form-group">
-                <select onchange="location.href='@Url.Action("ChangePoule", "Poules")?pouleSelected=' + this.value" id="ddlPoules" class="form-control">
-                    <option value="">Sélectionnez la poule...</option>
-                    @foreach (var p in Model.PoulesList)
-                    {
-                        if (p.Poule == Model.PouleSelected)
-                        {
-                            <option selected value="@p.Poule"> @p.Poule (@p.DescriptionDeLaPoule) </option>
-                        }
-                        else
-                        {
-                            <option value="@p.Poule"> @p.Poule (@p.DescriptionDeLaPoule) </option>
-                        }
-                    }
-                </select>
-            </div>
-
-
-            <label style="display: block;" class="ClassMarginTop">Liste des tireurs habituels...</label>
-            <table class="table">
-                <tbody>
-                    @foreach (var t in Model.TireursPourLaPouleSelectionneeList)
-                    {
-                        <tr>
-                            <td>
-                                <input type="checkbox" class="chk-tireur" data-id="@t.Tireur" @(t.IsSelected ? "checked" : "") />
-                            </td>
-                            <td>@t.Tireur</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-
-            <hr />
-
-            <label style="display: block;" class="ClassMarginTop">Liste des tireurs qui ne sont pas dans la première liste...</label>
-            <table class="table">
-                <tbody>
-                    @foreach (var t in Model.OthersTireursPourLaPouleSelectionneeList)
-                    {
-                        <tr>
-                            <td>
-                                <input type="checkbox" class="chk-tireur" data-id="@t.Tireur" @(t.IsSelected ? "checked" : "") />
-                            </td>
-                            <td>@t.Tireur</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-
-            <div class="ClassMarginTopAndBottom">
-                <a href="#" onclick="AddTireursSelectedToPoule(); " class="btnAction-custom">Ajouter les tireurs sélectionnés dans la poule sélectionnée</a>
-            </div>
-
-            <div class="ClassMarginTopAndBottom">
-                <a href="@Url.Action("Poules", "Poules")" class="btn-custom">Retourner au menu principal</a>
+            <div class="infos1 clearfix">
+                @Html.Partial(PartialViewNames.AddTireurs, Model)
             </div>
 
             break;
         case ClassEnumScreen.EnumScreen.AfficherLesPoules:
-
-
-            foreach (var poule in Model.PoulesDuJourList.GroupBy(x => x.Poule))
-            {
-                var tireurs = poule.ToList();
-                int n = tireurs.Count;
-                int NombreDeMatchsEffectuesAuTotal = 0;
-                int NombreDeMatchsCalculés = (n * (n - 1));
-                List<string> listDesMatchs = Model.GetListeDesMatchs(n);
-                string namePoule = "table_" + poule.Key.Replace(" ", "");
-
-                <h3>@poule.Key</h3>
-
-                <table id="@namePoule" class="ClassMarginBottom table table-bordered table-sm text-center align-middle">
-                    <thead>
-                        <tr>
-                            <th class="fixed-FirstCol"></th>
-
-                            @for (int i = 0; i < n; i++)
-                            {
-                                <th class="fixed-IntermediaireCol">@(i + 1)</th>
-                            }
-
-                            <th class="fixed-col">Victoires <br />/<br /> Matchs</th>
-                            <th class="fixed-col">Touches données <br />-<br /> touches reçues</th>
-                            <th class="fixed-col">Touches données</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        @for (int i = 0; i < n; i++)
-                        {
-                            <tr>
-                                <td>@(i + 1). @tireurs[i].Tireur</td>
-                                @{
-                                    int NombreDeVictoires = 0;
-                                    int NombreDeMatchsEffectues = 0;
-                                    int indice = 0;
-                                    int touchesRecues = 0;
-                                    int touchesDonnees = 0;
-                                }
-
-                                @for (int j = 0; j < n; j++)
-                                {
-                                    NombreDeVictoires += Model.GetScoreVictoireOuDéfaite(tireurs[i].TireurGuid, tireurs[j].TireurGuid) == "V" ? 1 : 0;
-
-                                    int touchesDonneesTmp = 0;
-                                    int.TryParse(Model.GetScore(tireurs[i].TireurGuid, tireurs[j].TireurGuid), out touchesDonneesTmp);
-
-                                    int touchesRecuesTmp = 0;
-                                    int.TryParse(Model.GetScore(tireurs[j].TireurGuid, tireurs[i].TireurGuid), out touchesRecuesTmp);
-
-                                    touchesDonnees += touchesDonneesTmp;
-                                    touchesRecues += touchesRecuesTmp;
-
-                                    if (Model.GetScoreVictoireOuDéfaite(tireurs[i].TireurGuid, tireurs[j].TireurGuid) == "V"
-                                            || Model.GetScoreVictoireOuDéfaite(tireurs[i].TireurGuid, tireurs[j].TireurGuid) == "D")
-                                    {
-                                        NombreDeMatchsEffectues++;
-                                        NombreDeMatchsEffectuesAuTotal++;
-
-                                        if (i < j)
-                                        {
-                                            listDesMatchs.RemoveAll(x => x == (i + 1) + "-" + (j + 1));
-                                        }
-                                    }
-
-
-                                    if (i == j)
-                                    {
-                                        <td class="ClassCelluleBackgroundColor table-secondary">X</td>
-
-                                    }
-                                    else
-                                    {
-                                        <td>
-                                            <span>@Model.GetScoreVictoireOuDéfaite(tireurs[i].TireurGuid, tireurs[j].TireurGuid)</span>
-                                            <span style="font-size:11px;">@Model.GetScore(tireurs[i].TireurGuid, tireurs[j].TireurGuid)</span>
-                                        </td>
-                                    }
-                                }
-
-                                @{
-                                    decimal victoireTotale = ((decimal)NombreDeVictoires / (n - 1));
-                                    bool isNecessaryToShowThreeColumns = (n - 1) - NombreDeMatchsEffectues == 0;
-                                    indice = touchesDonnees - touchesRecues;
-                                }
-
-                                @{
-                                    if (isNecessaryToShowThreeColumns)
-                                    {
-                                        <td class="ClassTextAlignCenter">@victoireTotale.ToString("0.00")</td>
-                                        <td class="ClassTextAlignCenter">@indice</td>
-                                        <td class="ClassTextAlignCenter">@touchesDonnees</td>
-                                    }
-                                    else
-                                    {
-                                        <td class=""></td>
-                                        <td class=""></td>
-                                        <td class=""></td>
-                                    }
-                                }
-
-
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-
-                if (listDesMatchs.Count != 0)
-                {
-                    <span>Liste des matchs:</span>
-                    <ul id="math-list" class="pretty-list">
-                        @foreach (string match in listDesMatchs)
-                        {
-                            <li><span class="index">@match</span></li>
-                        }
-                    </ul>
-                }
-
-
-                if (NombreDeMatchsEffectuesAuTotal == NombreDeMatchsCalculés)
-                {
-                    if (!Model.ExistEliminationsDirectes(Model.DateDuJourWithoutDay, poule.Key))
-                    {
-                        <div class="ClassMarginTopAndBottom">
-                            <a href="#" onclick="CalculEliminatoires('@namePoule', '@poule.Key'); " class="btnAction-custom">La poule est finie. Cliquez ici pour afficher les éliminations directes.</a>
-                        </div>
-                    }
-                }
-            }
-
-
-
-            <div class="ClassMarginTopAndBottom">
-                <a href="@Url.Action("Poules", "Poules")" class="btn-custom">Retourner au menu principal</a>
+            <div class="infos1 clearfix">
+                @Html.Partial(PartialViewNames.AfficherLesPoules, Model)
             </div>
 
             break;
         case ClassEnumScreen.EnumScreen.AjouterScoreAUnePoule:
-            <label style="display: inline-flex;" class="ClassMarginBottom ClassFontSizeTitre ClassDecorationUnderline">Ajouter un score à une poule</label>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th colspan="2" class="tableScoreAlign">
-                            <select onchange="location.href='@Url.Action("ChangePoulePourAjouterScore", "Poules")?pouleSelected=' + this.value" id="ddlPoulesScores" class="form-control">
-                                <option value="">Sélectionnez la poule...</option>
-                                @foreach (var p in Model.PoulesList)
-                                {
-                                    if (p.Poule == Model.PouleSelected)
-                                    {
-                                        <option selected value="@p.Poule"> @p.Poule (@p.DescriptionDeLaPoule) </option>
-                                    }
-                                    else
-                                    {
-                                        <option value="@p.Poule"> @p.Poule (@p.DescriptionDeLaPoule) </option>
-                                    }
-                                }
-                            </select>
-                        </th>
-
-
-                    </tr>
-                    <tr>
-                        <th class="tableScoreAlign">Tireur 1</th>
-                        <th class="tableScoreAlign">Tireur 2</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    <tr>
-                        <td class="tableScoreAlign">
-                            @Html.DropDownListFor(model => model.Tireur1Selected, new SelectList(Model.ListTireursToAddScore, "Key", "Value", Model.Tireur1Selected), new { @class = "form-control" })
-                        </td>
-                        <td class="tableScoreAlign">
-                            @Html.DropDownListFor(model => model.Tireur2Selected, new SelectList(Model.ListTireursToAddScore, "Key", "Value", Model.Tireur2Selected), new { @class = "form-control" })
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="tableScoreAlign">
-                            <input type="radio" name="choixVictoire" value="1">Victoire du tireur 1
-                        </td>
-                        <td class="tableScoreAlign">
-                            <input type="radio" name="choixVictoire" value="2">Victoire du tireur 2
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="tableScoreAlign">
-                            Score :  @Html.TextBoxFor(x => x.ScoreTireur1, new { @class = "form-control" })
-                        </td>
-                        <td class="tableScoreAlign">
-                            Score : @Html.TextBoxFor(x => x.ScoreTireur2, new { @class = "form-control" })
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="ClassMarginTopAndBottom">
-                <a href="#" onclick="AddScoreToTireursSelected(); " class="btnAction-custom">Ajouter les scores aux tireurs sélectionnés dans la poule sélectionnée</a>
-            </div>
-
-            <div class="ClassMarginTopAndBottom">
-                <a href="@Url.Action("Poules", "Poules")" class="btn-custom">Retourner au menu principal</a>
+            <div class="infos1 clearfix">
+                @Html.Partial(PartialViewNames.AjouterScoreAUnePoule, Model)
             </div>
 
             break;
@@ -308,8 +62,10 @@
                 @Html.Partial(PartialViewNames.PoulesEliminationsDirectes, Model)
             </div>
 
-            <div class="ClassMarginTopAndBottom">
-                <a href="@Url.Action("Poules", "Poules")" class="btn-custom">Retourner au menu principal</a>
+            break;
+        case ClassEnumScreen.EnumScreen.AfficherLesDatesPrecedentes:
+            <div class="infos1 clearfix">
+                @Html.Partial(PartialViewNames.AfficherLesDatesPrecedentes, Model)
             </div>
 
             break;

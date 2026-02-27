@@ -102,16 +102,17 @@
 .pretty-list {
     padding: 0;
     margin: 0;
-    width: 65px;
+    width: 300px;
 }
 
     .pretty-list li {
         padding: 5px 14px;
         margin-bottom: 10px;
-        border-radius: 10px;        
+        border-radius: 10px;
         color: #e2e8f0;
         border: 1px solid rgba(148, 163, 184, 0.3);
         box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        height: 29px;
     }
 
         .pretty-list li .index {
@@ -124,6 +125,8 @@
             justify-content: center;
             color: white;
             font-weight: 600;
+            float: left;
+            margin-right: 15px;
         }
 
 

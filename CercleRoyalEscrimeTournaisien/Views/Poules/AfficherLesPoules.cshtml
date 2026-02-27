@@ -1,0 +1,144 @@
+﻿@model CercleRoyalEscrimeTournaisien.Models.PoulesViewModel
+
+@foreach (var poule in Model.PoulesDuJourList.GroupBy(x => x.Poule))
+{
+    var tireurs = poule.ToList();
+    int n = tireurs.Count;
+
+    if (n > 1)
+    {
+        int NombreDeMatchsEffectuesAuTotal = 0;
+        int NombreDeMatchsCalculés = (n * (n - 1));
+        List<string> listDesMatchs = Model.GetListeDesMatchs(n);
+        string namePoule = "table_" + poule.Key.Replace(" ", "");
+
+        <h3>@poule.Key</h3>
+
+        <table id="@namePoule" class="ClassMarginBottom table table-bordered table-sm text-center align-middle">
+            <thead>
+                <tr>
+                    <th class="fixed-FirstCol"></th>
+
+                    @for (int i = 0; i < n; i++)
+                    {
+                        <th class="fixed-IntermediaireCol">@(i + 1)</th>
+                    }
+
+                    <th class="fixed-col">Victoires <br />/<br /> Matchs</th>
+                    <th class="fixed-col">Touches données <br />-<br /> touches reçues</th>
+                    <th class="fixed-col">Touches données</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for (int i = 0; i < n; i++)
+                {
+                    <tr>
+                        <td>@(i + 1). @tireurs[i].Tireur</td>
+                        @{
+                            int NombreDeVictoires = 0;
+                            int NombreDeMatchsEffectues = 0;
+                            int indice = 0;
+                            int touchesRecues = 0;
+                            int touchesDonnees = 0;
+                        }
+
+                        @for (int j = 0; j < n; j++)
+                        {
+                            NombreDeVictoires += Model.GetScoreVictoireOuDéfaite(tireurs[i].TireurGuid, tireurs[j].TireurGuid) == "V" ? 1 : 0;
+
+                            int touchesDonneesTmp = 0;
+                            int.TryParse(Model.GetScore(tireurs[i].TireurGuid, tireurs[j].TireurGuid), out touchesDonneesTmp);
+
+                            int touchesRecuesTmp = 0;
+                            int.TryParse(Model.GetScore(tireurs[j].TireurGuid, tireurs[i].TireurGuid), out touchesRecuesTmp);
+
+                            touchesDonnees += touchesDonneesTmp;
+                            touchesRecues += touchesRecuesTmp;
+
+                            if (Model.GetScoreVictoireOuDéfaite(tireurs[i].TireurGuid, tireurs[j].TireurGuid) == "V"
+                                    || Model.GetScoreVictoireOuDéfaite(tireurs[i].TireurGuid, tireurs[j].TireurGuid) == "D")
+                            {
+                                NombreDeMatchsEffectues++;
+                                NombreDeMatchsEffectuesAuTotal++;
+
+                                if (i < j)
+                                {
+                                    listDesMatchs.RemoveAll(x => x == (i + 1) + "-" + (j + 1));
+                                }
+                            }
+
+
+                            if (i == j)
+                            {
+                                <td class="ClassCelluleBackgroundColor table-secondary">X</td>
+
+                            }
+                            else
+                            {
+                                <td>
+                                    <span>@Model.GetScoreVictoireOuDéfaite(tireurs[i].TireurGuid, tireurs[j].TireurGuid)</span>
+                                    <span style="font-size:11px;">@Model.GetScore(tireurs[i].TireurGuid, tireurs[j].TireurGuid)</span>
+                                </td>
+                            }
+                        }
+
+                        @{
+                            decimal victoireTotale = ((decimal)NombreDeVictoires / (n - 1));
+                            bool isNecessaryToShowThreeColumns = (n - 1) - NombreDeMatchsEffectues == 0;
+                            indice = touchesDonnees - touchesRecues;
+                        }
+
+                        @{
+                            if (isNecessaryToShowThreeColumns)
+                            {
+                                <td class="ClassTextAlignCenter">@victoireTotale.ToString("0.00")</td>
+                                <td class="ClassTextAlignCenter">@indice</td>
+                                <td class="ClassTextAlignCenter">@touchesDonnees</td>
+                            }
+                            else
+                            {
+                                <td class=""></td>
+                                <td class=""></td>
+                                <td class=""></td>
+                            }
+                        }
+
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        if (listDesMatchs.Count != 0)
+        {
+            <span>Liste des matchs:</span>
+            <ul id="math-list" class="pretty-list">
+                @foreach (string match in listDesMatchs)
+                {
+                    string[] indexsList = match.Split('-');
+                    int indexTireur1 = Convert.ToInt16(indexsList[0]) - 1;
+                    int indexTireur2 = Convert.ToInt16(indexsList[1]) - 1;
+
+                    <li><span class="index">@match</span><span style=" color: dodgerblue; top: 5px; position: relative; ">@tireurs[indexTireur1].Tireur-@tireurs[indexTireur2].Tireur</span></li>
+                }
+            </ul>
+        }
+
+
+        if (NombreDeMatchsEffectuesAuTotal == NombreDeMatchsCalculés)
+        {
+            if (!Model.ExistEliminationsDirectes(Model.DateDuJourWithoutDayLabel, poule.Key))
+            {
+                <div class="ClassMarginTopAndBottom">
+                    <a href="#" onclick="CalculEliminatoires('@namePoule', '@poule.Key'); " class="btnAction-custom">La poule est finie. Cliquez ici pour afficher les éliminations directes.</a>
+                </div>
+            }
+        }
+    }
+
+}
+
+<div class="ClassMarginTopAndBottom">
+    <a href="@Url.Action("Poules", "Poules")" class="btn-custom">Retourner au menu principal</a>
+</div>

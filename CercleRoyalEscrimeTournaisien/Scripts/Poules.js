@@ -68,6 +68,25 @@ function AddScoreToTireursSelected() {
         return;
     }
 
+    if ($("#ScoreTireur1").val() > 5 || $("#ScoreTireur2").val() > 5) {
+        alert("L'un des deux scores est supérieur à 5 alors qu'il doit être entre 0 et 5.");
+        return;
+    }
+
+    if ($("input[name='choixVictoire']:checked").val() == "1") {
+        if ($("#ScoreTireur2").val() > $("#ScoreTireur1").val()) {
+            alert("La victoire est pour le premier tireur mais le score n'est pas cohérent.");
+            return;
+        }
+    }
+
+    if ($("input[name='choixVictoire']:checked").val() == "2") {
+        if ($("#ScoreTireur1").val() > $("#ScoreTireur2").val()) {
+            alert("La victoire est pour le deuxième tireur mais le score n'est pas cohérent.");
+            return;
+        }
+    }
+
     var pouleSelected = $("#ddlPoulesScores option:selected").val();
     var tireur1Guid = $("#Tireur1Selected").val();
     var tireur2Guid = $("#Tireur2Selected").val();

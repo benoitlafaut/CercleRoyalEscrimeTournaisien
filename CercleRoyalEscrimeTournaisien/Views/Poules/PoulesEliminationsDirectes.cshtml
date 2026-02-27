@@ -34,7 +34,7 @@
     <div class="ClassMarginBottom" style="@displayRoundVisible">
         <span>Liste des rounds: </span>
 
-        <select onchange="location.href='@Url.Action("ChangeRoundPourShowEliminationsDirectes", "Poules")?roundSelected=' + this.value + '&pouleSelected=' + $('#ddlPoulesEliminationsDirectes option:selected').val()" id="ddlRoundsEliminationsDirectes"  class="form-control">
+        <select onchange="location.href='@Url.Action("ChangeRoundPourShowEliminationsDirectes", "Poules")?roundSelected=' + this.value + '&pouleSelected=' + $('#ddlPoulesEliminationsDirectes option:selected').val()" id="ddlRoundsEliminationsDirectes" class="form-control">
             <option value="">Sélectionnez le round...</option>
             @foreach (var p in Model.RoundsList)
             {
@@ -71,7 +71,7 @@
             @if (!rencontre.ScoreDejaIntroduit)
             {
                 <div class="">
-                    <a style="margin-left:150px;" href="#" onclick="AddScoreEliminationDirecte('@Model.DateDuJourWithoutDay','@Model.PouleSelected','@rencontre.Round','@rencontre.Tireur1Guid','@rencontre.Tireur2Guid','inputScore_' + '@rencontre.Tireur1Guid','inputScore_' + '@rencontre.Tireur2Guid'); ">Sauver score</a>
+                    <a style="margin-left:150px;" href="#" onclick="AddScoreEliminationDirecte('@Model.DateDuJourWithoutDayLabel','@Model.PouleSelected','@rencontre.Round','@rencontre.Tireur1Guid','@rencontre.Tireur2Guid','inputScore_' + '@rencontre.Tireur1Guid','inputScore_' + '@rencontre.Tireur2Guid'); ">Sauver score</a>
                 </div>
             }
 
@@ -93,20 +93,24 @@
 
     @if (isAllIntroduit && Model.RoundSelected != "Finale")
     {
-       <div class="ClassMarginTopAndBottom">
-           <a id="btnCalculerLeRoundSuivant" href="#" class="btnAction-custom">Calculer le round suivant</a>
-       </div>
+        <div class="ClassMarginTopAndBottom">
+            <a id="btnCalculerLeRoundSuivant" href="#" class="btnAction-custom">Calculer le round suivant</a>
+        </div>
     }
 
 </body>
 </html>
+
+<div class="ClassMarginTopAndBottom">
+    <a href="@Url.Action("Poules", "Poules")" class="btn-custom">Retourner au menu principal</a>
+</div>
 
 <script>
     $("#btnCalculerLeRoundSuivant").on("click", function (e) {
         e.preventDefault();
         var pouleSelected = $("#ddlPoulesEliminationsDirectes option:selected").val();
         var roundSelected = $("#ddlRoundsEliminationsDirectes option:selected").val();
-        var dateDuJourWithoutDay = '@Model.DateDuJourWithoutDay';
+        var dateDuJourWithoutDay = '@Model.DateDuJourWithoutDayLabel';
 
         $.ajax({
             url: "/Poules/CalculerLeRoundSuivant",
@@ -121,9 +125,5 @@
                 alert("Error. " + response.responseText);  //
             }
         });
-
-        @*var url = '@Url.Action("CalculerLeRoundSuivant", "Poules")' + '?pouleSelected=' + pouleSelected + "&roundSelected=" + roundSelected + "&dateDuJourWithoutDay=" + dateDuJourWithoutDay;
-        window.location.href = url;*@
-    }); 
-
- </script>
+    });
+</script>

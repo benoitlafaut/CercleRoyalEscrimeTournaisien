@@ -1,0 +1,61 @@
+﻿@model CercleRoyalEscrimeTournaisien.Models.PoulesViewModel
+
+<label style="display: inline-flex;" class="ClassFontSizeTitre ClassDecorationUnderline ClassMarginTopAndBottom">Ajouter un ou plusieurs tireurs à une poule.</label>
+
+<div class="form-group">
+    <select onchange="location.href='@Url.Action("ChangePoule", "Poules")?pouleSelected=' + this.value" id="ddlPoules" class="form-control">
+        <option value="">Sélectionnez la poule...</option>
+        @foreach (var p in Model.PoulesList)
+        {
+            if (p.Poule == Model.PouleSelected)
+            {
+                <option selected value="@p.Poule"> @p.Poule (@p.DescriptionDeLaPoule) </option>
+            }
+            else
+            {
+                <option value="@p.Poule"> @p.Poule (@p.DescriptionDeLaPoule) </option>
+            }
+        }
+    </select>
+</div>
+
+
+<label style="display: block;" class="ClassMarginTop">Liste des tireurs habituels...</label>
+<table class="table">
+    <tbody>
+        @foreach (var t in Model.TireursPourLaPouleSelectionneeList)
+        {
+            <tr>
+                <td>
+                    <input type="checkbox" class="chk-tireur" data-id="@t.Tireur" @(t.IsSelected ? "checked" : "") />
+                </td>
+                <td>@t.Tireur</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<hr />
+
+<label style="display: block;" class="ClassMarginTop">Liste des tireurs qui ne sont pas dans la première liste...</label>
+<table class="table">
+    <tbody>
+        @foreach (var t in Model.OthersTireursPourLaPouleSelectionneeList)
+        {
+            <tr>
+                <td>
+                    <input type="checkbox" class="chk-tireur" data-id="@t.Tireur" @(t.IsSelected ? "checked" : "") />
+                </td>
+                <td>@t.Tireur</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="ClassMarginTopAndBottom">
+    <a href="#" onclick="AddTireursSelectedToPoule(); " class="btnAction-custom">Ajouter les tireurs sélectionnés dans la poule sélectionnée</a>
+</div>
+
+<div class="ClassMarginTopAndBottom">
+    <a href="@Url.Action("Poules", "Poules")" class="btn-custom">Retourner au menu principal</a>
+</div>

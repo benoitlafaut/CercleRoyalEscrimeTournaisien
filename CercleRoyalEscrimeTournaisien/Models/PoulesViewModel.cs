@@ -1,11 +1,12 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.Globalization;
+using System.IO;
 using System.Linq;
-using System.Net.Http.Headers;
-using System.Text.RegularExpressions;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Web;
 
 namespace CercleRoyalEscrimeTournaisien.Models
@@ -21,6 +22,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
             ChargerPoulesDuJour();
             ChargerRésultatsDesPoulesDuJour();
             ChargerRésultatsDesElimintationsDirectesDuJour();
+            ChargerDatesPourToutesLesPoules();
         }
 
         public HttpServerUtilityBase ServerTmp { get; set; }
@@ -36,8 +38,6 @@ namespace CercleRoyalEscrimeTournaisien.Models
             List<int> ordreDesMatchsList = GenerateFirstRound(scores.Count * 2);
 
             for (int i = 0; i < ordreDesMatchsList.Count; i += 2)
-
-              //  foreach (int ordre in ordreDesMatchsList step 2)
             {
                 ClassScoreEliminationsDirectes score = scores.Where(x => x.IndexTireur1 == ordreDesMatchsList[i].ToString() || x.IndexTireur2 == ordreDesMatchsList[i].ToString()).First();
                 scoresResult.Add(score);
@@ -59,12 +59,11 @@ namespace CercleRoyalEscrimeTournaisien.Models
                     return new List<int> { 1, 16, 9, 8, 5, 12, 13, 4, 3, 14, 11, 6, 7, 10, 15, 2 };
                 default:
                     return new List<int> { 1 };
-
             }
         }
 
-
         public List<ClassPoulesDuJour> PoulesDuJourList { get; set; }
+        public List<ClassDatesPourToutesLesPoules> DatesPourToutesLesPoulesList { get; set; }
         public List<ClassTireur> TireursList { get; set; }
         public List<ClassTireur> TireursPourLaPouleSelectionneeList
         {
@@ -179,7 +178,18 @@ namespace CercleRoyalEscrimeTournaisien.Models
         { 
             get
             {
-                return DateTime.Now.AddDays(-1);
+                string isOtherDateThanDateDuJour = this.GetValueStartsWith<string>("IsOtherDateThanDateDuJour");
+                string otherDate = this.GetValueStartsWith<string>("OtherDate");
+
+                if (isOtherDateThanDateDuJour == "true" && !string.IsNullOrEmpty(otherDate))
+                {
+                    if (DateTime.TryParseExact(otherDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
+                    {
+                        return parsedDate;
+                    }
+                }
+
+                return DateTime.Now.AddDays(0);
             }
         }
         public string RoundSelected { get; set; }
@@ -203,11 +213,17 @@ namespace CercleRoyalEscrimeTournaisien.Models
                     return new List<string>() { "1-5","2-4","3-5","1-4","2-3","4-5","1-3", "2-5", "3-4", "1-2" };
                 case 6:
                     return new List<string>() { "1-6", "2-5", "3-4", "4-6", "3-5", "1-2", "2-4", "1-3", "5-6", "2-3", "1-4", "3-6", "1-5", "2-6", "4-5" };
+                case 7:
+                    return new List<string>() { "1-7","2-6",    "3-5",    "4-7",    "5-6",    "1-3",    "2-4",    "6-7",    "3-4",    "1-5",    "2-7",    "4-5",    "1-2",    "3-7",    "5-7",    "1-4",    "2-3",    "6-3",    "1-6",    "4-6",    "2-5" };
+                case 8:
+                    return new List<string>() { "1-8", "2-7", "3-6", "4-5",    "1-7", "2-6", "3-5", "4-8",    "1-6", "2-5", "3-4", "7-8",    "1-5", "2-4", "6-8", "3-7",   "1-4", "5-8", "2-3", "6-7",    "1-3", "4-6", "5-7", "2-8",    "1-2", "3-8", "4-7", "5-6" };
+                case 9:
+                    return new List<string>() { "2-9", "3-8", "4-7", "5-6",    "1-9", "2-7", "3-6", "4-5",    "1-8", "9-7", "2-5", "3-4",    "1-7", "8-6", "9-5", "2-3",    "1-6", "7-5", "8-4", "9-3",    "1-5", "6-4", "7-3", "8-2",    "1-4", "5-3", "6-2", "8-9",    "1-3", "4-2", "6-9", "7-8",    "1-2", "4-9", "5-8", "6-7"};
                 default:
                     return new List<string>() { };
             }
         }
-        public string DateDuJour
+        public string DateDuJourWithDayLabel
         {
             get
             {
@@ -217,7 +233,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
                 return dateFormatee;
             }
         }
-        public string DateDuJourWithoutDay
+        public string DateDuJourWithoutDayLabel
         {
             get
             {
@@ -269,7 +285,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
 
             var path = ServerTmp.MapPath("/App_Data/Poules.accdb");
             string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
-            string mySelectQuery = " SELECT * FROM TableRésultatsDesPoules where DateDeLaPoule = '" + DateDuJourWithoutDay + "'";
+            string mySelectQuery = " SELECT * FROM TableRésultatsDesPoules where DateDeLaPoule = '" + DateDuJourWithoutDayLabel + "'";
             OleDbConnection myConnection = new OleDbConnection(ConnectionString);
             OleDbCommand myCommand = new OleDbCommand(mySelectQuery, myConnection);
             myCommand.Connection.Open();
@@ -309,7 +325,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
 
             var path = ServerTmp.MapPath("/App_Data/Poules.accdb");
             string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
-            string mySelectQuery = " SELECT * FROM TableRésultatsDesEliminationsDirectes where DateDeLaPoule = '" + DateDuJourWithoutDay + "'";
+            string mySelectQuery = " SELECT * FROM TableRésultatsDesEliminationsDirectes where DateDeLaPoule = '" + DateDuJourWithoutDayLabel + "'";
             OleDbConnection myConnection = new OleDbConnection(ConnectionString);
             OleDbCommand myCommand = new OleDbCommand(mySelectQuery, myConnection);
             myCommand.Connection.Open();
@@ -366,7 +382,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
 
             var path = ServerTmp.MapPath("/App_Data/Poules.accdb");
             string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
-            string mySelectQuery = " SELECT * FROM TableDesTireursPourUnePouleDuJour where DateDeLaPoule = '" + DateDuJourWithoutDay + "'";
+            string mySelectQuery = " SELECT * FROM TableDesTireursPourUnePouleDuJour where DateDeLaPoule = '" + DateDuJourWithoutDayLabel + "'";
             OleDbConnection myConnection = new OleDbConnection(ConnectionString);
             OleDbCommand myCommand = new OleDbCommand(mySelectQuery, myConnection);
             myCommand.Connection.Open();
@@ -388,6 +404,51 @@ namespace CercleRoyalEscrimeTournaisien.Models
             myCommand.Connection.Close();
         }
 
+        private void ChargerDatesPourToutesLesPoules()
+        {
+            DatesPourToutesLesPoulesList = new List<ClassDatesPourToutesLesPoules>() { };
+
+            var path = ServerTmp.MapPath("/App_Data/Poules.accdb");
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
+            string mySelectQuery = " SELECT DateDeLaPoule FROM TableDesTireursPourUnePouleDuJour GROUP BY DateDeLaPoule";
+            OleDbConnection myConnection = new OleDbConnection(ConnectionString);
+            OleDbCommand myCommand = new OleDbCommand(mySelectQuery, myConnection);
+            myCommand.Connection.Open();
+            OleDbDataReader myReader = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+            while (myReader.Read())
+            {
+                string dateDeLaPoule = (string)myReader["DateDeLaPoule"];
+
+                DatesPourToutesLesPoulesList.Add(new ClassDatesPourToutesLesPoules()
+                {
+                    DateDeLaPoule = dateDeLaPoule,
+                });
+            }
+
+            myCommand.Connection.Close();
+        }
+        private T GetValueStartsWith<T>(string key)
+        {
+            var lastSessionKey = System.Web.HttpContext.Current.Session.Keys.Cast<string>()
+                .LastOrDefault(x => x.StartsWith(key));
+
+            if (string.IsNullOrEmpty(lastSessionKey))
+                return default(T);
+
+            return (T)Convert.ChangeType(HttpContext.Current.Session[lastSessionKey], typeof(T));
+
+            //return (T)Deserialize((string)System.Web.HttpContext.Current.Session[lastSessionKey]);
+        }
+        private static object Deserialize(string str)
+        {
+            byte[] bytes = Convert.FromBase64String(str);
+
+            using (MemoryStream stream = new MemoryStream(bytes))
+            {
+                return new BinaryFormatter().Deserialize(stream);
+            }
+        }
 
         private void ChargerListeDesTireurs()
         {
@@ -418,6 +479,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
         }
     }
 
+    #region All Class public
     public class ClassPoule
     {
         public string Poule { get; set; }
@@ -429,6 +491,10 @@ namespace CercleRoyalEscrimeTournaisien.Models
         public string JourDeLaPoule { get; set; }
         public string PouleAttribuee { get; set; }
         public bool IsSelected { get; set; }
+    }
+    public class ClassDatesPourToutesLesPoules
+    {
+        public string DateDeLaPoule { get; set; }
     }
     public class ClassPoulesDuJour
     {
@@ -485,4 +551,6 @@ namespace CercleRoyalEscrimeTournaisien.Models
         public int Seed1 { get; set; } 
         public int Seed2 { get; set; }
     }
+
+    #endregion
 }

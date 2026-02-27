@@ -187,6 +187,40 @@ namespace CercleRoyalEscrimeTournaisien
             return View(Constantes.Poules, poulesViewModel);
         }
 
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+        public ActionResult AfficherLesDatesPrecedentes()
+        {
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+            poulesViewModel.ScreenIndex = ClassEnumScreen.EnumScreen.AfficherLesDatesPrecedentes;
+
+            return View(Constantes.Poules, poulesViewModel);
+        }
+
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+        public ActionResult ResetDates()
+        {
+            System.Web.HttpContext.Current.Session.Remove("IsOtherDateThanDateDuJour");
+            System.Web.HttpContext.Current.Session.Remove("OtherDate");
+
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+            poulesViewModel.ScreenIndex = ClassEnumScreen.EnumScreen.MenuPrincipal;
+
+            return View(Constantes.Poules, poulesViewModel);
+        }
+
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+        public ActionResult ChangeDateDeLaPoule(string dateDeLaPouleSelected)
+        {
+            System.Web.HttpContext.Current.Session.Add("IsOtherDateThanDateDuJour", "true");
+            System.Web.HttpContext.Current.Session.Add("OtherDate", dateDeLaPouleSelected);
+
+            return RedirectToAction("Poules", "poules");
+
+            //PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+            //poulesViewModel.ScreenIndex = ClassEnumScreen.EnumScreen.MenuPrincipal;
+
+            //return View(Constantes.Poules, poulesViewModel);
+        }
 
         [HttpPost]
         public ActionResult AddTireursSelectedToPoule(MyRequestToSaveInPoule myRequestToSaveInPoule)
@@ -201,9 +235,9 @@ namespace CercleRoyalEscrimeTournaisien
 
             foreach(string tireur in tireursSelected)
             {
-                if (!ExistsRecord(poulesViewModel.DateDuJourWithoutDay, pouleSelected, tireur))
+                if (!ExistsRecord(poulesViewModel.DateDuJourWithoutDayLabel, pouleSelected, tireur))
                 {
-                    string mySelectQuery = "INSERT INTO TableDesTireursPourUnePouleDuJour (DateDeLaPoule, Poule, Tireur) Values ('" + poulesViewModel.DateDuJourWithoutDay + "','" + pouleSelected + "','" + tireur + "')";
+                    string mySelectQuery = "INSERT INTO TableDesTireursPourUnePouleDuJour (DateDeLaPoule, Poule, Tireur) Values ('" + poulesViewModel.DateDuJourWithoutDayLabel + "','" + pouleSelected + "','" + tireur + "')";
 
                     OleDbConnection myConnection = new OleDbConnection(ConnectionString);
                     OleDbCommand myCommand = new OleDbCommand(mySelectQuery, myConnection);
@@ -293,7 +327,7 @@ namespace CercleRoyalEscrimeTournaisien
                 "Values ('" + myRequestScoreToSaveInPoule.PouleSelected + "','"
                 + myRequestScoreToSaveInPoule.Tireur1Guid.ToString().TrimEnd() + "','" 
                 + myRequestScoreToSaveInPoule.Tireur2Guid.ToString().TrimEnd() + "','" 
-                + poulesViewModel.DateDuJourWithoutDay + "','"
+                + poulesViewModel.DateDuJourWithoutDayLabel + "','"
                 + (myRequestScoreToSaveInPoule.Vainqueur == 1  ? "1" : "0") + "','" 
                 + (myRequestScoreToSaveInPoule.Vainqueur == 2  ? "1" : "0") + "','"
                 + myRequestScoreToSaveInPoule.ScoreTireur1 + "','"
@@ -344,7 +378,7 @@ namespace CercleRoyalEscrimeTournaisien
                     Tireur1Name = classResultatsList[loop - 1].Tireur,
                     Tireur2Guid = indexAdversaire <= classResultatsList.Count ? classResultatsList[indexAdversaire - 1].TireurGuid : new Guid(),
                     Tireur2Name = indexAdversaire <= classResultatsList.Count ? classResultatsList[indexAdversaire - 1].Tireur : "",
-                    DateDuJourWithoutDay = poulesViewModel.DateDuJourWithoutDay,
+                    DateDuJourWithoutDay = poulesViewModel.DateDuJourWithoutDayLabel,
                     PouleSelected = pouleSelected,
                     Round = "1/" + (nombreRoundMax / 2).ToString(),
                     IndexTireur1 = loop,
