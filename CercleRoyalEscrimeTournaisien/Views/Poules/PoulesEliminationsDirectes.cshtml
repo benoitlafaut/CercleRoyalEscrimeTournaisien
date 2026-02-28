@@ -25,11 +25,11 @@
                 {
                     if (p.Poule == Model.PouleSelected)
                     {
-                    <option selected value="@p.Poule"> @p.Poule (@p.DescriptionDeLaPoule) </option>
+                        <option selected value="@p.Poule"> @p.Poule (@p.DescriptionDeLaPoule) </option>
                     }
                     else
                     {
-                    <option value="@p.Poule"> @p.Poule (@p.DescriptionDeLaPoule) </option>
+                        <option value="@p.Poule"> @p.Poule (@p.DescriptionDeLaPoule) </option>
                     }
                 }
             }
@@ -105,9 +105,15 @@
 
     @if (isAllIntroduit && Model.RoundSelected != "Finale" && Model.IsDateDAujourdhuiEqualsDateNow)
     {
-        <div class="ClassMarginTopAndBottom">
-            <a id="btnCalculerLeRoundSuivant" href="#" class="btnAction-custom">Calculer le round suivant</a>
-        </div>
+        string roundSuivant = Model.GetRoundSuivant(Model.RoundSelected);
+        bool isPresenceNextRound = Model.RoundsList.Any(x => x.Key == roundSuivant);
+
+        if (!isPresenceNextRound)
+        {
+            <div class="ClassMarginTopAndBottom">
+                <a id="btnCalculerLeRoundSuivant" href="#" class="btnAction-custom">Calculer le round suivant</a>
+            </div>
+        }
     }
 
 </body>

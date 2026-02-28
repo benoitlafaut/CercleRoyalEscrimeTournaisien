@@ -261,6 +261,22 @@ namespace CercleRoyalEscrimeTournaisien.Models
                 return char.ToUpper(dateFormatee[0]) + dateFormatee.Substring(1);
             }
         }
+        public  string GetRoundSuivant(string roundSelected)
+        {
+            switch (roundSelected)
+            {
+                case "1/16":
+                    return "1/8";
+                case "1/8":
+                    return "1/4";
+                case "1/4":
+                    return "1/2";
+                case "1/2":
+                    return "Finale";
+                default:
+                    return "";
+            }
+        }
 
         private void ChargerListeDesPoulesPotentielles()
         {

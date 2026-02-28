@@ -14,7 +14,7 @@
 
         <h3>@poule.Key</h3>
 
-        <table id="@namePoule" class="ClassMarginBottom table table-bordered table-sm text-center align-middle">
+        <table id="@namePoule" class="ClassTablePoules ClassMarginBottom table table-bordered table-sm text-center align-middle">
             <thead>
                 <tr>
                     <th class="fixed-FirstCol"></th>
@@ -110,7 +110,7 @@
             </tbody>
         </table>
 
-        if (listDesMatchs.Count != 0)
+        if (listDesMatchs.Count != 0 && Model.IsDateDAujourdhuiEqualsDateNow)
         {
             <span>Liste des matchs:</span>
             <ul id="math-list" class="pretty-list">
