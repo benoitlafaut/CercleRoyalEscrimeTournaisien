@@ -76,6 +76,18 @@ namespace CercleRoyalEscrimeTournaisien
         }
 
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+        public ActionResult ShowDirectlyScore(string pouleSelected, string tireur1Guid, string tireur2Guid)
+        {
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+            poulesViewModel.ScreenIndex = ClassEnumScreen.EnumScreen.AjouterScoreAUnePoule;
+            poulesViewModel.PouleSelected = pouleSelected;
+            poulesViewModel.Tireur1Selected = tireur1Guid;
+            poulesViewModel.Tireur2Selected = tireur2Guid;
+
+            return View(Constantes.Poules, poulesViewModel);
+        }
+
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
         public ActionResult ChangePoulePourShowEliminationsDirectes(string pouleSelected)
         {
             PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
@@ -380,7 +392,7 @@ namespace CercleRoyalEscrimeTournaisien
                     Tireur2Name = indexAdversaire <= classResultatsList.Count ? classResultatsList[indexAdversaire - 1].Tireur : "",
                     DateDuJourWithoutDay = poulesViewModel.DateDuJourWithoutDayLabel,
                     PouleSelected = pouleSelected,
-                    Round = "1/" + (nombreRoundMax / 2).ToString(),
+                    Round = nombreRoundMax == 2 ? "Finale" : "1/" + (nombreRoundMax / 2).ToString(),
                     IndexTireur1 = loop,
                     IndexTireur2 = indexAdversaire
                 });

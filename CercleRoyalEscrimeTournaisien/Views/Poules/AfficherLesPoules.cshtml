@@ -120,7 +120,7 @@
                     int indexTireur1 = Convert.ToInt16(indexsList[0]) - 1;
                     int indexTireur2 = Convert.ToInt16(indexsList[1]) - 1;
 
-                    <li><span class="index">@match</span><span style=" color: dodgerblue; top: 5px; position: relative; ">@tireurs[indexTireur1].Tireur-@tireurs[indexTireur2].Tireur</span></li>
+                    <li style="cursor:pointer;" onclick="location.href='@Url.Action("ShowDirectlyScore", "poules", new { pouleSelected = poule.Key, tireur1Guid = tireurs[indexTireur1].TireurGuid, tireur2Guid = tireurs[indexTireur2].TireurGuid })';"><span class="index">@match</span><span style=" color: dodgerblue; top: 5px; position: relative; ">@tireurs[indexTireur1].Tireur-@tireurs[indexTireur2].Tireur</span></li>
                 }
             </ul>
         }

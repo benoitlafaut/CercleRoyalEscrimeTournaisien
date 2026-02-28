@@ -189,13 +189,14 @@ namespace CercleRoyalEscrimeTournaisien.Models
                     }
                 }
 
-                return DateTime.Now.AddDays(0);
+                return DateTime.Now.AddDays(-1);
             }
         }
         public bool IsDateDAujourdhuiEqualsDateNow
         {
             get
             {
+                return true;
                 return DateDAujourdhui.ToString("ddMMyyyy") == DateTime.Now.ToString("ddMMyyyy");
             }
         }
