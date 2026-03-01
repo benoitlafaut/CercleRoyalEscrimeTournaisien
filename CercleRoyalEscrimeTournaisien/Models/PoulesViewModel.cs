@@ -1,12 +1,9 @@
-﻿using DocumentFormat.OpenXml.Bibliography;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.Globalization;
-using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Web;
 
 namespace CercleRoyalEscrimeTournaisien.Models
@@ -57,6 +54,8 @@ namespace CercleRoyalEscrimeTournaisien.Models
                     return new List<int> { 1, 8, 5, 4, 3, 6, 7, 2 };
                 case 16:
                     return new List<int> { 1, 16, 9, 8, 5, 12, 13, 4, 3, 14, 11, 6, 7, 10, 15, 2 };
+                case 32:
+                    return new List<int> { 1, 32, 16, 17, 9, 24, 8, 25, 5, 28, 12, 21, 13, 20, 4, 29, 3, 30, 14, 19, 11, 22, 6, 27, 7, 26, 10, 23, 15, 18, 2, 31 };
                 default:
                     return new List<int> { 1 };
             }
@@ -128,10 +127,8 @@ namespace CercleRoyalEscrimeTournaisien.Models
         public int ScoreTireur2 { get; set; }
         public string Tireur1Selected { get; set; }
         public string Tireur2Selected { get; set; }
-
         public ClassEnumScreen.EnumScreen ScreenIndex { get; set; }
         public string PouleSelected { get; set; }
-
         public string GetScoreVictoireOuDéfaite(Guid tireur1, Guid tireur2)
         {
             ClassScore score;
@@ -189,14 +186,14 @@ namespace CercleRoyalEscrimeTournaisien.Models
                     }
                 }
 
-                return DateTime.Now.AddDays(-1);
+                return DateTime.Now.AddDays(0);
             }
         }
         public bool IsDateDAujourdhuiEqualsDateNow
         {
             get
             {
-                return true;
+                //return true;
                 return DateDAujourdhui.ToString("ddMMyyyy") == DateTime.Now.ToString("ddMMyyyy");
             }
         }
@@ -222,11 +219,11 @@ namespace CercleRoyalEscrimeTournaisien.Models
                 case 6:
                     return new List<string>() { "1-6", "2-5", "3-4", "4-6", "3-5", "1-2", "2-4", "1-3", "5-6", "2-3", "1-4", "3-6", "1-5", "2-6", "4-5" };
                 case 7:
-                    return new List<string>() { "1-7","2-6",    "3-5",    "4-7",    "5-6",    "1-3",    "2-4",    "6-7",    "3-4",    "1-5",    "2-7",    "4-5",    "1-2",    "3-7",    "5-7",    "1-4",    "2-3",    "6-3",    "1-6",    "4-6",    "2-5" };
+                    return new List<string>() { "1-7", "2-6", "3-5", "4-7", "5-6", "1-3", "2-4", "6-7", "3-4", "1-5", "2-7", "4-5", "1-2", "3-7", "5-7", "1-4", "2-3", "6-3", "1-6", "4-6", "2-5" };
                 case 8:
-                    return new List<string>() { "1-8", "2-7", "3-6", "4-5",    "1-7", "2-6", "3-5", "4-8",    "1-6", "2-5", "3-4", "7-8",    "1-5", "2-4", "6-8", "3-7",   "1-4", "5-8", "2-3", "6-7",    "1-3", "4-6", "5-7", "2-8",    "1-2", "3-8", "4-7", "5-6" };
+                    return new List<string>() { "1-8", "2-7", "3-6", "4-5", "1-7", "2-6", "3-5", "4-8", "1-6", "2-5", "3-4", "7-8", "1-5", "2-4", "6-8", "3-7", "1-4", "5-8", "2-3", "6-7", "1-3", "4-6", "5-7", "2-8", "1-2", "3-8", "4-7", "5-6" };
                 case 9:
-                    return new List<string>() { "2-9", "3-8", "4-7", "5-6",    "1-9", "2-7", "3-6", "4-5",    "1-8", "9-7", "2-5", "3-4",    "1-7", "8-6", "9-5", "2-3",    "1-6", "7-5", "8-4", "9-3",    "1-5", "6-4", "7-3", "8-2",    "1-4", "5-3", "6-2", "8-9",    "1-3", "4-2", "6-9", "7-8",    "1-2", "4-9", "5-8", "6-7"};
+                    return new List<string>() { "2-9", "3-8", "4-7", "5-6", "1-9", "2-7", "3-6", "4-5", "1-8", "9-7", "2-5", "3-4", "1-7", "8-6", "9-5", "2-3", "1-6", "7-5", "8-4", "9-3", "1-5", "6-4", "7-3", "8-2", "1-4", "5-3", "6-2", "8-9", "1-3", "4-2", "6-9", "7-8", "1-2", "4-9", "5-8", "6-7" };
                 default:
                     return new List<string>() { };
             }
@@ -283,7 +280,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
             PoulesList = new List<ClassPoule>() { };
 
             var path = ServerTmp.MapPath("/App_Data/Poules.accdb");
-            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
             string mySelectQuery = " SELECT * FROM TableListeDesPoules";
             OleDbConnection myConnection = new OleDbConnection(ConnectionString);
             OleDbCommand myCommand = new OleDbCommand(mySelectQuery, myConnection);
@@ -308,7 +305,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
             ScoresList = new List<ClassScore>() { };
 
             var path = ServerTmp.MapPath("/App_Data/Poules.accdb");
-            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
             string mySelectQuery = " SELECT * FROM TableRésultatsDesPoules where DateDeLaPoule = '" + DateDuJourWithoutDayLabel + "'";
             OleDbConnection myConnection = new OleDbConnection(ConnectionString);
             OleDbCommand myCommand = new OleDbCommand(mySelectQuery, myConnection);
@@ -348,7 +345,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
             ScoresEliminitationsDirectesList = new List<ClassScoreEliminationsDirectes>() { };
 
             var path = ServerTmp.MapPath("/App_Data/Poules.accdb");
-            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
             string mySelectQuery = " SELECT * FROM TableRésultatsDesEliminationsDirectes where DateDeLaPoule = '" + DateDuJourWithoutDayLabel + "'";
             OleDbConnection myConnection = new OleDbConnection(ConnectionString);
             OleDbCommand myCommand = new OleDbCommand(mySelectQuery, myConnection);
@@ -405,7 +402,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
             PoulesDuJourList = new List<ClassPoulesDuJour>() { };
 
             var path = ServerTmp.MapPath("/App_Data/Poules.accdb");
-            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
             string mySelectQuery = " SELECT * FROM TableDesTireursPourUnePouleDuJour where DateDeLaPoule = '" + DateDuJourWithoutDayLabel + "'";
             OleDbConnection myConnection = new OleDbConnection(ConnectionString);
             OleDbCommand myCommand = new OleDbCommand(mySelectQuery, myConnection);
@@ -433,7 +430,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
             DatesPourToutesLesPoulesList = new List<ClassDatesPourToutesLesPoules>() { };
 
             var path = ServerTmp.MapPath("/App_Data/Poules.accdb");
-            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
             string mySelectQuery = " SELECT DateDeLaPoule FROM TableDesTireursPourUnePouleDuJour GROUP BY DateDeLaPoule";
             OleDbConnection myConnection = new OleDbConnection(ConnectionString);
             OleDbCommand myCommand = new OleDbCommand(mySelectQuery, myConnection);
@@ -461,25 +458,14 @@ namespace CercleRoyalEscrimeTournaisien.Models
                 return default(T);
 
             return (T)Convert.ChangeType(HttpContext.Current.Session[lastSessionKey], typeof(T));
-
-            //return (T)Deserialize((string)System.Web.HttpContext.Current.Session[lastSessionKey]);
-        }
-        private static object Deserialize(string str)
-        {
-            byte[] bytes = Convert.FromBase64String(str);
-
-            using (MemoryStream stream = new MemoryStream(bytes))
-            {
-                return new BinaryFormatter().Deserialize(stream);
-            }
-        }
+        }      
 
         private void ChargerListeDesTireurs()
         {
             TireursList = new List<ClassTireur>() { };
 
             var path = ServerTmp.MapPath("/App_Data/Poules.accdb");
-            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
             string mySelectQuery = " SELECT * FROM TableTireurs";
             OleDbConnection myConnection = new OleDbConnection(ConnectionString);
             OleDbCommand myCommand = new OleDbCommand(mySelectQuery, myConnection);

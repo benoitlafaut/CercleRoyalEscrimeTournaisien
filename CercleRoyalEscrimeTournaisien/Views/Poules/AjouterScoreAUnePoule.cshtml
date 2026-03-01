@@ -40,19 +40,19 @@
             </td>
         </tr>
         <tr>
-            <td class="tableScoreAlign">
+            <td class="tableScoreAlign choixVictoire" data-value="1" >
                 <input type="radio" name="choixVictoire" value="1">Victoire du tireur 1
             </td>
-            <td class="tableScoreAlign">
+            <td class="tableScoreAlign choixVictoire" data-value="2">
                 <input type="radio" name="choixVictoire" value="2">Victoire du tireur 2
             </td>
         </tr>
         <tr>
             <td class="tableScoreAlign">
-                Score :  @Html.TextBoxFor(x => x.ScoreTireur1, new { @class = "form-control", @style = "max-width: 40px;" })
+                Score :  @Html.TextBoxFor(x => x.ScoreTireur1, new { @class = "form-control", @style = "max-width: 40px;", onfocus = "this.select();" })
             </td>
             <td class="tableScoreAlign">
-                Score : @Html.TextBoxFor(x => x.ScoreTireur2, new { @class = "form-control", @style = "max-width: 40px;" })
+                Score : @Html.TextBoxFor(x => x.ScoreTireur2, new { @class = "form-control", @style = "max-width: 40px;", onfocus = "this.select();" })
             </td>
         </tr>
     </tbody>
@@ -65,3 +65,10 @@
 <div class="ClassMarginTopAndBottom">
     <a href="@Url.Action("Poules", "Poules")" class="btn-custom">Retourner au menu principal</a>
 </div>
+
+<script>
+    document.querySelectorAll('.choixVictoire').forEach(td => {
+        td.addEventListener('click', function ()
+        { this.querySelector('input[type=radio]').checked = true; });
+    });
+</script>

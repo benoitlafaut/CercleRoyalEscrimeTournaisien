@@ -225,13 +225,7 @@ namespace CercleRoyalEscrimeTournaisien
         {
             System.Web.HttpContext.Current.Session.Add("IsOtherDateThanDateDuJour", "true");
             System.Web.HttpContext.Current.Session.Add("OtherDate", dateDeLaPouleSelected);
-
-            return RedirectToAction("Poules", "poules");
-
-            //PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
-            //poulesViewModel.ScreenIndex = ClassEnumScreen.EnumScreen.MenuPrincipal;
-
-            //return View(Constantes.Poules, poulesViewModel);
+            return RedirectToAction("Poules", "poules");          
         }
 
         [HttpPost]
@@ -260,8 +254,6 @@ namespace CercleRoyalEscrimeTournaisien
             }
 
             return Json(new { redirectUrl = Url.Action("AfficherLesPoules", "Poules") });
-
-            // return RedirectToAction("AfficherLesPoules", "Poules");
         }
         [HttpPost]
         public ActionResult AddScoreEliminationDirecte(MyRequestEliminationDirecteToSaveInPoule myRequestEliminationDirecteToSaveInPoule)
@@ -374,7 +366,6 @@ namespace CercleRoyalEscrimeTournaisien
 
             List<ClassResultats> classResultatsList = myRequestResultatsPoule.ClassResultatsList.OrderByDescending(x => x.NombreDeVictoiresParMatchs).ThenByDescending(x => int.Parse(x.TDMoinsTR)).ThenByDescending(x => int.Parse(x.TD)).ThenBy(x => x.Tireur).ToList();
 
-            //int nombreRoundMax = CalculerRoundMax(myRequestResultatsPoule.ClassResultatsList.Count);
             int nombreRoundMax = GetTableau(index);
             int nombreDePlaces = CalculerNombreDePlaces(myRequestResultatsPoule.ClassResultatsList.Count);
             int nombreDeMatchs = nombreDePlaces / 2;
@@ -491,8 +482,8 @@ namespace CercleRoyalEscrimeTournaisien
         private bool ExistsRecord(string dateDuJourWithoutDay, string pouleSelected, string tireur)
         {
             var path = Server.MapPath("/App_Data/Poules.accdb");
-            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
-            string mySelectQuery = "SELECT * FROM TableDesTireursPourUnePouleDuJour WHERE DateDeLaPoule='" + dateDuJourWithoutDay + "' AND Poule='" + pouleSelected + "' AND Tireur='" + tireur + "'";
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
+            string mySelectQuery = "SELECT * FROM TableDesTireursPourUnePouleDuJour WHERE DateDeLaPoule = '" + dateDuJourWithoutDay + "' AND Poule = '" + pouleSelected + "' AND Tireur = '" + tireur + "'";
             OleDbConnection myConnection = new OleDbConnection(ConnectionString);
             OleDbCommand myCommand = new OleDbCommand(mySelectQuery, myConnection);
             myCommand.Connection.Open();
