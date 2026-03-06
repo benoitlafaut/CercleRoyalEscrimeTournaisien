@@ -1,13 +1,17 @@
 ﻿@model CercleRoyalEscrimeTournaisien.Models.PoulesViewModel
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 @Styles.Render("~/styles/Poules")
 @Scripts.Render("~/bundles/PoulesJS")
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!DOCTYPE html>
 <html>
 <body id="">
+    <div id="spinner-loading" class="loader-overlay">
+        <div class="loader"></div>
+    </div>
+
     @if (Model.ScreenIndex != ClassEnumScreen.EnumScreen.AfficherLesDatesPrecedentes)
     {
         <div class="ClassTextAlignCenter">

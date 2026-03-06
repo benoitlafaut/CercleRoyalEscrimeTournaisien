@@ -130,6 +130,8 @@
         var roundSelected = $("#ddlRoundsEliminationsDirectes option:selected").val();
         var dateDuJourWithoutDay = '@Model.DateDuJourWithoutDayLabel';
 
+        $.startLoading();
+
         $.ajax({
             url: "/Poules/CalculerLeRoundSuivant",
             type: 'POST',

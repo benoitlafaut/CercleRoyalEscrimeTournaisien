@@ -1,6 +1,15 @@
-﻿function AddTireursSelectedToPoule() {
-   // alert($("#ddlPoules option:selected").val());
-   // alert($(".chk-tireur:checked").map(function () { return $(this).data('id'); }).get());
+﻿
+$(document).ready(function () {
+    $.startLoading = function () {
+        $("#spinner-loading").css('display','flex');
+    };
+
+    $.stopLoading = function () {
+        $("#spinner-loading").css('display', 'none');
+    };
+});
+function AddTireursSelectedToPoule() {
+    $.startLoading();
 
     if ($("#ddlPoules option:selected").val() == '') {
         alert("vous n'avez pas sélectionné la poule");
@@ -30,6 +39,8 @@
 }
 function AddScoreEliminationDirecte(dateDuJourWithoutDay, pouleSelected, round, tireur1Guid, tireur2Guid, inputScoreTireur1Guid, inputScoreTireur2Guid)
 {
+    $.startLoading();
+
     $.ajax({
         url: "/Poules/AddScoreEliminationDirecte",
         type: 'POST',
@@ -94,7 +105,7 @@ function AddScoreToTireursSelected() {
     var scoreTireur1 = $("#ScoreTireur1").val();
     var scoreTireur2 = $("#ScoreTireur2").val(); 
 
-    
+    $.startLoading();
 
     $.ajax({
         url: "/Poules/AddScoreToTireursSelected",
@@ -119,6 +130,8 @@ function AddScoreToTireursSelected() {
 }
 
 function CalculEliminatoires(nameTablePoule, pouleSelected) {
+    $.startLoading();
+
     const ClassResultatsList = [];
 
     $("#" + nameTablePoule + " tr").each(function () {
