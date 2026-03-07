@@ -110,7 +110,7 @@
             </tbody>
         </table>
 
-        if (listDesMatchs.Count != 0 && Model.IsDateDAujourdhuiEqualsDateNow)
+        if (listDesMatchs.Count != 0 && (Model.IsDateDAujourdhuiEqualsDateNow && Model.IsDayEscrime))
         {
             <span>Liste des matchs:</span>
             <ul id="math-list" class="pretty-list">

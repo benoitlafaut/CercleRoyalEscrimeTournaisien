@@ -238,6 +238,23 @@ namespace CercleRoyalEscrimeTournaisien.Models
                 return dateFormatee;
             }
         }
+        public string DateDuJourOnlyDayLabel
+        {
+            get
+            {
+                DateTime dateNow = DateDAujourdhui;
+                var culture = new CultureInfo("fr-FR");
+                string dateFormatee = dateNow.ToString("dddd", culture);
+                return dateFormatee;
+            }
+        }
+        public bool IsDayEscrime
+        {
+            get
+            {
+                return DateDuJourOnlyDayLabel.ToLower() == "mercredi" || DateDuJourOnlyDayLabel.ToLower() == "vendredi" || DateDuJourOnlyDayLabel.ToLower() == "dimanche";
+            }
+        }
         public string DateDuJourWithoutDayLabel
         {
             get

@@ -69,7 +69,7 @@
                 }
                 else
                 {
-                    if (Model.IsDateDAujourdhuiEqualsDateNow)
+                    if (Model.IsDateDAujourdhuiEqualsDateNow && Model.IsDayEscrime)
                     {
                         @Html.TextBoxFor(x => x.Score, new { @class = "ClassMaxWidth form-control", @id = "inputScore_" + rencontre.Tireur1Guid })
                     }
@@ -78,7 +78,7 @@
 
             @if (!rencontre.ScoreDejaIntroduit)
             {
-                if (Model.IsDateDAujourdhuiEqualsDateNow)
+                if (Model.IsDateDAujourdhuiEqualsDateNow && Model.IsDayEscrime)
                 {
                     <div class="">
                         <a style="margin-left:150px;" href="#" onclick="AddScoreEliminationDirecte('@Model.DateDuJourWithoutDayLabel','@Model.PouleSelected','@rencontre.Round','@rencontre.Tireur1Guid','@rencontre.Tireur2Guid','inputScore_' + '@rencontre.Tireur1Guid','inputScore_' + '@rencontre.Tireur2Guid'); ">Sauver score</a>
@@ -94,7 +94,7 @@
                 }
                 else
                 {
-                    if (Model.IsDateDAujourdhuiEqualsDateNow)
+                    if (Model.IsDateDAujourdhuiEqualsDateNow && Model.IsDayEscrime)
                     {
                         @Html.TextBoxFor(x => x.Score, new { @class = "ClassMaxWidth form-control", @id = "inputScore_" + rencontre.Tireur2Guid })
                     }
@@ -103,7 +103,7 @@
         </div>
     }
 
-    @if (isAllIntroduit && Model.RoundSelected != "Finale" && Model.IsDateDAujourdhuiEqualsDateNow)
+    @if (isAllIntroduit && Model.RoundSelected != "Finale" && (Model.IsDateDAujourdhuiEqualsDateNow && Model.IsDayEscrime))
     {
         string roundSuivant = Model.GetRoundSuivant(Model.RoundSelected);
         bool isPresenceNextRound = Model.RoundsList.Any(x => x.Key == roundSuivant);

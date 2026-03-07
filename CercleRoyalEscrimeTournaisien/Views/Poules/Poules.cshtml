@@ -25,7 +25,7 @@
             <label style="display: inline-flex;" class="ClassFontSizeTitre ClassDecorationUnderline">Menu principal</label>
             <div style="margin-left:40px;">
 
-                @if (Model.IsDateDAujourdhuiEqualsDateNow)
+                @if (Model.IsDateDAujourdhuiEqualsDateNow && Model.IsDayEscrime)
                 {
                     <div class="ClassMarginTopAndBottom">
                         <a href="@Url.Action("AjouterTireurAUnePoule", "Poules")" class="btn-custom">Ajouter un tireur à une poule</a>
