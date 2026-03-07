@@ -2220,7 +2220,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { "290 euros", "75 euros" },
+                    PaiementsEffectues = new List<string>() { "290 euros", "75 euros", "14 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,9,4),
