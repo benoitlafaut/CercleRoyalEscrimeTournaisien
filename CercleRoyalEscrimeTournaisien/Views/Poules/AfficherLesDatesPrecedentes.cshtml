@@ -7,7 +7,14 @@
         <option value="">Sélectionnez la date antérieure à aujourd'hui...</option>
         @foreach (var p in Model.DatesPourToutesLesPoulesList)
         {
-           <option value="@p.DateDeLaPoule">@p.DateDeLaPoule</option>
+            if (string.IsNullOrEmpty(p.Arme))
+            {
+                <option value="@p.DateDeLaPoule">@p.DateDeLaPoule</option>
+            }
+            else
+            {
+                <option value="@p.DateDeLaPoule">@p.DateDeLaPoule (@p.Arme)</option>
+            }
         }
     </select>
 </div>

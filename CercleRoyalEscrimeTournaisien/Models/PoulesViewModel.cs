@@ -465,6 +465,23 @@ namespace CercleRoyalEscrimeTournaisien.Models
             }
 
             myCommand.Connection.Close();
+
+            foreach (ClassDatesPourToutesLesPoules date in DatesPourToutesLesPoulesList)
+            {
+                string mySelectQueryRechercheArme = " SELECT * FROM TableDateAvecArmePratiquee Where DateDeLaPoule = '" + date.DateDeLaPoule + "'";
+                OleDbConnection myConnectionRechercheArme = new OleDbConnection(ConnectionString);
+                OleDbCommand myCommandRechercheArme = new OleDbCommand(mySelectQueryRechercheArme, myConnectionRechercheArme);
+                myCommandRechercheArme.Connection.Open();
+                OleDbDataReader myReaderRechercheArme = myCommandRechercheArme.ExecuteReader(CommandBehavior.CloseConnection);
+
+                while (myReaderRechercheArme.Read())
+                {
+                    string arme = (string)myReaderRechercheArme["Arme"];
+                    date.Arme = arme;
+                }
+
+                myCommand.Connection.Close();
+            }
         }
         private T GetValueStartsWith<T>(string key)
         {
@@ -522,6 +539,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
     public class ClassDatesPourToutesLesPoules
     {
         public string DateDeLaPoule { get; set; }
+        public string Arme { get; set; }
     }
     public class ClassPoulesDuJour
     {
