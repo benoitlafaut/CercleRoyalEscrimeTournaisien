@@ -6,7 +6,7 @@
     <thead>
         <tr>
             <th colspan="2" class="tableScoreAlign">
-                <select onchange="location.href='@Url.Action("ChangePoulePourAjouterScore", "Poules")?pouleSelected=' + this.value" id="ddlPoulesScores" class="form-control">
+                <select onchange="$.startLoading();location.href='@Url.Action("ChangePoulePourAjouterScore", "Poules")?pouleSelected=' + this.value" id="ddlPoulesScores" class="form-control">
                     <option value="">Sélectionnez la poule...</option>
                     @foreach (var p in Model.PoulesList)
                     {
@@ -59,11 +59,11 @@
 </table>
 
 <div class="ClassMarginTopAndBottom">
-    <a href="#" onclick="AddScoreToTireursSelected(); " class="btnAction-custom">Ajouter les scores aux tireurs sélectionnés dans la poule sélectionnée</a>
+    <a href="#" onclick="$.startLoading();AddScoreToTireursSelected(); " class="btnAction-custom">Ajouter les scores aux tireurs sélectionnés dans la poule sélectionnée</a>
 </div>
 
 <div class="ClassMarginTopAndBottom">
-    <a href="@Url.Action("Poules", "Poules")" class="btn-custom">Retourner au menu principal</a>
+    <a onclick="$.startLoading();" href="@Url.Action("Poules", "Poules")" class="btn-custom">Retourner au menu principal</a>
 </div>
 
 <script>

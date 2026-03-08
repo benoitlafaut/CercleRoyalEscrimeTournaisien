@@ -15,7 +15,7 @@
 
     <div class="ClassMarginBottom">
         <span>Liste des poules: </span>
-        <select onchange="location.href='@Url.Action("ChangePoulePourShowEliminationsDirectes", "Poules")?pouleSelected=' + this.value" id="ddlPoulesEliminationsDirectes" class="form-control">
+        <select onchange="$.startLoading();location.href='@Url.Action("ChangePoulePourShowEliminationsDirectes", "Poules")?pouleSelected=' + this.value" id="ddlPoulesEliminationsDirectes" class="form-control">
             <option value="">Sélectionnez la poule...</option>
             @foreach (var p in Model.PoulesList)
             {
@@ -39,7 +39,7 @@
     <div class="ClassMarginBottom" style="@displayRoundVisible">
         <span>Liste des rounds: </span>
 
-        <select onchange="location.href='@Url.Action("ChangeRoundPourShowEliminationsDirectes", "Poules")?roundSelected=' + this.value + '&pouleSelected=' + $('#ddlPoulesEliminationsDirectes option:selected').val()" id="ddlRoundsEliminationsDirectes" class="form-control">
+        <select onchange="$.startLoading();location.href='@Url.Action("ChangeRoundPourShowEliminationsDirectes", "Poules")?roundSelected=' + this.value + '&pouleSelected=' + $('#ddlPoulesEliminationsDirectes option:selected').val()" id="ddlRoundsEliminationsDirectes" class="form-control">
             <option value="">Sélectionnez le round...</option>
             @foreach (var p in Model.RoundsList)
             {
@@ -120,11 +120,12 @@
 </html>
 
 <div class="ClassMarginTopAndBottom">
-    <a href="@Url.Action("Poules", "Poules")" class="btn-custom">Retourner au menu principal</a>
+    <a onclick="$.startLoading();" href="@Url.Action("Poules", "Poules")" class="btn-custom">Retourner au menu principal</a>
 </div>
 
 <script>
     $("#btnCalculerLeRoundSuivant").on("click", function (e) {
+        $.startLoading();
         e.preventDefault();
         var pouleSelected = $("#ddlPoulesEliminationsDirectes option:selected").val();
         var roundSelected = $("#ddlRoundsEliminationsDirectes option:selected").val();
