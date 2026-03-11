@@ -20,10 +20,12 @@ namespace CercleRoyalEscrimeTournaisien.Models
             ChargerRésultatsDesPoulesDuJour();
             ChargerRésultatsDesElimintationsDirectesDuJour();
             ChargerDatesPourToutesLesPoules();
+            CalculerAgeDeChaqueTireur();
         }
 
         public HttpServerUtilityBase ServerTmp { get; set; }
         public List<ClassPoule> PoulesList { get; set; }
+        public List<ClassAge> AgesList { get; set; }
         public List<ClassScore> ScoresList { get; set; }
         public List<ClassScoreEliminationsDirectes> ScoresEliminitationsDirectesList { get; set; }        
         public List<ClassScoreEliminationsDirectes> GetOrdreDesMatchs(List<ClassScoreEliminationsDirectes> scores)
@@ -166,6 +168,10 @@ namespace CercleRoyalEscrimeTournaisien.Models
             {
                 return string.Empty;
             } 
+        }
+        public int GetAge(string tireur)
+        {
+            return AgesList.Where(x => x.Tireur == tireur).First().Age;
         }
         public bool ExistEliminationsDirectes(string dateDuJourWithoutDay, string pouleSelected)
         {
@@ -363,40 +369,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
                         }
                     }
                 }
-            }
-
-            //OleDbConnection myConnection = new OleDbConnection(ConnectionString);
-            //OleDbCommand myCommand = new OleDbCommand(mySelectQuery, myConnection);
-            //myCommand.Connection.Open();
-            //OleDbDataReader myReader = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            //while (myReader.Read())
-            //{
-            //    string poule = (string)myReader["Poule"];
-
-            //    string guidStr1 = myReader["Tireur1Guid"].ToString().Trim();
-            //    Guid tireur1Guid = Guid.Parse(guidStr1);
-
-            //    string guidStr2 = myReader["Tireur2Guid"].ToString().Trim();
-            //    Guid tireur2Guid = Guid.Parse(guidStr2);
-
-            //    bool victoireOuDéfaiteDuTireur1 = (bool)myReader["VictoireOuDéfaiteDuTireur1"];
-            //    bool victoireOuDéfaiteDuTireur2 = (bool)myReader["VictoireOuDéfaiteDuTireur2"];
-            //    int scoreDuTireur1 = (int)myReader["ScoreDuTireur1"];
-            //    int scoreDuTireur2 = (int)myReader["ScoreDuTireur2"];
-            //    ScoresList.Add(new ClassScore()
-            //    {
-            //        Poule = poule,
-            //        Tireur1Guid = tireur1Guid,
-            //        Tireur2Guid = tireur2Guid,
-            //        VictoireOuDéfaiteDuTireur1 = victoireOuDéfaiteDuTireur1,
-            //        VictoireOuDéfaiteDuTireur2 = victoireOuDéfaiteDuTireur2,
-            //        ScoreDuTireur1 = scoreDuTireur1,
-            //        ScoreDuTireur2 = scoreDuTireur2
-            //    });
-            //}
-
-            //myCommand.Connection.Close();
+            }      
         }
         private void ChargerRésultatsDesElimintationsDirectesDuJour()
         {
@@ -456,57 +429,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
                         }
                     }
                 }
-            }
-
-            //OleDbConnection myConnection = new OleDbConnection(ConnectionString);
-            //OleDbCommand myCommand = new OleDbCommand(mySelectQuery, myConnection);
-            //myCommand.Connection.Open();
-            //OleDbDataReader myReader = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            //while (myReader.Read())
-            //{
-            //    string poule = (string)myReader["Poule"];
-            //    string dateDeLaPoule = (string)myReader["DateDeLaPoule"];
-            //    string round = (string)myReader["Round"];
-            //    string indexTireur1 = (string)myReader["IndexTireur1"];
-            //    string indexTireur2 = (string)myReader["IndexTireur2"];
-            //    string tireur1Name = (string)myReader["Tireur1Name"];
-            //    string tireur2Name = (string)myReader["Tireur2Name"];
-
-            //    string guidStr1 = myReader["Tireur1Guid"].ToString().Trim();
-            //    Guid tireur1Guid = Guid.Parse(guidStr1);
-
-            //    string guidStr2 = myReader["Tireur2Guid"].ToString().Trim();
-            //    Guid tireur2Guid = Guid.Parse(guidStr2);
-
-            //    bool victoireOuDéfaiteDuTireur1 = (bool)myReader["VictoireOuDéfaiteDuTireur1"];
-            //    bool victoireOuDéfaiteDuTireur2 = (bool)myReader["VictoireOuDéfaiteDuTireur2"];
-
-            //    bool scoreDejaIntroduit = (bool)myReader["ScoreDejaIntroduit"];
-
-            //    int scoreDuTireur1 = (int)myReader["ScoreDuTireur1"];
-            //    int scoreDuTireur2 = (int)myReader["ScoreDuTireur2"];
-            //    ScoresEliminitationsDirectesList.Add(new ClassScoreEliminationsDirectes()
-            //    {
-            //        DateDeLaPoule = dateDeLaPoule,
-            //        PouleSelected = poule,
-            //        Tireur1Guid = tireur1Guid,
-            //        Tireur2Guid = tireur2Guid,
-            //        VictoireOuDéfaiteDuTireur1 = victoireOuDéfaiteDuTireur1,
-            //        VictoireOuDéfaiteDuTireur2 = victoireOuDéfaiteDuTireur2,
-            //        ScoreDuTireur1 = scoreDuTireur1,
-            //        ScoreDuTireur2 = scoreDuTireur2,
-            //        Round = round,
-            //        IndexTireur1 = indexTireur1,
-            //        IndexTireur2 = indexTireur2,
-            //        Tireur1Name = tireur1Name,
-            //        Tireur2Name = tireur2Name,
-            //        ScoreDejaIntroduit = scoreDejaIntroduit
-            //    });
-            //}
-
-
-            //myCommand.Connection.Close();
+            }           
         }
         private void ChargerPoulesDuJour()
         {
@@ -537,29 +460,34 @@ namespace CercleRoyalEscrimeTournaisien.Models
                         }
                     }
                 }
+            }          
+        }
+        private void CalculerAgeDeChaqueTireur()
+        {
+            AgesList = new List<ClassAge>() { };
+            var tireursList = TireursList.GroupBy(x => x.Tireur);
+            foreach (var tireur in tireursList)
+            {
+                AgesList.Add(new ClassAge()
+                {
+                    Tireur = tireur.First().Tireur,
+                    Age = GetAgeByDateDeNaissance(Convert.ToDateTime(tireur.First().DateDeNaissance)) 
+                });
+            }
+        }
+        private int GetAgeByDateDeNaissance(DateTime dateNaissance)
+        {
+            var today = DateTime.Today;
+            int age = today.Year - dateNaissance.Year;
+
+            // Si l'anniversaire n'est pas encore passé cette année, on retire 1
+            if (dateNaissance.Date > today.AddYears(-age))
+            {
+                age--;
             }
 
-            //OleDbConnection myConnection = new OleDbConnection(ConnectionString);
-            //OleDbCommand myCommand = new OleDbCommand(mySelectQuery, myConnection);
-            //myCommand.Connection.Open();
-            //OleDbDataReader myReader = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            //while (myReader.Read())
-            //{
-            //    Guid tireurGuid = (Guid)myReader["TireurGuid"];
-            //    string poule = (string)myReader["Poule"];
-            //    string tireur = (string)myReader["Tireur"];
-            //    PoulesDuJourList.Add(new ClassPoulesDuJour()
-            //    {
-            //        TireurGuid = tireurGuid,
-            //        Poule = poule,
-            //        Tireur = tireur
-            //    });
-            //}
-
-            //myCommand.Connection.Close();
+            return age;
         }
-
         private void ChargerDatesPourToutesLesPoules()
         {
             DatesPourToutesLesPoulesList = new List<ClassDatesPourToutesLesPoules>() { };
@@ -586,24 +514,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
                         }
                     }
                 }
-            }
-
-            //OleDbConnection myConnection = new OleDbConnection(ConnectionString);
-            //OleDbCommand myCommand = new OleDbCommand(mySelectQuery, myConnection);
-            //myCommand.Connection.Open();
-            //OleDbDataReader myReader = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            //while (myReader.Read())
-            //{
-            //    string dateDeLaPoule = (string)myReader["DateDeLaPoule"];
-
-            //    DatesPourToutesLesPoulesList.Add(new ClassDatesPourToutesLesPoules()
-            //    {
-            //        DateDeLaPoule = dateDeLaPoule,
-            //    });
-            //}
-
-            //myCommand.Connection.Close();
+            }           
 
             foreach (ClassDatesPourToutesLesPoules date in DatesPourToutesLesPoulesList)
             {
@@ -623,20 +534,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
                             }
                         }
                     }
-                }
-
-                //OleDbConnection myConnectionRechercheArme = new OleDbConnection(ConnectionString);
-                //OleDbCommand myCommandRechercheArme = new OleDbCommand(mySelectQueryRechercheArme, myConnectionRechercheArme);
-                //myCommandRechercheArme.Connection.Open();
-                //OleDbDataReader myReaderRechercheArme = myCommandRechercheArme.ExecuteReader(CommandBehavior.CloseConnection);
-
-                //while (myReaderRechercheArme.Read())
-                //{
-                //    string arme = (string)myReaderRechercheArme["Arme"];
-                //    date.Arme = arme;
-                //}
-
-                //myCommand.Connection.Close();
+                }                
             }
         }
         private T GetValueStartsWith<T>(string key)
@@ -670,36 +568,18 @@ namespace CercleRoyalEscrimeTournaisien.Models
                             string tireur = (string)myReader["Tireur"];
                             string jourDeLaPoule = (string)myReader["JourDeLaPoule"];
                             string pouleAttribuee = (string)myReader["PouleAttribuee"];
+                            string dateDeNaissance = (string)myReader["DateDeNaissance"];
                             TireursList.Add(new ClassTireur()
                             {
                                 Tireur = tireur,
                                 JourDeLaPoule = jourDeLaPoule,
-                                PouleAttribuee = pouleAttribuee
+                                PouleAttribuee = pouleAttribuee,
+                                DateDeNaissance = dateDeNaissance
                             });
                         }
                     }
                 }
-            }
-
-            //OleDbConnection myConnection = new OleDbConnection(ConnectionString);
-            //OleDbCommand myCommand = new OleDbCommand(mySelectQuery, myConnection);
-            //myCommand.Connection.Open();
-            //OleDbDataReader myReader = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            //while (myReader.Read())
-            //{
-            //    string tireur = (string)myReader["Tireur"];
-            //    string jourDeLaPoule = (string)myReader["JourDeLaPoule"];
-            //    string pouleAttribuee = (string)myReader["PouleAttribuee"];
-            //    TireursList.Add(new ClassTireur()
-            //    {
-            //        Tireur = tireur,
-            //        JourDeLaPoule = jourDeLaPoule,
-            //        PouleAttribuee = pouleAttribuee
-            //    });
-            //}
-
-            //myCommand.Connection.Close();
+            }            
         }
     }
 
@@ -714,7 +594,13 @@ namespace CercleRoyalEscrimeTournaisien.Models
         public string Tireur { get; set; }
         public string JourDeLaPoule { get; set; }
         public string PouleAttribuee { get; set; }
+        public string DateDeNaissance { get; set; }        
         public bool IsSelected { get; set; }
+    }
+    public class ClassAge
+    {
+        public string Tireur { get; set; }
+        public int Age { get; set; }
     }
     public class ClassDatesPourToutesLesPoules
     {
