@@ -1008,6 +1008,22 @@
     <Content Include="home\photos\Albums\9\8.jpg" />
     <Content Include="home\photos\Albums\9\9.jpg" />
     <Content Include="Content\photos\border.png" />
+    <Content Include="home\photos\Arbitrage\allez.png" />
+    <Content Include="home\photos\Arbitrage\assesseur.png" />
+    <Content Include="home\photos\Arbitrage\attaque.png" />
+    <Content Include="home\photos\Arbitrage\carton.png" />
+    <Content Include="home\photos\Arbitrage\engarde.png" />
+    <Content Include="home\photos\Arbitrage\lesdeuxtouchés.png" />
+    <Content Include="home\photos\Arbitrage\non.png" />
+    <Content Include="home\photos\Arbitrage\nonvalable.png" />
+    <Content Include="home\photos\Arbitrage\parade.png" />
+    <Content Include="home\photos\Arbitrage\point.png" />
+    <Content Include="home\photos\Arbitrage\pointsauxdeuxtireurs.png" />
+    <Content Include="home\photos\Arbitrage\pret.png" />
+    <Content Include="home\photos\Arbitrage\rien.png" />
+    <Content Include="home\photos\Arbitrage\simultanées.png" />
+    <Content Include="home\photos\Arbitrage\touché.png" />
+    <Content Include="home\photos\Arbitrage\vainqueur.png" />
     <Content Include="home\photos\CadresNosCours\TourNoire.JPG" />
     <Content Include="home\photos\CadresNosCours\TourOcre.JPG" />
     <Content Include="home\photos\CadresNosCours\TourOrange.JPG" />
@@ -1356,6 +1372,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
