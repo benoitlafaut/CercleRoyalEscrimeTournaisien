@@ -7,7 +7,7 @@
         <tr>
             <th colspan="2" class="tableScoreAlign">
                 <select onchange="$.startLoading();location.href='@Url.Action("ChangePoulePourAjouterScore", "Poules")?pouleSelected=' + this.value" id="ddlPoulesScores" class="form-control">
-                    <option value="">Sélectionnez la poule...</option>
+                    <option value=""> Sélectionnez la poule...</option>
                     @foreach (var p in Model.PoulesList)
                     {
                         if (p.Poule == Model.PouleSelected)
