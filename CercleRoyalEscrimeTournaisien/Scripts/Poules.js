@@ -39,6 +39,16 @@ function AddTireursSelectedToPoule() {
 }
 function AddScoreEliminationDirecte(dateDuJourWithoutDay, pouleSelected, round, tireur1Guid, tireur2Guid, inputScoreTireur1Guid, inputScoreTireur2Guid)
 {
+    if ($("#" + inputScoreTireur1Guid).val() == "" || $("#" + inputScoreTireur2Guid).val() == "") {
+        alert("L'un des deux scores est vide.");
+        return;
+    }
+
+    if ($("#" + inputScoreTireur1Guid).val() == $("#" + inputScoreTireur2Guid).val()) {
+        alert("Il n'y a pas de vainqueur.");
+        return;
+    }
+
     $.startLoading();
 
     $.ajax({
@@ -78,9 +88,11 @@ function AddScoreToTireursSelected() {
         alert("Vous devez indiquer qui est le vainqueur.");
         return;
     }
+   
+    
 
-    if ($("#ScoreTireur1").val() > 5 || $("#ScoreTireur2").val() > 5) {
-        alert("L'un des deux scores est supérieur à 5 alors qu'il doit être entre 0 et 5.");
+    if ($("#ScoreTireur1").val() == "" || $("#ScoreTireur2").val() == "") {
+        alert("L'un des deux scores est vide.");
         return;
     }
 
@@ -104,7 +116,7 @@ function AddScoreToTireursSelected() {
     var vainqueur = $("input[name='choixVictoire']:checked").val();
     var scoreTireur1 = $("#ScoreTireur1").val();
     var scoreTireur2 = $("#ScoreTireur2").val(); 
-
+    
     $.startLoading();
 
     $.ajax({

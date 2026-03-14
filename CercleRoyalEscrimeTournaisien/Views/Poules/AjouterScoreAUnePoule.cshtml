@@ -1,4 +1,8 @@
 ﻿@model CercleRoyalEscrimeTournaisien.Models.PoulesViewModel
+@{
+    IEnumerable<SelectListItem> GetNumbersList = Model.PouleSelected == "Poule 1" ?
+    new SelectList(new List<string> { "", "0", "1", "2", "3", "4" }) : new SelectList(new List<string> { "", "0", "1", "2", "3", "4", "5" });
+}
 
 <label style="display: inline-flex;" class="ClassMarginBottom ClassFontSizeTitre ClassDecorationUnderline">Ajouter un score à une poule</label>
 
@@ -40,7 +44,7 @@
             </td>
         </tr>
         <tr>
-            <td class="tableScoreAlign choixVictoire" data-value="1" >
+            <td class="tableScoreAlign choixVictoire" data-value="1">
                 <input type="radio" name="choixVictoire" value="1">Victoire du tireur 1
             </td>
             <td class="tableScoreAlign choixVictoire" data-value="2">
@@ -49,21 +53,21 @@
         </tr>
         <tr>
             <td class="tableScoreAlign">
-                Score :  @Html.TextBoxFor(x => x.ScoreTireur1, new { @class = "form-control", @style = "max-width: 40px;", onfocus = "this.select();" })
+                Score : @Html.DropDownList("ScoreTireur1", GetNumbersList, new { @class = "dropdown" })
             </td>
             <td class="tableScoreAlign">
-                Score : @Html.TextBoxFor(x => x.ScoreTireur2, new { @class = "form-control", @style = "max-width: 40px;", onfocus = "this.select();" })
+                Score : @Html.DropDownList("ScoreTireur2", GetNumbersList, new { @class = "dropdown" })
             </td>
         </tr>
     </tbody>
 </table>
 
 <div class="ClassMarginTopAndBottom">
-    <a href="#" onclick="$.startLoading();AddScoreToTireursSelected(); " class="btnAction-custom">Ajouter les scores aux tireurs sélectionnés dans la poule sélectionnée</a>
+    <a href="#" onclick="AddScoreToTireursSelected(); " class="btnAction-custom">&nbsp;&nbsp;Ajouter 1 score aux tireurs sélectionnés&nbsp;&nbsp;</a>
 </div>
 
 <div class="ClassMarginTopAndBottom">
-    <a onclick="$.startLoading();" href="@Url.Action("Poules", "Poules")" class="btn-custom">Retourner au menu principal</a>
+    <a onclick="$.startLoading();" href="@Url.Action("Poules", "Poules")" class="btn-custom">&nbsp;&nbsp;Retourner au menu principal&nbsp;&nbsp;</a>
 </div>
 
 <script>

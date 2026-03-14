@@ -131,7 +131,7 @@
             if (!Model.ExistEliminationsDirectes(Model.DateDuJourWithoutDayLabel, poule.Key))
             {
                 <div class="ClassMarginTopAndBottom">
-                    <a href="#" onclick="$.startLoading();CalculEliminatoires('@namePoule', '@poule.Key'); " class="btnAction-custom">La poule est finie. Cliquez ici pour afficher les éliminations directes.</a>
+                    <a href="#" onclick="$.startLoading();CalculEliminatoires('@namePoule', '@poule.Key'); " class="btnAction-custom">&nbsp;&nbsp;Cliquez ici pour afficher les éliminations directes.&nbsp;&nbsp;</a>
                 </div>
             }
         }
@@ -140,5 +140,5 @@
 }
 
 <div class="ClassMarginTopAndBottom">
-    <a onclick="$.startLoading();" href="@Url.Action("Poules", "Poules")" class="btn-custom">Retourner au menu principal</a>
+    <a onclick="$.startLoading();" href="@Url.Action("Poules", "Poules")" class="btn-custom">&nbsp;&nbsp;Retourner au menu principal&nbsp;&nbsp;</a>
 </div>

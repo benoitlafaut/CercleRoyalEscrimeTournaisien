@@ -142,9 +142,10 @@
         margin-bottom: 40px;
     }
 
-    .ClassMaxWidth {
-        max-width: 16px;
-    }
+.ClassMaxWidth {
+    max-width: 16px;
+    min-width: 48px;
+}
 
 .ClassFontSize{
     font-size:16px;
@@ -156,7 +157,7 @@
         padding: 11px 3px;
     }
     .btnAction-custom {
-        font-size: 10px;
+        font-size: 11px;
         padding: 11px 3px;
     }
 
@@ -188,6 +189,15 @@
     .ClassTablePoules table {
         border-collapse: collapse;
         min-width: 600px; /* optionnel, selon ton contenu */
+    }
+
+    .fixed-FirstCol {
+        min-width: 160px;
+        max-width: 160px;
+    }
+
+    .ClassH1{
+        font-size: 19px;
     }
 }
 

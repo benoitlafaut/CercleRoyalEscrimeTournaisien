@@ -125,8 +125,8 @@ namespace CercleRoyalEscrimeTournaisien.Models
                 return PoulesDuJourList.Where(x => x.Poule == PouleSelected).GroupBy(x => x.TireurGuid).ToDictionary(g => g.Key, g => g.First().Tireur);               
             }
         }
-        public int ScoreTireur1 { get; set; }
-        public int ScoreTireur2 { get; set; }
+        public string ScoreTireur1 { get; set; }
+        public string ScoreTireur2 { get; set; }
         public string Tireur1Selected { get; set; }
         public string Tireur2Selected { get; set; }
         public ClassEnumScreen.EnumScreen ScreenIndex { get; set; }
@@ -199,7 +199,9 @@ namespace CercleRoyalEscrimeTournaisien.Models
         {
             get
             {
-                //return true;
+#if DEBUG
+                return true;
+#endif
                 return DateDAujourdhui.ToString("ddMMyyyy") == DateTime.Now.ToString("ddMMyyyy");
             }
         }
@@ -258,6 +260,9 @@ namespace CercleRoyalEscrimeTournaisien.Models
         {
             get
             {
+#if DEBUG
+                return true;
+#endif
                 return DateDuJourOnlyDayLabel.ToLower() == "mercredi" || DateDuJourOnlyDayLabel.ToLower() == "vendredi" || DateDuJourOnlyDayLabel.ToLower() == "dimanche";
             }
         }

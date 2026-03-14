@@ -135,8 +135,7 @@ namespace CercleRoyalEscrimeTournaisien
 
             var path = Server.MapPath("/App_Data/Poules.accdb");
             string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
-            //OleDbConnection myConnection = new OleDbConnection(ConnectionString);
-
+            
             foreach (var score in newScores)
             {
 
@@ -166,44 +165,10 @@ namespace CercleRoyalEscrimeTournaisien
                         cmd.Parameters.AddWithValue("@param14", "0");
 
                         using (var reader = cmd.ExecuteReader())
-                        {
-                            //while (reader.Read())
-                            //{
-                            //    string poule = (string)reader["Poule"];
-                            //    string descriptionDeLaPoule = (string)reader["DescriptionDeLaPoule"];
-                            //    PoulesList.Add(new ClassPoule()
-                            //    {
-                            //        Poule = poule,
-                            //        DescriptionDeLaPoule = descriptionDeLaPoule
-                            //    });
-                            //}
+                        {                           
                         }
                     }
                 }
-
-                //string mySelectQuery2 = "INSERT INTO TableRésultatsDesEliminationsDirectes " +
-                //       "(Poule, Tireur1Guid,Tireur2Guid,DateDeLaPoule," +
-                //       "ScoreDuTireur1,ScoreDuTireur2, Round, IndexTireur1, IndexTireur2, tireur1Name,tireur2Name,ScoreDejaIntroduit) " +
-                //       "Values (@param1, @param2,@param3,@param4,@param7,@param8,@param9,@param10,@param11,@param12,@param13,@param14)";
-
-                //OleDbCommand myCommand2 = new OleDbCommand(mySelectQuery2, myConnection);
-
-                //myCommand2.Parameters.AddWithValue("@param1", pouleSelected);
-                //myCommand2.Parameters.AddWithValue("@param2", score.Tireur1Guid.ToString().TrimEnd());
-                //myCommand2.Parameters.AddWithValue("@param3", score.Tireur2Guid.ToString().TrimEnd());
-                //myCommand2.Parameters.AddWithValue("@param4", dateDuJourWithoutDay);
-                //myCommand2.Parameters.AddWithValue("@param7", 0);
-                //myCommand2.Parameters.AddWithValue("@param8", 0);
-                //myCommand2.Parameters.AddWithValue("@param9", score.Round);
-                //myCommand2.Parameters.AddWithValue("@param10", score.IndexTireur1);
-                //myCommand2.Parameters.AddWithValue("@param11", score.IndexTireur2);
-                //myCommand2.Parameters.AddWithValue("@param12", score.Tireur1Name);
-                //myCommand2.Parameters.AddWithValue("@param13", score.Tireur2Name);
-                //myCommand2.Parameters.AddWithValue("@param14", "0");
-
-                //myCommand2.Connection.Open();
-                //OleDbDataReader myReader2 = myCommand2.ExecuteReader(CommandBehavior.CloseConnection);
-                //myCommand2.Connection.Close();
             }
 
             return Json(new { redirectUrl = Url.Action("Poules", "Poules") });
@@ -293,13 +258,6 @@ namespace CercleRoyalEscrimeTournaisien
                             }
                         }
                     }
-
-
-                    //OleDbConnection myConnection = new OleDbConnection(ConnectionString);
-                    //OleDbCommand myCommand = new OleDbCommand(mySelectQuery, myConnection);
-                    //myCommand.Connection.Open();
-                    //OleDbDataReader myReader = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-                    //myCommand.Connection.Close();
                 }                  
             }
 
@@ -337,24 +295,6 @@ namespace CercleRoyalEscrimeTournaisien
                 }
             }
 
-            //OleDbConnection myConnection = new OleDbConnection(ConnectionString);
-            //OleDbCommand myCommand = new OleDbCommand(mySelectQuery, myConnection);
-
-            //myCommand.Parameters.AddWithValue("?", myRequestEliminationDirecteToSaveInPoule.InputScoreTireur1Guid > myRequestEliminationDirecteToSaveInPoule.InputScoreTireur2Guid ? "1" : "0");
-            //myCommand.Parameters.AddWithValue("?", myRequestEliminationDirecteToSaveInPoule.InputScoreTireur2Guid > myRequestEliminationDirecteToSaveInPoule.InputScoreTireur1Guid ? "1" : "0");
-            //myCommand.Parameters.AddWithValue("?", myRequestEliminationDirecteToSaveInPoule.InputScoreTireur1Guid);
-            //myCommand.Parameters.AddWithValue("?", myRequestEliminationDirecteToSaveInPoule.InputScoreTireur2Guid);
-            //myCommand.Parameters.AddWithValue("?", "1");
-            //myCommand.Parameters.AddWithValue("?", myRequestEliminationDirecteToSaveInPoule.DateDuJourWithoutDay);
-            //myCommand.Parameters.AddWithValue("?", myRequestEliminationDirecteToSaveInPoule.PouleSelected);
-            //myCommand.Parameters.AddWithValue("?", myRequestEliminationDirecteToSaveInPoule.Tireur1Guid.ToString().TrimEnd());
-            //myCommand.Parameters.AddWithValue("?", myRequestEliminationDirecteToSaveInPoule.Tireur2Guid.ToString().TrimEnd());
-
-            //myCommand.Connection.Open();
-
-            //OleDbDataReader myReader = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-            //myCommand.Connection.Close();
-
             return Json(new { redirectUrl = Url.Action("ChangeRoundPourShowEliminationsDirectes", "Poules", new { roundSelected = myRequestEliminationDirecteToSaveInPoule.Round, PouleSelected = myRequestEliminationDirecteToSaveInPoule.PouleSelected }) });
         }
         [HttpPost]
@@ -383,21 +323,6 @@ namespace CercleRoyalEscrimeTournaisien
                 }
             }
 
-            //OleDbConnection myConnection = new OleDbConnection(ConnectionString);
-            //OleDbCommand myCommandDelete1 = new OleDbCommand(mySelectQueryDelete1, myConnection);
-
-            //myCommandDelete1.Parameters.AddWithValue("@t1", myRequestScoreToSaveInPoule.Tireur1Guid.ToString().TrimEnd());
-            //myCommandDelete1.Parameters.AddWithValue("@t2", myRequestScoreToSaveInPoule.Tireur2Guid.ToString().TrimEnd());
-            //myCommandDelete1.Parameters.AddWithValue("@poule", myRequestScoreToSaveInPoule.PouleSelected);
-
-            //myCommandDelete1.Connection.Open();
-            //int rowsDelete1 = myCommandDelete1.ExecuteNonQuery();
-            //if (rowsDelete1 != 0)
-            //{
-            //    myCommandDelete1.ExecuteReader(CommandBehavior.CloseConnection);
-            //}
-            //myCommandDelete1.Connection.Close();
-
             string mySelectQueryDelete2 = @" DELETE FROM TableRésultatsDesPoules WHERE RTRIM(Tireur2Guid) = @t1 AND RTRIM(Tireur1Guid) = @t2 AND Poule = @poule";
 
             using (var conn = new OleDbConnection(ConnectionString))
@@ -415,21 +340,6 @@ namespace CercleRoyalEscrimeTournaisien
                     }
                 }
             }
-
-            //OleDbCommand myCommandDelete2 = new OleDbCommand(mySelectQueryDelete2, myConnection);
-
-            //myCommandDelete2.Parameters.AddWithValue("@t1", myRequestScoreToSaveInPoule.Tireur1Guid.ToString().TrimEnd());
-            //myCommandDelete2.Parameters.AddWithValue("@t2", myRequestScoreToSaveInPoule.Tireur2Guid.ToString().TrimEnd());
-            //myCommandDelete2.Parameters.AddWithValue("@poule", myRequestScoreToSaveInPoule.PouleSelected);
-
-            //myCommandDelete2.Connection.Open();
-            //int rowsDelete2 = myCommandDelete2.ExecuteNonQuery();
-            //if (rowsDelete2 != 0)
-            //{
-            //    myCommandDelete2.ExecuteReader(CommandBehavior.CloseConnection);
-            //}
-
-            //myCommandDelete2.Connection.Close();
 
 
             string mySelectQuery2 = "INSERT INTO TableRésultatsDesPoules (Poule, Tireur1Guid,Tireur2Guid,DateDeLaPoule ,VictoireOuDéfaiteDuTireur1,VictoireOuDéfaiteDuTireur2,ScoreDuTireur1,ScoreDuTireur2) " +
@@ -455,10 +365,6 @@ namespace CercleRoyalEscrimeTournaisien
             }
 
 
-            //OleDbCommand myCommand2 = new OleDbCommand(mySelectQuery2, myConnection);
-            //myCommand2.Connection.Open();
-            //OleDbDataReader myReader2 = myCommand2.ExecuteReader(CommandBehavior.CloseConnection);
-            //myCommand2.Connection.Close();
 
 
             return Json(new { redirectUrl = Url.Action("AfficherLesPoules", "Poules") });            
@@ -553,25 +459,6 @@ namespace CercleRoyalEscrimeTournaisien
                             }
                         }
                     }
-
-                    //OleDbCommand myCommand2 = new OleDbCommand(mySelectQuery2, myConnection);
-
-                    //myCommand2.Parameters.AddWithValue("@param1", round.PouleSelected);
-                    //myCommand2.Parameters.AddWithValue("@param2", round.Tireur1Guid.ToString().TrimEnd());
-                    //myCommand2.Parameters.AddWithValue("@param3", round.Tireur2Guid.ToString().TrimEnd());
-                    //myCommand2.Parameters.AddWithValue("@param4", round.DateDuJourWithoutDay);
-                    //myCommand2.Parameters.AddWithValue("@param7", scoreDuTireur1);
-                    //myCommand2.Parameters.AddWithValue("@param8", scoreDuTireur2);
-                    //myCommand2.Parameters.AddWithValue("@param9", round.Round);
-                    //myCommand2.Parameters.AddWithValue("@param10", round.IndexTireur1);
-                    //myCommand2.Parameters.AddWithValue("@param11", round.IndexTireur2);
-                    //myCommand2.Parameters.AddWithValue("@param12", round.Tireur1Name);
-                    //myCommand2.Parameters.AddWithValue("@param13", round.Tireur2Name);
-                    //myCommand2.Parameters.AddWithValue("@param14", scoreDejaIntroduit);
-
-                    //myCommand2.Connection.Open();
-                    //OleDbDataReader myReader2 = myCommand2.ExecuteReader(CommandBehavior.CloseConnection);
-                    //myCommand2.Connection.Close();
                 }
                 else
                 {
@@ -606,27 +493,6 @@ namespace CercleRoyalEscrimeTournaisien
                             }
                         }
                     }
-
-                    //OleDbCommand myCommand2 = new OleDbCommand(mySelectQuery2, myConnection);
-
-                    //myCommand2.Parameters.AddWithValue("@param1", round.PouleSelected);
-                    //myCommand2.Parameters.AddWithValue("@param2", round.Tireur1Guid.ToString().TrimEnd());
-                    //myCommand2.Parameters.AddWithValue("@param3", round.Tireur2Guid.ToString().TrimEnd());
-                    //myCommand2.Parameters.AddWithValue("@param4", round.DateDuJourWithoutDay);
-                    //myCommand2.Parameters.AddWithValue("@param5", victoireOuDéfaiteDuTireur1);
-                    //myCommand2.Parameters.AddWithValue("@param6", victoireOuDéfaiteDuTireur2);
-                    //myCommand2.Parameters.AddWithValue("@param7", scoreDuTireur1);
-                    //myCommand2.Parameters.AddWithValue("@param8", scoreDuTireur2);
-                    //myCommand2.Parameters.AddWithValue("@param9", round.Round);
-                    //myCommand2.Parameters.AddWithValue("@param10", round.IndexTireur1);
-                    //myCommand2.Parameters.AddWithValue("@param11", round.IndexTireur2);
-                    //myCommand2.Parameters.AddWithValue("@param12", round.Tireur1Name);
-                    //myCommand2.Parameters.AddWithValue("@param13", round.Tireur2Name);
-                    //myCommand2.Parameters.AddWithValue("@param14", scoreDejaIntroduit);
-
-                    //myCommand2.Connection.Open();
-                    //OleDbDataReader myReader2 = myCommand2.ExecuteReader(CommandBehavior.CloseConnection);
-                    //myCommand2.Connection.Close();
                 }
             }
 
@@ -673,17 +539,6 @@ namespace CercleRoyalEscrimeTournaisien
                 }
             }
 
-            //OleDbConnection myConnection = new OleDbConnection(ConnectionString);
-            //OleDbCommand myCommand = new OleDbCommand(mySelectQuery, myConnection);
-            //myCommand.Connection.Open();
-            //OleDbDataReader myReader = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-            //bool existsRecord = false;
-            //while (myReader.Read())
-            //{
-            //    existsRecord = true;
-            //    break;
-            //}
-            //myCommand.Connection.Close();
             return existsRecord;
         }
 

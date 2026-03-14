@@ -22,28 +22,28 @@
     @switch (Model.ScreenIndex)
     {
         case ClassEnumScreen.EnumScreen.MenuPrincipal:
-            <label style="display: inline-flex;" class="ClassFontSizeTitre ClassDecorationUnderline">Menu principal</label>
+            <label style="display: inline-flex;" class="ClassFontSizeTitre ">Menu principal</label>
             <div style="margin-left:40px;">
 
                 @if (Model.IsDateDAujourdhuiEqualsDateNow && Model.IsDayEscrime)
                 {
                     <div class="ClassMarginTopAndBottom">
-                        <a onclick="$.startLoading();" href="@Url.Action("AjouterTireurAUnePoule", "Poules")" class="btn-custom">Ajouter un tireur à une poule</a>
+                        <a onclick="$.startLoading();" href="@Url.Action("AjouterTireurAUnePoule", "Poules")" class="btn-custom">&nbsp;&nbsp;Ajouter un tireur à une poule&nbsp;&nbsp;</a>
                     </div>
 
                     <div class="ClassMarginTopAndBottom">
-                        <a onclick="$.startLoading();" href="@Url.Action("AjouterDesScores", "Poules")" class="btn-custom">Ajouter un score à une poule</a>
+                        <a onclick="$.startLoading();" href="@Url.Action("AjouterDesScores", "Poules")" class="btn-custom">&nbsp;&nbsp;Ajouter un score à une poule&nbsp;&nbsp;</a>
                     </div>
                 }
 
                 <div class="ClassMarginTopAndBottom">
-                    <a onclick="$.startLoading();" href="@Url.Action("AfficherLesPoules", "Poules")" class="btn-custom">Afficher les poules</a>
+                    <a onclick="$.startLoading();" href="@Url.Action("AfficherLesPoules", "Poules")" class="btn-custom">&nbsp;&nbsp;Afficher les poules&nbsp;&nbsp;</a>
                 </div>
                 <div class="ClassMarginTopAndBottom">
-                    <a onclick="$.startLoading();" href="@Url.Action("AfficherLesEliminationsDirectes", "Poules")" class="btn-custom">Afficher les éliminations directes</a>
+                    <a onclick="$.startLoading();" href="@Url.Action("AfficherLesEliminationsDirectes", "Poules")" class="btn-custom">&nbsp;&nbsp;Afficher les éliminations directes&nbsp;&nbsp;</a>
                 </div>
                 <div class="ClassMarginTopAndBottom">
-                    <a onclick="$.startLoading();" href="@Url.Action("AfficherLesDatesPrecedentes", "Poules")" class="btn-custom">Afficher les résultats des jours antérieurs</a>
+                    <a onclick="$.startLoading();" href="@Url.Action("AfficherLesDatesPrecedentes", "Poules")" class="btn-custom">&nbsp;&nbsp;Afficher les résultats des jours antérieurs&nbsp;&nbsp;</a>
                 </div>
             </div>
 

@@ -5,16 +5,18 @@
     string displayRoundVisible = Model.RoundsList.Count == 0 ? "display:none" : "";
     List<CercleRoyalEscrimeTournaisien.Models.ClassScoreEliminationsDirectes> scores = Model.ScoresEliminitationsDirectesList.Where(x => x.PouleSelected == Model.PouleSelected && x.Round == Model.RoundSelected).ToList();
     bool isAllIntroduit = scores.Count > 0 && scores.All(x => x.ScoreDejaIntroduit);
+
+    IEnumerable<SelectListItem> GetNumbersList = Model.PouleSelected == "Poule 1" ?
+    new SelectList(new List<string> { "", "0", "1", "2", "3", "4","5","6","7","8","9","10" }) : new SelectList(new List<string> { "", "0", "1", "2", "3", "4", "5","6","7","8","9","10","11","12","13","14","15" });
 }
 
 <!DOCTYPE html>
 <html lang="fr">
 <body>
 
-    <h1 style="text-align:center;margin-bottom:30px;">Tableau d'élimination directe</h1>
+    <h1 style="text-align:center;margin-bottom:30px;" class="ClassH1">Tableau d'élimination directe</h1>
 
     <div class="ClassMarginBottom">
-        <span>Liste des poules: </span>
         <select onchange="$.startLoading();location.href='@Url.Action("ChangePoulePourShowEliminationsDirectes", "Poules")?pouleSelected=' + this.value" id="ddlPoulesEliminationsDirectes" class="form-control">
             <option value="">Sélectionnez la poule...</option>
             @foreach (var p in Model.PoulesList)
@@ -37,7 +39,6 @@
     </div>
 
     <div class="ClassMarginBottom" style="@displayRoundVisible">
-        <span>Liste des rounds: </span>
 
         <select onchange="$.startLoading();location.href='@Url.Action("ChangeRoundPourShowEliminationsDirectes", "Poules")?roundSelected=' + this.value + '&pouleSelected=' + $('#ddlPoulesEliminationsDirectes option:selected').val()" id="ddlRoundsEliminationsDirectes" class="form-control">
             <option value="">Sélectionnez le round...</option>
@@ -71,7 +72,7 @@
                 {
                     if (Model.IsDateDAujourdhuiEqualsDateNow && Model.IsDayEscrime)
                     {
-                        @Html.TextBoxFor(x => x.Score, new { @class = "ClassMaxWidth form-control", @id = "inputScore_" + rencontre.Tireur1Guid })
+                        @Html.DropDownList("Score", GetNumbersList, new { @class = "ClassMaxWidth form-control dropdown", @id = "inputScore_" + rencontre.Tireur1Guid })
                     }
                 }
             </div>
@@ -81,25 +82,25 @@
                 if (Model.IsDateDAujourdhuiEqualsDateNow && Model.IsDayEscrime)
                 {
                     <div class="">
-                        <a style="margin-left:150px;" href="#" onclick="AddScoreEliminationDirecte('@Model.DateDuJourWithoutDayLabel','@Model.PouleSelected','@rencontre.Round','@rencontre.Tireur1Guid','@rencontre.Tireur2Guid','inputScore_' + '@rencontre.Tireur1Guid','inputScore_' + '@rencontre.Tireur2Guid'); ">Sauver score</a>
+                        <a style="margin-left:160px;" href="#" onclick="AddScoreEliminationDirecte('@Model.DateDuJourWithoutDayLabel','@Model.PouleSelected','@rencontre.Round','@rencontre.Tireur1Guid','@rencontre.Tireur2Guid','inputScore_' + '@rencontre.Tireur1Guid','inputScore_' + '@rencontre.Tireur2Guid'); ">Sauver score</a>
                     </div>
                 }
             }
 
-            <div style="display: flex;">
-                <span class="ClassSpanMinWidthFixed">@tireur2Name</span>
-                @if (rencontre.ScoreDejaIntroduit)
+        <div style="display: flex;">
+            <span class="ClassSpanMinWidthFixed">@tireur2Name</span>
+            @if (rencontre.ScoreDejaIntroduit)
+            {
+                <span style="margin-right: 20px; min-width: 50px;">@rencontre.ScoreDuTireur2</span>
+            }
+            else
+            {
+                if (Model.IsDateDAujourdhuiEqualsDateNow && Model.IsDayEscrime)
                 {
-                    <span style="margin-right: 20px; min-width: 50px;">@rencontre.ScoreDuTireur2</span>
+                    @Html.DropDownList("Score", GetNumbersList, new { @class = "ClassMaxWidth form-control dropdown", @id = "inputScore_" + rencontre.Tireur2Guid })
                 }
-                else
-                {
-                    if (Model.IsDateDAujourdhuiEqualsDateNow && Model.IsDayEscrime)
-                    {
-                        @Html.TextBoxFor(x => x.Score, new { @class = "ClassMaxWidth form-control", @id = "inputScore_" + rencontre.Tireur2Guid })
-                    }
-                }
-            </div>
+            }
+        </div>
         </div>
     }
 
@@ -120,7 +121,7 @@
 </html>
 
 <div class="ClassMarginTopAndBottom">
-    <a onclick="$.startLoading();" href="@Url.Action("Poules", "Poules")" class="btn-custom">Retourner au menu principal</a>
+    <a onclick="$.startLoading();" href="@Url.Action("Poules", "Poules")" class="btn-custom">&nbsp;&nbsp;Retourner au menu principal&nbsp;&nbsp;</a>
 </div>
 
 <script>
