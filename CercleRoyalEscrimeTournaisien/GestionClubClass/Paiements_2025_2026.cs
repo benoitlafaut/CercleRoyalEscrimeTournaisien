@@ -1542,13 +1542,13 @@ namespace WebApplication1.Models
                     IsCotisationAnnuelle = false,
                     IsCotisationCarte1 = true,
                     IsCotisationCarte2 = true,
-                    IsCotisationCarte3 = false,
+                    IsCotisationCarte3 = true,
                     IsCotisationCarte4 = false,
                     IsCotisationEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { "95 euros", "75 euros", "50 euros" },
+                    PaiementsEffectues = new List<string>() { "95 euros", "75 euros", "50 euros", "50 euros" },
 
                     SeancesGratuites = new List<DateTime>()
                     {
@@ -1850,7 +1850,7 @@ namespace WebApplication1.Models
                     Periode = period,
                     IsCotisationAnnuelle = false,
                     IsCotisationCarte1 = true,
-                    IsCotisationCarte2 = false,
+                    IsCotisationCarte2 = true,
                     IsChaussettesPayéesEnOrdre = true,
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
@@ -1858,7 +1858,7 @@ namespace WebApplication1.Models
                     IsCotisationEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { "50 euros", "45 euros", "75 euros" },
+                    PaiementsEffectues = new List<string>() { "50 euros", "45 euros", "75 euros", "50 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                     },
@@ -2253,14 +2253,14 @@ namespace WebApplication1.Models
                     IsCotisationAnnuelle = false,
                     IsCotisationCarte1 = true,
                     IsCotisationCarte2 = true,
-                    IsCotisationCarte3 = false,
+                    IsCotisationCarte3 = true,
                     IsCotisationCarte4 = false,
                     IsCotisationEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = false,
                     IsLocationMatérielEnOrdre = true,
                     IsChaussettesPayéesEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { "95 euros", "14 euros", "75 euros", "50 euros" },
+                    PaiementsEffectues = new List<string>() { "95 euros", "14 euros", "75 euros", "50 euros", "50 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,9,6),
