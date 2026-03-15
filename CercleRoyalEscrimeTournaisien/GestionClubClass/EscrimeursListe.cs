@@ -211,6 +211,7 @@ namespace WebApplication1.Models
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Motte_Sébastien(period, Membres);
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Lafaut_Benoît(period, Membres);
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Trovato_Simeon(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Barbaix_Gabriel(period, Membres);
         }
 
         #region Add_Paiements_2022_2023
@@ -355,6 +356,7 @@ namespace WebApplication1.Models
             paiements.Add_Paiements_Vercauteren_Delphine(period, Membres);
             paiements.Add_Paiements_Lafaut_Benoît(period, Membres);
             paiements.Add_Paiements_Trovato_Simeon(period, Membres);
+            paiements.Add_Paiements_Barbaix_Gabriel(period, Membres);
         }
     }
 }

@@ -33,7 +33,8 @@
             GwendalLecomte = 38,
             SolalSchrouf = 39,
             LucasVerheye = 40,
-            SiméonTrovato = 41
+            SiméonTrovato = 41,
+            GabrielBarbaix = 42
         }
     }
 }

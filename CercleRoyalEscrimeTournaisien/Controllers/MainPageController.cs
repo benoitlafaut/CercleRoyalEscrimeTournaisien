@@ -265,7 +265,7 @@ namespace CercleRoyalEscrimeTournaisien
 
                 myConnection.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -426,6 +426,8 @@ namespace CercleRoyalEscrimeTournaisien
                     return passwordSelectionne.ToUpper() == GuidConstantes.GuidLucasVerheye.ToString().ToUpper();
                 case IndexTireurConstantes.TireurIndex.SiméonTrovato:
                     return passwordSelectionne.ToUpper() == GuidConstantes.GuidSiméonTrovato.ToString().ToUpper();
+                case IndexTireurConstantes.TireurIndex.GabrielBarbaix:
+                    return passwordSelectionne.ToUpper() == GuidConstantes.GuidGabrielBarbaix.ToString().ToUpper();
                 default:
                     return false;
             }
