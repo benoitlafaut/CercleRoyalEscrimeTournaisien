@@ -1,6 +1,6 @@
 ﻿@model CercleRoyalEscrimeTournaisien.Models.PoulesViewModel
 
-@foreach (var poule in Model.PoulesDuJourList.GroupBy(x => x.Poule))
+@foreach (var poule in Model.PoulesDuJourList.GroupBy(x => x.Poule).OrderBy(y=>y.Key))
 {
     var tireurs = poule.ToList();
     int n = tireurs.Count;

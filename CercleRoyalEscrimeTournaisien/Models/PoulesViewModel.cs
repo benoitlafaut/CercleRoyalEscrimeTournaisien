@@ -482,6 +482,11 @@ namespace CercleRoyalEscrimeTournaisien.Models
         }
         private int GetAgeByDateDeNaissance(DateTime dateNaissance)
         {
+            if (dateNaissance.ToString("dd/MM/yyyy") == DateTime.MaxValue.ToString("dd/MM/yyyy"))
+            {
+                return 0;
+            }
+
             var today = DateTime.Today;
             int age = today.Year - dateNaissance.Year;
 
