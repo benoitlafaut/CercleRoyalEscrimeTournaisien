@@ -735,6 +735,25 @@ namespace WebApplication1.Models
                    FicheSignaletiqueUrl = "",
                };
         }
+        public void Add_FichesSignalétiques_Duthye_Esteban(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidEstebanDuthye && x.Période == period))
+            {
+                return;
+            }
+
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidEstebanDuthye && x.Période == period).Signaletique =
+               new Signaletique()
+               {
+                   Categorie = ListGuidTireur.SearchCategorie(2003),
+                   DateDeNaissance = new DateTime(2003, 09, 15),
+                   Email = new List<string>() { "duthyeesteban@gmail.com" },
+                   NomMaman = "",
+                   NomPapa = "",
+                   Telephone = new List<string>() { "0470/277896" },
+                   FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Duthye_Esteban.pdf",
+               };
+        }
         public void Add_FichesSignalétiques_Mass_Elodie(string period, List<MembreData> Membres)
         {
             if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidElodieMass && x.Période == period))
