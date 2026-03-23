@@ -1,6 +1,6 @@
 ﻿@model CercleRoyalEscrimeTournaisien.Models.PoulesViewModel
 
-@foreach (var poule in Model.PoulesDuJourList.GroupBy(x => x.Poule).OrderBy(y=>y.Key))
+@foreach (var poule in Model.PoulesDuJourList.GroupBy(x => x.Poule).OrderBy(y => y.Key))
 {
     var tireurs = poule.ToList();
     int n = tireurs.Count;
@@ -125,14 +125,16 @@
             </ul>
         }
 
-
-        if (NombreDeMatchsEffectuesAuTotal == NombreDeMatchsCalculés)
+        if (Model.IsDateDAujourdhuiEqualsDateNow && Model.IsDayEscrime)
         {
-            if (!Model.ExistEliminationsDirectes(Model.DateDuJourWithoutDayLabel, poule.Key))
+            if (NombreDeMatchsEffectuesAuTotal == NombreDeMatchsCalculés)
             {
-                <div class="ClassMarginTopAndBottom">
-                    <a href="#" onclick="$.startLoading();CalculEliminatoires('@namePoule', '@poule.Key'); " class="btnAction-custom">&nbsp;&nbsp;Cliquez ici pour afficher les éliminations directes.&nbsp;&nbsp;</a>
-                </div>
+                if (!Model.ExistEliminationsDirectes(Model.DateDuJourWithoutDayLabel, poule.Key))
+                {
+                    <div class="ClassMarginTopAndBottom">
+                        <a href="#" onclick="$.startLoading();CalculEliminatoires('@namePoule', '@poule.Key'); " class="btnAction-custom">&nbsp;&nbsp;Cliquez ici pour afficher les éliminations directes.&nbsp;&nbsp;</a>
+                    </div>
+                }
             }
         }
     }
