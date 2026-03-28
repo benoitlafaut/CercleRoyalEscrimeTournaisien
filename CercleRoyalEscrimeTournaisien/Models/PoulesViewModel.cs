@@ -169,6 +169,25 @@ namespace CercleRoyalEscrimeTournaisien.Models
                 return string.Empty;
             } 
         }
+        public int GetQuestionMeneOuNon(Guid tireur1, Guid tireur2)
+        {
+            ClassScore score;
+
+            if (ScoresList.Any(x => x.Tireur1Guid == tireur1 && x.Tireur2Guid == tireur2))
+            {
+                score = ScoresList.First(x => x.Tireur1Guid == tireur1 && x.Tireur2Guid == tireur2);
+                return score.QuestionMeneOuNon;
+            }
+            else if (ScoresList.Any(x => x.Tireur1Guid == tireur2 && x.Tireur2Guid == tireur1))
+            {
+                score = ScoresList.First(x => x.Tireur1Guid == tireur2 && x.Tireur2Guid == tireur1);
+                return score.QuestionMeneOuNon;
+            }
+            else
+            {
+                return 3;
+            }
+        }
         public int GetAge(string tireur)
         {
             return AgesList.Where(x => x.Tireur == tireur).First().Age;
@@ -200,7 +219,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
             get
             {
 //#if DEBUG
-                return true;
+               // return true;
 //#endif
                 return DateDAujourdhui.ToString("ddMMyyyy") == DateTime.Now.ToString("ddMMyyyy");
             }
@@ -261,7 +280,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
             get
             {
 //#if DEBUG
-                return true;
+                //return true;
 //#endif
                 return DateDuJourOnlyDayLabel.ToLower() == "mercredi" || DateDuJourOnlyDayLabel.ToLower() == "vendredi" || DateDuJourOnlyDayLabel.ToLower() == "dimanche";
             }

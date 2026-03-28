@@ -53,6 +53,8 @@
                             int touchesRecuesTmp = 0;
                             int.TryParse(Model.GetScore(tireurs[j].TireurGuid, tireurs[i].TireurGuid), out touchesRecuesTmp);
 
+                            int questionMeneOuNonTmp = Model.GetQuestionMeneOuNon(tireurs[j].TireurGuid, tireurs[i].TireurGuid);
+
                             touchesDonnees += touchesDonneesTmp;
                             touchesRecues += touchesRecuesTmp;
 
@@ -76,7 +78,8 @@
                             }
                             else
                             {
-                                <td>
+                                string backColorRed = questionMeneOuNonTmp == 1 && Model.GetScoreVictoireOuDéfaite(tireurs[i].TireurGuid, tireurs[j].TireurGuid) == "D" ? "background-color:red;" : "";
+                                <td style="@backColorRed">
                                     <span>@Model.GetScoreVictoireOuDéfaite(tireurs[i].TireurGuid, tireurs[j].TireurGuid)</span>
                                     <span style="font-size:11px;">@Model.GetScore(tireurs[i].TireurGuid, tireurs[j].TireurGuid)</span>
                                 </td>

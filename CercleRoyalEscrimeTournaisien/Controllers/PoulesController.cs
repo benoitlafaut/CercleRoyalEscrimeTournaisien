@@ -226,7 +226,7 @@ namespace CercleRoyalEscrimeTournaisien
         {
             System.Web.HttpContext.Current.Session.Add("IsOtherDateThanDateDuJour", "true");
             System.Web.HttpContext.Current.Session.Add("OtherDate", dateDeLaPouleSelected);
-            return RedirectToAction("Poules", "poules");          
+            return RedirectToAction("AfficherLesPoules", "poules");          
         }
 
         [HttpPost]
