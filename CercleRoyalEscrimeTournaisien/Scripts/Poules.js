@@ -88,7 +88,12 @@ function AddScoreToTireursSelected() {
         alert("Vous devez indiquer qui est le vainqueur.");
         return;
     }
-   
+
+    if ($("input[name='choixMene']:checked").val() == undefined) {
+        alert("Vous devez indiquer si le perdant a mené pendant le match.");
+        return;
+    }
+
     
 
     if ($("#ScoreTireur1").val() == "" || $("#ScoreTireur2").val() == "") {
@@ -116,7 +121,8 @@ function AddScoreToTireursSelected() {
     var vainqueur = $("input[name='choixVictoire']:checked").val();
     var scoreTireur1 = $("#ScoreTireur1").val();
     var scoreTireur2 = $("#ScoreTireur2").val(); 
-    
+    var choixMene = $("input[name='choixMene']:checked").val();
+
     $.startLoading();
 
     $.ajax({
@@ -129,7 +135,8 @@ function AddScoreToTireursSelected() {
             tireur2Guid: tireur2Guid,
             vainqueur: vainqueur,
             scoreTireur1: scoreTireur1,
-            scoreTireur2: scoreTireur2
+            scoreTireur2: scoreTireur2,
+            questionMeneOuNon: choixMene
         }),
         success: function (data) {
             if (data.redirectUrl) { window.location.href = data.redirectUrl; }

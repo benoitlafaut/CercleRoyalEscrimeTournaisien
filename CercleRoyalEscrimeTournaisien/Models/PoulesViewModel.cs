@@ -200,7 +200,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
             get
             {
 //#if DEBUG
-//                return true;
+                return true;
 //#endif
                 return DateDAujourdhui.ToString("ddMMyyyy") == DateTime.Now.ToString("ddMMyyyy");
             }
@@ -261,7 +261,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
             get
             {
 //#if DEBUG
-//                return true;
+                return true;
 //#endif
                 return DateDuJourOnlyDayLabel.ToLower() == "mercredi" || DateDuJourOnlyDayLabel.ToLower() == "vendredi" || DateDuJourOnlyDayLabel.ToLower() == "dimanche";
             }
@@ -361,6 +361,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
                             bool victoireOuDéfaiteDuTireur2 = (bool)myReader["VictoireOuDéfaiteDuTireur2"];
                             int scoreDuTireur1 = (int)myReader["ScoreDuTireur1"];
                             int scoreDuTireur2 = (int)myReader["ScoreDuTireur2"];
+                            int questionMeneOuNon = (int)myReader["QuestionMeneOuNon"];
                             ScoresList.Add(new ClassScore()
                             {
                                 Poule = poule,
@@ -369,7 +370,8 @@ namespace CercleRoyalEscrimeTournaisien.Models
                                 VictoireOuDéfaiteDuTireur1 = victoireOuDéfaiteDuTireur1,
                                 VictoireOuDéfaiteDuTireur2 = victoireOuDéfaiteDuTireur2,
                                 ScoreDuTireur1 = scoreDuTireur1,
-                                ScoreDuTireur2 = scoreDuTireur2
+                                ScoreDuTireur2 = scoreDuTireur2,
+                                QuestionMeneOuNon = questionMeneOuNon
                             });
                         }
                     }
@@ -632,6 +634,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
         public bool VictoireOuDéfaiteDuTireur2 { get; set; }
         public int ScoreDuTireur1 { get; set; }
         public int ScoreDuTireur2 { get; set; }
+        public int QuestionMeneOuNon { get; set; }
     }
     public class ClassScoreEliminationsDirectes
     {

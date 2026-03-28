@@ -342,7 +342,7 @@ namespace CercleRoyalEscrimeTournaisien
             }
 
 
-            string mySelectQuery2 = "INSERT INTO TableRésultatsDesPoules (Poule, Tireur1Guid,Tireur2Guid,DateDeLaPoule ,VictoireOuDéfaiteDuTireur1,VictoireOuDéfaiteDuTireur2,ScoreDuTireur1,ScoreDuTireur2) " +
+            string mySelectQuery2 = "INSERT INTO TableRésultatsDesPoules (Poule, Tireur1Guid,Tireur2Guid,DateDeLaPoule ,VictoireOuDéfaiteDuTireur1,VictoireOuDéfaiteDuTireur2,ScoreDuTireur1,ScoreDuTireur2, QuestionMeneOuNon) " +
                 "Values ('" + myRequestScoreToSaveInPoule.PouleSelected + "','"
                 + myRequestScoreToSaveInPoule.Tireur1Guid.ToString().TrimEnd() + "','" 
                 + myRequestScoreToSaveInPoule.Tireur2Guid.ToString().TrimEnd() + "','" 
@@ -350,7 +350,8 @@ namespace CercleRoyalEscrimeTournaisien
                 + (myRequestScoreToSaveInPoule.Vainqueur == 1  ? "1" : "0") + "','" 
                 + (myRequestScoreToSaveInPoule.Vainqueur == 2  ? "1" : "0") + "','"
                 + myRequestScoreToSaveInPoule.ScoreTireur1 + "','"
-                + myRequestScoreToSaveInPoule.ScoreTireur2 + "')";
+                + myRequestScoreToSaveInPoule.ScoreTireur2 + "','"
+                + myRequestScoreToSaveInPoule.QuestionMeneOuNon + "')";
 
             using (var conn = new OleDbConnection(ConnectionString))
             {

@@ -10,5 +10,6 @@ namespace CercleRoyalEscrimeTournaisien.Models
         public int ScoreTireur2 { get; set; }
         public int Vainqueur { get; set; }
         public string PouleSelected { get; set; }
+        public int QuestionMeneOuNon { get; set; }
     }
 }

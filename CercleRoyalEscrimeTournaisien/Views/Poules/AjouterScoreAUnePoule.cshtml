@@ -4,63 +4,82 @@
     new SelectList(new List<string> { "", "0", "1", "2", "3", "4" }) : new SelectList(new List<string> { "", "0", "1", "2", "3", "4", "5" });
 }
 
-<label style="display: inline-flex;" class="ClassMarginBottom ClassFontSizeTitre ClassDecorationUnderline">Ajouter un score à une poule</label>
+<label style="display: inline-flex;" class="ClassMarginBottom ClassFontSizeTitre ">Ajouter un score à une poule</label>
 
-<table>
-    <thead>
-        <tr>
-            <th colspan="2" class="tableScoreAlign">
-                <select onchange="$.startLoading();location.href='@Url.Action("ChangePoulePourAjouterScore", "Poules")?pouleSelected=' + this.value" id="ddlPoulesScores" class="form-control">
-                    <option value=""> Sélectionnez la poule...</option>
-                    @foreach (var p in Model.PoulesList)
-                    {
-                        if (p.Poule == Model.PouleSelected)
-                        {
-                            <option selected value="@p.Poule"> @p.Poule (@p.DescriptionDeLaPoule) </option>
-                        }
-                        else
-                        {
-                            <option value="@p.Poule"> @p.Poule (@p.DescriptionDeLaPoule) </option>
-                        }
-                    }
-                </select>
-            </th>
+<div style="margin-bottom:15px;">
+    <select onchange="$.startLoading();location.href='@Url.Action("ChangePoulePourAjouterScore", "Poules")?pouleSelected=' + this.value" id="ddlPoulesScores" class="form-control">
+        <option value=""> Sélectionnez la poule...</option>
+        @foreach (var p in Model.PoulesList)
+        {
+            if (p.Poule == Model.PouleSelected)
+            {
+                <option selected value="@p.Poule"> @p.Poule (@p.DescriptionDeLaPoule) </option>
+            }
+            else
+            {
+                <option value="@p.Poule"> @p.Poule (@p.DescriptionDeLaPoule) </option>
+            }
+        }
+    </select>
+</div>
 
+<div style="display: flex; margin-bottom: 15px;">
+    <div>
+        <label style="margin-right:10px;">Tireur 1</label>
+    </div>
+    <div style="min-width:150px;">
+        @Html.DropDownListFor(model => model.Tireur1Selected, new SelectList(Model.ListTireursToAddScore, "Key", "Value", Model.Tireur1Selected), new { @class = "form-control", @style = "width:100px;" })
+    </div>
+    <div>
+        <label style="margin-right:10px;">Tireur 2</label>
+    </div>
+    <div>
+        @Html.DropDownListFor(model => model.Tireur2Selected, new SelectList(Model.ListTireursToAddScore, "Key", "Value", Model.Tireur2Selected), new { @class = "form-control", @style = "width:100px;" })
+    </div>
+</div>
 
-        </tr>
-        <tr>
-            <th class="tableScoreAlign">Tireur 1</th>
-            <th class="tableScoreAlign">Tireur 2</th>
-        </tr>
-    </thead>
-    <tbody>
+<div style="display: flex; margin-bottom: 15px;">
+    <div>
+        <label style="margin-right:10px;">Victoire :</label>
+    </div>
+    <div style="margin-right:15px;">
+        <input type="radio" name="choixVictoire" value="1">Tireur 1
+    </div>
+    <div>
+        <input type="radio" name="choixVictoire" value="2">Tireur 2
+    </div>
+</div>
 
-        <tr>
-            <td class="tableScoreAlign">
-                @Html.DropDownListFor(model => model.Tireur1Selected, new SelectList(Model.ListTireursToAddScore, "Key", "Value", Model.Tireur1Selected), new { @class = "form-control" })
-            </td>
-            <td class="tableScoreAlign">
-                @Html.DropDownListFor(model => model.Tireur2Selected, new SelectList(Model.ListTireursToAddScore, "Key", "Value", Model.Tireur2Selected), new { @class = "form-control" })
-            </td>
-        </tr>
-        <tr>
-            <td class="tableScoreAlign choixVictoire" data-value="1">
-                <input type="radio" name="choixVictoire" value="1">Victoire du tireur 1
-            </td>
-            <td class="tableScoreAlign choixVictoire" data-value="2">
-                <input type="radio" name="choixVictoire" value="2">Victoire du tireur 2
-            </td>
-        </tr>
-        <tr>
-            <td class="tableScoreAlign">
-                Score : @Html.DropDownList("ScoreTireur1", GetNumbersList, new { @class = "dropdown" })
-            </td>
-            <td class="tableScoreAlign">
-                Score : @Html.DropDownList("ScoreTireur2", GetNumbersList, new { @class = "dropdown" })
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div style="display: flex; margin-bottom: 15px;">
+    <div style="margin-right:25px;">
+        <label style="margin-right:10px;">Score :</label>
+    </div>
+    <div style="margin-right:15px;">
+        <label style="margin-right:10px;">Tireur 1</label>
+        @Html.DropDownList("ScoreTireur1", GetNumbersList, new { @class = "dropdown", @style = "width:40px;" })
+    </div>
+    <div>
+        <label style="margin-right:10px;">Tireur 2</label>
+        @Html.DropDownList("ScoreTireur2", GetNumbersList, new { @class = "dropdown", @style = "width:40px;" })
+    </div>
+</div>
+
+<div style="display: flex; margin-bottom: 5px;">
+    <div style="margin-right:25px;">
+        <label style="margin-right:10px;">Le tireur qui a perdu a-t-il mené ?</label>
+    </div>
+</div>
+<div style="display: flex; margin-bottom: 15px;">
+    <div style="margin-right:15px;">
+        <input type="radio" name="choixMene" value="1">Oui
+    </div>
+    <div style="margin-right:15px;">
+        <input type="radio" name="choixMene" value="2">Non
+    </div>
+    <div>
+        <input type="radio" name="choixMene" value="3">Je ne sais pas
+    </div>
+</div>
 
 <div class="ClassMarginTopAndBottom">
     <a href="#" onclick="AddScoreToTireursSelected(); " class="btnAction-custom">&nbsp;&nbsp;Ajouter 1 score aux tireurs sélectionnés&nbsp;&nbsp;</a>
@@ -72,7 +91,6 @@
 
 <script>
     document.querySelectorAll('.choixVictoire').forEach(td => {
-        td.addEventListener('click', function ()
-        { this.querySelector('input[type=radio]').checked = true; });
+        td.addEventListener('click', function () { this.querySelector('input[type=radio]').checked = true; });
     });
 </script>
