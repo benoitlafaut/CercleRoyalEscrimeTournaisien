@@ -15,6 +15,44 @@ namespace WebApplication1.Models
                 {
                                     new JourDePrésence()
                 {
+                  DatePrésence = new DateTime(2026,3,29),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAmadoSimon,
+                    GuidConstantes.GuidAmelLawrizy,
+                    GuidConstantes.GuidBenedictCosentini,
+                    GuidConstantes.GuidEliotPunchoo,
+                    GuidConstantes.GuidEstebanDuthye,
+                    GuidConstantes.GuidFélixTrannoy,
+                    GuidConstantes.GuidGabrielBarbaix,
+                    GuidConstantes.GuidGwendalLecomte,
+                    GuidConstantes.GuidJordanMestdagh,
+                    GuidConstantes.GuidLucasVerheye,
+                    GuidConstantes.GuidOscarDucrot,
+                    GuidConstantes.GuidThéoCucheval_Rasson,
+                  }
+                },
+                                    new JourDePrésence()
+                {
+                  DatePrésence = new DateTime(2026,3,27),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAmadoSimon,
+                    GuidConstantes.GuidAmelLawrizy,
+                    GuidConstantes.GuidEliotPunchoo,
+                    GuidConstantes.GuidEstebanDuthye,
+                    GuidConstantes.GuidFélixTrannoy,
+                    GuidConstantes.GuidLucasVerheye,
+                    GuidConstantes.GuidMaeVantroyen,
+                    GuidConstantes.GuidNoelMarieDransart,
+                    GuidConstantes.GuidRaedwaldVercouter,
+                    GuidConstantes.GuidRémiSoyez,
+                    GuidConstantes.GuidRomainBracquart,
+                    GuidConstantes.GuidThéoCucheval_Rasson,
+                  }
+                },
+                                    new JourDePrésence()
+                {
                   DatePrésence = new DateTime(2026,3,22),
                   EscrimeurId = new List<Guid>()
                   {
