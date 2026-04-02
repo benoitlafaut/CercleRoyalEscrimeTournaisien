@@ -1,5 +1,16 @@
 ﻿@model CercleRoyalEscrimeTournaisien.Models.PoulesViewModel
 
+<div>
+    <span style="color:red;">Les scores en rouge sont les matchs où la tireuse/le tireur qui a perdu menait pendant l'assaut.</span>
+</div>
+
+@if (Model.DateDuJourWithoutDayLabel == "01/04/2026")
+{
+    <div style="margin-top:15px;margin-bottom:15px;">
+        <span>Ce mercredi, 1 avril 2026, Tous les scores ne dépassaient pas les V1-D1. Car leur façon de gagner était de remporter leur match avec 3 points d'écart.</span>
+    </div>
+}
+
 @foreach (var poule in Model.PoulesDuJourList.GroupBy(x => x.Poule).OrderBy(y => y.Key))
 {
     var tireurs = poule.ToList();

@@ -318,7 +318,7 @@
     <Compile Include="Models\TireurModel\Elodie_NosCoursTireurSelectionneModel.cs" />
     <Compile Include="Models\TireurModel\GwendalLecomte_NosCoursTireurSelectionneModel.cs" />
     <Compile Include="Models\TireurModel\EstebanDuthye_NosCoursTireurSelectionneModel.cs" />
-    <Compile Include="Models\TireurModel\GabrielBarbaix_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\GabrielSegard_NosCoursTireurSelectionneModel.cs" />
     <Compile Include="Models\TireurModel\SiméonTrovato_NosCoursTireurSelectionneModel.cs" />
     <Compile Include="Models\TireurModel\RomainBracquart_NosCoursTireurSelectionneModel.cs" />
     <Compile Include="Models\TireurModel\LucasVerheye_NosCoursTireurSelectionneModel.cs" />
@@ -1248,6 +1248,15 @@
     <Content Include="FileToUpload\NosCours\l épée.pps" />
     <Content Include="FileToUpload\NosCours\Liste des catégories et répartition des tireurs.docx" />
     <Content Include="FileToUpload\NosCours\Quelques photos diverses.pps" />
+    <Content Include="FileToUpload\FichesSignaletiques\Ducrot_Oscar.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Duthye_Esteban.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Motte_Sébastien.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Rasson_Théo.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Schrouf_Solal.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Segard_Gabriel.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Trannoy_Régis.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Vercauteren_Delphine.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Soyez_Rémi.pdf" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Accueil.cshtml" />
     <Content Include="Views\Home\Accueil_Part_1.cshtml" />

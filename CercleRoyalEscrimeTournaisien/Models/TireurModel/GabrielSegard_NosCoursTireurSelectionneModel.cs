@@ -5,7 +5,7 @@ using WebApplication1.Models;
 namespace CercleRoyalEscrimeTournaisien
 {
     [Serializable]
-    public class GabrielBarbaix_NosCoursTireurSelectionneModel : NosCoursTireurSelectionneModel
+    public class GabrielSegard_NosCoursTireurSelectionneModel : NosCoursTireurSelectionneModel
     {
         private DateTime DateDeNaissance
         {
@@ -32,7 +32,7 @@ namespace CercleRoyalEscrimeTournaisien
                 };
             }
         }
-        public GabrielBarbaix_NosCoursTireurSelectionneModel(Tireur tireurSelectionne)  : base()
+        public GabrielSegard_NosCoursTireurSelectionneModel(Tireur tireurSelectionne)  : base()
         {
             this._tireurSelectionne  = tireurSelectionne;
         }

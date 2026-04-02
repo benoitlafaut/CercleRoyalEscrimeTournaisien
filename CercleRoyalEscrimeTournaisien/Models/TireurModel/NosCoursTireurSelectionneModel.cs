@@ -108,9 +108,9 @@ namespace CercleRoyalEscrimeTournaisien
                     case IndexTireurConstantes.TireurIndex.SiméonTrovato:
                         SiméonTrovato_NosCoursTireurSelectionneModel siméonTrovato_NosCoursTireurSelectionneModel = new SiméonTrovato_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return (siméonTrovato_NosCoursTireurSelectionneModel.Categorie);
-                    case IndexTireurConstantes.TireurIndex.GabrielBarbaix:
-                        GabrielBarbaix_NosCoursTireurSelectionneModel gabrielBarbaix_NosCoursTireurSelectionneModel = new GabrielBarbaix_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return (gabrielBarbaix_NosCoursTireurSelectionneModel.Categorie);
+                    case IndexTireurConstantes.TireurIndex.GabrielSegard:
+                        GabrielSegard_NosCoursTireurSelectionneModel gabrielSegard_NosCoursTireurSelectionneModel = new GabrielSegard_NosCoursTireurSelectionneModel(TireurSelectionne) { };
+                        return (gabrielSegard_NosCoursTireurSelectionneModel.Categorie);
                     case IndexTireurConstantes.TireurIndex.EstebanDuthye:
                         EstebanDuthye_NosCoursTireurSelectionneModel estebanDuthye_NosCoursTireurSelectionneModel = new EstebanDuthye_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return (estebanDuthye_NosCoursTireurSelectionneModel.Categorie);
@@ -749,9 +749,9 @@ namespace CercleRoyalEscrimeTournaisien
                     case IndexTireurConstantes.TireurIndex.SiméonTrovato:
                         SiméonTrovato_NosCoursTireurSelectionneModel siméonTrovato_NosCoursTireurSelectionneModel = new SiméonTrovato_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return TrierParDate(siméonTrovato_NosCoursTireurSelectionneModel.RemarquesParDateTireur);
-                    case IndexTireurConstantes.TireurIndex.GabrielBarbaix:
-                        GabrielBarbaix_NosCoursTireurSelectionneModel gabrielBarbaix_NosCoursTireurSelectionneModel = new GabrielBarbaix_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return TrierParDate(gabrielBarbaix_NosCoursTireurSelectionneModel.RemarquesParDateTireur);
+                    case IndexTireurConstantes.TireurIndex.GabrielSegard:
+                        GabrielSegard_NosCoursTireurSelectionneModel gabrielSegard_NosCoursTireurSelectionneModel = new GabrielSegard_NosCoursTireurSelectionneModel(TireurSelectionne) { };
+                        return TrierParDate(gabrielSegard_NosCoursTireurSelectionneModel.RemarquesParDateTireur);
                     case IndexTireurConstantes.TireurIndex.EstebanDuthye:
                        EstebanDuthye_NosCoursTireurSelectionneModel estebanDuthye_NosCoursTireurSelectionneModel = new EstebanDuthye_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return TrierParDate(estebanDuthye_NosCoursTireurSelectionneModel.RemarquesParDateTireur);
@@ -913,9 +913,9 @@ namespace CercleRoyalEscrimeTournaisien
                     case IndexTireurConstantes.TireurIndex.RomainBracquart:
                         RomainBracquart_NosCoursTireurSelectionneModel romainBracquart_NosCoursTireurSelectionneModel = new RomainBracquart_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return romainBracquart_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, y => y.Value);
-                    case IndexTireurConstantes.TireurIndex.GabrielBarbaix:
-                        GabrielBarbaix_NosCoursTireurSelectionneModel gabrielBarbaix_NosCoursTireurSelectionneModel = new GabrielBarbaix_NosCoursTireurSelectionneModel(TireurSelectionne) { };
-                        return gabrielBarbaix_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, y => y.Value);
+                    case IndexTireurConstantes.TireurIndex.GabrielSegard:
+                        GabrielSegard_NosCoursTireurSelectionneModel gabrielSegard_NosCoursTireurSelectionneModel = new GabrielSegard_NosCoursTireurSelectionneModel(TireurSelectionne) { };
+                        return gabrielSegard_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, y => y.Value);
                     case IndexTireurConstantes.TireurIndex.EstebanDuthye :
                         EstebanDuthye_NosCoursTireurSelectionneModel estebanDuthye_NosCoursTireurSelectionneModel = new EstebanDuthye_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return estebanDuthye_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, y => y.Value);

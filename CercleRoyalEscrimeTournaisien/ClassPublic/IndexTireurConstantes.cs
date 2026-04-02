@@ -34,8 +34,8 @@
             SolalSchrouf = 39,
             LucasVerheye = 40,
             SiméonTrovato = 41,
-            GabrielBarbaix = 42,
-                EstebanDuthye = 43
+            GabrielSegard = 42,
+            EstebanDuthye = 43
         }
     }
 }

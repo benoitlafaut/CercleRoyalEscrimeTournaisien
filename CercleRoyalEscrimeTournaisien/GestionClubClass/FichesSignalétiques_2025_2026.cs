@@ -286,7 +286,7 @@ namespace WebApplication1.Models
                    NomPapa = "Soyez Rudy",
                    NomMaman = "",
                    Telephone = new List<string>() { "" },
-                   FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/soyez_remi.pdf",
+                   FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Soyez_Rémi.pdf",
                };
         }      
       
@@ -716,23 +716,23 @@ namespace WebApplication1.Models
                    FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Trovato_Simeon.pdf",
                };
         }
-        public void Add_FichesSignalétiques_Barbaix_Gabriel(string period, List<MembreData> Membres)
+        public void Add_FichesSignalétiques_Segard_Gabriel(string period, List<MembreData> Membres)
         {
-            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidGabrielBarbaix && x.Période == period))
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidGabrielSegard && x.Période == period))
             {
                 return;
             }
 
-            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidGabrielBarbaix && x.Période == period).Signaletique =
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidGabrielSegard && x.Période == period).Signaletique =
                new Signaletique()
                {
-                   Categorie = Categorie.Inconnu,
-                   DateDeNaissance = new DateTime(9999, 12, 31),
+                   Categorie = ListGuidTireur.SearchCategorie(2012),
+                   DateDeNaissance = new DateTime(2012, 7, 9),
                    Email = new List<string>() { "barbaix.alison@gmail.com" },
                    NomMaman = "Barbaix Alison",
                    NomPapa = "",
-                   Telephone = new List<string>() { "" },
-                   FicheSignaletiqueUrl = "",
+                   Telephone = new List<string>() { "0491/102588","0474/922401" },
+                   FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Segard_Gabriel.pdf",
                };
         }
         public void Add_FichesSignalétiques_Duthye_Esteban(string period, List<MembreData> Membres)

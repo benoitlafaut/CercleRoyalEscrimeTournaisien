@@ -15,6 +15,24 @@ namespace WebApplication1.Models
                 {
                                     new JourDePrésence()
                 {
+                  DatePrésence = new DateTime(2026,4,1),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAmadoSimon,
+                    GuidConstantes.GuidAnaelleIvanov,
+                    GuidConstantes.GuidAuroreCarlier,
+                    GuidConstantes.GuidBenedictCosentini,
+                    GuidConstantes.GuidEliotPunchoo,
+                    GuidConstantes.GuidFélixTrannoy,
+                    GuidConstantes.GuidLiliMestdag,
+                    GuidConstantes.GuidMaeVantroyen,
+                    GuidConstantes.GuidMartinSiu,
+                    GuidConstantes.GuidRomainBracquart,
+                    GuidConstantes.GuidGabrielSegard
+                  }
+                },
+                                    new JourDePrésence()
+                {
                   DatePrésence = new DateTime(2026,3,29),
                   EscrimeurId = new List<Guid>()
                   {
@@ -24,7 +42,7 @@ namespace WebApplication1.Models
                     GuidConstantes.GuidEliotPunchoo,
                     GuidConstantes.GuidEstebanDuthye,
                     GuidConstantes.GuidFélixTrannoy,
-                    GuidConstantes.GuidGabrielBarbaix,
+                    GuidConstantes.GuidGabrielSegard,
                     GuidConstantes.GuidGwendalLecomte,
                     GuidConstantes.GuidJordanMestdagh,
                     GuidConstantes.GuidLucasVerheye,
@@ -60,7 +78,7 @@ namespace WebApplication1.Models
                     GuidConstantes.GuidEliotPunchoo,
                     GuidConstantes.GuidFabriceRazanajao,
                     GuidConstantes.GuidFélixTrannoy,
-                    GuidConstantes.GuidGabrielBarbaix,
+                    GuidConstantes.GuidGabrielSegard,
                     GuidConstantes.GuidLucasVerheye,
                     GuidConstantes.GuidMaeVantroyen,
                     GuidConstantes.GuidMartinSiu,
@@ -89,7 +107,7 @@ namespace WebApplication1.Models
                     GuidConstantes.GuidRebeccaVandy,
                     GuidConstantes.GuidRomainBracquart,
                     GuidConstantes.GuidSolalSchrouf,
-                    GuidConstantes.GuidGabrielBarbaix,
+                    GuidConstantes.GuidGabrielSegard,
                     GuidConstantes.GuidEstebanDuthye,
                   }
                 },
@@ -120,7 +138,7 @@ namespace WebApplication1.Models
                     GuidConstantes.GuidAmadoSimon,
                     GuidConstantes.GuidAmelLawrizy,
                     GuidConstantes.GuidBenedictCosentini,
-                    GuidConstantes.GuidGabrielBarbaix,
+                    GuidConstantes.GuidGabrielSegard,
                     GuidConstantes.GuidLucasVerheye,
                     GuidConstantes.GuidMaeVantroyen,
                     GuidConstantes.GuidMartinSiu,
@@ -1453,13 +1471,13 @@ namespace WebApplication1.Models
                     IsMatérielLoue = true
                 };
         }
-        public void Add_Paiements_Barbaix_Gabriel(string period, List<MembreData> Membres)
+        public void Add_Paiements_Segard_Gabriel(string period, List<MembreData> Membres)
         {
-            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidGabrielBarbaix && x.Période == period))
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidGabrielSegard && x.Période == period))
             {
                 return;
             }
-            Membres.Where(x => x.GuidId == GuidConstantes.GuidGabrielBarbaix && x.Période == period).FirstOrDefault().Paiement =
+            Membres.Where(x => x.GuidId == GuidConstantes.GuidGabrielSegard && x.Période == period).FirstOrDefault().Paiement =
                 new Paiement()
                 {
                     Periode = period,
@@ -1470,7 +1488,7 @@ namespace WebApplication1.Models
                     IsCotisationCarte4 = false,
                     IsCotisationEnOrdre = false,
                     IsLocationMatérielEnOrdre = false,
-                    IsFicheSignaletiqueEnOrdre = false,
+                    IsFicheSignaletiqueEnOrdre = true,
                     IsChaussettesPayéesEnOrdre = false,
 
                     PaiementsEffectues = new List<string>() { "" },
@@ -1492,17 +1510,17 @@ namespace WebApplication1.Models
                 new Paiement()
                 {
                     Periode = period,
-                    IsCotisationAnnuelle = false,
+                    IsCotisationAnnuelle = true,
                     IsCotisationCarte1 = false,
                     IsCotisationCarte2 = false,
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
-                    IsCotisationEnOrdre = false,
-                    IsLocationMatérielEnOrdre = false,
+                    IsCotisationEnOrdre = true,
+                    IsLocationMatérielEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = true,
-                    IsChaussettesPayéesEnOrdre = false,
+                    IsChaussettesPayéesEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { "" },
+                    PaiementsEffectues = new List<string>() { "179 euros" },
 
                     SeancesGratuites = new List<DateTime>()
                     {
@@ -1808,11 +1826,11 @@ namespace WebApplication1.Models
                 {
                     Periode = period,
                     IsCotisationAnnuelle = false,
-                    IsCotisationCarte1 = false,
+                    IsCotisationCarte1 = true,
                     IsCotisationCarte2 = false,
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
-                    IsCotisationEnOrdre = false,
+                    IsCotisationEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = true,
 
@@ -1834,11 +1852,11 @@ namespace WebApplication1.Models
                 {
                     Periode = period,
                     IsCotisationAnnuelle = false,
-                    IsCotisationCarte1 = false,
+                    IsCotisationCarte1 = true,
                     IsCotisationCarte2 = false,
                     IsCotisationCarte3 = false,
                     IsCotisationCarte4 = false,
-                    IsCotisationEnOrdre = false,
+                    IsCotisationEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = true,
 
