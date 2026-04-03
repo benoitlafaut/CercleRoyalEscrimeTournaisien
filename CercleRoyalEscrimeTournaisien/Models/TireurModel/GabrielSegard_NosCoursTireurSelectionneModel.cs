@@ -11,7 +11,7 @@ namespace CercleRoyalEscrimeTournaisien
         {
             get
             {
-                return new DateTime(2015,5, 4);
+                return new DateTime(2012,7, 9);
             }
         }
         public Categorie Categorie
