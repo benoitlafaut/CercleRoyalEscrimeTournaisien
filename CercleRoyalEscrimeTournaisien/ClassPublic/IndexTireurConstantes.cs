@@ -35,7 +35,8 @@
             LucasVerheye = 40,
             SiméonTrovato = 41,
             GabrielSegard = 42,
-            EstebanDuthye = 43
+            EstebanDuthye = 43,
+            JeanMarcCucheval = 44
         }
     }
 }

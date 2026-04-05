@@ -543,9 +543,26 @@ namespace WebApplication1.Models
                {
                    Categorie = ListGuidTireur.SearchCategorie(2016),
                    DateDeNaissance = new DateTime(2016, 11, 9),
-                   Email = new List<string>() { "jmcucheval@gmail.com","celinerasson79@gmail.com" },
+                   Email = new List<string>() { "jmcucheval@gmail.com", "celinerasson79@gmail.com" },
                    Telephone = new List<string>() { "0493191193", "0497071728" },
                    FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Rasson_Théo.pdf",
+               };
+        }
+        public void Add_FichesSignalétiques_Cucheval_JeanMarc(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidJeanMarcCucheval && x.Période == period))
+            {
+                return;
+            }
+
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidJeanMarcCucheval && x.Période == period).Signaletique =
+               new Signaletique()
+               {
+                   Categorie = ListGuidTireur.SearchCategorie(1978),
+                   DateDeNaissance = new DateTime(1978, 6, 3),
+                   Email = new List<string>() { "jmcucheval@gmail.com", "celinerasson79@gmail.com" },
+                   Telephone = new List<string>() { "0493191193", "0497071728" },
+                   FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Cucheval_JeanMarc.pdf",
                };
         }
         public void Add_FichesSignalétiques_Vercouter_Raedwald(string period, List<MembreData> Membres)

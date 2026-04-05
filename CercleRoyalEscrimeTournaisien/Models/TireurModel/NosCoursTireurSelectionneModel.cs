@@ -114,6 +114,9 @@ namespace CercleRoyalEscrimeTournaisien
                     case IndexTireurConstantes.TireurIndex.EstebanDuthye:
                         EstebanDuthye_NosCoursTireurSelectionneModel estebanDuthye_NosCoursTireurSelectionneModel = new EstebanDuthye_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return (estebanDuthye_NosCoursTireurSelectionneModel.Categorie);
+                    case IndexTireurConstantes.TireurIndex.JeanMarcCucheval:
+                        JeanMarcCucheval_NosCoursTireurSelectionneModel jeanMarcCucheval_NosCoursTireurSelectionneModel = new JeanMarcCucheval_NosCoursTireurSelectionneModel(TireurSelectionne) { };
+                        return (jeanMarcCucheval_NosCoursTireurSelectionneModel.Categorie);
                     default:
                         return Categorie.Inconnu;
                 }
@@ -755,6 +758,9 @@ namespace CercleRoyalEscrimeTournaisien
                     case IndexTireurConstantes.TireurIndex.EstebanDuthye:
                        EstebanDuthye_NosCoursTireurSelectionneModel estebanDuthye_NosCoursTireurSelectionneModel = new EstebanDuthye_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return TrierParDate(estebanDuthye_NosCoursTireurSelectionneModel.RemarquesParDateTireur);
+                    case IndexTireurConstantes.TireurIndex.JeanMarcCucheval:
+                        JeanMarcCucheval_NosCoursTireurSelectionneModel jeanMarcCucheval_NosCoursTireurSelectionneModel = new JeanMarcCucheval_NosCoursTireurSelectionneModel(TireurSelectionne) { };
+                        return TrierParDate(jeanMarcCucheval_NosCoursTireurSelectionneModel.RemarquesParDateTireur);
                     default:
                         return new List<RemarqueParDate>() { };
                 }               
@@ -919,6 +925,9 @@ namespace CercleRoyalEscrimeTournaisien
                     case IndexTireurConstantes.TireurIndex.EstebanDuthye :
                         EstebanDuthye_NosCoursTireurSelectionneModel estebanDuthye_NosCoursTireurSelectionneModel = new EstebanDuthye_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return estebanDuthye_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, y => y.Value);
+                    case IndexTireurConstantes.TireurIndex.JeanMarcCucheval:
+                        JeanMarcCucheval_NosCoursTireurSelectionneModel jeanMarcCucheval_NosCoursTireurSelectionneModel = new JeanMarcCucheval_NosCoursTireurSelectionneModel(TireurSelectionne) { };
+                        return jeanMarcCucheval_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, y => y.Value);
                     default:
                         return new Dictionary<string, string>() { };
                 }

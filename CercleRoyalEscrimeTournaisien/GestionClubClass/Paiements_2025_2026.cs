@@ -15,6 +15,43 @@ namespace WebApplication1.Models
                 {
                                     new JourDePrésence()
                 {
+                  DatePrésence = new DateTime(2026,4,5),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidEstebanDuthye,
+                    GuidConstantes.GuidFabriceRazanajao,
+                    GuidConstantes.GuidJordanMestdagh,
+                    GuidConstantes.GuidLucasVerheye,
+                    GuidConstantes.GuidOscarDucrot,
+                    GuidConstantes.GuidJeanMarcCucheval,
+                    GuidConstantes.GuidRaedwaldVercouter,
+                    GuidConstantes.GuidRebeccaVandy,
+                    GuidConstantes.GuidThéoCucheval_Rasson,
+                  }
+                },
+                                    new JourDePrésence()
+                {
+                  DatePrésence = new DateTime(2026,4,3),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAmelLawrizy,
+                    GuidConstantes.GuidAnaelleIvanov,
+                    GuidConstantes.GuidEliotPunchoo,
+                    GuidConstantes.GuidEstebanDuthye,
+                    GuidConstantes.GuidFabriceRazanajao,
+                    GuidConstantes.GuidFélixTrannoy,
+                    GuidConstantes.GuidGwendalLecomte,
+                    GuidConstantes.GuidLiliMestdag,
+                    GuidConstantes.GuidLucasVerheye,
+                    GuidConstantes.GuidMaeVantroyen,
+                    GuidConstantes.GuidMartinSiu,
+                    GuidConstantes.GuidOscarDucrot,
+                    GuidConstantes.GuidRaedwaldVercouter,
+                    GuidConstantes.GuidThéoCucheval_Rasson,
+                  }
+                },
+                                    new JourDePrésence()
+                {
                   DatePrésence = new DateTime(2026,4,1),
                   EscrimeurId = new List<Guid>()
                   {
@@ -1640,6 +1677,36 @@ namespace WebApplication1.Models
                     {
                         new DateTime(2025,9,12),
                         new DateTime(2025,9,14),
+                    },
+                    IsMatérielLoue = true
+                };
+        }
+        public void Add_Paiements_Cucheval_JeanMarc(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidJeanMarcCucheval && x.Période == period))
+            {
+                return;
+            }
+            Membres.Where(x => x.GuidId == GuidConstantes.GuidJeanMarcCucheval && x.Période == period).FirstOrDefault().Paiement =
+                new Paiement()
+                {
+                    Periode = period,
+                    IsCotisationAnnuelle = false,
+                    IsCotisationCarte1 = true,
+                    IsCotisationCarte2 = false,
+                    IsCotisationCarte3 = false,
+                    IsChaussettesPayéesEnOrdre = false,
+                    IsCotisationCarte4 = false,
+                    IsCotisationEnOrdre = true,
+                    IsLocationMatérielEnOrdre = false,
+                    IsFicheSignaletiqueEnOrdre = true,
+                    IsTeeShirtsPayéesEnOrdre = false,
+
+                    PaiementsEffectues = new List<string>() { "95 euros" },
+
+                    SeancesGratuites = new List<DateTime>()
+                    {
+                        new DateTime(2026,4,05)
                     },
                     IsMatérielLoue = true
                 };

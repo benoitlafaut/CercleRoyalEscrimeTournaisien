@@ -44,8 +44,14 @@
             <tbody>
                 @for (int i = 0; i < n; i++)
                 {
+                    string age = "(" + Model.GetAge(tireurs[i].Tireur) + ")";
+                    if (age == "(0)")
+                    {
+                        age = string.Empty;
+                    }
+
                     <tr>
-                        <td>@(i + 1). @tireurs[i].Tireur (@Model.GetAge(tireurs[i].Tireur))</td>
+                        <td>@(i + 1). @tireurs[i].Tireur @age</td>
                         @{
                             int NombreDeVictoires = 0;
                             int NombreDeMatchsEffectues = 0;

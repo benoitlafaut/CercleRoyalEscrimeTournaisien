@@ -49,6 +49,7 @@ namespace CercleRoyalEscrimeTournaisien
                 new Tireur() { UserNameIndex = TireurIndex.SiméonTrovato, UserName = "Siméon" },
                 new Tireur() { UserNameIndex = TireurIndex.GabrielSegard, UserName = "Gabriel" },
                 new Tireur() { UserNameIndex = TireurIndex.EstebanDuthye, UserName = "Esteban" },
+                new Tireur() { UserNameIndex = TireurIndex.JeanMarcCucheval, UserName = "Jean-Marc" },
             });            
 
             Tireurs = Tireurs.OrderBy(x => x.UserName).ToList();

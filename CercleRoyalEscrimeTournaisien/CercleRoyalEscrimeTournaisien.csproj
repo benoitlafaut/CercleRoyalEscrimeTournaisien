@@ -324,6 +324,7 @@
     <Compile Include="Models\TireurModel\LucasVerheye_NosCoursTireurSelectionneModel.cs" />
     <Compile Include="Models\TireurModel\OscarDucrot_NosCoursTireurSelectionneModel.cs" />
     <Compile Include="Models\TireurModel\SolalSchrouf_NosCoursTireurSelectionneModel.cs" />
+    <Compile Include="Models\TireurModel\JeanMarcCucheval_NosCoursTireurSelectionneModel.cs" />
     <Compile Include="Models\TireurModel\ToutTireur_NosCoursTireurSelectionneModel.cs" />
     <Compile Include="Models\TireurModel\Oscar_NosCoursTireurSelectionneModel.cs" />
     <Compile Include="Models\TireurModel\Fabrice_NosCoursTireurSelectionneModel.cs" />
@@ -1257,6 +1258,7 @@
     <Content Include="FileToUpload\FichesSignaletiques\Trannoy_Régis.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Vercauteren_Delphine.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Soyez_Rémi.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Cucheval_JeanMarc.pdf" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Accueil.cshtml" />
     <Content Include="Views\Home\Accueil_Part_1.cshtml" />

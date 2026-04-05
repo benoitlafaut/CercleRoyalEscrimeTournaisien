@@ -414,6 +414,8 @@ namespace CercleRoyalEscrimeTournaisien
                     return passwordSelectionne.ToUpper() == GuidConstantes.GuidBenedictCosentini.ToString().ToUpper();
                 case IndexTireurConstantes.TireurIndex.ThéoCuchevalRasson:
                     return passwordSelectionne.ToUpper() == GuidConstantes.GuidThéoCucheval_Rasson.ToString().ToUpper();
+                case IndexTireurConstantes.TireurIndex.JeanMarcCucheval:
+                    return passwordSelectionne.ToUpper() == GuidConstantes.GuidJeanMarcCucheval.ToString().ToUpper();
                 case IndexTireurConstantes.TireurIndex.OscarDucrot:
                     return passwordSelectionne.ToUpper() == GuidConstantes.GuidOscarDucrot.ToString().ToUpper();
                 case IndexTireurConstantes.TireurIndex.AmelLawrizy:
