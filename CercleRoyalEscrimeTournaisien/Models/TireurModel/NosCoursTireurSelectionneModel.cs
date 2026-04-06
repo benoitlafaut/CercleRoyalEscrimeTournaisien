@@ -153,6 +153,22 @@ namespace CercleRoyalEscrimeTournaisien
                 List<RemarqueParDate> remarquesPourToutesLesPoules = new List<RemarqueParDate>() { };
                 remarquesPourToutesLesPoules.AddRange(
                     new List<RemarqueParDate>() {
+                          new RemarqueParDate()
+                    {
+                        DateRemarque = new DateTime(2026, 4, 6),
+                        Arme = TypeArme.Sabre,
+                        IsSwitchToShowDossierPhotos = true,
+                        SwitchToDossierPhotosGuid = GuidConstantesImages.GuidMontageEpee,
+                        Titre = "Le montage d'une épée.",
+                        RemarquesData = new List<RemarqueData>()
+                        {
+                            new RemarqueData()
+                            {
+                                Remarque = "",
+                                     PointPositifNégatifObservation = PointPositifNégatifObservation.Observation,
+                           }
+                        }
+                    },
                          new RemarqueParDate()
                     {
                         DateRemarque = new DateTime(2026, 3, 11),

@@ -77,5 +77,6 @@ namespace WebApplication1.Models
     {
         public static readonly Guid GuidRonseFévrier2026 = new Guid("2259ec79-02fb-441b-87f7-f95dc92493bd");
         public static readonly Guid GuidArbitrage = new Guid("2259ec79-02fb-441b-87f7-f95dc92493be");
+        public static readonly Guid GuidMontageEpee = new Guid("2259ec79-02fb-441b-87f7-f95dc92493bf");
     }
 }

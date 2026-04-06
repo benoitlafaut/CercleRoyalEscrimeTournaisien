@@ -43,6 +43,8 @@ namespace CercleRoyalEscrimeTournaisien.Models
                     return "/home/photos/RonseFévrier2026";
                 case var g when g == GuidConstantesImages.GuidArbitrage:
                     return "/home/photos/Arbitrage";
+                case var g when g == GuidConstantesImages.GuidMontageEpee:
+                    return "/home/photos/MontageEpee";
                 default:
                     return string.Empty;
             }
