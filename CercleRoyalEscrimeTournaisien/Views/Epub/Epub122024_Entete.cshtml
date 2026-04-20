@@ -10,7 +10,7 @@
 }
 
 <div id="divMain" class="TreeMainCollapse">
-    <div class="ClassIconMobile glyphicon glyphicon-plus" style="margin-bottom: 10px; margin-left:10px; box-shadow: 4px 4px 20px 7px lightgrey;" id="ulToExpandCollapse" onclick="ExpandCollapseNew(this);">
+    <div class="ClassIconMobile glyphicon glyphicon-plus" style="margin-bottom: 10px; margin-left:10px; box-shadow: 4px 4px 20px 7px lightgrey;" id="ulToExpandCollapse" onclick="">
         <i id="iconToListenAll" style="@styleIconToListelAll" onclick="StartPlayAllSentence();" class="ClassIconMobile ClassSound ClassStyleSound fa fa-volume-up" aria-hidden="true"></i>
         <div id="divNextToExpandCollapse" style="display: none; margin-left: 15px; margin-top: 10px;  ">
             <div style="margin-bottom:10px;">
@@ -29,7 +29,7 @@
                 <span class="row" style="margin-left:1px;margin-bottom:8px;font-family: FontAwesome;">Langue parlée:</span>
                 @for (int i = 0; i < Model.CheckBoxLanguageItemsForLanguageDefault.Count; i++)
                 {
-                    <img class="imgFlag"  height="@taille" width="@taille" src="@Url.Content(Model.CheckBoxLanguageItemsForLanguageDefault[i].UrlFlag)" />
+                    <img class="imgFlag" height="@taille" width="@taille" src="@Url.Content(Model.CheckBoxLanguageItemsForLanguageDefault[i].UrlFlag)" />
 
                     if (Model.CheckBoxLanguageItemsForLanguageDefault[i].IsSelected)
                     {
@@ -41,11 +41,11 @@
                     }
 
                     @Html.HiddenFor(m => m.CheckBoxLanguageItemsForLanguageDefault[i].Language);
-                    }
+                }
             </div>
 
             <div class="row" style="font-family: FontAwesome; margin-bottom: 12px; margin-top: 33px;">
-                <span  style="margin-left:13px;margin-right:8px;margin-bottom:0px;font-family: FontAwesome;">Traduction automatique :</span>
+                <span style="margin-left:13px;margin-right:8px;margin-bottom:0px;font-family: FontAwesome;">Traduction automatique :</span>
                 @Html.CheckBoxFor(m => Model.IsLectureWithLangue, new { @onclick = "ChangeFaçonDeLire();" })
             </div>
 
@@ -54,11 +54,17 @@
                 {
                     <img class="imgFlag" height="@taille" width="@taille" src="@Url.Content(Model.CheckBoxLanguageItemsForTraduceAutomatically[i].UrlFlag)" />
 
-                    @Html.CheckBoxFor(model => model.CheckBoxLanguageItemsForTraduceAutomatically[i].IsSelected, new { @class = "ClassSecondCheckboxNearFlag", onclick= "ChangeLogiqueLecture();" })
+                    @Html.CheckBoxFor(model => model.CheckBoxLanguageItemsForTraduceAutomatically[i].IsSelected, new { @class = "ClassSecondCheckboxNearFlag", onclick = "ChangeLogiqueLecture();" })
 
                     @Html.HiddenFor(m => m.CheckBoxLanguageItemsForLanguageDefault[i].Language);
                 }
 
+            </div>
+
+            <div style="font-family: FontAwesome; margin-bottom: 17px;">
+                <span>Arrêt automatique: </span>
+                @Html.TextBoxFor(x => x.TimeArretAutomatique, new { @class = "", style = "width: 50px;" })
+                <input style="height: 26px; width: 106px; background-color: orange; color: black; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 3px; border: none; margin-left: 8px;" type="button" value="Suivant" onclick="AddTimeToFinishTheRead();" />
             </div>
         </div>           
     </div>

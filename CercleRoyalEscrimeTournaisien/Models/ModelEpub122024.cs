@@ -79,7 +79,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
                 return list;
             }
         }
-        
+        public string TimeArretAutomatique { get; set; }
         public List<EnumLanguageItem> CheckBoxLanguageItemsForLanguageDefault 
         { 
             get

@@ -77,9 +77,19 @@
 </html>
 
 
-<script>    
+<script> 
+    
+    $(".glyphicon-plus").click(function (e) {
+        ExpandCollapseNew(e);
+    });
+
     function ExpandCollapseNew(element) {
-        if ($(element).hasClass('glyphicon-plus')) {
+        if (element.target.id == "TimeArretAutomatique") {
+            return;
+        }
+
+        if ($("#ulToExpandCollapse").hasClass('glyphicon-plus')) {
+        
             $("#ulToExpandCollapse").removeClass('glyphicon-plus');
             $("#ulToExpandCollapse").addClass('glyphicon-minus');
             $("#divNextToExpandCollapse").css('display', 'block');
@@ -101,5 +111,13 @@
 
         var inputRange = parseInt($("#inputRange").val());
         ChargerEpub(inputRange);
+    }
+
+    function AddTimeToFinishTheRead() {
+        
+        let time = $("#TimeArretAutomatique").val();
+        setTimeout(function () {
+            window.location.reload();
+        }, time * 6000 );
     }
 </script>
