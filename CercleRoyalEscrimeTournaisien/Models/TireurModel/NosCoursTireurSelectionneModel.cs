@@ -117,6 +117,12 @@ namespace CercleRoyalEscrimeTournaisien
                     case IndexTireurConstantes.TireurIndex.JeanMarcCucheval:
                         JeanMarcCucheval_NosCoursTireurSelectionneModel jeanMarcCucheval_NosCoursTireurSelectionneModel = new JeanMarcCucheval_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return (jeanMarcCucheval_NosCoursTireurSelectionneModel.Categorie);
+                    case IndexTireurConstantes.TireurIndex.MatthieuTanis:
+                        MatthieuTanis_NosCoursTireurSelectionneModel matthieuTanis_NosCoursTireurSelectionneModel = new MatthieuTanis_NosCoursTireurSelectionneModel(TireurSelectionne) { };
+                        return (matthieuTanis_NosCoursTireurSelectionneModel.Categorie);
+                    case IndexTireurConstantes.TireurIndex.FlorianBauffe:
+                        FlorianBauffe_NosCoursTireurSelectionneModel florianBauffe_NosCoursTireurSelectionneModel = new FlorianBauffe_NosCoursTireurSelectionneModel(TireurSelectionne) { };
+                        return (florianBauffe_NosCoursTireurSelectionneModel.Categorie);
                     default:
                         return Categorie.Inconnu;
                 }
@@ -777,6 +783,12 @@ namespace CercleRoyalEscrimeTournaisien
                     case IndexTireurConstantes.TireurIndex.JeanMarcCucheval:
                         JeanMarcCucheval_NosCoursTireurSelectionneModel jeanMarcCucheval_NosCoursTireurSelectionneModel = new JeanMarcCucheval_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return TrierParDate(jeanMarcCucheval_NosCoursTireurSelectionneModel.RemarquesParDateTireur);
+                    case IndexTireurConstantes.TireurIndex.MatthieuTanis:
+                        MatthieuTanis_NosCoursTireurSelectionneModel matthieuTanis_NosCoursTireurSelectionneModel = new MatthieuTanis_NosCoursTireurSelectionneModel(TireurSelectionne) { };
+                        return TrierParDate(matthieuTanis_NosCoursTireurSelectionneModel.RemarquesParDateTireur);
+                    case IndexTireurConstantes.TireurIndex.FlorianBauffe:
+                        FlorianBauffe_NosCoursTireurSelectionneModel florianBauffe_NosCoursTireurSelectionneModel = new FlorianBauffe_NosCoursTireurSelectionneModel(TireurSelectionne) { };
+                        return TrierParDate(florianBauffe_NosCoursTireurSelectionneModel.RemarquesParDateTireur);
                     default:
                         return new List<RemarqueParDate>() { };
                 }               
@@ -944,6 +956,12 @@ namespace CercleRoyalEscrimeTournaisien
                     case IndexTireurConstantes.TireurIndex.JeanMarcCucheval:
                         JeanMarcCucheval_NosCoursTireurSelectionneModel jeanMarcCucheval_NosCoursTireurSelectionneModel = new JeanMarcCucheval_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return jeanMarcCucheval_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, y => y.Value);
+                    case IndexTireurConstantes.TireurIndex.FlorianBauffe:
+                        FlorianBauffe_NosCoursTireurSelectionneModel florianBauffe_NosCoursTireurSelectionneModel = new FlorianBauffe_NosCoursTireurSelectionneModel(TireurSelectionne) { };
+                        return florianBauffe_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, y => y.Value);
+                    case IndexTireurConstantes.TireurIndex.MatthieuTanis:
+                        MatthieuTanis_NosCoursTireurSelectionneModel matthieuTanis_NosCoursTireurSelectionneModel = new MatthieuTanis_NosCoursTireurSelectionneModel(TireurSelectionne) { };
+                        return matthieuTanis_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, y => y.Value);
                     default:
                         return new Dictionary<string, string>() { };
                 }

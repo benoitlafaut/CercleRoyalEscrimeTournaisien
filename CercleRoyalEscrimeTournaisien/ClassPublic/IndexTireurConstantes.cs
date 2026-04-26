@@ -36,7 +36,9 @@
             SiméonTrovato = 41,
             GabrielSegard = 42,
             EstebanDuthye = 43,
-            JeanMarcCucheval = 44
+            JeanMarcCucheval = 44,
+            MatthieuTanis = 45,
+            FlorianBauffe = 46
         }
     }
 }
