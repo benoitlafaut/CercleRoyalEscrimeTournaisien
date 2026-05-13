@@ -1420,6 +1420,7 @@
     <Content Include="Views\Poules\AddTireurs.cshtml" />
     <Content Include="Views\Poules\AjouterScoreAUnePoule.cshtml" />
     <Content Include="Views\Poules\AfficherLesDatesPrecedentes.cshtml" />
+    <Content Include="Views\Poules\Statistiques.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

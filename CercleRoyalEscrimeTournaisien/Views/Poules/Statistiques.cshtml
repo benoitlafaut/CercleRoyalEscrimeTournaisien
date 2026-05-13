@@ -1,0 +1,63 @@
+﻿@{
+    var adversaires = ViewBag.Adversaires as List<string>;
+}
+
+<h2>Statistiques</h2>
+
+<label>Choisir un adversaire :</label>
+<select id="selectAdversaire" class="form-control" style="max-width:300px;">
+    <option value="">-- Sélectionner --</option>
+    @foreach (var adv in adversaires)
+    {
+        <option value="@adv">@adv</option>
+    }
+</select>
+
+<br />
+
+<canvas id="progressionChart" style="width:100%;max-width:900px;height:400px; display:none;"></canvas>
+
+@section scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+
+    <script>
+        let chart = null;
+
+        document.getElementById("selectAdversaire").addEventListener("change", function () {
+
+            const adversaire = this.value;
+
+            if (!adversaire) {
+                document.getElementById("progressionChart").style.display = "none";
+                return;
+            }
+
+            fetch('@Url.Action("GetProgressionData", "TonController")'
+                + '?userNameIndex=@ViewBag.UserNameIndex'
+                + '&adversaire=' + encodeURIComponent(adversaire))
+                .then(r => r.json())
+                .then(json => {
+
+                    document.getElementById("progressionChart").style.display = "block";
+
+                    const ctx = document.getElementById('progressionChart').getContext('2d');
+
+                    if (chart) chart.destroy();
+
+                    chart = new Chart(ctx, {
+                        type: 'line',
+                        data: json,
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: 'Progression contre ' + adversaire
+                                }
+                            }
+                        }
+                    });
+                });
+        });
+    </script>
+}

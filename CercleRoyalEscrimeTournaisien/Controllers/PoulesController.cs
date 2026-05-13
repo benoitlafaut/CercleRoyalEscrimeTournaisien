@@ -8,6 +8,8 @@ using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.UI;
+using System.Xml;
+using static CercleRoyalEscrimeTournaisien.IndexTireurConstantes;
 
 namespace CercleRoyalEscrimeTournaisien
 {
@@ -499,6 +501,302 @@ namespace CercleRoyalEscrimeTournaisien
 
             return Json(new { redirectUrl = Url.Action("Poules", "Poules") });
         }
+
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+        public ActionResult Statistiques(string userNameIndex)
+        {
+            string nameSelected = GetNameSelected(userNameIndex);
+
+            List<ClassStatistiqueTireur> listDesMatchs = GetJours(nameSelected);
+            var adversaires = new HashSet<string>();
+            foreach (ClassStatistiqueTireur tireur in listDesMatchs)
+            {
+                tireur.ArmePratiquee = GetArmePratiquee(tireur.DateDeLaPoule);
+
+                GetMatchs(tireur);
+
+                foreach (var match in tireur.Matchs)
+                {
+                    string adv = GetAdversaireName(match.Tireur2Guid);
+                    if (adv == nameSelected)
+                        adv = GetAdversaireName(match.Tireur1Guid);
+
+                    adversaires.Add(adv);
+
+                    match.TireurAdversaire = GetAdversaireName(match.Tireur2Guid);
+                    if (nameSelected == match.TireurAdversaire)
+                    {
+                        match.TireurAdversaire = GetAdversaireName(match.Tireur1Guid);
+                    }
+                }
+            }
+
+            ViewBag.Adversaires = adversaires.OrderBy(x => x).ToList();
+            ViewBag.UserNameIndex = userNameIndex;
+            return View();
+        }
+
+        [HttpGet]
+        public JsonResult GetProgressionData(string userNameIndex, string adversaire)
+        {
+            string nameSelected = GetNameSelected(userNameIndex);
+
+            List<ClassStatistiqueTireur> jours = GetJours(nameSelected);
+
+            foreach (var jour in jours)
+            {
+                GetMatchs(jour);
+
+                foreach (var match in jour.Matchs)
+                {
+                    match.TireurAdversaire = GetAdversaireName(match.Tireur2Guid);
+                    if (nameSelected == match.TireurAdversaire)
+                        match.TireurAdversaire = GetAdversaireName(match.Tireur1Guid);
+                }
+            }
+
+            var dates = jours.Select(j => j.DateDeLaPoule).Distinct().OrderBy(d => d).ToList();
+
+            var data = new List<int?>();
+
+            foreach (var date in dates)
+            {
+                var match = jours
+                    .Where(j => j.DateDeLaPoule == date)
+                    .SelectMany(j => j.Matchs)
+                    .FirstOrDefault(m => m.TireurAdversaire == adversaire);
+
+                int? score = null;
+
+                if (match != null)
+                {
+                    score = (match.Tireur1Guid == jours[0].TireurGuid)
+                        ? match.ScoreDuTireur1
+                        : match.ScoreDuTireur2;
+                }
+
+                data.Add(score);
+            }
+
+            return Json(new
+            {
+                labels = dates,
+                datasets = new[]
+                {
+            new {
+                label = adversaire,
+                data = data,
+                borderColor = "rgb(75, 192, 192)",
+                backgroundColor = "rgb(75, 192, 192)",
+                fill = false,
+                tension = 0.2
+            }
+        }
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+
+        private string GetArmePratiquee(string dateDeLaPoule)
+        {
+            string arme = string.Empty;
+
+            var path = Server.MapPath("/App_Data/Poules.accdb");
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
+            string mySelectQueryRechercheArme = " SELECT * FROM TableDateAvecArmePratiquee Where DateDeLaPoule = '" + dateDeLaPoule + "'";
+
+            using (var conn = new OleDbConnection(ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new OleDbCommand(mySelectQueryRechercheArme, conn))
+                {
+                    using (var myReaderRechercheArme = cmd.ExecuteReader())
+                    {
+                        while (myReaderRechercheArme.Read())
+                        {
+                            arme = (string)myReaderRechercheArme["Arme"];
+                        }
+                    }
+                }
+            }
+            return arme;
+        }
+
+        private string GetAdversaireName(Guid tireur2Guid)
+        {
+            string tireur = string.Empty;
+            var path = Server.MapPath("/App_Data/Poules.accdb");
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
+            string mySelectQuery = "SELECT * FROM TableDesTireursPourUnePouleDuJour WHERE TireurGuid = '" + tireur2Guid + "'";
+
+            using (var conn = new OleDbConnection(ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new OleDbCommand(mySelectQuery, conn))
+                {
+                    using (var myReader = cmd.ExecuteReader())
+                    {
+                        while (myReader.Read())
+                        {
+                             tireur = (string)myReader["Tireur"];
+                            
+                        }
+                    }
+                }
+            }
+            return tireur;
+        }
+
+        private void GetMatchs(ClassStatistiqueTireur tireur)
+        {
+            var path = Server.MapPath("/App_Data/Poules.accdb");
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
+            string mySelectQuery = "SELECT * FROM TableRésultatsDesPoules WHERE Tireur1Guid = '" + tireur.TireurGuid + "' or Tireur2Guid = '" + tireur.TireurGuid + "'";
+
+            using (var conn = new OleDbConnection(ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new OleDbCommand(mySelectQuery, conn))
+                {
+                    using (var myReader = cmd.ExecuteReader())
+                    {
+                        while (myReader.Read())
+                        {
+                            string poule = (string)myReader["Poule"];
+                            int scoreDuTireur1 = (int)myReader["ScoreDuTireur1"];
+                            int scoreDuTireur2 = (int)myReader["ScoreDuTireur2"];
+                            bool victoireOuDéfaiteDuTireur1 = (bool)myReader["VictoireOuDéfaiteDuTireur1"];
+                            bool victoireOuDéfaiteDuTireur2 = (bool)myReader["VictoireOuDéfaiteDuTireur2"];
+
+                            string guidStr1 = myReader["Tireur1Guid"].ToString().Trim();
+                            Guid tireur1Guid = Guid.Parse(guidStr1);
+
+                            string guidStr2 = myReader["Tireur2Guid"].ToString().Trim();
+                            Guid tireur2Guid = Guid.Parse(guidStr2);
+
+                            tireur.Matchs.Add(new StatistiqueMatch()
+                            {
+                                Poule = poule,
+                                Tireur1Guid = tireur1Guid,
+                                Tireur2Guid = tireur2Guid,
+                                ScoreDuTireur1 = scoreDuTireur1,
+                                ScoreDuTireur2 = scoreDuTireur2,
+                                VictoireOuDéfaiteDuTireur1 = victoireOuDéfaiteDuTireur1,
+                                VictoireOuDéfaiteDuTireur2 = victoireOuDéfaiteDuTireur2
+                            });
+                        }
+                    }
+                }
+            }
+        }
+
+        private List<ClassStatistiqueTireur> GetJours(string nameSelected)
+        {
+            List<ClassStatistiqueTireur> matchsList = new List<ClassStatistiqueTireur>() { };
+
+            var path = Server.MapPath("/App_Data/Poules.accdb");
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
+            string mySelectQuery = "SELECT * FROM TableDesTireursPourUnePouleDuJour WHERE Tireur = '" + nameSelected + "'";
+
+            using (var conn = new OleDbConnection(ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new OleDbCommand(mySelectQuery, conn))
+                {
+                    using (var myReader = cmd.ExecuteReader())
+                    {
+                        while (myReader.Read())
+                        {
+                            Guid tireurGuid = (Guid)myReader["TireurGuid"];
+                            string tireur = (string)myReader["Tireur"]; 
+                            string dateDeLaPoule = (string)myReader["DateDeLaPoule"];
+                            matchsList.Add(new ClassStatistiqueTireur()
+                            {
+                                TireurGuid = tireurGuid,
+                                Tireur = tireur,
+                                DateDeLaPoule = dateDeLaPoule
+                            });
+                        }
+                    }
+                }
+            }
+
+            return matchsList;
+        }
+
+        private string GetNameSelected(string userNameIndex)
+        {
+            var index = (TireurIndex)Enum.Parse(typeof(TireurIndex), userNameIndex);
+            switch (index)
+            {
+                case TireurIndex.RémiSoyez:
+                    return "Rémi";
+                case TireurIndex.FélixTrannoy:
+                    return "Félix";
+                case TireurIndex.OscarDeblocq:
+                    return "Oscar Deblocq";
+                case TireurIndex.FabriceRazanajao:
+                    return "Fabrice";
+                case TireurIndex.AbelMotte:
+                    return "Abel";
+                case TireurIndex.RomainBracquart:
+                    return "Romain";
+                case TireurIndex.BenedictCosentini:
+                    return "Benedict";
+                case TireurIndex.ThéoCuchevalRasson:
+                    return "Théo";
+                case TireurIndex.GwendalLecomte:
+                    return "Gwendal";
+                case TireurIndex.SolalSchrouf:
+                    return "Solal";
+                case TireurIndex.LucasVerheye:
+                    return "Lucas";
+                case TireurIndex.SiméonTrovato:
+                    return "Siméon";
+                case TireurIndex.GabrielSegard:
+                    return "Gabriel";
+                case TireurIndex.EstebanDuthye:
+                    return "Esteban";
+                case TireurIndex.JeanMarcCucheval:
+                    return "Jean-Marc";
+                case TireurIndex.MatthieuTanis:
+                    return "Matthieu";
+                case TireurIndex.FlorianBauffe:
+                    return "Florian";
+                case TireurIndex.OscarDucrot:
+                    return "Oscar Ducrot";
+                case TireurIndex.AmelLawrizy:
+                    return "Amel";
+                case TireurIndex.MaeVantroyen:
+                    return "Maé";
+                case TireurIndex.AmadoSimon:
+                    return "Amado";
+                case TireurIndex.RebeccaVandy:
+                    return "Rebecca";
+                case TireurIndex.EliotPunchoo:
+                    return "Eliot";
+                case TireurIndex.NoelMarieDransart:
+                    return "Noël-Marie";
+                case TireurIndex.JordanMestdagh:
+                    return "Jordan";
+                case TireurIndex.MartinSiu:
+                    return "Martin";
+                case TireurIndex.RaedwaldVercouter:
+                    return "Raedwald";
+                case TireurIndex.AnaelleIvanov:
+                    return "Anaëlle";
+                case TireurIndex.LiliMestdag:
+                    return "Lili";
+                case TireurIndex.BaptisteMotte:
+                    return "Baptiste";
+                case TireurIndex.ElodieMass:
+                    return "ElodieMass";
+                case TireurIndex.AuroreCarlier:
+                    return "Aurore";
+                default:
+                    return "";
+            }
+        }
+
         private int GetTableau(int nbTireurs)
         {
             if (nbTireurs < 2)

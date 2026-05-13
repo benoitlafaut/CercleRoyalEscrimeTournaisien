@@ -643,6 +643,30 @@ namespace CercleRoyalEscrimeTournaisien.Models
         public Guid TireurGuid { get; set; }
         public string Poule { get; set; }
         public string Tireur { get; set; }
+        public string DateDeLaPoule { get; set; }
+    }
+    public class ClassStatistiqueTireur
+    {
+        public ClassStatistiqueTireur()
+        {
+            Matchs = new List<StatistiqueMatch>() { };
+        }
+        public Guid TireurGuid { get; set; }
+        public string Tireur { get; set; }
+        public string DateDeLaPoule { get; set; }
+        public string ArmePratiquee { get; set; }
+        public List<StatistiqueMatch> Matchs { get; set; }
+    }
+    public class StatistiqueMatch
+    {
+        public string Poule { get; set; }
+        public Guid Tireur1Guid { get; set; }
+        public Guid Tireur2Guid { get; set; }
+        public string TireurAdversaire { get; set; }
+        public bool VictoireOuDéfaiteDuTireur1 { get; set; }
+        public bool VictoireOuDéfaiteDuTireur2 { get; set; }
+        public int ScoreDuTireur1 { get; set; }
+        public int ScoreDuTireur2 { get; set; }
     }
     public class ClassScore
     {
