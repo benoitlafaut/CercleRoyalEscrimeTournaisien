@@ -216,6 +216,7 @@ namespace WebApplication1.Models
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Cucheval_JeanMarc(period, Membres);
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Tanis_Matthieu(period, Membres);
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Bauffe_Florian(period, Membres);
+            fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Colpaert_Eleonara(period, Membres);
         }
 
         #region Add_Paiements_2022_2023
@@ -365,6 +366,7 @@ namespace WebApplication1.Models
             paiements.Add_Paiements_Cucheval_JeanMarc(period, Membres);
             paiements.Add_Paiements_Tanis_Matthieu(period, Membres);
             paiements.Add_Paiements_Bauffe_Florian(period, Membres);
+            paiements.Add_Paiements_Colpaert_Eleonara(period, Membres);
         }
     }
 }

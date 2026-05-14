@@ -38,7 +38,8 @@
             EstebanDuthye = 43,
             JeanMarcCucheval = 44,
             MatthieuTanis = 45,
-            FlorianBauffe = 46
+            FlorianBauffe = 46,
+            EleonaraColpaert = 47
         }
     }
 }

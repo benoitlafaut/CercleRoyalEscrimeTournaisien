@@ -123,6 +123,9 @@ namespace CercleRoyalEscrimeTournaisien
                     case IndexTireurConstantes.TireurIndex.FlorianBauffe:
                         FlorianBauffe_NosCoursTireurSelectionneModel florianBauffe_NosCoursTireurSelectionneModel = new FlorianBauffe_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return (florianBauffe_NosCoursTireurSelectionneModel.Categorie);
+                    case IndexTireurConstantes.TireurIndex.EleonaraColpaert :
+                        EleonaraColpaert_NosCoursTireurSelectionneModel eleonaraColpaert_NosCoursTireurSelectionneModel = new EleonaraColpaert_NosCoursTireurSelectionneModel(TireurSelectionne) { };
+                        return (eleonaraColpaert_NosCoursTireurSelectionneModel.Categorie);
                     default:
                         return Categorie.Inconnu;
                 }
@@ -789,6 +792,9 @@ namespace CercleRoyalEscrimeTournaisien
                     case IndexTireurConstantes.TireurIndex.FlorianBauffe:
                         FlorianBauffe_NosCoursTireurSelectionneModel florianBauffe_NosCoursTireurSelectionneModel = new FlorianBauffe_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return TrierParDate(florianBauffe_NosCoursTireurSelectionneModel.RemarquesParDateTireur);
+                    case IndexTireurConstantes.TireurIndex.EleonaraColpaert:
+                        EleonaraColpaert_NosCoursTireurSelectionneModel eleonaraColpaert_NosCoursTireurSelectionneModel = new EleonaraColpaert_NosCoursTireurSelectionneModel(TireurSelectionne) { };
+                        return TrierParDate(eleonaraColpaert_NosCoursTireurSelectionneModel.RemarquesParDateTireur);
                     default:
                         return new List<RemarqueParDate>() { };
                 }               
@@ -962,6 +968,9 @@ namespace CercleRoyalEscrimeTournaisien
                     case IndexTireurConstantes.TireurIndex.MatthieuTanis:
                         MatthieuTanis_NosCoursTireurSelectionneModel matthieuTanis_NosCoursTireurSelectionneModel = new MatthieuTanis_NosCoursTireurSelectionneModel(TireurSelectionne) { };
                         return matthieuTanis_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, y => y.Value);
+                    case IndexTireurConstantes.TireurIndex.EleonaraColpaert:
+                        EleonaraColpaert_NosCoursTireurSelectionneModel eleonaraColpaert_NosCoursTireurSelectionneModel = new EleonaraColpaert_NosCoursTireurSelectionneModel(TireurSelectionne) { };
+                        return eleonaraColpaert_NosCoursTireurSelectionneModel.GetPoules.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, y => y.Value);
                     default:
                         return new Dictionary<string, string>() { };
                 }

@@ -762,6 +762,8 @@ namespace CercleRoyalEscrimeTournaisien
                     return "Matthieu";
                 case TireurIndex.FlorianBauffe:
                     return "Florian";
+                case TireurIndex.EleonaraColpaert:
+                    return "Eleonara";
                 case TireurIndex.OscarDucrot:
                     return "Oscar Ducrot";
                 case TireurIndex.AmelLawrizy:

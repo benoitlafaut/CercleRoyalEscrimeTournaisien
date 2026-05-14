@@ -376,6 +376,9 @@ namespace WebApplication1.Models
            );
             Membres.Add(
                new MembreData() { GuidId = GuidConstantes.GuidFlorianBauffe, Nom = "Bauffe", Prénom = "Florian", Période = period2025_2026 }
+           ); 
+            Membres.Add(
+               new MembreData() { GuidId = GuidConstantes.GuidEleonaraColpaert, Nom = "Colpaert", Prénom = "Eleonara", Période = period2025_2026 }
            );
         }
         public static Categorie SearchCategorie(int annee) 
