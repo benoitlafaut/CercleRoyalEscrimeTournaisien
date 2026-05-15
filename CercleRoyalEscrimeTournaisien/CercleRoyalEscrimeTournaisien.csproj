@@ -402,6 +402,7 @@
     <Content Include="App_Data\Poules.accdb" />
     <Content Include="App_Data\tireursLog.accdb" />
     <Content Include="Content\5d93eb1089.css" />
+    <Content Include="Content\Epub052026.css" />
     <Content Include="Content\Accueil.css" />
     <Content Include="Content\bootstrap-select.min.css" />
     <Content Include="Content\DicoPlayer.css" />

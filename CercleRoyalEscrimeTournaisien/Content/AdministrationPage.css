@@ -45,13 +45,7 @@
 @media (min-width: 991px) { 
     .myModalYoutubeVideo {
         height: 80%;
-    }
-    .ClassCheckboxNearFlag {
-        top: 2px;
-        position: relative;
-        margin-left: -8px;
-        margin-right: 9px;
-    }
+    }   
     .ClassSecondCheckboxNearFlag {
         top: 2px;
         position: relative;
@@ -63,12 +57,7 @@
 @media (max-width: 991px) {
     .imgFlag {
         zoom:0.7;
-    }
-    .ClassCheckboxNearFlag {
-        top: 2px;
-        position: relative;
-        margin-left: -15px !important;        
-    }
+    }    
     .ClassSecondCheckboxNearFlag {
         top: 2px;
         position: relative;

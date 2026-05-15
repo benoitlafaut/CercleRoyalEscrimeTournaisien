@@ -37,6 +37,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link href="@Url.Content("~/Content/Epub052026.css")" rel="stylesheet" type="text/css" />
+
 }
 
 <head>
@@ -77,8 +79,8 @@
 </html>
 
 
-<script> 
-    
+<script>
+
     $(".glyphicon-plus").click(function (e) {
         ExpandCollapseNew(e);
     });
@@ -88,8 +90,12 @@
             return;
         }
 
+        if (element.target.id == "iconToListenAll") {
+            return;
+        }
+
         if ($("#ulToExpandCollapse").hasClass('glyphicon-plus')) {
-        
+
             $("#ulToExpandCollapse").removeClass('glyphicon-plus');
             $("#ulToExpandCollapse").addClass('glyphicon-minus');
             $("#divNextToExpandCollapse").css('display', 'block');
@@ -99,7 +105,7 @@
             $("#ulToExpandCollapse").addClass('glyphicon-plus');
             $("#divNextToExpandCollapse").css('display', 'none');
         }
-    }   
+    }
 
     function ChangeFaçonDeLire() {
         if ($("#IsLectureWithLangue:checked").val() == 'true') {
@@ -114,10 +120,10 @@
     }
 
     function AddTimeToFinishTheRead() {
-        
+
         let time = $("#TimeArretAutomatique").val();
         setTimeout(function () {
             window.location.reload();
-        }, time * 60000 );
+        }, time * 60000);
     }
 </script>

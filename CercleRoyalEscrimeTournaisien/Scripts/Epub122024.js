@@ -54,12 +54,18 @@ $(document).ready(function () {
 
     document.getElementById('SpanSelectEpub').addEventListener('click', function (e) {
         $("#inputFile").click();
-    });
+    });    
 
     setTimeout(function () {
         $("div.bootstrap-select").css('width', '25px');
         $("div.bootstrap-select").css('display', 'block');
         $("div.bootstrap-select").find('button.selectpicker').css('max-height', '18px');
+        
+        $('.ClassSecondCheckboxNearFlag').each(function (index, item) {
+            $(this).on('click', function () {
+                FillTable();
+            });
+        })
     }, 500);
 });
 function ChangeDirection(direction) {
@@ -79,6 +85,25 @@ function ChangeDirection(direction) {
             var inputRange = parseInt($("#inputRange").val()) - parseInt($("#NombreRowsToShow").val());
             ChargerEpub(inputRange);
         }
+    }
+}
+function StartPlayAllSentenceNew() {
+    setInterval(function () {
+        if (responsiveVoice.isPlaying()) {
+            return;
+        }
+
+        StartListenOneSentence();       
+    }, 2000);
+}
+function StartListenOneSentence() {
+    let element = $(".ClassToListen").eq(0);
+    if ($(element).length == 1) {
+        $(element).click();
+    }
+    else {
+        var inputRange = parseInt($("#inputRange").val()) + parseInt($("#NombreRowsToShow").val());
+        ChargerEpub(inputRange);
     }
 }
 function StartPlayAllSentence() {
@@ -245,7 +270,6 @@ function GetVoice(element) {
     if ($(element).find('i').hasClass('playDE')) { return 'Deutsch Female'; }
 }
 
-
 function ExpandCollapse(element) {
     
     if ($("ul").eq(0).find('span').eq(0).hasClass('glyphicon-minus')) {
@@ -301,13 +325,7 @@ function TranslateOtherLanguageThanFrench(texteToTranslate, langueDestination, o
                 splittedFormatted += objRequest.translation[j].replace("#", "").trim();
             }
 
-            $('#' + outputElement).text(splittedFormatted);
-
-            $('#' + outputElement + '_Sound').off("click");
-            $('#' + outputElement + '_Sound').click(function ()
-            {
-                responsiveVoice.speak(splittedFormatted, GetVoiceForResponsive(langueDestination));
-            });
+            $('#' + outputElement).text(splittedFormatted);           
         },
         success: function (result, status) {
         },
@@ -479,115 +497,96 @@ function ChangeLogiqueLecture() {
     ChangeFaçonDeLire();
 }
 function FillTable() {
-    let rowToTranslate;
-
     if ($("#" + "rowsToRead_0_").val() == undefined) {
         return;
     }
+   
+    let html = "<ul class='ClassCountries'>";
 
-    $('#tableBody').empty();
-    for (let i = $("#CurrentStep").val(); i < $("#CurrentStepFinal").val(); i++) {
+    for (let i = $("#CurrentStep").val(); i < $("#CurrentStepFinal").val(); i++)
+    {
         let nameOfField = "rowsToRead_" + i.toString() + "_";
-        let row = $("#" + nameOfField).val();
-        rowToTranslate = row;
-        let WordsInSentence = row.split(' ');
-        let nameTd = "'tdInTable_" + i + "_'";
+        let row = $("#" + nameOfField).val();        
+        let className = $(".ClassCheckboxNearFlag:checked").val();
+        html += "<li class='ClassToListen ClassCountry_" + className + "' onclick=PlayText(this)><span>" + row + "</span></li>";
 
-        $('#tableBody').append("<tr><td id=" + nameTd + " class='ClassTDText'></td></tr>");
-
-        $('#' + 'tdInTable_' + i + '_').append("<i class='fa playFR fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
-
-        $('#' + 'tdInTable_' + i + '_' + '  .fa-play-Benoit')[0].onclick = function () {
-            ListenSentenceInFrench(i);
-           
-        };
-
-        if ($("#IsLectureWithLangue:checked").val() != 'true') {
-            WordsInSentence.forEach(function (item, index) {
-                let wordsInSentence = "tdInTable_" + i + "_wordsInSentence_" + index + "_";
-
-                $('#' + 'tdInTable_' + i + '_').append("<span id='" + wordsInSentence + "' class='ClassWord' style='user-select: all;'>" + item + " </span>");
-            });
+        if (className != "fra" && $('.ClassSecondCheckboxNearFlag[value="fra"]').is(':checked')) {
+            let text_fra_Id = 'row_fra' + i.toString();
+            TranslateOtherLanguageThanFrench(row, 'fra', text_fra_Id, className);
+            html += "<li class='ClassToListen ClassDecalerParRapportLangueBegin ClassCountry_fra" + "' onclick=PlayText(this)><span id='" + text_fra_Id + "'>"  + "</span></li>";
         }
-        else {
-            $('#' + 'tdInTable_' + i + '_').append("<span style='user-select: all;'>" + row + " </span>");
 
-            if ($("#CheckBoxLanguageItemsForTraduceAutomatically_1__IsSelected:checked").val() == 'true') {
-                $('#tableBody').append("<tr><td" + " id=tdInTableNL_" + i + "_" + " class='ClassTDText'><span id=PhraseUniqueToTranslateNL></span></td></tr>");
-                $("#PhraseUniqueToTranslateNL").before("<i class='fa playNL fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
-                $('#PhraseUniqueToTranslateNL').prev('.fa-play-Benoit')[0].onclick = function () {
-                    $("#PhraseUniqueToTranslateNL").css('color', 'blue');
-                    responsiveVoice.speak($("#PhraseUniqueToTranslateNL").text(), GetVoiceForResponsive("dut"), {
-                        onend: function () {
-                            $("#PhraseUniqueToTranslateNL").css('color', 'black');
-                        }
-                    });
-                };
-                TranslateOtherLanguageThanFrench(row, 'dut', 'PhraseUniqueToTranslateNL', 'fra');
-            }
-
-            if ($("#CheckBoxLanguageItemsForTraduceAutomatically_2__IsSelected:checked").val() == 'true') {
-                $('#tableBody').append("<tr><td" + " id=tdInTableEN_" + i + "_" + " class='ClassTDText'><span id=PhraseUniqueToTranslateEN></span></td></tr>");
-                $("#PhraseUniqueToTranslateEN").before("<i class='fa playEN fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
-                $('#PhraseUniqueToTranslateEN').prev('.fa-play-Benoit')[0].onclick = function () {
-                    $("#PhraseUniqueToTranslateEN").css('color', 'blue');
-                    responsiveVoice.speak($("#PhraseUniqueToTranslateEN").text(), GetVoiceForResponsive("eng"), {
-                        onend: function () {
-                            $("#PhraseUniqueToTranslateEN").css('color', 'black');
-                        }
-                    });
-                };
-                TranslateOtherLanguageThanFrench( row, 'eng', 'PhraseUniqueToTranslateEN', 'fra');
-            }
-
-            if ($("#CheckBoxLanguageItemsForTraduceAutomatically_3__IsSelected:checked").val() == 'true') {
-                $('#tableBody').append("<tr><td" + " id=tdInTableES_" + i + "_" + " class='ClassTDText'><span id=PhraseUniqueToTranslateES></span></td></tr>");
-                $("#PhraseUniqueToTranslateES").before("<i class='fa playES fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
-                $('#PhraseUniqueToTranslateES').prev('.fa-play-Benoit')[0].onclick = function () {
-                    $("#PhraseUniqueToTranslateES").css('color', 'blue');
-                    responsiveVoice.speak($("#PhraseUniqueToTranslateES").text(), GetVoiceForResponsive("spa"), {
-                        onend: function () {
-                            $("#PhraseUniqueToTranslateES").css('color', 'black');
-                        }
-                    });
-                };
-                TranslateOtherLanguageThanFrench(row, 'spa', 'PhraseUniqueToTranslateES', 'fra');
-            }
-
-            if ($("#CheckBoxLanguageItemsForTraduceAutomatically_4__IsSelected:checked").val() == 'true') {
-                $('#tableBody').append("<tr><td" + " id=tdInTableDE_" + i + "_" + " class='ClassTDText'><span id=PhraseUniqueToTranslateDE></span></td></tr>");
-                $("#PhraseUniqueToTranslateDE").before("<i class='fa playDE fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
-                $('#PhraseUniqueToTranslateDE').prev('.fa-play-Benoit')[0].onclick = function () {
-                    $("#PhraseUniqueToTranslateDE").css('color', 'blue');
-                    responsiveVoice.speak($("#PhraseUniqueToTranslateDE").text(), GetVoiceForResponsive("ger"), {
-                        onend: function () {
-                            $("#PhraseUniqueToTranslateDE").css('color', 'black');
-                        }
-                    });
-                };
-                TranslateOtherLanguageThanFrench(row, 'ger', 'PhraseUniqueToTranslateDE', 'fra');
-            }
-
-            if ($("#CheckBoxLanguageItemsForTraduceAutomatically_5__IsSelected:checked").val() == 'true') {
-                $('#tableBody').append("<tr><td" + " id=tdInTableIT_" + i + "_" + " class='ClassTDText'><span id=PhraseUniqueToTranslateIT></span></td></tr>");
-                $("#PhraseUniqueToTranslateIT").before("<i class='fa playIT fa-play fa-play-Benoit' style='cursor:pointer; font-size: 15px; margin-right: 7px;'></i>");
-                $('#PhraseUniqueToTranslateIT').prev('.fa-play-Benoit')[0].onclick = function () {
-                    $("#PhraseUniqueToTranslateIT").css('color', 'blue');
-                    responsiveVoice.speak($("#PhraseUniqueToTranslateIT").text(), GetVoiceForResponsive("ita"), {
-                        onend: function () {
-                            $("#PhraseUniqueToTranslateIT").css('color', 'black');
-                        }
-                    });
-                };
-                TranslateOtherLanguageThanFrench(row, 'ita', 'PhraseUniqueToTranslateIT', 'fra');
-            }
+        if (className != "dut" && $('.ClassSecondCheckboxNearFlag[value="dut"]').is(':checked')) {
+            let text_dut_Id = 'row_dut' + i.toString();
+            TranslateOtherLanguageThanFrench(row, 'dut', text_dut_Id, className);
+            html += "<li class='ClassToListen ClassDecalerParRapportLangueBegin ClassCountry_dut" + "' onclick=PlayText(this)><span id='" + text_dut_Id + "'>" + "</span></li>";
         }
+
+        if (className != "eng" && $('.ClassSecondCheckboxNearFlag[value="eng"]').is(':checked')) {
+            let text_eng_Id = 'row_eng' + i.toString();
+            TranslateOtherLanguageThanFrench(row, 'eng', text_eng_Id, className);
+            html += "<li class='ClassToListen ClassDecalerParRapportLangueBegin ClassCountry_eng" + "' onclick=PlayText(this)><span id='" + text_eng_Id + "'>" + "</span></li>";
+        }
+
+        if (className != "spa" && $('.ClassSecondCheckboxNearFlag[value="spa"]').is(':checked')) {
+            let text_spa_Id = 'row_spa' + i.toString();
+            TranslateOtherLanguageThanFrench(row, 'spa', text_spa_Id, className);
+            html += "<li class='ClassToListen ClassDecalerParRapportLangueBegin ClassCountry_spa" + "' onclick=PlayText(this)><span id='" + text_spa_Id + "'>" + "</span></li>";
+        }
+
+        if (className != "ger" && $('.ClassSecondCheckboxNearFlag[value="ger"]').is(':checked')) {
+            let text_ger_Id = 'row_ger' + i.toString();
+            TranslateOtherLanguageThanFrench(row, 'ger', text_ger_Id, className);
+            html += "<li class='ClassToListen ClassDecalerParRapportLangueBegin ClassCountry_ger" + "' onclick=PlayText(this)><span id='" + text_ger_Id + "'>" + "</span></li>";
+        }
+
+        if (className != "ita" && $('.ClassSecondCheckboxNearFlag[value="ita"]').is(':checked')) {
+            let text_ita_Id = 'row_ita' + i.toString();
+            TranslateOtherLanguageThanFrench(row, 'ita', text_ita_Id, className);
+            html += "<li class='ClassToListen ClassDecalerParRapportLangueBegin ClassCountry_ita" + "' onclick=PlayText(this)><span id='" + text_ita_Id + "'>" + "</span></li>";
+        }     
     }
+
+    html += "</ul>";
+
+    $('#tableBody').empty().append(html);
 }
 
-function ListenSentenceInFrench(i) {
+function ChangeLangueToTranslateAndRead() {
+    $('#tableBody').empty();
+
+    let bookLangue = $(".ClassCheckboxNearFlag:checked").val();
+    $('.ClassSecondCheckboxNearFlag').prop('checked', false);
+    $('.ClassSecondCheckboxNearFlag[value=' + bookLangue + ']').prop('checked', true);
+}
+function PlayText(element) {
+    var language = GetDeductLanguageBegin(element);
+    $('.ClassColorOrange').removeClass('ClassColorOrange');
+    $(element).addClass('ClassColorOrange');
+    responsiveVoice.speak($(element).find('span').text(), GetVoiceForResponsive(language), {
+        onend: function () {
+            $('.ClassColorOrange').removeClass('ClassColorOrange');
+            $(element).removeClass('ClassToListen');
+        }
+    });
+}
+
+function GetDeductLanguageBegin(element) {
+    let classOfElement = $(element).attr('class');
+    classOfElement = classOfElement.replace('ClassToListen', '');
+    classOfElement = classOfElement.replace('ClassDecalerParRapportLangueBegin', '');
+    classOfElement = classOfElement.replace('ClassCountry_', '');
+    classOfElement = classOfElement.trim();
+    return classOfElement;
+}
+
+function GetClassLanguageBegin() {
+    return "play" + $(".ClassSecondCheckboxNearFlag:checked").val();
+}
+
+function ListenSentence(i, language) {
     $("#tdInTable_" + i + "_").css('color', 'blue');
-    responsiveVoice.speak($('#tdInTable_' + i + '_').text(), GetVoiceForResponsive("fra"), {
+    responsiveVoice.speak($('#tdInTable_' + i + '_').text(), GetVoiceForResponsive(language), {
         onend: function () {
             $("#tdInTable_" + i + "_").css('color', 'black');
         }

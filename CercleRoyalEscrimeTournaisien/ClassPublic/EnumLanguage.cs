@@ -6,17 +6,17 @@ namespace CercleRoyalEscrimeTournaisien
     {    
         public  enum EnumLanguage
         {
-            [Display(Name = "FR")]
+            [Display(Name = "fra")]
             Français = 1,
-            [Display(Name = "NL")]
+            [Display(Name = "dut")]
             Néerlandais = 2,
-            [Display(Name = "EN")]
+            [Display(Name = "eng")]
             Anglais = 3,
-            [Display(Name = "DE")]
+            [Display(Name = "ger")]
             Allemand = 4,
-            [Display(Name = "IT")]
+            [Display(Name = "ita")]
             Italien = 5,
-            [Display(Name = "ES")]
+            [Display(Name = "spa")]
             Espagnol = 6,
         }
     }

@@ -1,0 +1,39 @@
+﻿.ClassCountries {
+    list-style: none;
+    padding: 0;
+}
+
+.ClassCountries li {
+    padding: 7px 10px 1px 40px;
+    background-size: 28px;
+    background-repeat: no-repeat;
+    background-position: 5px center;
+    font-size: 1.2rem;
+}
+
+.ClassCountry_fra {
+    background-image: url('https://flagcdn.com/w40/fr.png');
+}
+.ClassCountry_eng {
+    background-image: url('https://flagcdn.com/w40/gb.png');
+}
+.ClassCountry_dut {
+    background-image: url('https://flagcdn.com/w40/nl.png');
+}
+.ClassCountry_spa {
+    background-image: url('https://flagcdn.com/w40/es.png');
+}
+.ClassCountry_ita {
+    background-image: url('https://flagcdn.com/w40/it.png');
+}
+.ClassCountry_ger {
+    background-image: url('https://flagcdn.com/w40/de.png');
+}
+
+.ClassColorOrange{
+    color:orange;
+}
+
+.ClassDecalerParRapportLangueBegin {
+    margin-left:30px;
+}
