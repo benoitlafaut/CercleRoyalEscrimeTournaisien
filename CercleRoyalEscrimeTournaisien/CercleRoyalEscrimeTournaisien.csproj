@@ -1329,6 +1329,7 @@
     <Content Include="FileToUpload\FichesSignaletiques\Soyez_Rémi.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Cucheval_JeanMarc.pdf" />
     <Content Include="App_Data\francais.laccdb" />
+    <Content Include="FileToUpload\FichesSignaletiques\Colpaert_Eleonara.pdf" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Accueil.cshtml" />
     <Content Include="Views\Home\Accueil_Part_1.cshtml" />

@@ -13,6 +13,56 @@ namespace WebApplication1.Models
 
                 JourDePrésence = new List<JourDePrésence>()
                 {
+                                    new JourDePrésence()
+                {
+                  DatePrésence = new DateTime(2026,5,17),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAmelLawrizy,
+                    GuidConstantes.GuidAnaelleIvanov,
+                    GuidConstantes.GuidBenedictCosentini,
+                    GuidConstantes.GuidEleonaraColpaert,
+                    GuidConstantes.GuidEliotPunchoo,
+                    GuidConstantes.GuidEstebanDuthye,
+                    GuidConstantes.GuidFabriceRazanajao,
+                    GuidConstantes.GuidFélixTrannoy,
+                    GuidConstantes.GuidGabrielSegard,
+                    GuidConstantes.GuidJeanMarcCucheval,
+                    GuidConstantes.GuidJordanMestdagh,
+                    GuidConstantes.GuidLucasVerheye,
+                    GuidConstantes.GuidMaeVantroyen,
+                    GuidConstantes.GuidMartinSiu,
+                    GuidConstantes.GuidOscarDeblocq,
+                    GuidConstantes.GuidRaedwaldVercouter,
+                    GuidConstantes.GuidRebeccaVandy,
+                    GuidConstantes.GuidFlorianBauffe,
+                    GuidConstantes.GuidMatthieuTanis,
+                  }
+                },
+                                    new JourDePrésence()
+                {
+                  DatePrésence = new DateTime(2026,5,15),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAmadoSimon,
+                    GuidConstantes.GuidAmelLawrizy,
+                    GuidConstantes.GuidAnaelleIvanov,
+                    GuidConstantes.GuidEstebanDuthye,
+                    GuidConstantes.GuidFélixTrannoy,
+                    GuidConstantes.GuidGabrielSegard,
+                    GuidConstantes.GuidGwendalLecomte,
+                    GuidConstantes.GuidJeanMarcCucheval,
+                    GuidConstantes.GuidJordanMestdagh,
+                    GuidConstantes.GuidLiliMestdag,
+                    GuidConstantes.GuidLucasVerheye,
+                    GuidConstantes.GuidMaeVantroyen,
+                    GuidConstantes.GuidNoelMarieDransart,
+                    GuidConstantes.GuidOscarDeblocq,
+                    GuidConstantes.GuidRaedwaldVercouter,
+                    GuidConstantes.GuidSolalSchrouf,
+                    GuidConstantes.GuidThéoCucheval_Rasson,
+                  }
+                },
                        new JourDePrésence()
                 {
                   DatePrésence = new DateTime(2026,5,13),
@@ -2214,14 +2264,14 @@ namespace WebApplication1.Models
                     IsCotisationCarte1 = true,
                     IsCotisationCarte2 = true,
                     IsCotisationCarte3 = true,
-                    IsCotisationCarte4 = false,
+                    IsCotisationCarte4 = true,
                     IsCotisationCarte5 = false,
                     IsCotisationEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
                     IsChaussettesPayéesEnOrdre = true,
                     IsTeeShirtsPayéesEnOrdre = true,
-                    PaiementsEffectues = new List<string>() { "95 euros (payé de main à main à la salle le 21-09-2025)", "50 euros", "14 euros", "50 euros" },
+                    PaiementsEffectues = new List<string>() { "95 euros (payé de main à main à la salle le 21-09-2025)", "50 euros", "14 euros", "50 euros", "50 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                     },
@@ -2365,13 +2415,14 @@ namespace WebApplication1.Models
                     IsChaussettesPayéesEnOrdre = false,
                     IsLocationMatérielEnOrdre = false,
                     IsCotisationEnOrdre = false,
-                    IsFicheSignaletiqueEnOrdre = false,
+                    IsFicheSignaletiqueEnOrdre = true,
                     IsTeeShirtsPayéesEnOrdre = false,
 
                     PaiementsEffectues = new List<string>() { "" },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2026,5,13),
+                        new DateTime(2026,5,17),
                     },
                     IsMatérielLoue = true
                 };
@@ -2509,7 +2560,7 @@ namespace WebApplication1.Models
                     Periode = period,
                     IsCotisationAnnuelle = false,
                     IsCotisationCarte1 = true,
-                    IsCotisationCarte2 = false,
+                    IsCotisationCarte2 = true,
                     IsCotisationCarte3 = false,
                     IsChaussettesPayéesEnOrdre = true,
                     IsCotisationCarte4 = false,
@@ -2517,7 +2568,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
                     IsTeeShirtsPayéesEnOrdre = true,
-                    PaiementsEffectues = new List<string>() { "95 euros", "75 euros" },
+                    PaiementsEffectues = new List<string>() { "95 euros", "75 euros", "50 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,2,2),
@@ -2595,14 +2646,14 @@ namespace WebApplication1.Models
                     IsCotisationAnnuelle = false,
                     IsCotisationCarte1 = true,
                     IsCotisationCarte2 = true,
-                    IsCotisationCarte3 = false,
+                    IsCotisationCarte3 = true,
                     IsCotisationCarte4 = false,
                     IsChaussettesPayéesEnOrdre = true,
                     IsCotisationEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { "95 euros", "75 euros", "50 euros" },
+                    PaiementsEffectues = new List<string>() { "95 euros", "75 euros", "50 euros", "50 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,5,31),
@@ -2735,13 +2786,13 @@ namespace WebApplication1.Models
                     IsCotisationCarte1 = true,
                     IsCotisationCarte2 = true,
                     IsCotisationCarte3 = true,
-                    IsCotisationCarte4 = false,
+                    IsCotisationCarte4 = true,
                     IsCotisationEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = false,
                     IsLocationMatérielEnOrdre = true,
                     IsChaussettesPayéesEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { "95 euros", "14 euros", "75 euros", "50 euros", "50 euros" },
+                    PaiementsEffectues = new List<string>() { "95 euros", "14 euros", "75 euros", "50 euros", "50 euros", "50 euros" },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,9,6),

@@ -201,13 +201,13 @@ namespace WebApplication1.Models
             Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidEleonaraColpaert && x.Période == period).Signaletique =
               new Signaletique()
               {
-                  Categorie = Categorie.Inconnu,
-                  DateDeNaissance = new DateTime(9999, 12, 31),
-                  Email = new List<string>() { "justine.hardeman@gmail.com" },
+                  Categorie = ListGuidTireur.SearchCategorie(2012),
+                  DateDeNaissance = new DateTime(2012, 03, 28),
+                  Email = new List<string>() { "justine.hardeman@gmail.com","benedict.colpaert@gmail.com" },
                   NomMaman = "Hardeman Justine",
-                  NomPapa = "",
-                  Telephone = new List<string>() { "" },
-                  FicheSignaletiqueUrl = "",
+                  NomPapa = "Colpaert Benedict",
+                  Telephone = new List<string>() { "0484907188","0484753639","0496379936" },
+                  FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Colpaert_Eleonara.pdf",
               };
         }
         public void Add_FichesSignalétiques_Bauffe_Florian(string period, List<MembreData> Membres)
