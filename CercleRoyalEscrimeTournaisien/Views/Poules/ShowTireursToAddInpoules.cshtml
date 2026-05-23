@@ -18,8 +18,12 @@
     }
 
     @@media (max-width: 568px) {
-        .ClassTireurFirstColumn {
-            font-size: 10px;
+        .ClassTireurFirstColumn {            
+            display: inline-block;
+            max-width: 135px; 
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
 </style>
@@ -36,13 +40,22 @@
         for (int j = 0; j < Model.Tireurs[0].Poules.Count; j++)
         {
             <div>
-                <span>@Model.Tireurs[0].Poules[j].Poule (@Model.Tireurs[0].Poules[j].DescriptionDeLaPoule)</span>
+                <span style="font-size:13px;">@Model.Tireurs[0].Poules[j].Poule (@Model.Tireurs[0].Poules[j].DescriptionDeLaPoule)</span>
             </div>
         }
 
         <hr />
 
         <table>
+            <tr>
+                <th style="text-align:center; ">Poule</th>
+                <th style="text-align:center; ">1</th>
+                <th style="text-align:center; ">2</th>
+                <th style="text-align:center; ">3</th>
+                <th style="text-align:center; ">4</th>
+                <th style="text-align:center; ">5</th>
+            </tr>
+
             @for (int i = 0; i < Model.Tireurs.Count; i++)
             {
                 @Html.HiddenFor(m => m.Tireurs[i].Tireur.Tireur)
@@ -57,7 +70,6 @@
                         @Html.HiddenFor(m => m.Tireurs[i].Poules[j].DescriptionDeLaPoule)
 
                         <td>
-                            <span>@Model.Tireurs[i].Poules[j].Poule.Replace("Poule", "")</span>
                             @Html.CheckBoxFor(m => m.Tireurs[i].Poules[j].Selected)
                         </td>
                     }
