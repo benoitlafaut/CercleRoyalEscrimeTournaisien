@@ -322,171 +322,225 @@ namespace CercleRoyalEscrimeTournaisien.Models
             }
         }
 
+        public void InitSession()
+        {
+            System.Web.HttpContext.Current.Session.Remove("ChargerListeDesPoulesPotentiellesSession");
+            System.Web.HttpContext.Current.Session.Remove("ChargerRésultatsDesPoulesDuJourSession");
+            System.Web.HttpContext.Current.Session.Remove("ChargerRésultatsDesElimintationsDirectesDuJourSession");
+            System.Web.HttpContext.Current.Session.Remove("ChargerPoulesDuJourSession");
+            System.Web.HttpContext.Current.Session.Remove("ChargerDatesPourToutesLesPoulesSession");
+            System.Web.HttpContext.Current.Session.Remove("ChargerListeDesTireursSession");
+        }
+
         private void ChargerListeDesPoulesPotentielles()
         {
-            PoulesList = new List<ClassPoule>() { };
-
-            var path = ServerTmp.MapPath("/App_Data/Poules.accdb");
-            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
-            string mySelectQuery = " SELECT * FROM TableListeDesPoules";
-
-            using (var conn = new OleDbConnection(ConnectionString))
+            List<ClassPoule> chargerListeDesPoulesPotentiellesSession = this.GetValueStartsWith<List<ClassPoule>>("ChargerListeDesPoulesPotentiellesSession");
+            if (chargerListeDesPoulesPotentiellesSession != null)
             {
-                conn.Open();
-                using (var cmd = new OleDbCommand(mySelectQuery, conn))
-                {
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            string poule = (string)reader["Poule"];
-                            string descriptionDeLaPoule = (string)reader["DescriptionDeLaPoule"];
-                            PoulesList.Add(new ClassPoule()
-                            {
-                                Poule = poule,
-                                DescriptionDeLaPoule = descriptionDeLaPoule
-                            });
-                        }
-                    }                    
-                }
-            }            
-        }
-        private void ChargerRésultatsDesPoulesDuJour()
-        {
-            ScoresList = new List<ClassScore>() { };
-
-            var path = ServerTmp.MapPath("/App_Data/Poules.accdb");
-            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
-            string mySelectQuery = " SELECT * FROM TableRésultatsDesPoules where DateDeLaPoule = '" + DateDuJourWithoutDayLabel + "'";
-
-            using (var conn = new OleDbConnection(ConnectionString))
+                PoulesList = chargerListeDesPoulesPotentiellesSession;
+            }
+            else
             {
-                conn.Open();
-                using (var cmd = new OleDbCommand(mySelectQuery, conn))
+                PoulesList = new List<ClassPoule>() { };
+
+                var path = ServerTmp.MapPath("/App_Data/Poules.accdb");
+                string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
+                string mySelectQuery = " SELECT * FROM TableListeDesPoules";
+
+                using (var conn = new OleDbConnection(ConnectionString))
                 {
-                    using (var myReader = cmd.ExecuteReader())
+                    conn.Open();
+                    using (var cmd = new OleDbCommand(mySelectQuery, conn))
                     {
-                        while (myReader.Read())
+                        using (var reader = cmd.ExecuteReader())
                         {
-                            string poule = (string)myReader["Poule"];
-
-                            string guidStr1 = myReader["Tireur1Guid"].ToString().Trim();
-                            Guid tireur1Guid = Guid.Parse(guidStr1);
-
-                            string guidStr2 = myReader["Tireur2Guid"].ToString().Trim();
-                            Guid tireur2Guid = Guid.Parse(guidStr2);
-
-                            bool victoireOuDéfaiteDuTireur1 = (bool)myReader["VictoireOuDéfaiteDuTireur1"];
-                            bool victoireOuDéfaiteDuTireur2 = (bool)myReader["VictoireOuDéfaiteDuTireur2"];
-                            int scoreDuTireur1 = (int)myReader["ScoreDuTireur1"];
-                            int scoreDuTireur2 = (int)myReader["ScoreDuTireur2"];
-                            int questionMeneOuNon = (int)myReader["QuestionMeneOuNon"];
-                            ScoresList.Add(new ClassScore()
+                            while (reader.Read())
                             {
-                                Poule = poule,
-                                Tireur1Guid = tireur1Guid,
-                                Tireur2Guid = tireur2Guid,
-                                VictoireOuDéfaiteDuTireur1 = victoireOuDéfaiteDuTireur1,
-                                VictoireOuDéfaiteDuTireur2 = victoireOuDéfaiteDuTireur2,
-                                ScoreDuTireur1 = scoreDuTireur1,
-                                ScoreDuTireur2 = scoreDuTireur2,
-                                QuestionMeneOuNon = questionMeneOuNon
-                            });
+                                string poule = (string)reader["Poule"];
+                                string descriptionDeLaPoule = (string)reader["DescriptionDeLaPoule"];
+                                PoulesList.Add(new ClassPoule()
+                                {
+                                    Poule = poule,
+                                    DescriptionDeLaPoule = descriptionDeLaPoule
+                                });
+                            }
                         }
                     }
                 }
+
+                System.Web.HttpContext.Current.Session.Add("ChargerListeDesPoulesPotentiellesSession", PoulesList);
+            }
+
+
+                         
+        }
+        private void ChargerRésultatsDesPoulesDuJour()
+        {
+            List<ClassScore> chargerRésultatsDesPoulesDuJourSession = this.GetValueStartsWith<List<ClassScore>>("ChargerRésultatsDesPoulesDuJourSession");
+            if (chargerRésultatsDesPoulesDuJourSession != null)
+            {
+                ScoresList = chargerRésultatsDesPoulesDuJourSession;
+            }
+            else
+            {
+                ScoresList = new List<ClassScore>() { };
+
+                var path = ServerTmp.MapPath("/App_Data/Poules.accdb");
+                string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
+                string mySelectQuery = " SELECT * FROM TableRésultatsDesPoules where DateDeLaPoule = '" + DateDuJourWithoutDayLabel + "'";
+
+                using (var conn = new OleDbConnection(ConnectionString))
+                {
+                    conn.Open();
+                    using (var cmd = new OleDbCommand(mySelectQuery, conn))
+                    {
+                        using (var myReader = cmd.ExecuteReader())
+                        {
+                            while (myReader.Read())
+                            {
+                                string poule = (string)myReader["Poule"];
+
+                                string guidStr1 = myReader["Tireur1Guid"].ToString().Trim();
+                                Guid tireur1Guid = Guid.Parse(guidStr1);
+
+                                string guidStr2 = myReader["Tireur2Guid"].ToString().Trim();
+                                Guid tireur2Guid = Guid.Parse(guidStr2);
+
+                                bool victoireOuDéfaiteDuTireur1 = (bool)myReader["VictoireOuDéfaiteDuTireur1"];
+                                bool victoireOuDéfaiteDuTireur2 = (bool)myReader["VictoireOuDéfaiteDuTireur2"];
+                                int scoreDuTireur1 = (int)myReader["ScoreDuTireur1"];
+                                int scoreDuTireur2 = (int)myReader["ScoreDuTireur2"];
+                                int questionMeneOuNon = (int)myReader["QuestionMeneOuNon"];
+                                ScoresList.Add(new ClassScore()
+                                {
+                                    Poule = poule,
+                                    Tireur1Guid = tireur1Guid,
+                                    Tireur2Guid = tireur2Guid,
+                                    VictoireOuDéfaiteDuTireur1 = victoireOuDéfaiteDuTireur1,
+                                    VictoireOuDéfaiteDuTireur2 = victoireOuDéfaiteDuTireur2,
+                                    ScoreDuTireur1 = scoreDuTireur1,
+                                    ScoreDuTireur2 = scoreDuTireur2,
+                                    QuestionMeneOuNon = questionMeneOuNon
+                                });
+                            }
+                        }
+                    }
+                }
+
+                System.Web.HttpContext.Current.Session.Add("ChargerRésultatsDesPoulesDuJourSession", ScoresList);
+
             }      
         }
         private void ChargerRésultatsDesElimintationsDirectesDuJour()
         {
-            ScoresEliminitationsDirectesList = new List<ClassScoreEliminationsDirectes>() { };
-
-            var path = ServerTmp.MapPath("/App_Data/Poules.accdb");
-            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
-            string mySelectQuery = " SELECT * FROM TableRésultatsDesEliminationsDirectes where DateDeLaPoule = '" + DateDuJourWithoutDayLabel + "'";
-
-            using (var conn = new OleDbConnection(ConnectionString))
+            List<ClassScoreEliminationsDirectes> chargerRésultatsDesElimintationsDirectesDuJourSession = this.GetValueStartsWith<List<ClassScoreEliminationsDirectes>>("ChargerRésultatsDesElimintationsDirectesDuJourSession");
+            if (chargerRésultatsDesElimintationsDirectesDuJourSession != null)
             {
-                conn.Open();
-                using (var cmd = new OleDbCommand(mySelectQuery, conn))
+                ScoresEliminitationsDirectesList = chargerRésultatsDesElimintationsDirectesDuJourSession;
+            }
+            else
+            {
+                ScoresEliminitationsDirectesList = new List<ClassScoreEliminationsDirectes>() { };
+
+                var path = ServerTmp.MapPath("/App_Data/Poules.accdb");
+                string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
+                string mySelectQuery = " SELECT * FROM TableRésultatsDesEliminationsDirectes where DateDeLaPoule = '" + DateDuJourWithoutDayLabel + "'";
+
+                using (var conn = new OleDbConnection(ConnectionString))
                 {
-                    using (var myReader = cmd.ExecuteReader())
+                    conn.Open();
+                    using (var cmd = new OleDbCommand(mySelectQuery, conn))
                     {
-                        while (myReader.Read())
+                        using (var myReader = cmd.ExecuteReader())
                         {
-                            string poule = (string)myReader["Poule"];
-                            string dateDeLaPoule = (string)myReader["DateDeLaPoule"];
-                            string round = (string)myReader["Round"];
-                            string indexTireur1 = (string)myReader["IndexTireur1"];
-                            string indexTireur2 = (string)myReader["IndexTireur2"];
-                            string tireur1Name = (string)myReader["Tireur1Name"];
-                            string tireur2Name = (string)myReader["Tireur2Name"];
-
-                            string guidStr1 = myReader["Tireur1Guid"].ToString().Trim();
-                            Guid tireur1Guid = Guid.Parse(guidStr1);
-
-                            string guidStr2 = myReader["Tireur2Guid"].ToString().Trim();
-                            Guid tireur2Guid = Guid.Parse(guidStr2);
-
-                            bool victoireOuDéfaiteDuTireur1 = (bool)myReader["VictoireOuDéfaiteDuTireur1"];
-                            bool victoireOuDéfaiteDuTireur2 = (bool)myReader["VictoireOuDéfaiteDuTireur2"];
-
-                            bool scoreDejaIntroduit = (bool)myReader["ScoreDejaIntroduit"];
-
-                            int scoreDuTireur1 = (int)myReader["ScoreDuTireur1"];
-                            int scoreDuTireur2 = (int)myReader["ScoreDuTireur2"];
-                            ScoresEliminitationsDirectesList.Add(new ClassScoreEliminationsDirectes()
+                            while (myReader.Read())
                             {
-                                DateDeLaPoule = dateDeLaPoule,
-                                PouleSelected = poule,
-                                Tireur1Guid = tireur1Guid,
-                                Tireur2Guid = tireur2Guid,
-                                VictoireOuDéfaiteDuTireur1 = victoireOuDéfaiteDuTireur1,
-                                VictoireOuDéfaiteDuTireur2 = victoireOuDéfaiteDuTireur2,
-                                ScoreDuTireur1 = scoreDuTireur1,
-                                ScoreDuTireur2 = scoreDuTireur2,
-                                Round = round,
-                                IndexTireur1 = indexTireur1,
-                                IndexTireur2 = indexTireur2,
-                                Tireur1Name = tireur1Name,
-                                Tireur2Name = tireur2Name,
-                                ScoreDejaIntroduit = scoreDejaIntroduit
-                            });
+                                string poule = (string)myReader["Poule"];
+                                string dateDeLaPoule = (string)myReader["DateDeLaPoule"];
+                                string round = (string)myReader["Round"];
+                                string indexTireur1 = (string)myReader["IndexTireur1"];
+                                string indexTireur2 = (string)myReader["IndexTireur2"];
+                                string tireur1Name = (string)myReader["Tireur1Name"];
+                                string tireur2Name = (string)myReader["Tireur2Name"];
+
+                                string guidStr1 = myReader["Tireur1Guid"].ToString().Trim();
+                                Guid tireur1Guid = Guid.Parse(guidStr1);
+
+                                string guidStr2 = myReader["Tireur2Guid"].ToString().Trim();
+                                Guid tireur2Guid = Guid.Parse(guidStr2);
+
+                                bool victoireOuDéfaiteDuTireur1 = (bool)myReader["VictoireOuDéfaiteDuTireur1"];
+                                bool victoireOuDéfaiteDuTireur2 = (bool)myReader["VictoireOuDéfaiteDuTireur2"];
+
+                                bool scoreDejaIntroduit = (bool)myReader["ScoreDejaIntroduit"];
+
+                                int scoreDuTireur1 = (int)myReader["ScoreDuTireur1"];
+                                int scoreDuTireur2 = (int)myReader["ScoreDuTireur2"];
+                                ScoresEliminitationsDirectesList.Add(new ClassScoreEliminationsDirectes()
+                                {
+                                    DateDeLaPoule = dateDeLaPoule,
+                                    PouleSelected = poule,
+                                    Tireur1Guid = tireur1Guid,
+                                    Tireur2Guid = tireur2Guid,
+                                    VictoireOuDéfaiteDuTireur1 = victoireOuDéfaiteDuTireur1,
+                                    VictoireOuDéfaiteDuTireur2 = victoireOuDéfaiteDuTireur2,
+                                    ScoreDuTireur1 = scoreDuTireur1,
+                                    ScoreDuTireur2 = scoreDuTireur2,
+                                    Round = round,
+                                    IndexTireur1 = indexTireur1,
+                                    IndexTireur2 = indexTireur2,
+                                    Tireur1Name = tireur1Name,
+                                    Tireur2Name = tireur2Name,
+                                    ScoreDejaIntroduit = scoreDejaIntroduit
+                                });
+                            }
                         }
                     }
                 }
+
+                System.Web.HttpContext.Current.Session.Add("ChargerRésultatsDesElimintationsDirectesDuJourSession", ScoresEliminitationsDirectesList);
             }           
         }
         private void ChargerPoulesDuJour()
         {
-            PoulesDuJourList = new List<ClassPoulesDuJour>() { };
-
-            var path = ServerTmp.MapPath("/App_Data/Poules.accdb");
-            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
-            string mySelectQuery = " SELECT * FROM TableDesTireursPourUnePouleDuJour where DateDeLaPoule = '" + DateDuJourWithoutDayLabel + "'";
-
-            using (var conn = new OleDbConnection(ConnectionString))
+            List<ClassPoulesDuJour> chargerPoulesDuJourSession = this.GetValueStartsWith<List<ClassPoulesDuJour>>("ChargerPoulesDuJourSession");
+            if (chargerPoulesDuJourSession != null)
             {
-                conn.Open();
-                using (var cmd = new OleDbCommand(mySelectQuery, conn))
+                PoulesDuJourList = chargerPoulesDuJourSession;
+            }
+            else
+            {
+                PoulesDuJourList = new List<ClassPoulesDuJour>() { };
+
+                var path = ServerTmp.MapPath("/App_Data/Poules.accdb");
+                string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
+                string mySelectQuery = " SELECT * FROM TableDesTireursPourUnePouleDuJour where DateDeLaPoule = '" + DateDuJourWithoutDayLabel + "'";
+
+                using (var conn = new OleDbConnection(ConnectionString))
                 {
-                    using (var myReader = cmd.ExecuteReader())
+                    conn.Open();
+                    using (var cmd = new OleDbCommand(mySelectQuery, conn))
                     {
-                        while (myReader.Read())
+                        using (var myReader = cmd.ExecuteReader())
                         {
-                            Guid tireurGuid = (Guid)myReader["TireurGuid"];
-                            string poule = (string)myReader["Poule"];
-                            string tireur = (string)myReader["Tireur"];
-                            PoulesDuJourList.Add(new ClassPoulesDuJour()
+                            while (myReader.Read())
                             {
-                                TireurGuid = tireurGuid,
-                                Poule = poule,
-                                Tireur = tireur
-                            });
+                                Guid tireurGuid = (Guid)myReader["TireurGuid"];
+                                string poule = (string)myReader["Poule"];
+                                string tireur = (string)myReader["Tireur"];
+                                PoulesDuJourList.Add(new ClassPoulesDuJour()
+                                {
+                                    TireurGuid = tireurGuid,
+                                    Poule = poule,
+                                    Tireur = tireur
+                                });
+                            }
                         }
                     }
                 }
-            }          
+
+                System.Web.HttpContext.Current.Session.Add("ChargerPoulesDuJourSession", PoulesDuJourList);
+            }                       
         }
         private void CalculerAgeDeChaqueTireur()
         {
@@ -521,52 +575,69 @@ namespace CercleRoyalEscrimeTournaisien.Models
         }
         private void ChargerDatesPourToutesLesPoules()
         {
-            DatesPourToutesLesPoulesList = new List<ClassDatesPourToutesLesPoules>() { };
-
-            var path = ServerTmp.MapPath("/App_Data/Poules.accdb");
-            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
-            string mySelectQuery = " SELECT DateDeLaPoule FROM TableDesTireursPourUnePouleDuJour GROUP BY DateDeLaPoule";
-
-            using (var conn = new OleDbConnection(ConnectionString))
+            List<ClassDatesPourToutesLesPoules> chargerDatesPourToutesLesPoulesSession = this.GetValueStartsWith<List<ClassDatesPourToutesLesPoules>>("ChargerDatesPourToutesLesPoulesSession");
+            if (chargerDatesPourToutesLesPoulesSession != null)
             {
-                conn.Open();
-                using (var cmd = new OleDbCommand(mySelectQuery, conn))
-                {
-                    using (var myReader = cmd.ExecuteReader())
-                    {
-                        while (myReader.Read())
-                        {
-                            string dateDeLaPoule = (string)myReader["DateDeLaPoule"];
-
-                            DatesPourToutesLesPoulesList.Add(new ClassDatesPourToutesLesPoules()
-                            {
-                                DateDeLaPoule = dateDeLaPoule,
-                            });
-                        }
-                    }
-                }
-            }           
-
-            foreach (ClassDatesPourToutesLesPoules date in DatesPourToutesLesPoulesList)
+                DatesPourToutesLesPoulesList = chargerDatesPourToutesLesPoulesSession;
+            }
+            else
             {
-                string mySelectQueryRechercheArme = " SELECT * FROM TableDateAvecArmePratiquee Where DateDeLaPoule = '" + date.DateDeLaPoule + "'";
+                DatesPourToutesLesPoulesList = new List<ClassDatesPourToutesLesPoules>() { };
+
+                var path = ServerTmp.MapPath("/App_Data/Poules.accdb");
+                string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
+                string mySelectQuery = " SELECT DateDeLaPoule FROM TableDesTireursPourUnePouleDuJour GROUP BY DateDeLaPoule";
 
                 using (var conn = new OleDbConnection(ConnectionString))
                 {
                     conn.Open();
-                    using (var cmd = new OleDbCommand(mySelectQueryRechercheArme, conn))
+                    using (var cmd = new OleDbCommand(mySelectQuery, conn))
                     {
-                        using (var myReaderRechercheArme = cmd.ExecuteReader())
+                        using (var myReader = cmd.ExecuteReader())
                         {
-                            while (myReaderRechercheArme.Read())
+                            while (myReader.Read())
                             {
-                                string arme = (string)myReaderRechercheArme["Arme"];
-                                date.Arme = arme;
+                                string dateDeLaPoule = (string)myReader["DateDeLaPoule"];
+
+                                DatesPourToutesLesPoulesList.Add(new ClassDatesPourToutesLesPoules()
+                                {
+                                    DateDeLaPoule = dateDeLaPoule,
+                                });
                             }
                         }
                     }
+                }
+
+                var armesParDate = new Dictionary<string, string>();
+
+                string sql = "SELECT DateDeLaPoule, Arme FROM TableDateAvecArmePratiquee";
+
+                using (var conn = new OleDbConnection(ConnectionString))
+                {
+                    conn.Open();
+                    using (var cmd = new OleDbCommand(sql, conn))
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string date = reader.GetString(reader.GetOrdinal("DateDeLaPoule"));
+                            string arme = reader.GetString(reader.GetOrdinal("Arme"));
+
+                            armesParDate[date] = arme;
+                        }
+                    }
+                }
+
+                foreach (var date in DatesPourToutesLesPoulesList)
+                {
+                    if (armesParDate.TryGetValue(date.DateDeLaPoule, out string arme))
+                    {
+                        date.Arme = arme;
+                    }
                 }                
-            }
+
+                System.Web.HttpContext.Current.Session.Add("ChargerDatesPourToutesLesPoulesSession", DatesPourToutesLesPoulesList);
+            }                
         }
         private T GetValueStartsWith<T>(string key)
         {
@@ -581,36 +652,46 @@ namespace CercleRoyalEscrimeTournaisien.Models
 
         private void ChargerListeDesTireurs()
         {
-            TireursList = new List<ClassTireur>() { };
-
-            var path = ServerTmp.MapPath("/App_Data/Poules.accdb");
-            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
-            string mySelectQuery = " SELECT * FROM TableTireurs";
-
-            using (var conn = new OleDbConnection(ConnectionString))
+            List<ClassTireur> chargerListeDesTireursSession = this.GetValueStartsWith<List<ClassTireur>>("ChargerListeDesTireursSession");
+            if (chargerListeDesTireursSession != null)
             {
-                conn.Open();
-                using (var cmd = new OleDbCommand(mySelectQuery, conn))
+                TireursList = chargerListeDesTireursSession;
+            }
+            else
+            {
+                TireursList = new List<ClassTireur>() { };
+
+                var path = ServerTmp.MapPath("/App_Data/Poules.accdb");
+                string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
+                string mySelectQuery = " SELECT * FROM TableTireurs";
+
+                using (var conn = new OleDbConnection(ConnectionString))
                 {
-                    using (var myReader = cmd.ExecuteReader())
+                    conn.Open();
+                    using (var cmd = new OleDbCommand(mySelectQuery, conn))
                     {
-                        while (myReader.Read())
+                        using (var myReader = cmd.ExecuteReader())
                         {
-                            string tireur = (string)myReader["Tireur"];
-                            string jourDeLaPoule = (string)myReader["JourDeLaPoule"];
-                            string pouleAttribuee = (string)myReader["PouleAttribuee"];
-                            string dateDeNaissance = (string)myReader["DateDeNaissance"];
-                            TireursList.Add(new ClassTireur()
+                            while (myReader.Read())
                             {
-                                Tireur = tireur,
-                                JourDeLaPoule = jourDeLaPoule,
-                                PouleAttribuee = pouleAttribuee,
-                                DateDeNaissance = dateDeNaissance
-                            });
+                                string tireur = (string)myReader["Tireur"];
+                                string jourDeLaPoule = (string)myReader["JourDeLaPoule"];
+                                string pouleAttribuee = (string)myReader["PouleAttribuee"];
+                                string dateDeNaissance = (string)myReader["DateDeNaissance"];
+                                TireursList.Add(new ClassTireur()
+                                {
+                                    Tireur = tireur,
+                                    JourDeLaPoule = jourDeLaPoule,
+                                    PouleAttribuee = pouleAttribuee,
+                                    DateDeNaissance = dateDeNaissance
+                                });
+                            }
                         }
                     }
                 }
-            }            
+
+                System.Web.HttpContext.Current.Session.Add("ChargerListeDesTireursSession", TireursList);
+            }                          
         }
     }
 

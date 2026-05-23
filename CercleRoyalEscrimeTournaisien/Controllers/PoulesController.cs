@@ -88,6 +88,10 @@ namespace CercleRoyalEscrimeTournaisien
                     }
                 }
             }
+
+            PoulesViewModel poulesViewModelTmp = new PoulesViewModel(Server);
+            poulesViewModelTmp.InitSession();
+
             return View(Constantes.ShowTireursToAddInpoules, showTireursToAddInpoulesViewModel);
         }
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
@@ -246,6 +250,8 @@ namespace CercleRoyalEscrimeTournaisien
                 }
             }
 
+            poulesViewModel.InitSession();
+
             return Json(new { redirectUrl = Url.Action("Poules", "Poules") });
         }
 
@@ -287,6 +293,9 @@ namespace CercleRoyalEscrimeTournaisien
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
         public ActionResult ResetDates()
         {
+            PoulesViewModel poulesViewModelTmp = new PoulesViewModel(Server);
+            poulesViewModelTmp.InitSession();
+
             System.Web.HttpContext.Current.Session.Remove("IsOtherDateThanDateDuJour");
             System.Web.HttpContext.Current.Session.Remove("OtherDate");
 
@@ -299,6 +308,9 @@ namespace CercleRoyalEscrimeTournaisien
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
         public ActionResult ChangeDateDeLaPoule(string dateDeLaPouleSelected)
         {
+            PoulesViewModel poulesViewModelTmp = new PoulesViewModel(Server);
+            poulesViewModelTmp.InitSession();
+
             System.Web.HttpContext.Current.Session.Add("IsOtherDateThanDateDuJour", "true");
             System.Web.HttpContext.Current.Session.Add("OtherDate", dateDeLaPouleSelected);
             return RedirectToAction("AfficherLesPoules", "poules");          
@@ -336,6 +348,8 @@ namespace CercleRoyalEscrimeTournaisien
                 }                  
             }
 
+            poulesViewModel.InitSession();
+
             return Json(new { redirectUrl = Url.Action("AfficherLesPoules", "Poules") });
         }
         [HttpPost]
@@ -369,6 +383,9 @@ namespace CercleRoyalEscrimeTournaisien
                     }
                 }
             }
+            
+            PoulesViewModel poulesViewModelTmp = new PoulesViewModel(Server);
+            poulesViewModelTmp.InitSession();
 
             return Json(new { redirectUrl = Url.Action("ChangeRoundPourShowEliminationsDirectes", "Poules", new { roundSelected = myRequestEliminationDirecteToSaveInPoule.Round, PouleSelected = myRequestEliminationDirecteToSaveInPoule.PouleSelected }) });
         }
@@ -440,8 +457,7 @@ namespace CercleRoyalEscrimeTournaisien
                 }
             }
 
-
-
+            poulesViewModel.InitSession();
 
             return Json(new { redirectUrl = Url.Action("AfficherLesPoules", "Poules") });            
         }
@@ -571,6 +587,8 @@ namespace CercleRoyalEscrimeTournaisien
                     }
                 }
             }
+
+            poulesViewModel.InitSession();
 
             return Json(new { redirectUrl = Url.Action("Poules", "Poules") });
         }
