@@ -12,6 +12,16 @@
         font-size: 15px;
         width: 5em;
     }
+
+    .ClassTireurFirstColumn {
+        font-size: 11px;
+    }
+
+    @@media (max-width: 568px) {
+        .ClassTireurFirstColumn {
+            font-size: 10px;
+        }
+    }
 </style>
 
 <!DOCTYPE html>
@@ -39,7 +49,7 @@
                 @Html.HiddenFor(m => m.Tireurs[i].Tireur.DateDeNaissance)
 
                 <tr>
-                    <td style="font-size:11px;">@Model.Tireurs[i].Tireur.Tireur</td>
+                    <td class="ClassTireurFirstColumn">@Model.Tireurs[i].Tireur.Tireur</td>
 
                     @for (int j = 0; j < Model.Tireurs[i].Poules.Count; j++)
                     {
