@@ -32,6 +32,7 @@ namespace CercleRoyalEscrimeTournaisien.ClassPublic
         public const string NosCoursTireurSelectionne = "NosCoursTireurSelectionne";
         public const string Epub122024 = "Epub122024";
         public const string Poules = "Poules";
+        public const string ShowTireursToAddInpoules = "ShowTireursToAddInpoules";
         public static string Serialize(object o)
         {
             if (!o.GetType().IsSerializable)

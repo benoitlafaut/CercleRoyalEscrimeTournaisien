@@ -306,6 +306,7 @@
     <Compile Include="Models\MyRequestEliminationDirecteToSaveInPoule.cs" />
     <Compile Include="Models\MyRequestScoreToSaveInPoule.cs" />
     <Compile Include="Models\MyRequestToSaveInPoule.cs" />
+    <Compile Include="Models\ShowTireursToAddInpoulesViewModel.cs" />
     <Compile Include="Models\PoulesViewModel.cs" />
     <Compile Include="Models\SwitchToDossierPhotosViewModel.cs" />
     <Compile Include="Models\Normes.cs" />
@@ -1424,6 +1425,7 @@
     <Content Include="Views\Poules\AjouterScoreAUnePoule.cshtml" />
     <Content Include="Views\Poules\AfficherLesDatesPrecedentes.cshtml" />
     <Content Include="Views\Poules\Statistiques.cshtml" />
+    <Content Include="Views\Poules\ShowTireursToAddInpoules.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

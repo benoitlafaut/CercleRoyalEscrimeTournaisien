@@ -1,0 +1,61 @@
+﻿@model CercleRoyalEscrimeTournaisien.Models.ShowTireursToAddInpoulesViewModel
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<style>
+    .ClassButton {
+        background-color: green;
+        color: white;
+        padding: 13px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 15px;
+        width: 5em;
+    }
+</style>
+
+<!DOCTYPE html>
+<html>
+<body>
+    @using (Html.BeginForm("SavePoules", "Poules", FormMethod.Post))
+    {
+        <button class="ClassButton" type="submit">Save</button>
+
+        <hr />
+
+        for (int j = 0; j < Model.Tireurs[0].Poules.Count; j++)
+        {
+            <div>
+                <span>@Model.Tireurs[0].Poules[j].Poule (@Model.Tireurs[0].Poules[j].DescriptionDeLaPoule)</span>
+            </div>
+        }
+
+        <hr />
+
+        <table>
+            @for (int i = 0; i < Model.Tireurs.Count; i++)
+            {
+                @Html.HiddenFor(m => m.Tireurs[i].Tireur.Tireur)
+                @Html.HiddenFor(m => m.Tireurs[i].Tireur.DateDeNaissance)
+
+                <tr>
+                    <td style="font-size:11px;">@Model.Tireurs[i].Tireur.Tireur</td>
+
+                    @for (int j = 0; j < Model.Tireurs[i].Poules.Count; j++)
+                    {
+                        @Html.HiddenFor(m => m.Tireurs[i].Poules[j].Poule)
+                        @Html.HiddenFor(m => m.Tireurs[i].Poules[j].DescriptionDeLaPoule)
+
+                        <td>
+                            <span>@Model.Tireurs[i].Poules[j].Poule.Replace("Poule", "")</span>
+                            @Html.CheckBoxFor(m => m.Tireurs[i].Poules[j].Selected)
+                        </td>
+                    }
+                </tr>
+            }
+        </table>
+
+
+    }
+</body>
+</html>

@@ -4,11 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.UI;
-using System.Xml;
 using static CercleRoyalEscrimeTournaisien.IndexTireurConstantes;
 
 namespace CercleRoyalEscrimeTournaisien
@@ -16,7 +16,80 @@ namespace CercleRoyalEscrimeTournaisien
     [RoutePrefix("Poules")]
     public class PoulesController : Controller
     {
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+        public ActionResult ShowTireursToAddInpoules()
+        {
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+            poulesViewModel.PouleSelected = "Poule 1";
+            List<ClassTireur> othersTireursPourLaPouleSelectionneeList  = poulesViewModel.OthersTireursPourLaPouleSelectionneeList;
+            List<ClassPoule> poulesList = poulesViewModel.PoulesList;
 
+            ShowTireursToAddInpoulesViewModel showTireursToAddInpoulesViewModel = new ShowTireursToAddInpoulesViewModel();
+            foreach (var tireur in othersTireursPourLaPouleSelectionneeList) 
+            {
+                showTireursToAddInpoulesViewModel.Tireurs.Add(
+                    new ClassShowTireursToAddInpoules()
+                    {
+                        Tireur = tireur,
+                        Poules = poulesList
+                    } );
+            }
+
+            showTireursToAddInpoulesViewModel.Tireurs = showTireursToAddInpoulesViewModel.Tireurs.OrderBy(x=>x.Tireur.Tireur).ToList();
+
+            return View(Constantes.ShowTireursToAddInpoules, showTireursToAddInpoulesViewModel);
+        }
+        [HttpPost]
+        public ActionResult SavePoules(ShowTireursToAddInpoulesViewModel showTireursToAddInpoulesViewModel)
+        {
+            DateTime dateNow = DateTime.Now.AddDays(0);
+            var culture = new CultureInfo("fr-FR");
+            string dateFormatee = dateNow.ToString("dd/MM/yyyy", culture);
+
+            var path = Server.MapPath("/App_Data/Poules.accdb");
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
+
+            string mySelectQueryDelete2 = @" DELETE FROM TableDesTireursPourUnePouleDuJour WHERE DateDeLaPoule = @t1";
+
+            using (var conn = new OleDbConnection(ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new OleDbCommand(mySelectQueryDelete2, conn))
+                {
+                    cmd.Parameters.AddWithValue("@t1", dateFormatee);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                    }
+                }
+            }
+
+
+            foreach (var tireur in showTireursToAddInpoulesViewModel.Tireurs)
+            {
+                foreach (var poule in tireur.Poules)
+                {
+                    if (poule.Selected)
+                    {
+                        using (var conn = new OleDbConnection(ConnectionString))
+                        {
+                            conn.Open();
+
+                            string mySelectQuery = "INSERT INTO TableDesTireursPourUnePouleDuJour (DateDeLaPoule, Poule, Tireur) Values ('" + dateFormatee + "','" + poule.Poule + "','" + tireur.Tireur.Tireur + "')";
+
+                            using (var cmd = new OleDbCommand(mySelectQuery, conn))
+                            {
+                                using (var reader = cmd.ExecuteReader())
+                                {
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return View(Constantes.ShowTireursToAddInpoules, showTireursToAddInpoulesViewModel);
+        }
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
         public ActionResult Poules()
         {

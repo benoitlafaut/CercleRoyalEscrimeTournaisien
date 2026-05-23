@@ -619,6 +619,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
     {
         public string Poule { get; set; }
         public string DescriptionDeLaPoule { get; set; }
+        public bool Selected { get; set; }
     }
     public class ClassTireur
     {
