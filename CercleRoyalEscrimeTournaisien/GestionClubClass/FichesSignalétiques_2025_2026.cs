@@ -210,6 +210,25 @@ namespace WebApplication1.Models
                   FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Colpaert_Eleonara.pdf",
               };
         }
+        public void Add_FichesSignalétiques_Persyn_Marc(string period, List<MembreData> Membres)
+        {
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidMarcPersyn && x.Période == period))
+            {
+                return;
+            }
+
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidMarcPersyn && x.Période == period).Signaletique =
+              new Signaletique()
+              {
+                  Categorie = ListGuidTireur.SearchCategorie(2016),
+                  DateDeNaissance = new DateTime(2016, 5, 24),
+                  Email = new List<string>() { "alixdeba@gmail.com" },
+                  NomMaman = "Debavelaere Alix",
+                  NomPapa = "Persyn Antoine",
+                  Telephone = new List<string>() { "0665958700", "0626310356" },
+                  FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Persyn_Marc.pdf",
+              };
+        }
         public void Add_FichesSignalétiques_Bauffe_Florian(string period, List<MembreData> Membres)
         {
             if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidFlorianBauffe && x.Période == period))

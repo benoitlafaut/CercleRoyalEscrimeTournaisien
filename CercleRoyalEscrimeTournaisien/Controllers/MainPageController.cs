@@ -438,6 +438,8 @@ namespace CercleRoyalEscrimeTournaisien
                     return passwordSelectionne.ToUpper() == GuidConstantes.GuidMatthieuTanis.ToString().ToUpper();
                 case IndexTireurConstantes.TireurIndex.EleonaraColpaert:
                     return passwordSelectionne.ToUpper() == GuidConstantes.GuidEleonaraColpaert.ToString().ToUpper();
+                case IndexTireurConstantes.TireurIndex.MarcPersyn:
+                    return passwordSelectionne.ToUpper() == GuidConstantes.GuidMarcPersyn.ToString().ToUpper();
                 default:
                     return false;
             }

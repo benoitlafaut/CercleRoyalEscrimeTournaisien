@@ -82,6 +82,29 @@
                 bool isNotTakeAccountTireursOK = Model.IsNotTakeAccountTireursOK && isTireurEnOrdre;
                 //string styleIsNotTakeAccountTireursOK = isNotTakeAccountTireursOK ? "display:none" : "";
                 int nombreDeJoursDePresence = 0;
+                int nombreDeJoursDePresenceForCotisation = 0;
+
+                if (Model.JoursDePrésence.JourDePrésence != null)
+                {
+                    for (var day = Model.JoursDePrésence.JourMinimumDesJoursDePrésence; day.Date <= DateTime.Now; day = day.AddDays(1))
+                    {
+                        if (day.DayOfWeek == DayOfWeek.Monday
+                            || day.DayOfWeek == DayOfWeek.Wednesday
+                            || day.DayOfWeek == DayOfWeek.Friday
+                            || day.DayOfWeek == DayOfWeek.Sunday)
+                        {
+                            if (Model.JoursDePrésence.JourDePrésence.Where(x => x.DatePrésence == day).Count() > 0)
+                            {
+                                WebApplication1.Models.JourDePrésence jourDePrésence = Model.JoursDePrésence.JourDePrésence.Where(x => x.DatePrésence == day).First();
+                                if (jourDePrésence.EscrimeurId.Where(x => x.Equals(escrimeur.GuidId)).Any())
+                                {
+                                    nombreDeJoursDePresenceForCotisation++;
+                                }
+                            }
+                        }
+                    }
+                }
+
 
                 if (!isNotTakeAccountTireursOK)
                 {
@@ -147,8 +170,8 @@
                                 }
                             </td>
 
-                            <td style="min-width:250px;">
-                                Achats Chaussettes
+                            <td style="min-width:110px;">
+                                Chaussettes
 
                                 @if (escrimeur.Paiement?.IsChaussettesPayéesEnOrdre == true)
                                 {
@@ -160,8 +183,8 @@
                                 }
                             </td>
 
-                            <td style="min-width:250px;">
-                                Achats Tee-Shirts
+                            <td style="min-width:110px;">
+                                Tee-Shirts
 
                                 @if (escrimeur.Paiement?.IsTeeShirtsPayéesEnOrdre == true)
                                 {
@@ -172,6 +195,24 @@
                                     <i class="fa fa-times" style="color:red;" aria-hidden="true"></i>
                                 }
                             </td>
+
+                            @{
+                                string styleDisplayCotisationAnnuelle = escrimeur.Paiement?.IsCotisationAnnuelle == true ? "display:none;" : "";
+                                if (nombreDeJoursDePresenceForCotisation == 0)
+                                {
+                                    styleDisplayCotisationAnnuelle = "display:none;";
+                                }
+                            }
+
+                            <td style="@styleDisplayCotisationAnnuelle min-width:110px;">
+                                <span style=" display: inline-block; width: 227px;">Cotisation à cartes (Présences : @nombreDeJoursDePresenceForCotisation)</span>
+                                @Html.CheckBox("checkboxCotisationCarte1", escrimeur.Paiement.IsCotisationCarte1)
+                                @Html.CheckBox("checkboxCotisationCarte2", escrimeur.Paiement.IsCotisationCarte2)
+                                @Html.CheckBox("checkboxCotisationCarte3", escrimeur.Paiement.IsCotisationCarte3)
+                                @Html.CheckBox("checkboxCotisationCarte4", escrimeur.Paiement.IsCotisationCarte4)
+                                @Html.CheckBox("checkboxCotisationCarte5", escrimeur.Paiement.IsCotisationCarte5)
+                                @Html.CheckBox("checkboxCotisationCarte6", escrimeur.Paiement.IsCotisationCarte6)
+                             </td>
                         </tr>
                     </table>
 

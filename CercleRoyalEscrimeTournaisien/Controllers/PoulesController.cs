@@ -21,24 +21,32 @@ namespace CercleRoyalEscrimeTournaisien
         {
             PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
             poulesViewModel.PouleSelected = "Poule 1";
-            List<ClassTireur> othersTireursPourLaPouleSelectionneeList  = poulesViewModel.OthersTireursPourLaPouleSelectionneeList;
+
+            List<ClassTireur> tireursList = poulesViewModel.TireursList;
+
             List<ClassPoule> poulesList = poulesViewModel.PoulesList;
 
             ShowTireursToAddInpoulesViewModel showTireursToAddInpoulesViewModel = new ShowTireursToAddInpoulesViewModel();
-            foreach (var tireur in othersTireursPourLaPouleSelectionneeList) 
+            foreach (var tireur in tireursList) 
             {
-                showTireursToAddInpoulesViewModel.Tireurs.Add(
-                    new ClassShowTireursToAddInpoules()
+                if (!showTireursToAddInpoulesViewModel.Tireurs.Any(x => x.Tireur.Tireur == tireur.Tireur))
+                {
                     {
-                        Tireur = tireur,
-                        Poules = poulesList
-                    } );
+                        showTireursToAddInpoulesViewModel.Tireurs.Add(
+                            new ClassShowTireursToAddInpoules()
+                            {
+                                Tireur = tireur,
+                                Poules = poulesList
+                            });
+                    }
+                }
             }
 
             showTireursToAddInpoulesViewModel.Tireurs = showTireursToAddInpoulesViewModel.Tireurs.OrderBy(x=>x.Tireur.Tireur).ToList();
 
             return View(Constantes.ShowTireursToAddInpoules, showTireursToAddInpoulesViewModel);
         }
+
         [HttpPost]
         public ActionResult SavePoules(ShowTireursToAddInpoulesViewModel showTireursToAddInpoulesViewModel)
         {

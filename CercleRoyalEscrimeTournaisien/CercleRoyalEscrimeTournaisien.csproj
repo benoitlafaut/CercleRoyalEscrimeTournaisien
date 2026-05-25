@@ -1278,7 +1278,6 @@
     <Content Include="FileToUpload\FichesSignaletiques\Cle_Leander.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Couturiaux_Arthur.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Gallant_Anicet.pdf" />
-    <Content Include="FileToUpload\FichesSignaletiques\soyez_remi.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Mestdagh_Jordan.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Siu_Martin.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Vercouter_Raedwald.pdf" />
@@ -1331,6 +1330,7 @@
     <Content Include="FileToUpload\FichesSignaletiques\Cucheval_JeanMarc.pdf" />
     <Content Include="App_Data\francais.laccdb" />
     <Content Include="FileToUpload\FichesSignaletiques\Colpaert_Eleonara.pdf" />
+    <Content Include="FileToUpload\FichesSignaletiques\Persyn_Marc.pdf" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Accueil.cshtml" />
     <Content Include="Views\Home\Accueil_Part_1.cshtml" />

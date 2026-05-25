@@ -39,7 +39,8 @@
             JeanMarcCucheval = 44,
             MatthieuTanis = 45,
             FlorianBauffe = 46,
-            EleonaraColpaert = 47
+            EleonaraColpaert = 47,
+            MarcPersyn = 48,
         }
     }
 }
