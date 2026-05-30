@@ -306,6 +306,7 @@
     <Compile Include="Models\MyRequestEliminationDirecteToSaveInPoule.cs" />
     <Compile Include="Models\MyRequestScoreToSaveInPoule.cs" />
     <Compile Include="Models\MyRequestToSaveInPoule.cs" />
+    <Compile Include="Models\StatistiquesViewModel.cs" />
     <Compile Include="Models\ShowTireursToAddInpoulesViewModel.cs" />
     <Compile Include="Models\PoulesViewModel.cs" />
     <Compile Include="Models\SwitchToDossierPhotosViewModel.cs" />
@@ -1193,6 +1194,7 @@
     <Content Include="home\photos\RonseFévrier2026\U15 mixed Poule 2 Maé Oscar Baptiste.JPG" />
     <Content Include="Scripts\Accueil.js" />
     <Content Include="Scripts\5d93eb1089.js" />
+    <Content Include="Scripts\statistiques.js" />
     <Content Include="Scripts\Poules.js" />
     <Content Include="Scripts\SwitchToDossierPhotos.js" />
     <Content Include="Scripts\Epub122024.js" />

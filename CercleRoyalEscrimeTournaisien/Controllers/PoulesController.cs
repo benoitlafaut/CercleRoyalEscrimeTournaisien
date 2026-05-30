@@ -602,37 +602,12 @@ namespace CercleRoyalEscrimeTournaisien
         }
 
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
-        public ActionResult Statistiques(string userNameIndex)
+        public ActionResult Statistiques(string tireurSelected, string adversaireSelected)
         {
-            string nameSelected = GetNameSelected(userNameIndex);
-
-            List<ClassStatistiqueTireur> listDesMatchs = GetJours(nameSelected);
-            var adversaires = new HashSet<string>();
-            foreach (ClassStatistiqueTireur tireur in listDesMatchs)
-            {
-                tireur.ArmePratiquee = GetArmePratiquee(tireur.DateDeLaPoule);
-
-                GetMatchs(tireur);
-
-                foreach (var match in tireur.Matchs)
-                {
-                    string adv = GetAdversaireName(match.Tireur2Guid);
-                    if (adv == nameSelected)
-                        adv = GetAdversaireName(match.Tireur1Guid);
-
-                    adversaires.Add(adv);
-
-                    match.TireurAdversaire = GetAdversaireName(match.Tireur2Guid);
-                    if (nameSelected == match.TireurAdversaire)
-                    {
-                        match.TireurAdversaire = GetAdversaireName(match.Tireur1Guid);
-                    }
-                }
-            }
-
-            ViewBag.Adversaires = adversaires.OrderBy(x => x).ToList();
-            ViewBag.UserNameIndex = userNameIndex;
-            return View();
+            StatistiquesViewModel statistiquesViewModel = new StatistiquesViewModel(Server);
+            statistiquesViewModel.TireurSelected = tireurSelected;
+            statistiquesViewModel.AdversaireSelected = adversaireSelected;
+            return View(statistiquesViewModel);
         }
 
         [HttpGet]

@@ -1,63 +1,44 @@
-﻿@{
+﻿@model CercleRoyalEscrimeTournaisien.Models.StatistiquesViewModel
+
+@{
     var adversaires = ViewBag.Adversaires as List<string>;
 }
 
-<h2>Statistiques</h2>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-<label>Choisir un adversaire :</label>
-<select id="selectAdversaire" class="form-control" style="max-width:300px;">
-    <option value="">-- Sélectionner --</option>
-    @foreach (var adv in adversaires)
+<div id="statistiquesDiv">
+    <div>
+        <span>Tireur : </span>
+        @Html.DropDownListFor(model => model.TireurSelected, new SelectList(Model.ListTireursToShowAndChoose, "Key", "Value", Model.TireurSelected), new { @class = "form-control", @style = "width:100px;" })
+
+        <span style="margin-left:15px;">Adversaire : </span>
+        @Html.DropDownListFor(model => model.AdversaireSelected, new SelectList(Model.ListTireursToShowAndChooseForAdversaires, "Key", "Value", Model.AdversaireSelected), new { @class = "form-control", @style = "width:100px;" })
+    </div>
+
+    <div style="margin-top:15px;margin-bottom:15px;">
+        <input style="font-size:16px;" type="button" value="Matchs..." onclick="chargerResultat();" />
+    </div>
+
+
+    @if (Model.AdversaireSelected != "")
     {
-        <option value="@adv">@adv</option>
+        foreach (CercleRoyalEscrimeTournaisien.Models.StatistiquesViewModel.ClassStatistiques item in Model.ListeDesMatchs)
+        {
+            <li>
+                @{
+                    string itemToShow = item.DateDeLaPoule + " (" + item.Arme + ")" + ": " + item.Tireur1Name + "-" + item.Tireur2Name + " (" + item.ScoreDuTireur1 + "-" + item.ScoreDuTireur2 + ") " ;
+
+                    string styleColor = "color:red;";
+                    if (item.Tireur1Name == Model.TireurSelected && item.VictoireOuDéfaiteDuTireur1 || item.Tireur2Name == Model.TireurSelected && item.VictoireOuDéfaiteDuTireur2)
+                    {
+                        styleColor = "color:green;";
+                    }
+
+                    <span style="@styleColor">@itemToShow</span>
+                }
+            </li>
+        }
     }
-</select>
+</div>
 
-<br />
-
-<canvas id="progressionChart" style="width:100%;max-width:900px;height:400px; display:none;"></canvas>
-
-@section scripts {
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
-
-    <script>
-        let chart = null;
-
-        document.getElementById("selectAdversaire").addEventListener("change", function () {
-
-            const adversaire = this.value;
-
-            if (!adversaire) {
-                document.getElementById("progressionChart").style.display = "none";
-                return;
-            }
-
-            fetch('@Url.Action("GetProgressionData", "TonController")'
-                + '?userNameIndex=@ViewBag.UserNameIndex'
-                + '&adversaire=' + encodeURIComponent(adversaire))
-                .then(r => r.json())
-                .then(json => {
-
-                    document.getElementById("progressionChart").style.display = "block";
-
-                    const ctx = document.getElementById('progressionChart').getContext('2d');
-
-                    if (chart) chart.destroy();
-
-                    chart = new Chart(ctx, {
-                        type: 'line',
-                        data: json,
-                        options: {
-                            responsive: true,
-                            plugins: {
-                                title: {
-                                    display: true,
-                                    text: 'Progression contre ' + adversaire
-                                }
-                            }
-                        }
-                    });
-                });
-        });
-    </script>
-}
+<script src="~/Scripts/statistiques.js" type="text/javascript"></script>
