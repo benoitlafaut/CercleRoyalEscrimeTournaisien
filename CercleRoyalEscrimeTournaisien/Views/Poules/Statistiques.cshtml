@@ -13,6 +13,9 @@
 
         <span style="margin-left:15px;">Adversaire : </span>
         @Html.DropDownListFor(model => model.AdversaireSelected, new SelectList(Model.ListTireursToShowAndChooseForAdversaires, "Key", "Value", Model.AdversaireSelected), new { @class = "form-control", @style = "width:100px;" })
+
+        <span style="margin-left:15px;">Arme : </span>
+        @Html.DropDownListFor(model => model.ArmeSelected, new SelectList(Model.ListArmes, "Key", "Value", Model.ArmeSelected), new { @class = "form-control", @style = "width:100px;" })
     </div>
 
     <div style="margin-top:15px;margin-bottom:15px;">

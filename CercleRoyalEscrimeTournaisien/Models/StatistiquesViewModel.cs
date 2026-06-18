@@ -12,6 +12,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
         public List<ClassStatistiques> StatistiquesList { get; set; }
         public string TireurSelected { get; set; }
         public string AdversaireSelected { get; set; }
+        public string ArmeSelected { get; set; }
         public HttpServerUtilityBase ServerTmp { get; set; }
         public StatistiquesViewModel(HttpServerUtilityBase serverTmp)
         {
@@ -59,7 +60,28 @@ namespace CercleRoyalEscrimeTournaisien.Models
                                                          || x.Tireur2Name == TireurSelected && x.Tireur1Name == AdversaireSelected).ToList();
                 }
 
+                if (!(ArmeSelected == "All armes" || string.IsNullOrEmpty(ArmeSelected)))
+                {
+                    listeDesMatchs = listeDesMatchs.Where(x => x.Arme == ArmeSelected).ToList();
+                }
+
                 return listeDesMatchs;
+            }
+        }
+        public IDictionary<string, string> ListArmes
+        {
+            get
+            {
+                Dictionary<string, string> listArmes = new Dictionary<string, string>
+                {
+                    { "", "" },
+                    { "All armes", "All armes" },
+                    { "Fleuret", "Fleuret" },
+                    { "Epée", "Epée" },
+                    { "Sabre", "Sabre" }
+                };
+
+                return listArmes;
             }
         }
         public IDictionary<string, string> ListTireursToShowAndChooseForAdversaires

@@ -602,11 +602,12 @@ namespace CercleRoyalEscrimeTournaisien
         }
 
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
-        public ActionResult Statistiques(string tireurSelected, string adversaireSelected)
+        public ActionResult Statistiques(string tireurSelected, string adversaireSelected, string armeSelected)
         {
             StatistiquesViewModel statistiquesViewModel = new StatistiquesViewModel(Server);
             statistiquesViewModel.TireurSelected = tireurSelected;
             statistiquesViewModel.AdversaireSelected = adversaireSelected;
+            statistiquesViewModel.ArmeSelected = armeSelected;
             return View(statistiquesViewModel);
         }
 
