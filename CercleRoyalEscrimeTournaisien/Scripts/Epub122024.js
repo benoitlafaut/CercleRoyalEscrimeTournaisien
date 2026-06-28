@@ -1,8 +1,12 @@
 ﻿var timeouts = [];
 
 $(document).ready(function () {
-    config.speakSelectedText = false;
-    config.welcomeMessage = "";    
+   
+    const rv = window.responsiveVoice;
+
+    rv.init({
+        apiKey: 'K1W6MsiA',
+    });
 
     var touchRegionElement = document.getElementById('htmlId');
     var outputElement = document.getElementById('output');
