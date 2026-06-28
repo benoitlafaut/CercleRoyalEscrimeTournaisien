@@ -2201,12 +2201,12 @@ namespace WebApplication1.Models
                     IsCotisationCarte1 = true,
                     IsCotisationCarte2 = true,
                     IsCotisationCarte3 = true,
-                    IsCotisationCarte4 = false,
+                    IsCotisationCarte4 = true,
                     IsCotisationEnOrdre = true,
                     IsLocationMatérielEnOrdre = true,
                     IsFicheSignaletiqueEnOrdre = true,
                     IsChaussettesPayéesEnOrdre = true,
-                    PaiementsEffectues = new List<string>() { "95 euros", "75 euros", "50 euros", "50 euros","28 euros" },
+                    PaiementsEffectues = new List<string>() { "95 euros", "75 euros", "50 euros", "50 euros","28 euros", "50 euros" },
 
                     SeancesGratuites = new List<DateTime>()
                     {
