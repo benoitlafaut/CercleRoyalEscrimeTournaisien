@@ -14,141 +14,141 @@
     transition: 0.2s;
 }
 
-    .btnAction-custom {
-        background: linear-gradient(135deg, green, gray);
-        color: white;
-        padding: 12px 25px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-size: 18px;
-        font-weight: 600;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        transition: 0.2s;
+.btnAction-custom {
+    background: linear-gradient(135deg, green, gray);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: 0.2s;
+}
+
+    .btnAction-custom:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 14px rgba(0,0,0,0.3);
     }
 
-        .btnAction-custom:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 14px rgba(0,0,0,0.3);
-        }
+.ClassMarginTopAndBottom {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
 
-    .ClassMarginTopAndBottom {
-        margin-top: 40px;
-        margin-bottom: 40px;
-    }
+.ClassMarginTop {
+    margin-top: 20px;
+}
 
-    .ClassMarginTop {
-        margin-top: 20px;
-    }
+.ClassMarginBottom {
+    margin-bottom: 20px;
+}
 
-    .ClassMarginBottom {
-        margin-bottom: 20px;
-    }
+#table_Poule1.table, #table_Poule1 table, #table_Poule1 th, #table_Poule1 td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
 
-    #table_Poule1.table, #table_Poule1 table, #table_Poule1 th, #table_Poule1 td {
-        border: 1px solid black;
-        border-collapse: collapse;
-        border-spacing: 0;
-    }
+#table_Poule2.table, #table_Poule2 table, #table_Poule2 th, #table_Poule2 td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
 
-    #table_Poule2.table, #table_Poule2 table, #table_Poule2 th, #table_Poule2 td {
-        border: 1px solid black;
-        border-collapse: collapse;
-        border-spacing: 0;
-    }
+#table_Poule3.table, #table_Poule3 table, #table_Poule3 th, #table_Poule3 td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
 
-    #table_Poule3.table, #table_Poule3 table, #table_Poule3 th, #table_Poule3 td {
-        border: 1px solid black;
-        border-collapse: collapse;
-        border-spacing: 0;
-    }
+#table_Poule4.table, #table_Poule4 table, #table_Poule4 th, #table_Poule4 td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
 
-    #table_Poule4.table, #table_Poule4 table, #table_Poule4 th, #table_Poule4 td {
-        border: 1px solid black;
-        border-collapse: collapse;
-        border-spacing: 0;
-    }
+.ClassCelluleBackgroundColor {
+    background-color: black;
+}
 
-    .ClassCelluleBackgroundColor {
-        background-color: black;
-    }
+.fixed-col {
+    max-width: 80px;
+}
 
-    .fixed-col {
-        max-width: 80px;
-    }
+.fixed-FirstCol {
+    min-width: 140px;
+    max-width: 140px;
+}
 
-    .fixed-FirstCol {
-        min-width: 140px;
-        max-width: 140px;
-    }
+.fixed-IntermediaireCol {
+    min-width: 24px;
+    max-width: 24px;
+}
 
-    .fixed-IntermediaireCol {
-        min-width: 24px;
-        max-width: 24px;
-    }
+.ClassDecorationUnderline {
+    text-decoration: underline;
+}
 
-    .ClassDecorationUnderline {
-        text-decoration: underline;
-    }
+.ClassFontSizeTitre {
+    font-size: 20px;
+}
 
-    .ClassFontSizeTitre {
-        font-size: 20px;
-    }
+.tableScoreAlign {
+    min-width: 200px;
+    text-align: center;
+}
 
-    .tableScoreAlign {
-        min-width: 200px;
-        text-align: center;
-    }
+.pretty-list {
+    padding: 0;
+    margin: 0;
+    width: 300px;
+}
 
-    .pretty-list {
-        padding: 0;
-        margin: 0;
-        width: 300px;
-    }
-
-        .pretty-list li {
-            padding: 5px 14px;
-            margin-bottom: 10px;
-            border-radius: 10px;
-            color: #e2e8f0;
-            border: 1px solid rgba(148, 163, 184, 0.3);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            height: 29px;
-        }
-
-            .pretty-list li .index {
-                width: 28px;
-                height: 28px;
-                border-radius: 50%;
-                background: linear-gradient(135deg, #38bdf8, #6366f1);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: white;
-                font-weight: 600;
-                float: left;
-                margin-right: 15px;
-            }
-
-
-    .ClassSpanMinWidthFixed {
-        min-width: 140px;
-        display: inline-block;
-    }
-
-    .ClassDivRencontre {
-        border-right: 1px solid black;
-        max-width: 300px;
+    .pretty-list li {
+        padding: 5px 14px;
+        margin-bottom: 10px;
         border-radius: 10px;
-        margin-bottom: 40px;
+        color: #e2e8f0;
+        border: 1px solid rgba(148, 163, 184, 0.3);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        height: 29px;
     }
+
+        .pretty-list li .index {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #38bdf8, #6366f1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            float: left;
+            margin-right: 15px;
+        }
+
+
+.ClassSpanMinWidthFixed {
+    min-width: 140px;
+    display: inline-block;
+}
+
+.ClassDivRencontre {
+    border-right: 1px solid black;
+    max-width: 300px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
 
 .ClassMaxWidth {
     max-width: 16px;
     min-width: 48px;
 }
 
-.ClassFontSize{
-    font-size:16px;
+.ClassFontSize {
+    font-size: 16px;
 }
 
 @media screen and (max-width: 767px) {
@@ -156,6 +156,7 @@
         font-size: 12px;
         padding: 11px 3px;
     }
+
     .btnAction-custom {
         font-size: 11px;
         padding: 11px 3px;
@@ -164,6 +165,7 @@
     .ClassFontSizeTitre {
         font-size: 15px;
     }
+
     .ClassFontSize {
         font-size: 13px;
     }
@@ -172,12 +174,13 @@
         margin-top: 24px;
         margin-bottom: 24px;
     }
+
     .tableScoreAlign {
         min-width: 100px;
     }
 
     .ClassTextAlignCenter h2 {
-        font-size:15px;
+        font-size: 15px;
     }
 
     .ClassTablePoules.table-wrapper {
@@ -196,7 +199,7 @@
         max-width: 160px;
     }
 
-    .ClassH1{
+    .ClassH1 {
         font-size: 19px;
     }
 }
@@ -234,3 +237,71 @@
         transform: rotate(360deg);
     }
 }
+
+
+.ClassButtonEntete {
+    border: 3px solid green;
+    background-color: transparent;
+    color:green;
+}
+
+.ClassButtonEnteteTransparent {
+    border: 3px solid transparent;
+    background-color: transparent;
+}
+
+.ClassButtonEntete:hover {
+    border: 3px solid red;
+    background-color: lightblue;
+    color:red;
+}
+
+.ClassCursor {
+    cursor: pointer;
+}
+
+.ClassTwoLignes {
+    display: flex;
+    flex-direction: column;
+    margin-right: 4px;
+}
+
+@media screen and (max-width: 350px){
+    .ClassButtonEntete {
+        font-size: 8px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .ClassButtonEntete {
+        font-size: 9px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .ClassButtonEntete {
+        font-size: 10px;
+    }
+}
+
+@media screen and (min-width: 550px) {
+    .ClassButtonEntete {
+        font-size: 13px;
+    }
+}
+
+.ClassIndicatorAjoutTireur {
+    border: 3px solid blue;
+    color: blue;
+}
+
+.ClassIndicatorAjouterScoreAUnePoule {
+    border: 3px solid blue;
+    color: blue;
+}
+
+.classIndicatorAfficherLesPoules {
+    border: 3px solid blue;
+    color: blue;
+}
+

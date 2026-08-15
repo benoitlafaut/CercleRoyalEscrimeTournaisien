@@ -11,20 +11,17 @@ $(document).ready(function () {
 function AddTireursSelectedToPoule() {
     $.startLoading();
 
-    if ($("#ddlPoules option:selected").val() == '') {
+    if ($('input[name="PouleSelected"]').index($('input[name="PouleSelected"]:checked')) == -1) {
         alert("vous n'avez pas sélectionné la poule");
+        $.stopLoading();
         return;
-    }
-    if ($(".chk-tireur:checked").map(function () { return $(this).data('id'); }).get() == '') {
-        alert("vous n'avez pas sélectionné de tireur.");
-        return;
-    }    
+    } 
 
-    var pouleSelected = $("#ddlPoules option:selected").val();
-    var tireursSelected = $(".chk-tireur:checked").map(function () { return $(this).data('id'); }).get();
+    var pouleSelected = $('input[name="PouleSelected"]').index($('input[name="PouleSelected"]:checked'));
+    var tireursSelected = $("#TireurSelected").val();
 
     $.ajax({
-        url: "/Poules/AddTireursSelectedToPoule",
+        url: "/NewPoules/AddTireursSelectedToPoule",
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({ pouleSelected: pouleSelected, tireursSelected: tireursSelected }),

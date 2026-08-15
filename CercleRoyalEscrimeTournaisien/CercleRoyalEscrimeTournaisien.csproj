@@ -219,6 +219,7 @@
     <Compile Include="ClassPublic\Constantes.cs" />
     <Compile Include="Controllers\EpubController.cs" />
     <Compile Include="Controllers\DicoController.cs" />
+    <Compile Include="Controllers\NewPoulesController.cs" />
     <Compile Include="Controllers\PoulesController.cs" />
     <Compile Include="Controllers\MainPageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -297,11 +298,15 @@
     <Compile Include="GestionClubClass\FichesSignalétiques_2022_2023.cs" />
     <Compile Include="GestionClubClass\FichesSignalétiques_2024_2025.cs" />
     <Compile Include="GestionClubClass\FichesSignalétiques_2023_2024.cs" />
+    <Compile Include="GestionClubClass\FichesSignalétiques_2026_2027.cs" />
     <Compile Include="GestionClubClass\FichesSignalétiques_2025_2026.cs" />
     <Compile Include="GestionClubClass\GuidConstantes.cs" />
     <Compile Include="GestionClubClass\JoursDePrésence.cs" />
     <Compile Include="GestionClubClass\ListGuidTireur.cs" />
+    <Compile Include="GestionClubClass\Paiements_2026_2027.cs" />
     <Compile Include="GestionClubClass\Paiements_2025_2026.cs" />
+    <Compile Include="Mappers\BaseDeDonnéesMapper.cs" />
+    <Compile Include="Models\TableListeTireursData.cs" />
     <Compile Include="Models\MyRequestResultatsPoule.cs" />
     <Compile Include="Models\MyRequestEliminationDirecteToSaveInPoule.cs" />
     <Compile Include="Models\MyRequestScoreToSaveInPoule.cs" />
@@ -1428,6 +1433,12 @@
     <Content Include="Views\Poules\AfficherLesDatesPrecedentes.cshtml" />
     <Content Include="Views\Poules\Statistiques.cshtml" />
     <Content Include="Views\Poules\ShowTireursToAddInpoules.cshtml" />
+    <Content Include="Views\NewPoules\NewPoules.cshtml" />
+    <Content Include="Views\NewPoules\AddTireurs.cshtml" />
+    <Content Include="Views\NewPoules\AfficherLesPoules.cshtml" />
+    <Content Include="Views\NewPoules\AfficherLesDatesPrecedentes.cshtml" />
+    <Content Include="Views\NewPoules\AjouterScoreAUnePoule.cshtml" />
+    <Content Include="Views\NewPoules\PoulesEliminationsDirectes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

@@ -40,6 +40,7 @@
                 {
                     new SelectListItem{ Text=WebApplication1.Models.Annee.Annee_2025, Value = WebApplication1.Models.Annee.Annee_2025.ToString() },
                     new SelectListItem{ Text=WebApplication1.Models.Annee.Annee_2026, Value = WebApplication1.Models.Annee.Annee_2026.ToString() },
+                    new SelectListItem{ Text=WebApplication1.Models.Annee.Annee_2027, Value = WebApplication1.Models.Annee.Annee_2027.ToString() },
                 }, new { style = "cursor:pointer;Width: 61px;margin-right: 40px;" })
 
                 <button class="btn btn-success" type="button" id="downloadButtonRapportAnnuel">Rapport pour l'asbl</button>
@@ -59,6 +60,7 @@
                 Période :
                 @Html.DropDownList("Periode", new List<SelectListItem>
                 {
+                new SelectListItem{ Text=WebApplication1.Models.Periode.Period_2026_2027, Value = WebApplication1.Models.Periode.Period_2026_2027.ToString() },
                 new SelectListItem{ Text=WebApplication1.Models.Periode.Period_2025_2026, Value = WebApplication1.Models.Periode.Period_2025_2026.ToString() },
                 new SelectListItem{ Text=WebApplication1.Models.Periode.Period_2024_2025, Value = WebApplication1.Models.Periode.Period_2024_2025.ToString() },
                 }, new { style = "cursor:pointer;Width:150px;", onchange = "DropDownPeriodeChange()" })
@@ -84,7 +86,7 @@
                 int nombreDeJoursDePresence = 0;
                 int nombreDeJoursDePresenceForCotisation = 0;
 
-                if (Model.JoursDePrésence.JourDePrésence != null)
+                if (Model.JoursDePrésence.JourDePrésence != null && Model.JoursDePrésence.JourDePrésence.Count > 0)
                 {
                     for (var day = Model.JoursDePrésence.JourMinimumDesJoursDePrésence; day.Date <= DateTime.Now; day = day.AddDays(1))
                     {
@@ -118,8 +120,8 @@
 
                             <td style="min-width:20px;"><i id="@iconPlusId" class="fa fa-plus" aria-hidden="true" onclick="ExpandName('@escrimeur.GuidId')"></i> </td>
                             <td style="min-width:250px;">@escrimeur.Nom @escrimeur.Prénom</td>
-                            <td style="min-width:200px;">
-                                Cotisation en ordre
+                            <td style="min-width:100px;">
+                                Cotisation
 
                                 @if (escrimeur.Paiement?.IsCotisationEnOrdre == true)
                                 {
@@ -131,8 +133,8 @@
                                 }
                             </td>
 
-                            <td style="min-width:250px;">
-                                Fiche signalétique en ordre
+                            <td style="min-width:150px;">
+                                Fiche signalétique 
 
                                 @if (escrimeur.Paiement?.IsFicheSignaletiqueEnOrdre == true)
                                 {
@@ -144,8 +146,8 @@
                                 }
                             </td>
 
-                            <td style="min-width:250px;">
-                                Location matériel en ordre
+                            <td style="min-width:150px;">
+                                Location matériel
 
                                 @if (escrimeur.Paiement?.IsLocationMatérielEnOrdre == true)
                                 {
@@ -204,15 +206,19 @@
                                 }
                             }
 
-                            <td style="@styleDisplayCotisationAnnuelle min-width:110px;">
-                                <span style=" display: inline-block; width: 227px;">Cotisation à cartes (Présences : @nombreDeJoursDePresenceForCotisation)</span>
-                                @Html.CheckBox("checkboxCotisationCarte1", escrimeur.Paiement.IsCotisationCarte1)
-                                @Html.CheckBox("checkboxCotisationCarte2", escrimeur.Paiement.IsCotisationCarte2)
-                                @Html.CheckBox("checkboxCotisationCarte3", escrimeur.Paiement.IsCotisationCarte3)
-                                @Html.CheckBox("checkboxCotisationCarte4", escrimeur.Paiement.IsCotisationCarte4)
-                                @Html.CheckBox("checkboxCotisationCarte5", escrimeur.Paiement.IsCotisationCarte5)
-                                @Html.CheckBox("checkboxCotisationCarte6", escrimeur.Paiement.IsCotisationCarte6)
-                             </td>
+                            @if (escrimeur.Paiement != null) 
+                            {
+                                <td style="@styleDisplayCotisationAnnuelle min-width:110px;">
+                                    <span style=" display: inline-block; width: 227px;">Cotisation à cartes (Présences : @nombreDeJoursDePresenceForCotisation)</span>
+                                    @Html.CheckBox("checkboxCotisationCarte1", escrimeur.Paiement.IsCotisationCarte1)
+                                    @Html.CheckBox("checkboxCotisationCarte2", escrimeur.Paiement.IsCotisationCarte2)
+                                    @Html.CheckBox("checkboxCotisationCarte3", escrimeur.Paiement.IsCotisationCarte3)
+                                    @Html.CheckBox("checkboxCotisationCarte4", escrimeur.Paiement.IsCotisationCarte4)
+                                    @Html.CheckBox("checkboxCotisationCarte5", escrimeur.Paiement.IsCotisationCarte5)
+                                    @Html.CheckBox("checkboxCotisationCarte6", escrimeur.Paiement.IsCotisationCarte6)
+                                </td>
+                            }
+                            
                         </tr>
                     </table>
 
@@ -299,7 +305,7 @@
                             @{
 
                                 <td style="min-width:150px;">Jours de présence:</td>
-                                if (Model.JoursDePrésence.JourDePrésence != null)
+                                if (Model.JoursDePrésence.JourDePrésence != null && Model.JoursDePrésence.JourDePrésence.Count > 0)
                                 {
                                     for (var day = Model.JoursDePrésence.JourMinimumDesJoursDePrésence; day.Date <= DateTime.Now; day = day.AddDays(1))
                                     {

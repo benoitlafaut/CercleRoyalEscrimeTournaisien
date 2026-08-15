@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CercleRoyalEscrimeTournaisien.Mappers;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
@@ -66,6 +67,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
         public List<ClassPoulesDuJour> PoulesDuJourList { get; set; }
         public List<ClassDatesPourToutesLesPoules> DatesPourToutesLesPoulesList { get; set; }
         public List<ClassTireur> TireursList { get; set; }
+
         public List<ClassTireur> TireursPourLaPouleSelectionneeList
         {
             get
@@ -122,12 +124,25 @@ namespace CercleRoyalEscrimeTournaisien.Models
                     return new Dictionary<Guid, string>() { };
                 }
 
-                return PoulesDuJourList.Where(x => x.Poule == PouleSelected).GroupBy(x => x.TireurGuid).ToDictionary(g => g.Key, g => g.First().Tireur);               
+                return PoulesDuJourList.Where(x => x.Poule == PouleSelected).GroupBy(x => x.TireurGuid).ToDictionary(g => g.Key, g => g.First().Tireur);
+            }
+        }
+        public IDictionary<Guid, string> ListTireurs
+        {
+            get
+            {
+                string period2026_2027 = "2026-2027";
+                BaseDeDonnéesMapper baseDeDonnéesMapper = new BaseDeDonnéesMapper();
+                List<TableListeTireursData> tableTireurs = baseDeDonnéesMapper.GetTableListeTireursData(ServerTmp, period2026_2027);
+              
+
+                return tableTireurs.ToDictionary(g => new Guid(g.GuidTireur), g => g.Prénom + " " + g.Nom);
             }
         }
         public string ScoreTireur1 { get; set; }
         public string ScoreTireur2 { get; set; }
         public string Tireur1Selected { get; set; }
+        public string TireurSelected { get; set; }
         public string Tireur2Selected { get; set; }
         public ClassEnumScreen.EnumScreen ScreenIndex { get; set; }
         public string PouleSelected { get; set; }
@@ -218,9 +233,9 @@ namespace CercleRoyalEscrimeTournaisien.Models
         {
             get
             {
-//#if DEBUG
-               // return true;
-//#endif
+#if DEBUG
+                return true;
+#endif
                 return DateDAujourdhui.ToString("ddMMyyyy") == DateTime.Now.ToString("ddMMyyyy");
             }
         }
@@ -279,9 +294,9 @@ namespace CercleRoyalEscrimeTournaisien.Models
         {
             get
             {
-//#if DEBUG
-                //return true;
-//#endif
+#if DEBUG
+                return true;
+#endif
                 return DateDuJourOnlyDayLabel.ToLower() == "mercredi" || DateDuJourOnlyDayLabel.ToLower() == "vendredi" || DateDuJourOnlyDayLabel.ToLower() == "dimanche";
             }
         }
@@ -545,13 +560,18 @@ namespace CercleRoyalEscrimeTournaisien.Models
         private void CalculerAgeDeChaqueTireur()
         {
             AgesList = new List<ClassAge>() { };
-            var tireursList = TireursList.GroupBy(x => x.Tireur);
-            foreach (var tireur in tireursList)
+            string period2026_2027 = "2026-2027";
+
+            BaseDeDonnéesMapper baseDeDonnéesMapper = new BaseDeDonnéesMapper();
+            List<TableListeTireursData> tableTireurs = baseDeDonnéesMapper.GetTableListeTireursData(ServerTmp, period2026_2027);
+
+            //var tireursList = TireursLtableTireursist.GroupBy(x => x.Tireur);
+            foreach (var tireur in tableTireurs)
             {
                 AgesList.Add(new ClassAge()
                 {
-                    Tireur = tireur.First().Tireur,
-                    Age = GetAgeByDateDeNaissance(Convert.ToDateTime(tireur.First().DateDeNaissance)) 
+                    Tireur = tireur.Prénom + " " + tireur.Nom,
+                    Age = GetAgeByDateDeNaissance(Convert.ToDateTime(tireur.Birthdate)) 
                 });
             }
         }

@@ -1,0 +1,25 @@
+﻿@model CercleRoyalEscrimeTournaisien.Models.PoulesViewModel
+
+<div style="margin-top:10px;">
+    <label>Sélectionnez la poule...</label>
+</div>
+
+<div>
+    @foreach (var opt in Model.PoulesList)
+    {
+        var id = "opt-" + opt.Poule;
+
+        <div>
+            @Html.RadioButtonFor(m => m.PouleSelected, opt.Poule, new { id = id })
+            <label for="@id">@opt.DescriptionDeLaPoule</label>
+        </div>
+    }
+</div>
+
+<div style="margin-top: 10px;">
+    @Html.DropDownListFor(model => model.TireurSelected, new SelectList(Model.ListTireurs, "Key", "Value", Model.TireurSelected), new { @class = "form-control" })
+</div>
+
+<div class="ClassMarginTopAndBottom">
+    <a href="#" onclick="AddTireursSelectedToPoule(); " class="btnAction-custom">Ajouter les tireurs sélectionnés dans la poule sélectionnée</a>
+</div>

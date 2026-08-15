@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Web;
 
 namespace WebApplication1.Models
 {
     public class EscrimeursListe
     {
+        public HttpServerUtilityBase ServerTmp { get; set; }
         public JoursDePrésence JoursDePrésence
         { 
             get
@@ -22,6 +24,9 @@ namespace WebApplication1.Models
                     case "2025-2026":
                         Paiements_2025_2026 paiements_2025_2026 = new Paiements_2025_2026();
                         return paiements_2025_2026.ChargerPresences();
+                    case "2026-2027":
+                        Paiements_2026_2027 paiements_2026_2027 = new Paiements_2026_2027();
+                        return paiements_2026_2027.ChargerPresences();
                     default:
                         Paiements_2025_2026 paiements_Default = new Paiements_2025_2026();
                         return paiements_Default.ChargerPresences();
@@ -32,20 +37,22 @@ namespace WebApplication1.Models
         public List<MembreData> Membres { get; set; }
         public string TireurSpecificToSelected { get; set; }
         public bool IsNotTakeAccountTireursOK { get; set; }
-        public EscrimeursListe()
+        public EscrimeursListe(HttpServerUtilityBase serverTmp)
         {
-            if (string.IsNullOrEmpty(Periode)) { Periode = Models.Periode.Period_2025_2026; }
+            this.ServerTmp = serverTmp;
+            if (string.IsNullOrEmpty(Periode)) { Periode = Models.Periode.Period_2026_2027; }
             ApplicPeriod();
         }
-        public EscrimeursListe(string period)
+        public EscrimeursListe(HttpServerUtilityBase serverTmp, string period)
         {
+            this.ServerTmp = serverTmp;
             if (string.IsNullOrEmpty(Periode)) { Periode = period; }
             ApplicPeriod();
         }
 
         public void ApplicPeriod()
         {
-            ListGuidTireur listGuidTireur = new ListGuidTireur
+            ListGuidTireur listGuidTireur = new ListGuidTireur(this.ServerTmp)
             {
                 Période = Periode
             };
@@ -68,6 +75,10 @@ namespace WebApplication1.Models
                 case "2025-2026":
                     Add_FichesSignalétiques_2025_2026();
                     Add_Paiements_2025_2026();
+                    break;
+                case "2026-2027":
+                    Add_FichesSignalétiques_2026_2027();
+                    Add_Paiements_2026_2027();
                     break;
             }            
         }    
@@ -219,6 +230,50 @@ namespace WebApplication1.Models
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Colpaert_Eleonara(period, Membres);
             fichesSignalétiques_2025_2026.Add_FichesSignalétiques_Persyn_Marc(period, Membres);
         }
+        private void Add_FichesSignalétiques_2026_2027()
+        {
+            const string period = "2026-2027";
+            FichesSignalétiques_2026_2027 fichesSignalétiques = new FichesSignalétiques_2026_2027();
+
+            fichesSignalétiques.Add_FichesSignalétiques_Vandy_Rebecca(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Punchoo_Eliot(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Trannoy_Félix(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Trannoy_Régis(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Motte_Baptiste(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Motte_Abel(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Vantroyen_Mae(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Razanajao_Fabrice(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Simon_Amado(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Deblocq_Oscar(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Soyez_Rémi(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Mestdagh_Jordan(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Mestdag_Lili(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Siu_Martin(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Vercouter_Raedwald(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Carlier_Aurore(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Mass_Elodie(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Ivanov_Anaelle(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Dransart_NoelMarie(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Bracquart_Romain(period, Membres);
+
+            fichesSignalétiques.Add_FichesSignalétiques_Schrouf_Solal(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Cosentini_Benedict(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Verheye_Lucas(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Ducrot_Oscar(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Rasson_Théo(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Lecomte_Gwendal(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Lawrizy_Amel(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Vercauteren_Delphine(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Motte_Sébastien(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Lafaut_Benoît(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Segard_Gabriel(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Duthye_Esteban(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Cucheval_JeanMarc(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Tanis_Matthieu(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Bauffe_Florian(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Colpaert_Eleonara(period, Membres);
+            fichesSignalétiques.Add_FichesSignalétiques_Persyn_Marc(period, Membres);
+        }
 
         #region Add_Paiements_2022_2023
         private void Add_Paiements_2022_2023()
@@ -364,6 +419,51 @@ namespace WebApplication1.Models
             paiements.Add_Paiements_Trovato_Simeon(period, Membres);
             paiements.Add_Paiements_Segard_Gabriel(period, Membres);
             paiements.Add_Paiements_Duthye_Esteban(period, Membres); 
+            paiements.Add_Paiements_Cucheval_JeanMarc(period, Membres);
+            paiements.Add_Paiements_Tanis_Matthieu(period, Membres);
+            paiements.Add_Paiements_Bauffe_Florian(period, Membres);
+            paiements.Add_Paiements_Colpaert_Eleonara(period, Membres);
+            paiements.Add_Paiements_Persyn_Marc(period, Membres);
+        }
+        private void Add_Paiements_2026_2027()
+        {
+            const string period = "2026-2027";
+
+            Paiements_2026_2027 paiements = new Paiements_2026_2027();
+
+            paiements.Add_Paiements_Trannoy_Félix(period, Membres);
+            paiements.Add_Paiements_Trannoy_Régis(period, Membres);
+            paiements.Add_Paiements_Motte_Baptiste(period, Membres);
+            paiements.Add_Paiements_Vantroyen_Mae(period, Membres);
+            paiements.Add_Paiements_Motte_Abel(period, Membres);
+            paiements.Add_Paiements_Razanajao_Fabrice(period, Membres);
+            paiements.Add_Paiements_Vandy_Rebecca(period, Membres);
+            paiements.Add_Paiements_Punchoo_Eliot(period, Membres);
+            paiements.Add_Paiements_Deblocq_Oscar(period, Membres);
+            paiements.Add_Paiements_Soyez_Rémi(period, Membres);
+            paiements.Add_Paiements_Mestdagh_Jordan(period, Membres);
+            paiements.Add_Paiements_Siu_Martin(period, Membres);
+            paiements.Add_Paiements_Vercouter_Raedwald(period, Membres);
+            paiements.Add_Paiements_Dransart_NoelMarie(period, Membres);
+            paiements.Add_Paiements_Simon_Amado(period, Membres);
+            paiements.Add_Paiements_Mass_Elodie(period, Membres);
+            paiements.Add_Paiements_Carlier_Aurore(period, Membres);
+            paiements.Add_Paiements_Mestdag_Lili(period, Membres);
+            paiements.Add_Paiements_Ivanov_Anaelle(period, Membres);
+            paiements.Add_Paiements_Bracquart_Romain(period, Membres);
+
+            paiements.Add_Paiements_Schrouf_Solal(period, Membres);
+            paiements.Add_Paiements_Cosentini_Benedict(period, Membres);
+            paiements.Add_Paiements_Verheye_Lucas(period, Membres);
+            paiements.Add_Paiements_Ducrot_Oscar(period, Membres);
+            paiements.Add_Paiements_Lecomte_Gwendal(period, Membres);
+            paiements.Add_Paiements_Rasson_Théo(period, Membres);
+            paiements.Add_Paiements_Lawrizy_Amel(period, Membres);
+            paiements.Add_Paiements_Motte_Sébastien(period, Membres);
+            paiements.Add_Paiements_Vercauteren_Delphine(period, Membres);
+            paiements.Add_Paiements_Lafaut_Benoît(period, Membres);
+            paiements.Add_Paiements_Segard_Gabriel(period, Membres);
+            paiements.Add_Paiements_Duthye_Esteban(period, Membres);
             paiements.Add_Paiements_Cucheval_JeanMarc(period, Membres);
             paiements.Add_Paiements_Tanis_Matthieu(period, Membres);
             paiements.Add_Paiements_Bauffe_Florian(period, Membres);

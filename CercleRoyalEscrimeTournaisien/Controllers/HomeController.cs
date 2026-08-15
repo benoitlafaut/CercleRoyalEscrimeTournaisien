@@ -576,7 +576,7 @@ namespace CercleRoyalEscrimeTournaisien
 
             if (validationResult.IsValid)
             {
-                return View("LogonSuccess", new EscrimeursListe());
+                return View("LogonSuccess", new EscrimeursListe(Server));
             }
             else
             {

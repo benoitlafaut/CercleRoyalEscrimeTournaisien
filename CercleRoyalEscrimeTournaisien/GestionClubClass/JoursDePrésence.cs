@@ -10,6 +10,7 @@ namespace WebApplication1.Models
             get
             {
                 if (JourDePrésence == null) { return DateTime.MinValue;  }
+                if (!JourDePrésence.Any()) { return DateTime.MinValue; }
                 return JourDePrésence.OrderBy(x => x.DatePrésence).First().DatePrésence;
             }
         }

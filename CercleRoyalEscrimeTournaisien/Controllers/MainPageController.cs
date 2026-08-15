@@ -543,7 +543,7 @@ namespace CercleRoyalEscrimeTournaisien
 
             if (validationResult.IsValid)
             {
-                return View("AdministrationPage", new EscrimeursListe());
+                return View("AdministrationPage", new EscrimeursListe(Server));
             }
             else
             {
@@ -559,7 +559,7 @@ namespace CercleRoyalEscrimeTournaisien
         [HttpPost]
         public Task<ActionResult> TakeAccountTireursOK(string  isNotTakeAccountTireursOK, string period)
         {
-            EscrimeursListe escrimeursListe = new EscrimeursListe(period);
+            EscrimeursListe escrimeursListe = new EscrimeursListe(Server, period);
             escrimeursListe.IsNotTakeAccountTireursOK = isNotTakeAccountTireursOK == "true";
             return Task.FromResult<ActionResult>(View("AdministrationPage", escrimeursListe));
         }
@@ -567,7 +567,7 @@ namespace CercleRoyalEscrimeTournaisien
         [HttpPost]
         public Task<ActionResult> ChangePeriode(string period)
         {
-            EscrimeursListe escrimeursListe = new EscrimeursListe
+            EscrimeursListe escrimeursListe = new EscrimeursListe(Server,period)
             {
                 Periode = period
             };
@@ -605,7 +605,7 @@ namespace CercleRoyalEscrimeTournaisien
         [HttpGet]
         public ActionResult DownloadExcel(string period)
         {
-            EscrimeursListe escrimeursListe = new EscrimeursListe(period)
+            EscrimeursListe escrimeursListe = new EscrimeursListe(Server, period)
             {
                 Periode = period
             };

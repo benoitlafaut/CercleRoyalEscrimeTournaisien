@@ -10,7 +10,7 @@
 <button class="btn btn-primary" type="button" id="btnSearch" onclick="ShowOrHideTable();">Show or Hide Table Présence</button>
 <div id="tablePresence">
     @{
-        if (Model.JoursDePrésence.JourDePrésence != null)
+        if (Model.JoursDePrésence.JourDePrésence != null && Model.JoursDePrésence.JourDePrésence.Count  > 0 )
         {
             for (var day = dateNowFormatted; day.Date >= Model.JoursDePrésence.JourMinimumDesJoursDePrésence; day = day.AddDays(-1))
             {

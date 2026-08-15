@@ -6,10 +6,12 @@
         public static string Period_2023_2024 { get { return "2023-2024"; } }
         public static string Period_2024_2025 { get { return "2024-2025"; } }
         public static string Period_2025_2026 { get { return "2025-2026"; } }
+        public static string Period_2026_2027 { get { return "2026-2027"; } }
     }
     public class Annee
     {
         public static string Annee_2025 { get { return "2025"; } }
         public static string Annee_2026 { get { return "2026"; } }
+        public static string Annee_2027 { get { return "2027"; } }
     }
 }
