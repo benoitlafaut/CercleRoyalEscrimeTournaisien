@@ -1,0 +1,20 @@
+﻿@model CercleRoyalEscrimeTournaisien.Models.PoulesViewModel
+
+<div style="margin-top:15px;">
+    <label>New Guid: @Model.NewGuidCreated</label>
+</div>
+
+<div>
+    <span style="min-width: 100px; display: inline-block;">Prénom:</span> 
+    @Html.TextBoxFor(x => x.NewComerPrénom, new { @class = "", style = "width: 150px;" })
+</div>
+
+<div>
+    <span style="min-width: 100px; display: inline-block;">Nom:</span>
+    @Html.TextBoxFor(x => x.NewComerNom, new { @class = "", style = "width: 150px;" })
+</div>
+
+<div>
+    <span style="min-width: 100px; display: inline-block;">Nom:</span>
+    @Html.TextBoxFor(x => x.NewComerBirthDate, new { @class = "", style = "width: 150px;" })
+</div>

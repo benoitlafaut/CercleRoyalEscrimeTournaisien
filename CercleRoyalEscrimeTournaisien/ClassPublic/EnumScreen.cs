@@ -9,7 +9,8 @@
             AfficherLesPoules = 3,
             AjouterScoreAUnePoule = 4,
             AfficherLesEliminationsDirectes=5,
-            AfficherLesDatesPrecedentes=6
+            AfficherLesDatesPrecedentes=6,
+            AjouterUnNewComer=7
         }
     }
 }

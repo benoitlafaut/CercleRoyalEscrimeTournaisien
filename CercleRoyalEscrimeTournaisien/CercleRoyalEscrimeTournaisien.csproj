@@ -1433,12 +1433,13 @@
     <Content Include="Views\Poules\AfficherLesDatesPrecedentes.cshtml" />
     <Content Include="Views\Poules\Statistiques.cshtml" />
     <Content Include="Views\Poules\ShowTireursToAddInpoules.cshtml" />
-    <Content Include="Views\NewPoules\NewPoules.cshtml" />
     <Content Include="Views\NewPoules\AddTireurs.cshtml" />
     <Content Include="Views\NewPoules\AfficherLesPoules.cshtml" />
     <Content Include="Views\NewPoules\AfficherLesDatesPrecedentes.cshtml" />
     <Content Include="Views\NewPoules\AjouterScoreAUnePoule.cshtml" />
     <Content Include="Views\NewPoules\PoulesEliminationsDirectes.cshtml" />
+    <Content Include="Views\NewPoules\AjouterUnNewComer.cshtml" />
+    <Content Include="Views\NewPoules\NewPoules.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

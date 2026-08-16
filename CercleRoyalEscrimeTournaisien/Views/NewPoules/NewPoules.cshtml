@@ -10,11 +10,13 @@
     string urlActionAfficherLesPoules = Url.Action("AfficherLesPoules", "NewPoules");
     string urlActionAfficherLesEliminationsDirectes = Url.Action("AfficherLesEliminationsDirectes", "NewPoules");
     string urlActionAfficherLesDatesPrecedentes = Url.Action("AfficherLesDatesPrecedentes", "NewPoules");
+    string urlActionAjouterUnNewComer = Url.Action("AjouterUnNewComer", "NewPoules");
 
     string[] dateDuJourWithDayLabel = Model.DateDuJourWithDayLabel.Split(',');
     string classIndicatorAjoutTireur = Model.ScreenIndex == ClassEnumScreen.EnumScreen.AddTireurs ? "ClassIndicatorAjoutTireur" : "";
     string classIndicatorAjouterScoreAUnePoule = Model.ScreenIndex == ClassEnumScreen.EnumScreen.AjouterScoreAUnePoule ? "ClassIndicatorAjouterScoreAUnePoule" : "";
     string classIndicatorAfficherLesPoules = Model.ScreenIndex == ClassEnumScreen.EnumScreen.AfficherLesPoules ? "ClassIndicatorAfficherLesPoules" : "";
+    string classIndicatorAjoutUnNewComer = Model.ScreenIndex == ClassEnumScreen.EnumScreen.AjouterUnNewComer ? "ClassIndicatorAjouterUnNewComer" : "";
 }
 
 <!DOCTYPE html>
@@ -28,6 +30,11 @@
         <button class="ClassTwoLignes ClassButtonEnteteTransparent">
             <span>@dateDuJourWithDayLabel[0]</span>
             <span>@dateDuJourWithDayLabel[1]</span>
+        </button>
+
+        <button class="@classIndicatorAjoutUnNewComer ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading();location.href='@urlActionAjouterUnNewComer'">
+            <span>Ajouter un</span>
+            <span>new comer</span>
         </button>
 
         <button class="@classIndicatorAjoutTireur ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading();location.href='@urlActionAjouterTireurAUnePoule'">
@@ -63,6 +70,12 @@
         case ClassEnumScreen.EnumScreen.AddTireurs:
             <div class="infos1 clearfix">
                 @Html.Partial(PartialViewNames.AddTireurs, Model)
+            </div>
+
+            break;
+        case ClassEnumScreen.EnumScreen.AjouterUnNewComer:
+            <div class="infos1 clearfix">
+                @Html.Partial(PartialViewNames.AjouterUnNewComer, Model)
             </div>
 
             break;

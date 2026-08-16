@@ -34,6 +34,15 @@ namespace CercleRoyalEscrimeTournaisien
         }
 
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+        public ActionResult AjouterUnNewComer()
+        {
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+            poulesViewModel.ScreenIndex = ClassEnumScreen.EnumScreen.AjouterUnNewComer;
+
+            return View(Constantes.NewPoules, poulesViewModel);
+        }
+
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
         public ActionResult AfficherLesPoules()
         {
             PoulesViewModel poulesViewModel = new PoulesViewModel(Server);

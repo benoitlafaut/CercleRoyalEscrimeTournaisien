@@ -23,7 +23,35 @@ namespace CercleRoyalEscrimeTournaisien.Models
             ChargerDatesPourToutesLesPoules();
             CalculerAgeDeChaqueTireur();
         }
+        public string NewGuidCreated
+        { 
+            get
+            {
+                string guid =  ListTireurs.Max(x => x.Key.ToString());
+                string hex = guid.Replace("-", "");
 
+                // convertir en entier 128 bits
+                System.Numerics.BigInteger value = System.Numerics.BigInteger.Parse("0" + hex, System.Globalization.NumberStyles.HexNumber);
+
+                // +1
+                value += 1;
+                string newHex = value.ToString("x").PadLeft(32, '0');
+
+                string newGuidGenerated =
+                    newHex.Substring(0, 8) + "-" +
+                    newHex.Substring(8, 4) + "-" +
+                    newHex.Substring(12, 4) + "-" +
+                    newHex.Substring(16, 4) + "-" +
+                    newHex.Substring(20);
+
+                
+
+                return newGuidGenerated;
+            } 
+        }
+        public string NewComerPrénom { get; set; }
+        public string NewComerNom { get; set; }
+        public string NewComerBirthDate { get; set; }
         public HttpServerUtilityBase ServerTmp { get; set; }
         public List<ClassPoule> PoulesList { get; set; }
         public List<ClassAge> AgesList { get; set; }

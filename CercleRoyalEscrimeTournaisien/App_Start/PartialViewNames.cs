@@ -30,5 +30,6 @@
         public const string AddTireurs = "AddTireurs";
         public const string AjouterScoreAUnePoule = "AjouterScoreAUnePoule";
         public const string AfficherLesDatesPrecedentes = "AfficherLesDatesPrecedentes";
+        public const string AjouterUnNewComer = "AjouterUnNewComer";
     }
 }
