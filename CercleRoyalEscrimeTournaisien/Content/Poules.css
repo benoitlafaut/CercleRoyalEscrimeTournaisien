@@ -36,6 +36,11 @@
     margin-bottom: 40px;
 }
 
+.ClassMarginTopAndBottom10 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .ClassMarginTop {
     margin-top: 20px;
 }
@@ -102,17 +107,17 @@
 .pretty-list {
     padding: 0;
     margin: 0;
-    width: 300px;
+    width: 400px;
 }
 
     .pretty-list li {
         padding: 5px 14px;
-        margin-bottom: 10px;
+        margin-bottom: 2px;
         border-radius: 10px;
         color: #e2e8f0;
         border: 1px solid rgba(148, 163, 184, 0.3);
         box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        height: 29px;
+        height: 26px;
     }
 
         .pretty-list li .index {
@@ -264,6 +269,7 @@
     display: flex;
     flex-direction: column;
     margin-right: 4px;
+    align-items: center;
 }
 
 @media screen and (max-width: 350px){
@@ -290,23 +296,11 @@
     }
 }
 
-.ClassIndicatorAjoutTireur {
+.ClassIndicatorBorderAndColorBlue {
     border: 3px solid blue;
     color: blue;
 }
 
-.ClassIndicatorAjouterScoreAUnePoule {
-    border: 3px solid blue;
-    color: blue;
+.ClassPouleInConstruireLesPoules{
+    margin-right:15px;
 }
-
-.classIndicatorAfficherLesPoules {
-    border: 3px solid blue;
-    color: blue;
-}
-
-.classIndicatorAjouterUnNewComer {
-    border: 3px solid blue;
-    color: blue;
-}
-

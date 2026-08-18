@@ -49,9 +49,28 @@ namespace CercleRoyalEscrimeTournaisien.Models
                 return newGuidGenerated;
             } 
         }
-        public string NewComerPrénom { get; set; }
+        public string NewComerPrenom { get; set; }
         public string NewComerNom { get; set; }
         public string NewComerBirthDate { get; set; }
+        public string NewComerDayMercrediSelected { get; set; }
+        public string NewComerDayVendrediSelected { get; set; }
+        public string NewComerDayDimancheSelected { get; set; }
+
+        public IDictionary<string, string> NewComerDayList
+        {
+            get
+            {
+                return new Dictionary<string, string>()
+                {
+                    { "","" },
+                    { "Poule 1","Poule des débutants" },
+                    { "Poule 2","Poule Deuxième Troisième année" },
+                    { "Poule 3","Poule plus forte que les 3èmes années" },
+                    { "Poule 4","Poule des adultes" },
+                    { "Poule 5","Poules des parents" },
+                };
+            }
+        }
         public HttpServerUtilityBase ServerTmp { get; set; }
         public List<ClassPoule> PoulesList { get; set; }
         public List<ClassAge> AgesList { get; set; }
@@ -162,10 +181,17 @@ namespace CercleRoyalEscrimeTournaisien.Models
                 string period2026_2027 = "2026-2027";
                 BaseDeDonnéesMapper baseDeDonnéesMapper = new BaseDeDonnéesMapper();
                 List<TableListeTireursData> tableTireurs = baseDeDonnéesMapper.GetTableListeTireursData(ServerTmp, period2026_2027);
-              
-
                 return tableTireurs.ToDictionary(g => new Guid(g.GuidTireur), g => g.Prénom + " " + g.Nom);
             }
+        }
+        public List<TableListeTireursData> TableTireursPourconstruireLesPoules 
+        {
+            get
+            {
+                string period2026_2027 = "2026-2027";
+                BaseDeDonnéesMapper baseDeDonnéesMapper = new BaseDeDonnéesMapper();
+                return baseDeDonnéesMapper.GetTableListeTireursData(ServerTmp, period2026_2027);
+            } 
         }
         public string ScoreTireur1 { get; set; }
         public string ScoreTireur2 { get; set; }
@@ -173,6 +199,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
         public string TireurSelected { get; set; }
         public string Tireur2Selected { get; set; }
         public ClassEnumScreen.EnumScreen ScreenIndex { get; set; }
+        public string GuidTireurSelected { get; set; }
         public string PouleSelected { get; set; }
         public string GetScoreVictoireOuDéfaite(Guid tireur1, Guid tireur2)
         {
@@ -233,6 +260,11 @@ namespace CercleRoyalEscrimeTournaisien.Models
         }
         public int GetAge(string tireur)
         {
+            if (!AgesList.Any(x => x.Tireur == tireur))
+            {
+                return 0;
+            }
+
             return AgesList.Where(x => x.Tireur == tireur).First().Age;
         }
         public bool ExistEliminationsDirectes(string dateDuJourWithoutDay, string pouleSelected)
@@ -254,7 +286,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
                     }
                 }
 
-                return DateTime.Now.AddDays(0);
+                return DateTime.Now.AddDays(1);
             }
         }
         public bool IsDateDAujourdhuiEqualsDateNow
@@ -373,6 +405,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
             System.Web.HttpContext.Current.Session.Remove("ChargerPoulesDuJourSession");
             System.Web.HttpContext.Current.Session.Remove("ChargerDatesPourToutesLesPoulesSession");
             System.Web.HttpContext.Current.Session.Remove("ChargerListeDesTireursSession");
+            System.Web.HttpContext.Current.Session.Remove("ChargerTableListeTireursDataSession");            
         }
 
         private void ChargerListeDesPoulesPotentielles()

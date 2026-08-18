@@ -1,6 +1,6 @@
 ﻿@model CercleRoyalEscrimeTournaisien.Models.PoulesViewModel
 
-<div>
+<div style="margin-top:10px;">
     <span>Liste des Dates d'entraînement: </span>
 
     <select onchange="$.startLoading();location.href='@Url.Action("ChangeDateDeLaPoule", "Poules")?dateDeLaPouleSelected=' + this.value" class="form-control">
@@ -21,8 +21,4 @@
 
 <div class="ClassMarginTopAndBottom">
     <a onclick="$.startLoading();" href="@Url.Action("ResetDates", "Poules")" class="btnAction-custom">Réinitialisez la date et la remettre à la date du jour</a>
-</div>
-
-<div class="ClassMarginTopAndBottom">
-    <a onclick="$.startLoading();" href="@Url.Action("Poules", "Poules")" class="btn-custom">Retourner au menu principal</a>
 </div>

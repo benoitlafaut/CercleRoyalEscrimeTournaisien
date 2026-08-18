@@ -22,6 +22,7 @@ namespace CercleRoyalEscrimeTournaisien.Mappers
 
             var path = serverTmp.MapPath("/App_Data/Poules.accdb");
             string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
+
             string mySelectQuery = " SELECT * FROM TableListeTireursData where Période = '" + période + "'";
 
             using (var conn = new OleDbConnection(ConnectionString))
@@ -46,9 +47,29 @@ namespace CercleRoyalEscrimeTournaisien.Mappers
                 }
             }
 
-            System.Web.HttpContext.Current.Session.Add("ChargerTableListeTireursDataSession", tireursDataList);
+            string mySelectQuerySecond = " SELECT * FROM TableJourDesPoules";
 
-            return tireursDataList;
+            using (var conn = new OleDbConnection(ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new OleDbCommand(mySelectQuerySecond, conn))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string guidTireur = (string)reader["GuidTireur"];
+                            tireursDataList.FirstOrDefault(x => x.GuidTireur == guidTireur).DayMercredi = (string)reader["DayMercredi"];
+                            tireursDataList.FirstOrDefault(x => x.GuidTireur == guidTireur).DayVendredi = (string)reader["DayVendredi"];
+                            tireursDataList.FirstOrDefault(x => x.GuidTireur == guidTireur).DayDimanche = (string)reader["DayDimanche"];
+                        }
+                    }
+                }
+            }
+
+            System.Web.HttpContext.Current.Session.Add("ChargerTableListeTireursDataSession", tireursDataList.OrderBy(t => t.Prénom).ToList());
+
+            return tireursDataList.OrderBy(t => t.Prénom).ToList();
         }
         private T GetValueStartsWith<T>(string key)
         {

@@ -1,0 +1,46 @@
+﻿@model CercleRoyalEscrimeTournaisien.Models.PoulesViewModel
+
+<div style="margin-top:20px;">
+    @foreach (var opt in Model.PoulesList)
+    {
+        
+        var url = Url.Action("ConstruireLesPoules", "Poules", new { pouleSelected = opt.Poule });
+        
+
+        var id = "opt-" + opt.Poule;
+
+        @Html.RadioButtonFor(m => m.PouleSelected, opt.Poule, new { @class = "", id = id, onclick = $"location.href='{url}'" })
+        <label class="ClassPouleInConstruireLesPoules" for="@id">@opt.DescriptionDeLaPoule</label>
+    }
+</div>
+
+<hr />
+
+@foreach (var tireur in Model.TableTireursPourconstruireLesPoules)
+{
+    string classChecked="";
+    if (Model.DateDuJourOnlyDayLabel.ToLower() == "mercredi")
+    {
+        classChecked = tireur.DayMercredi == Model.PouleSelected ? "checked" : "";
+    }
+    if (Model.DateDuJourOnlyDayLabel.ToLower() == "vendredi")
+    {
+        classChecked = tireur.DayVendredi == Model.PouleSelected ? "checked" : "";
+    }
+    if (Model.DateDuJourOnlyDayLabel.ToLower() == "dimanche")
+    {
+        classChecked = tireur.DayDimanche == Model.PouleSelected ? "checked" : "";
+    }
+
+    <div class="form-check">
+        <input @classChecked type="checkbox" class="chk-tireur form-check-input" name="SelectedTireurs" value="@tireur.GuidTireur" />
+
+        <label class="form-check-label">
+            @tireur.Prénom @tireur.Nom
+        </label>
+    </div>
+}
+
+<div class="ClassMarginTopAndBottom">
+    <a href="#" onclick="ConstruireLesPoules(); " class="btnAction-custom">Construire les poules</a>
+</div>

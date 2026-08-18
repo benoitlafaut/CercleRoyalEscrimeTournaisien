@@ -219,7 +219,6 @@
     <Compile Include="ClassPublic\Constantes.cs" />
     <Compile Include="Controllers\EpubController.cs" />
     <Compile Include="Controllers\DicoController.cs" />
-    <Compile Include="Controllers\NewPoulesController.cs" />
     <Compile Include="Controllers\PoulesController.cs" />
     <Compile Include="Controllers\MainPageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -306,6 +305,9 @@
     <Compile Include="GestionClubClass\Paiements_2026_2027.cs" />
     <Compile Include="GestionClubClass\Paiements_2025_2026.cs" />
     <Compile Include="Mappers\BaseDeDonnéesMapper.cs" />
+    <Compile Include="Models\MyRequestToModifierUnTireur.cs" />
+    <Compile Include="Models\MyRequestToAddUnNewComerToDB.cs" />
+    <Compile Include="Models\ConstruireLesPoulesInput.cs" />
     <Compile Include="Models\TableListeTireursData.cs" />
     <Compile Include="Models\MyRequestResultatsPoule.cs" />
     <Compile Include="Models\MyRequestEliminationDirecteToSaveInPoule.cs" />
@@ -1425,21 +1427,17 @@
     <Content Include="Views\MainPage\NormesMatériel.cshtml" />
     <Content Include="Views\MainPage\SwitchToDossierPhotos.cshtml" />
     <Content Include="Poules\Poule 2026-02-08 Fleuret.pdf" />
-    <Content Include="Views\Poules\Poules.cshtml" />
-    <Content Include="Views\Poules\PoulesEliminationsDirectes.cshtml" />
-    <Content Include="Views\Poules\AfficherLesPoules.cshtml" />
-    <Content Include="Views\Poules\AddTireurs.cshtml" />
-    <Content Include="Views\Poules\AjouterScoreAUnePoule.cshtml" />
-    <Content Include="Views\Poules\AfficherLesDatesPrecedentes.cshtml" />
     <Content Include="Views\Poules\Statistiques.cshtml" />
     <Content Include="Views\Poules\ShowTireursToAddInpoules.cshtml" />
-    <Content Include="Views\NewPoules\AddTireurs.cshtml" />
-    <Content Include="Views\NewPoules\AfficherLesPoules.cshtml" />
-    <Content Include="Views\NewPoules\AfficherLesDatesPrecedentes.cshtml" />
-    <Content Include="Views\NewPoules\AjouterScoreAUnePoule.cshtml" />
-    <Content Include="Views\NewPoules\PoulesEliminationsDirectes.cshtml" />
-    <Content Include="Views\NewPoules\AjouterUnNewComer.cshtml" />
-    <Content Include="Views\NewPoules\NewPoules.cshtml" />
+    <Content Include="Views\Poules\AddTireurs.cshtml" />
+    <Content Include="Views\Poules\AfficherLesPoules.cshtml" />
+    <Content Include="Views\Poules\AfficherLesDatesPrecedentes.cshtml" />
+    <Content Include="Views\Poules\AjouterScoreAUnePoule.cshtml" />
+    <Content Include="Views\Poules\PoulesEliminationsDirectes.cshtml" />
+    <Content Include="Views\Poules\AjouterUnNewComer.cshtml" />
+    <Content Include="Views\Poules\Poules.cshtml" />
+    <Content Include="Views\Poules\ConstruireLesPoules.cshtml" />
+    <Content Include="Views\Poules\ModifierUnTireur.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

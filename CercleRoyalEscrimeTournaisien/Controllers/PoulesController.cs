@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
@@ -16,92 +15,7 @@ namespace CercleRoyalEscrimeTournaisien
     [RoutePrefix("Poules")]
     public class PoulesController : Controller
     {
-        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
-        public ActionResult ShowTireursToAddInpoules()
-        {
-            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
-            poulesViewModel.PouleSelected = "Poule 1";
 
-            List<ClassTireur> tireursList = poulesViewModel.TireursList;
-
-            List<ClassPoule> poulesList = poulesViewModel.PoulesList;
-
-            ShowTireursToAddInpoulesViewModel showTireursToAddInpoulesViewModel = new ShowTireursToAddInpoulesViewModel();
-            foreach (var tireur in tireursList) 
-            {
-                if (!showTireursToAddInpoulesViewModel.Tireurs.Any(x => x.Tireur.Tireur == tireur.Tireur))
-                {
-                    {
-                        showTireursToAddInpoulesViewModel.Tireurs.Add(
-                            new ClassShowTireursToAddInpoules()
-                            {
-                                Tireur = tireur,
-                                Poules = poulesList
-                            });
-                    }
-                }
-            }
-
-            showTireursToAddInpoulesViewModel.Tireurs = showTireursToAddInpoulesViewModel.Tireurs.OrderBy(x=>x.Tireur.Tireur).ToList();
-
-            return View(Constantes.ShowTireursToAddInpoules, showTireursToAddInpoulesViewModel);
-        }
-
-        [HttpPost]
-        public ActionResult SavePoules(ShowTireursToAddInpoulesViewModel showTireursToAddInpoulesViewModel)
-        {
-            DateTime dateNow = DateTime.Now.AddDays(0);
-            var culture = new CultureInfo("fr-FR");
-            string dateFormatee = dateNow.ToString("dd/MM/yyyy", culture);
-
-            var path = Server.MapPath("/App_Data/Poules.accdb");
-            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
-
-            string mySelectQueryDelete2 = @" DELETE FROM TableDesTireursPourUnePouleDuJour WHERE DateDeLaPoule = @t1";
-
-            using (var conn = new OleDbConnection(ConnectionString))
-            {
-                conn.Open();
-                using (var cmd = new OleDbCommand(mySelectQueryDelete2, conn))
-                {
-                    cmd.Parameters.AddWithValue("@t1", dateFormatee);
-
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                    }
-                }
-            }
-
-
-            foreach (var tireur in showTireursToAddInpoulesViewModel.Tireurs)
-            {
-                foreach (var poule in tireur.Poules)
-                {
-                    if (poule.Selected)
-                    {
-                        using (var conn = new OleDbConnection(ConnectionString))
-                        {
-                            conn.Open();
-
-                            string mySelectQuery = "INSERT INTO TableDesTireursPourUnePouleDuJour (DateDeLaPoule, Poule, Tireur) Values ('" + dateFormatee + "','" + poule.Poule + "','" + tireur.Tireur.Tireur + "')";
-
-                            using (var cmd = new OleDbCommand(mySelectQuery, conn))
-                            {
-                                using (var reader = cmd.ExecuteReader())
-                                {
-
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            PoulesViewModel poulesViewModelTmp = new PoulesViewModel(Server);
-            poulesViewModelTmp.InitSession();
-
-            return View(Constantes.ShowTireursToAddInpoules, showTireursToAddInpoulesViewModel);
-        }
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
         public ActionResult Poules()
         {
@@ -115,6 +29,43 @@ namespace CercleRoyalEscrimeTournaisien
         {
             PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
             poulesViewModel.ScreenIndex = ClassEnumScreen.EnumScreen.AddTireurs;
+
+            return View(Constantes.Poules, poulesViewModel);
+        }
+
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+        public ActionResult AjouterUnNewComer()
+        {
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+            poulesViewModel.ScreenIndex = ClassEnumScreen.EnumScreen.AjouterUnNewComer;
+
+            return View(Constantes.Poules, poulesViewModel);
+        }
+
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+        public ActionResult ModifierUnTireur(string guidTireurSelected)
+        {
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+            poulesViewModel.ScreenIndex = ClassEnumScreen.EnumScreen.ModifierUnTireur;
+            poulesViewModel.GuidTireurSelected = guidTireurSelected;
+
+            TableListeTireursData tireurData;
+            if (guidTireurSelected != null)
+            {
+                tireurData = poulesViewModel.TableTireursPourconstruireLesPoules.FirstOrDefault(x => x.GuidTireur == guidTireurSelected.ToUpper());
+            }
+            else
+            {
+                guidTireurSelected = poulesViewModel.TableTireursPourconstruireLesPoules.First().GuidTireur;
+                tireurData = poulesViewModel.TableTireursPourconstruireLesPoules.FirstOrDefault(x => x.GuidTireur == guidTireurSelected.ToUpper());
+            }
+
+            poulesViewModel.NewComerBirthDate = tireurData.Birthdate;
+            poulesViewModel.TireurSelected = guidTireurSelected;
+            poulesViewModel.NewComerDayMercrediSelected = tireurData.DayMercredi;
+            poulesViewModel.NewComerDayVendrediSelected = tireurData.DayVendredi;
+            poulesViewModel.NewComerDayDimancheSelected = tireurData.DayDimanche;
+
 
             return View(Constantes.Poules, poulesViewModel);
         }
@@ -213,16 +164,16 @@ namespace CercleRoyalEscrimeTournaisien
                     Tireur1Guid = scores[i].ScoreDuTireur1 > scores[i].ScoreDuTireur2 ? scores[i].Tireur1Guid : scores[i].Tireur2Guid,
                     Tireur1Name = scores[i].ScoreDuTireur1 > scores[i].ScoreDuTireur2 ? scores[i].Tireur1Name : scores[i].Tireur2Name,
                     IndexTireur1 = scores[i].ScoreDuTireur1 > scores[i].ScoreDuTireur2 ? scores[i].IndexTireur1 : scores[i].IndexTireur2,
-                    Tireur2Guid = scores[i+1].ScoreDuTireur1 > scores[i+1].ScoreDuTireur2 ? scores[i+1].Tireur1Guid : scores[i + 1].Tireur2Guid,
-                    Tireur2Name = scores[i + 1].ScoreDuTireur1 > scores[i + 1].ScoreDuTireur2 ? scores[i+1].Tireur1Name : scores[i + 1].Tireur2Name,
-                    IndexTireur2 = scores[i + 1].ScoreDuTireur1 > scores[i + 1].ScoreDuTireur2 ? scores[i+1].IndexTireur1 : scores[i + 1].IndexTireur2,
+                    Tireur2Guid = scores[i + 1].ScoreDuTireur1 > scores[i + 1].ScoreDuTireur2 ? scores[i + 1].Tireur1Guid : scores[i + 1].Tireur2Guid,
+                    Tireur2Name = scores[i + 1].ScoreDuTireur1 > scores[i + 1].ScoreDuTireur2 ? scores[i + 1].Tireur1Name : scores[i + 1].Tireur2Name,
+                    IndexTireur2 = scores[i + 1].ScoreDuTireur1 > scores[i + 1].ScoreDuTireur2 ? scores[i + 1].IndexTireur1 : scores[i + 1].IndexTireur2,
                 });
-            }                          
-            
+            }
+
 
             var path = Server.MapPath("/App_Data/Poules.accdb");
             string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
-            
+
             foreach (var score in newScores)
             {
 
@@ -252,7 +203,7 @@ namespace CercleRoyalEscrimeTournaisien
                         cmd.Parameters.AddWithValue("@param14", "0");
 
                         using (var reader = cmd.ExecuteReader())
-                        {                           
+                        {
                         }
                     }
                 }
@@ -265,7 +216,7 @@ namespace CercleRoyalEscrimeTournaisien
 
         private string GetRoundSuivant(string roundSelected)
         {
-            switch(roundSelected)
+            switch (roundSelected)
             {
                 case "1/16":
                     return "1/8";
@@ -285,6 +236,66 @@ namespace CercleRoyalEscrimeTournaisien
         {
             PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
             poulesViewModel.ScreenIndex = ClassEnumScreen.EnumScreen.AjouterScoreAUnePoule;
+
+            return View(Constantes.Poules, poulesViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult ConstruireLesPoules(ConstruireLesPoulesInput construireLesPoulesInput)
+        {
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+
+            var path = Server.MapPath("/App_Data/Poules.accdb");
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
+
+            string mySelectQueryDelete2 = @" DELETE FROM TableDesTireursPourUnePouleDuJour WHERE DateDeLaPoule = @t1 and Poule = @t2";
+
+            using (var conn = new OleDbConnection(ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new OleDbCommand(mySelectQueryDelete2, conn))
+                {
+                    cmd.Parameters.AddWithValue("@t1", poulesViewModel.DateDuJourWithoutDayLabel);
+                    cmd.Parameters.AddWithValue("@t2", construireLesPoulesInput.PouleSelected);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                    }
+                }
+            }
+
+
+            foreach (var tireur in construireLesPoulesInput.ids)
+            {
+                string tireurName = poulesViewModel.ListTireurs.FirstOrDefault(x => x.Key.ToString().ToUpper() == tireur).Value;
+
+                using (var conn = new OleDbConnection(ConnectionString))
+                {
+                    conn.Open();
+
+                    string mySelectQuery = "INSERT INTO TableDesTireursPourUnePouleDuJour (DateDeLaPoule, Poule, Tireur) Values ('" + poulesViewModel.DateDuJourWithoutDayLabel + "','" + construireLesPoulesInput.PouleSelected + "','" + tireurName + "')";
+
+                    using (var cmd = new OleDbCommand(mySelectQuery, conn))
+                    {
+                        using (var reader = cmd.ExecuteReader())
+                        {
+
+                        }
+                    }
+                }
+            }
+
+            poulesViewModel.InitSession();
+
+            return Json(new { ok = true, redirectUrl = Url.Action("AfficherLesPoules", "Poules") });
+        }
+
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+        public ActionResult ConstruireLesPoules(string pouleSelected)
+        {
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+            poulesViewModel.ScreenIndex = ClassEnumScreen.EnumScreen.ConstruireLesPoules;
+            poulesViewModel.PouleSelected = pouleSelected;
 
             return View(Constantes.Poules, poulesViewModel);
         }
@@ -321,7 +332,7 @@ namespace CercleRoyalEscrimeTournaisien
 
             System.Web.HttpContext.Current.Session.Add("IsOtherDateThanDateDuJour", "true");
             System.Web.HttpContext.Current.Session.Add("OtherDate", dateDeLaPouleSelected);
-            return RedirectToAction("AfficherLesPoules", "poules");          
+            return RedirectToAction("AfficherLesPoules", "Poules");
         }
 
         [HttpPost]
@@ -332,34 +343,164 @@ namespace CercleRoyalEscrimeTournaisien
             var path = Server.MapPath("/App_Data/Poules.accdb");
             string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
 
-            string pouleSelected = myRequestToSaveInPoule.PouleSelected;
+            int index = int.Parse(myRequestToSaveInPoule.PouleSelected);
+            string pouleSelected = poulesViewModel.PoulesList[index].Poule;
             List<string> tireursSelected = myRequestToSaveInPoule.TireursSelected;
 
-            foreach(string tireur in tireursSelected)
+            foreach (string tireur in tireursSelected)
             {
+                string tireurName = poulesViewModel.ListTireurs.FirstOrDefault(x => x.Key.ToString() == tireur).Value;
+
                 if (!ExistsRecord(poulesViewModel.DateDuJourWithoutDayLabel, pouleSelected, tireur))
                 {
                     using (var conn = new OleDbConnection(ConnectionString))
                     {
-                        conn.Open();       
-                        
-                        string mySelectQuery = "INSERT INTO TableDesTireursPourUnePouleDuJour (DateDeLaPoule, Poule, Tireur) Values ('" + poulesViewModel.DateDuJourWithoutDayLabel + "','" + pouleSelected + "','" + tireur + "')";
+                        conn.Open();
+
+                        string mySelectQuery = "INSERT INTO TableDesTireursPourUnePouleDuJour (DateDeLaPoule, Poule, Tireur) Values ('" + poulesViewModel.DateDuJourWithoutDayLabel + "','" + pouleSelected + "','" + tireurName + "')";
 
                         using (var cmd = new OleDbCommand(mySelectQuery, conn))
                         {
                             using (var reader = cmd.ExecuteReader())
                             {
-                               
+
                             }
                         }
                     }
-                }                  
+                }
             }
 
             poulesViewModel.InitSession();
 
             return Json(new { redirectUrl = Url.Action("AfficherLesPoules", "Poules") });
         }
+
+        [HttpPost]
+        public ActionResult AddUnNewComerToDB(MyRequestToAddUnNewComerToDB myRequestAddUnNewComerToDB)
+        {
+            string period2026_2027 = "2026-2027";
+
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+
+            var path = Server.MapPath("/App_Data/Poules.accdb");
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
+
+            string newComerGuidTireur = myRequestAddUnNewComerToDB.NewComerGuidTireur.ToUpper();
+            string newComerPrenom = myRequestAddUnNewComerToDB.NewComerPrenom;
+            string newComerNom = myRequestAddUnNewComerToDB.NewComerNom;
+            string newComerBirthDate = myRequestAddUnNewComerToDB.NewComerBirthDate;
+            string newComerDayMercrediSelected = myRequestAddUnNewComerToDB.NewComerDayMercrediSelected;
+            string newComerDayVendrediSelected = myRequestAddUnNewComerToDB.NewComerDayVendrediSelected;
+            string newComerDayDimancheSelected = myRequestAddUnNewComerToDB.NewComerDayDimancheSelected;
+
+            using (var conn = new OleDbConnection(ConnectionString))
+            {
+                conn.Open();
+
+                string mySelectQuery = "INSERT INTO TableListeTireursData (Période, GuidTireur, Prénom, Nom, Birthdate)" +
+                    "Values ('" + period2026_2027
+                    + "','" + newComerGuidTireur
+                    + "','" + newComerPrenom
+                    + "','" + newComerNom
+                    + "','" + newComerBirthDate
+                    + "')";
+
+                using (var cmd = new OleDbCommand(mySelectQuery, conn))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+
+                    }
+                }
+            }
+
+            using (var conn = new OleDbConnection(ConnectionString))
+            {
+                conn.Open();
+
+                string mySelectQuery = "INSERT INTO TableJourDesPoules (GuidTireur, DayMercredi, DayVendredi, DayDimanche)" +
+                    "Values ('" + newComerGuidTireur
+                    + "','" + newComerDayMercrediSelected
+                    + "','" + newComerDayVendrediSelected
+                    + "','" + newComerDayDimancheSelected
+                    + "')";
+
+                using (var cmd = new OleDbCommand(mySelectQuery, conn))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+
+                    }
+                }
+            }
+
+            poulesViewModel.InitSession();
+
+            return Json(new { redirectUrl = Url.Action("AfficherLesPoules", "Poules") });
+        }
+
+        [HttpPost]
+        public ActionResult ModifierUnTireur(MyRequestToModifierUnTireur myRequestModifierUnTireur)
+        {
+            string period2026_2027 = "2026-2027";
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+
+            var path = Server.MapPath("/App_Data/Poules.accdb");
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
+
+            string mySelectQuery = "UPDATE TableListeTireursData SET Birthdate = ?"
+                + " where GuidTireur = ? and Période = ?";
+
+            using (var conn = new OleDbConnection(ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new OleDbCommand(mySelectQuery, conn))
+                {
+ 
+                    cmd.Parameters.AddWithValue("?", myRequestModifierUnTireur.NewComerBirthDate);
+                    cmd.Parameters.AddWithValue("?", myRequestModifierUnTireur.NewComerGuidTireur);
+                    cmd.Parameters.AddWithValue("?", period2026_2027);
+                    
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                    }
+                }
+            }
+
+            string mySelectQuerySecond = "UPDATE TableJourDesPoules SET DayMercredi = ?, DayVendredi = ?, DayDimanche = ?"
+               + " where GuidTireur = ?";
+
+            using (var conn = new OleDbConnection(ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new OleDbCommand(mySelectQuerySecond, conn))
+                {
+
+                    cmd.Parameters.AddWithValue("?", myRequestModifierUnTireur.NewComerDayMercrediSelected);
+                    cmd.Parameters.AddWithValue("?", myRequestModifierUnTireur.NewComerDayVendrediSelected);
+                    cmd.Parameters.AddWithValue("?", myRequestModifierUnTireur.NewComerDayDimancheSelected);
+                    cmd.Parameters.AddWithValue("?", myRequestModifierUnTireur.NewComerGuidTireur);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                    }
+                }
+            }
+
+            poulesViewModel.InitSession();
+
+            return Json(new { redirectUrl = Url.Action("AfficherLesPoules", "Poules") });
+        }
+
+        [HttpGet]
+        public ActionResult InitSession()
+        {
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+            poulesViewModel.InitSession();
+
+            return RedirectToAction("AfficherLesPoules", "Poules");
+        }
+
         [HttpPost]
         public ActionResult AddScoreEliminationDirecte(MyRequestEliminationDirecteToSaveInPoule myRequestEliminationDirecteToSaveInPoule)
         {
@@ -387,16 +528,17 @@ namespace CercleRoyalEscrimeTournaisien
 
                     using (var reader = cmd.ExecuteReader())
                     {
-                        
+
                     }
                 }
             }
-            
+
             PoulesViewModel poulesViewModelTmp = new PoulesViewModel(Server);
             poulesViewModelTmp.InitSession();
 
             return Json(new { redirectUrl = Url.Action("ChangeRoundPourShowEliminationsDirectes", "Poules", new { roundSelected = myRequestEliminationDirecteToSaveInPoule.Round, PouleSelected = myRequestEliminationDirecteToSaveInPoule.PouleSelected }) });
         }
+
         [HttpPost]
         public ActionResult AddScoreToTireursSelected(MyRequestScoreToSaveInPoule myRequestScoreToSaveInPoule)
         {
@@ -418,7 +560,7 @@ namespace CercleRoyalEscrimeTournaisien
 
                     using (var reader = cmd.ExecuteReader())
                     {
-                       
+
                     }
                 }
             }
@@ -444,11 +586,11 @@ namespace CercleRoyalEscrimeTournaisien
 
             string mySelectQuery2 = "INSERT INTO TableRésultatsDesPoules (Poule, Tireur1Guid,Tireur2Guid,DateDeLaPoule ,VictoireOuDéfaiteDuTireur1,VictoireOuDéfaiteDuTireur2,ScoreDuTireur1,ScoreDuTireur2, QuestionMeneOuNon) " +
                 "Values ('" + myRequestScoreToSaveInPoule.PouleSelected + "','"
-                + myRequestScoreToSaveInPoule.Tireur1Guid.ToString().TrimEnd() + "','" 
-                + myRequestScoreToSaveInPoule.Tireur2Guid.ToString().TrimEnd() + "','" 
+                + myRequestScoreToSaveInPoule.Tireur1Guid.ToString().TrimEnd() + "','"
+                + myRequestScoreToSaveInPoule.Tireur2Guid.ToString().TrimEnd() + "','"
                 + poulesViewModel.DateDuJourWithoutDayLabel + "','"
-                + (myRequestScoreToSaveInPoule.Vainqueur == 1  ? "1" : "0") + "','" 
-                + (myRequestScoreToSaveInPoule.Vainqueur == 2  ? "1" : "0") + "','"
+                + (myRequestScoreToSaveInPoule.Vainqueur == 1 ? "1" : "0") + "','"
+                + (myRequestScoreToSaveInPoule.Vainqueur == 2 ? "1" : "0") + "','"
                 + myRequestScoreToSaveInPoule.ScoreTireur1 + "','"
                 + myRequestScoreToSaveInPoule.ScoreTireur2 + "','"
                 + myRequestScoreToSaveInPoule.QuestionMeneOuNon + "')";
@@ -457,7 +599,7 @@ namespace CercleRoyalEscrimeTournaisien
             {
                 conn.Open();
                 using (var cmd = new OleDbCommand(mySelectQuery2, conn))
-                {                   
+                {
                     using (var reader = cmd.ExecuteReader())
                     {
 
@@ -467,7 +609,7 @@ namespace CercleRoyalEscrimeTournaisien
 
             poulesViewModel.InitSession();
 
-            return Json(new { redirectUrl = Url.Action("AfficherLesPoules", "Poules") });            
+            return Json(new { redirectUrl = Url.Action("AfficherLesPoules", "Poules") });
         }
 
         [HttpPost]
@@ -555,7 +697,7 @@ namespace CercleRoyalEscrimeTournaisien
 
                             using (var reader = cmd.ExecuteReader())
                             {
-                               
+
                             }
                         }
                     }
@@ -566,7 +708,7 @@ namespace CercleRoyalEscrimeTournaisien
                         "(Poule, Tireur1Guid,Tireur2Guid,DateDeLaPoule ,VictoireOuDéfaiteDuTireur1,VictoireOuDéfaiteDuTireur2," +
                         "ScoreDuTireur1,ScoreDuTireur2, Round, IndexTireur1, IndexTireur2, Tireur1Name,Tireur2Name,ScoreDejaIntroduit) " +
                         "Values (@param1, @param2,@param3,@param4,@param5,@param6,@param7,@param8,@param9,@param10,@param11 ,@param12 ,@param13,@param14 ) ";
-                   
+
                     using (var conn = new OleDbConnection(ConnectionString))
                     {
                         conn.Open();
@@ -589,7 +731,7 @@ namespace CercleRoyalEscrimeTournaisien
 
                             using (var reader = cmd.ExecuteReader())
                             {
-                                
+
                             }
                         }
                     }
@@ -598,7 +740,7 @@ namespace CercleRoyalEscrimeTournaisien
 
             poulesViewModel.InitSession();
 
-            return Json(new { redirectUrl = Url.Action("Poules", "Poules") });
+            return Json(new { redirectUrl = Url.Action("AfficherLesPoules", "Poules") });
         }
 
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
@@ -712,8 +854,8 @@ namespace CercleRoyalEscrimeTournaisien
                     {
                         while (myReader.Read())
                         {
-                             tireur = (string)myReader["Tireur"];
-                            
+                            tireur = (string)myReader["Tireur"];
+
                         }
                     }
                 }
@@ -782,7 +924,7 @@ namespace CercleRoyalEscrimeTournaisien
                         while (myReader.Read())
                         {
                             Guid tireurGuid = (Guid)myReader["TireurGuid"];
-                            string tireur = (string)myReader["Tireur"]; 
+                            string tireur = (string)myReader["Tireur"];
                             string dateDeLaPoule = (string)myReader["DateDeLaPoule"];
                             matchsList.Add(new ClassStatistiqueTireur()
                             {
@@ -886,11 +1028,11 @@ namespace CercleRoyalEscrimeTournaisien
 
             return tableau;
         }
-        private int CalculerNombreDePlaces(int nbTireurs) 
-        { 
-            int roundMax = (int)Math.Ceiling(Math.Log(nbTireurs, 2)); return (int)Math.Pow(2, roundMax); 
+        private int CalculerNombreDePlaces(int nbTireurs)
+        {
+            int roundMax = (int)Math.Ceiling(Math.Log(nbTireurs, 2)); return (int)Math.Pow(2, roundMax);
         }
-       
+
         private bool ExistsRecord(string dateDuJourWithoutDay, string pouleSelected, string tireur)
         {
             bool existsRecord = false;
@@ -905,7 +1047,7 @@ namespace CercleRoyalEscrimeTournaisien
                 {
                     using (var reader = cmd.ExecuteReader())
                     {
-                        
+
                         while (reader.Read())
                         {
                             existsRecord = true;
@@ -946,7 +1088,7 @@ namespace CercleRoyalEscrimeTournaisien
             }
         }
 
-       
+
         #endregion
-    }    
+    }
 }

@@ -4,9 +4,8 @@
     new SelectList(new List<string> { "", "0", "1", "2", "3", "4" }) : new SelectList(new List<string> { "", "0", "1", "2", "3", "4", "5" });
 }
 
-<label style="display: inline-flex;" class="ClassMarginBottom ClassFontSizeTitre ">Ajouter un score à une poule</label>
 
-<div style="margin-bottom:15px;">
+<div style="margin-bottom:15px;margin-top:10px;">
     <select onchange="$.startLoading();location.href='@Url.Action("ChangePoulePourAjouterScore", "Poules")?pouleSelected=' + this.value" id="ddlPoulesScores" class="form-control">
         <option value=""> Sélectionnez la poule...</option>
         @foreach (var p in Model.PoulesList)
@@ -28,13 +27,13 @@
         <label style="margin-right:10px;">Tireur 1</label>
     </div>
     <div style="min-width:150px;">
-        @Html.DropDownListFor(model => model.Tireur1Selected, new SelectList(Model.ListTireursToAddScore, "Key", "Value", Model.Tireur1Selected), new { @class = "form-control", @style = "width:100px;" })
+        @Html.DropDownListFor(model => model.Tireur1Selected, new SelectList(Model.ListTireursToAddScore, "Key", "Value", Model.Tireur1Selected), new { @class = "form-control", @style = "width:136px;" })
     </div>
     <div>
         <label style="margin-right:10px;">Tireur 2</label>
     </div>
     <div>
-        @Html.DropDownListFor(model => model.Tireur2Selected, new SelectList(Model.ListTireursToAddScore, "Key", "Value", Model.Tireur2Selected), new { @class = "form-control", @style = "width:100px;" })
+        @Html.DropDownListFor(model => model.Tireur2Selected, new SelectList(Model.ListTireursToAddScore, "Key", "Value", Model.Tireur2Selected), new { @class = "form-control", @style = "width:136px;" })
     </div>
 </div>
 
@@ -83,10 +82,6 @@
 
 <div class="ClassMarginTopAndBottom">
     <a href="#" onclick="AddScoreToTireursSelected(); " class="btnAction-custom">&nbsp;&nbsp;Ajouter 1 score aux tireurs sélectionnés&nbsp;&nbsp;</a>
-</div>
-
-<div class="ClassMarginTopAndBottom">
-    <a onclick="$.startLoading();" href="@Url.Action("Poules", "Poules")" class="btn-custom">&nbsp;&nbsp;Retourner au menu principal&nbsp;&nbsp;</a>
 </div>
 
 <script>

@@ -1,0 +1,33 @@
+﻿@model CercleRoyalEscrimeTournaisien.Models.PoulesViewModel
+
+@*@{
+    ViewData.ModelState.Clear();
+}*@
+
+<div style="margin-top: 10px;">
+    @Html.DropDownListFor(model => model.TireurSelected, new SelectList(Model.ListTireurs, "Key", "Value", Model.TireurSelected), new { @class = "form-control", @onchange = "SearchDataTireur(this.value);" })
+</div>
+
+<div class="ClassMarginTopAndBottom10">
+    <span style="min-width: 120px; display: inline-block;">Date de naissance:</span>
+    @Html.TextBoxFor(x => x.NewComerBirthDate, new { @class = "", style = "width: 150px;" })
+</div>
+
+<div class="ClassMarginTopAndBottom10">
+    <span style="min-width: 120px; display: inline-block;">Mercredi:</span>
+    @Html.DropDownListFor(model => model.NewComerDayMercrediSelected, new SelectList(Model.NewComerDayList, "Key", "Value", Model.NewComerDayMercrediSelected), new { @class = "form-control", @onchange = "" })
+</div>
+
+<div class="ClassMarginTopAndBottom10">
+    <span style="min-width: 120px; display: inline-block;">Vendredi:</span>
+    @Html.DropDownListFor(model => model.NewComerDayVendrediSelected, new SelectList(Model.NewComerDayList, "Key", "Value", Model.NewComerDayVendrediSelected), new { @class = "form-control", @onchange = "" })
+</div>
+
+<div class="ClassMarginTopAndBottom10">
+    <span style="min-width: 120px; display: inline-block;">Dimanche:</span>
+    @Html.DropDownListFor(model => model.NewComerDayDimancheSelected, new SelectList(Model.NewComerDayList, "Key", "Value", Model.NewComerDayDimancheSelected), new { @class = "form-control", @onchange = "" })
+</div>
+
+<div class="ClassMarginTopAndBottom">
+    <a href="#" onclick="ModifierUnTireur(); " class="btnAction-custom">Modifier un tireur</a>
+</div>

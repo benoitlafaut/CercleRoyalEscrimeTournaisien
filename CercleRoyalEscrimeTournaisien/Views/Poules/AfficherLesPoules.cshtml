@@ -1,7 +1,7 @@
 ﻿@model CercleRoyalEscrimeTournaisien.Models.PoulesViewModel
 
-<div>
-    <span style="color:red;">Les scores en rouge sont les matchs où la tireuse/le tireur qui a perdu menait pendant l'assaut.</span>
+<div style="margin-top:10px;">
+    <span style="color:red;">Les scores en rouge sont les matchs où la tireuse/le tireur, qui a perdu, menait pendant l'assaut.</span>
 </div>
 
 @if (Model.DateDuJourWithoutDayLabel == "01/04/2026")
@@ -132,7 +132,9 @@
 
         if (listDesMatchs.Count != 0 && (Model.IsDateDAujourdhuiEqualsDateNow && Model.IsDayEscrime))
         {
-            <span>Liste des matchs:</span>
+            <div style="margin-bottom:10px;">
+                <span >Liste des matchs:</span>
+            </div>            
             <ul id="math-list" class="pretty-list">
                 @foreach (string match in listDesMatchs)
                 {
@@ -158,9 +160,4 @@
             }
         }
     }
-
 }
-
-<div class="ClassMarginTopAndBottom">
-    <a onclick="$.startLoading();" href="@Url.Action("Poules", "Poules")" class="btn-custom">&nbsp;&nbsp;Retourner au menu principal&nbsp;&nbsp;</a>
-</div>

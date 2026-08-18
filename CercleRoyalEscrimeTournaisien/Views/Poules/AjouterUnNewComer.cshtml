@@ -1,0 +1,41 @@
+﻿@model CercleRoyalEscrimeTournaisien.Models.PoulesViewModel
+
+@Html.HiddenFor(m => m.NewGuidCreated)
+
+<div style="margin-top:15px;">
+    <label>New Guid: @Model.NewGuidCreated</label>
+</div>
+
+<div class="ClassMarginTopAndBottom10">
+    <span style="min-width: 120px; display: inline-block;">Prénom:</span>
+    @Html.TextBoxFor(x => x.NewComerPrenom, new { @class = "", style = "width: 150px;" })
+</div>
+
+<div class="ClassMarginTopAndBottom10">
+    <span style="min-width: 120px; display: inline-block;">Nom:</span>
+    @Html.TextBoxFor(x => x.NewComerNom, new { @class = "", style = "width: 150px;" })
+</div>
+
+<div class="ClassMarginTopAndBottom10">
+    <span style="min-width: 120px; display: inline-block;">Date de naissance:</span>
+    @Html.TextBoxFor(x => x.NewComerBirthDate, new { @class = "", style = "width: 150px;" })
+</div>
+
+<div class="ClassMarginTopAndBottom10">
+    <span style="min-width: 120px; display: inline-block;">Mercredi:</span>
+    @Html.DropDownListFor(model => model.NewComerDayMercrediSelected, new SelectList(Model.NewComerDayList, "Key", "Value", Model.NewComerDayMercrediSelected), new { @class = "form-control", @onchange = "" })
+</div>
+
+<div class="ClassMarginTopAndBottom10">
+    <span style="min-width: 120px; display: inline-block;">Vendredi:</span>
+    @Html.DropDownListFor(model => model.NewComerDayVendrediSelected, new SelectList(Model.NewComerDayList, "Key", "Value", Model.NewComerDayVendrediSelected), new { @class = "form-control", @onchange = "" })
+</div>
+
+<div class="ClassMarginTopAndBottom10">
+    <span style="min-width: 120px; display: inline-block;">Dimanche:</span>
+    @Html.DropDownListFor(model => model.NewComerDayDimancheSelected, new SelectList(Model.NewComerDayList, "Key", "Value", Model.NewComerDayDimancheSelected), new { @class = "form-control", @onchange = "" })
+</div>
+
+<div class="ClassMarginTopAndBottom">
+    <a href="#" onclick="AddUnNewComerToDB(); " class="btnAction-custom">Ajouter un nouveau comer</a>
+</div>

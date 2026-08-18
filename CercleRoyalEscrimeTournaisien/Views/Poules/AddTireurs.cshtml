@@ -1,61 +1,25 @@
 ﻿@model CercleRoyalEscrimeTournaisien.Models.PoulesViewModel
 
-<label style="display: inline-flex;" class="ClassFontSizeTitre ClassDecorationUnderline ClassMarginTopAndBottom">Ajouter un ou plusieurs tireurs à une poule.</label>
-
-<div class="form-group">
-    <select onchange="$.startLoading();location.href='@Url.Action("ChangePoule", "Poules")?pouleSelected=' + this.value" id="ddlPoules" class="form-control">
-        <option value="">Sélectionnez la poule...</option>
-        @foreach (var p in Model.PoulesList)
-        {
-            if (p.Poule == Model.PouleSelected)
-            {
-                <option selected value="@p.Poule"> @p.Poule (@p.DescriptionDeLaPoule) </option>
-            }
-            else
-            {
-                <option value="@p.Poule"> @p.Poule (@p.DescriptionDeLaPoule) </option>
-            }
-        }
-    </select>
+<div style="margin-top:10px;">
+    <label>Sélectionnez la poule...</label>
 </div>
 
+<div>
+    @foreach (var opt in Model.PoulesList)
+    {
+        var id = "opt-" + opt.Poule;
 
-<label style="display: block;" class="ClassFontSize ClassMarginTop">Liste des tireurs habituels...</label>
-<table class="table">
-    <tbody>
-        @foreach (var t in Model.TireursPourLaPouleSelectionneeList)
-        {
-            <tr>
-                <td>
-                    <input type="checkbox" class="chk-tireur" data-id="@t.Tireur" @(t.IsSelected ? "checked" : "") />
-                </td>
-                <td>@t.Tireur</td>
-            </tr>
-        }
-    </tbody>
-</table>
+        <div>
+            @Html.RadioButtonFor(m => m.PouleSelected, opt.Poule, new { id = id })
+            <label for="@id">@opt.DescriptionDeLaPoule</label>
+        </div>
+    }
+</div>
 
-<hr />
-
-<label style="display: block;" class="ClassFontSize ClassMarginTop">Liste des tireurs qui ne sont pas dans la première liste...</label>
-<table class="table">
-    <tbody>
-        @foreach (var t in Model.OthersTireursPourLaPouleSelectionneeList)
-        {
-            <tr>
-                <td>
-                    <input type="checkbox" class="chk-tireur" data-id="@t.Tireur" @(t.IsSelected ? "checked" : "") />
-                </td>
-                <td>@t.Tireur</td>
-            </tr>
-        }
-    </tbody>
-</table>
-
-<div class="ClassMarginTopAndBottom">
-    <a href="#" onclick="AddTireursSelectedToPoule(); " class="btnAction-custom">Ajouter les tireurs sélectionnés dans la poule sélectionnée</a>
+<div style="margin-top: 10px;">
+    @Html.DropDownListFor(model => model.TireurSelected, new SelectList(Model.ListTireurs, "Key", "Value", Model.TireurSelected), new { @class = "form-control" })
 </div>
 
 <div class="ClassMarginTopAndBottom">
-    <a onclick="$.startLoading();" href="@Url.Action("Poules", "Poules")" class="btn-custom">Retourner au menu principal</a>
+    <a href="#" onclick="AddTireursSelectedToPoule(); " class="btnAction-custom">Ajouter le tireur sélectionné dans la poule sélectionnée</a>
 </div>

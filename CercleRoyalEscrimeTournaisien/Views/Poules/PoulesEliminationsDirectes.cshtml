@@ -14,9 +14,8 @@
 <html lang="fr">
 <body>
 
-    <h1 style="text-align:center;margin-bottom:30px;" class="ClassH1">Tableau d'élimination directe</h1>
 
-    <div class="ClassMarginBottom">
+    <div style="margin-top:10px;margin-bottom:10px;">
         <select onchange="$.startLoading();location.href='@Url.Action("ChangePoulePourShowEliminationsDirectes", "Poules")?pouleSelected=' + this.value" id="ddlPoulesEliminationsDirectes" class="form-control">
             <option value="">Sélectionnez la poule...</option>
             @foreach (var p in Model.PoulesList)
@@ -120,9 +119,6 @@
 </body>
 </html>
 
-<div class="ClassMarginTopAndBottom">
-    <a onclick="$.startLoading();" href="@Url.Action("Poules", "Poules")" class="btn-custom">&nbsp;&nbsp;Retourner au menu principal&nbsp;&nbsp;</a>
-</div>
 
 <script>
     $("#btnCalculerLeRoundSuivant").on("click", function (e) {

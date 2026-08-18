@@ -4,53 +4,100 @@
 @Styles.Render("~/styles/Poules")
 @Scripts.Render("~/bundles/PoulesJS")
 
+@{
+    string urlActionAjouterTireurAUnePoule = Url.Action("AjouterTireurAUnePoule", "Poules");
+    string urlActionAjouterDesScores = Url.Action("AjouterDesScores", "Poules");
+    string urlActionAfficherLesPoules = Url.Action("AfficherLesPoules", "Poules");
+    string urlActionAfficherLesEliminationsDirectes = Url.Action("AfficherLesEliminationsDirectes", "Poules");
+    string urlActionAfficherLesDatesPrecedentes = Url.Action("AfficherLesDatesPrecedentes", "Poules");
+    string urlActionAjouterUnNewComer = Url.Action("AjouterUnNewComer", "Poules");
+    string urlActionInitSession = Url.Action("InitSession", "Poules");
+    string urlActionConstruireLesPoules = Url.Action("ConstruireLesPoules", "Poules");
+    string urlActionModifierUnTireur = Url.Action("ModifierUnTireur", "Poules");
+
+    string[] dateDuJourWithDayLabel = Model.DateDuJourWithDayLabel.Split(',');
+    string classIndicatorAjoutTireur = Model.ScreenIndex == ClassEnumScreen.EnumScreen.AddTireurs ? "ClassIndicatorBorderAndColorBlue" : "";
+    string classIndicatorAjouterScoreAUnePoule = Model.ScreenIndex == ClassEnumScreen.EnumScreen.AjouterScoreAUnePoule ? "ClassIndicatorBorderAndColorBlue" : "";
+    string classIndicatorAfficherLesPoules = Model.ScreenIndex == ClassEnumScreen.EnumScreen.AfficherLesPoules ? "ClassIndicatorBorderAndColorBlue" : "";
+    string classIndicatorAjoutUnNewComer = Model.ScreenIndex == ClassEnumScreen.EnumScreen.AjouterUnNewComer ? "ClassIndicatorBorderAndColorBlue" : "";
+    string classIndicatorAfficherLesEliminationsDirectes = Model.ScreenIndex == ClassEnumScreen.EnumScreen.AfficherLesEliminationsDirectes ? "ClassIndicatorBorderAndColorBlue" : "";
+    string classIndicatorAfficherLesDatesPrecedentes = Model.ScreenIndex == ClassEnumScreen.EnumScreen.AfficherLesDatesPrecedentes ? "ClassIndicatorBorderAndColorBlue" : "";
+    string classIndicatorConstruireLesPoules = Model.ScreenIndex == ClassEnumScreen.EnumScreen.ConstruireLesPoules ? "ClassIndicatorBorderAndColorBlue" : "";
+    string classIndicatorModifierUnTireur = Model.ScreenIndex == ClassEnumScreen.EnumScreen.ModifierUnTireur ? "ClassIndicatorBorderAndColorBlue" : "";
+}
 
 <!DOCTYPE html>
 <html>
-<body id="">
+<body id="bodyPoules">
     <div id="spinner-loading" class="loader-overlay">
         <div class="loader"></div>
     </div>
 
-    @if (Model.ScreenIndex != ClassEnumScreen.EnumScreen.AfficherLesDatesPrecedentes)
-    {
-        <div class="ClassTextAlignCenter">
-            <h2>@Model.DateDuJourWithDayLabel</h2>
-        </div>
-    }
+    <div style="display:flex;">
+        <button class="ClassTwoLignes ClassButtonEnteteTransparent">
+            <span>@dateDuJourWithDayLabel[0]</span>
+            <span>@dateDuJourWithDayLabel[1]</span>
+        </button>
+
+        <button class="ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading();location.href='@urlActionInitSession'">
+            <span>Init</span>
+            <span>Session</span>
+        </button>
+
+        <button class="@classIndicatorAjoutUnNewComer ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading();location.href='@urlActionAjouterUnNewComer'">
+            <span>Ajouter un</span>
+            <span>new comer</span>
+        </button>
+
+        <button class="@classIndicatorModifierUnTireur ClassTwoLignes ClassButtonEntete ClassCursor" onclick="    $.startLoading(); location.href ='@urlActionModifierUnTireur'">
+            <span>Modifier</span>
+            <span>un tireur</span>
+        </button>
+
+        <button class="@classIndicatorConstruireLesPoules ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading();location.href='@urlActionConstruireLesPoules'">
+            <span>Construire</span>
+            <span>les poules</span>
+        </button>
+
+        <button class="@classIndicatorAjoutTireur ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading();location.href='@urlActionAjouterTireurAUnePoule'">
+            <span>Ajouter un tireur</span>
+            <span>à une poule</span>
+        </button>
+
+        <button class="@classIndicatorAjouterScoreAUnePoule ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading();location.href='@urlActionAjouterDesScores'">
+            <span>Ajouter un score</span>
+            <span>à une poule</span>
+        </button>
+
+        <button class="@classIndicatorAfficherLesPoules ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading();location.href='@urlActionAfficherLesPoules'">
+            <span>Afficher</span>
+            <span>les poules</span>
+        </button>
+
+        <button class="@classIndicatorAfficherLesEliminationsDirectes ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading();location.href='@urlActionAfficherLesEliminationsDirectes'">
+            <span>Afficher les</span>
+            <span>éliminations directes</span>
+        </button>
+
+        <button class="@classIndicatorAfficherLesDatesPrecedentes ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading();location.href='@urlActionAfficherLesDatesPrecedentes'">
+            <span>Afficher les résultats</span>
+            <span>des séances précédentes</span>
+        </button>
+    </div>
+
 
     @switch (Model.ScreenIndex)
     {
-        case ClassEnumScreen.EnumScreen.MenuPrincipal:
-            <label style="display: inline-flex;" class="ClassFontSizeTitre ">Menu principal</label>
-            <div style="margin-left:40px;">
 
-                @if (Model.IsDateDAujourdhuiEqualsDateNow && Model.IsDayEscrime)
-                {
-                    <div class="ClassMarginTopAndBottom">
-                        <a onclick="$.startLoading();" href="@Url.Action("AjouterTireurAUnePoule", "Poules")" class="btn-custom">&nbsp;&nbsp;Ajouter un tireur à une poule&nbsp;&nbsp;</a>
-                    </div>
-
-                    <div class="ClassMarginTopAndBottom">
-                        <a onclick="$.startLoading();" href="@Url.Action("AjouterDesScores", "Poules")" class="btn-custom">&nbsp;&nbsp;Ajouter un score à une poule&nbsp;&nbsp;</a>
-                    </div>
-                }
-
-                <div class="ClassMarginTopAndBottom">
-                    <a onclick="$.startLoading();" href="@Url.Action("AfficherLesPoules", "Poules")" class="btn-custom">&nbsp;&nbsp;Afficher les poules&nbsp;&nbsp;</a>
-                </div>
-                <div class="ClassMarginTopAndBottom">
-                    <a onclick="$.startLoading();" href="@Url.Action("AfficherLesEliminationsDirectes", "Poules")" class="btn-custom">&nbsp;&nbsp;Afficher les éliminations directes&nbsp;&nbsp;</a>
-                </div>
-                <div class="ClassMarginTopAndBottom">
-                    <a onclick="$.startLoading();" href="@Url.Action("AfficherLesDatesPrecedentes", "Poules")" class="btn-custom">&nbsp;&nbsp;Afficher les résultats des jours antérieurs&nbsp;&nbsp;</a>
-                </div>
-            </div>
-
-            break;
         case ClassEnumScreen.EnumScreen.AddTireurs:
             <div class="infos1 clearfix">
                 @Html.Partial(PartialViewNames.AddTireurs, Model)
+            </div>
+
+            break;
+        case ClassEnumScreen.EnumScreen.AjouterUnNewComer:
+            <div class="infos1 clearfix">
+                @Html.Partial(PartialViewNames.AjouterUnNewComer, Model)
             </div>
 
             break;
@@ -75,6 +122,18 @@
         case ClassEnumScreen.EnumScreen.AfficherLesDatesPrecedentes:
             <div class="infos1 clearfix">
                 @Html.Partial(PartialViewNames.AfficherLesDatesPrecedentes, Model)
+            </div>
+
+            break;
+        case ClassEnumScreen.EnumScreen.ConstruireLesPoules:
+            <div class="infos1 clearfix">
+                @Html.Partial(PartialViewNames.ConstruireLesPoules, Model)
+            </div>
+
+            break;
+        case ClassEnumScreen.EnumScreen.ModifierUnTireur:
+            <div class="infos1 clearfix">
+                @Html.Partial(PartialViewNames.ModifierUnTireur, Model)
             </div>
 
             break;
