@@ -305,6 +305,7 @@
     <Compile Include="GestionClubClass\Paiements_2026_2027.cs" />
     <Compile Include="GestionClubClass\Paiements_2025_2026.cs" />
     <Compile Include="Mappers\BaseDeDonnéesMapper.cs" />
+    <Compile Include="Models\ListeDesClassesForPoule.cs" />
     <Compile Include="Models\MyRequestToModifierUnTireur.cs" />
     <Compile Include="Models\MyRequestToAddUnNewComerToDB.cs" />
     <Compile Include="Models\ConstruireLesPoulesInput.cs" />
@@ -1340,6 +1341,7 @@
     <Content Include="App_Data\francais.laccdb" />
     <Content Include="FileToUpload\FichesSignaletiques\Colpaert_Eleonara.pdf" />
     <Content Include="FileToUpload\FichesSignaletiques\Persyn_Marc.pdf" />
+    <Content Include="FileToUpload\AGENDA_SAISON_2026_2027.docx" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Accueil.cshtml" />
     <Content Include="Views\Home\Accueil_Part_1.cshtml" />

@@ -15,8 +15,8 @@ namespace CercleRoyalEscrimeTournaisien.Models
         public PoulesViewModel(HttpServerUtilityBase serverTmp)
         {
             this.ServerTmp = serverTmp;
+
             ChargerListeDesPoulesPotentielles();
-            ChargerListeDesTireurs();
             ChargerPoulesDuJour();
             ChargerRésultatsDesPoulesDuJour();
             ChargerRésultatsDesElimintationsDirectesDuJour();
@@ -113,55 +113,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
 
         public List<ClassPoulesDuJour> PoulesDuJourList { get; set; }
         public List<ClassDatesPourToutesLesPoules> DatesPourToutesLesPoulesList { get; set; }
-        public List<ClassTireur> TireursList { get; set; }
-
-        public List<ClassTireur> TireursPourLaPouleSelectionneeList
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(PouleSelected))
-                {
-                    return new List<ClassTireur>() { };
-                }
-
-                List<ClassPoulesDuJour> PoulesDuJourListTmp = PoulesDuJourList;
-
-                List<ClassTireur> TireursPourLaPouleSelectionneeListTmp = TireursList.FindAll(t => t.PouleAttribuee == PouleSelected && t.JourDeLaPoule == Jour);
-                foreach (ClassTireur tireur in TireursPourLaPouleSelectionneeListTmp)
-                {
-                    if (PoulesDuJourListTmp.Any(x=> x.Tireur == tireur.Tireur && x.Poule == PouleSelected))
-                    {
-                        tireur.IsSelected = true;
-                    }
-                }
-
-                return TireursList.FindAll(t => t.PouleAttribuee == PouleSelected && t.JourDeLaPoule == Jour);
-            } 
-        }
-
-        public List<ClassTireur> OthersTireursPourLaPouleSelectionneeList
-        {
-            get
-            {
-                List<ClassTireur> tireursList = new List<ClassTireur>() { };
-
-                if (string.IsNullOrEmpty(PouleSelected))
-                {
-                    return tireursList;
-                }
-
-                var selection = TireursPourLaPouleSelectionneeList.GroupBy(x => x.Tireur).ToList();
-                foreach (var tireur in TireursList)
-                {
-                    if (!selection.Any(f => tireur.Tireur.Contains(f.Key)))
-                    {
-                        tireursList.Add(tireur);
-                    }
-                }
-
-                return tireursList.GroupBy(x => x.Tireur).Select(g => g.First()).ToList();
-            }
-        }
+       
         public IDictionary<Guid, string> ListTireursToAddScore
         {
             get
@@ -626,7 +578,6 @@ namespace CercleRoyalEscrimeTournaisien.Models
             BaseDeDonnéesMapper baseDeDonnéesMapper = new BaseDeDonnéesMapper();
             List<TableListeTireursData> tableTireurs = baseDeDonnéesMapper.GetTableListeTireursData(ServerTmp, period2026_2027);
 
-            //var tireursList = TireursLtableTireursist.GroupBy(x => x.Tireur);
             foreach (var tireur in tableTireurs)
             {
                 AgesList.Add(new ClassAge()
@@ -730,157 +681,10 @@ namespace CercleRoyalEscrimeTournaisien.Models
 
             return (T)Convert.ChangeType(HttpContext.Current.Session[lastSessionKey], typeof(T));
         }      
-
-        private void ChargerListeDesTireurs()
-        {
-            List<ClassTireur> chargerListeDesTireursSession = this.GetValueStartsWith<List<ClassTireur>>("ChargerListeDesTireursSession");
-            if (chargerListeDesTireursSession != null)
-            {
-                TireursList = chargerListeDesTireursSession;
-            }
-            else
-            {
-                TireursList = new List<ClassTireur>() { };
-
-                var path = ServerTmp.MapPath("/App_Data/Poules.accdb");
-                string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
-                string mySelectQuery = " SELECT * FROM TableTireurs";
-
-                using (var conn = new OleDbConnection(ConnectionString))
-                {
-                    conn.Open();
-                    using (var cmd = new OleDbCommand(mySelectQuery, conn))
-                    {
-                        using (var myReader = cmd.ExecuteReader())
-                        {
-                            while (myReader.Read())
-                            {
-                                string tireur = (string)myReader["Tireur"];
-                                string jourDeLaPoule = (string)myReader["JourDeLaPoule"];
-                                string pouleAttribuee = (string)myReader["PouleAttribuee"];
-                                string dateDeNaissance = (string)myReader["DateDeNaissance"];
-                                TireursList.Add(new ClassTireur()
-                                {
-                                    Tireur = tireur,
-                                    JourDeLaPoule = jourDeLaPoule,
-                                    PouleAttribuee = pouleAttribuee,
-                                    DateDeNaissance = dateDeNaissance
-                                });
-                            }
-                        }
-                    }
-                }
-
-                System.Web.HttpContext.Current.Session.Add("ChargerListeDesTireursSession", TireursList);
-            }                          
-        }
     }
 
     #region All Class public
-    public class ClassPoule
-    {
-        public string Poule { get; set; }
-        public string DescriptionDeLaPoule { get; set; }
-        public bool Selected { get; set; }
-    }
-    public class ClassTireur
-    {
-        public string Tireur { get; set; }
-        public string JourDeLaPoule { get; set; }
-        public string PouleAttribuee { get; set; }
-        public string DateDeNaissance { get; set; }        
-        public bool IsSelected { get; set; }
-    }
-    public class ClassAge
-    {
-        public string Tireur { get; set; }
-        public int Age { get; set; }
-    }
-    public class ClassDatesPourToutesLesPoules
-    {
-        public string DateDeLaPoule { get; set; }
-        public string Arme { get; set; }
-    }
-    public class ClassPoulesDuJour
-    {
-        public Guid TireurGuid { get; set; }
-        public string Poule { get; set; }
-        public string Tireur { get; set; }
-        public string DateDeLaPoule { get; set; }
-    }
-    public class ClassStatistiqueTireur
-    {
-        public ClassStatistiqueTireur()
-        {
-            Matchs = new List<StatistiqueMatch>() { };
-        }
-        public Guid TireurGuid { get; set; }
-        public string Tireur { get; set; }
-        public string DateDeLaPoule { get; set; }
-        public string ArmePratiquee { get; set; }
-        public List<StatistiqueMatch> Matchs { get; set; }
-    }
-    public class StatistiqueMatch
-    {
-        public string Poule { get; set; }
-        public Guid Tireur1Guid { get; set; }
-        public Guid Tireur2Guid { get; set; }
-        public string TireurAdversaire { get; set; }
-        public bool VictoireOuDéfaiteDuTireur1 { get; set; }
-        public bool VictoireOuDéfaiteDuTireur2 { get; set; }
-        public int ScoreDuTireur1 { get; set; }
-        public int ScoreDuTireur2 { get; set; }
-    }
-    public class ClassScore
-    {
-        public Guid Tireur1Guid { get; set; }
-        public Guid Tireur2Guid { get; set; }
-        public string Poule { get; set; }
-        public bool VictoireOuDéfaiteDuTireur1 { get; set; }
-        public bool VictoireOuDéfaiteDuTireur2 { get; set; }
-        public int ScoreDuTireur1 { get; set; }
-        public int ScoreDuTireur2 { get; set; }
-        public int QuestionMeneOuNon { get; set; }
-    }
-    public class ClassScoreEliminationsDirectes
-    {
-        public string DateDeLaPoule { get; set; }
-        public string PouleSelected { get; set; }
-        public Guid Tireur1Guid { get; set; }
-        public Guid Tireur2Guid { get; set; }
-        public string Round { get; set; }
-        public string IndexTireur1 { get; set; }
-        public string IndexTireur2 { get; set; }
-        public string Tireur1Name { get; set; }
-        public string Tireur2Name { get; set; }
-        public bool VictoireOuDéfaiteDuTireur1 { get; set; }
-        public bool VictoireOuDéfaiteDuTireur2 { get; set; }
-        public int ScoreDuTireur1 { get; set; }
-        public int ScoreDuTireur2 { get; set; }
-        public bool ScoreDejaIntroduit { get; set; }
-    }
-    public class ClassRound
-    {
-        public string DateDuJourWithoutDay { get; set; }
-        public string PouleSelected { get; set; }
-        public string Round { get; set; }
-        public Guid Tireur1Guid { get; set; }
-        public Guid Tireur2Guid { get; set; }
-        public string Tireur1Name { get; set; }
-        public string Tireur2Name { get; set; }
-        public bool VictoireOuDéfaiteDuTireur1 { get; set; }
-        public bool VictoireOuDéfaiteDuTireur2 { get; set; }
-        public int ScoreDuTireur1 { get; set; }
-        public int ScoreDuTireur2 { get; set; }
-        public int IndexTireur1 { get; set; }
-        public int IndexTireur2 { get; set; }
-    }
-    public class MatchFencer 
-    { 
-        public int Round { get; set; }
-        public int Seed1 { get; set; } 
-        public int Seed2 { get; set; }
-    }
+   
 
     #endregion
 }
