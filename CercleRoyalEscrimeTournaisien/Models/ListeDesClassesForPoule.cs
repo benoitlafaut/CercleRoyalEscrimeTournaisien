@@ -12,14 +12,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
         public string DescriptionDeLaPoule { get; set; }
         public bool Selected { get; set; }
     }
-    public class ClassTireur
-    {
-        public string Tireur { get; set; }
-        public string JourDeLaPoule { get; set; }
-        public string PouleAttribuee { get; set; }
-        public string DateDeNaissance { get; set; }
-        public bool IsSelected { get; set; }
-    }
+    
     public class ClassAge
     {
         public string Tireur { get; set; }

@@ -133,7 +133,28 @@ namespace CercleRoyalEscrimeTournaisien.Models
                 string period2026_2027 = "2026-2027";
                 BaseDeDonnéesMapper baseDeDonnéesMapper = new BaseDeDonnéesMapper();
                 List<TableListeTireursData> tableTireurs = baseDeDonnéesMapper.GetTableListeTireursData(ServerTmp, period2026_2027);
-                return tableTireurs.ToDictionary(g => new Guid(g.GuidTireur), g => g.Prénom + " " + g.Nom);
+                return tableTireurs.ToDictionary(g => new Guid(g.GuidTireur), g => g.Prenom + " " + g.Nom);
+            }
+        }
+        public List<TableDesLecons> ListDesLecons
+        {
+            get
+            {
+                string period2026_2027 = "2026-2027";
+                BaseDeDonnéesMapper baseDeDonnéesMapper = new BaseDeDonnéesMapper();
+                List<TableListeTireursData> tableTireurs = baseDeDonnéesMapper.GetTableListeTireursData(ServerTmp, period2026_2027);
+
+                List<TableDesLecons> tableDesLecons = baseDeDonnéesMapper.GetTableDesLecons(ServerTmp, period2026_2027);
+
+                foreach (TableDesLecons lecon in tableDesLecons)
+                {
+                    lecon.Nom = tableTireurs.FirstOrDefault(x => x.GuidTireur == lecon.GuidTireur).Nom;
+                    lecon.Prénom  = tableTireurs.FirstOrDefault(x => x.GuidTireur == lecon.GuidTireur).Prenom;
+                    lecon.Birthdate = tableTireurs.FirstOrDefault(x => x.GuidTireur == lecon.GuidTireur).Birthdate;
+                    lecon.Age = GetAge(tableTireurs.FirstOrDefault(x => x.GuidTireur == lecon.GuidTireur).Prenom + " " + tableTireurs.FirstOrDefault(x => x.GuidTireur == lecon.GuidTireur).Nom);
+                }
+
+                return tableDesLecons;
             }
         }
         public List<TableListeTireursData> TableTireursPourconstruireLesPoules 
@@ -238,7 +259,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
                     }
                 }
 
-                return DateTime.Now.AddDays(1);
+                return DateTime.Now.AddDays(-1);
             }
         }
         public bool IsDateDAujourdhuiEqualsDateNow
@@ -357,7 +378,8 @@ namespace CercleRoyalEscrimeTournaisien.Models
             System.Web.HttpContext.Current.Session.Remove("ChargerPoulesDuJourSession");
             System.Web.HttpContext.Current.Session.Remove("ChargerDatesPourToutesLesPoulesSession");
             System.Web.HttpContext.Current.Session.Remove("ChargerListeDesTireursSession");
-            System.Web.HttpContext.Current.Session.Remove("ChargerTableListeTireursDataSession");            
+            System.Web.HttpContext.Current.Session.Remove("ChargerTableListeTireursDataSession");
+            System.Web.HttpContext.Current.Session.Remove("ChargerTableDesLecons");
         }
 
         private void ChargerListeDesPoulesPotentielles()
@@ -582,7 +604,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
             {
                 AgesList.Add(new ClassAge()
                 {
-                    Tireur = tireur.Prénom + " " + tireur.Nom,
+                    Tireur = tireur.Prenom + " " + tireur.Nom,
                     Age = GetAgeByDateDeNaissance(Convert.ToDateTime(tireur.Birthdate)) 
                 });
             }

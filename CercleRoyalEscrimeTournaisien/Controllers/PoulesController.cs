@@ -1,9 +1,11 @@
 ﻿using CercleRoyalEscrimeTournaisien.ClassPublic;
+using CercleRoyalEscrimeTournaisien.Mappers;
 using CercleRoyalEscrimeTournaisien.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
@@ -29,6 +31,16 @@ namespace CercleRoyalEscrimeTournaisien
         {
             PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
             poulesViewModel.ScreenIndex = ClassEnumScreen.EnumScreen.AddTireurs;
+
+            return View(Constantes.Poules, poulesViewModel);
+        }
+
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+        public ActionResult ModifierLesDatasDUnTireur(string guid)
+        {
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+            poulesViewModel.ScreenIndex = ClassEnumScreen.EnumScreen.ModifierLesDatasDUnTireur;
+            poulesViewModel.GuidTireurSelected = guid;
 
             return View(Constantes.Poules, poulesViewModel);
         }
@@ -108,6 +120,55 @@ namespace CercleRoyalEscrimeTournaisien
             return View(Constantes.Poules, poulesViewModel);
         }
 
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+        public ActionResult ConstruireLesLecons()
+        {
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+            poulesViewModel.ScreenIndex = ClassEnumScreen.EnumScreen.ConstruireLesLecons;
+
+            return View(Constantes.Poules, poulesViewModel);
+        }
+
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+        public ActionResult AfficherLesLecons()
+        {
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+            poulesViewModel.ScreenIndex = ClassEnumScreen.EnumScreen.AfficherLesLecons;
+
+            return View(Constantes.Poules, poulesViewModel);
+        }
+
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+        public ActionResult AjouterUneLeçonACeTireur(string guidTireur, int nombreDeLeconsDejaRecues)
+        {
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+            poulesViewModel.ScreenIndex = ClassEnumScreen.EnumScreen.AfficherLesLecons;
+
+            var path = Server.MapPath("/App_Data/Poules.accdb");
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
+
+            string mySelectQuery = "UPDATE TableDesLecons"
+                + " SET NombreDeLeconsDejaRecues = ?"
+                + " where GuidTireur = ?";
+
+            using (var conn = new OleDbConnection(ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new OleDbCommand(mySelectQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("?", nombreDeLeconsDejaRecues+1);
+                    cmd.Parameters.AddWithValue("?", guidTireur);                 
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                    }
+                }
+            }
+
+            poulesViewModel.InitSession();
+
+            return View(Constantes.Poules, poulesViewModel);
+        }
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
         public ActionResult ShowDirectlyScore(string pouleSelected, string tireur1Guid, string tireur2Guid)
         {
@@ -397,7 +458,7 @@ namespace CercleRoyalEscrimeTournaisien
             {
                 conn.Open();
 
-                string mySelectQuery = "INSERT INTO TableListeTireursData (Période, GuidTireur, Prénom, Nom, Birthdate)" +
+                string mySelectQuery = "INSERT INTO TableListeTireursData (Periode, GuidTireur, Prenom, Nom, Birthdate)" +
                     "Values ('" + period2026_2027
                     + "','" + newComerGuidTireur
                     + "','" + newComerPrenom
@@ -434,9 +495,136 @@ namespace CercleRoyalEscrimeTournaisien
                 }
             }
 
+            using (var conn = new OleDbConnection(ConnectionString))
+            {
+                conn.Open();
+
+                string mySelectQuery = "INSERT INTO TableDesLecons (GuidTireur)" +
+                    "Values ('" + newComerGuidTireur                   
+                    + "')";
+
+                using (var cmd = new OleDbCommand(mySelectQuery, conn))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+
+                    }
+                }
+            }
+
             poulesViewModel.InitSession();
 
             return Json(new { redirectUrl = Url.Action("AfficherLesPoules", "Poules") });
+        }
+
+        [HttpPost]
+        public ActionResult ConstruireLesLecons(string period)
+        {
+            string period2026_2027 = "2026-2027";
+
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+
+            BaseDeDonnéesMapper baseDeDonnéesMapper = new BaseDeDonnéesMapper();
+            List<TableListeTireursData> tableTireurs = baseDeDonnéesMapper.GetTableListeTireursData(Server, period2026_2027);
+
+            List<string> tireursList =  poulesViewModel.PoulesDuJourList.Select(x=>x.Tireur).ToList();
+            List<string> guidTireurList = new List<string>() { };
+
+            foreach (string tireur in tireursList)
+            {
+                String guid = tableTireurs.FirstOrDefault(x => x.Prenom + " " + x.Nom == tireur).GuidTireur;
+                
+                guidTireurList.Add(guid);
+            }
+
+            System.Web.HttpContext.Current.Session.Remove("ConstruireLesLecons");
+            System.Web.HttpContext.Current.Session.Add("ConstruireLesLecons", guidTireurList);
+
+            return Json(new { redirectUrl = Url.Action("AfficherLesLecons", "Poules") });
+        }
+
+        private void NettoyerObj(object obj)
+        {
+            var props = obj.GetType().GetProperties();
+
+            foreach (var prop in props)
+            {
+                // On ne traite que les strings
+                if (prop.PropertyType == typeof(string))
+                {
+                    var value = (string)prop.GetValue(obj);
+
+                    if (value == null)
+                    {
+                        prop.SetValue(obj, "");
+                    }
+                }
+            }
+        }
+        [HttpPost]
+        public JsonResult ModifierLesDatasDUnTireur(TableListeTireursData tableListeTireursData)
+        {
+            NettoyerObj(tableListeTireursData);
+
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+
+            var path = Server.MapPath("/App_Data/Poules.accdb");
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
+
+            string mySelectQuery = "UPDATE TableListeTireursData"
+                + " SET Prenom = ?,Nom = ?,Birthdate = ?,EmailPropre = ?,EmailPere = ?,EmailMere = ?,NomPere = ?,"
+                + "NomMere = ?,TelephonePropre = ?,TelephoneMere = ?,TelephonePere = ?,FicheSignaletiqueUrl = ?,"
+                + "IsCotisationAnnuelle = ?,IsCotisationCarte1 = ?, IsCotisationCarte2 = ?,IsCotisationCarte3 = ?,"
+                + "IsCotisationCarte4 = ?,IsCotisationCarte5 = ?,IsCotisationCarte6 = ?,"
+                + "IsChaussettesPayeesEnOrdre = ?,IsCotisationEnOrdre = ?,IsLocationMaterielEnOrdre = ?,"
+                + "IsFicheSignaletiqueEnOrdre = ?,IsTeeShirtsPayeesEnOrdre = ?,PaiementsEffectues = ?,"
+                + "SeancesGratuites = ?,IsMaterielLoue = ?"
+                + " where GuidTireur = ?";
+
+            using (var conn = new OleDbConnection(ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new OleDbCommand(mySelectQuery, conn))
+                {
+
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.Prenom);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.Nom);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.Birthdate);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.EmailPropre);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.EmailPere);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.EmailMere);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.NomPere);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.NomMere);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.TelephonePropre);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.TelephoneMere);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.TelephonePere);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.FicheSignaletiqueUrl);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.IsCotisationAnnuelle);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.IsCotisationCarte1);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.IsCotisationCarte2);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.IsCotisationCarte3);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.IsCotisationCarte4);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.IsCotisationCarte5);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.IsCotisationCarte6);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.IsChaussettesPayeesEnOrdre);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.IsCotisationEnOrdre);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.IsLocationMaterielEnOrdre);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.IsFicheSignaletiqueEnOrdre);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.IsTeeShirtsPayeesEnOrdre);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.PaiementsEffectues);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.SeancesGratuites);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.IsMaterielLoue);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.GuidTireur);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                    }
+                }
+            }
+
+            poulesViewModel.InitSession();
+
+            return Json(new { redirectUrl = Url.Action("ModifierLesDatasDUnTireur", "Poules") });        
         }
 
         [HttpPost]

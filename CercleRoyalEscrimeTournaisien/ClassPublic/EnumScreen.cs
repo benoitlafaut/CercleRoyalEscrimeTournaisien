@@ -12,7 +12,10 @@
             AfficherLesDatesPrecedentes=6,
             AjouterUnNewComer=7,
             ConstruireLesPoules=8,
-            ModifierUnTireur = 9
+            ModifierUnTireur = 9,
+            ModifierLesDatasDUnTireur = 10,
+            ConstruireLesLecons = 11,
+            AfficherLesLecons = 12
         }
     }
 }

@@ -309,13 +309,13 @@
     <Compile Include="Models\MyRequestToModifierUnTireur.cs" />
     <Compile Include="Models\MyRequestToAddUnNewComerToDB.cs" />
     <Compile Include="Models\ConstruireLesPoulesInput.cs" />
+    <Compile Include="Models\TableDesLecons.cs" />
     <Compile Include="Models\TableListeTireursData.cs" />
     <Compile Include="Models\MyRequestResultatsPoule.cs" />
     <Compile Include="Models\MyRequestEliminationDirecteToSaveInPoule.cs" />
     <Compile Include="Models\MyRequestScoreToSaveInPoule.cs" />
     <Compile Include="Models\MyRequestToSaveInPoule.cs" />
     <Compile Include="Models\StatistiquesViewModel.cs" />
-    <Compile Include="Models\ShowTireursToAddInpoulesViewModel.cs" />
     <Compile Include="Models\PoulesViewModel.cs" />
     <Compile Include="Models\SwitchToDossierPhotosViewModel.cs" />
     <Compile Include="Models\Normes.cs" />
@@ -1440,6 +1440,9 @@
     <Content Include="Views\Poules\Poules.cshtml" />
     <Content Include="Views\Poules\ConstruireLesPoules.cshtml" />
     <Content Include="Views\Poules\ModifierUnTireur.cshtml" />
+    <Content Include="Views\Poules\ModifierLesDatasDUnTireur.cshtml" />
+    <Content Include="Views\Poules\ConstruireLesLecons.cshtml" />
+    <Content Include="Views\Poules\AfficherLesLecons.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

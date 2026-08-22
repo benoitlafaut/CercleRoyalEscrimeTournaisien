@@ -247,7 +247,7 @@
 .ClassButtonEntete {
     border: 3px solid green;
     background-color: transparent;
-    color:green;
+    color: green;
 }
 
 .ClassButtonEnteteTransparent {
@@ -258,7 +258,7 @@
 .ClassButtonEntete:hover {
     border: 3px solid red;
     background-color: lightblue;
-    color:red;
+    color: red;
 }
 
 .ClassCursor {
@@ -270,9 +270,10 @@
     flex-direction: column;
     margin-right: 4px;
     align-items: center;
+    justify-content: center;
 }
 
-@media screen and (max-width: 350px){
+@media screen and (max-width: 350px) {
     .ClassButtonEntete {
         font-size: 8px;
     }
@@ -301,6 +302,51 @@
     color: blue;
 }
 
-.ClassPouleInConstruireLesPoules{
-    margin-right:15px;
+.ClassPouleInConstruireLesPoules {
+    margin-right: 15px;
+}
+
+.ClassAttributs {
+    min-width: 160px;
+    display: inline-block;
+}
+
+
+.ClassDivInFirstScreen {
+    display: grid;
+    grid-template-columns: repeat(14, 1fr);
+    gap: 6px;
+}
+
+@media screen and (min-width: 800px) and (max-width: 900px) {
+    .ClassDivInFirstScreen {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media screen and (min-width: 600px) and (max-width: 800px) {
+    .ClassDivInFirstScreen {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media screen and (min-width: 500px) and (max-width: 600px) {
+
+    .ClassDivInFirstScreen {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media screen and (min-width: 400px) and (max-width: 500px) {
+
+    .ClassDivInFirstScreen {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media screen and (min-width: 10px) and (max-width: 400px) {
+
+    .ClassDivInFirstScreen {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }

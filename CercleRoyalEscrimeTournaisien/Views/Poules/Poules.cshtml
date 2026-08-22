@@ -14,6 +14,9 @@
     string urlActionInitSession = Url.Action("InitSession", "Poules");
     string urlActionConstruireLesPoules = Url.Action("ConstruireLesPoules", "Poules");
     string urlActionModifierUnTireur = Url.Action("ModifierUnTireur", "Poules");
+    string urlActionModifierLesDatasDUnTireur = Url.Action("ModifierLesDatasDUnTireur", "Poules");
+    string urlActionConstruireLesLecons = Url.Action("ConstruireLesLecons", "Poules");
+    string urlActionAfficherLesLecons = Url.Action("AfficherLesLecons", "Poules");
 
     string[] dateDuJourWithDayLabel = Model.DateDuJourWithDayLabel.Split(',');
     string classIndicatorAjoutTireur = Model.ScreenIndex == ClassEnumScreen.EnumScreen.AddTireurs ? "ClassIndicatorBorderAndColorBlue" : "";
@@ -24,6 +27,9 @@
     string classIndicatorAfficherLesDatesPrecedentes = Model.ScreenIndex == ClassEnumScreen.EnumScreen.AfficherLesDatesPrecedentes ? "ClassIndicatorBorderAndColorBlue" : "";
     string classIndicatorConstruireLesPoules = Model.ScreenIndex == ClassEnumScreen.EnumScreen.ConstruireLesPoules ? "ClassIndicatorBorderAndColorBlue" : "";
     string classIndicatorModifierUnTireur = Model.ScreenIndex == ClassEnumScreen.EnumScreen.ModifierUnTireur ? "ClassIndicatorBorderAndColorBlue" : "";
+    string classIndicatorModifierLesDatasDUnTireur = Model.ScreenIndex == ClassEnumScreen.EnumScreen.ModifierLesDatasDUnTireur ? "ClassIndicatorBorderAndColorBlue" : "";
+    string classIndicatorConstruireLesLecons = Model.ScreenIndex == ClassEnumScreen.EnumScreen.ConstruireLesLecons ? "ClassIndicatorBorderAndColorBlue" : "";
+    string classIndicatorAfficherLesLecons = Model.ScreenIndex == ClassEnumScreen.EnumScreen.AfficherLesLecons ? "ClassIndicatorBorderAndColorBlue" : "";
 }
 
 <!DOCTYPE html>
@@ -33,7 +39,7 @@
         <div class="loader"></div>
     </div>
 
-    <div style="display:flex;">
+    <div class="ClassDivInFirstScreen">
         <button class="ClassTwoLignes ClassButtonEnteteTransparent">
             <span>@dateDuJourWithDayLabel[0]</span>
             <span>@dateDuJourWithDayLabel[1]</span>
@@ -83,6 +89,23 @@
             <span>Afficher les résultats</span>
             <span>des séances précédentes</span>
         </button>
+
+        <button class="@classIndicatorModifierLesDatasDUnTireur ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading(); location.href ='@urlActionModifierLesDatasDUnTireur'">
+            <span>Modifier les datas</span>
+            <span>d'un tireur</span>
+        </button>
+
+        <button class="@classIndicatorConstruireLesLecons ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading(); location.href ='@urlActionConstruireLesLecons'">
+            <span>Construire</span>
+            <span>les leçons</span>
+        </button>
+
+        <button class="@classIndicatorAfficherLesLecons ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading(); location.href ='@urlActionAfficherLesLecons'">
+            <span>Afficher</span>
+            <span>les leçons</span>
+        </button>
+
+
     </div>
 
 
@@ -134,6 +157,24 @@
         case ClassEnumScreen.EnumScreen.ModifierUnTireur:
             <div class="infos1 clearfix">
                 @Html.Partial(PartialViewNames.ModifierUnTireur, Model)
+            </div>
+
+            break;
+        case ClassEnumScreen.EnumScreen.ModifierLesDatasDUnTireur:
+            <div class="infos1 clearfix">
+                @Html.Partial(PartialViewNames.ModifierLesDatasDUnTireur, Model)
+            </div>
+
+            break;
+        case ClassEnumScreen.EnumScreen.ConstruireLesLecons:
+            <div class="infos1 clearfix">
+                @Html.Partial(PartialViewNames.ConstruireLesLecons, Model)
+            </div>
+
+            break;
+        case ClassEnumScreen.EnumScreen.AfficherLesLecons:
+            <div class="infos1 clearfix">
+                @Html.Partial(PartialViewNames.AfficherLesLecons, Model)
             </div>
 
             break;

@@ -23,7 +23,7 @@ namespace CercleRoyalEscrimeTournaisien.Mappers
             var path = serverTmp.MapPath("/App_Data/Poules.accdb");
             string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
 
-            string mySelectQuery = " SELECT * FROM TableListeTireursData where Période = '" + période + "'";
+            string mySelectQuery = " SELECT * FROM TableListeTireursData where Periode = '" + période + "'";
 
             using (var conn = new OleDbConnection(ConnectionString))
             {
@@ -36,11 +36,35 @@ namespace CercleRoyalEscrimeTournaisien.Mappers
                         {
                             tireursDataList.Add(new TableListeTireursData()
                             {
-                                Période = (string)reader["Période"],
+                                Periode = (string)reader["Periode"],
                                 GuidTireur = (string)reader["GuidTireur"],
-                                Prénom = (string)reader["Prénom"],
+                                Prenom = (string)reader["Prenom"],
                                 Nom = (string)reader["Nom"],
-                                Birthdate = (string)reader["Birthdate"]
+                                Birthdate = (string)reader["Birthdate"],
+                                EmailPropre = reader["EmailPropre"] == DBNull.Value ? "" : (string)reader["EmailPropre"],
+                                EmailPere = reader["EmailPere"] == DBNull.Value ? "" : (string)reader["EmailPere"],
+                                EmailMere = reader["EmailMere"] == DBNull.Value ? "" : (string)reader["EmailMere"],
+                                NomPere = reader["NomPere"] == DBNull.Value ? "" : (string)reader["NomPere"],
+                                NomMere = reader["NomMere"] == DBNull.Value ? "" : (string)reader["NomMere"],
+                                TelephonePropre = reader["TelephonePropre"] == DBNull.Value ? "" : (string)reader["TelephonePropre"],
+                                TelephoneMere = reader["TelephoneMere"] == DBNull.Value ? "" : (string)reader["TelephoneMere"],
+                                TelephonePere = reader["TelephonePere"] == DBNull.Value ? "" : (string)reader["TelephonePere"],
+                                FicheSignaletiqueUrl = reader["FicheSignaletiqueUrl"] == DBNull.Value ? "" : (string)reader["FicheSignaletiqueUrl"],
+                                PaiementsEffectues = reader["PaiementsEffectues"] == DBNull.Value ? "" : (string)reader["PaiementsEffectues"],
+                                SeancesGratuites = reader["SeancesGratuites"] == DBNull.Value ? "" : (string)reader["SeancesGratuites"],
+                                IsCotisationAnnuelle = (bool)reader["IsCotisationAnnuelle"],
+                                IsCotisationCarte1 = (bool)reader["IsCotisationCarte1"],
+                                IsCotisationCarte2 = (bool)reader["IsCotisationCarte2"],
+                                IsCotisationCarte3 = (bool)reader["IsCotisationCarte3"],
+                                IsCotisationCarte4 = (bool)reader["IsCotisationCarte4"],
+                                IsCotisationCarte5 = (bool)reader["IsCotisationCarte5"],
+                                IsCotisationCarte6 = (bool)reader["IsCotisationCarte6"],
+                                IsChaussettesPayeesEnOrdre = (bool)reader["IsChaussettesPayeesEnOrdre"],
+                                IsLocationMaterielEnOrdre = (bool)reader["IsLocationMaterielEnOrdre"],
+                                IsFicheSignaletiqueEnOrdre = (bool)reader["IsFicheSignaletiqueEnOrdre"],
+                                IsTeeShirtsPayeesEnOrdre = (bool)reader["IsTeeShirtsPayeesEnOrdre"],
+                                IsMaterielLoue = (bool)reader["IsMaterielLoue"],    
+                                IsCotisationEnOrdre = (bool)reader["IsCotisationEnOrdre"],
                             });
                         }
                     }
@@ -67,9 +91,47 @@ namespace CercleRoyalEscrimeTournaisien.Mappers
                 }
             }
 
-            System.Web.HttpContext.Current.Session.Add("ChargerTableListeTireursDataSession", tireursDataList.OrderBy(t => t.Prénom).ToList());
+            System.Web.HttpContext.Current.Session.Add("ChargerTableListeTireursDataSession", tireursDataList.OrderBy(t => t.Prenom).ToList());
 
-            return tireursDataList.OrderBy(t => t.Prénom).ToList();
+            return tireursDataList.OrderBy(t => t.Prenom).ToList();
+        }
+        public List<TableDesLecons> GetTableDesLecons(HttpServerUtilityBase serverTmp, string période)
+        {
+            List<TableDesLecons> tableDesLeconsList = this.GetValueStartsWith<List<TableDesLecons>>("ChargerTableDesLecons");
+            if (tableDesLeconsList != null)
+            {
+                return tableDesLeconsList;
+            }
+
+            tableDesLeconsList = new List<TableDesLecons>() { };
+
+            var path = serverTmp.MapPath("/App_Data/Poules.accdb");
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
+
+            string mySelectQuery = " SELECT * FROM TableDesLecons";
+
+            using (var conn = new OleDbConnection(ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new OleDbCommand(mySelectQuery, conn))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            tableDesLeconsList.Add(new TableDesLecons()
+                            {
+                                GuidTireur = (string)reader["GuidTireur"],
+                                NombreDeLeconsDejaRecues = (int)reader["NombreDeLeconsDejaRecues"],
+                            });
+                        }
+                    }
+                }
+            }
+
+            System.Web.HttpContext.Current.Session.Add("ChargerTableDesLecons", tableDesLeconsList);
+
+            return tableDesLeconsList;
         }
         private T GetValueStartsWith<T>(string key)
         {

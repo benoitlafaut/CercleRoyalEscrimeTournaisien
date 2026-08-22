@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using CercleRoyalEscrimeTournaisien;
+using CercleRoyalEscrimeTournaisien.Mappers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 
 namespace WebApplication1.Models
@@ -76,67 +80,12 @@ namespace WebApplication1.Models
                     Add_FichesSignalétiques_2025_2026();
                     Add_Paiements_2025_2026();
                     break;
-                case "2026-2027":
-                    Add_FichesSignalétiques_2026_2027();
-                    Add_Paiements_2026_2027();
+                case "2026-2027":                       
+                    Membres = new List<MembreData>(){ };                       
+                    Add_NewProcedure_ToAddFichesAndPaiements_2026_2027();                   
                     break;
             }            
-        }    
-
-        #region  Add_FichesSignalétiques_2022_2023
-        private void Add_FichesSignalétiques_2022_2023()
-        {
-            const string period = "2022-2023";
-            FichesSignalétiques_2022_2023 fichesSignalétiques_2022_2023 = new FichesSignalétiques_2022_2023();
-
-            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Leclercq_Cyril(period, Membres);
-            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Deblocq_Judith(period, Membres);
-            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Deblocq_Oscar(period, Membres);
-            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Carlier_Maybelle( period, Membres);
-            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Gillet_Thomas(period, Membres);
-            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Debruyne_Karel( period, Membres);
-            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Debruyne_Helena( period, Membres);
-            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Razanajao_Fabrice( period, Membres);
-            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Trannoy_Félix( period, Membres);
-            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Lemaire_Antoine( period, Membres);
-            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Delmotte_Maxime(period, Membres);
-            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Dooms_Jules( period, Membres);
-            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Dooms_Gabriel( period, Membres);
-            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Carlier_Arthur( period, Membres);
-            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Motte_Baptiste( period, Membres);
-            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Brabant_Eliot( period, Membres);
-            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Waeselynck_Lisa( period, Membres);
-            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Barbery_Arthur( period, Membres);
-            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Dransart_NoelMarie( period, Membres);
-            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Dransart_Iann(period, Membres);
         }
-        #endregion
-
-        private void Add_FichesSignalétiques_2023_2024()
-        {
-            const string period = "2023-2024";
-            FichesSignalétiques_2023_2024 fichesSignalétiques_2023_2024 = new FichesSignalétiques_2023_2024();
-
-            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Trannoy_Félix( period, Membres);
-            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Motte_Baptiste( period, Membres);
-            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Motte_Abel( period, Membres);
-            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Leclercq_Cyril( period, Membres);
-            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Courret_Margaux( period, Membres);
-            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Razanajao_Fabrice( period, Membres);
-            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Dufrasne_Eva( period, Membres);
-            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Carlier_Maybelle( period, Membres);
-            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Deblocq_Oscar( period, Membres);
-            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Deblocq_Judith( period, Membres);
-            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Barbery_Arthur( period, Membres);
-            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Waeselynck_Lisa( period, Membres);
-            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Soyez_Rémi( period, Membres);
-            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Cle_Leander( period, Membres);
-            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Couturiaux_Arthur( period, Membres);
-            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Mestdagh_Jordan( period, Membres);
-            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Siu_Martin( period, Membres);
-            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Vercouter_Raedwald(period, Membres);
-        }
-
         private void Add_FichesSignalétiques_2024_2025()
         {
             const string period = "2024-2025";
@@ -176,6 +125,117 @@ namespace WebApplication1.Models
             fichesSignalétiques_2024_2025.Add_FichesSignalétiques_Beaucamp_Naya(period, Membres);
             fichesSignalétiques_2024_2025.Add_FichesSignalétiques_Bracquart_Romain(period, Membres);
         }
+
+        #region  Add_FichesSignalétiques_2022_2023
+        private void Add_FichesSignalétiques_2022_2023()
+        {
+            const string period = "2022-2023";
+            FichesSignalétiques_2022_2023 fichesSignalétiques_2022_2023 = new FichesSignalétiques_2022_2023();
+
+            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Leclercq_Cyril(period, Membres);
+            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Deblocq_Judith(period, Membres);
+            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Deblocq_Oscar(period, Membres);
+            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Carlier_Maybelle( period, Membres);
+            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Gillet_Thomas(period, Membres);
+            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Debruyne_Karel( period, Membres);
+            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Debruyne_Helena( period, Membres);
+            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Razanajao_Fabrice( period, Membres);
+            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Trannoy_Félix( period, Membres);
+            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Lemaire_Antoine( period, Membres);
+            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Delmotte_Maxime(period, Membres);
+            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Dooms_Jules( period, Membres);
+            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Dooms_Gabriel( period, Membres);
+            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Carlier_Arthur( period, Membres);
+            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Motte_Baptiste( period, Membres);
+            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Brabant_Eliot( period, Membres);
+            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Waeselynck_Lisa( period, Membres);
+            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Barbery_Arthur( period, Membres);
+            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Dransart_NoelMarie( period, Membres);
+            fichesSignalétiques_2022_2023.Add_FichesSignalétiques_Dransart_Iann(period, Membres);
+        }
+        #endregion
+        private void Add_NewProcedure_ToAddFichesAndPaiements_2026_2027()
+        {
+            string period2026_2027 = "2026-2027";
+            BaseDeDonnéesMapper baseDeDonnéesMapper = new BaseDeDonnéesMapper();
+            List<TableListeTireursData> tableTireurs = baseDeDonnéesMapper.GetTableListeTireursData(ServerTmp, period2026_2027);
+
+            foreach (TableListeTireursData tireurData in tableTireurs)
+            {
+                string seancesGratuites = tireurData.SeancesGratuites;
+                string[] arySeancesGratuites = seancesGratuites.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                List<DateTime> arySeancesGratuitesDate = new List<DateTime>() { };
+                foreach (string seance in arySeancesGratuites)
+                {
+                    arySeancesGratuitesDate.Add(Convert.ToDateTime(seance));
+                }
+
+                Membres.Add(new MembreData()
+                {
+                    GuidId = new System.Guid(tireurData.GuidTireur),
+                    Nom = tireurData.Nom,
+                    Prénom = tireurData.Prenom,
+                    Période = period2026_2027,
+                    Paiement = new Paiement()
+                    {
+                        IsChaussettesPayéesEnOrdre = tireurData.IsChaussettesPayeesEnOrdre,
+                        IsCotisationAnnuelle = tireurData.IsCotisationAnnuelle,
+                        IsCotisationCarte1 = tireurData.IsCotisationCarte1,
+                        IsCotisationCarte2 = tireurData.IsCotisationCarte2,
+                        IsCotisationCarte3 = tireurData.IsCotisationCarte3,
+                        IsCotisationCarte4 = tireurData.IsCotisationCarte4,
+                        IsCotisationCarte5 = tireurData.IsCotisationCarte5,
+                        IsCotisationCarte6 = tireurData.IsCotisationCarte6,
+                        IsCotisationEnOrdre = tireurData.IsCotisationEnOrdre,
+                        IsFicheSignaletiqueEnOrdre = tireurData.IsFicheSignaletiqueEnOrdre,
+                        IsLocationMatérielEnOrdre = tireurData.IsLocationMaterielEnOrdre,
+                        IsMatérielLoue = tireurData.IsMaterielLoue,
+                        IsTeeShirtsPayéesEnOrdre = tireurData.IsTeeShirtsPayeesEnOrdre,
+                        PaiementsEffectues = tireurData.PaiementsEffectues.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).ToList(),
+                        SeancesGratuites = arySeancesGratuitesDate,
+                        Periode = period2026_2027
+                    },
+                    Signaletique = new Signaletique()
+                    {
+                        Categorie = ListGuidTireur.SearchCategorie(Convert.ToDateTime(tireurData.Birthdate).Year),
+                        DateDeNaissance = Convert.ToDateTime(tireurData.Birthdate),
+                        Email = new List<string>() { tireurData.EmailPropre, tireurData.EmailMere, tireurData.EmailPere },
+                        FicheSignaletiqueUrl = tireurData.FicheSignaletiqueUrl,
+                        NomMaman = tireurData.NomMere,
+                        NomPapa = tireurData.NomPere,
+                        Telephone = new List<string>() { tireurData.TelephoneMere, tireurData.TelephonePere, tireurData.TelephonePropre },                        
+                    }
+                });
+            }
+        }
+        #region  Add_FichesSignalétiques_2023_2024
+        private void Add_FichesSignalétiques_2023_2024()
+        {
+            const string period = "2023-2024";
+            FichesSignalétiques_2023_2024 fichesSignalétiques_2023_2024 = new FichesSignalétiques_2023_2024();
+
+            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Trannoy_Félix( period, Membres);
+            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Motte_Baptiste( period, Membres);
+            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Motte_Abel( period, Membres);
+            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Leclercq_Cyril( period, Membres);
+            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Courret_Margaux( period, Membres);
+            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Razanajao_Fabrice( period, Membres);
+            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Dufrasne_Eva( period, Membres);
+            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Carlier_Maybelle( period, Membres);
+            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Deblocq_Oscar( period, Membres);
+            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Deblocq_Judith( period, Membres);
+            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Barbery_Arthur( period, Membres);
+            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Waeselynck_Lisa( period, Membres);
+            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Soyez_Rémi( period, Membres);
+            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Cle_Leander( period, Membres);
+            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Couturiaux_Arthur( period, Membres);
+            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Mestdagh_Jordan( period, Membres);
+            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Siu_Martin( period, Membres);
+            fichesSignalétiques_2023_2024.Add_FichesSignalétiques_Vercouter_Raedwald(period, Membres);
+        }
+        #endregion
+        
+         
         private void Add_FichesSignalétiques_2025_2026()
         {
             const string period = "2025-2026";

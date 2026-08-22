@@ -532,8 +532,8 @@ namespace WebApplication1.Models
                        { 
                            GuidId = new Guid(tableListeTireursData.GuidTireur), 
                            Nom = tableListeTireursData.Nom,
-                           Prénom = tableListeTireursData.Prénom, 
-                           Période = tableListeTireursData.Période                           
+                           Prénom = tableListeTireursData.Prenom, 
+                           Période = tableListeTireursData.Periode                           
                        }
                 );
             }

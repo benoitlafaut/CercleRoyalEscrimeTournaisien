@@ -99,6 +99,22 @@ function AddUnNewComerToDB() {
         }
     });
 }
+function ConstruireLesLecons() {
+    $.startLoading(); 
+
+    $.ajax({
+        url: "/Poules/ConstruireLesLecons",
+        type: 'POST',
+        contentType: 'application/json',       
+        success: function (data) {
+            if (data.redirectUrl) { window.location.href = data.redirectUrl; }
+        },
+        failure: function (response) { },
+        error: function (response) {
+            alert("Error. " + response.responseText);
+        }
+    });
+}
 
 function ModifierUnTireur() {
     $.startLoading();
