@@ -28,6 +28,21 @@ function getDeviceType() {
     if (isMobile) return "smartphone";
     return "ordinateur";
 }
+
+function getIsMyOppo() {
+    const myFingerPrint = "fr|Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36|8|360x800|3|true";
+    const fingerprint = [
+        navigator.language,
+        navigator.userAgent,
+        navigator.hardwareConcurrency,
+        screen.width + "x" + screen.height,
+        window.devicePixelRatio,
+        navigator.userAgentData?.mobile
+    ].join("|");
+
+    return fingerprint == myFingerPrint;
+
+}
 function AddTireursSelectedToPoule() {
     $.startLoading();
 
