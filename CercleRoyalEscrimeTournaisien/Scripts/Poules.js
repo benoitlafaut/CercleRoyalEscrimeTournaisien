@@ -8,6 +8,26 @@ $(document).ready(function () {
         $("#spinner-loading").css('display', 'none');
     };
 });
+
+function getDeviceType() {
+    const ua = navigator.userAgent;
+
+    // Détection iPad (cas particulier)
+    const isIPad = /iPad/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 0);
+
+    const isTablet =
+        isIPad ||
+        (/Android/.test(ua) && !/Mobile/.test(ua)) ||
+        /Tablet|tablet/i.test(ua);
+
+    const isMobile =
+        !isTablet &&
+        /Mobi|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Windows Phone/i.test(ua);
+
+    if (isTablet) return "tablette";
+    if (isMobile) return "smartphone";
+    return "ordinateur";
+}
 function AddTireursSelectedToPoule() {
     $.startLoading();
 

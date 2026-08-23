@@ -43,6 +43,7 @@
         <button class="ClassTwoLignes ClassButtonEnteteTransparent">
             <span>@dateDuJourWithDayLabel[0]</span>
             <span>@dateDuJourWithDayLabel[1]</span>
+            <span id="deviceSpan"></span>
         </button>
 
         <button class="ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading();location.href='@urlActionInitSession'">
@@ -181,3 +182,10 @@
     }
 </body>
 </html>
+
+<script>
+$(document).ready(function () {
+    const deviceSpan = getDeviceType();
+    $("#deviceSpan").text(deviceSpan);
+});
+</script>
