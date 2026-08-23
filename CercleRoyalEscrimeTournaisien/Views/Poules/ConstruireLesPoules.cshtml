@@ -3,14 +3,14 @@
 <div style="margin-top:20px;">
     @foreach (var opt in Model.PoulesList)
     {
-        
-        var url = Url.Action("ConstruireLesPoules", "Poules", new { pouleSelected = opt.Poule });
-        
 
+        var url = Url.Action("ConstruireLesPoules", "Poules", new { pouleSelected = opt.Poule });
         var id = "opt-" + opt.Poule;
 
-        @Html.RadioButtonFor(m => m.PouleSelected, opt.Poule, new { @class = "", id = id, onclick = $"location.href='{url}'" })
-        <label class="ClassPouleInConstruireLesPoules" for="@id">@opt.DescriptionDeLaPoule</label>
+        <div class="poule-item">
+            @Html.RadioButtonFor(m => m.PouleSelected, opt.Poule, new { id = id, onclick = $"location.href='{url}'" })
+            <label class="ClassPouleInConstruireLesPoules" for="@id">@opt.DescriptionDeLaPoule</label>
+        </div>
     }
 </div>
 

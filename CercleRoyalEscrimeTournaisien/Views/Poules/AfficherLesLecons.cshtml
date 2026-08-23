@@ -11,7 +11,7 @@
     <div style="font-size:18px;margin-top:15px;margin-bottom:15px;">
         <span style="min-width:380px;display:inline-block;">@lecon.Nom @lecon.Prénom (@lecon.Age ans) (@lecon.NombreDeLeconsDejaRecues leçons reçues)</span>
         <input type="button" style="height:30px;" value="Ajouter une leçon à ce tireur" onclick="location.href='@Url.Action("AjouterUneLeçonACeTireur", "poules" ,new { guidTireur = lecon.GuidTireur, nombreDeLeconsDejaRecues = lecon.NombreDeLeconsDejaRecues })'" />
-        <hr style="max-width: 33%; margin-left: 0;" />
+        <hr style="max-width: 33%; margin-left: 0; margin-block-start: 1em; margin-block-end: 1em;"/>
     </div>
     }
 }

@@ -22,20 +22,30 @@
     </select>
 </div>
 
-<div style="display: flex; margin-bottom: 15px;">
-    <div>
+<div style=" margin-bottom: 15px; margin-top: 15px; ">
+
+    <!-- Tireur 1 -->
+    <div style="display: flex; align-items: center; margin-right: 20px; margin-bottom: 7px; margin-top: 7px;">
         <label style="margin-right:10px;">Tireur 1</label>
+        @Html.DropDownListFor(
+            model => model.Tireur1Selected,
+            new SelectList(Model.ListTireursToAddScore, "Key", "Value", Model.Tireur1Selected),
+            new { @class = "form-control", @style = "width:136px;" }
+        )
     </div>
-    <div style="min-width:150px;">
-        @Html.DropDownListFor(model => model.Tireur1Selected, new SelectList(Model.ListTireursToAddScore, "Key", "Value", Model.Tireur1Selected), new { @class = "form-control", @style = "width:136px;" })
-    </div>
-    <div>
+
+    <!-- Tireur 2 -->
+    <div style="display: flex; align-items: center; margin-bottom: 7px; margin-top: 7px;">
         <label style="margin-right:10px;">Tireur 2</label>
+        @Html.DropDownListFor(
+            model => model.Tireur2Selected,
+            new SelectList(Model.ListTireursToAddScore, "Key", "Value", Model.Tireur2Selected),
+            new { @class = "form-control", @style = "width:136px;" }
+        )
     </div>
-    <div>
-        @Html.DropDownListFor(model => model.Tireur2Selected, new SelectList(Model.ListTireursToAddScore, "Key", "Value", Model.Tireur2Selected), new { @class = "form-control", @style = "width:136px;" })
-    </div>
+
 </div>
+
 
 <div style="display: flex; margin-bottom: 15px;">
     <div>

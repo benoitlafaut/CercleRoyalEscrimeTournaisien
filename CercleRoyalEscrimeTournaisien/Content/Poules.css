@@ -163,7 +163,7 @@
     }
 
     .btnAction-custom {
-        font-size: 11px;
+        font-size: 12px;
         padding: 11px 3px;
     }
 
@@ -348,5 +348,22 @@
 
     .ClassDivInFirstScreen {
         grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #NewGuidCreatedId {
+        font-size: 14px;
+    }
+
+    .ClassPouleInConstruireLesPoules {
+        display: block;        
+    }
+
+    .poule-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+       
     }
 }

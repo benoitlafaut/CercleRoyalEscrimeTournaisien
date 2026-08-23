@@ -29,10 +29,11 @@
         public bool IsCotisationCarte4 { get; set; }
         public bool IsCotisationCarte5 { get; set; }
         public bool IsCotisationCarte6 { get; set; }
-        public bool IsChaussettesPayeesEnOrdre { get; set; }
+        
         public bool IsCotisationEnOrdre { get; set; }
         public bool IsLocationMaterielEnOrdre { get; set; }
         public bool IsFicheSignaletiqueEnOrdre { get; set; }
+        public bool IsChaussettesPayeesEnOrdre { get; set; }
         public bool IsTeeShirtsPayeesEnOrdre { get; set; }
         public bool IsMaterielLoue { get; set; }
     }

@@ -259,16 +259,16 @@ namespace CercleRoyalEscrimeTournaisien.Models
                     }
                 }
 
-                return DateTime.Now.AddDays(-1);
+                return DateTime.Now.AddDays(0);
             }
         }
         public bool IsDateDAujourdhuiEqualsDateNow
         {
             get
             {
-#if DEBUG
-                return true;
-#endif
+//#if DEBUG
+//                return true;
+//#endif
                 return DateDAujourdhui.ToString("ddMMyyyy") == DateTime.Now.ToString("ddMMyyyy");
             }
         }
@@ -327,9 +327,9 @@ namespace CercleRoyalEscrimeTournaisien.Models
         {
             get
             {
-#if DEBUG
-                return true;
-#endif
+//#if DEBUG
+//                return true;
+//#endif
                 return DateDuJourOnlyDayLabel.ToLower() == "mercredi" || DateDuJourOnlyDayLabel.ToLower() == "vendredi" || DateDuJourOnlyDayLabel.ToLower() == "dimanche";
             }
         }
