@@ -1,14 +1,15 @@
 ﻿using CercleRoyalEscrimeTournaisien.ClassPublic;
 using CercleRoyalEscrimeTournaisien.Models;
 using System;
-using System.Data.OleDb;
 using System.Data;
+using System.Data.OleDb;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.UI;
-using System.Threading.Tasks;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace CercleRoyalEscrimeTournaisien
 {
@@ -51,13 +52,18 @@ namespace CercleRoyalEscrimeTournaisien
                 modelEpub122024.CurrentStep = Convert.ToInt32(currentRow);
                 System.Web.HttpContext.Current.Session.Add("rowsToRead", Serialize(result));
 
-                ClassNumberOfPage classNumberOfPage = CheckInDBForNumberOfPage(Request.Files[0].FileName);
+                ClassNumberOfPage classNumberOfPage = CheckInDBForNumberOfPage(Request.Files[0].FileName.Replace("'"," "));
                 if (classNumberOfPage.IsPresent)
                 {
                     modelEpub122024.CurrentStep = classNumberOfPage.NumberOfPage;
                 }
 
-                modelEpub122024.FileNameBook = Request.Files[0].FileName;
+                string nameFile = Request.Files[0].FileName;
+
+                nameFile = Regex.Replace(nameFile, @"[àâäéèêëîïôöùûüçÀÂÄÉÈÊËÎÏÔÖÙÛÜÇ']", " ");
+                modelEpub122024.FileNameBook = nameFile;
+
+
             }
 
             modelEpub122024.IsMobileDeviceDetected = IsMobileDeviceDetected();
@@ -66,10 +72,11 @@ namespace CercleRoyalEscrimeTournaisien
         }
 
         [HttpPost]
-        public Task<ActionResult> stockerCurrentRowInDB(string currentRow, string fileNameBook)
+        public async Task<ActionResult> stockerCurrentRowInDB(string currentRow, string fileNameBook)
         {
             UpdateInDBForNumberOfPage(fileNameBook, currentRow);
-            return null;
+
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
 
         public bool IsMobileDeviceDetected()
@@ -136,43 +143,48 @@ namespace CercleRoyalEscrimeTournaisien
             var path = Server.MapPath("/App_Data/francais.accdb");
             string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
 
-            string mySelectQuery = " SELECT * FROM TableListBooks where NameOfBook = '" + titreBook + "'";
+            string mySelectQuery = " SELECT * FROM TableListBooks where NameOfBook = '?'";           
 
-            OleDbConnection myConnection = new OleDbConnection(ConnectionString);
-
-            OleDbCommand myCommand = new OleDbCommand(mySelectQuery, myConnection);
-
-            myCommand.Connection.Open();
-
-            OleDbDataReader myReader = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            if (myReader.HasRows)
+            using (var conn = new OleDbConnection(ConnectionString))
             {
-                string page = "0";
-                while (myReader.Read())
+                conn.Open();
+                using (var cmd = new OleDbCommand(mySelectQuery, conn))
                 {
-                    page = (string)myReader["Page"];
+                    cmd.Parameters.AddWithValue("?", titreBook );
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+
+                        if (reader.HasRows)
+                        {
+                            string page = "0";
+                            while (reader.Read())
+                            {
+                                page = (string)reader["Page"];
+                            }
+                            return new ClassNumberOfPage()
+                            {
+                                IsPresent = true,
+                                NumberOfPage = Convert.ToInt32(page)
+                            };
+                        }
+                        else
+                        {
+                            InsertInDBWithNumberOfPage(titreBook);
+                            return new ClassNumberOfPage()
+                            {
+                                IsPresent = false
+                            };
+                        }
+                    }
                 }
-
-                return new ClassNumberOfPage()
-                {
-                    IsPresent = true,
-                    NumberOfPage = Convert.ToInt32(page)
-                };
-
-            }
-            else
-            {
-                InsertInDBWithNumberOfPage(titreBook);
-                return new ClassNumberOfPage()
-                {
-                    IsPresent = false
-                };
             }
         }
 
         private void InsertInDBWithNumberOfPage(string titreBook)
         {
+            titreBook = titreBook.Replace("'", " ");
+
             var path = Server.MapPath("/App_Data/francais.accdb");
             string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
 

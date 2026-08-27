@@ -1,12 +1,8 @@
 ﻿var timeouts = [];
 
 $(document).ready(function () {
-   
-    const rv = window.responsiveVoice;
-
-    rv.init({
-        apiKey: 'K1W6MsiA',
-    });
+    config.speakSelectedText = false;
+    config.welcomeMessage = "";
 
     var touchRegionElement = document.getElementById('htmlId');
     var outputElement = document.getElementById('output');
@@ -71,6 +67,10 @@ $(document).ready(function () {
             });
         })
     }, 500);
+
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        $("#iconToListenAll").addClass('ClassIconSoundOrientation');
+    }
 });
 function ChangeDirection(direction) {
     
@@ -98,7 +98,7 @@ function StartPlayAllSentenceNew() {
         }
 
         StartListenOneSentence();       
-    }, 2000);
+    }, 4000);
 }
 function StartListenOneSentence() {
     let element = $(".ClassToListen").eq(0);
@@ -110,24 +110,7 @@ function StartListenOneSentence() {
         ChargerEpub(inputRange);
     }
 }
-function StartPlayAllSentence() {
-    if ($("#iconToListenAll").css('color') == 'rgb(255, 0, 0)') {
-        responsiveVoice.cancel();
 
-        for (var i = 0; i < timeouts.length; i++) {
-            clearTimeout(timeouts[i]);
-        }
-        //quick reset of the timer array you just cleared
-        timeouts = [];
-        $("#iconToListenAll").css('color', 'black');
-    }
-    else {    
-        $("#CurrentStepToListen").val('0');
-        PlayAllSentence();
-        $("#iconToListenAll").css('color', 'red');
-        $("#ulToExpandCollapse").click();
-    }
-}
 
 function PlayAllSentence() {
     if ($("#IsLectureWithLangue").is(':checked') == true) {
@@ -188,7 +171,6 @@ function ListenSentence(element, isContinue) {
         return;
     }
 
-
     responsiveVoice.speak(sentence, voice, {
         onend: function () {
             if (isContinue == 'true') {   
@@ -227,7 +209,8 @@ function ListenSentence(element, isContinue) {
         },
         onerror: function (e) {
             alert(e);
-        }
+        },
+        rate: 0.7
     });
 }
 
@@ -340,7 +323,7 @@ function TranslateOtherLanguageThanFrench(texteToTranslate, langueDestination, o
 }
 
 function GetVoiceForResponsive(voiceTo) {
-    if (voiceTo == "fra") { return 'French Male'; }
+    if (voiceTo == "fra") { return 'French Female'; }
     if (voiceTo == "spa") { return 'Spanish Latin American Female'; }
     if (voiceTo == "eng") { return 'UK English Female'; }
     if (voiceTo == "ger") { return 'Deutsch Female'; }
@@ -555,7 +538,21 @@ function FillTable() {
 
     $('#tableBody').empty().append(html);
 }
+function getRotationDegrees(el) {
+    var matrix = $(el).css("transform");
 
+    if (matrix === "none") {
+        return 0;
+    }
+
+    var values = matrix.split("(")[1].split(")")[0].split(",");
+    var a = values[0];
+    var b = values[1];
+
+    var angle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
+
+    return angle < 0 ? angle + 360 : angle;
+}
 function ChangeLangueToTranslateAndRead() {
     $('#tableBody').empty();
 
@@ -565,13 +562,21 @@ function ChangeLangueToTranslateAndRead() {
 }
 function PlayText(element) {
     var language = GetDeductLanguageBegin(element);
-    $('.ClassColorOrange').removeClass('ClassColorOrange');
-    $(element).addClass('ClassColorOrange');
+    $('.ClassColorLectureCurrent').removeClass('ClassColorLectureCurrent');
+    $(element).addClass('ClassColorLectureCurrent');
+
+    if ($(".ClassColorLectureCurrent").length > 0)
+    {
+        var positionLectureCurrent = $(".ClassColorLectureCurrent").position().top - 30;
+        $("#tableBody").scrollTop(positionLectureCurrent);
+    }
+
     responsiveVoice.speak($(element).find('span').text(), GetVoiceForResponsive(language), {
         onend: function () {
-            $('.ClassColorOrange').removeClass('ClassColorOrange');
+            $('.ClassColorLectureCurrent').removeClass('ClassColorLectureCurrent');
             $(element).removeClass('ClassToListen');
-        }
+        },
+        rate: 0.7
     });
 }
 
@@ -590,9 +595,11 @@ function GetClassLanguageBegin() {
 
 function ListenSentence(i, language) {
     $("#tdInTable_" + i + "_").css('color', 'blue');
+
     responsiveVoice.speak($('#tdInTable_' + i + '_').text(), GetVoiceForResponsive(language), {
         onend: function () {
             $("#tdInTable_" + i + "_").css('color', 'black');
-        }
+        },
+        rate: 0.7
     });
 }

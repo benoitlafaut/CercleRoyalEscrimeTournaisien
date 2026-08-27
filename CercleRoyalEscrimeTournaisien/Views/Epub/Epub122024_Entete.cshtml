@@ -6,12 +6,14 @@
     int taille;
     bool isMobileDeviceDetected = Model.IsMobileDeviceDetected;
     if (isMobileDeviceDetected) { taille = 15; } else { taille = 30; }
-    string styleIconToListelAll = isMobileDeviceDetected ? "top: -2px;display: inline-block;zoom: 0.5;margin-left: -3px;" : "top: 13px;display: inline-block;zoom: 0.8;left:2.5em;";
+    //string styleIconToListelAll = isMobileDeviceDetected ? "top: 6.5px;display: inline-block;zoom: 0.5;margin-left: 5px;" : "top: 13px;display: inline-block;zoom: 0.8;left:2.5em;";
+    
+    
 }
 
 <div id="divMain" class="TreeMainCollapse">
     <div class="ClassIconMobile glyphicon glyphicon-plus" style="margin-bottom: 10px; margin-left:10px; box-shadow: 4px 4px 20px 7px lightgrey;" id="ulToExpandCollapse">
-        <i id="iconToListenAll" style="@styleIconToListelAll" onclick="StartPlayAllSentenceNew();" class="ClassIconMobile ClassSound ClassStyleSound fa fa-volume-up" aria-hidden="true"></i>
+        <i id="iconToListenAll" style="" onclick="StartPlayAllSentenceNew();" class="ClassIconSound ClassIconMobile ClassSound ClassStyleSound fa fa-volume-up" aria-hidden="true"></i>
         <div id="divNextToExpandCollapse" style="display: none; margin-left: 15px; margin-top: 10px;  ">
             <div style="margin-bottom:10px;">
                 <span id="SpanConvertEpub" style="font-family: arial;" class="ClassTextNode">
