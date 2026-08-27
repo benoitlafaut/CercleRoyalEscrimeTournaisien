@@ -567,7 +567,7 @@ function PlayText(element) {
 
     if ($(".ClassColorLectureCurrent").length > 0)
     {
-        var positionLectureCurrent = $(".ClassColorLectureCurrent").position().top - 30;
+        var positionLectureCurrent =  30;
         $("#tableBody").scrollTop(positionLectureCurrent);
     }
 
