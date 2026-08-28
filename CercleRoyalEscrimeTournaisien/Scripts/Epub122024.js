@@ -93,7 +93,12 @@ function ChangeDirection(direction) {
 }
 function StartPlayAllSentenceNew() {
     setInterval(function () {
-        if (responsiveVoice.isPlaying()) {
+        if (CheckNoSentenceInColor()) {
+            if (responsiveVoice.isPlaying()) {
+                return;
+            }
+        }
+        else {
             return;
         }
 
@@ -152,6 +157,11 @@ function PlayLanguageIfNecessary(element) {
     return false;
 }
 
+function CheckNoSentenceInColor() {
+    var nombreDeColor = $('.ClassColorLectureCurrent').length;
+    return nombreDeColor == 0;
+}
+
 function ListenSentence(element, isContinue) {
     let voice;
     var sentence = $(element).text();
@@ -163,11 +173,15 @@ function ListenSentence(element, isContinue) {
         voice = GetVoice(element);
     }
 
-    if (responsiveVoice.isPlaying()) {
-        timeouts.push( setTimeout(function () {
-            ListenSentence(element);
-        }, 1600),1000 );
+    if (CheckNoSentenceInColor()) {
+        if (responsiveVoice.isPlaying()) {
+            timeouts.push(setTimeout(function () {
+                ListenSentence(element);
+            }, 1600), 1000);
 
+            return;
+        }
+    } else {
         return;
     }
 
@@ -567,8 +581,12 @@ function PlayText(element) {
 
     if ($(".ClassColorLectureCurrent").length > 0)
     {
-        var positionLectureCurrent =  30;
-        $("#tableBody").scrollTop(positionLectureCurrent);
+        //var positionLectureCurrent = $(".ClassColorLectureCurrent").position().top - 30;
+        //$("#tableBody").scrollTop(positionLectureCurrent);
+        $(".ClassColorLectureCurrent")[0].scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
     }
 
     responsiveVoice.speak($(element).find('span').text(), GetVoiceForResponsive(language), {

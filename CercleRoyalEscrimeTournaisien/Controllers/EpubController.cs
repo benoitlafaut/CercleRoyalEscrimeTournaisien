@@ -127,7 +127,23 @@ namespace CercleRoyalEscrimeTournaisien
             var path = Server.MapPath("/App_Data/francais.accdb");
             string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
 
-            string mySelectQuery = "UPDATE TableListBooks SET Page = '" + currentPage + "' where NameOfBook = '" + fileNameBook + "'";
+            string mySelectQueryDelete2 = @" DELETE FROM TableListBooks WHERE NameOfBook = @t1";
+
+            using (var conn = new OleDbConnection(ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new OleDbCommand(mySelectQueryDelete2, conn))
+                {
+                    cmd.Parameters.AddWithValue("@t1", fileNameBook);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                    }
+                }
+            }
+
+            string mySelectQuery = "INSERT INTO TableListBooks (NameOfBook, Page) Values ('" + fileNameBook + "'," + currentPage + ")";
+            //string mySelectQuery = "UPDATE TableListBooks SET Page = '" + currentPage + "' where NameOfBook = '" + fileNameBook + "'";
             OleDbConnection myConnection = new OleDbConnection(ConnectionString);
 
             OleDbCommand myCommand = new OleDbCommand(mySelectQuery, myConnection);
@@ -140,10 +156,12 @@ namespace CercleRoyalEscrimeTournaisien
 
         private ClassNumberOfPage CheckInDBForNumberOfPage(string titreBook)
         {
+            titreBook = Regex.Replace(titreBook, @"[àâäéèêëîïôöùûüçÀÂÄÉÈÊËÎÏÔÖÙÛÜÇ']", " ");
+
             var path = Server.MapPath("/App_Data/francais.accdb");
             string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
 
-            string mySelectQuery = " SELECT * FROM TableListBooks where NameOfBook = '?'";           
+            string mySelectQuery = " SELECT * FROM TableListBooks where NameOfBook = ?";           
 
             using (var conn = new OleDbConnection(ConnectionString))
             {
