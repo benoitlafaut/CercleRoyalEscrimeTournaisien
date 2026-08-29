@@ -419,7 +419,9 @@ namespace CercleRoyalEscrimeTournaisien
             List<DateTime> list = new List<DateTime>() { };
             list.Add(new DateTime(2026, 10, 9));
             list.Add(new DateTime(2026, 12, 11));
-
+            list.Add(new DateTime(2027, 6, 9));
+            list.Add(new DateTime(2027, 6, 11));
+            list.Add(new DateTime(2027, 6, 13));
             return list;
         }
     }
