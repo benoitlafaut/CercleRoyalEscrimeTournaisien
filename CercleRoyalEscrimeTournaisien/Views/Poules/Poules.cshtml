@@ -42,7 +42,8 @@
     <div class="ClassDivInFirstScreen">
         <button class="ClassTwoLignes ClassButtonEnteteTransparent">
             <span>@dateDuJourWithDayLabel[0]</span>
-            <span>@dateDuJourWithDayLabel[1]</span>            
+            <span>@dateDuJourWithDayLabel[1]</span>
+            <span id="nomDeMonGsm"></span>             
         </button>
 
         <button class="ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading();location.href='@urlActionInitSession'">
@@ -193,6 +194,8 @@ $(document).ready(function () {
         $("#buttonConstruireLesPoules").css('display', 'none');
         $("#buttonModifierLesDatasDUnTireur").css('display', 'none');
         $("#buttonConstruireLesLecons").css('display', 'none');
+
+        $("#nomDeMonGsm").text(getNomDeMonGSM());
     }
 });
 </script>
