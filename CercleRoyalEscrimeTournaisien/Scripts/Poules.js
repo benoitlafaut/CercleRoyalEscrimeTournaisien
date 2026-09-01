@@ -31,6 +31,7 @@ function getDeviceType() {
 
 function getIsMyOppo() {
     const myFingerPrint = "fr|Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36|8|360x800|3|true";
+    const myFingerPrint2 = "fr|Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36|8|360x800|3|true";
     const fingerprint = [
         navigator.language,
         navigator.userAgent,
@@ -40,11 +41,10 @@ function getIsMyOppo() {
         navigator.userAgentData?.mobile
     ].join("|");
 
-    return fingerprint == myFingerPrint;
+    return fingerprint == myFingerPrint || fingerprint == myFingerPrint2;
 }
 
 function getNomDeMonGSM() {
-    const myFingerPrint = "fr|Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36|8|360x800|3|true";
     const fingerprint = [
         navigator.language,
         navigator.userAgent,
