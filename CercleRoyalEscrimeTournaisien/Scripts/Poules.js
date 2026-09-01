@@ -29,40 +29,29 @@ function getDeviceType() {
     return "ordinateur";
 }
 
-function getIsMyOppo() {
-    //const fp = {
-    //    lang: navigator.language,
-    //    ua: navigator.userAgent,
-    //    cores: navigator.hardwareConcurrency,
-    //    res: screen.width + "x" + screen.height,
-    //    dpr: window.devicePixelRatio,
-    //    mobile: navigator.userAgentData?.mobile
-    //};
+function getIsMyOppo() {  
+    const isIPad = /iPad/.test(navigator.userAgent) || (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 0);
 
-    // Conditions stables
+    const isTablet =
+        isIPad ||
+        (/Android/.test(navigator.userAgent) && !/Mobile/.test(navigator.userAgent)) ||
+        /Tablet|tablet/i.test(navigator.userAgent);
+
+    const isMobile =
+        !isTablet &&
+        /Mobi|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Windows Phone/i.test(navigator.userAgent);
+
     const isOppo =
         navigator.language === "fr" &&
         navigator.userAgent.includes("Android 10") &&
-        navigator.userAgent.includes("K)") &&               // ton modèle Oppo
+        navigator.userAgent.includes("K)") &&               
         navigator.hardwareConcurrency === 8 &&
-        screen.width + "x" + screen.height === "360x800" &&
+        screen.width === 360 &&
+        screen.height === 800 &&
         window.devicePixelRatio === 3 &&
-        navigator.userAgentData?.mobile === true;
-
-    return isOppo;
-
-    //const myFingerPrint = "fr|Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36|8|360x800|3|true";
-    //const myFingerPrint2 = "fr|Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36|8|360x800|3|true";
-    //const fingerprint = [
-    //    navigator.language,
-    //    navigator.userAgent,
-    //    navigator.hardwareConcurrency,
-    //    screen.width + "x" + screen.height,
-    //    window.devicePixelRatio,
-    //    navigator.userAgentData?.mobile
-    //].join("|");
-
-    //return fingerprint == myFingerPrint || fingerprint == myFingerPrint2;
+        isMobile === true;
+    
+    return isOppo;    
 }
 
 function getNomDeMonGSM() {
