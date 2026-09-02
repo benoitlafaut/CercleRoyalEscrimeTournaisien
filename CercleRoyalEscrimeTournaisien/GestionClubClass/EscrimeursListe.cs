@@ -207,6 +207,9 @@ namespace WebApplication1.Models
                     }
                 });
             }
+
+            Membres = Membres.OrderBy(x => x.Nom).ToList();
+
         }
         #region  Add_FichesSignalétiques_2023_2024
         private void Add_FichesSignalétiques_2023_2024()

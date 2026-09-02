@@ -50,7 +50,7 @@ function getIsMyOppo() {
         screen.height === 800 &&
         window.devicePixelRatio === 3 &&
         isMobile === true;
-    
+    return true;
     return isOppo;    
 }
 

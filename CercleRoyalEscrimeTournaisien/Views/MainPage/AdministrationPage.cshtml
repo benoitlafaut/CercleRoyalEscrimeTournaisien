@@ -32,7 +32,7 @@
     <div style="margin-left:15px;">
         @{
             <div style="margin-bottom:15px;">
-                <button class="btn btn-success" type="button" id="downloadBtn">Toutes les opérations (28/06)</button>
+                <button class="btn btn-success" type="button" id="downloadBtn">Toutes les opérations (02/09)</button>
 
                 <button class="btn btn-success" type="button" id="downloadButton">Opérations selon l'année</button>
 
@@ -200,9 +200,9 @@
 
                             @{
                                 string styleDisplayCotisationAnnuelle = escrimeur.Paiement?.IsCotisationAnnuelle == true ? "display:none;" : "";
-                                if (nombreDeJoursDePresenceForCotisation == 0)
+                                if (escrimeur.Paiement?.IsCotisationCarte1 == false)
                                 {
-                                    styleDisplayCotisationAnnuelle = "display:none;";
+                                     styleDisplayCotisationAnnuelle = "display:none;";
                                 }
                             }
 

@@ -21,7 +21,7 @@ namespace CercleRoyalEscrimeTournaisien
                 string texte;
 
                 texte = "L'escrime est un sport de combat. 3 armes sont utilisées : le fleuret, l'épée et le sabre. Ces 3 armes sont mixtes; individuelle ou par équipes.";
-                texte += @"<br />" + "Les cours au <b><span style='color: cornflowerblue'>fleuret</span></b> sont en bleu, à <b><span style='color: red'>l'épée</span></b> en rouge et au <b><span style='color: forestgreen'>sabre</span></b> en vert. Les séances parents sont en <b><span style='color: #ED7D31'>orange</span></b>.";
+                texte += @"<br />" + "Les cours au <b><span style='color: cornflowerblue'>fleuret</span></b> sont en bleu, à <b><span style='color: red'>l'épée</span></b> en rouge et au <b><span style='color: forestgreen'>sabre</span></b> en vert. Les séances parents sont en <b><span style='color: #ED7D31'>orange</span></b>. Les jours qui sont en <b><span style='color: magenta'>magenta</span></b> sont les jours où nous n'avons pas la salle..";
                 texte += @"<br />" + "Vous trouverez " + link + " le calendrier téléchargeable sous format word.";
 
                 return texte;
@@ -405,7 +405,7 @@ namespace CercleRoyalEscrimeTournaisien
         {
             List<DateTime> list = new List<DateTime>() { };
             list.Add(new DateTime(2026, 10, 11));
-            list.Add(new DateTime(2026, 12, 13));
+            list.Add(new DateTime(2026, 12, 20));
             list.Add(new DateTime(2027, 2, 7));
             list.Add(new DateTime(2027, 3, 28));
             list.Add(new DateTime(2027, 5, 14));
@@ -422,6 +422,7 @@ namespace CercleRoyalEscrimeTournaisien
             list.Add(new DateTime(2027, 6, 9));
             list.Add(new DateTime(2027, 6, 11));
             list.Add(new DateTime(2027, 6, 13));
+            list.Add(new DateTime(2026, 12, 13));
             return list;
         }
     }
