@@ -32,13 +32,12 @@
     <div style="margin-left:15px;">
         @{
             <div style="margin-bottom:15px;">
-                <button class="btn btn-success" type="button" id="downloadBtn">Toutes les opérations (04/09)</button>
+                <button class="btn btn-success" type="button" id="downloadBtn">Toutes les opérations (06/09)</button>
 
                 <button class="btn btn-success" type="button" id="downloadButton">Opérations selon l'année</button>
 
                 @Html.DropDownList("anneeSelected", new List<SelectListItem>
                 {
-                    new SelectListItem{ Text=WebApplication1.Models.Annee.Annee_2025, Value = WebApplication1.Models.Annee.Annee_2025.ToString() },
                     new SelectListItem{ Text=WebApplication1.Models.Annee.Annee_2026, Value = WebApplication1.Models.Annee.Annee_2026.ToString() },
                     new SelectListItem{ Text=WebApplication1.Models.Annee.Annee_2027, Value = WebApplication1.Models.Annee.Annee_2027.ToString() },
                 }, new { style = "cursor:pointer;Width: 61px;margin-right: 40px;" })
