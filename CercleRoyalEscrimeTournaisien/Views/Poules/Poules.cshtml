@@ -1,8 +1,12 @@
 ﻿@model CercleRoyalEscrimeTournaisien.Models.PoulesViewModel
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-@Styles.Render("~/styles/Poules")
-@Scripts.Render("~/bundles/PoulesJS")
+@section css {
+
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=b08U7IYJ" id="responsive-voice-js"></script>
+    <link rel="preload" href="https://responsivevoice.org/wp-content/plugins/w3-total-cache/pub/js/lazyload.min.js" as="script">
+    <script src="https://responsivevoice.org/wp-content/cache/minify/818c0.js"></script>
+}
 
 @{
     string urlActionAjouterTireurAUnePoule = Url.Action("AjouterTireurAUnePoule", "Poules");
@@ -43,7 +47,7 @@
         <button class="ClassTwoLignes ClassButtonEnteteTransparent">
             <span>@dateDuJourWithDayLabel[0]</span>
             <span>@dateDuJourWithDayLabel[1]</span>
-            <span id="nomDeMonGsm"></span>             
+            <span id="nomDeMonGsm"></span>
         </button>
 
         <button class="ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading();location.href='@urlActionInitSession'">
@@ -56,7 +60,7 @@
             <span>new comer</span>
         </button>
 
-        <button id="buttonModifierUnTireur"  class="@classIndicatorModifierUnTireur ClassTwoLignes ClassButtonEntete ClassCursor" onclick="    $.startLoading(); location.href ='@urlActionModifierUnTireur'">
+        <button id="buttonModifierUnTireur" class="@classIndicatorModifierUnTireur ClassTwoLignes ClassButtonEntete ClassCursor" onclick="    $.startLoading(); location.href ='@urlActionModifierUnTireur'">
             <span>Modifier</span>
             <span>un tireur</span>
         </button>
@@ -76,37 +80,37 @@
             <span>à une poule</span>
         </button>
 
-        <button id="buttonAfficherLesPoules"  class="@classIndicatorAfficherLesPoules ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading();location.href='@urlActionAfficherLesPoules'">
+        <button id="buttonAfficherLesPoules" class="@classIndicatorAfficherLesPoules ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading();location.href='@urlActionAfficherLesPoules'">
             <span>Afficher</span>
             <span>les poules</span>
         </button>
 
-        <button id="buttonAfficherLesEliminationsDirectes"  class="@classIndicatorAfficherLesEliminationsDirectes ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading();location.href='@urlActionAfficherLesEliminationsDirectes'">
+        <button id="buttonAfficherLesEliminationsDirectes" class="@classIndicatorAfficherLesEliminationsDirectes ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading();location.href='@urlActionAfficherLesEliminationsDirectes'">
             <span>Afficher les</span>
             <span>éliminations directes</span>
         </button>
 
-        <button id="buttonAfficherLesDatesPrecedentes"  class="@classIndicatorAfficherLesDatesPrecedentes ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading();location.href='@urlActionAfficherLesDatesPrecedentes'">
-            <span>Afficher les résultats</span>
-            <span>des séances précédentes</span>
-        </button>
 
-        <button id="buttonModifierLesDatasDUnTireur"  class="@classIndicatorModifierLesDatasDUnTireur ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading(); location.href ='@urlActionModifierLesDatasDUnTireur'">
+
+        <button id="buttonModifierLesDatasDUnTireur" class="@classIndicatorModifierLesDatasDUnTireur ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading(); location.href ='@urlActionModifierLesDatasDUnTireur'">
             <span>Modifier les datas</span>
             <span>d'un tireur</span>
         </button>
 
-        <button id="buttonConstruireLesLecons"  class="@classIndicatorConstruireLesLecons ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading(); location.href ='@urlActionConstruireLesLecons'">
+        <button id="buttonConstruireLesLecons" class="@classIndicatorConstruireLesLecons ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading(); location.href ='@urlActionConstruireLesLecons'">
             <span>Construire</span>
             <span>les leçons</span>
         </button>
 
-        <button id="buttonAfficherLesLecons"  class="@classIndicatorAfficherLesLecons ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading(); location.href ='@urlActionAfficherLesLecons'">
+        <button id="buttonAfficherLesLecons" class="@classIndicatorAfficherLesLecons ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading(); location.href ='@urlActionAfficherLesLecons'">
             <span>Afficher</span>
             <span>les leçons</span>
         </button>
 
-
+        <button id="buttonAfficherLesDatesPrecedentes" class="@classIndicatorAfficherLesDatesPrecedentes ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading();location.href='@urlActionAfficherLesDatesPrecedentes'">
+            <span>Afficher les résultats</span>
+            <span>des séances précédentes</span>
+        </button>
     </div>
 
 
@@ -183,19 +187,5 @@
 </body>
 </html>
 
-<script>
-$(document).ready(function () {
-
-    const isMyOppo = getIsMyOppo();
- 
-    if (isMyOppo != true) {
-        $("#buttonAjoutUnNewComer").css('display', 'none');
-        $("#buttonModifierUnTireur").css('display', 'none');
-        $("#buttonConstruireLesPoules").css('display', 'none');
-        $("#buttonModifierLesDatasDUnTireur").css('display', 'none');
-        $("#buttonConstruireLesLecons").css('display', 'none');       
-    }
-
-    //$("#nomDeMonGsm").text(getNomDeMonGSM());
-});
-</script>
+@Styles.Render("~/styles/Poules")
+@Scripts.Render("~/bundles/PoulesJS")

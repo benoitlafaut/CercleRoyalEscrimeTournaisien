@@ -1,5 +1,18 @@
-﻿
+﻿config.speakSelectedText = false;
+config.welcomeMessage = "";
+
 $(document).ready(function () {
+    const isMyOppo = getIsMyOppo();
+
+    if (isMyOppo != true) {
+        $("#buttonAjoutUnNewComer").css('display', 'none');
+        $("#buttonModifierUnTireur").css('display', 'none');
+        $("#buttonConstruireLesPoules").css('display', 'none');
+        $("#buttonModifierLesDatasDUnTireur").css('display', 'none');
+        $("#buttonConstruireLesLecons").css('display', 'none');
+        $("#buttonAfficherLesLecons").css('display', 'none');
+    }   
+
     $.startLoading = function () {
         $("#spinner-loading").css('display','flex');
     };
@@ -8,7 +21,28 @@ $(document).ready(function () {
         $("#spinner-loading").css('display', 'none');
     };
 });
+function EcouterLesPremiersMatchs() {   
+    let textGlobal = "...";
 
+
+    $(".ClassMatch1").each(function () {
+        let texteToSay = $(this).attr('textadire');
+        let textePouleToSay = $(this).attr('pouleADire');      
+
+        textGlobal = textGlobal + "Dans la " + textePouleToSay + " le premier match est " + texteToSay;        
+    });
+
+    $(".ClassMatch2").each(function () {
+        let texteToSay = $(this).attr('textadire');
+        let textePouleToSay = $(this).attr('pouleADire');
+
+        textGlobal = textGlobal + "Dans la " + textePouleToSay + " le second match est " + texteToSay;
+
+      
+    });
+
+    responsiveVoice.speak(textGlobal, "French Male"); 
+}
 function getDeviceType() {
     const ua = navigator.userAgent;
 
@@ -27,6 +61,17 @@ function getDeviceType() {
     if (isTablet) return "tablette";
     if (isMobile) return "smartphone";
     return "ordinateur";
+}
+function ShowOrHidePoule(poule) {
+    $("#divForTable_" + "Poule1").css('display', 'none');
+    $("#divForTable_" + "Poule2").css('display', 'none');
+    $("#divForTable_" + "Poule3").css('display', 'none');
+    $("#divForTable_" + "Poule4").css('display', 'none');
+    $("#divForTable_" + "Poule5").css('display', 'none');
+
+    $("#divForTable_" + poule).css('display', '');
+
+    $("input[name='PouleSelected'][id='" + poule + "']").prop("checked", true);
 }
 
 function getIsMyOppo() {  
@@ -50,7 +95,7 @@ function getIsMyOppo() {
         screen.height === 800 &&
         window.devicePixelRatio === 3 &&
         isMobile === true;
-    return true;
+   // return true;
     return isOppo;    
 }
 
