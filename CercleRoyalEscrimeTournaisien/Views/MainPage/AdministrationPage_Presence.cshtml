@@ -26,8 +26,11 @@
 
                         <table style="display:block">
                             <tr>
-                                <td style="min-width:130px;">@day.DayOfWeek.ToString().Replace("Monday", "Lundi").Replace("Sunday", "Dimanche").Replace("Friday", "Vendredi").Replace("Wednesday", "Mercredi")</td>
-                                <td style="min-width:130px;">@day.ToString("dd/MM")</td>
+                                    <td style="min-width:10px;">
+                                        @day.DayOfWeek.ToString().Replace("Monday", "Lundi").Replace("Sunday", "Dimanche").Replace("Friday", "Vendredi").Replace("Wednesday", "Mercredi")
+                                                                    @day.ToString("dd/MM")
+                                                                </td>
+                                @*<td style="min-width:10px;">@day.ToString("dd/MM")</td>*@
 
                                 @{
                                     compteur = 0;
@@ -43,7 +46,10 @@
                                     }
                                 }
 
-                                <td style="min-width:130px;"> &nbsp;( @compteur tireurs présents )</td>
+                                
+                            </tr>
+                            <tr>
+                                <td style="left:15px;position:relative;min-width:130px;"> &nbsp;(@compteur tireurs présents)</td>
                             </tr>
                         </table>
 
