@@ -380,7 +380,7 @@ namespace CercleRoyalEscrimeTournaisien
             System.Web.HttpContext.Current.Session.Remove("OtherDate");
 
             PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
-            poulesViewModel.ScreenIndex = ClassEnumScreen.EnumScreen.MenuPrincipal;
+            poulesViewModel.ScreenIndex = ClassEnumScreen.EnumScreen.AfficherLesPoules;
 
             return View(Constantes.Poules, poulesViewModel);
         }
@@ -1167,8 +1167,8 @@ namespace CercleRoyalEscrimeTournaisien
                     return "Matthieu";
                 case TireurIndex.FlorianBauffe:
                     return "Florian";
-                case TireurIndex.EleonaraColpaert:
-                    return "Eleonara";
+                case TireurIndex.EleonoraColpaert:
+                    return "Eleonora";
                 case TireurIndex.OscarDucrot:
                     return "Oscar Ducrot";
                 case TireurIndex.AmelLawrizy:

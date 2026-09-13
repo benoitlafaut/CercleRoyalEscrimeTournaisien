@@ -191,14 +191,14 @@ namespace WebApplication1.Models
                   FicheSignaletiqueUrl = "",
               };
         }
-        public void Add_FichesSignalétiques_Colpaert_Eleonara(string period, List<MembreData> Membres)
+        public void Add_FichesSignalétiques_Colpaert_Eleonora(string period, List<MembreData> Membres)
         {
-            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidEleonaraColpaert && x.Période == period))
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidEleonoraColpaert && x.Période == period))
             {
                 return;
             }
 
-            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidEleonaraColpaert && x.Période == period).Signaletique =
+            Membres.FirstOrDefault(x => x.GuidId == GuidConstantes.GuidEleonoraColpaert && x.Période == period).Signaletique =
               new Signaletique()
               {
                   Categorie = ListGuidTireur.SearchCategorie(2012),
@@ -207,7 +207,7 @@ namespace WebApplication1.Models
                   NomMaman = "Hardeman Justine",
                   NomPapa = "Colpaert Benedict",
                   Telephone = new List<string>() { "0484907188","0484753639","0496379936" },
-                  FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Colpaert_Eleonara.pdf",
+                  FicheSignaletiqueUrl = "../../FileToUpload/FichesSignaletiques/Colpaert_Eleonora.pdf",
               };
         }
         public void Add_FichesSignalétiques_Persyn_Marc(string period, List<MembreData> Membres)

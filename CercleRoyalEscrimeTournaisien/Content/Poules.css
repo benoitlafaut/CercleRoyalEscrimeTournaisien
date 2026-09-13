@@ -121,9 +121,9 @@
     }
 
         .pretty-list li .index {
-            width: 28px;
+            width: 35px;
             height: 28px;
-            border-radius: 50%;
+            border-radius: 29%;
             background: linear-gradient(135deg, #38bdf8, #6366f1);
             display: flex;
             align-items: center;
@@ -304,6 +304,7 @@
 
 .ClassPouleInConstruireLesPoules {
     margin-right: 15px;
+    min-width: 49px;
 }
 
 .ClassAttributs {

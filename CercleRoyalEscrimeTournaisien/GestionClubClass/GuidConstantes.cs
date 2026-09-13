@@ -73,7 +73,7 @@ namespace WebApplication1.Models
         public static readonly Guid GuidJeanMarcCucheval = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F913");
         public static readonly Guid GuidFlorianBauffe = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F914");
         public static readonly Guid GuidMatthieuTanis = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F915");
-        public static readonly Guid GuidEleonaraColpaert = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F916");
+        public static readonly Guid GuidEleonoraColpaert = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F916");
         public static readonly Guid GuidMarcPersyn = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F917");
         public static readonly Guid GuidBalianJanssens = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F91A");
         public static readonly Guid GuidElineDesprets = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F91B");
@@ -85,6 +85,8 @@ namespace WebApplication1.Models
         public static readonly Guid GuidLeilaDerycke = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F920");
         public static readonly Guid GuidSébastienJanssens = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F91F");
         public static readonly Guid GuidValarJanssens = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F921");
+        public static readonly Guid GuidEllieMonfort = new Guid("239ED9DA-CB35-4E54-9610-CC872D07F922");
+
     }
 
     public class GuidConstantesImages

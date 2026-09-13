@@ -14,6 +14,31 @@ namespace WebApplication1.Models
                 {
                                     new JourDePrésence()
                 {
+                  DatePrésence = new DateTime(2026,9,13),
+                  EscrimeurId = new List<Guid>()
+                  {
+                    GuidConstantes.GuidAbelMotte,
+                    GuidConstantes.GuidBaptisteMotte,
+                    GuidConstantes.GuidEleonoraColpaert,
+                    GuidConstantes.GuidEllieMonfort,
+                    GuidConstantes.GuidEstebanDuthye,
+                    GuidConstantes.GuidFélixTrannoy,
+                    GuidConstantes.GuidFlorianBauffe,
+                    GuidConstantes.GuidGabrielSegard,
+                    GuidConstantes.GuidGaspardHoufflain,
+                    GuidConstantes.GuidGuillemineCuvelier,
+                    GuidConstantes.GuidJeanMarcCucheval,
+                    GuidConstantes.GuidLucasVerheye,
+                    GuidConstantes.GuidMaeVantroyen,
+                    GuidConstantes.GuidMartinSiu,
+                    GuidConstantes.GuidMatthieuTanis,
+                    GuidConstantes.GuidOscarDucrot,
+                    GuidConstantes.GuidRémiSoyez,
+                    GuidConstantes.GuidThéoCucheval_Rasson,
+                  }
+                },
+                                    new JourDePrésence()
+                {
                   DatePrésence = new DateTime(2026,9,11),
                   EscrimeurId = new List<Guid>()
                   {
@@ -53,7 +78,7 @@ namespace WebApplication1.Models
                     GuidConstantes.GuidBalianJanssens,
                     GuidConstantes.GuidBaptisteMotte,
                     GuidConstantes.GuidBenedictCosentini,
-                    GuidConstantes.GuidEleonaraColpaert,
+                    GuidConstantes.GuidEleonoraColpaert,
                     GuidConstantes.GuidEliotPunchoo,
                     GuidConstantes.GuidFabriceRazanajao,
                     GuidConstantes.GuidFélixTrannoy,
@@ -133,7 +158,7 @@ namespace WebApplication1.Models
                     GuidConstantes.GuidBalianJanssens,
                     GuidConstantes.GuidBaptisteMotte,
                     GuidConstantes.GuidBenedictCosentini,
-                    GuidConstantes.GuidEleonaraColpaert,
+                    GuidConstantes.GuidEleonoraColpaert,
                     GuidConstantes.GuidElineDesprets,
                     GuidConstantes.GuidEliotPunchoo,
                     GuidConstantes.GuidFabriceRazanajao,
@@ -775,13 +800,13 @@ namespace WebApplication1.Models
                     IsMatérielLoue = true
                 };
         }
-        public void Add_Paiements_Colpaert_Eleonara(string period, List<MembreData> Membres)
+        public void Add_Paiements_Colpaert_Eleonora(string period, List<MembreData> Membres)
         {
-            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidEleonaraColpaert && x.Période == period))
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidEleonoraColpaert && x.Période == period))
             {
                 return;
             }
-            Membres.Where(x => x.GuidId == GuidConstantes.GuidEleonaraColpaert && x.Période == period).FirstOrDefault().Paiement =
+            Membres.Where(x => x.GuidId == GuidConstantes.GuidEleonoraColpaert && x.Période == period).FirstOrDefault().Paiement =
                 new Paiement()
                 {
                     Periode = period,

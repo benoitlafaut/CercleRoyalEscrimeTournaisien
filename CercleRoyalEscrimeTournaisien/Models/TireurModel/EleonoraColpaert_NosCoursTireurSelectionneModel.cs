@@ -5,7 +5,7 @@ using WebApplication1.Models;
 namespace CercleRoyalEscrimeTournaisien
 {
     [Serializable]
-    public class EleonaraColpaert_NosCoursTireurSelectionneModel : NosCoursTireurSelectionneModel
+    public class EleonoraColpaert_NosCoursTireurSelectionneModel : NosCoursTireurSelectionneModel
     {
         private DateTime DateDeNaissance
         {
@@ -31,7 +31,7 @@ namespace CercleRoyalEscrimeTournaisien
                 };
             }
         }
-        public EleonaraColpaert_NosCoursTireurSelectionneModel(Tireur tireurSelectionne)  : base()
+        public EleonoraColpaert_NosCoursTireurSelectionneModel(Tireur tireurSelectionne)  : base()
         {
             TireurSelectionne = tireurSelectionne;
         }

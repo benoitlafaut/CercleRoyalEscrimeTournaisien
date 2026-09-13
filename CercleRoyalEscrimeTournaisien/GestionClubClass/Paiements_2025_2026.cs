@@ -44,7 +44,7 @@ namespace WebApplication1.Models
                     GuidConstantes.GuidAnaelleIvanov,
                     GuidConstantes.GuidBaptisteMotte,
                     GuidConstantes.GuidBenedictCosentini,
-                    GuidConstantes.GuidEleonaraColpaert,
+                    GuidConstantes.GuidEleonoraColpaert,
                     GuidConstantes.GuidEliotPunchoo,
                     GuidConstantes.GuidFabriceRazanajao,
                     GuidConstantes.GuidFélixTrannoy,
@@ -169,7 +169,7 @@ namespace WebApplication1.Models
                   {
                     GuidConstantes.GuidAmadoSimon,
                     GuidConstantes.GuidBenedictCosentini,
-                    GuidConstantes.GuidEleonaraColpaert,
+                    GuidConstantes.GuidEleonoraColpaert,
                     GuidConstantes.GuidEstebanDuthye,
                     GuidConstantes.GuidFélixTrannoy,
                     GuidConstantes.GuidFlorianBauffe,
@@ -217,7 +217,7 @@ namespace WebApplication1.Models
                     GuidConstantes.GuidAnaelleIvanov,
                     GuidConstantes.GuidBaptisteMotte,
                     GuidConstantes.GuidBenedictCosentini,
-                    GuidConstantes.GuidEleonaraColpaert,
+                    GuidConstantes.GuidEleonoraColpaert,
                     GuidConstantes.GuidEliotPunchoo,
                     GuidConstantes.GuidFabriceRazanajao,
                     GuidConstantes.GuidFélixTrannoy,
@@ -237,7 +237,7 @@ namespace WebApplication1.Models
                     GuidConstantes.GuidAmelLawrizy,
                     GuidConstantes.GuidAnaelleIvanov,
                     GuidConstantes.GuidBenedictCosentini,
-                    GuidConstantes.GuidEleonaraColpaert,
+                    GuidConstantes.GuidEleonoraColpaert,
                     GuidConstantes.GuidEliotPunchoo,
                     GuidConstantes.GuidEstebanDuthye,
                     GuidConstantes.GuidFabriceRazanajao,
@@ -288,7 +288,7 @@ namespace WebApplication1.Models
                     GuidConstantes.GuidAmadoSimon,
                     GuidConstantes.GuidGabrielSegard,
                     GuidConstantes.GuidSolalSchrouf,
-                    GuidConstantes.GuidEleonaraColpaert,
+                    GuidConstantes.GuidEleonoraColpaert,
                     GuidConstantes.GuidAnaelleIvanov,
                     GuidConstantes.GuidEliotPunchoo,
                     GuidConstantes.GuidMartinSiu,
@@ -2613,13 +2613,13 @@ namespace WebApplication1.Models
                     IsMatérielLoue = true
                 };
         }
-        public void Add_Paiements_Colpaert_Eleonara(string period, List<MembreData> Membres)
+        public void Add_Paiements_Colpaert_Eleonora(string period, List<MembreData> Membres)
         {
-            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidEleonaraColpaert && x.Période == period))
+            if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidEleonoraColpaert && x.Période == period))
             {
                 return;
             }
-            Membres.Where(x => x.GuidId == GuidConstantes.GuidEleonaraColpaert && x.Période == period).FirstOrDefault().Paiement =
+            Membres.Where(x => x.GuidId == GuidConstantes.GuidEleonoraColpaert && x.Période == period).FirstOrDefault().Paiement =
                 new Paiement()
                 {
                     Periode = period,

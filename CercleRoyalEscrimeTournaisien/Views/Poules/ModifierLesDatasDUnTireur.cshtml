@@ -147,16 +147,19 @@
             .GetProperties()
             .Where(p => p.PropertyType == typeof(bool)))
         {
-            var value = (bool)prop.GetValue(tireur);
-            <div class="form-check">
+            if (prop.Name != "TireurSelected")
+            {
+                var value = (bool)prop.GetValue(tireur);
+                <div class="form-check">
 
-                <input type="checkbox"
-                       class="form-check-input"
-                       name="@prop.Name"
-                       value="true"
-                       @(value ? "checked" : "") />
-                <label class="form-check-label">@prop.Name</label>
-            </div>
+                    <input type="checkbox"
+                           class="form-check-input"
+                           name="@prop.Name"
+                           value="true"
+                           @(value ? "checked" : "") />
+                    <label class="form-check-label">@prop.Name</label>
+                </div>
+            }
         }
 
     </div>

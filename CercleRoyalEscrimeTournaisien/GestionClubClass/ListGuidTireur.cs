@@ -383,7 +383,7 @@ namespace WebApplication1.Models
                new MembreData() { GuidId = GuidConstantes.GuidFlorianBauffe, Nom = "Bauffe", Prénom = "Florian", Période = period2025_2026 }
            );
             Membres.Add(
-               new MembreData() { GuidId = GuidConstantes.GuidEleonaraColpaert, Nom = "Colpaert", Prénom = "Eleonara", Période = period2025_2026 }
+               new MembreData() { GuidId = GuidConstantes.GuidEleonoraColpaert, Nom = "Colpaert", Prénom = "Eleonora", Période = period2025_2026 }
            );
             Membres.Add(
                new MembreData() { GuidId = GuidConstantes.GuidMarcPersyn, Nom = "Persyn", Prénom = "Marc", Période = period2025_2026 }
@@ -392,131 +392,7 @@ namespace WebApplication1.Models
             // 2026-2027
 
             string period2026_2027 = "2026-2027";
-            Membres.AddRange(GetMembresForPeriod20262027(serverTmp, period2026_2027));
-            //Membres = GetMembresForPeriod20262027(serverTmp, period2026_2027);
-
-          //  Membres.Add(
-          //      new MembreData() { GuidId = GuidConstantes.GuidOscarDeblocq, Nom = "Deblocq", Prénom = "Oscar", Période = period2026_2027 }
-          //  );
-          //  Membres.Add(
-          //      new MembreData() { GuidId = GuidConstantes.GuidFabriceRazanajao, Nom = "Razanajao", Prénom = "Fabrice", Période = period2026_2027 }
-          //  );
-          //  Membres.Add(
-          //      new MembreData() { GuidId = GuidConstantes.GuidFélixTrannoy, Nom = "Trannoy", Prénom = "Félix", Période = period2026_2027 }
-          //  );
-          //  Membres.Add(
-          //      new MembreData() { GuidId = GuidConstantes.GuidRégisTrannoy, Nom = "Trannoy", Prénom = "Régis", Période = period2026_2027 }
-          //  );
-          //  Membres.Add(
-          //      new MembreData() { GuidId = GuidConstantes.GuidAbelMotte, Nom = "Motte", Prénom = "Abel", Période = period2026_2027 }
-          //  );
-          //  Membres.Add(
-          //      new MembreData() { GuidId = GuidConstantes.GuidBaptisteMotte, Nom = "Motte", Prénom = "Baptiste", Période = period2026_2027 }
-          //  );
-
-          //  Membres.Add(
-          //      new MembreData() { GuidId = GuidConstantes.GuidRémiSoyez, Nom = "Soyez", Prénom = "Rémi", Période = period2026_2027 }
-          //  );
-           
-          //  Membres.Add(
-          //      new MembreData() { GuidId = GuidConstantes.GuidJordanMestdagh, Nom = "Mestdagh", Prénom = "Jordan", Période = period2026_2027 }
-          //  );
-          //  Membres.Add(
-          //      new MembreData() { GuidId = GuidConstantes.GuidMartinSiu, Nom = "Siu", Prénom = "Martin", Période = period2026_2027 }
-          //  );
-          //  Membres.Add(
-          //      new MembreData() { GuidId = GuidConstantes.GuidRaedwaldVercouter, Nom = "Vercouter", Prénom = "Raedwald", Période = period2026_2027 }
-          //  );
-          //  Membres.Add(
-          //      new MembreData() { GuidId = GuidConstantes.GuidAuroreCarlier, Nom = "Carlier", Prénom = "Aurore", Période = period2026_2027 }
-          //  );
-          //  Membres.Add(
-          //      new MembreData() { GuidId = GuidConstantes.GuidAnaelleIvanov, Nom = "Ivanov", Prénom = "Anaelle", Période = period2026_2027 }
-          //  );
-          //  Membres.Add(
-          //      new MembreData() { GuidId = GuidConstantes.GuidLiliMestdag, Nom = "Mestdag", Prénom = "Lili", Période = period2026_2027 }
-          //  );
-            
-          //  Membres.Add(
-          //     new MembreData() { GuidId = GuidConstantes.GuidMaeVantroyen, Nom = "Vantroyen", Prénom = "Maé", Période = period2026_2027 }
-          //  );
-          //  Membres.Add(
-          //      new MembreData() { GuidId = GuidConstantes.GuidAmadoSimon, Nom = "Simon", Prénom = "Amado", Période = period2026_2027 }
-          //  );
-          //  Membres.Add(
-          //      new MembreData() { GuidId = GuidConstantes.GuidElodieMass, Nom = "Mass", Prénom = "Elodie", Période = period2026_2027 }
-          //  );
-          //  Membres.Add(
-          //      new MembreData() { GuidId = GuidConstantes.GuidRebeccaVandy, Nom = "Vandy", Prénom = "Rebecca", Période = period2026_2027 }
-          //  );
-          //  Membres.Add(
-          //      new MembreData() { GuidId = GuidConstantes.GuidEliotPunchoo, Nom = "Punchoo", Prénom = "Eliot", Période = period2026_2027 }
-          //  );
-          //  Membres.Add(
-          //      new MembreData() { GuidId = GuidConstantes.GuidNoelMarieDransart, Nom = "Dransart", Prénom = "Noël-Marie", Période = period2026_2027 }
-          //  );
-           
-           
-          //  Membres.Add(
-          //      new MembreData() { GuidId = GuidConstantes.GuidRomainBracquart, Nom = "Bracquart", Prénom = "Romain", Période = period2026_2027 }
-          //  );
-          //  Membres.Add(
-          //    new MembreData() { GuidId = GuidConstantes.GuidSolalSchrouf, Nom = "Schrouf", Prénom = "Solal", Période = period2026_2027 }
-          //);
-         
-         
-          //  Membres.Add(
-          //    new MembreData() { GuidId = GuidConstantes.GuidBenedictCosentini, Nom = "Cosentini", Prénom = "Benedict", Période = period2026_2027 }
-          //);
-          //  Membres.Add(
-          //    new MembreData() { GuidId = GuidConstantes.GuidLucasVerheye, Nom = "Verheye", Prénom = "Lucas", Période = period2026_2027 }
-          //);
-           
-
-          //  Membres.Add(
-          //              new MembreData() { GuidId = GuidConstantes.GuidThéoCucheval_Rasson, Nom = "Cucheval_Rasson", Prénom = "Théo", Période = period2026_2027 }
-          //          );
-          //  Membres.Add(
-          //      new MembreData() { GuidId = GuidConstantes.GuidOscarDucrot, Nom = "Ducrot", Prénom = "Oscar", Période = period2026_2027 }
-          //  );
-          //  Membres.Add(
-          //      new MembreData() { GuidId = GuidConstantes.GuidGwendalLecomte, Nom = "Lecomte", Prénom = "Gwendal", Période = period2026_2027 }
-          //  );
-          //  Membres.Add(
-          //      new MembreData() { GuidId = GuidConstantes.GuidAmelLawrizy, Nom = "Lawrizy", Prénom = "Amel", Période = period2026_2027 }
-          //  );
-           
-          //  Membres.Add(
-          //     new MembreData() { GuidId = GuidConstantes.GuidSébastienMotte, Nom = "Motte", Prénom = "Sébastien", Période = period2026_2027 }
-          // );
-          //  Membres.Add(
-          //     new MembreData() { GuidId = GuidConstantes.GuidDelphineVercauteren, Nom = "Vercauteren", Prénom = "Delphine", Période = period2026_2027 }
-          // );
-          //  Membres.Add(
-          //     new MembreData() { GuidId = GuidConstantes.GuidBenoîtLafaut, Nom = "Lafaut", Prénom = "Benoît", Période = period2026_2027 }
-          // );
-          
-          //  Membres.Add(
-          //     new MembreData() { GuidId = GuidConstantes.GuidGabrielSegard, Nom = "Segard", Prénom = "Gabriel", Période = period2026_2027 }
-          // );
-          //  Membres.Add(
-          //     new MembreData() { GuidId = GuidConstantes.GuidEstebanDuthye, Nom = "Duthye", Prénom = "Esteban", Période = period2026_2027 }
-          // );
-          //  Membres.Add(
-          //     new MembreData() { GuidId = GuidConstantes.GuidJeanMarcCucheval, Nom = "Cucheval", Prénom = "Jean-Marc", Période = period2026_2027 }
-          // );
-          //  Membres.Add(
-          //     new MembreData() { GuidId = GuidConstantes.GuidMatthieuTanis, Nom = "Tanis", Prénom = "Matthieu", Période = period2026_2027 }
-          // );
-          //  Membres.Add(
-          //     new MembreData() { GuidId = GuidConstantes.GuidFlorianBauffe, Nom = "Bauffe", Prénom = "Florian", Période = period2026_2027 }
-          // );
-          //  Membres.Add(
-          //     new MembreData() { GuidId = GuidConstantes.GuidEleonaraColpaert, Nom = "Colpaert", Prénom = "Eleonara", Période = period2026_2027 }
-          // );
-          //  Membres.Add(
-          //     new MembreData() { GuidId = GuidConstantes.GuidMarcPersyn, Nom = "Persyn", Prénom = "Marc", Période = period2026_2027 }
-          // );
+            Membres.AddRange(GetMembresForPeriod20262027(serverTmp, period2026_2027));            
         }
 
         private List<MembreData> GetMembresForPeriod20262027(HttpServerUtilityBase serverTmp, string period2026_2027)
