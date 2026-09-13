@@ -1,12 +1,12 @@
 ﻿@model CercleRoyalEscrimeTournaisien.Models.PoulesViewModel
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 @section css {
-
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://code.responsivevoice.org/responsivevoice.js?key=b08U7IYJ" id="responsive-voice-js"></script>
     <link rel="preload" href="https://responsivevoice.org/wp-content/plugins/w3-total-cache/pub/js/lazyload.min.js" as="script">
     <script src="https://responsivevoice.org/wp-content/cache/minify/818c0.js"></script>
 }
+
 
 @{
     string urlActionAjouterTireurAUnePoule = Url.Action("AjouterTireurAUnePoule", "Poules");
@@ -39,6 +39,7 @@
 <!DOCTYPE html>
 <html>
 <body id="bodyPoules">
+
     <div id="spinner-loading" class="loader-overlay">
         <div class="loader"></div>
     </div>

@@ -637,7 +637,7 @@ namespace CercleRoyalEscrimeTournaisien
             string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
 
             string mySelectQuery = "UPDATE TableListeTireursData SET Birthdate = ?"
-                + " where GuidTireur = ? and Période = ?";
+                + " where GuidTireur = ? and Periode = ?";
 
             using (var conn = new OleDbConnection(ConnectionString))
             {
@@ -646,7 +646,7 @@ namespace CercleRoyalEscrimeTournaisien
                 {
  
                     cmd.Parameters.AddWithValue("?", myRequestModifierUnTireur.NewComerBirthDate);
-                    cmd.Parameters.AddWithValue("?", myRequestModifierUnTireur.NewComerGuidTireur);
+                    cmd.Parameters.AddWithValue("?", myRequestModifierUnTireur.NewComerGuidTireur.ToUpper());
                     cmd.Parameters.AddWithValue("?", period2026_2027);
                     
                     using (var reader = cmd.ExecuteReader())
