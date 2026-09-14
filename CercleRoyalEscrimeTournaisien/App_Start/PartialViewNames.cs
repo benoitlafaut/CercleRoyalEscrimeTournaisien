@@ -36,5 +36,6 @@
         public const string ModifierLesDatasDUnTireur = "ModifierLesDatasDUnTireur";
         public const string ConstruireLesLecons = "ConstruireLesLecons";
         public const string AfficherLesLecons = "AfficherLesLecons";
+        public const string PrendreLesPresences = "PrendreLesPresences";
     }
 }

@@ -11,6 +11,7 @@ $(document).ready(function () {
         $("#buttonModifierLesDatasDUnTireur").css('display', 'none');
         $("#buttonConstruireLesLecons").css('display', 'none');
         $("#buttonAfficherLesLecons").css('display', 'none');
+        $("#buttonPrendreLesPresences").css('display', 'none');
     }   
 
     $.startLoading = function () {

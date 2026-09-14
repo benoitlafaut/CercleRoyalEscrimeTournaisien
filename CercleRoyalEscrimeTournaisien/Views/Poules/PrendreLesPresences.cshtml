@@ -1,0 +1,36 @@
+﻿@model CercleRoyalEscrimeTournaisien.Models.PoulesViewModel
+
+<div style="margin-top:16px;">   
+</div>
+
+@{
+    foreach (var tireur in Model.ListTireursPourLesPresences)
+    {
+        <div style="font-size:18px;margin-top:5px;margin-bottom:5px;">
+            <span style="min-width:180px;display:inline-block;">@tireur.Value.Prenom @tireur.Value.Nom</span>        
+            <input type="checkbox" class="chk-tireur form-check-input" name="@tireur.Value.GuidTireur" id="@tireur.Value.GuidTireur" />
+        </div>
+    }
+    
+    <button id="btnSave" style="height:35px;">Sauvegarder les présences</button>
+}
+
+<script>
+    $("#btnSave").click(function () {
+        var tireurs = $(".chk-tireur:checked")
+            .map(function () {
+                return $(this).prop('name');
+            })
+            .get();
+
+        $.ajax({
+            url: '/Poules/SavePresences',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(tireurs),
+            success: function (result) {
+                alert('sauvegardé');
+            }
+        });
+    });
+</script>

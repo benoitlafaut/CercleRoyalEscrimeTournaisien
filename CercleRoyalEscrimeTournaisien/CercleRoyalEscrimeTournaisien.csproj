@@ -1443,6 +1443,7 @@
     <Content Include="Views\Poules\ModifierLesDatasDUnTireur.cshtml" />
     <Content Include="Views\Poules\ConstruireLesLecons.cshtml" />
     <Content Include="Views\Poules\AfficherLesLecons.cshtml" />
+    <Content Include="Views\Poules\PrendreLesPresences.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

@@ -15,7 +15,8 @@
             ModifierUnTireur = 9,
             ModifierLesDatasDUnTireur = 10,
             ConstruireLesLecons = 11,
-            AfficherLesLecons = 12
+            AfficherLesLecons = 12,
+            PrendreLesPresences = 13
         }
     }
 }

@@ -12,6 +12,8 @@ namespace CercleRoyalEscrimeTournaisien.Models
     [Serializable]
     public class PoulesViewModel
     {
+
+        private string period2026_2027 = "2026-2027";
         public PoulesViewModel(HttpServerUtilityBase serverTmp)
         {
             this.ServerTmp = serverTmp;
@@ -130,17 +132,31 @@ namespace CercleRoyalEscrimeTournaisien.Models
         {
             get
             {
-                string period2026_2027 = "2026-2027";
                 BaseDeDonnéesMapper baseDeDonnéesMapper = new BaseDeDonnéesMapper();
                 List<TableListeTireursData> tableTireurs = baseDeDonnéesMapper.GetTableListeTireursData(ServerTmp, period2026_2027);
                 return tableTireurs.ToDictionary(g => new Guid(g.GuidTireur), g => g.Prenom + " " + g.Nom);
+            }
+        }
+        public IDictionary<string, ClassPresence> ListTireursPourLesPresences
+        {
+            get
+            {
+                BaseDeDonnéesMapper baseDeDonnéesMapper = new BaseDeDonnéesMapper();
+                List<TableListeTireursData> tableTireurs = baseDeDonnéesMapper.GetTableListeTireursData(ServerTmp, period2026_2027);
+               return tableTireurs.OrderBy(x=>x.Prenom).ToDictionary(
+                        x => x.GuidTireur,
+                        x => new ClassPresence
+                        {
+                            Nom = x.Nom,
+                            Prenom = x.Prenom,
+                            GuidTireur = x.GuidTireur
+                        });
             }
         }
         public List<TableDesLecons> ListDesLecons
         {
             get
             {
-                string period2026_2027 = "2026-2027";
                 BaseDeDonnéesMapper baseDeDonnéesMapper = new BaseDeDonnéesMapper();
                 List<TableListeTireursData> tableTireurs = baseDeDonnéesMapper.GetTableListeTireursData(ServerTmp, period2026_2027);
 
@@ -171,7 +187,6 @@ namespace CercleRoyalEscrimeTournaisien.Models
         {
             get
             {
-                string period2026_2027 = "2026-2027";
                 BaseDeDonnéesMapper baseDeDonnéesMapper = new BaseDeDonnéesMapper();
                 return baseDeDonnéesMapper.GetTableListeTireursData(ServerTmp, period2026_2027);
             } 
@@ -645,7 +660,6 @@ namespace CercleRoyalEscrimeTournaisien.Models
         private void CalculerAgeDeChaqueTireur()
         {
             AgesList = new List<ClassAge>() { };
-            string period2026_2027 = "2026-2027";
 
             BaseDeDonnéesMapper baseDeDonnéesMapper = new BaseDeDonnéesMapper();
             List<TableListeTireursData> tableTireurs = baseDeDonnéesMapper.GetTableListeTireursData(ServerTmp, period2026_2027);
@@ -755,8 +769,16 @@ namespace CercleRoyalEscrimeTournaisien.Models
         }      
     }
 
+    public class ClassPresence
+    {
+        public string GuidTireur { get; set; }
+        public string Prenom { get; set; }
+        public string Nom { get; set; }
+
+    }
+
     #region All Class public
-   
+
 
     #endregion
 }

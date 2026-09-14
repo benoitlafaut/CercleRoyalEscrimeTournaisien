@@ -315,40 +315,45 @@
 
 .ClassDivInFirstScreen {
     display: grid;
-    grid-template-columns: repeat(14, 1fr);
-    gap: 6px;
+    grid-template-columns: repeat(14, 0fr);
+    row-gap: 3px;
 }
 
 @media screen and (min-width: 800px) and (max-width: 900px) {
     .ClassDivInFirstScreen {
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(6, 0fr);
+        row-gap: 3px;
     }
 }
 
 @media screen and (min-width: 600px) and (max-width: 800px) {
     .ClassDivInFirstScreen {
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(6, 0fr);
+        row-gap: 3px;
     }
 }
 
 @media screen and (min-width: 500px) and (max-width: 600px) {
 
     .ClassDivInFirstScreen {
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(6, 0fr);
+        row-gap: 3px;
     }
 }
 
 @media screen and (min-width: 400px) and (max-width: 500px) {
 
     .ClassDivInFirstScreen {
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(5, 0fr);
+        row-gap: 3px;
     }
 }
 
 @media screen and (min-width: 10px) and (max-width: 400px) {
 
     .ClassDivInFirstScreen {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(4, 0fr);
+        row-gap: 3px;
     }
 }
 

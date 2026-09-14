@@ -139,6 +139,15 @@ namespace CercleRoyalEscrimeTournaisien
         }
 
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+        public ActionResult PrendreLesPresences()
+        {
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+            poulesViewModel.ScreenIndex = ClassEnumScreen.EnumScreen.PrendreLesPresences;
+
+            return View(Constantes.Poules, poulesViewModel);
+        }
+
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
         public ActionResult AjouterUneLeçonACeTireur(string guidTireur, int nombreDeLeconsDejaRecues)
         {
             PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
@@ -1000,7 +1009,55 @@ namespace CercleRoyalEscrimeTournaisien
             }, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public ActionResult SavePresences(List<string> tireurs)
+        {
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
 
+            var path = Server.MapPath("/App_Data/Poules.accdb");
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
+            string mySelectQueryDelete2 = @" DELETE FROM TableDesPresences WHERE DateDuJour = @t1";
+
+            using (var conn = new OleDbConnection(ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new OleDbCommand(mySelectQueryDelete2, conn))
+                {
+                    cmd.Parameters.AddWithValue("@t1", poulesViewModel.DateDuJourWithoutDayLabel);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                    }
+                }
+            }
+
+            foreach (string tireurGuid in tireurs)
+            {  
+                using (var conn = new OleDbConnection(ConnectionString))
+                {
+                    conn.Open();
+
+                    string mySelectQuery2 = "INSERT INTO TableDesPresences (DateDuJour, GuidTireur, Nom, Prenom ) Values (@param1, @param2, @param3, @param4)";
+
+
+                    using (var cmd = new OleDbCommand(mySelectQuery2, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@param1", poulesViewModel.DateDuJourWithoutDayLabel);
+                        cmd.Parameters.AddWithValue("@param2", tireurGuid);
+                        cmd.Parameters.AddWithValue("@param3", poulesViewModel.ListTireursPourLesPresences.FirstOrDefault(x=>x.Value.GuidTireur == tireurGuid).Value.Nom);
+                        cmd.Parameters.AddWithValue("@param4", poulesViewModel.ListTireursPourLesPresences.FirstOrDefault(x => x.Value.GuidTireur == tireurGuid).Value.Prenom);
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                        }
+                    }
+                }               
+            }
+
+            return Json(new { Success = true });
+        }
+
+        #region  All Methods Private
         private string GetArmePratiquee(string dateDeLaPoule)
         {
             string arme = string.Empty;
@@ -1247,6 +1304,7 @@ namespace CercleRoyalEscrimeTournaisien
 
             return existsRecord;
         }
+        #endregion
 
         #region renderRazorView
         private string RenderRazorViewToString(string viewName, object model)

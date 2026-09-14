@@ -21,6 +21,7 @@
     string urlActionModifierLesDatasDUnTireur = Url.Action("ModifierLesDatasDUnTireur", "Poules");
     string urlActionConstruireLesLecons = Url.Action("ConstruireLesLecons", "Poules");
     string urlActionAfficherLesLecons = Url.Action("AfficherLesLecons", "Poules");
+    string urlActionPrendreLesPresences = Url.Action("PrendreLesPresences", "Poules");
 
     string[] dateDuJourWithDayLabel = Model.DateDuJourWithDayLabel.Split(',');
     string classIndicatorAjoutTireur = Model.ScreenIndex == ClassEnumScreen.EnumScreen.AddTireurs ? "ClassIndicatorBorderAndColorBlue" : "";
@@ -34,6 +35,7 @@
     string classIndicatorModifierLesDatasDUnTireur = Model.ScreenIndex == ClassEnumScreen.EnumScreen.ModifierLesDatasDUnTireur ? "ClassIndicatorBorderAndColorBlue" : "";
     string classIndicatorConstruireLesLecons = Model.ScreenIndex == ClassEnumScreen.EnumScreen.ConstruireLesLecons ? "ClassIndicatorBorderAndColorBlue" : "";
     string classIndicatorAfficherLesLecons = Model.ScreenIndex == ClassEnumScreen.EnumScreen.AfficherLesLecons ? "ClassIndicatorBorderAndColorBlue" : "";
+    string classIndicatorPrendreLesPresences = Model.ScreenIndex == ClassEnumScreen.EnumScreen.PrendreLesPresences ? "ClassIndicatorBorderAndColorBlue" : "";
 }
 
 <!DOCTYPE html>
@@ -91,8 +93,6 @@
             <span>éliminations directes</span>
         </button>
 
-
-
         <button id="buttonModifierLesDatasDUnTireur" class="@classIndicatorModifierLesDatasDUnTireur ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading(); location.href ='@urlActionModifierLesDatasDUnTireur'">
             <span>Modifier les datas</span>
             <span>d'un tireur</span>
@@ -111,6 +111,11 @@
         <button id="buttonAfficherLesDatesPrecedentes" class="@classIndicatorAfficherLesDatesPrecedentes ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading();location.href='@urlActionAfficherLesDatesPrecedentes'">
             <span>Afficher les résultats</span>
             <span>des séances précédentes</span>
+        </button>
+        
+        <button id="buttonPrendreLesPresences" class="@classIndicatorPrendreLesPresences ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading();location.href='@urlActionPrendreLesPresences'">
+            <span>Prendre</span>
+            <span>les présences</span>
         </button>
     </div>
 
@@ -181,6 +186,12 @@
         case ClassEnumScreen.EnumScreen.AfficherLesLecons:
             <div class="infos1 clearfix">
                 @Html.Partial(PartialViewNames.AfficherLesLecons, Model)
+            </div>
+
+            break;
+        case ClassEnumScreen.EnumScreen.PrendreLesPresences:
+            <div class="infos1 clearfix">
+                @Html.Partial(PartialViewNames.PrendreLesPresences, Model)
             </div>
 
             break;
