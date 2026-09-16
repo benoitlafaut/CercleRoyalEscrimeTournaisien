@@ -1,186 +1,77 @@
-﻿using System;
+﻿using CercleRoyalEscrimeTournaisien.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.OleDb;
+using System.Globalization;
 using System.Linq;
+using System.Web;
 
 namespace WebApplication1.Models
 {
     public class Paiements_2026_2027
     {
-        public JoursDePrésence ChargerPresences()
+        private string dateDebutDeSaison = "01/09/2026";
+        public JoursDePrésence ChargerPresences(HttpServerUtilityBase serverTmp)
         {
+            List<ClassPresence> presences = new List<ClassPresence>() { };
+            string dateDebutDeSaisonFormatted = DateTime.ParseExact(dateDebutDeSaison, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd");
+
+            var path = serverTmp.MapPath("/App_Data/Poules.accdb");
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
+
+
+            string sql = "SELECT * FROM TableDesPresences WHERE ( Right(DateDuJour, 4) & Mid (DateDuJour, 4, 2) & Left(DateDuJour, 2)) >= ?";
+
+            using (var conn = new OleDbConnection(ConnectionString))
+            {
+                conn.Open();
+
+                using (var cmd = new OleDbCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@p1", dateDebutDeSaisonFormatted);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+
+                            presences.Add(new ClassPresence()
+                            {
+                                DateDuJour = (string)reader["DateDuJour"],
+                                GuidTireur = (string)reader["GuidTireur"],
+                                Nom = (string)reader["Nom"],
+                                Prenom = (string)reader["Prenom"],
+                            });
+                            // traitement
+                        }
+                    }
+
+                }
+            }
+
             JoursDePrésence joursDePrésence = new JoursDePrésence()
             {
-                JourDePrésence = new List<JourDePrésence>()
-                {
-                                    new JourDePrésence()
-                {
-                  DatePrésence = new DateTime(2026,9,13),
-                  EscrimeurId = new List<Guid>()
-                  {
-                    GuidConstantes.GuidAbelMotte,
-                    GuidConstantes.GuidBaptisteMotte,
-                    GuidConstantes.GuidEleonoraColpaert,
-                    GuidConstantes.GuidEllieMonfort,
-                    GuidConstantes.GuidEstebanDuthye,
-                    GuidConstantes.GuidFélixTrannoy,
-                    GuidConstantes.GuidFlorianBauffe,
-                    GuidConstantes.GuidGabrielSegard,
-                    GuidConstantes.GuidGaspardHoufflain,
-                    GuidConstantes.GuidGuillemineCuvelier,
-                    GuidConstantes.GuidJeanMarcCucheval,
-                    GuidConstantes.GuidLucasVerheye,
-                    GuidConstantes.GuidMaeVantroyen,
-                    GuidConstantes.GuidMartinSiu,
-                    GuidConstantes.GuidMatthieuTanis,
-                    GuidConstantes.GuidOscarDucrot,
-                    GuidConstantes.GuidRémiSoyez,
-                    GuidConstantes.GuidThéoCucheval_Rasson,
-                  }
-                },
-                                    new JourDePrésence()
-                {
-                  DatePrésence = new DateTime(2026,9,11),
-                  EscrimeurId = new List<Guid>()
-                  {
-                    GuidConstantes.GuidAbelMotte,
-                    GuidConstantes.GuidAnaelleIvanov,
-                    GuidConstantes.GuidBalianJanssens,
-                    GuidConstantes.GuidBaptisteMotte,
-                    GuidConstantes.GuidBenedictCosentini,
-                    GuidConstantes.GuidElineDesprets,
-                    GuidConstantes.GuidEliotPunchoo,
-                    GuidConstantes.GuidEstebanDuthye,
-                    GuidConstantes.GuidFabriceRazanajao,
-                    GuidConstantes.GuidFélixTrannoy,
-                    GuidConstantes.GuidGabrielSegard,
-                    GuidConstantes.GuidGaranceMorren,
-                    GuidConstantes.GuidGaspardHoufflain,
-                    GuidConstantes.GuidGuillemineCuvelier,
-                    GuidConstantes.GuidGwendalLecomte,
-                    GuidConstantes.GuidJeanMarcCucheval,
-                    GuidConstantes.GuidLeilaDerycke,
-                    GuidConstantes.GuidMaeVantroyen,
-                    GuidConstantes.GuidOscarDucrot,
-                    GuidConstantes.GuidRaedwaldVercouter,
-                    GuidConstantes.GuidRémiSoyez,
-                    GuidConstantes.GuidSébastienJanssens,
-                    GuidConstantes.GuidSolalSchrouf,
-                    GuidConstantes.GuidThéoCucheval_Rasson,
-                    GuidConstantes.GuidValarJanssens,
-                  }
-                },
-                                    new JourDePrésence()
-                {
-                  DatePrésence = new DateTime(2026,9,9),
-                  EscrimeurId = new List<Guid>()
-                  {
-                    GuidConstantes.GuidAnaelleIvanov,
-                    GuidConstantes.GuidBalianJanssens,
-                    GuidConstantes.GuidBaptisteMotte,
-                    GuidConstantes.GuidBenedictCosentini,
-                    GuidConstantes.GuidEleonoraColpaert,
-                    GuidConstantes.GuidEliotPunchoo,
-                    GuidConstantes.GuidFabriceRazanajao,
-                    GuidConstantes.GuidFélixTrannoy,
-                    GuidConstantes.GuidGaspardHoufflain,
-                    GuidConstantes.GuidJeanMarcCucheval,
-                    GuidConstantes.GuidJosephBearez,
-                    GuidConstantes.GuidLeilaDerycke,
-                    GuidConstantes.GuidLiliMestdag,
-                    GuidConstantes.GuidMaeVantroyen,
-                    GuidConstantes.GuidRebeccaVandy,
-                    GuidConstantes.GuidRémiSoyez,
-                    GuidConstantes.GuidSébastienJanssens,
-                    GuidConstantes.GuidSolalSchrouf,
-                    GuidConstantes.GuidThéoCucheval_Rasson,
-                    GuidConstantes.GuidValarJanssens,
-                  }
-                },
-                    new JourDePrésence()
-                {
-                  DatePrésence = new DateTime(2026,9,6),
-                  EscrimeurId = new List<Guid>()
-                  {
-                    GuidConstantes.GuidBenedictCosentini,
-                    GuidConstantes.GuidElineDesprets,
-                    GuidConstantes.GuidEliotPunchoo,
-                    GuidConstantes.GuidEstebanDuthye,
-                    GuidConstantes.GuidFélixTrannoy,
-                    GuidConstantes.GuidGabrielSegard,
-                    GuidConstantes.GuidGaspardHoufflain,
-                    GuidConstantes.GuidGuillemineCuvelier,
-                    GuidConstantes.GuidJeanMarcCucheval,
-                    GuidConstantes.GuidLucasVerheye,
-                    GuidConstantes.GuidMartinSiu,
-                    GuidConstantes.GuidOscarDeblocq,
-                    GuidConstantes.GuidRaedwaldVercouter,
-                    GuidConstantes.GuidRebeccaVandy,
-                    GuidConstantes.GuidRémiSoyez,
-                    GuidConstantes.GuidRomainBracquart,
-                    GuidConstantes.GuidThéoCucheval_Rasson,
-                  }
-                },
-                                    new JourDePrésence()
-                {
-                  DatePrésence = new DateTime(2026,9,4),
-                  EscrimeurId = new List<Guid>()
-                  {
-                    GuidConstantes.GuidAbelMotte,
-                    GuidConstantes.GuidAmelLawrizy,
-                    GuidConstantes.GuidAnaelleIvanov,
-                    GuidConstantes.GuidBalianJanssens,
-                    GuidConstantes.GuidBaptisteMotte,
-                    GuidConstantes.GuidElineDesprets,
-                    GuidConstantes.GuidEstebanDuthye,
-                    GuidConstantes.GuidFabriceRazanajao,
-                    GuidConstantes.GuidFélixTrannoy,
-                    GuidConstantes.GuidGaranceMorren,
-                    GuidConstantes.GuidGaspardHoufflain,
-                    GuidConstantes.GuidGuillemineCuvelier,
-                    GuidConstantes.GuidJeanMarcCucheval,
-                    GuidConstantes.GuidJordanMestdagh,
-                    GuidConstantes.GuidJoshuaBonte,
-                    GuidConstantes.GuidLucasVerheye,
-                    GuidConstantes.GuidMaeVantroyen,
-                    GuidConstantes.GuidMartinSiu,
-                    GuidConstantes.GuidOscarDeblocq,
-                    GuidConstantes.GuidRémiSoyez,
-                    GuidConstantes.GuidSolalSchrouf,
-                    GuidConstantes.GuidThéoCucheval_Rasson,
-                  }
-                },
-                                    new JourDePrésence()
-                {
-                  DatePrésence = new DateTime(2026,9,2),
-                  EscrimeurId = new List<Guid>()
-                  {
-                    GuidConstantes.GuidAnaelleIvanov,
-                    GuidConstantes.GuidBalianJanssens,
-                    GuidConstantes.GuidBaptisteMotte,
-                    GuidConstantes.GuidBenedictCosentini,
-                    GuidConstantes.GuidEleonoraColpaert,
-                    GuidConstantes.GuidElineDesprets,
-                    GuidConstantes.GuidEliotPunchoo,
-                    GuidConstantes.GuidFabriceRazanajao,
-                    GuidConstantes.GuidFélixTrannoy,
-                    GuidConstantes.GuidGabrielSegard,
-                    GuidConstantes.GuidGaranceMorren,
-                    GuidConstantes.GuidGaspardHoufflain,
-                    GuidConstantes.GuidJosephBearez,
-                    GuidConstantes.GuidJoshuaBonte,
-                    GuidConstantes.GuidLiliMestdag,
-                    GuidConstantes.GuidLucasVerheye,
-                    GuidConstantes.GuidMaeVantroyen,
-                    GuidConstantes.GuidRebeccaVandy,
-                    GuidConstantes.GuidRémiSoyez,
-                    GuidConstantes.GuidRomainBracquart,
-                    GuidConstantes.GuidSolalSchrouf,
-                    GuidConstantes.GuidThéoCucheval_Rasson,
-                  }
-                },
-                }
+                JourDePrésence = new List<JourDePrésence>() {  }
             };
-            return joursDePrésence;
+
+            foreach (string dateDuJour in presences.Select(x => x.DateDuJour).Distinct())
+            {                
+                    List<ClassPresence> AllPresencesByDate = presences.Where(x => x.DateDuJour == dateDuJour).ToList();
+
+                    joursDePrésence.JourDePrésence.Add(new JourDePrésence()
+                    {
+                        DatePrésence = Convert.ToDateTime(dateDuJour),
+                        EscrimeurId = new List<Guid>() { }
+                    });
+
+                    foreach (ClassPresence presenceByDate in AllPresencesByDate.OrderBy(x=>x.Prenom))
+                    {
+                        joursDePrésence.JourDePrésence.Last().EscrimeurId.Add(new Guid(presenceByDate.GuidTireur));
+                    }
+                
+            }
+               
+            return joursDePrésence;            
         }
 
         public void Add_Paiements_Vantroyen_Mae(string period, List<MembreData> Membres)
@@ -204,7 +95,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = false,
                     IsTeeShirtsPayéesEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() { "290 euros"  },
+                    PaiementsEffectues = new List<string>() { "290 euros" },
 
                     SeancesGratuites = new List<DateTime>()
                     {
@@ -234,7 +125,7 @@ namespace WebApplication1.Models
                     IsLocationMatérielEnOrdre = false,
                     IsFicheSignaletiqueEnOrdre = false,
 
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { },
 
                     SeancesGratuites = new List<DateTime>()
                     {
@@ -244,8 +135,8 @@ namespace WebApplication1.Models
                     IsMatérielLoue = true
                 };
         }
-        
-       
+
+
         public void Add_Paiements_Segard_Gabriel(string period, List<MembreData> Membres)
         {
             if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidGabrielSegard && x.Période == period))
@@ -266,7 +157,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = false,
                     IsChaussettesPayéesEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() {},
+                    PaiementsEffectues = new List<string>() { },
 
                     SeancesGratuites = new List<DateTime>()
                     {
@@ -295,7 +186,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = false,
                     IsChaussettesPayéesEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { },
 
                     SeancesGratuites = new List<DateTime>()
                     {
@@ -305,8 +196,8 @@ namespace WebApplication1.Models
                     IsMatérielLoue = true
                 };
         }
-       
-      
+
+
         public void Add_Paiements_Ducrot_Oscar(string period, List<MembreData> Membres)
         {
             if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidOscarDucrot && x.Période == period))
@@ -326,7 +217,7 @@ namespace WebApplication1.Models
                     IsLocationMatérielEnOrdre = false,
                     IsFicheSignaletiqueEnOrdre = false,
 
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { },
 
                     SeancesGratuites = new List<DateTime>()
                     {
@@ -418,7 +309,7 @@ namespace WebApplication1.Models
                     IsChaussettesPayéesEnOrdre = true,
                     IsTeeShirtsPayéesEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { },
 
                     SeancesGratuites = new List<DateTime>()
                     {
@@ -448,7 +339,7 @@ namespace WebApplication1.Models
                     IsLocationMatérielEnOrdre = false,
                     IsFicheSignaletiqueEnOrdre = false,
                     IsChaussettesPayéesEnOrdre = true,
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { },
 
                     SeancesGratuites = new List<DateTime>()
                     {
@@ -476,7 +367,7 @@ namespace WebApplication1.Models
                     IsLocationMatérielEnOrdre = false,
                     IsFicheSignaletiqueEnOrdre = false,
 
-                    PaiementsEffectues = new List<string>() {},
+                    PaiementsEffectues = new List<string>() { },
 
                     SeancesGratuites = new List<DateTime>()
                     {
@@ -485,7 +376,7 @@ namespace WebApplication1.Models
                     IsMatérielLoue = true
                 };
         }
-        
+
         public void Add_Paiements_Motte_Baptiste(string period, List<MembreData> Membres)
         {
             if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidBaptisteMotte && x.Période == period))
@@ -506,7 +397,7 @@ namespace WebApplication1.Models
                     IsLocationMatérielEnOrdre = false,
                     IsFicheSignaletiqueEnOrdre = false,
                     IsTeeShirtsPayéesEnOrdre = true,
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { },
                     SeancesGratuites = new List<DateTime>()
                     {
                     },
@@ -585,7 +476,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = false,
                     IsLocationMatérielEnOrdre = false,
                     IsTeeShirtsPayéesEnOrdre = true,
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2023,9,6),
@@ -674,7 +565,7 @@ namespace WebApplication1.Models
                     IsLocationMatérielEnOrdre = false,
                     IsChaussettesPayéesEnOrdre = true,
                     IsTeeShirtsPayéesEnOrdre = true,
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { },
                     SeancesGratuites = new List<DateTime>()
                     {
                     },
@@ -703,7 +594,7 @@ namespace WebApplication1.Models
                     IsCotisationEnOrdre = false,
                     IsFicheSignaletiqueEnOrdre = false,
 
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { },
                     SeancesGratuites = new List<DateTime>()
                     {
                     },
@@ -731,7 +622,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = false,
                     IsTeeShirtsPayéesEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,9,15),
@@ -761,7 +652,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = false,
                     IsTeeShirtsPayéesEnOrdre = false,
 
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2026,4,19),
@@ -791,7 +682,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = false,
                     IsTeeShirtsPayéesEnOrdre = false,
 
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2026,4,19),
@@ -821,7 +712,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = false,
                     IsTeeShirtsPayéesEnOrdre = false,
 
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2026,5,13),
@@ -880,7 +771,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = false,
                     IsTeeShirtsPayéesEnOrdre = true,
 
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,11,24),
@@ -891,7 +782,7 @@ namespace WebApplication1.Models
         }
 
 
-       
+
 
 
         public void Add_Paiements_Soyez_Rémi(string period, List<MembreData> Membres)
@@ -927,7 +818,7 @@ namespace WebApplication1.Models
 
 
 
-      
+
         public void Add_Paiements_Mestdagh_Jordan(string period, List<MembreData> Membres)
         {
             if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidJordanMestdagh && x.Période == period))
@@ -948,7 +839,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = false,
                     IsLocationMatérielEnOrdre = false,
                     IsTeeShirtsPayéesEnOrdre = true,
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,2,2),
@@ -977,7 +868,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = false,
                     IsLocationMatérielEnOrdre = false,
                     IsTeeShirtsPayéesEnOrdre = true,
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,5,27),
@@ -1006,7 +897,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = true,
                     IsLocationMatérielEnOrdre = false,
                     IsTeeShirtsPayéesEnOrdre = true,
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { },
                     SeancesGratuites = new List<DateTime>()
                     {
                     },
@@ -1033,7 +924,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = false,
                     IsLocationMatérielEnOrdre = false,
 
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,5,31),
@@ -1071,7 +962,7 @@ namespace WebApplication1.Models
                     IsMatérielLoue = true
                 };
         }
-       
+
         public void Add_Paiements_Bracquart_Romain(string period, List<MembreData> Membres)
         {
             if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidRomainBracquart && x.Période == period))
@@ -1099,7 +990,7 @@ namespace WebApplication1.Models
                     IsMatérielLoue = true
                 };
         }
-      
+
         public void Add_Paiements_Simon_Amado(string period, List<MembreData> Membres)
         {
             if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidAmadoSimon && x.Période == period))
@@ -1148,7 +1039,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = false,
                     IsLocationMatérielEnOrdre = false,
 
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,9,13),
@@ -1178,7 +1069,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = false,
                     IsLocationMatérielEnOrdre = false,
 
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,9,4),
@@ -1187,7 +1078,7 @@ namespace WebApplication1.Models
                     IsMatérielLoue = true
                 };
         }
-        
+
         public void Add_Paiements_Ivanov_Anaelle(string period, List<MembreData> Membres)
         {
             if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidAnaelleIvanov && x.Période == period))
@@ -1208,7 +1099,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = false,
                     IsLocationMatérielEnOrdre = false,
 
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,9,4),
@@ -1236,7 +1127,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = false,
                     IsLocationMatérielEnOrdre = false,
                     IsTeeShirtsPayéesEnOrdre = true,
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,9,26),
@@ -1264,7 +1155,7 @@ namespace WebApplication1.Models
                     IsFicheSignaletiqueEnOrdre = false,
                     IsLocationMatérielEnOrdre = false,
 
-                    PaiementsEffectues = new List<string>() {  },
+                    PaiementsEffectues = new List<string>() { },
                     SeancesGratuites = new List<DateTime>()
                     {
                         new DateTime(2024,9,4),

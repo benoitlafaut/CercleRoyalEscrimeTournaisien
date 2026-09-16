@@ -112,7 +112,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
                     return new List<int> { 1 };
             }
         }
-
+        public string DateDuJourForPresence { get; set; }
         public List<ClassPoulesDuJour> PoulesDuJourList { get; set; }
         public List<ClassDatesPourToutesLesPoules> DatesPourToutesLesPoulesList { get; set; }
        
@@ -774,6 +774,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
         public string GuidTireur { get; set; }
         public string Prenom { get; set; }
         public string Nom { get; set; }
+        public string DateDuJour { get; set; }
 
     }
 

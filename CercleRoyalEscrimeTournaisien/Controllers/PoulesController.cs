@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
@@ -1010,8 +1011,11 @@ namespace CercleRoyalEscrimeTournaisien
         }
 
         [HttpPost]
-        public ActionResult SavePresences(List<string> tireurs)
+        public ActionResult SavePresences(List<string> tireurs, string dateDuJour)
         {
+            DateTime d = DateTime.ParseExact(dateDuJour, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            string dateDuJourFormatted = d.ToString("dd/MM/yyyy");
+
             PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
 
             var path = Server.MapPath("/App_Data/Poules.accdb");
@@ -1023,7 +1027,7 @@ namespace CercleRoyalEscrimeTournaisien
                 conn.Open();
                 using (var cmd = new OleDbCommand(mySelectQueryDelete2, conn))
                 {
-                    cmd.Parameters.AddWithValue("@t1", poulesViewModel.DateDuJourWithoutDayLabel);
+                    cmd.Parameters.AddWithValue("@t1", dateDuJourFormatted);
 
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -1042,7 +1046,7 @@ namespace CercleRoyalEscrimeTournaisien
 
                     using (var cmd = new OleDbCommand(mySelectQuery2, conn))
                     {
-                        cmd.Parameters.AddWithValue("@param1", poulesViewModel.DateDuJourWithoutDayLabel);
+                        cmd.Parameters.AddWithValue("@param1", dateDuJourFormatted);
                         cmd.Parameters.AddWithValue("@param2", tireurGuid);
                         cmd.Parameters.AddWithValue("@param3", poulesViewModel.ListTireursPourLesPresences.FirstOrDefault(x=>x.Value.GuidTireur == tireurGuid).Value.Nom);
                         cmd.Parameters.AddWithValue("@param4", poulesViewModel.ListTireursPourLesPresences.FirstOrDefault(x => x.Value.GuidTireur == tireurGuid).Value.Prenom);

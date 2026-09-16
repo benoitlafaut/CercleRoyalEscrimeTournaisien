@@ -1,10 +1,13 @@
-﻿@model WebApplication1.Models.EscrimeursListe
+﻿@using WebApplication1.Models;
+
+@model WebApplication1.Models.EscrimeursListe
 
 <!DOCTYPE html>
 @{
     string firstColumnStyle = "min-width:450px";
     string urlDownloadExcel = Url.Action("DownloadExcel", "MainPage");
     int nombreDeTireursAffiches = 0;
+    JoursDePrésence joursDePresence = Model.JoursDePrésence;
 }
 <html>
 <head>
@@ -85,18 +88,18 @@
                 int nombreDeJoursDePresence = 0;
                 int nombreDeJoursDePresenceForCotisation = 0;
 
-                if (Model.JoursDePrésence.JourDePrésence != null && Model.JoursDePrésence.JourDePrésence.Count > 0)
+                if (joursDePresence.JourDePrésence != null && joursDePresence.JourDePrésence.Count > 0)
                 {
-                    for (var day = Model.JoursDePrésence.JourMinimumDesJoursDePrésence; day.Date <= DateTime.Now; day = day.AddDays(1))
+                    for (var day = joursDePresence.JourMinimumDesJoursDePrésence; day.Date <= DateTime.Now; day = day.AddDays(1))
                     {
                         if (day.DayOfWeek == DayOfWeek.Monday
                             || day.DayOfWeek == DayOfWeek.Wednesday
                             || day.DayOfWeek == DayOfWeek.Friday
                             || day.DayOfWeek == DayOfWeek.Sunday)
                         {
-                            if (Model.JoursDePrésence.JourDePrésence.Where(x => x.DatePrésence == day).Count() > 0)
+                            if (joursDePresence.JourDePrésence.Where(x => x.DatePrésence == day).Count() > 0)
                             {
-                                WebApplication1.Models.JourDePrésence jourDePrésence = Model.JoursDePrésence.JourDePrésence.Where(x => x.DatePrésence == day).First();
+                                WebApplication1.Models.JourDePrésence jourDePrésence = joursDePresence.JourDePrésence.Where(x => x.DatePrésence == day).First();
                                 if (jourDePrésence.EscrimeurId.Where(x => x.Equals(escrimeur.GuidId)).Any())
                                 {
                                     nombreDeJoursDePresenceForCotisation++;
@@ -304,18 +307,19 @@
                             @{
 
                                 <td style="min-width:150px;">Jours de présence:</td>
-                                if (Model.JoursDePrésence.JourDePrésence != null && Model.JoursDePrésence.JourDePrésence.Count > 0)
-                                {
-                                    for (var day = Model.JoursDePrésence.JourMinimumDesJoursDePrésence; day.Date <= DateTime.Now; day = day.AddDays(1))
+                                if (joursDePresence.JourDePrésence != null && joursDePresence.JourDePrésence.Count > 0)
+                                {                                  
+
+                                    for (var day = joursDePresence.JourMinimumDesJoursDePrésence; day.Date <= DateTime.Now; day = day.AddDays(1))
                                     {
                                         if (day.DayOfWeek == DayOfWeek.Monday
                                             || day.DayOfWeek == DayOfWeek.Wednesday
                                             || day.DayOfWeek == DayOfWeek.Friday
                                             || day.DayOfWeek == DayOfWeek.Sunday)
                                         {
-                                            if (Model.JoursDePrésence.JourDePrésence.Where(x => x.DatePrésence == day).Count() > 0)
+                                            if (joursDePresence.JourDePrésence.Where(x => x.DatePrésence == day).Count() > 0)
                                             {
-                                                WebApplication1.Models.JourDePrésence jourDePrésence = Model.JoursDePrésence.JourDePrésence.Where(x => x.DatePrésence == day).First();
+                                                WebApplication1.Models.JourDePrésence jourDePrésence = joursDePresence.JourDePrésence.Where(x => x.DatePrésence == day).First();
                                                 if (jourDePrésence.EscrimeurId.Where(x => x.Equals(escrimeur.GuidId)).Any())
                                                 {
                                                     nombreDeJoursDePresence++;

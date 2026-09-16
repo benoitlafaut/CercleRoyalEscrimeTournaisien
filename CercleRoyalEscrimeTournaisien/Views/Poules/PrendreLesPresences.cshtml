@@ -1,22 +1,39 @@
 ﻿@model CercleRoyalEscrimeTournaisien.Models.PoulesViewModel
 
-<div style="margin-top:16px;">   
+<div style="margin-top: 16px; margin-bottom: 17px; ">
+    @Html.TextBoxFor(m => m.DateDuJourForPresence, "{0:dd/MM/yyyy}", new { @class = "form-control", type = "date" })
+    <span id="dateFormatted"></span>
 </div>
+
 
 @{
     foreach (var tireur in Model.ListTireursPourLesPresences)
     {
         <div style="font-size:18px;margin-top:5px;margin-bottom:5px;">
-            <span style="min-width:180px;display:inline-block;">@tireur.Value.Prenom @tireur.Value.Nom</span>        
+            <span style="min-width:180px;display:inline-block;">@tireur.Value.Prenom @tireur.Value.Nom</span>
             <input type="checkbox" class="chk-tireur form-check-input" name="@tireur.Value.GuidTireur" id="@tireur.Value.GuidTireur" />
         </div>
     }
-    
+
     <button id="btnSave" style="height:35px;">Sauvegarder les présences</button>
 }
 
-<script>
+<script>   
+    var isoDate =
+        new Date().getFullYear() + '-' +
+        String(new Date().getMonth() + 1).padStart(2, '0') + '-' +
+        String(new Date().getDate()).padStart(2, '0');
+
+    $('#DateDuJourForPresence').val(isoDate);
+
+    ShowDateFormatted($('#DateDuJourForPresence'));
+
+    $('#DateDuJourForPresence').on('change', function () {
+        ShowDateFormatted($(this))        
+    });
+
     $("#btnSave").click(function () {
+        var dateDuJour = $("#DateDuJourForPresence").val();
         var tireurs = $(".chk-tireur:checked")
             .map(function () {
                 return $(this).prop('name');
@@ -27,10 +44,24 @@
             url: '/Poules/SavePresences',
             type: 'POST',
             contentType: 'application/json',
-            data: JSON.stringify(tireurs),
+            data: JSON.stringify({
+                tireurs: tireurs,
+                dateDuJour: dateDuJour
+            }),
             success: function (result) {
                 alert('sauvegardé');
             }
         });
     });
+
+    function ShowDateFormatted(element) {
+        var date = element.val(); // format yyyy-MM-dd
+        if (date) {
+            var parts = date.split('-');
+            var formattedDate = parts[2] + '/' + parts[1] + '/' + parts[0];
+            $('#dateFormatted').text('Date sélectionnée: ' + formattedDate);
+        } else {
+            $('#dateFormatted').text('');
+        }
+    }
 </script>

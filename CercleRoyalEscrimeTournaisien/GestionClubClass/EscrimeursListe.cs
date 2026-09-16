@@ -30,7 +30,7 @@ namespace WebApplication1.Models
                         return paiements_2025_2026.ChargerPresences();
                     case "2026-2027":
                         Paiements_2026_2027 paiements_2026_2027 = new Paiements_2026_2027();
-                        return paiements_2026_2027.ChargerPresences();
+                        return paiements_2026_2027.ChargerPresences(ServerTmp);
                     default:
                         Paiements_2025_2026 paiements_Default = new Paiements_2025_2026();
                         return paiements_Default.ChargerPresences();
