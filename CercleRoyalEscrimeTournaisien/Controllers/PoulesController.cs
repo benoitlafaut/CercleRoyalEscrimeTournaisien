@@ -131,10 +131,11 @@ namespace CercleRoyalEscrimeTournaisien
         }
 
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
-        public ActionResult AfficherLesLecons()
+        public ActionResult AfficherLesLecons(string armeSelected)
         {
             PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
             poulesViewModel.ScreenIndex = ClassEnumScreen.EnumScreen.AfficherLesLecons;
+            poulesViewModel.ArmeSelected = armeSelected;
 
             return View(Constantes.Poules, poulesViewModel);
         }

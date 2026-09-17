@@ -95,20 +95,24 @@ namespace CercleRoyalEscrimeTournaisien.Mappers
 
             return tireursDataList.OrderBy(t => t.Prenom).ToList();
         }
-        public List<TableDesLecons> GetTableDesLecons(HttpServerUtilityBase serverTmp, string période)
+        public List<TableDesLecons> GetTableDesLecons(string armeSelected, HttpServerUtilityBase serverTmp, string période)
         {
             List<TableDesLecons> tableDesLeconsList = this.GetValueStartsWith<List<TableDesLecons>>("ChargerTableDesLecons");
-            if (tableDesLeconsList != null)
-            {
-                return tableDesLeconsList;
-            }
-
+            
             tableDesLeconsList = new List<TableDesLecons>() { };
 
             var path = serverTmp.MapPath("/App_Data/Poules.accdb");
             string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
-
-            string mySelectQuery = " SELECT * FROM TableDesLecons";
+            
+            string mySelectQuery;
+            if (string.IsNullOrEmpty(armeSelected))
+            {
+                mySelectQuery = " SELECT * FROM TableDesLecons";
+            }
+            else
+            {
+                mySelectQuery = " SELECT * FROM TableDesLecons where ArmeSelected = '" + armeSelected + "'";
+            }
 
             using (var conn = new OleDbConnection(ConnectionString))
             {

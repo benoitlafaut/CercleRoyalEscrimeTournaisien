@@ -137,6 +137,21 @@ namespace CercleRoyalEscrimeTournaisien.Models
                 return tableTireurs.ToDictionary(g => new Guid(g.GuidTireur), g => g.Prenom + " " + g.Nom);
             }
         }
+        public IDictionary<string, string> ListArmes
+        {
+            get
+            {
+                return new Dictionary<string, string>()
+                {
+                    { "","" },
+                    { "Fleuret","Fleuret" },
+                    { "Epée","Epée" },
+                    { "Sabre","Sabre" }
+                };
+            }
+        }
+
+        public string ArmeSelected { get; set; }
         public IDictionary<string, ClassPresence> ListTireursPourLesPresences
         {
             get
@@ -160,7 +175,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
                 BaseDeDonnéesMapper baseDeDonnéesMapper = new BaseDeDonnéesMapper();
                 List<TableListeTireursData> tableTireurs = baseDeDonnéesMapper.GetTableListeTireursData(ServerTmp, period2026_2027);
 
-                List<TableDesLecons> tableDesLecons = baseDeDonnéesMapper.GetTableDesLecons(ServerTmp, period2026_2027);
+                List<TableDesLecons> tableDesLecons = baseDeDonnéesMapper.GetTableDesLecons(ArmeSelected, ServerTmp, period2026_2027);
 
                 List<string> guidsToRemove = new List<string>
                 {
