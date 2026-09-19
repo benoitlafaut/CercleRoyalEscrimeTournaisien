@@ -309,6 +309,7 @@
     <Compile Include="Models\MyRequestToModifierUnTireur.cs" />
     <Compile Include="Models\MyRequestToAddUnNewComerToDB.cs" />
     <Compile Include="Models\ConstruireLesPoulesInput.cs" />
+    <Compile Include="Models\MyRequestToAjouterUneLeçonACeTireur.cs" />
     <Compile Include="Models\TableDesLecons.cs" />
     <Compile Include="Models\TableListeTireursData.cs" />
     <Compile Include="Models\MyRequestResultatsPoule.cs" />

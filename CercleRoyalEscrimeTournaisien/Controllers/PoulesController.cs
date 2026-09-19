@@ -150,7 +150,8 @@ namespace CercleRoyalEscrimeTournaisien
         }
 
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
-        public ActionResult AjouterUneLeçonACeTireur(string guidTireur, int nombreDeLeconsDejaRecues)
+        [HttpPost]
+        public JsonResult AjouterUneLeconACeTireur(MyRequestToAjouterUneLeçonACeTireur myRequestToAjouterUneLeçonACeTireur)
         {
             PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
             poulesViewModel.ScreenIndex = ClassEnumScreen.EnumScreen.AfficherLesLecons;
@@ -160,15 +161,16 @@ namespace CercleRoyalEscrimeTournaisien
 
             string mySelectQuery = "UPDATE TableDesLecons"
                 + " SET NombreDeLeconsDejaRecues = ?"
-                + " where GuidTireur = ?";
+                + " where GuidTireur = ? and ArmeSelected = ?";
 
             using (var conn = new OleDbConnection(ConnectionString))
             {
                 conn.Open();
                 using (var cmd = new OleDbCommand(mySelectQuery, conn))
                 {
-                    cmd.Parameters.AddWithValue("?", nombreDeLeconsDejaRecues+1);
-                    cmd.Parameters.AddWithValue("?", guidTireur);                 
+                    cmd.Parameters.AddWithValue("?", myRequestToAjouterUneLeçonACeTireur.NombreDeLeconsDejaRecues + 1);
+                    cmd.Parameters.AddWithValue("?", myRequestToAjouterUneLeçonACeTireur.GuidTireur);
+                    cmd.Parameters.AddWithValue("?", myRequestToAjouterUneLeçonACeTireur.ArmeSelected);
 
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -178,7 +180,10 @@ namespace CercleRoyalEscrimeTournaisien
 
             poulesViewModel.InitSession();
 
-            return View(Constantes.Poules, poulesViewModel);
+            return Json(new
+            { 
+            }, JsonRequestBehavior.AllowGet);
+
         }
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
         public ActionResult ShowDirectlyScore(string pouleSelected, string tireur1Guid, string tireur2Guid)
@@ -572,6 +577,7 @@ namespace CercleRoyalEscrimeTournaisien
                 }
             }
         }
+
         [HttpPost]
         public JsonResult ModifierLesDatasDUnTireur(TableListeTireursData tableListeTireursData)
         {

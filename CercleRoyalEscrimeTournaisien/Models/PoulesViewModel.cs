@@ -172,6 +172,11 @@ namespace CercleRoyalEscrimeTournaisien.Models
         {
             get
             {
+                if (string.IsNullOrEmpty(ArmeSelected))
+                {
+                    return new List<TableDesLecons>() { };
+                }
+
                 BaseDeDonnéesMapper baseDeDonnéesMapper = new BaseDeDonnéesMapper();
                 List<TableListeTireursData> tableTireurs = baseDeDonnéesMapper.GetTableListeTireursData(ServerTmp, period2026_2027);
 
@@ -182,7 +187,9 @@ namespace CercleRoyalEscrimeTournaisien.Models
                     "239ED9DA-CB35-4E54-9610-CC872D07F90C",
                     "239ED9DA-CB35-4E54-9610-CC872D07F90E",
                     "239ED9DA-CB35-4E54-9610-CC872D07F90D",
-                    "239ED9DA-CB35-4E54-9610-CC872D07F8FE"
+                    "239ED9DA-CB35-4E54-9610-CC872D07F8FE",
+                    "239ED9DA-CB35-4E54-9610-CC872D07F923",
+                    "239ED9DA-CB35-4E54-9610-CC872D07F8F1"
                 };
 
                 tableDesLecons.RemoveAll(x => guidsToRemove.Contains(x.GuidTireur));
