@@ -1,9 +1,5 @@
 ﻿@model CercleRoyalEscrimeTournaisien.Models.PoulesViewModel
 
-@*@{
-    ViewData.ModelState.Clear();
-}*@
-
 <div style="margin-top: 10px;">
     @Html.DropDownListFor(model => model.TireurSelected, new SelectList(Model.ListTireurs, "Key", "Value", Model.TireurSelected), new { @class = "form-control", @onchange = "SearchDataTireur(this.value);" })
 </div>

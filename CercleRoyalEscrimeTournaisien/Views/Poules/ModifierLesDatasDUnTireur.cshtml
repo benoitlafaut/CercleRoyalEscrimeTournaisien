@@ -2,9 +2,12 @@
 
 @{
     string guid = Model.GuidTireurSelected;
+
+    var tableTireursPourconstruireLesPoules = Model.TableTireursPourconstruireLesPoules;
+
     var tireur = !string.IsNullOrEmpty(guid)
-        ? Model.TableTireursPourconstruireLesPoules.FirstOrDefault(x => x.GuidTireur == guid)
-        : Model.TableTireursPourconstruireLesPoules.FirstOrDefault();
+        ? tableTireursPourconstruireLesPoules.FirstOrDefault(x => x.GuidTireur == guid)
+        : tableTireursPourconstruireLesPoules.FirstOrDefault();
 
     if (tireur == null)
     {
@@ -19,7 +22,7 @@
 <div style="margin-bottom:20px;">
     <label>Choisir un tireur :</label>
     <select class="form-control" onchange="changeTireur(this.value)">
-        @foreach (var t in Model.TableTireursPourconstruireLesPoules.OrderBy(x => x.Prenom))
+        @foreach (var t in tableTireursPourconstruireLesPoules.OrderBy(x => x.Prenom))
         {
             <option value="@t.GuidTireur" selected="@(t.GuidTireur == tireur.GuidTireur)">
                 @t.Prenom @t.Nom

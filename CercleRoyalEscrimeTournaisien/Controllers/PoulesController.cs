@@ -515,9 +515,33 @@ namespace CercleRoyalEscrimeTournaisien
             {
                 conn.Open();
 
-                string mySelectQuery = "INSERT INTO TableDesLecons (GuidTireur)" +
+                string mySelectQuery = "INSERT INTO TableDesLecons (GuidTireur,ArmeSelected)" +
                     "Values ('" + newComerGuidTireur                   
-                    + "')";
+                    + "','Fleuret')";
+
+                using (var cmd = new OleDbCommand(mySelectQuery, conn))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+
+                    }
+                }
+
+                mySelectQuery = "INSERT INTO TableDesLecons (GuidTireur,ArmeSelected)" +
+                    "Values ('" + newComerGuidTireur
+                    + "','Epée')";
+
+                using (var cmd = new OleDbCommand(mySelectQuery, conn))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+
+                    }
+                }
+
+                mySelectQuery = "INSERT INTO TableDesLecons (GuidTireur,ArmeSelected)" +
+                    "Values ('" + newComerGuidTireur
+                    + "','Sabre')";
 
                 using (var cmd = new OleDbCommand(mySelectQuery, conn))
                 {

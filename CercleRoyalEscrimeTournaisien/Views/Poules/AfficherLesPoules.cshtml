@@ -17,14 +17,7 @@
 
 <div style="margin-top: 20px; display: flex;">
     @foreach (var opt in Model.PoulesList)
-    {
-        @*var id = opt.Poule.Replace("Poule ", "Poule");
-
-            <div class="poule-item" style="max-width:75px;font-size:11px;" onclick="ShowOrHidePoule('@id')">
-                @Html.RadioButtonFor(m => m.PouleSelected, opt.Poule, new { id = id })
-                <label class="ClassPouleInConstruireLesPoules" for="@id">@opt.Poule</label>
-            </div>*@
-
+    {  
         string PouleID = "#divForTable_" + opt.Poule.Replace(" ", "");
         <a style="margin-left: 3px; margin-right: 3px; min-width: 122px;" href=@PouleID>Montrer la @opt.Poule</a>
     }

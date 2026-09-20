@@ -372,6 +372,10 @@
         gap: 8px;
        
     }
+    .ClassHeightInputLecon {
+        height: 59px !important;
+        font-size: 15px !important;
+    }
 }
 
 
