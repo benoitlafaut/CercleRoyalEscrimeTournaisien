@@ -16,7 +16,6 @@
     string urlActionAfficherLesDatesPrecedentes = Url.Action("AfficherLesDatesPrecedentes", "Poules");
     string urlActionAjouterUnNewComer = Url.Action("AjouterUnNewComer", "Poules");
     string urlActionInitSession = Url.Action("InitSession", "Poules");
-    string urlActionConstruireLesPoules = Url.Action("ConstruireLesPoules", "Poules");
     string urlActionModifierUnTireur = Url.Action("ModifierUnTireur", "Poules");
     string urlActionModifierLesDatasDUnTireur = Url.Action("ModifierLesDatasDUnTireur", "Poules");
     string urlActionAfficherLesLecons = Url.Action("AfficherLesLecons", "Poules");
@@ -29,7 +28,6 @@
     string classIndicatorAjoutUnNewComer = Model.ScreenIndex == ClassEnumScreen.EnumScreen.AjouterUnNewComer ? "ClassIndicatorBorderAndColorBlue" : "";
     string classIndicatorAfficherLesEliminationsDirectes = Model.ScreenIndex == ClassEnumScreen.EnumScreen.AfficherLesEliminationsDirectes ? "ClassIndicatorBorderAndColorBlue" : "";
     string classIndicatorAfficherLesDatesPrecedentes = Model.ScreenIndex == ClassEnumScreen.EnumScreen.AfficherLesDatesPrecedentes ? "ClassIndicatorBorderAndColorBlue" : "";
-    string classIndicatorConstruireLesPoules = Model.ScreenIndex == ClassEnumScreen.EnumScreen.ConstruireLesPoules ? "ClassIndicatorBorderAndColorBlue" : "";
     string classIndicatorModifierUnTireur = Model.ScreenIndex == ClassEnumScreen.EnumScreen.ModifierUnTireur ? "ClassIndicatorBorderAndColorBlue" : "";
     string classIndicatorModifierLesDatasDUnTireur = Model.ScreenIndex == ClassEnumScreen.EnumScreen.ModifierLesDatasDUnTireur ? "ClassIndicatorBorderAndColorBlue" : "";
     string classIndicatorAfficherLesLecons = Model.ScreenIndex == ClassEnumScreen.EnumScreen.AfficherLesLecons ? "ClassIndicatorBorderAndColorBlue" : "";
@@ -66,10 +64,7 @@
             <span>un tireur</span>
         </button>
 
-        <button id="buttonConstruireLesPoules" class="@classIndicatorConstruireLesPoules ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading();location.href='@urlActionConstruireLesPoules'">
-            <span>Construire</span>
-            <span>les poules</span>
-        </button>
+       
 
         <button id="buttonAjoutTireur" class="@classIndicatorAjoutTireur ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading();location.href='@urlActionAjouterTireurAUnePoule'">
             <span>Ajouter un tireur</span>
@@ -152,12 +147,7 @@
             </div>
 
             break;
-        case ClassEnumScreen.EnumScreen.ConstruireLesPoules:
-            <div class="infos1 clearfix">
-                @Html.Partial(PartialViewNames.ConstruireLesPoules, Model)
-            </div>
-
-            break;
+       
         case ClassEnumScreen.EnumScreen.ModifierUnTireur:
             <div class="infos1 clearfix">
                 @Html.Partial(PartialViewNames.ModifierUnTireur, Model)

@@ -31,7 +31,6 @@
         public const string AjouterScoreAUnePoule = "AjouterScoreAUnePoule";
         public const string AfficherLesDatesPrecedentes = "AfficherLesDatesPrecedentes";
         public const string AjouterUnNewComer = "AjouterUnNewComer";
-        public const string ConstruireLesPoules = "ConstruireLesPoules";
         public const string ModifierUnTireur = "ModifierUnTireur";
         public const string ModifierLesDatasDUnTireur = "ModifierLesDatasDUnTireur";
         public const string ConstruireLesLecons = "ConstruireLesLecons";

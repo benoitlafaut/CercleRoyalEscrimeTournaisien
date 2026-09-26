@@ -62,15 +62,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
         {
             get
             {
-                return new Dictionary<string, string>()
-                {
-                    { "","" },
-                    { "Poule 1","Poule des débutants" },
-                    { "Poule 2","Poule Deuxième Troisième année" },
-                    { "Poule 3","Poule plus forte que les 3èmes années" },
-                    { "Poule 4","Poule des adultes" },
-                    { "Poule 5","Poules des parents" },
-                };
+                return PoulesList.ToDictionary(g => g.Poule, g => g.DescriptionDeLaPoule);                
             }
         }
         public HttpServerUtilityBase ServerTmp { get; set; }
@@ -485,9 +477,15 @@ namespace CercleRoyalEscrimeTournaisien.Models
             {
                 PoulesList = new List<ClassPoule>() { };
 
+                int epoqueDUtilisationPoule = 2;
+                if (DateDAujourdhui < new DateTime(2026, 9, 26))
+                {
+                    epoqueDUtilisationPoule = 1;
+                }
+
                 var path = ServerTmp.MapPath("/App_Data/Poules.accdb");
                 string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
-                string mySelectQuery = " SELECT * FROM TableListeDesPoules";
+                string mySelectQuery = " SELECT * FROM TableListeDesPoules where EpoqueDUtilisationPoule = " + epoqueDUtilisationPoule;
 
                 using (var conn = new OleDbConnection(ConnectionString))
                 {

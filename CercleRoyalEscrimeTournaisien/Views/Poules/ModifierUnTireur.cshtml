@@ -60,7 +60,7 @@
 
 @foreach (var item in Model.NewComerDayList)
 {
-    if (item.Key != "")
+    if (item.Key != "" && item.Key != "Poule U11-U13" && item.Key != "Poule U13-U15")
     {
         <div style="margin-top:15px;margin-bottom:15px;">
             <span>
@@ -70,33 +70,39 @@
 
         <div style="margin-left:15px;">
             <span>Mercredi : </span>
-            @foreach (var tireur in Model.TableTireursPourconstruireLesPoules.Where(x => x.DayMercredi == item.Key))
-            {
-                var age = GetAge(tireur.Birthdate);
-                var year = GetYear(tireur.Birthdate);
+            <div style="margin-left: 10px; width: 90%;">
+                @foreach (var tireur in Model.TableTireursPourconstruireLesPoules.Where(x => x.DayMercredi == item.Key))
+                {
+                    var age = GetAge(tireur.Birthdate);
+                    var year = GetYear(tireur.Birthdate);
 
-                <span>@tireur.Prenom (@age @year)</span>
-            }
+                    <span>@tireur.Prenom (@age @year)&nbsp;&nbsp;</span>
+                }
+            </div>
         </div>
         <div style="margin-left:15px;">
             <span>Vendredi : </span>
-            @foreach (var tireur in Model.TableTireursPourconstruireLesPoules.Where(x => x.DayVendredi == item.Key))
-            {
-                var age = GetAge(tireur.Birthdate);
-                var year = GetYear(tireur.Birthdate);
+            <div style="margin-left: 10px; width: 90%;">
+                @foreach (var tireur in Model.TableTireursPourconstruireLesPoules.Where(x => x.DayVendredi == item.Key))
+                {
+                    var age = GetAge(tireur.Birthdate);
+                    var year = GetYear(tireur.Birthdate);
 
-                <span>@tireur.Prenom (@age @year)</span>
-            }
+                    <span>@tireur.Prenom (@age @year)&nbsp;&nbsp;</span>
+                }
+            </div>
         </div>
         <div style="margin-left:15px;">
             <span>Dimanche : </span>
-            @foreach (var tireur in Model.TableTireursPourconstruireLesPoules.Where(x => x.DayDimanche == item.Key))
-            {
-                var age = GetAge(tireur.Birthdate);
-                var year = GetYear(tireur.Birthdate);
+            <div style="margin-left:10px;width:90%;">
+                @foreach (var tireur in Model.TableTireursPourconstruireLesPoules.Where(x => x.DayDimanche == item.Key))
+                {
+                    var age = GetAge(tireur.Birthdate);
+                    var year = GetYear(tireur.Birthdate);
 
-                <span>@tireur.Prenom (@age @year)</span>
-            }
+                    <span>@tireur.Prenom (@age @year)&nbsp;&nbsp;</span>
+                }
+            </div>
         </div>
     }
 }

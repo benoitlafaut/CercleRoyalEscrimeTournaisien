@@ -360,15 +360,7 @@ namespace CercleRoyalEscrimeTournaisien
             return Json(new { ok = true, redirectUrl = Url.Action("AfficherLesPoules", "Poules") });
         }
 
-        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
-        public ActionResult ConstruireLesPoules(string pouleSelected)
-        {
-            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
-            poulesViewModel.ScreenIndex = ClassEnumScreen.EnumScreen.ConstruireLesPoules;
-            poulesViewModel.PouleSelected = pouleSelected;
-
-            return View(Constantes.Poules, poulesViewModel);
-        }
+        
 
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
         public ActionResult AfficherLesDatesPrecedentes()

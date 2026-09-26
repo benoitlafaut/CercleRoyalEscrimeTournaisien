@@ -19,7 +19,7 @@
     @foreach (var opt in Model.PoulesList)
     {  
         string PouleID = "#divForTable_" + opt.Poule.Replace(" ", "");
-        <a style="margin-left: 3px; margin-right: 3px; min-width: 122px;" href=@PouleID>Montrer la @opt.Poule</a>
+        <a class="ClassHREFListPoules" style="margin-left: 3px; margin-right: 3px; min-width: 122px;" href=@PouleID>Montrer la @opt.Poule</a>
     }
 </div>
 
@@ -193,3 +193,12 @@
         </div>
     }
 }
+
+<script>
+    $(".ClassHREFListPoules").each(function (index, item) {
+        var hrefPoule = $(this).attr('href');
+        if ($("#divForTable_PouleU11").length == 0) {
+            $(this).css('display', 'none');
+        }
+    })
+</script>

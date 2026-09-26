@@ -11,7 +11,6 @@
             AfficherLesEliminationsDirectes=5,
             AfficherLesDatesPrecedentes=6,
             AjouterUnNewComer=7,
-            ConstruireLesPoules=8,
             ModifierUnTireur = 9,
             ModifierLesDatasDUnTireur = 10,            
             AfficherLesLecons = 12,
