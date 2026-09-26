@@ -121,14 +121,7 @@ namespace CercleRoyalEscrimeTournaisien
             return View(Constantes.Poules, poulesViewModel);
         }
 
-        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
-        public ActionResult ConstruireLesLecons()
-        {
-            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
-            poulesViewModel.ScreenIndex = ClassEnumScreen.EnumScreen.ConstruireLesLecons;
-
-            return View(Constantes.Poules, poulesViewModel);
-        }
+       
 
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
         public ActionResult AfficherLesLecons(string armeSelected)
@@ -619,7 +612,7 @@ namespace CercleRoyalEscrimeTournaisien
                 + "IsCotisationCarte4 = ?,IsCotisationCarte5 = ?,IsCotisationCarte6 = ?,"
                 + "IsChaussettesPayeesEnOrdre = ?,IsCotisationEnOrdre = ?,IsLocationMaterielEnOrdre = ?,"
                 + "IsFicheSignaletiqueEnOrdre = ?,IsTeeShirtsPayeesEnOrdre = ?,PaiementsEffectues = ?,"
-                + "SeancesGratuites = ?,IsMaterielLoue = ?"
+                + "SeancesGratuites = ?,IsMaterielLoue = ?,DateFinDEscrime = ?"
                 + " where GuidTireur = ?";
 
             using (var conn = new OleDbConnection(ConnectionString))
@@ -655,7 +648,8 @@ namespace CercleRoyalEscrimeTournaisien
                     cmd.Parameters.AddWithValue("?", tableListeTireursData.PaiementsEffectues);
                     cmd.Parameters.AddWithValue("?", tableListeTireursData.SeancesGratuites);
                     cmd.Parameters.AddWithValue("?", tableListeTireursData.IsMaterielLoue);
-                    cmd.Parameters.AddWithValue("?", tableListeTireursData.GuidTireur);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.DateFinDEscrime);
+                    cmd.Parameters.AddWithValue("?", tableListeTireursData.GuidTireur);                    
 
                     using (var reader = cmd.ExecuteReader())
                     {

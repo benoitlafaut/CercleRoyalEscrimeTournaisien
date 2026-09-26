@@ -65,6 +65,7 @@ namespace CercleRoyalEscrimeTournaisien.Mappers
                                 IsTeeShirtsPayeesEnOrdre = (bool)reader["IsTeeShirtsPayeesEnOrdre"],
                                 IsMaterielLoue = (bool)reader["IsMaterielLoue"],    
                                 IsCotisationEnOrdre = (bool)reader["IsCotisationEnOrdre"],
+                                DateFinDEscrime = reader["DateFinDEscrime"] == DBNull.Value ? "" : (string)reader["DateFinDEscrime"],
                             });
                         }
                     }
@@ -90,6 +91,8 @@ namespace CercleRoyalEscrimeTournaisien.Mappers
                     }
                 }
             }
+            
+            tireursDataList.RemoveAll(x => !string.IsNullOrEmpty(x.DateFinDEscrime));
 
             System.Web.HttpContext.Current.Session.Add("ChargerTableListeTireursDataSession", tireursDataList.OrderBy(t => t.Prenom).ToList());
 

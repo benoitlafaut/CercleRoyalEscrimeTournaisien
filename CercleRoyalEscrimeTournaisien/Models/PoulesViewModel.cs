@@ -194,12 +194,16 @@ namespace CercleRoyalEscrimeTournaisien.Models
 
                 tableDesLecons.RemoveAll(x => guidsToRemove.Contains(x.GuidTireur));
 
+                var validGuids = tableTireurs.Select(t => t.GuidTireur).ToHashSet();
+
+                tableDesLecons.RemoveAll(x => !validGuids.Contains(x.GuidTireur));
+
                 foreach (TableDesLecons lecon in tableDesLecons)
                 {
-                    lecon.Nom = tableTireurs.FirstOrDefault(x => x.GuidTireur == lecon.GuidTireur).Nom;
-                    lecon.Prénom  = tableTireurs.FirstOrDefault(x => x.GuidTireur == lecon.GuidTireur).Prenom;
-                    lecon.Birthdate = tableTireurs.FirstOrDefault(x => x.GuidTireur == lecon.GuidTireur).Birthdate;
-                    lecon.Age = GetAge(tableTireurs.FirstOrDefault(x => x.GuidTireur == lecon.GuidTireur).Prenom + " " + tableTireurs.FirstOrDefault(x => x.GuidTireur == lecon.GuidTireur).Nom);
+                        lecon.Nom = tableTireurs.FirstOrDefault(x => x.GuidTireur == lecon.GuidTireur).Nom;
+                        lecon.Prénom  = tableTireurs.FirstOrDefault(x => x.GuidTireur == lecon.GuidTireur).Prenom;
+                        lecon.Birthdate = tableTireurs.FirstOrDefault(x => x.GuidTireur == lecon.GuidTireur).Birthdate;
+                        lecon.Age = GetAge(tableTireurs.FirstOrDefault(x => x.GuidTireur == lecon.GuidTireur).Prenom + " " + tableTireurs.FirstOrDefault(x => x.GuidTireur == lecon.GuidTireur).Nom);
                     
                 }
 

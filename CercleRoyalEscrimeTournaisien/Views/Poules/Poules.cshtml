@@ -19,7 +19,6 @@
     string urlActionConstruireLesPoules = Url.Action("ConstruireLesPoules", "Poules");
     string urlActionModifierUnTireur = Url.Action("ModifierUnTireur", "Poules");
     string urlActionModifierLesDatasDUnTireur = Url.Action("ModifierLesDatasDUnTireur", "Poules");
-    string urlActionConstruireLesLecons = Url.Action("ConstruireLesLecons", "Poules");
     string urlActionAfficherLesLecons = Url.Action("AfficherLesLecons", "Poules");
     string urlActionPrendreLesPresences = Url.Action("PrendreLesPresences", "Poules");
 
@@ -33,7 +32,6 @@
     string classIndicatorConstruireLesPoules = Model.ScreenIndex == ClassEnumScreen.EnumScreen.ConstruireLesPoules ? "ClassIndicatorBorderAndColorBlue" : "";
     string classIndicatorModifierUnTireur = Model.ScreenIndex == ClassEnumScreen.EnumScreen.ModifierUnTireur ? "ClassIndicatorBorderAndColorBlue" : "";
     string classIndicatorModifierLesDatasDUnTireur = Model.ScreenIndex == ClassEnumScreen.EnumScreen.ModifierLesDatasDUnTireur ? "ClassIndicatorBorderAndColorBlue" : "";
-    string classIndicatorConstruireLesLecons = Model.ScreenIndex == ClassEnumScreen.EnumScreen.ConstruireLesLecons ? "ClassIndicatorBorderAndColorBlue" : "";
     string classIndicatorAfficherLesLecons = Model.ScreenIndex == ClassEnumScreen.EnumScreen.AfficherLesLecons ? "ClassIndicatorBorderAndColorBlue" : "";
     string classIndicatorPrendreLesPresences = Model.ScreenIndex == ClassEnumScreen.EnumScreen.PrendreLesPresences ? "ClassIndicatorBorderAndColorBlue" : "";
 }
@@ -96,12 +94,7 @@
         <button id="buttonModifierLesDatasDUnTireur" class="@classIndicatorModifierLesDatasDUnTireur ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading(); location.href ='@urlActionModifierLesDatasDUnTireur'">
             <span>Modifier les datas</span>
             <span>d'un tireur</span>
-        </button>
-
-        <button id="buttonConstruireLesLecons" class="@classIndicatorConstruireLesLecons ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading(); location.href ='@urlActionConstruireLesLecons'">
-            <span>Construire</span>
-            <span>les leçons</span>
-        </button>
+        </button>       
 
         <button id="buttonAfficherLesLecons" class="@classIndicatorAfficherLesLecons ClassTwoLignes ClassButtonEntete ClassCursor" onclick="$.startLoading(); location.href ='@urlActionAfficherLesLecons'">
             <span>Afficher</span>
@@ -174,12 +167,6 @@
         case ClassEnumScreen.EnumScreen.ModifierLesDatasDUnTireur:
             <div class="infos1 clearfix">
                 @Html.Partial(PartialViewNames.ModifierLesDatasDUnTireur, Model)
-            </div>
-
-            break;
-        case ClassEnumScreen.EnumScreen.ConstruireLesLecons:
-            <div class="infos1 clearfix">
-                @Html.Partial(PartialViewNames.ConstruireLesLecons, Model)
             </div>
 
             break;

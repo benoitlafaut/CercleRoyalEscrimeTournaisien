@@ -13,8 +13,7 @@
             AjouterUnNewComer=7,
             ConstruireLesPoules=8,
             ModifierUnTireur = 9,
-            ModifierLesDatasDUnTireur = 10,
-            ConstruireLesLecons = 11,
+            ModifierLesDatasDUnTireur = 10,            
             AfficherLesLecons = 12,
             PrendreLesPresences = 13
         }

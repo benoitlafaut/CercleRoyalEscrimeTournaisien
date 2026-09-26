@@ -418,6 +418,12 @@
     <Content Include="Content\bootstrap-select.min.css" />
     <Content Include="Content\DicoPlayer.css" />
     <Content Include="Content\Dico.css" />
+    <Content Include="Content\photos\chaussettes.jpg" />
+    <Content Include="Content\photos\cotisation.jpg" />
+    <Content Include="Content\photos\IconeFicheSignalétique.png" />
+    <Content Include="Content\photos\LocationMatériel.png" />
+    <Content Include="Content\photos\teeshirt.png" />
+    <Content Include="Content\photos\toutestenordre.png" />
     <Content Include="Content\Poules.css" />
     <Content Include="Content\SwitchToDossierPhotos.css" />
     <Content Include="Content\Epub122024.css" />

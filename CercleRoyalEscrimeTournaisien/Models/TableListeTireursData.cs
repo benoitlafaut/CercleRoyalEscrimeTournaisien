@@ -10,6 +10,7 @@
         public string DayMercredi { get; set; }
         public string DayVendredi { get; set; }
         public string DayDimanche { get; set; }
+        public string DateFinDEscrime { get; set; }
         public bool TireurSelected { get; set; }
         public string EmailPropre { get; set; }
         public string EmailPere { get; set; }

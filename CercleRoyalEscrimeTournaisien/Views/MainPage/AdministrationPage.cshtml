@@ -136,7 +136,7 @@
                             </td>
 
                             <td style="min-width:150px;">
-                                Fiche signalétique 
+                                Fiche signalétique
 
                                 @if (escrimeur.Paiement?.IsFicheSignaletiqueEnOrdre == true)
                                 {
@@ -201,16 +201,19 @@
                             </td>
 
                             @{
-                                string styleDisplayCotisationAnnuelle = escrimeur.Paiement?.IsCotisationAnnuelle == true ? "display:none;" : "";
+                                string styleDisplayCotisationCarte = escrimeur.Paiement?.IsCotisationAnnuelle == true ? "display:none;" : "";
                                 if (escrimeur.Paiement?.IsCotisationCarte1 == false)
                                 {
-                                     styleDisplayCotisationAnnuelle = "display:none;";
+                                    styleDisplayCotisationCarte = "display:none;";
                                 }
+
+                                string styleDisplayCotisationAnnuelle = escrimeur.Paiement?.IsCotisationAnnuelle == true ? "" : "display:none;";
+
                             }
 
-                            @if (escrimeur.Paiement != null) 
+                            @if (escrimeur.Paiement != null)
                             {
-                                <td style="@styleDisplayCotisationAnnuelle min-width:110px;">
+                                <td style="@styleDisplayCotisationCarte min-width:110px;">
                                     <span style=" display: inline-block; width: 227px;">Cotisation à cartes (Présences : @nombreDeJoursDePresenceForCotisation)</span>
                                     @Html.CheckBox("checkboxCotisationCarte1", escrimeur.Paiement.IsCotisationCarte1)
                                     @Html.CheckBox("checkboxCotisationCarte2", escrimeur.Paiement.IsCotisationCarte2)
@@ -219,8 +222,12 @@
                                     @Html.CheckBox("checkboxCotisationCarte5", escrimeur.Paiement.IsCotisationCarte5)
                                     @Html.CheckBox("checkboxCotisationCarte6", escrimeur.Paiement.IsCotisationCarte6)
                                 </td>
+
+                                <td style="@styleDisplayCotisationAnnuelle min-width:110px;">
+                                    <span style=" display: inline-block; width: 227px;">Cotisation annuelle</span>
+                                </td>
                             }
-                            
+
                         </tr>
                     </table>
 

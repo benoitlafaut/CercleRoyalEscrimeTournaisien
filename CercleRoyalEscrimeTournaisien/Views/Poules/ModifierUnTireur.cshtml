@@ -27,3 +27,76 @@
 <div class="ClassMarginTopAndBottom">
     <a href="#" onclick="ModifierUnTireur(); " class="btnAction-custom">Modifier un tireur</a>
 </div>
+
+@functions {
+    public int GetAge(string birthdateString)
+    {
+        var birthdate = DateTime.ParseExact(
+           birthdateString,
+           "dd/MM/yyyy",
+           System.Globalization.CultureInfo.InvariantCulture
+       );
+
+        var today = DateTime.Today;
+        var age = today.Year - birthdate.Year;
+
+        if (birthdate.Date > today.AddYears(-age))
+            age--;
+
+        return age;
+    }
+
+    public int GetYear(string birthdateString)
+    {
+        var birthdate = DateTime.ParseExact(
+           birthdateString,
+           "dd/MM/yyyy",
+           System.Globalization.CultureInfo.InvariantCulture
+       );       
+
+        return birthdate.Year;
+    }
+}
+
+@foreach (var item in Model.NewComerDayList)
+{
+    if (item.Key != "")
+    {
+        <div style="margin-top:15px;margin-bottom:15px;">
+            <span>
+                @item
+            </span>
+        </div>
+
+        <div style="margin-left:15px;">
+            <span>Mercredi : </span>
+            @foreach (var tireur in Model.TableTireursPourconstruireLesPoules.Where(x => x.DayMercredi == item.Key))
+            {
+                var age = GetAge(tireur.Birthdate);
+                var year = GetYear(tireur.Birthdate);
+
+                <span>@tireur.Prenom (@age @year)</span>
+            }
+        </div>
+        <div style="margin-left:15px;">
+            <span>Vendredi : </span>
+            @foreach (var tireur in Model.TableTireursPourconstruireLesPoules.Where(x => x.DayVendredi == item.Key))
+            {
+                var age = GetAge(tireur.Birthdate);
+                var year = GetYear(tireur.Birthdate);
+
+                <span>@tireur.Prenom (@age @year)</span>
+            }
+        </div>
+        <div style="margin-left:15px;">
+            <span>Dimanche : </span>
+            @foreach (var tireur in Model.TableTireursPourconstruireLesPoules.Where(x => x.DayDimanche == item.Key))
+            {
+                var age = GetAge(tireur.Birthdate);
+                var year = GetYear(tireur.Birthdate);
+
+                <span>@tireur.Prenom (@age @year)</span>
+            }
+        </div>
+    }
+}
