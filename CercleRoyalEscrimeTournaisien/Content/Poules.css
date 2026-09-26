@@ -200,8 +200,8 @@
     }
 
     .fixed-FirstCol {
-        min-width: 160px;
-        max-width: 160px;
+        min-width: 196px;
+        max-width: 196px;
     }
 
     .ClassH1 {
@@ -382,4 +382,10 @@
 .ClassHeightInputLecon {
     height: 32px;
     font-size: 18px;
+}
+
+.table-bordered.table, .table-bordered table, .table-bordered th, .table-bordered td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-spacing: 0;
 }

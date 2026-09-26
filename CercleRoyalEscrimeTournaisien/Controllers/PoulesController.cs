@@ -1035,6 +1035,101 @@ namespace CercleRoyalEscrimeTournaisien
 
             PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
 
+            SavePresencesInDB(poulesViewModel, dateDuJourFormatted, tireurs, dateDuJour);
+
+            PreparePoules(poulesViewModel, tireurs, dateDuJour);
+
+            return Json(new { Success = true });
+        }
+
+        private void PreparePoules(PoulesViewModel poulesViewModel, List<string> tireurs, string dateDuJour)
+        {
+            string period2026_2027 = "2026-2027";
+            
+           
+
+
+            BaseDeDonnéesMapper baseDeDonnéesMapper = new BaseDeDonnéesMapper();
+            List<TableListeTireursData> tableTireurs = baseDeDonnéesMapper.GetTableListeTireursData(Server, period2026_2027);
+            List<TableListeTireursData> tableTireursFiltered = tableTireurs.Where(x => tireurs.Contains(x.GuidTireur)).ToList();
+
+            List<TableListeTireursData> tableTireursFilteredWithCategorieU11 = new List<TableListeTireursData>(){};
+            List<TableListeTireursData> tableTireursFilteredWithCategorieU13 = new List<TableListeTireursData>() { };
+            List<TableListeTireursData> tableTireursFilteredWithCategorieU15 = new List<TableListeTireursData>() { };
+            List<TableListeTireursData> tableTireursFilteredWithCategorieSenior = new List<TableListeTireursData>() { };
+
+            switch (poulesViewModel.DateDuJourOnlyDayLabel.ToLower())
+            {
+                case "mercredi":
+                    tableTireursFilteredWithCategorieU11 = tableTireursFiltered.Where(x => x.DayMercredi == "Poule U11").ToList();
+                    tableTireursFilteredWithCategorieU13 = tableTireursFiltered.Where(x => x.DayMercredi == "Poule U13").ToList();
+                    tableTireursFilteredWithCategorieU15 = tableTireursFiltered.Where(x => x.DayMercredi == "Poule U15").ToList();
+                    tableTireursFilteredWithCategorieSenior = tableTireursFiltered.Where(x => x.DayMercredi == "Poule Senior").ToList();
+                    break;
+                case "vendredi":
+                    tableTireursFilteredWithCategorieU11 = tableTireursFiltered.Where(x => x.DayVendredi == "Poule U11").ToList();
+                    tableTireursFilteredWithCategorieU13 = tableTireursFiltered.Where(x => x.DayVendredi == "Poule U13").ToList();
+                    tableTireursFilteredWithCategorieU15 = tableTireursFiltered.Where(x => x.DayVendredi == "Poule U15").ToList();
+                    tableTireursFilteredWithCategorieSenior = tableTireursFiltered.Where(x => x.DayVendredi == "Poule Senior").ToList();
+                    break;
+                case "dimanche":
+                    tableTireursFilteredWithCategorieU11 = tableTireursFiltered.Where(x => x.DayDimanche == "Poule U11").ToList();
+                    tableTireursFilteredWithCategorieU13 = tableTireursFiltered.Where(x => x.DayDimanche == "Poule U13").ToList();
+                    tableTireursFilteredWithCategorieU15 = tableTireursFiltered.Where(x => x.DayDimanche == "Poule U15").ToList();
+                    tableTireursFilteredWithCategorieSenior = tableTireursFiltered.Where(x => x.DayDimanche == "Poule Senior").ToList();
+                    break;
+            }
+
+            if (tableTireursFilteredWithCategorieU11.Count < 3)
+            {
+                tableTireursFilteredWithCategorieU13.AddRange(tableTireursFilteredWithCategorieU11);
+            }
+
+            if (tableTireursFilteredWithCategorieU13.Count < 3)
+            {
+                tableTireursFilteredWithCategorieU15.AddRange(tableTireursFilteredWithCategorieU13);
+            }
+
+            if (tableTireursFilteredWithCategorieU15.Count < 3)
+            {
+                tableTireursFilteredWithCategorieSenior.AddRange(tableTireursFilteredWithCategorieU15);
+            }
+
+            AjoutTireursAUnePoule(poulesViewModel.DateDuJourWithoutDayLabel, tableTireursFilteredWithCategorieU11, "Poule U11");
+            AjoutTireursAUnePoule(poulesViewModel.DateDuJourWithoutDayLabel, tableTireursFilteredWithCategorieU13, "Poule U13");
+            AjoutTireursAUnePoule(poulesViewModel.DateDuJourWithoutDayLabel, tableTireursFilteredWithCategorieU15, "Poule U15");
+            AjoutTireursAUnePoule(poulesViewModel.DateDuJourWithoutDayLabel, tableTireursFilteredWithCategorieSenior, "Poule Senior");
+
+            poulesViewModel.InitSession();
+        }
+
+        private void AjoutTireursAUnePoule(string dateDuJourWithoutDayLabel, List<TableListeTireursData> tableTireursFilteredWithCategorieU11, string pouleSelected)
+        {
+            var path = Server.MapPath("/App_Data/Poules.accdb");
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
+
+            foreach (var tireur in tableTireursFilteredWithCategorieU11)
+            {
+                using (var conn = new OleDbConnection(ConnectionString))
+                {
+                    conn.Open();
+
+                    string mySelectQuery = "INSERT INTO TableDesTireursPourUnePouleDuJour (DateDeLaPoule, Poule, Tireur) Values ('"
+                        + dateDuJourWithoutDayLabel + "','" + pouleSelected + "','" + tireur.Prenom + " " + tireur.Nom + "')";
+
+                    using (var cmd = new OleDbCommand(mySelectQuery, conn))
+                    {
+                        using (var reader = cmd.ExecuteReader())
+                        {
+
+                        }
+                    }
+                }
+            }
+        }
+
+        private void SavePresencesInDB(PoulesViewModel poulesViewModel, string dateDuJourFormatted, List<string> tireurs, string dateDuJour)
+        {
             var path = Server.MapPath("/App_Data/Poules.accdb");
             string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
             string mySelectQueryDelete2 = @" DELETE FROM TableDesPresences WHERE DateDuJour = @t1";
@@ -1053,7 +1148,7 @@ namespace CercleRoyalEscrimeTournaisien
             }
 
             foreach (string tireurGuid in tireurs)
-            {  
+            {
                 using (var conn = new OleDbConnection(ConnectionString))
                 {
                     conn.Open();
@@ -1065,17 +1160,15 @@ namespace CercleRoyalEscrimeTournaisien
                     {
                         cmd.Parameters.AddWithValue("@param1", dateDuJourFormatted);
                         cmd.Parameters.AddWithValue("@param2", tireurGuid);
-                        cmd.Parameters.AddWithValue("@param3", poulesViewModel.ListTireursPourLesPresences.FirstOrDefault(x=>x.Value.GuidTireur == tireurGuid).Value.Nom);
+                        cmd.Parameters.AddWithValue("@param3", poulesViewModel.ListTireursPourLesPresences.FirstOrDefault(x => x.Value.GuidTireur == tireurGuid).Value.Nom);
                         cmd.Parameters.AddWithValue("@param4", poulesViewModel.ListTireursPourLesPresences.FirstOrDefault(x => x.Value.GuidTireur == tireurGuid).Value.Prenom);
 
                         using (var reader = cmd.ExecuteReader())
                         {
                         }
                     }
-                }               
+                }
             }
-
-            return Json(new { Success = true });
         }
 
         #region  All Methods Private

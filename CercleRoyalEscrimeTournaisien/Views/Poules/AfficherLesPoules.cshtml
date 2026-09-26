@@ -23,7 +23,7 @@
     }
 </div>
 
-@foreach (var poule in Model.PoulesDuJourList.GroupBy(x => x.Poule).OrderBy(y => y.Key))
+@foreach (var poule in Model.PoulesDuJourList.GroupBy(x => x.Poule))
 {
     var tireurs = poule.ToList();
     int n = tireurs.Count;

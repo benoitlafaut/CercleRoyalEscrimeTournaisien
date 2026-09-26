@@ -150,7 +150,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
             {
                 BaseDeDonnéesMapper baseDeDonnéesMapper = new BaseDeDonnéesMapper();
                 List<TableListeTireursData> tableTireurs = baseDeDonnéesMapper.GetTableListeTireursData(ServerTmp, period2026_2027);
-               return tableTireurs.OrderBy(x=>x.Prenom).ToDictionary(
+               return tableTireurs.Where(x=>x.GuidTireur != "239ED9DA-CB35-4E54-9610-CC872D07F90E").OrderBy(x=>x.Prenom).ToDictionary(
                         x => x.GuidTireur,
                         x => new ClassPresence
                         {
@@ -329,6 +329,8 @@ namespace CercleRoyalEscrimeTournaisien.Models
         {
             switch (nombreDeTireurs)
             {
+                case 2:
+                    return new List<string>() { "1-2" };
                 case 3:
                     return new List<string>() { "1-2", "1-3", "2-3" };
                 case 4:
