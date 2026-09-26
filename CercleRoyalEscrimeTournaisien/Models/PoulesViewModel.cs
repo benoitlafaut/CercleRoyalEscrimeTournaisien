@@ -200,6 +200,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
                     lecon.Prénom  = tableTireurs.FirstOrDefault(x => x.GuidTireur == lecon.GuidTireur).Prenom;
                     lecon.Birthdate = tableTireurs.FirstOrDefault(x => x.GuidTireur == lecon.GuidTireur).Birthdate;
                     lecon.Age = GetAge(tableTireurs.FirstOrDefault(x => x.GuidTireur == lecon.GuidTireur).Prenom + " " + tableTireurs.FirstOrDefault(x => x.GuidTireur == lecon.GuidTireur).Nom);
+                    
                 }
 
                 return tableDesLecons;
