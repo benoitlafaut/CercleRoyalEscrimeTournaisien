@@ -86,6 +86,43 @@ namespace CercleRoyalEscrimeTournaisien.Models
 
             return scoresResult;
         }
+        public int GetPositionMatch(
+            int nbMatchPremierTour,
+            int nbMatchRound,
+            int indexMatch)
+        {
+            int hauteurMatch = 100;
+            int facteur ;
+            if (nbMatchRound == 0) 
+            {
+                facteur = nbMatchPremierTour/2;    
+            }
+            else
+            {
+                facteur = nbMatchPremierTour / nbMatchRound;
+            }
+
+
+            int hauteurDeLaPremiereLigne = 40;
+
+            return hauteurDeLaPremiereLigne + ((facteur - 1) * hauteurMatch / 2)
+                   + (indexMatch * facteur * hauteurMatch);
+        }
+     
+        public int GetRoundMaximum(string round)
+        {
+            if (string.IsNullOrWhiteSpace(round))
+                throw new ArgumentException(nameof(round));
+
+            var parts = round.Split('/');
+
+            if (parts.Length == 2 && int.TryParse(parts[1], out int value))
+            {
+                return value * 2;
+            }   
+
+            return 0;
+        }
         private List<int> GenerateFirstRound(int fencers)
         {
             switch (fencers)

@@ -195,10 +195,12 @@
 }
 
 <script>
-    $(".ClassHREFListPoules").each(function (index, item) {
-        var hrefPoule = $(this).attr('href');
-        if ($("#divForTable_PouleU11").length == 0) {
-            $(this).css('display', 'none');
-        }
-    })
+     $(document).ready(function () {
+         $(".ClassHREFListPoules").each(function (index, item) {
+             var hrefPoule = $(this).attr('href');
+             if ($(hrefPoule).length == 0) {
+                 $(this).css('display', 'none');
+             }
+         })
+     }); 
 </script>
