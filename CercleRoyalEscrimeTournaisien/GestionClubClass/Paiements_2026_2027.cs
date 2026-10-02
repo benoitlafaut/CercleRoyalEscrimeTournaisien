@@ -13,49 +13,55 @@ namespace WebApplication1.Models
         private string dateDebutDeSaison = "01/09/2026";
         public JoursDePrésence ChargerPresences(HttpServerUtilityBase serverTmp)
         {
-            List<ClassPresence> presences = new List<ClassPresence>() { };
-            string dateDebutDeSaisonFormatted = DateTime.ParseExact(dateDebutDeSaison, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd");
-
-            var path = serverTmp.MapPath("/App_Data/Poules.accdb");
-            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
-
-
-            string sql = "SELECT * FROM TableDesPresences WHERE ( Right(DateDuJour, 4) & Mid (DateDuJour, 4, 2) & Left(DateDuJour, 2)) >= ?";
-
-            using (var conn = new OleDbConnection(ConnectionString))
+            JoursDePrésence chargerJoursDePrésenceSession = this.GetValueStartsWith<JoursDePrésence>("ChargerJoursDePrésenceSession");
+            if (chargerJoursDePrésenceSession != null)
             {
-                conn.Open();
-
-                using (var cmd = new OleDbCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@p1", dateDebutDeSaisonFormatted);
-
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-
-                            presences.Add(new ClassPresence()
-                            {
-                                DateDuJour = (string)reader["DateDuJour"],
-                                GuidTireur = (string)reader["GuidTireur"],
-                                Nom = (string)reader["Nom"],
-                                Prenom = (string)reader["Prenom"],
-                            });
-                            // traitement
-                        }
-                    }
-
-                }
+                return chargerJoursDePrésenceSession;
             }
-
-            JoursDePrésence joursDePrésence = new JoursDePrésence()
+            else
             {
-                JourDePrésence = new List<JourDePrésence>() {  }
-            };
+                List<ClassPresence> presences = new List<ClassPresence>() { };
+                string dateDebutDeSaisonFormatted = DateTime.ParseExact(dateDebutDeSaison, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd");
 
-            foreach (string dateDuJour in presences.Select(x => x.DateDuJour).Distinct())
-            {                
+                var path = serverTmp.MapPath("/App_Data/Poules.accdb");
+                string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
+
+
+                string sql = "SELECT * FROM TableDesPresences WHERE ( Right(DateDuJour, 4) & Mid (DateDuJour, 4, 2) & Left(DateDuJour, 2)) >= ?";
+
+                using (var conn = new OleDbConnection(ConnectionString))
+                {
+                    conn.Open();
+
+                    using (var cmd = new OleDbCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@p1", dateDebutDeSaisonFormatted);
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+
+                                presences.Add(new ClassPresence()
+                                {
+                                    DateDuJour = (string)reader["DateDuJour"],
+                                    GuidTireur = (string)reader["GuidTireur"],
+                                    Nom = (string)reader["Nom"],
+                                    Prenom = (string)reader["Prenom"],
+                                });
+                            }
+                        }
+
+                    }
+                }
+
+                JoursDePrésence joursDePrésence = new JoursDePrésence()
+                {
+                    JourDePrésence = new List<JourDePrésence>() { }
+                };
+
+                foreach (string dateDuJour in presences.Select(x => x.DateDuJour).Distinct())
+                {
                     List<ClassPresence> AllPresencesByDate = presences.Where(x => x.DateDuJour == dateDuJour).ToList();
 
                     joursDePrésence.JourDePrésence.Add(new JourDePrésence()
@@ -64,16 +70,28 @@ namespace WebApplication1.Models
                         EscrimeurId = new List<Guid>() { }
                     });
 
-                    foreach (ClassPresence presenceByDate in AllPresencesByDate.OrderBy(x=>x.Prenom))
+                    foreach (ClassPresence presenceByDate in AllPresencesByDate.OrderBy(x => x.Prenom))
                     {
                         joursDePrésence.JourDePrésence.Last().EscrimeurId.Add(new Guid(presenceByDate.GuidTireur));
                     }
-                
-            }
-               
-            return joursDePrésence;            
-        }
 
+                }
+
+                HttpContext.Current.Session.Add("ChargerJoursDePrésenceSession", joursDePrésence);
+
+                return joursDePrésence;
+            }                        
+        }
+        private T GetValueStartsWith<T>(string key)
+        {
+            var lastSessionKey = System.Web.HttpContext.Current.Session.Keys.Cast<string>()
+                .LastOrDefault(x => x.StartsWith(key));
+
+            if (string.IsNullOrEmpty(lastSessionKey))
+                return default(T);
+
+            return (T)Convert.ChangeType(HttpContext.Current.Session[lastSessionKey], typeof(T));
+        }
         public void Add_Paiements_Vantroyen_Mae(string period, List<MembreData> Membres)
         {
             if (!Membres.Any(x => x.GuidId == GuidConstantes.GuidMaeVantroyen && x.Période == period))
