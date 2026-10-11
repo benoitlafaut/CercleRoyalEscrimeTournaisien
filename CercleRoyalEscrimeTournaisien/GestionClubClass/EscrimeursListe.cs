@@ -203,7 +203,7 @@ namespace WebApplication1.Models
                         FicheSignaletiqueUrl = tireurData.FicheSignaletiqueUrl,
                         NomMaman = tireurData.NomMere,
                         NomPapa = tireurData.NomPere,
-                        Telephone = new List<string>() { tireurData.TelephoneMere, tireurData.TelephonePere, tireurData.TelephonePropre },                        
+                        Telephone = CheckTelephones(tireurData.TelephoneMere, tireurData.TelephonePere, tireurData.TelephonePropre),                        
                     }
                 });
             }
@@ -211,6 +211,16 @@ namespace WebApplication1.Models
             Membres = Membres.OrderBy(x => x.Nom).ToList();
 
         }
+
+        private List<string> CheckTelephones(string telephoneMere, string telephonePere, string telephonePropre)
+        {
+            List<string> phonesList = new List<string>() {  };
+            if (!string.IsNullOrEmpty(telephoneMere)) { phonesList.Add(telephoneMere); }
+            if (!string.IsNullOrEmpty(telephonePere)) { phonesList.Add(telephonePere); }
+            if (!string.IsNullOrEmpty(telephonePropre)) { phonesList.Add(telephonePropre); }
+            return phonesList;
+        }
+
         #region  Add_FichesSignalétiques_2023_2024
         private void Add_FichesSignalétiques_2023_2024()
         {
