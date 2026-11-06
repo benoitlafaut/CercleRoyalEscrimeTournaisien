@@ -438,6 +438,40 @@ namespace CercleRoyalEscrimeTournaisien
         }
 
         [HttpPost]
+        public ActionResult EnregistrerNombreDeTouches(MyRequestToEnregistrerNombreDeTouches myRequestToEnregistrerNombreDeTouches)
+        {
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+
+            var path = Server.MapPath("/App_Data/Poules.accdb");
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
+
+            string pouleSelected = myRequestToEnregistrerNombreDeTouches.PouleSelected;
+
+            string mySelectQuery = "UPDATE TableListeDesPoules"
+                + " SET NombreDeTouchesMax = ?"
+                + " where Poule = ? and EpoqueDUtilisationPoule = 2";
+
+            using (var conn = new OleDbConnection(ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new OleDbCommand(mySelectQuery, conn))
+                {
+
+                    cmd.Parameters.AddWithValue("?", myRequestToEnregistrerNombreDeTouches.nombreDeTouchesChangees);
+                    cmd.Parameters.AddWithValue("?", pouleSelected);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                    }
+                }
+            }
+
+            poulesViewModel.InitSession();
+
+            return Json(new { redirectUrl = Url.Action("AjouterDesScores", "Poules") });
+        }
+
+        [HttpPost]
         public ActionResult AddUnNewComerToDB(MyRequestToAddUnNewComerToDB myRequestAddUnNewComerToDB)
         {
             string period2026_2027 = "2026-2027";

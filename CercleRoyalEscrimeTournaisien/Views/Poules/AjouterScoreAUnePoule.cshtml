@@ -1,7 +1,14 @@
 ﻿@model CercleRoyalEscrimeTournaisien.Models.PoulesViewModel
 @{
-    IEnumerable<SelectListItem> GetNumbersList = Model.PouleSelected == "Poule 1" ?
+    IEnumerable<SelectListItem> GetNumbersList = Model.PouleSelected == "Poule U11" ?
     new SelectList(new List<string> { "", "0", "1", "2", "3", "4" }) : new SelectList(new List<string> { "", "0", "1", "2", "3", "4", "5" });
+
+    if (Model.PouleSelected == "Poule Senior")
+    {
+        var nombreDeTouchesMax = Model.PoulesList.FirstOrDefault(x => x.Poule == Model.PouleSelected).NombreDeTouchesMax;
+
+        GetNumbersList = new SelectList( Enumerable.Range(0, nombreDeTouchesMax + 1).Select(i => i.ToString()).Prepend(""));
+    }
 }
 
 
@@ -46,6 +53,26 @@
 
 </div>
 
+@if (Model.PouleSelected == "Poule Senior")
+{
+    <div style="margin-bottom:15px;">
+        <hr style=" margin-inline-start: 0px; margin-inline-end: 85%; " />
+        <div>
+            <label>Pour le moment, vous tirez en @Model.PoulesList.FirstOrDefault(x => x.Poule == Model.PouleSelected).NombreDeTouchesMax touches </label>
+        </div>
+        <div>
+            <label>Voulez-vous le changer ? </label>
+            <label><input type="radio" name="choixNombreDeTouchesMax" value="1" onclick="$('#divNombreNouveauDeTouches').css('display','block')">Oui</label>
+            <label><input type="radio" name="choixNombreDeTouchesMax" checked value="2" onclick="$('#divNombreNouveauDeTouches').css('display','none')">Non</label>
+        </div>
+        <div style="display:none;" id="divNombreNouveauDeTouches">
+            <span>Nombre de touches :</span>
+            <input style="width:24px;" type="text" id="nombreDeTouchesChangees" />
+            <input value="Save" style="min-width:50px;" onclick="EnregistrerNombreDeTouches('@Model.PouleSelected'); "  type="button" />
+        </div>
+        <hr style=" margin-inline-start: 0px; margin-inline-end: 85%; " />
+    </div>
+}
 
 <div style="display: flex; margin-bottom: 15px;">
     <div>

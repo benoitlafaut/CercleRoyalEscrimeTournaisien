@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CercleRoyalEscrimeTournaisien.Models
 {
@@ -10,6 +7,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
     {
         public string Poule { get; set; }
         public string DescriptionDeLaPoule { get; set; }
+        public int NombreDeTouchesMax { get; set; }
         public bool Selected { get; set; }
     }
     

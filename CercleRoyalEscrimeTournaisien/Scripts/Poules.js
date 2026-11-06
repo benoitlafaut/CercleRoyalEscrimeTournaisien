@@ -96,10 +96,30 @@ function getIsMyOppo() {
         screen.height === 800 &&
         window.devicePixelRatio === 3 &&
         isMobile === true;
-             //  return true;
+           //  return true;
     return isOppo;    
 }
+function EnregistrerNombreDeTouches(pouleSelected) {
+    if ($("#nombreDeTouchesChangees").val() == "") {
+        alert("Vous n'avez pas mis de touches");
+        return;
+    }
 
+    $.ajax({
+        url: "/Poules/EnregistrerNombreDeTouches",
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ pouleSelected: pouleSelected, nombreDeTouchesChangees: $("#nombreDeTouchesChangees").val() }),
+        success: function (data) {
+            if (data.redirectUrl) { window.location.href = data.redirectUrl; }
+        },
+        failure: function (response) { },
+        error: function (response) {
+            alert("Error. " + response.responseText);
+        }
+    });
+
+}
 function getNomDeMonGSM() {
     const fingerprint = [
         navigator.language,

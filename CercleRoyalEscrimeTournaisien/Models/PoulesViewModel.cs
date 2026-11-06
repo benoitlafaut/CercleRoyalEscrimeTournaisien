@@ -537,10 +537,12 @@ namespace CercleRoyalEscrimeTournaisien.Models
                             {
                                 string poule = (string)reader["Poule"];
                                 string descriptionDeLaPoule = (string)reader["DescriptionDeLaPoule"];
+                                int nombreDeTouchesMax = (int)reader["NombreDeTouchesMax"];
                                 PoulesList.Add(new ClassPoule()
                                 {
                                     Poule = poule,
-                                    DescriptionDeLaPoule = descriptionDeLaPoule
+                                    DescriptionDeLaPoule = descriptionDeLaPoule,
+                                    NombreDeTouchesMax = nombreDeTouchesMax
                                 });
                             }
                         }
@@ -548,10 +550,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
                 }
 
                 System.Web.HttpContext.Current.Session.Add("ChargerListeDesPoulesPotentiellesSession", PoulesList);
-            }
-
-
-                         
+            }                         
         }
         private void ChargerRésultatsDesPoulesDuJour()
         {
