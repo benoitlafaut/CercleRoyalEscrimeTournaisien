@@ -1,4 +1,4 @@
-﻿config.speakSelectedText = false;
+﻿ config.speakSelectedText = false;
 config.welcomeMessage = "";
 
 $(document).ready(function () {
@@ -96,7 +96,7 @@ function getIsMyOppo() {
         screen.height === 800 &&
         window.devicePixelRatio === 3 &&
         isMobile === true;
-           //  return true;
+         //  return true;
     return isOppo;    
 }
 function EnregistrerNombreDeTouches(pouleSelected) {
@@ -399,16 +399,16 @@ function AddScoreToTireursSelected() {
         alert("L'un des deux scores est vide.");
         return;
     }
-
+    
     if ($("input[name='choixVictoire']:checked").val() == "1") {
-        if ($("#ScoreTireur2").val() > $("#ScoreTireur1").val()) {
+        if (Number($("#ScoreTireur2").val()) > Number($("#ScoreTireur1").val())) {
             alert("La victoire est pour le premier tireur mais le score n'est pas cohérent.");
             return;
         }
     }
 
     if ($("input[name='choixVictoire']:checked").val() == "2") {
-        if ($("#ScoreTireur1").val() > $("#ScoreTireur2").val()) {
+        if (Number($("#ScoreTireur1").val()) > Number($("#ScoreTireur2").val())) {
             alert("La victoire est pour le deuxième tireur mais le score n'est pas cohérent.");
             return;
         }

@@ -1142,6 +1142,23 @@ namespace CercleRoyalEscrimeTournaisien
             var path = Server.MapPath("/App_Data/Poules.accdb");
             string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Persist Security Info=True";
 
+
+            string mySelectQueryDelete2 = @" DELETE FROM TableDesTireursPourUnePouleDuJour WHERE DateDeLaPoule = @t1 and Poule = @t2";
+
+            using (var conn = new OleDbConnection(ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new OleDbCommand(mySelectQueryDelete2, conn))
+                {
+                    cmd.Parameters.AddWithValue("@t1", dateDuJourWithoutDayLabel);
+                    cmd.Parameters.AddWithValue("@t2", pouleSelected);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                    }
+                }
+            }
+
             foreach (var tireur in tableTireursFilteredWithCategorieU11)
             {
                 using (var conn = new OleDbConnection(ConnectionString))
