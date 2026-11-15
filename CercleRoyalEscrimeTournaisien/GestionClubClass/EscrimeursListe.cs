@@ -162,6 +162,7 @@ namespace WebApplication1.Models
 
             foreach (TableListeTireursData tireurData in tableTireurs)
             {
+                
                 string seancesGratuites = tireurData.SeancesGratuites;
                 string[] arySeancesGratuites = seancesGratuites.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
                 List<DateTime> arySeancesGratuitesDate = new List<DateTime>() { };

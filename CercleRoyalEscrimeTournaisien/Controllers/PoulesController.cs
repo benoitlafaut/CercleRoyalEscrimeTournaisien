@@ -1076,18 +1076,28 @@ namespace CercleRoyalEscrimeTournaisien
             return Json(new { Success = true });
         }
 
+        [HttpGet]
+        public JsonResult SearchDatesPresenceTireur()
+        {
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+
+            return Json(new { poulesViewModel = RenderRazorViewToString("PartialViewDatePresenceList", poulesViewModel) }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        #region  All Methods Private
         private void PreparePoules(PoulesViewModel poulesViewModel, List<string> tireurs, string dateDuJour)
         {
             string period2026_2027 = "2026-2027";
-            
-           
+
+
 
 
             BaseDeDonnéesMapper baseDeDonnéesMapper = new BaseDeDonnéesMapper();
             List<TableListeTireursData> tableTireurs = baseDeDonnéesMapper.GetTableListeTireursData(Server, period2026_2027);
             List<TableListeTireursData> tableTireursFiltered = tableTireurs.Where(x => tireurs.Contains(x.GuidTireur)).ToList();
 
-            List<TableListeTireursData> tableTireursFilteredWithCategorieU11 = new List<TableListeTireursData>(){};
+            List<TableListeTireursData> tableTireursFilteredWithCategorieU11 = new List<TableListeTireursData>() { };
             List<TableListeTireursData> tableTireursFilteredWithCategorieU13 = new List<TableListeTireursData>() { };
             List<TableListeTireursData> tableTireursFilteredWithCategorieU15 = new List<TableListeTireursData>() { };
             List<TableListeTireursData> tableTireursFilteredWithCategorieSenior = new List<TableListeTireursData>() { };
@@ -1179,6 +1189,7 @@ namespace CercleRoyalEscrimeTournaisien
             }
         }
 
+
         private void SavePresencesInDB(PoulesViewModel poulesViewModel, string dateDuJourFormatted, List<string> tireurs, string dateDuJour)
         {
             var path = Server.MapPath("/App_Data/Poules.accdb");
@@ -1221,8 +1232,6 @@ namespace CercleRoyalEscrimeTournaisien
                 }
             }
         }
-
-        #region  All Methods Private
         private string GetArmePratiquee(string dateDeLaPoule)
         {
             string arme = string.Empty;

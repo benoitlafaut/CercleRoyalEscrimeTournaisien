@@ -20,5 +20,16 @@
 </div>
 
 <div class="ClassMarginTopAndBottom">
-    <a onclick="$.startLoading();" href="@Url.Action("ResetDates", "Poules")" class="btnAction-custom">Réinitialisez la date et la remettre à la date du jour</a>
+    <a onclick="$.startLoading();" href="@Url.Action("ResetDates", "Poules")" class="btnAction-custom">Revenir à la date du jour</a>
+</div>
+
+
+<hr/>
+
+<div style="margin-top: 10px;">
+    @Html.DropDownListFor(model => model.TireurSelected, new SelectList(Model.ListTireurs, "Key", "Value", Model.TireurSelected), new { @class = "form-control", @onchange = "SearchDatesPresenceTireur(this.value);" })
+</div>
+
+<div id="PartialViewDatePresenceList">
+    @Html.Partial("PartialViewDatePresenceList", Model)
 </div>

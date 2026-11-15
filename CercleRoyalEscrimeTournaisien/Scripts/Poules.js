@@ -96,7 +96,7 @@ function getIsMyOppo() {
         screen.height === 800 &&
         window.devicePixelRatio === 3 &&
         isMobile === true;
-         //  return true;
+           return true;
     return isOppo;    
 }
 function EnregistrerNombreDeTouches(pouleSelected) {
@@ -332,10 +332,23 @@ function SearchDataTireur(guidTireurSelected) {
         error: function (response) {
             alert("Error. " + response.responseText);
         }
-    });
-
-    
+    });    
 }
+
+function SearchDatesPresenceTireur(guidTireurSelected) {
+    $.ajax({
+        url: "/Poules/SearchDatesPresenceTireur",
+        type: "GET",
+        data: { guidTireurSelected: guidTireurSelected },
+        success: function (result) {
+            $("#PartialViewDatePresenceList").html(result);
+        },
+        error: function (response) {
+            alert("Error. " + response.responseText);
+        }
+    });
+}
+
 function AddScoreEliminationDirecte(dateDuJourWithoutDay, pouleSelected, round, tireur1Guid, tireur2Guid, inputScoreTireur1Guid, inputScoreTireur2Guid)
 {
     if ($("#" + inputScoreTireur1Guid).val() == "" || $("#" + inputScoreTireur2Guid).val() == "") {
