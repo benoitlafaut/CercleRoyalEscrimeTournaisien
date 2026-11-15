@@ -1,0 +1,17 @@
+﻿@model List<string>
+
+@{
+    string styleDivVisibility = Model.Count == 0 ? "display:none" : "";
+}
+
+<div style="@styleDivVisibility">
+
+
+    <select onchange="$.startLoading();location.href='@Url.Action("ChangeDateDeLaPoule", "Poules")?dateDeLaPouleSelected=' + this.value" class="form-control">
+        <option>Sélectionner une date</option>
+        @foreach (string date in Model)
+        {
+            <option value="@date">@date</option>
+        }
+    </select>
+</div>

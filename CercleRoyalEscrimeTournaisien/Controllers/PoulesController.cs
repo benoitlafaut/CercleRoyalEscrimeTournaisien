@@ -1077,11 +1077,38 @@ namespace CercleRoyalEscrimeTournaisien
         }
 
         [HttpGet]
-        public JsonResult SearchDatesPresenceTireur()
+        public ActionResult SearchDatesPresenceTireur(Guid guidTireurSelected)
         {
-            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+            List<string> TireurPresenceDates = new List<string>() { };
 
-            return Json(new { poulesViewModel = RenderRazorViewToString("PartialViewDatePresenceList", poulesViewModel) }, JsonRequestBehavior.AllowGet);
+            PoulesViewModel poulesViewModel = new PoulesViewModel(Server);
+            string nomTireurSelectionne = poulesViewModel.ListTireurs.FirstOrDefault(x => x.Key == guidTireurSelected).Value;
+            
+            var path = Server.MapPath("/App_Data/Poules.accdb");
+            string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Mode=Read;Persist Security Info=True";
+            string mySelectQuery = " SELECT DateDeLaPoule FROM TableDesTireursPourUnePouleDuJour Where Tireur = ? GROUP BY DateDeLaPoule";
+
+            using (var conn = new OleDbConnection(ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new OleDbCommand(mySelectQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("?", nomTireurSelectionne);
+
+                    using (var myReader = cmd.ExecuteReader())
+                    {
+                        while (myReader.Read())
+                        {
+                            string dateDeLaPoule = (string)myReader["DateDeLaPoule"];
+                            TireurPresenceDates.Add(dateDeLaPoule);
+                        }
+                    }
+                }
+            }
+
+            TireurPresenceDates = TireurPresenceDates.OrderByDescending(d => DateTime.ParseExact(d,"dd/MM/yyyy",CultureInfo.InvariantCulture)).ToList();
+
+            return PartialView("PartialViewDatePresenceList", TireurPresenceDates);
 
         }
 

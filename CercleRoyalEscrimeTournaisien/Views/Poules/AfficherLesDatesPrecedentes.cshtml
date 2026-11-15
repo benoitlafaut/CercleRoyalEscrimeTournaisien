@@ -27,9 +27,19 @@
 <hr/>
 
 <div style="margin-top: 10px;">
-    @Html.DropDownListFor(model => model.TireurSelected, new SelectList(Model.ListTireurs, "Key", "Value", Model.TireurSelected), new { @class = "form-control", @onchange = "SearchDatesPresenceTireur(this.value);" })
+    @Html.DropDownListFor(
+    model => model.TireurSelected,
+    new SelectList(Model.ListTireurs, "Key", "Value", Model.TireurSelected),
+    "-- Sélectionner un tireur --",
+    new
+    {
+        @class = "form-control",
+        @onchange = "SearchDatesPresenceTireur(this.value);"
+    })
+
+    @*@Html.DropDownListFor(model => model.TireurSelected, new SelectList(Model.ListTireurs, "Key", "Value", Model.TireurSelected), new { @class = "form-control", @onchange = "SearchDatesPresenceTireur(this.value);" })*@
 </div>
 
-<div id="PartialViewDatePresenceList">
-    @Html.Partial("PartialViewDatePresenceList", Model)
+<div id="PartialViewDatePresenceList" style="margin-top:15px;">
+    @Html.Partial("PartialViewDatePresenceList", new List<string>())
 </div>

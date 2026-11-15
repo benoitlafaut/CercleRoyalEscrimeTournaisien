@@ -96,7 +96,7 @@ function getIsMyOppo() {
         screen.height === 800 &&
         window.devicePixelRatio === 3 &&
         isMobile === true;
-           return true;
+         //  return true;
     return isOppo;    
 }
 function EnregistrerNombreDeTouches(pouleSelected) {
@@ -336,6 +336,7 @@ function SearchDataTireur(guidTireurSelected) {
 }
 
 function SearchDatesPresenceTireur(guidTireurSelected) {
+    if (guidTireurSelected == "") { return; }
     $.ajax({
         url: "/Poules/SearchDatesPresenceTireur",
         type: "GET",
