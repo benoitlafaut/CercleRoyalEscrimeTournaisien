@@ -28,15 +28,21 @@ namespace CercleRoyalEscrimeTournaisien.Models
                 Dictionary<string, string> listTireursToShowAndChoose = new Dictionary<string, string>() { };
 
                 foreach (var tireur in StatistiquesList)
-                {
-                    if (!listTireursToShowAndChoose.ContainsKey(tireur.Tireur1Name))
+                {                   
+                    if (tireur.Tireur1Name != null)
                     {
-                        listTireursToShowAndChoose.Add(tireur.Tireur1Name, tireur.Tireur1Name);
+                        if (!listTireursToShowAndChoose.ContainsKey(tireur.Tireur1Name))
+                        {
+                            listTireursToShowAndChoose.Add(tireur.Tireur1Name, tireur.Tireur1Name);
+                        }
                     }
 
-                    if (!listTireursToShowAndChoose.ContainsKey(tireur.Tireur2Name))
+                    if (tireur.Tireur2Name != null)
                     {
-                        listTireursToShowAndChoose.Add(tireur.Tireur2Name, tireur.Tireur2Name);
+                        if (!listTireursToShowAndChoose.ContainsKey(tireur.Tireur2Name))
+                        {
+                            listTireursToShowAndChoose.Add(tireur.Tireur2Name, tireur.Tireur2Name);
+                        }
                     }
                 }
 
@@ -65,7 +71,7 @@ namespace CercleRoyalEscrimeTournaisien.Models
                     listeDesMatchs = listeDesMatchs.Where(x => x.Arme == ArmeSelected).ToList();
                 }
 
-                return listeDesMatchs;
+                return listeDesMatchs.OrderByDescending(x => Convert.ToDateTime(x.DateDeLaPoule).ToString("yyyy'/'MM'/'dd")).ToList();
             }
         }
         public IDictionary<string, string> ListArmes
@@ -98,14 +104,20 @@ namespace CercleRoyalEscrimeTournaisien.Models
 
                 foreach (var tireur in StatistiquesList)
                 {
-                    if (!listTireursToShowAndChooseForAdversaires.ContainsKey(tireur.Tireur1Name))
+                    if (tireur.Tireur1Name != null)
                     {
-                        listTireursToShowAndChooseForAdversaires.Add(tireur.Tireur1Name, tireur.Tireur1Name);
+                        if (!listTireursToShowAndChooseForAdversaires.ContainsKey(tireur.Tireur1Name))
+                        {
+                            listTireursToShowAndChooseForAdversaires.Add(tireur.Tireur1Name, tireur.Tireur1Name);
+                        }
                     }
 
-                    if (!listTireursToShowAndChooseForAdversaires.ContainsKey(tireur.Tireur2Name))
+                    if (tireur.Tireur2Name != null)
                     {
-                        listTireursToShowAndChooseForAdversaires.Add(tireur.Tireur2Name, tireur.Tireur2Name);
+                        if (!listTireursToShowAndChooseForAdversaires.ContainsKey(tireur.Tireur2Name))
+                        {
+                            listTireursToShowAndChooseForAdversaires.Add(tireur.Tireur2Name, tireur.Tireur2Name);
+                        }
                     }
                 }
 
